@@ -7,4 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cat/missingboard/*")
 public class CatMissingboardController {
 
+	@RequestMapping("/list")
+	public String dogMissingBoardList() {
+		return "petish/cat/missingboard/list";
+	}
+	
 }
