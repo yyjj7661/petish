@@ -459,13 +459,10 @@
 				<P></P>
 				<P></P>
 				<P></P>
-				<button type="submit" class="btn btn-template-outlined"
-					style="float: right;">글쓰기</button>
+				<button class="btn btn-template-outlined"
+					style="float: right;">
+				<a href="/cat/freeboard/writeForm">글쓰기</a></button>
 				<div class="row bar">
-
-
-
-
 
 					<div id="customer-order" class="col-lg-20">
 						<table class="table" style="margin: auto; text-align: center;">
