@@ -3,66 +3,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-#head{
-	display:inline;
-}
-</style>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Universal - All In 1 Template</title>
+<title>안녕하세요</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 <!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href="resources/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
-<link rel="stylesheet"
-	href="resources/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/vendor/font-awesome/css/font-awesome.min.css">
 <!-- Google fonts - Roboto-->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/resources/css?family=Roboto:300,400,700">
 <!-- Bootstrap Select-->
-<link rel="stylesheet"
-	href="resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
 <!-- owl carousel-->
-<link rel="stylesheet"
-	href="resources/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="resources/vendor/owl.carousel/assets/owl.theme.default.css">
+<link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.carousel.css">
+<link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.theme.default.css">
 <!-- theme stylesheet-->
-<link rel="stylesheet" href="resources/css/style.lightblue.css"
-	id="theme-stylesheet">
+<link rel="stylesheet" href="resources/css/style.lightblue.css" id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
 <link rel="stylesheet" href="resources/css/custom.css">
 <!-- Favicon and apple touch icons-->
-<link rel="shortcut icon" href="resources/img/favicon.ico"
-	type="image/x-icon">
-<link rel="apple-touch-icon" href="resources/img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="57x57"
-	href="resources/img/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="resources/img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="resources/img/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="resources/img/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="resources/img/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144"
-	href="resources/img/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="resources/img/apple-touch-icon-152x152.png">
+<link rel="shortcut icon" href="resources/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="../resources/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="57x57" href="resources/img/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="resources/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="resources/img/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="resources/img/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="resources/img/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="resources/mg/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="resources/img/apple-touch-icon-152x152.png">
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<style type="text/css">
+#report-btn {
+	justify-content: right;
+}
+</style>
 </head>
-
 <body>
 	<div id="all">
+	
+		<!-- Top bar-->
+		<div class="top-bar">
+			<div class="container">
+				<div class="row d-flex align-items-center">
+					<div class="col-md-6 d-md-block d-none">
+						<p>Contact us on +420 777 555 333 or hello@universal.com.</p>
+					</div>
+					<div class="col-md-6">
+						<div class="d-flex justify-content-md-end justify-content-between">
+							<ul class="list-inline contact-info d-block d-md-none">
+								<li class="list-inline-item"><a href="#"><i
+										class="fa fa-phone"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i
+										class="fa fa-envelope"></i></a></li>
+							</ul>
+							<div class="login">
+								<a href="#" data-toggle="modal" data-target="#login-modal"
+									class="login-btn"><i class="fa fa-sign-in"></i><span
+									class="d-none d-md-inline-block">Sign In</span></a><a
+									href="customer-register.html" class="signup-btn"><i
+									class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign
+										Up</span></a>
+							</div>
+							<ul class="social-custom list-inline">
+								<li class="list-inline-item"><a href="#"><i
+										class="fa fa-facebook"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i
+										class="fa fa-google-plus"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i
+										class="fa fa-twitter"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i
+										class="fa fa-envelope"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Top bar end-->
 		
 		<!-- Login Modal-->
 		<div id="login-modal" tabindex="-1" role="dialog"
@@ -96,7 +117,7 @@
 						<p class="text-center text-muted">Not registered yet?</p>
 						<p class="text-center text-muted">
 							<a href="customer-register.html"><strong>Register
-									now</strong></a>! It is easy and done in 1 minute and gives you access to
+									now</strong></a>! It is easy and done in 1 minute and gives you access to
 							special discounts and much more!
 						</p>
 					</div>
@@ -104,14 +125,15 @@
 			</div>
 		</div>
 		<!-- Login modal end-->
+		
 		<!-- Navbar Start-->
 		<header class="nav-holder make-sticky">
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
 					<a href="index.html" class="navbar-brand home"><img
-						src="resources/img/logo.png" alt="Universal logo"
+						src="img/logo.png" alt="Universal logo"
 						class="d-none d-md-inline-block"><img
-						src="resources/img/logo-small.png" alt="Universal logo"
+						src="img/logo-small.png" alt="Universal logo"
 						class="d-inline-block d-md-none"><span class="sr-only">Universal
 							- go to homepage</span></a>
 					<button type="button" data-toggle="collapse"
@@ -154,7 +176,7 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="resources/img/template-easy-customize.png" alt=""
+												<img src="img/template-easy-customize.png" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
@@ -203,7 +225,7 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="resources/img/template-homepage.png" alt=""
+												<img src="img/template-homepage.png" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
@@ -423,187 +445,301 @@
 		</header>
 		<!-- Navbar End-->
 
-		<div id="heading-breadcrumbs">
+		<div id="heading-breadcrumbs" class="border-top-0 border-bottom-0">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
 					<div class="col-md-7">
-						<h1 class="h2">고양이 자유게시판</h1>
+						<h1 class="h2">강아지 자유게시판</h1>
 					</div>
 					<div class="col-md-5">
 						<ul class="breadcrumb d-flex justify-content-end">
-							<li class="breadcrumb-item"><a href="index.html">고양이</a></li>
-							<li class="breadcrumb-item active">자유게시판</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div id="content">
 			<div class="container">
-				<div>
-					<div id="customer-account">
-						<div class="box mt-5" style="margin-top: 20px;">
-							<div class="heading" id="head">
-								<h3 class="text-uppercase">글 수정</h3>
-							</div>
-							<div class="col-lg-10 text-right p-3" style="display:inline-block;">
-										<a href="#" class="btn btn-template-outlined"
-											style="margin-top: 10px;">목록</a>
-							</div>
+				<div class="row bar">
+					<!-- LEFT COLUMN _________________________________________________________-->
+					<div id="blog-post" class="col-md-13">
+						<button type="submit" class="btn btn-template-outlined" style="float: right;">글쓰기</button>
+						<button type="submit" class="btn btn-template-outlined" style="float: right;">
+							<i class="fa fa-align-justify"></i>목록
+						</button>
+						
+						<P></P>
+						<P></P>
+						<P></P>
+						<P></P>
+						
+						<div class="panel-heading">
+							<h2 class="h3 panel-title">안녕하세요!!!!!!!!!!!!!!</h2>
+						</div>
+
+						<table>
+							<tbody>
+								<tr>
+									<td><img src="resources/img/blog-avatar2.jpg" alt=""
+										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
+									<td>
+										<ul class="nav navbar-nav ml-auto">
+											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
+											<ul class="dropdown-menu">
+												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
+												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
+											</ul>
+										</ul>
+									</td>
+
+									<td>준회원</td>
+									<td>2019-07-01 23:02:19</td>
+									<td><i class="fa fa-eye"></i>130186321</td>
+									<td><a href="#" class="btn btn-template-outlined"><i class="fa fa-heart-o"></i>19</a></td>
+								</tr>
+
+								<tr></tr>
+								<tr></tr>
+								<tr></tr>
+								<tr>
+
+								</tr>
+							</tbody>
+						</table>
+
+						<hr size="10px">
+
+						<p class="lead">This is the lead paragraph of the article.
+							Pellentesque habitant morbi tristique senectus et netus et
+							malesuada fames ac turpis egestas. Vestibulum tortor quam,
+							feugiat vitae, ultricies eget.</p>
+						<div id="post-content">
+							<p class="text-sm">
+								<strong>Pellentesque habitant morbi tristique</strong> senectus
+								et netus et malesuada fames ac turpis egestas. Vestibulum tortor
+								quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+								Donec eu libero sit amet quam egestas semper. <em>Aenean
+									ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque
+								sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+								wisi, condimentum sed,
+								<code>commodo vitae</code>
+								, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
+								condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim
+								ac dui. <a href="#">Donec non enim</a> in turpis pulvinar
+								facilisis. Ut felis.
+							</p>
+							<p>
+								<img src="img/blog2.jpg" alt="Example blog post alt"
+									class="img-fluid">
+							</p>
+							<h2>Header Level 2</h2>
+							<ol>
+								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing
+									elit.</li>
+								<li>Aliquam tincidunt mauris eu risus.</li>
+							</ol>
+							<blockquote class="blockquote">
+								<p class="text-sm">Lorem ipsum dolor sit amet, consectetur
+									adipiscing elit. Vivamus magna. Cras in mi at felis aliquet
+									congue. Ut a est eget ligula molestie gravida. Curabitur massa.
+									Donec eleifend, libero at sagittis mollis, tellus est malesuada
+									tellus, at luctus turpis elit sit amet quam. Vivamus pretium
+									ornare est.</p>
+							</blockquote>
+							<h3>Header Level 3</h3>
+							<p>Pellentesque habitant morbi tristique senectus et netus et
+								malesuada fames ac turpis egestas. Vestibulum tortor quam,
+								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+								libero sit amet quam egestas semper. Aenean ultricies mi vitae
+								est. Mauris placerat eleifend leo. Quisque sit amet est et
+								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
+								elit eget tincidunt condimentum, eros ipsum rutrum orci,
+								sagittis tempus lacus enim ac dui. Donec non enim in turpis
+								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
+								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
+								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+								accumsan porttitor, facilisis luctus, metus</p>
+							<ul>
+								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing
+									elit.</li>
+								<li>Aliquam tincidunt mauris eu risus.</li>
+							</ul>
+							<p>
+								<img src="img/blog.jpg" alt="Example blog post alt"
+									class="img-fluid">
+							</p>
+							<p>Pellentesque habitant morbi tristique senectus et netus et
+								malesuada fames ac turpis egestas. Vestibulum tortor quam,
+								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+								libero sit amet quam egestas semper. Aenean ultricies mi vitae
+								est. Mauris placerat eleifend leo. Quisque sit amet est et
+								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
+								elit eget tincidunt condimentum, eros ipsum rutrum orci,
+								sagittis tempus lacus enim ac dui. Donec non enim in turpis
+								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
+								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
+								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+								accumsan porttitor, facilisis luctus, metus</p>
+						</div>
+
+						<div id="comments">
+							<h4 class="text-uppercase">댓글 수 2</h4>
+							<section class="bar bg-gray mb-0">
+								<div class="row comment">
+									<div class="col-sm-3 col-md-2 text-center-xs">
+										<p>
+											<img src="resources/img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle">
+										</p>
+									</div>
+									<div class="col-sm-9 col-md-10">
+										<h5 class="text-uppercase">Julie Alma</h5>
+										<p class="posted">
+											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
+										</p>
+										<p>Pellentesque habitant morbi tristique senectus et netus
+											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
+											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
+											eu libero sit amet quam egestas semper. Aenean ultricies mi
+											vitae est. Mauris placerat eleifend leo.</p>
+
+									</div>
+								</div>
+								<div class="row comment last">
+									<div class="col-sm-3 col-md-2 text-center-xs">
+										<p>
+											<img src="resources/img/blog-avatar.jpg" alt="" class="img-fluid rounded-circle">
+										</p>
+									</div>
+									<div class="col-sm-9 col-md-10">
+										<h5 class="text-uppercase">Louise Armero</h5>
+										<p class="posted">
+											<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
+										</p>
+										<p>Pellentesque habitant morbi tristique senectus et netus
+											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
+											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
+											eu libero sit amet quam egestas semper. Aenean ultricies mi
+											vitae est. Mauris placerat eleifend leo.</p>
+									</div>
+								</div>
+							</section>
+						</div>
+
+						<div id="comment-form">
+							<h4 class="text-uppercase">댓글</h4>
 							<form>
-								<input type="hidden" name="게시글번호" value="">
 								<div class="row">
-									<div class="col-sm-6 col-md-3">
+									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="category">카테고리</label> <select id="category"
-												class="form-control">
-												<option value="">카테고리 선택</option>
-												<option value="1">일상</option>
-												<option value="2">정보</option>
-												<option value="3">질문</option>
-												<option value="4">웃긴자료</option>
-												<option value="5">뉴스</option>
-											</select>
+											<label for="name">닉네임 <span class="required text-primary">*</span></label> <input id="name"
+												type="text" class="form-control">
 										</div>
 									</div>
-									
+								</div>
 
-								</div>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-sm-12">
 										<div class="form-group">
-											<label for="password_old">제목</label> <input id="password_old"
-												type="text" value="안녕하세요 개봉인사드립니다." class="form-control">
+											<label for="comment">내 용 <span class="required text-primary">*</span></label>
+											<textarea id="comment" rows="4" class="form-control"></textarea>
 										</div>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<label for="password_1">내용</label>
-											<textarea id="summernote" class="form-control">스포주의</textarea>
-										</div>
-									</div>
+									<div class="col-sm-12 text-right">
+										<button class="btn btn-template-outlined">
+											<i class="fa fa-comment-o"></i> 댓글 등록
+										</button>
+										<P></P>
+										<P></P>
+										<P></P>
+										<P></P>
 
-								</div>
-								<div class="row">
-									<div class="col-md-3">
-										<a href="#" class="btn btn-template-outlined"
-											style="margin-top: 0px;">삭제</a>
-									</div>
-									<div class="col-md-9 text-right">
-										<button type="submit" class="btn btn-template-outlined">수정</button>
-										<button type="reset" class="btn btn-template-outlined"
-											id="resetbtn">취소</button>
+										<nav aria-label="Page navigation example"class="d-flex justify-content-left">
+											<button type="submit" class="btn btn-template-outlined"style="margin-right: 2rem">
+												<i class="fa fa-pencil"></i>수정
+											</button>
+											<button type="submit" class="btn btn-template-outlined">
+												<i class="fa fa-trash-o"></i>삭제
+											</button>
+										</nav>
+
+										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+											style="float: right;" id="report-btn">신고
+										</button>
+
+										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h3 class="modal-title" id="myModalLabel">신고</h3>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<table>
+															<tr>
+																<td>신고 분류 &nbsp</td>
+																<td>
+																	<div class="form-group">
+
+																		<select id="state" class="form-control">
+																			<option>부적절한 게시글</option>
+																			<option>도배 게시글</option>
+																			<option>광고 목적 게시글</option>
+																			<option>기타</option>
+																		</select>
+																	</div>
+																</td>
+															</tr>
+															
+															<tr>
+																<td>내용</td>
+																<td>
+																<textarea id="comment" rows="4" cols="40" class="form-control"></textarea>
+																</td>
+															</tr>
+															
+															<tr></tr>
+															<tr>
+																<td></td>
+																<td>
+																<button type="button" class="btn btn-template-outlined" data-dismiss="modal">확인</button>
+																<button type="button" class="btn btn-template-outlined" data-dismiss="modal">취 소</button></td>
+															</tr>
+														</table>
+													</div>
+												</div>
+												<div class="modal-footer"></div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</form>
 						</div>
-
 					</div>
-
 				</div>
+				<div class="col-md-3"></div>
 			</div>
-		</div>
-
-
+		</div>		
 	</div>
 	<!-- Javascript files-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
-	<script src="resources/vendor/popper.js/umd/popper.min.js">
-		
-	</script>
+	<script src="resources/vendor/popper.js/umd/popper.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/vendor/jquery.cookie/jquery.cookie.js">
-		
-	</script>
-	<script src="resources/vendor/waypoints/lib/jquery.waypoints.min.js">
-		
-	</script>
-	<script src="resources/vendor/jquery.counterup/jquery.counterup.min.js">
-		
-	</script>
+	<script src="resources/vendor/jquery.cookie/jquery.cookie.js"></script>
+	<script src="resources/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+	<script src="resources/vendor/jquery.counterup/jquery.counterup.min.js"></script>
 	<script src="resources/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script
-		src="resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+	<script src="resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
 	<script src="resources/js/jquery.parallax-1.1.3.js"></script>
-	<script
-		src="resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<script src="resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script src="resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 	<script src="resources/js/front.js"></script>
-	<!-- include libraries(jQuery, bootstrap) -->
-	<!-- include libraries(jQuery, bootstrap) -->
-
-	<!-- include summernote css/js-->
-	<link
-		href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-		rel="stylesheet">
-	<script
-		src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-	<!-- include summernote-ko-KR -->
-	<script src="resources/lang/summernote-ko-KR.js"></script>
-	
-	<!-- selectbox값 가져오기 -->
-	<script>
-	//selectbox 값을 db에서 가져온다
-	var inputVal = "2"; //받아온값
-	
-	$("#category").val(inputVal);
-	
-	</script>
-	
-	
-	<script>
-		$(document)
-				.ready(
-						function() {
-
-							$('#summernote')
-									.summernote(
-											{
-												height : 300, // set editor height
-												minHeight : null, // set minimum height of editor
-												maxHeight : null, // set maximum height of editor
-												focus : true, // set focus to editable area after initializing summernote
-												lang : 'ko-KR',
-												toolbar : [
-														[ 'style', [ 'style' ] ],
-														[
-																'font',
-																[
-																		'bold',
-																		'italic',
-																		'underline',
-																		'clear' ] ],
-														[ 'fontname',
-																[ 'fontname' ] ],
-														[ 'color', [ 'color' ] ],
-														[
-																'para',
-																[ 'ul', 'ol',
-																		'paragraph' ] ],
-														[ 'height',
-																[ 'height' ] ],
-
-														[
-																'insert',
-																[
-																		'link',
-																		'picture',
-																		'hr' ] ],
-
-												],
-												popover : {
-													image : [],
-													link : [],
-													air : []
-												}
-											});
-							$('#resetbtn').click(function() {
-
-								$('#summernote').summernote('reset');
-							});
-						});
-	</script>
 </body>
 </html>
