@@ -12,9 +12,19 @@ public class CatMissingboardController {
 		return "petish/cat/missingboard/list";
 	}
 	
+	@RequestMapping("/detail")
+	public String dogMissingBoardDetail() {
+		return "petish/cat/missingboard/detail";
+	}
+	
 	@RequestMapping("/writeForm")
 	public String dogMissingWriteForm() {
 		return "petish/cat/missingboard/write_form";
+	}
+	
+	@RequestMapping("/modifyForm")
+	public String dogMissingModifyForm() {
+		return "petish/cat/missingboard/modify_form";
 	}
 	
 }
