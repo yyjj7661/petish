@@ -916,7 +916,7 @@
 
 										<button type="button" class="btn btn-danger"
 											data-toggle="modal" data-target="#myModal"
-											style="float: right;" id="report-btn">신
+											style="float: right;" id="report-btn">신고
 										</button>
 
 										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
