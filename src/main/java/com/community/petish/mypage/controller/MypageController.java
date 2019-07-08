@@ -12,4 +12,9 @@ public class MypageController {
 		return "petish/mypage/default";
 	}
 	
+	@RequestMapping("/modifyForm")
+	public String modifyForm() {
+		return "petish/mypage/info_modify_form";
+	}
+	
 }
