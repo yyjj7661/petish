@@ -462,7 +462,11 @@
 				<P></P>
 				<P></P>
 				<P></P>
-				<button type="submit" class="btn btn-template-outlined" style="float: right;">글쓰기</button>
+				<button class="btn btn-template-outlined" style="float: right;">
+					<a href="/dog/gatherboard/writeForm">
+					글쓰기
+					</a>
+				</button>
 				<div class="row bar">
 					<div id="customer-order" class="col-lg-20">
 						<table class="table" style="margin: auto; text-align: center;">
@@ -484,7 +488,7 @@
 									<td>100</td>
 									<td>서울</td>
 									<td>소형견</td>
-									<td colspan="10"><a href="DogMeetingView.jsp">비트캠프에서 만나요&&</a></td>
+									<td colspan="10"><a href="/dog/gatherboard/detail">비트캠프에서 만나요&&</a></td>
 									<td>
 										<ul class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
