@@ -67,6 +67,10 @@ tr {
 
 <body>
 
+<div id="all">
+
+	<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+
 	<div id="heading-breadcrumbs">
 		<div class="container">
 			<div class="row d-flex align-items-center flex-wrap">
@@ -131,6 +135,7 @@ tr {
 		</div>
 	</div>
 
+</div>
 
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
