@@ -12,4 +12,9 @@ public class DogGatherboardController {
 		return "petish/dog/gatherboard/list";
 	}
 	
+	@RequestMapping("/detail")
+	public String dogGatherboardDetail() {
+		return "petish/dog/gatherboard/detail";
+	}
+	
 }
