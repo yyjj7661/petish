@@ -12,6 +12,11 @@ public class CatFreeboardController {
 		return "petish/cat/freeboard/list";
 	}
 	
+	@RequestMapping("/detail")
+	public String dogFreeboardDetail() {
+		return "petish/cat/freeboard/detail";
+	}
+	
 	@RequestMapping("/writeForm")
 	public String dogFreeboardWriteForm() {
 		return "petish/cat/freeboard/write_form";

@@ -482,7 +482,7 @@
 								<tr>
 									<td>100</td>
 									<td>일상</td>
-									<td colspan="10"><a href="CatFreeView.jsp">안녕하세요 &&</a></td>
+									<td colspan="10"><a href="/cat/freeboard/detail">안녕하세요 &&</a></td>
 									<td>
 										<ul class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
