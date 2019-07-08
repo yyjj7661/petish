@@ -4,7 +4,7 @@
 	background: #38a7bb;
 }
 
-.form-group {
+.login-form-group {
 	width: 450px;
 }
 
@@ -39,7 +39,46 @@ li {
 </style>
 
 </head>
-
+		<!-- Login Modal-->
+		<div id="login-modal" tabindex="-1" role="dialog"
+			aria-labelledby="login-modalLabel" aria-hidden="true"
+			class="modal fade">
+			<div role="document" class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 id="login-modalLabel" class="modal-title">Customer Login</h4>
+						<button type="button" data-dismiss="modal" aria-label="Close"
+							class="close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="customer-orders.html" method="get">
+							<div class="login-form-group">
+								<input id="email_modal" type="text" placeholder="email"
+									class="form-control">
+							</div>
+							<div class="login-form-group">
+								<input id="password_modal" type="password"
+									placeholder="password" class="form-control">
+							</div>
+							<p class="text-center">
+								<button class="btn btn-template-outlined">
+									<i class="fa fa-sign-in"></i> Log in
+								</button>
+							</p>
+						</form>
+						<p class="text-center text-muted">Not registered yet?</p>
+						<p class="text-center text-muted">
+							<a href="customer-register.html"><strong>Register
+									now</strong></a>! It is easy and done in 1 minute and gives you access to
+							special discounts and much more!
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Login modal end-->
 		<!-- Top bar-->
 		<div class="top-bar">
 			<div class="container">
@@ -105,17 +144,17 @@ li {
 											<div class="col-lg-3 col-md-6">
 												<h5>커뮤니티</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="dog/freeboard/list" class="nav-link">자유게시판</a></li>
-													<li class="nav-item"><a href="dog/gatherboard/list" class="nav-link">정모게시판</a></li>
+													<li class="nav-item"><a href="/dog/freeboard/list" class="nav-link">자유게시판</a></li>
+													<li class="nav-item"><a href="/dog/gatherboard/list" class="nav-link">정모게시판</a></li>
 													<li class="nav-item"><a href="#" class="nav-link">분양게시판</a></li>
 												</ul>
 											</div>
 											<div class="col-lg-3 col-md-6">
 												<h5>기타</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="dog/infoboard/list"
+													<li class="nav-item"><a href="/dog/infoboard/list"
 														class="nav-link">건강</a></li>
-													<li class="nav-item"><a href="dog/missingboard/list"
+													<li class="nav-item"><a href="/dog/missingboard/list"
 														class="nav-link">실종견</a></li>
 												</ul>
 											</div>
@@ -137,17 +176,17 @@ li {
 											<div class="col-lg-3 col-md-6">
 												<h5>커뮤니티</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="cat/freeboard/list" class="nav-link">자유게시판</a></li>
-													<li class="nav-item"><a href="cat/gatherboard/list" class="nav-link">정모게시판</a></li>
+													<li class="nav-item"><a href="/cat/freeboard/list" class="nav-link">자유게시판</a></li>
+													<li class="nav-item"><a href="/cat/gatherboard/list" class="nav-link">정모게시판</a></li>
 													<li class="nav-item"><a href="#" class="nav-link">분양게시판</a></li>
 												</ul>
 											</div>
 											<div class="col-lg-3 col-md-6">
 												<h5>기타</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="cat/infoboard/list"
+													<li class="nav-item"><a href="/cat/infoboard/list"
 														class="nav-link">건강</a></li>
-													<li class="nav-item"><a href="cat/missingboard/list"
+													<li class="nav-item"><a href="/cat/missingboard/list"
 														class="nav-link">실종견</a></li>
 												</ul>
 											</div>
