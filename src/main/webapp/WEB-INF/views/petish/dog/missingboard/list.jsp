@@ -463,7 +463,11 @@
 				<P></P>
 				<P></P>
 				<P></P>
-				<button type="submit" class="btn btn-template-outlined" style="float: right;">글쓰기</button>
+				<button class="btn btn-template-outlined" style="float: right;">
+					<a href="/dog/missingboard/writeForm">
+					글쓰기
+					</a>
+				</button>
 				<div class="row bar">
 					<div id="customer-order" class="col-lg-20">
 						<table class="table" style="margin: auto; text-align: center;">
@@ -487,7 +491,7 @@
 									<td><span class="badge badge-danger">미발견</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
 										class="img-fluid"></td>
-									<td colspan="10"><a href="DogLoseView.jsp">[인천 서구]
+									<td colspan="10"><a href="/dog/missingboard/detail">[인천 서구]
 											페키니즈 / 여 / 3&&</a></td>
 									<td>
 										<ul class="nav navbar-nav ml-auto">
