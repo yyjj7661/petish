@@ -12,6 +12,11 @@ public class CatGatherboardController {
 		return "petish/cat/gatherboard/list";
 	}
 	
+	@RequestMapping("/detail")
+	public String dogGatherboardDetail() {
+		return "petish/cat/gatherboard/detail";
+	}
+	
 	@RequestMapping("/writeForm")
 	public String dogGatherboardWriteForm() {
 		return "petish/cat/gatherboard/write_form";
