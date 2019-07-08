@@ -460,13 +460,13 @@
 				<P></P>
 				<P></P>
 				<button type="submit" class="btn btn-template-outlined"
-					style="float: right;">글쓰기</button>
+					style="float: right;">
+					<a href="/cat/gatherboard/writeForm">
+					글쓰기
+					</a>
+				</button>
+					
 				<div class="row bar">
-
-
-
-
-
 					<div id="customer-order" class="col-lg-20">
 						<table class="table" style="margin: auto; text-align: center;">
 							<thead>
@@ -491,7 +491,7 @@
 									<td>100</td>
 									<td>서울</td>
 									<td>샴</td>
-									<td colspan="10"><a href="CatMeetingView.jsp">비트캠프에서
+									<td colspan="10"><a href="/cat/gatherboard/detail">비트캠프에서
 											만나요&&</a></td>
 									<td>
 										<ul class="nav navbar-nav ml-auto">
