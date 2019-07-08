@@ -22,4 +22,9 @@ public class CatInfoboardController {
 		return "/petish/cat/infoboard/write_form";
 	}
 
+	@RequestMapping("/modifyForm")
+	public String dogInfoboardModifyForm() {
+		return "/petish/cat/infoboard/modify_form";
+	}
+	
 }
