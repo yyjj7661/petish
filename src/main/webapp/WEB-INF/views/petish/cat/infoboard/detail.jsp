@@ -3,36 +3,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>안녕하세요</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 <!-- Bootstrap CSS-->
-<link rel="stylesheet" href="resources/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
-<link rel="stylesheet" href="resources/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resources/vendor/font-awesome/css/font-awesome.min.css">
 <!-- Google fonts - Roboto-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/resources/css?family=Roboto:300,400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
 <!-- Bootstrap Select-->
-<link rel="stylesheet" href="resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
 <!-- owl carousel-->
-<link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.theme.default.css">
+<link rel="stylesheet" href="/resources/vendor/owl.carousel/assets/owl.carousel.css">
+<link rel="stylesheet" href="/resources/vendor/owl.carousel/assets/owl.theme.default.css">
 <!-- theme stylesheet-->
-<link rel="stylesheet" href="resources/css/style.lightblue.css" id="theme-stylesheet">
+<link rel="stylesheet" href="/resources/css/style.lightblue.css" id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="resources/css/custom.css">
+<link rel="stylesheet" href="/resources/css/custom.css">
 <!-- Favicon and apple touch icons-->
-<link rel="shortcut icon" href="resources/img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="../resources/img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="57x57" href="resources/img/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="72x72" href="resources/img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="resources/img/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="resources/img/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="resources/img/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="resources/mg/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="resources/img/apple-touch-icon-152x152.png">
+<link rel="shortcut icon" href="/resources/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/resources/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/resources/img/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/resources/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/resources/img/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/resources/img/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/resources/img/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/resources/mg/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/resources/img/apple-touch-icon-152x152.png">
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -132,9 +131,9 @@
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
 					<a href="index.html" class="navbar-brand home"><img
-						src="img/logo.png" alt="Universal logo"
+						src="/resources/img/logo.png" alt="Universal logo"
 						class="d-none d-md-inline-block"><img
-						src="img/logo-small.png" alt="Universal logo"
+						src="/resources/img/logo-small.png" alt="Universal logo"
 						class="d-inline-block d-md-none"><span class="sr-only">Universal
 							- go to homepage</span></a>
 					<button type="button" data-toggle="collapse"
@@ -177,7 +176,7 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="img/template-easy-customize.png" alt=""
+												<img src="/resources/img/template-easy-customize.png" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
@@ -226,7 +225,7 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="img/template-homepage.png" alt=""
+												<img src="/resources/img/template-homepage.png" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
@@ -466,13 +465,20 @@
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
 
-						<button type="submit" class="btn btn-template-outlined"
-							style="float: right;">글쓰기</button>
-
-
-						<button type="submit" class="btn btn-template-outlined"
+						<button class="btn btn-template-outlined"
 							style="float: right;">
-							<i class="fa fa-align-justify"></i>목록
+							<a href="/cat/infoboard/writeForm">
+							글쓰기
+							</a>
+						</button>
+
+
+						<button class="btn btn-template-outlined"
+							style="float: right;">
+							<i class="fa fa-align-justify"></i>
+							<a href="/cat/infoboard/list">
+							목록
+							</a>
 						</button>
 						<P></P>
 						<P></P>
@@ -490,7 +496,7 @@
 
 
 								<tr>
-									<td><img src="resources/img/blog-avatar2.jpg" alt=""
+									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
 										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
 									<td>
 										<ul class="nav navbar-nav ml-auto">
@@ -541,7 +547,7 @@
 								facilisis. Ut felis.
 							</p>
 							<p>
-								<img src="img/blog2.jpg" alt="Example blog post alt"
+								<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
 									class="img-fluid">
 							</p>
 							<h2>Header Level 2</h2>
@@ -578,7 +584,7 @@
 								<li>Aliquam tincidunt mauris eu risus.</li>
 							</ul>
 							<p>
-								<img src="img/blog.jpg" alt="Example blog post alt"
+								<img src="/resources/img/blog.jpg" alt="Example blog post alt"
 									class="img-fluid">
 							</p>
 							<p>Pellentesque habitant morbi tristique senectus et netus et
@@ -602,7 +608,7 @@
 								<div class="row comment">
 									<div class="col-sm-3 col-md-2 text-center-xs">
 										<p>
-											<img src="resources/img/blog-avatar2.jpg" alt=""
+											<img src="/resources/img/blog-avatar2.jpg" alt=""
 												class="img-fluid rounded-circle">
 										</p>
 									</div>
@@ -622,7 +628,7 @@
 								<div class="row comment last">
 									<div class="col-sm-3 col-md-2 text-center-xs">
 										<p>
-											<img src="resources/img/blog-avatar.jpg" alt=""
+											<img src="/resources/img/blog-avatar.jpg" alt=""
 												class="img-fluid rounded-circle">
 										</p>
 									</div>
@@ -681,7 +687,7 @@
 
 											<button type="submit" class="btn btn-template-outlined"
 												style="margin-right: 2rem">
-												<i class="fa fa-pencil"></i>수정
+												<i class="fa fa-pencil"></i><a href="/cat/infoboard/modifyForm">수정</a>
 											</button>
 											<button type="submit" class="btn btn-template-outlined">
 												<i class="fa fa-trash-o"></i>삭제
@@ -760,30 +766,30 @@
 	</div>
 	
 	<!-- Javascript files-->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
-	<script src="resources/vendor/popper.js/umd/popper.min.js">
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="/resources/vendor/popper.js/umd/popper.min.js">
 		
 	</script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/vendor/jquery.cookie/jquery.cookie.js">
+	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js">
 		
 	</script>
-	<script src="resources/vendor/waypoints/lib/jquery.waypoints.min.js">
+	<script src="/resources/vendor/waypoints/lib/jquery.waypoints.min.js">
 		
 	</script>
 	<script
-		src="resources/vendor/jquery.counterup/jquery.counterup.min.js">
+		src="/resources/vendor/jquery.counterup/jquery.counterup.min.js">
 		
 	</script>
-	<script src="resources/vendor/owl.carousel/owl.carousel.min.js"></script>
+	<script src="/resources/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script
-		src="resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
-	<script src="resources/js/jquery.parallax-1.1.3.js"></script>
+		src="/resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+	<script src="/resources/js/jquery.parallax-1.1.3.js"></script>
 	<script
-		src="resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+		src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script
-		src="resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
-	<script src="resources/js/front.js"></script>
+		src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
+	<script src="/resources/js/front.js"></script>
 	
 </body>
 </html>
