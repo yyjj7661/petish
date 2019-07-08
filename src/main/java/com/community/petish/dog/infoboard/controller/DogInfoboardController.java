@@ -21,5 +21,10 @@ public class DogInfoboardController {
 	public String dogInfoboardWriteForm() {
 		return "/petish/dog/infoboard/write_form";
 	}
+	
+	@RequestMapping("/modifyForm")
+	public String dogInfoboardModifyForm() {
+		return "/petish/dog/infoboard/modify_form";
+	}
 
 }
