@@ -17,4 +17,9 @@ public class MypageController {
 		return "petish/mypage/info_modify_form";
 	}
 	
+	@RequestMapping("message")
+	public String messageList() {
+		return "petish/mypage/message_list";
+	}
+	
 }
