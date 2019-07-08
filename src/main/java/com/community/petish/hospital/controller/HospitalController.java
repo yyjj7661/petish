@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hospital")
 public class HospitalController {
 
-	@RequestMapping("searchForm")
+	@RequestMapping("/searchForm")
 	public String hospitalSerachFrom() {
-		return "hospital/main_search";
+		return "petish/hospital/main_search";
+	}
+	
+	@RequestMapping("list")
+	public String hospitalList() {
+		return "petish/hospital/list";
 	}
 	
 }
