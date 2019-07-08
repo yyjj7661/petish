@@ -17,4 +17,9 @@ public class DogGatherboardController {
 		return "petish/dog/gatherboard/detail";
 	}
 	
+	@RequestMapping("/writeForm")
+	public String dogGatherboardWriteForm() {
+		return "petish/dog/gatherboard/write_form";
+	}
+	
 }
