@@ -11,5 +11,10 @@ public class DogInfoboardController {
 	public String dogInfoboardList() {
 		return "/petish/dog/infoboard/list";
 	}
+	
+	@RequestMapping("/detail")
+	public String dogInfoboardDetail() {
+		return "/petish/dog/infoboard/detail";
+	}
 
 }
