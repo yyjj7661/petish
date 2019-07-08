@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/mypage/*")
 public class MypageController {
 
-	
+	@RequestMapping("/")
+	public String mypage() {
+		return "petish/mypage/default";
+	}
 	
 }
