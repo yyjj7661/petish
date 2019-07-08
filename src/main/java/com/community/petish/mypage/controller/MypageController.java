@@ -32,4 +32,9 @@ public class MypageController {
 		return "petish/mypage/question_detail";
 	}
 	
+	@RequestMapping("/question/writeForm")
+	public String questionWriteForm() {
+		return "petish/mypage/question_write_form";
+	}
+	
 }
