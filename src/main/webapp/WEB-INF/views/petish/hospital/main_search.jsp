@@ -4,49 +4,48 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Search Hospital</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 <!-- Bootstrap CSS-->
-<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
 <link rel="stylesheet"
-	href="vendor/font-awesome/css/font-awesome.min.css">
+	href="/resources/vendor/font-awesome/css/font-awesome.min.css">
 <!-- Google fonts - Roboto-->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
 <!-- Bootstrap Select-->
 <link rel="stylesheet"
-	href="vendor/bootstrap-select/css/bootstrap-select.min.css">
+	href="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
 <!-- owl carousel-->
 <link rel="stylesheet"
-	href="vendor/owl.carousel/assets/owl.carousel.css">
+	href="/resources/vendor/owl.carousel/assets/owl.carousel.css">
 <link rel="stylesheet"
-	href="vendor/owl.carousel/assets/owl.theme.default.css">
+	href="/resources/vendor/owl.carousel/assets/owl.theme.default.css">
 <!-- theme stylesheet-->
-<link rel="stylesheet" href="css/style.lightblue.css"
+<link rel="stylesheet" href="/resources/css/style.lightblue.css"
 	id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="/resources/css/custom.css">
 <!-- Favicon and apple touch icons-->
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="shortcut icon" href="/resources/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/resources/img/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="57x57"
-	href="img/apple-touch-icon-57x57.png">
+	href="/resources/img/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="72x72"
-	href="img/apple-touch-icon-72x72.png">
+	href="/resources/img/apple-touch-icon-72x72.png">
 <link rel="apple-touch-icon" sizes="76x76"
-	href="img/apple-touch-icon-76x76.png">
+	href="/resources/img/apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" sizes="114x114"
-	href="img/apple-touch-icon-114x114.png">
+	href="/resources/img/apple-touch-icon-114x114.png">
 <link rel="apple-touch-icon" sizes="120x120"
-	href="img/apple-touch-icon-120x120.png">
+	href="/resources/img/apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" sizes="144x144"
-	href="img/apple-touch-icon-144x144.png">
+	href="/resources/img/apple-touch-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152"
-	href="img/apple-touch-icon-152x152.png">
+	href="/resources/img/apple-touch-icon-152x152.png">
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -64,8 +63,6 @@
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
 
-
-<meta charset="utf-8">
 <title>키워드로 장소검색하고 목록으로 표출하기</title>
 <style>
 .map_wrap, .map_wrap * {
@@ -254,14 +251,7 @@
 	color: #777;
 }
 </style>
-
-
-
-
-
-
-
-
+s
 </head>
 <body>
 	<div id="all">
@@ -349,9 +339,9 @@
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
 					<a href="index.html" class="navbar-brand home"><img
-						src="img/logo.png" alt="Universal logo"
+						src="/resources/img/logo.png" alt="Universal logo"
 						class="d-none d-md-inline-block"><img
-						src="img/logo-small.png" alt="Universal logo"
+						src="/resources/img/logo-small.png" alt="Universal logo"
 						class="d-inline-block d-md-none"><span class="sr-only">Universal
 							- go to homepage</span></a>
 					<button type="button" data-toggle="collapse"
@@ -394,7 +384,7 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="img/template-easy-customize.png" alt=""
+												<img src="/resources/img/template-easy-customize.png" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
@@ -443,7 +433,7 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="img/template-homepage.png" alt=""
+												<img src="/resources/img/template-homepage.png" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
@@ -662,132 +652,113 @@
 			</div>
 		</header>
 		<!-- Navbar End-->
-
-		<hr>
 		  
-		 
-		<div class="container">
-			<center>
-				<form onsubmit="searchPlaces(); return false;">
-					키워드 : <input type="text" value="서울숲" id="keyword" size="15">
-					<button type="submit">검색하기</button>
-				</form>
-			</center>
-		
-			<hr>
-
-
-
-
-		
-							<!-- 
-    <div id="menu_wrap" class="bg_white"  >
-        <div class="option">
-        </div>
-      
-        <hr>
-       
-    </div>
-     -->
-
-
-
-				
-						<div class="container">
-
-
-
-							
-   <section class="bg-danger text-white">
-    <div class="container ">
-        <div class="row">
-            <div class="col-md-12" style="background-color:#38A7BB;">
-                <div class="card-body">
-                        <div class="row pb-2">
-            <div class="col-md-12">
-                <h4>Search Hospital</h4>
-            </div>
-        </div>
-    	<div class="row">
-    		<div class="col-md-3">
-               <div class="form-group">
-                  <select id="region" onchange="categoryChange(this)" class="form-control">
-                    <option value="">지역</option>
-                                    <option value="1">서울</option>
-                                    <option value="2">경기</option>
-                                    <option value="3">인천</option>
-                                    <option value="4">강원</option>
-                                    <option value="5">대전</option>
-                                    <option value="6">세종</option>
-                                    <option value="7">충남</option>
-                                    <option value="8">충북</option>
-                                    <option value="9">부산</option>
-                                    <option value="10">울산</option>
-                                    <option value="11">경남</option>
-                                    <option value="12">경북</option>
-                                    <option value="13">대구</option>
-                                    <option value="14">광주</option>
-                                    <option value="15">전남</option>
-                                    <option value="16">전북</option>
-                                    <option value="17">제주</option>
-                  </select>
-               </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                  <select id="sml_region" class="form-control">
-                    <option selected>시  / 군  / 구</option>
-                    
-                    
-                  </select>
-                </div>
-            </div>
- 
-<input type="checkbox" > 응급진료
-
-          
-            <div class="col-md-3">
-	           <button type="button" class="btn btn-primary btn-block" style="background-color:gray;">Search</button>
-	        </div>
-    	</div>
-                    </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<br>
-
-<!-- 지도 화면 시작-->
+		<div class="content">
+	
 			<div class="container">
-
-				<section>
-					<div class="map_s">
-
-
-						<div class="map_wrap">
-							<div id="map"
-								style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+				<center>
+					<form onsubmit="searchPlaces(); return false;">
+						키워드 : <input type="text" value="서울숲" id="keyword" size="15">
+						<button type="submit">검색하기</button>
+					</form>
+				</center>
+			</div>		
+						
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-md-12" style="background-color:#38A7BB;">
+		                <div class="card-body">
+		                	<div class="row pb-2">
+								<div class="col-md-12">
+									<h4>Search Hospital</h4>
+								</div>
+							</div>
+		    			
+			    			<div class="row">
+			    				<div class="col-md-3">
+			               			<div class="form-group">
+					                	<select id="region" onchange="categoryChange(this)" class="form-control">
+					                    	<option value="">지역</option>
+					                       	<option value="1">서울</option>
+					                       	<option value="2">경기</option>
+					                       	<option value="3">인천</option>
+					                       	<option value="4">강원</option>
+					                       	<option value="5">대전</option>
+					                       	<option value="6">세종</option>
+					                       	<option value="7">충남</option>
+					                       	<option value="8">충북</option>
+					                       	<option value="9">부산</option>
+					                       	<option value="10">울산</option>
+					                       	<option value="11">경남</option>
+					                       	<option value="12">경북</option>
+					                       	<option value="13">대구</option>
+					                       	<option value="14">광주</option>
+					                       	<option value="15">전남</option>
+					                       	<option value="16">전북</option>
+					                       	<option value="17">제주</option>
+					                  	</select>
+					               </div>
+			            		</div>
+			            		
+					            <div class="col-md-3">
+					                <div class="form-group">
+					                  <select id="sml_region" class="form-control">
+					                    <option selected>시  / 군  / 구</option>
+					                    
+					                    
+					                  </select>
+					                </div>
+					            </div>
+			 
+								<input type="checkbox" > 응급진료
 								
+					            <div class="col-md-3">
+						           <button type="button" class="btn btn-primary btn-block" style="background-color:gray;">Search</button>
+						        </div>
+			    			</div>
+		    			</div>
+		            </div>
+		        </div>
+		    </div>
+	    
+	    	
+			<div class="container">
+				<div class="map_s">
+					<!-- 지도 화면 시작-->
+					<div class="map_wrap">
+						<div id="map"
+							style="width: 100%; height: 100%; position: relative; overflow: hidden;">
 						</div>
-		<!-- 지도 화면 끝 -->
+					</div>
+					<!-- 지도 화면 끝 -->
 
-
- 
-							하이룽11234
-
-
-							<div style="width: 100%; height: 20%;">
-								<ul id="placesList"></ul>
-							</div>
-							<div id="pagination">
-								<a href="#" class="on">1</a> <a href="#">2</a> <a href="#">3</a>
-							</div>
-							<br>
-
-
-<script>
-   function categoryChange(e) {
+					<div style="width: 100%; height: 20%;">
+						<ul id="placesList"></ul>
+					</div>
+					<div id="pagination">
+						<a href="#" class="on">1</a> <a href="#">2</a> <a href="#">3</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Javascript files-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/popper.js/umd/popper.min.js"> </script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+	<script src="vendor/waypoints/lib/jquery.waypoints.min.js"> </script>
+	<script src="vendor/jquery.counterup/jquery.counterup.min.js"> </script>
+	<script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+	<script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+	<script src="js/jquery.parallax-1.1.3.js"></script>
+	<script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<script src="vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
+	<script src="js/front.js"></script>
+	
+	<script>
+   	function categoryChange(e) {
         var seoul = ["종로구", "중구", "용산구", "성동구", "광진구", "동대문구", "중랑구", "성북구", "강북구", "도봉구", "노원구", "은평구", "서대문구", "마포구", "양천구", "강서구", "구로구", "금천구", "영등포구", "동작구", "관악구", "서초구", "강남구", "송파구", "강동구"];
         var gyeonggi = ["수원시", "수원시 장안구", "수원시 권선구", "수원시 팔달구", "수원시 영통구", "성남시", "성남시 수정구", "성남시 중원구", "성남시 분당구", "의정부시", "안양시", "안양시 만안구", "안양시 동안구", "부천시", "광명시", "평택시", "동두천시", "안산시", "안산시 상록구", "안산시 단원구", "고양시", "고양시 덕양구", "고양시 일산동구", "고양시 일산서구", "과천시", "구리시", "남양주시", "오산시", "시흥시", "군포시", "의왕시", "하남시", "용인시", "용인시 처인구", "용인시 기흥구", "용인시 수지구", "파주시", "이천시", "안성시", "김포시", "화성시", "광주시", "양주시", "포천시", "여주시", "연천군", "가평군", "양평군"];
         var inchun = ["중구", "동구", "미추홀구", "연수구", "남동구", "부평구", "계양구", "서구", "강화군", "옹진군"];
@@ -837,307 +808,258 @@
           //<option value=seoul[x]>seoul[x]</option> 태그를 추가
           target.appendChild(opt);
         } 
-      }
-   </script>
-
-
-
-							<script type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
-							<script>
-// 마커를 담을 배열입니다
-var markers = [];
-
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new daum.maps.Map(mapContainer, mapOption); 
-
-var marker = new daum.maps.Marker()
-
-// 장소 검색 객체를 생성합니다
-var ps = new daum.maps.services.Places();  
-
-// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-var infowindow = new daum.maps.InfoWindow({zIndex:1});
-
-//주소-좌표 변환 객체를 생성합니다
-var geocoder = new daum.maps.services.Geocoder();
-
-// 키워드로 장소를 검색합니다
-searchPlaces();
-
-// 키워드 검색을 요청하는 함수입니다
-function searchPlaces() {
-
-    var keyword = document.getElementById('keyword').value;
-
-    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
-        return false;
     }
+   	</script>
+   
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
+	<script>
+	// 마커를 담을 배열입니다
+	var markers = [];
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+	
+	// 지도를 생성합니다    
+	var map = new daum.maps.Map(mapContainer, mapOption); 
+	
+	var marker = new daum.maps.Marker()
+	
+	// 장소 검색 객체를 생성합니다
+	var ps = new daum.maps.services.Places();  
+	
+	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+	var infowindow = new daum.maps.InfoWindow({zIndex:1});
+	
+	//주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+	
+	// 키워드로 장소를 검색합니다
+	searchPlaces();
+	
+	// 키워드 검색을 요청하는 함수입니다
+	function searchPlaces() {
+	
+	    var keyword = document.getElementById('keyword').value;
+	
+	    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+	        alert('키워드를 입력해주세요!');
+	        return false;
+	    }
+	
+	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+	    ps.keywordSearch( keyword, placesSearchCB); 
+	}
+	
+	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+	function placesSearchCB(data, status, pagination) {
+	    if (status === daum.maps.services.Status.OK) {
+	
+	        // 정상적으로 검색이 완료됐으면
+	        // 검색 목록과 마커를 표출합니다
+	        displayPlaces(data);
+	
+	        // 페이지 번호를 표출합니다
+	        displayPagination(pagination);
+	
+	    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
+	
+	        alert('검색 결과가 존재하지 않습니다.');
+	        return;
+	
+	    } else if (status === daum.maps.services.Status.ERROR) {
+	
+	        alert('검색 결과 중 오류가 발생했습니다.');
+	        return;
+	
+	    }
+	}
+	
+	// 검색 결과 목록과 마커를 표출하는 함수입니다
+	function displayPlaces(places) {
+	
+	    var listEl = document.getElementById('placesList'), 
+	    menuEl = document.getElementById('menu_wrap'),
+	    fragment = document.createDocumentFragment(), 
+	    bounds = new daum.maps.LatLngBounds(), 
+	    listStr = '';
+	    
+	    // 검색 결과 목록에 추가된 항목들을 제거합니다
+	    removeAllChildNods(listEl);
+	
+	    // 지도에 표시되고 있는 마커를 제거합니다
+	    removeMarker();
+	    
+	    for ( var i=0; i<5; i++ ) { //var i=0; i<places.length; i++가 원래 코드
+	
+	        // 마커를 생성하고 지도에 표시합니다
+	        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
+	            marker = addMarker(placePosition, i), 
+	            itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+	
+	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+	        // LatLngBounds 객체에 좌표를 추가합니다
+	        bounds.extend(placePosition);
+	
+	        // 마커와 검색결과 항목에 mouseover 했을때
+	        // 해당 장소에 인포윈도우에 장소명을 표시합니다
+	        // mouseout 했을 때는 인포윈도우를 닫습니다
+	        (function(marker, title) {
+	            daum.maps.event.addListener(marker, 'mouseover', function() {
+	                displayInfowindow(marker, title);
+	            });
+	
+	            daum.maps.event.addListener(marker, 'mouseout', function() {
+	                infowindow.close();
+	            });
+	
+	            itemEl.onmouseover =  function () {
+	                displayInfowindow(marker, title);
+	            };
+	
+	            itemEl.onmouseout =  function () {
+	                infowindow.close();
+	            };
+	        })(marker, places[i].place_name);
+	
+	        fragment.appendChild(itemEl);
+	    }
+	
+	    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
+	    listEl.appendChild(fragment);
+	    menuEl.scrollTop = 0;
+	
+	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+	    map.setBounds(bounds);
+	}
+	
+	//검색결과 항목을 Element로 반환하는 함수입니다
+	function getListItem(index, places) {
+	
+	    var el = document.createElement('li'),
+	    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
+	                '<div class="info">' +
+	                '   <h5>' + places.place_name + '</h5>';
+	
+	    if (places.road_address_name) {
+	        itemStr += '<form action="boardForm.do" method="post">' +  '<span>' + places.road_address_name + '</span>' +
+	                    '   <span class="jibun gray">' +  places.address_name  + '</span>' +
+	                    ' <input type="hidden" name="addr" value="'+places.address_name+'"   >' + 
+	                    ' <input type="hidden" name="addr2" value="'+places.place_name+'"    >' +
+	                    ' <input type="submit" value="전송">' + '</form>' ;
+	    } else {
+	        itemStr += '<form action="boardForm.do?addr='+places.address_name+'" method="post">' + '    <span>' +  places.address_name  + '</span>' +
+	       			 ' <input type="hidden" name="addr" value="'+places.address_name+'"   >' +
+	                 ' <input type="hidden" name="addr2" value="'+places.place_name+'"    >' +
+	        		' <input type="submit" value="전송">' + '</form>' ;
+	    }
+	                 
+	      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+	                '</div>';           
+	
+	    el.innerHTML = itemStr;
+	    el.className = 'item';
+	
+	    return el;
+	}
+	
+	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+	function addMarker(position, idx, title) {
+	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+	        imageSize = new daum.maps.Size(36, 37),  // 마커 이미지의 크기
+	        imgOptions =  {
+	            spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기
+	            spriteOrigin : new daum.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+	            offset: new daum.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+	        },
+	        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+	            marker = new daum.maps.Marker({
+	            position: position, // 마커의 위치
+	            image: markerImage 
+	        });
+	
+	    marker.setMap(map); // 지도 위에 마커를 표출합니다
+	    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+	
+	    return marker;
+	}
+	
+	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+	function removeMarker() {
+	    for ( var i = 0; i < markers.length; i++ ) {
+	        markers[i].setMap(null);
+	    }   
+	    markers = [];
+	}
+	
+	// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
+	function displayPagination(pagination) {
+	    var paginationEl = document.getElementById('pagination'),
+	        fragment = document.createDocumentFragment(),
+	        i; 
+	
+	    // 기존에 추가된 페이지번호를 삭제합니다
+	    while (paginationEl.hasChildNodes()) {
+	        paginationEl.removeChild (paginationEl.lastChild);
+	    }
+	
+	    for (i=1; i<=pagination.last; i++) {
+	        var el = document.createElement('a');
+	        el.href = "#";
+	        el.innerHTML = i;
+	
+	        if (i===pagination.current) {
+	            el.className = 'on';
+	        } else {
+	            el.onclick = (function(i) {
+	                return function() {
+	                    pagination.gotoPage(i);
+	                }
+	            })(i);
+	        }
+	
+	        fragment.appendChild(el);
+	    }
+	    paginationEl.appendChild(fragment);
+	}
+	
+	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+	// 인포윈도우에 장소명을 표시합니다
+	function displayInfowindow(marker, title) {
+	    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+	
+	    infowindow.setContent(content);
+	    infowindow.open(map, marker);
+	}
+	
+	 // 검색결과 목록의 자식 Element를 제거하는 함수입니다
+	function removeAllChildNods(el) {   
+	    while (el.hasChildNodes()) {
+	        el.removeChild (el.lastChild);
+	    }
+	}
+	 
+	daum.maps.event.addListener(map, 'click', function(mouseEvent, result) {
+	    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+	        if (status === daum.maps.services.Status.OK) {
+	        	var message = result[0].address.address_name
+	            var resultDiv = document.getElementById('clickLatlng'); 
+	            resultDiv.value = message;
+	            marker.setPosition(mouseEvent.latLng);
+	            marker.setMap(map);
+	        }   
+	    });
+	});
+	
+	function searchDetailAddrFromCoords(coords, callback) {
+	    // 좌표로 법정동 상세 주소 정보를 요청합니다
+	    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+	    
+	}
+	
+	</script>
 
-    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( keyword, placesSearchCB); 
-}
-
-// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-function placesSearchCB(data, status, pagination) {
-    if (status === daum.maps.services.Status.OK) {
-
-        // 정상적으로 검색이 완료됐으면
-        // 검색 목록과 마커를 표출합니다
-        displayPlaces(data);
-
-        // 페이지 번호를 표출합니다
-        displayPagination(pagination);
-
-    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
-
-        alert('검색 결과가 존재하지 않습니다.');
-        return;
-
-    } else if (status === daum.maps.services.Status.ERROR) {
-
-        alert('검색 결과 중 오류가 발생했습니다.');
-        return;
-
-    }
-}
-
-// 검색 결과 목록과 마커를 표출하는 함수입니다
-function displayPlaces(places) {
-
-    var listEl = document.getElementById('placesList'), 
-    menuEl = document.getElementById('menu_wrap'),
-    fragment = document.createDocumentFragment(), 
-    bounds = new daum.maps.LatLngBounds(), 
-    listStr = '';
-    
-    // 검색 결과 목록에 추가된 항목들을 제거합니다
-    removeAllChildNods(listEl);
-
-    // 지도에 표시되고 있는 마커를 제거합니다
-    removeMarker();
-    
-    for ( var i=0; i<5; i++ ) { //var i=0; i<places.length; i++가 원래 코드
-
-        // 마커를 생성하고 지도에 표시합니다
-        var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
-            marker = addMarker(placePosition, i), 
-            itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-        // LatLngBounds 객체에 좌표를 추가합니다
-        bounds.extend(placePosition);
-
-        // 마커와 검색결과 항목에 mouseover 했을때
-        // 해당 장소에 인포윈도우에 장소명을 표시합니다
-        // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function(marker, title) {
-            daum.maps.event.addListener(marker, 'mouseover', function() {
-                displayInfowindow(marker, title);
-            });
-
-            daum.maps.event.addListener(marker, 'mouseout', function() {
-                infowindow.close();
-            });
-
-            itemEl.onmouseover =  function () {
-                displayInfowindow(marker, title);
-            };
-
-            itemEl.onmouseout =  function () {
-                infowindow.close();
-            };
-        })(marker, places[i].place_name);
-
-        fragment.appendChild(itemEl);
-    }
-
-    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-    listEl.appendChild(fragment);
-    menuEl.scrollTop = 0;
-
-    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-    map.setBounds(bounds);
-}
-
-//검색결과 항목을 Element로 반환하는 함수입니다
-function getListItem(index, places) {
-
-    var el = document.createElement('li'),
-    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-                '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
-
-    if (places.road_address_name) {
-        itemStr += '<form action="boardForm.do" method="post">' +  '<span>' + places.road_address_name + '</span>' +
-                    '   <span class="jibun gray">' +  places.address_name  + '</span>' +
-                    ' <input type="hidden" name="addr" value="'+places.address_name+'"   >' + 
-                    ' <input type="hidden" name="addr2" value="'+places.place_name+'"    >' +
-                    ' <input type="submit" value="전송">' + '</form>' ;
-    } else {
-        itemStr += '<form action="boardForm.do?addr='+places.address_name+'" method="post">' + '    <span>' +  places.address_name  + '</span>' +
-       			 ' <input type="hidden" name="addr" value="'+places.address_name+'"   >' +
-                 ' <input type="hidden" name="addr2" value="'+places.place_name+'"    >' +
-        		' <input type="submit" value="전송">' + '</form>' ;
-    }
-                 
-      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-                '</div>';           
-
-    el.innerHTML = itemStr;
-    el.className = 'item';
-
-    return el;
-}
-
-// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-function addMarker(position, idx, title) {
-    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-        imageSize = new daum.maps.Size(36, 37),  // 마커 이미지의 크기
-        imgOptions =  {
-            spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기
-            spriteOrigin : new daum.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-            offset: new daum.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-        },
-        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-            marker = new daum.maps.Marker({
-            position: position, // 마커의 위치
-            image: markerImage 
-        });
-
-    marker.setMap(map); // 지도 위에 마커를 표출합니다
-    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
-    return marker;
-}
-
-// 지도 위에 표시되고 있는 마커를 모두 제거합니다
-function removeMarker() {
-    for ( var i = 0; i < markers.length; i++ ) {
-        markers[i].setMap(null);
-    }   
-    markers = [];
-}
-
-// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-function displayPagination(pagination) {
-    var paginationEl = document.getElementById('pagination'),
-        fragment = document.createDocumentFragment(),
-        i; 
-
-    // 기존에 추가된 페이지번호를 삭제합니다
-    while (paginationEl.hasChildNodes()) {
-        paginationEl.removeChild (paginationEl.lastChild);
-    }
-
-    for (i=1; i<=pagination.last; i++) {
-        var el = document.createElement('a');
-        el.href = "#";
-        el.innerHTML = i;
-
-        if (i===pagination.current) {
-            el.className = 'on';
-        } else {
-            el.onclick = (function(i) {
-                return function() {
-                    pagination.gotoPage(i);
-                }
-            })(i);
-        }
-
-        fragment.appendChild(el);
-    }
-    paginationEl.appendChild(fragment);
-}
-
-// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-// 인포윈도우에 장소명을 표시합니다
-function displayInfowindow(marker, title) {
-    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-
-    infowindow.setContent(content);
-    infowindow.open(map, marker);
-}
-
- // 검색결과 목록의 자식 Element를 제거하는 함수입니다
-function removeAllChildNods(el) {   
-    while (el.hasChildNodes()) {
-        el.removeChild (el.lastChild);
-    }
-}
- 
-daum.maps.event.addListener(map, 'click', function(mouseEvent, result) {
-    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-        if (status === daum.maps.services.Status.OK) {
-        	var message = result[0].address.address_name
-            var resultDiv = document.getElementById('clickLatlng'); 
-            resultDiv.value = message;
-            marker.setPosition(mouseEvent.latLng);
-            marker.setMap(map);
-        }   
-    });
-});
-
-function searchDetailAddrFromCoords(coords, callback) {
-    // 좌표로 법정동 상세 주소 정보를 요청합니다
-    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-    
-}
-
-
-</script>
-						</div>
-				</section>
-
-
-			</div>
-		</div>
-		<br>
-
-
-		<!-- FOOTER -->
-		<footer class="main-footer">
-			<div class="container">
-				<div class="row"></div>
-			</div>
-			<div class="copyrights">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4 text-center-md">
-							<p>&copy; 2019. Your company / name goes here</p>
-						</div>
-						<div class="col-lg-8 text-right text-center-md">
-							<p>
-								Template design by <a
-									href="https://bootstrapious.com/p/big-bootstrap-tutorial">Bootstrapious
-								</a>& <a href="https://fity.cz/ostrava">Fity</a>
-							</p>
-							<!-- Please do not remove the backlink to us unless you purchase the Attribution-free License at https://bootstrapious.com/donate. Thank you. -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
-	<!-- Javascript files-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js"> </script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-	<script src="vendor/waypoints/lib/jquery.waypoints.min.js"> </script>
-	<script src="vendor/jquery.counterup/jquery.counterup.min.js"> </script>
-	<script src="vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
-	<script src="js/jquery.parallax-1.1.3.js"></script>
-	<script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
-	<script src="vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
-	<script src="js/front.js"></script>
 </body>
 </html>
