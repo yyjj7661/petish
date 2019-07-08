@@ -27,4 +27,9 @@ public class MypageController {
 		return "petish/mypage/question_list";
 	}
 	
+	@RequestMapping("/question/detail")
+	public String questionDetail() {
+		return "petish/mypage/question_detail";
+	}
+	
 }
