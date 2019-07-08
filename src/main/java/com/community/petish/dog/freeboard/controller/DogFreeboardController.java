@@ -22,4 +22,9 @@ public class DogFreeboardController {
 		return "petish/dog/freeboard/write_form";
 	}
 	
+	@RequestMapping("/modifyForm")
+	public String dogFreeboardModifyForm() {
+		return "petish/dog/freeboard/modify_form";
+	}
+	
 }
