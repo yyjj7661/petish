@@ -12,9 +12,14 @@ public class HospitalController {
 		return "petish/hospital/main_search";
 	}
 	
-	@RequestMapping("list")
+	@RequestMapping("/list")
 	public String hospitalList() {
 		return "petish/hospital/list";
+	}
+	
+	@RequestMapping("/detail")
+	public String hospitalDetail() {
+		return "petish/hospital/detail";
 	}
 	
 }
