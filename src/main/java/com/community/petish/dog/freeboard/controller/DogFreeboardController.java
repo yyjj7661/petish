@@ -12,4 +12,9 @@ public class DogFreeboardController {
 		return "petish/dog/freeboard/list";
 	}
 	
+	@RequestMapping("/detail")
+	public String dogFreeboardDetail() {
+		return "petish/dog/freeboard/detail";
+	}
+	
 }
