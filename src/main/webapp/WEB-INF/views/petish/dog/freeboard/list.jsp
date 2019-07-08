@@ -12,7 +12,7 @@
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="/resources/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Roboto-->
-    <link rel="stylesheet" href=https://fonts.googleapis.com/css?family=Roboto:300,400,700>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <!-- Bootstrap Select-->
     <link rel="stylesheet" href="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
     <!-- owl carousel-->
@@ -341,7 +341,7 @@
                       	<tr>
 	                        <td>100</td>
 	                        <td>일상</td>
-	                        <td colspan="10"><a href="DogFreeView.jsp">안녕하세요</a></td>
+	                        <td colspan="10"><a href="/dog/freeboard/detail">안녕하세요</a></td>
 	                        <td>				
 								 <ul class="nav navbar-nav ml-auto">
 			               		  	<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
