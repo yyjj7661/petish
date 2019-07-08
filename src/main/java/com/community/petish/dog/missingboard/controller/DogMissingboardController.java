@@ -17,4 +17,9 @@ public class DogMissingboardController {
 		return "petish/dog/missingboard/detail";
 	}
 	
+	@RequestMapping("/writeFrom")
+	public String dogMissingBoardWriteForm() {
+		return "petish/dog/missingboard/write_form";
+	}
+	
 }
