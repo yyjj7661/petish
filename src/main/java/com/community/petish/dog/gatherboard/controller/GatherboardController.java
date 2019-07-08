@@ -1,4 +1,4 @@
-package com.community.petish.dog.gatherboard;
+package com.community.petish.dog.gatherboard.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
