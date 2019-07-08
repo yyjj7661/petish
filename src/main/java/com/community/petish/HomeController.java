@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/top")
+	public String top() {
+		return "petish/mypage/default";
+	}
+	
 }
