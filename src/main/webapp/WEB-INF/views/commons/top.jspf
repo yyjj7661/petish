@@ -1,4 +1,47 @@
-<div class="top-bar">
+<%@ page pageEncoding="UTF-8" %>
+<style>
+.top-bar {
+	background: #38a7bb;
+}
+
+.form-group {
+	width: 450px;
+}
+
+#email-login {
+	width: 365px;
+}
+
+#name-login {
+	width: 365px;
+}
+
+#adress1-login {
+	width: 305px;
+}
+
+#jumin1, #jumin2 {
+	width: 215px;
+}
+
+#logo {
+	width: 120px;
+}
+
+li {
+	list-style: none;
+}
+
+/* 드랍다운 메뉴 글씨 크기*/
+.nav-link {
+	font-size: 0.9rem;
+}
+</style>
+
+</head>
+
+		<!-- Top bar-->
+		<div class="top-bar">
 			<div class="container">
 				<div class="row d-flex align-items-center">
 					<div class="col-md-6 d-md-block d-none"></div>
@@ -15,9 +58,9 @@
 								<li class="nav-item dropdown"><a href="javascript: void(0)"
 									style="color: #fff;" data-toggle="dropdown"
 									class="dropdown-toggle"><i class="fa fa-user"></i><span
-										class="d-none d-md-inline-block">&nbsp;&nbsp;petish님</span></a>
+										class="d-none d-md-inline-block">petish님</span></a>
 									<ul class="dropdown-menu">
-										<li class="dropdown-item"><a href="MyPage_Main.html" class="nav-link"
+										<li class="dropdown-item"><a href="/mypage/" class="nav-link"
 											style="font-size: 0.9rem;">마이페이지</a></li>
 										<li class="dropdown-item"><a href="header.html"
 											class="nav-link" style="font-size: 0.9rem;">로그아웃</a></li>
@@ -35,9 +78,9 @@
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
 					<a href="index.html" class="navbar-brand home"><img
-						src="./resources/img/logo.png" id="logo" alt="Universal logo"
+						src="/resources/img/logo.png" id="logo" alt="Universal logo"
 						class="d-none d-md-inline-block"><img
-						src="./resources/img/logo.png" id="logo"
+						src="/resources/img/logo.png" id="logo"
 						alt="Universal logo" class="d-inline-block d-md-none"><span
 						class="sr-only">Petish</span></a>
 					<button type="button" data-toggle="collapse"
@@ -56,23 +99,23 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="./resources/img/dog.jpg" alt=""
+												<img src="/resources/img/dog.jpg" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
 												<h5>커뮤니티</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="#" class="nav-link">자유게시판</a></li>
-													<li class="nav-item"><a href="#" class="nav-link">정모게시판</a></li>
+													<li class="nav-item"><a href="dog/freeboard/list" class="nav-link">자유게시판</a></li>
+													<li class="nav-item"><a href="dog/gatherboard/list" class="nav-link">정모게시판</a></li>
 													<li class="nav-item"><a href="#" class="nav-link">분양게시판</a></li>
 												</ul>
 											</div>
 											<div class="col-lg-3 col-md-6">
 												<h5>기타</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="about.html"
+													<li class="nav-item"><a href="dog/infoboard/list"
 														class="nav-link">건강</a></li>
-													<li class="nav-item"><a href="team.html"
+													<li class="nav-item"><a href="dog/missingboard/list"
 														class="nav-link">실종견</a></li>
 												</ul>
 											</div>
@@ -88,23 +131,23 @@
 									<li>
 										<div class="row">
 											<div class="col-lg-6">
-												<img src="./resources/img/cat.jpg" alt=""
+												<img src="/resources/img/cat.jpg" alt=""
 													class="img-fluid d-none d-lg-block">
 											</div>
 											<div class="col-lg-3 col-md-6">
 												<h5>커뮤니티</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="#" class="nav-link">자유게시판</a></li>
-													<li class="nav-item"><a href="#" class="nav-link">정모게시판</a></li>
+													<li class="nav-item"><a href="cat/freeboard/list" class="nav-link">자유게시판</a></li>
+													<li class="nav-item"><a href="cat/gatherboard/list" class="nav-link">정모게시판</a></li>
 													<li class="nav-item"><a href="#" class="nav-link">분양게시판</a></li>
 												</ul>
 											</div>
 											<div class="col-lg-3 col-md-6">
 												<h5>기타</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="about.html"
+													<li class="nav-item"><a href="cat/infoboard/list"
 														class="nav-link">건강</a></li>
-													<li class="nav-item"><a href="team.html"
+													<li class="nav-item"><a href="cat/missingboard/list"
 														class="nav-link">실종견</a></li>
 												</ul>
 											</div>
@@ -115,12 +158,12 @@
 							<!-- Etc -->
 
 							<!-- ========== My Pet ==================-->
-							<li class="nav-item dropdown menu-large"><a href="#">마이펫
+							<li class="nav-item dropdown menu-large"><a href="/mypet/list">마이펫
 									<b class="caret"></b>
 							</a></li>
 							<!-- ========== My Pet END ==================-->
 							<!-- ========== Contact dropdown ==================-->
-							<li class="nav-item dropdown"><a href="#">병원 <b
+							<li class="nav-item dropdown"><a href="/hospital/searchForm">병원 <b
 									class="caret"></b></a></li>
 							<!-- ========== Contact dropdown end ==================-->
 						</ul>
@@ -140,3 +183,4 @@
 				</div>
 			</div>
 		</header>
+		<!-- Navbar End-->
