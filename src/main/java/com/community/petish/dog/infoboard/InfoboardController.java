@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/dog/infoboard/*")
 public class InfoboardController {
 	
-	
+	@RequestMapping("/list")
+	public String dogInfoboardList() {
+		return "/petish/dog/infoboard/list";
+	}
 
 }
