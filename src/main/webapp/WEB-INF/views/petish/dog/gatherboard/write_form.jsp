@@ -8,9 +8,7 @@
 <title>Universal - All In 1 Template</title>
 <!-- 다음지도 -->
 <style>
-#head{
-	display:inline;
-}
+
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -108,6 +106,8 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        
+        <link rel="stylesheet" href="/resources/css/write-modify.css">
 </head>
 
 <body>
