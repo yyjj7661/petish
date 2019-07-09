@@ -86,17 +86,7 @@
 	
 	//지도 클릭했을때 값 넘겨주고 원래 페이지에서 값적는코드
 	function setZipcode(addr ,lng){
-		if(opener.forms.length == 16){
-			
-			opener.forms[12].value=addr;	//모임장소 폼태그에 값 넣어줌 (실종견)
-		}
-		else if(opener.forms.length == 174){	////모임장소 폼태그에 값 넣어줌 (고양이정모)
-			opener.forms[3].value=addr;
-		}
-		else{
-			
-			opener.forms[4].value=addr;	//모임장소 폼태그에 값 넣어줌 (강아지 정모)	
-		}
+		opener.$('#place').val(addr);
 		//opener.ps.keywordSearch(addr, opener.placesSearchCB);
 		//opener.marker.setPosition(mouselatLng);
 		//opener.marker.setMap(map);
