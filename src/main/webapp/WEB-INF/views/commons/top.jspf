@@ -116,7 +116,7 @@ li {
 		<header class="nav-holder make-sticky">
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
-					<a href="index.html" class="navbar-brand home"><img
+					<a href="/mypage/" class="navbar-brand home"><img
 						src="/resources/img/logo.png" id="logo" alt="Universal logo"
 						class="d-none d-md-inline-block"><img
 						src="/resources/img/logo.png" id="logo"
