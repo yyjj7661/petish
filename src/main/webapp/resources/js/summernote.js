@@ -3,7 +3,7 @@ $(document).ready(function() {
 				height : 300, // set editor height
 				minHeight : null, // set minimum height of editor
 				maxHeight : null, // set maximum height of editor
-				focus : true, // set focus to editable area after initializing summernote
+				focus : false, // set focus to editable area after initializing summernote
 				lang : 'ko-KR',
 				toolbar : [
 						[ 'style', [ 'style' ] ],
