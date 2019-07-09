@@ -361,7 +361,15 @@
 
 	</div>
 	
+	<!-- 다음지도 api 추가 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	
+	<!-- datetimepicker 추가 -->
+	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+	
+	<script src="/resources/js/datepicker.js"></script>
+	<script src="/resources/js/boardMap/modify_map.js"></script>
+	<script src="/resources/js/region.js"></script>
 	<!-- 지역 선택시 카테고리변경 함수 -->
 	<script>
 	
@@ -380,16 +388,7 @@
 	
 	</script>
 	
-	<!-- 다음지도 api 추가 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
-	
-	<!-- datetimepicker 추가 -->
-	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 		
-	<!-- 지도 -->
-	<script src="/resources/js/datepicker.js"></script>
-	<script src="/resources/js/boardMap/modify_map.js"></script>
-	<script src="/resources/js/region.js"></script>
 	
 
 </body>
