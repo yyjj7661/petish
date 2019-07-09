@@ -411,7 +411,6 @@
 	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 		
 	<!-- 지도 -->
-	<script src="/resources/js/summernote.js"></script>
 	<script src="/resources/js/datepicker.js"></script>
 	<script src="/resources/js/boardMap/write_map.js"></script>
 
