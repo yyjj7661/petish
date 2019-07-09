@@ -258,7 +258,10 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	<!-- include summernote-ko-KR -->
 	<script src="/resources/lang/summernote-ko-KR.js"></script>
+	
+	
 	<script src="/resources/js/summernote.js"></script>
+	<script src="/resources/js/datepicker.js"></script>
 	<!-- 지도 -->
 	
 	<script>
@@ -304,17 +307,7 @@
 	</script>
 	
 	
-	<!-- 섬머노트 -->
-	<script>
-		$(document).ready(function() {
-			jQuery.datetimepicker.setLocale('kr'); //달력 한글표시
-
-			$('#datetimepicker').datetimepicker({	//달력함수
-				
-			});
-			
-		});
-	</script>
+	
 
 </body>
 </html>
