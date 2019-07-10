@@ -126,7 +126,7 @@
 </div>
 
 		<!-- 투표창 모달 시 -->
-		<div class="modal fade" id="vote">
+		<div class="modal fade" id="mypet-vote-modal">
 			<div class="modal-dialog modal-dialog-centered modal-dialog-resizer">
             	<div class="modal-content vote-modal"> 
 
