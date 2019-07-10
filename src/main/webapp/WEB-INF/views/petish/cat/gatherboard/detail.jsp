@@ -493,26 +493,9 @@ margin-right: 1rem
 							</blockquote>
 
 
-<div class="panel panel-default sidebar-menu">
-                <div class="panel-heading">
-                  <h3 class="h3 panel-title">모임 장소 찾기</h3>
-                </div>
-      
-								
-                <div class="panel-body">
-                  <form role="search">
-                    <div class="input-group">
-                      <input type="text" placeholder="Search" value="서울숲" id="keyword" class="form-control"><span class="input-group-btn">                  
-                        <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
-                       </span>           
-                    </div>
-                  </form>
-                  
-						</div>
-                  
-                  
-                </div>
-							<div class="map_wrap">
+
+
+						<div class="map_wrap">
 								<div id="map"
 									style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
@@ -529,12 +512,7 @@ margin-right: 1rem
 									<ul id="placesList"></ul>
 									<div id="pagination"></div>
 								</div>
-							</div>					
-              </div>
-
-
-
-						
+							</div>
 						
 						
 						
