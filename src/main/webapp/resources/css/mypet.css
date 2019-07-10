@@ -142,11 +142,11 @@ a[href="#demo"] span:hover {
 
 /* 반응형 */
 @media (max-width: 400px ) {
-    .modal-dialog {
+    #mypet-modal-dialog {
         max-width: 300px;
         margin: 1.75rem auto;
     }
-    .modal-content {
+    #mypet-modal-content {
         width: 300px;
         height: 420px;
     }
@@ -171,11 +171,11 @@ a[href="#demo"] span:hover {
 }
 
 @media (min-width: 400px ) {
-    .modal-dialog {
+    #mypet-modal-dialog {
         max-width: 300px;
         margin: 1.75rem auto;
     }
-    .modal-content {
+    #mypet-modal-content {
         width: 300px;
         height: 420px;
     }
@@ -200,11 +200,11 @@ a[href="#demo"] span:hover {
 }
 
 @media (min-width: 576px) {
-    .modal-dialog {
+    #mypet-modal-dialog {
         max-width: 500px;
         margin: 1.75rem auto;
     }
-    .modal-content {
+    #mypet-modal-content {
         width: 500px;
         height: 600px;
     }
@@ -226,11 +226,11 @@ a[href="#demo"] span:hover {
 }
 
 @media (min-width: 768px) {
-    .modal-dialog {
+    #mypet-modal-dialog {
         max-width: 600px;
         margin: 1.75rem auto;
     }
-    .modal-content {
+    #mypet-modal-content {
         width: 600px;
         height: 700px;
     }
