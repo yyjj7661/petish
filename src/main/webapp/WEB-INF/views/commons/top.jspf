@@ -101,6 +101,8 @@ li {
 									<ul class="dropdown-menu">
 										<li class="dropdown-item"><a href="/mypage/" class="nav-link"
 											style="font-size: 0.9rem;">마이페이지</a></li>
+										<li class="dropdown-item"><a href="/mypage/message" class="nav-link" style="font-size:0.9rem;">쪽지함</a></li>
+										<li class="dropdown-item"><a href="/mypage/question/list" class="nav-link" style="font-size:0.9rem;">문의함</a></li>
 										<li class="dropdown-item"><a href="header.html"
 											class="nav-link" style="font-size: 0.9rem;">로그아웃</a></li>
 									</ul></li>

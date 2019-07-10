@@ -49,7 +49,7 @@
 <link rel="apple-touch-icon" sizes="152x152"
 	href="/resources/img/apple-touch-icon-152x152.png">
 
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/resources/css/mypage.css">
 <script src="/resources/js/mypage.js"></script>
 
@@ -70,9 +70,10 @@
 						<h3 style="margin-top: 10%;">My Page</h3>
 						<div class="memberInfo">
 							<div style="margin: 0.5cm;">
-								<img class="profile" src="/resources/img/member_detail_demo.JPG"
-									style="margin-right: 30px;"> <a>땡이누나(yeli****)</a> │ 정회원
-								│ <a class="nondeco" href="/mypage/modifyForm/">회원정보수정</a>
+								<img class="profile" src="/resources/img/member_detail_img.jpg"
+									style="margin-right: 30px;">
+								<a>달봉파더(dalb****)</a> │ 준회원 │ <a href="" class="nondeco"><i
+									class="fa fa-envelope" style="margin-right: 10px;"></i>쪽지 보내기</a>
 							</div>
 						</div>
 						<ul id="pills-tab" role="tablist"
@@ -90,10 +91,10 @@
 								aria-controls="pills-home" aria-selected="true" class="nav-link">내가
 									좋아요 한 글</a></li>
 						</ul>
-
 						<div id="pills-tabContent" class="tab-content">
 							<div class="text-right">
-								<button id="viewMore1" class="btn btn-sm btn-template-main" style="margin-bottom:0.2cm;">더보기</button>
+								<button id="viewMore1" class="btn btn-sm btn-template-main"
+									style="margin-bottom: 0.2cm;">더보기</button>
 							</div>
 							<div id="message-receive" role="tabpanel"
 								aria-labelledby="pills-home-tab"
@@ -270,7 +271,16 @@
 								</div>
 							</div>
 						</div>
-
+						<div class="content">
+							<div class="row">
+								<!--  <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input id="email" type="text" class="form-control">
+                        </div>
+                      </div> -->
+							</div>
+						</div>
 						<!-- </form> -->
 					</div>
 				</div>
