@@ -274,7 +274,9 @@ main.img-fluid rounded-circle{
 width:70px; height:70px;
 
 }
-
+div#post-content{
+margin-top:50px;
+}
 </style>
 </head>
 <body>
@@ -342,16 +344,22 @@ width:70px; height:70px;
 
 						<hr size="10px">
 						<div class="heading">
+						<button class="btn btn-template-outlined" type="button" data-toggle="modal" data-target="#myLargeModal">
+							<i class="fa fa-sign-in"></i> 신청
+						</button>
+						
+						<button type="button" class="btn btn-template-outlined" data-toggle="modal" data-target="#mySmallModal">
+							<i class="fa fa-users"></i>신청목록
+						</button>
 							<h3>참여 현황</h3>
+						
+						
 						</div>
 
 						<h4>
 							<span class="h1 counter">15</span> / 30명
 						</h4>
 
-						<button class="btn btn-template-outlined" type="button" data-toggle="modal" data-target="#myLargeModal">
-							<i class="fa fa-sign-in"></i> 신청
-						</button>
 						
 						<div class="modal fade" id="myLargeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 							<div class="modal-dialog modal-lg" role="document">
@@ -402,9 +410,6 @@ width:70px; height:70px;
 							</div>
 						</div>
 
-						<button type="button" class="btn btn-template-outlined" data-toggle="modal" data-target="#mySmallModal">
-							<i class="fa fa-users"></i>신청목록
-						</button>
 
 						<div class="modal fade" id="mySmallModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 							<div class="modal-dialog modal-sm" role="document">
@@ -440,18 +445,11 @@ width:70px; height:70px;
 							</div>
 						</div>
 
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
-
+					
 						
 						<div id="post-content">
 						
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
+					
 							<h2>모임 안내</h2>
 							<blockquote class="blockquote">
 								<ol>
@@ -532,7 +530,7 @@ width:70px; height:70px;
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="name">닉네임 <span
+											<label for="name">아이디<span
 												class="required text-primary">*</span></label> <input id="name"
 												type="text" class="form-control">
 										</div>
@@ -553,10 +551,7 @@ width:70px; height:70px;
 										<button class="btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
-										<P></P>
-										<P></P>
-										<P></P>
-										<P></P>
+								
 
 										<nav aria-label="Page navigation example" class="d-flex justify-content-left">
 											<button type="submit" class="btn btn-template-outlined" style="margin-right: 2rem">
