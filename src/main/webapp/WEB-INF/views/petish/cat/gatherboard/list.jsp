@@ -72,6 +72,16 @@ width:55px;
 
 .MoblieViewWriter {width:70px;}
 }        
+.col-md-2.col-lg-2.region{width:120px;}
+.col-md-2.col-lg-2.list{width:120px;}
+
+
+div.panel.panel-default.sidebar-menu{
+margin-right:15px;
+width:170px;
+}
+
+}
 </style>        
 </head>
 <body>
@@ -357,7 +367,7 @@ width:55px;
 
 		<!-- 검색 기능 -->
 
-		<div class="col-md-2 col-lg-2">
+		<div class="col-md-2 col-lg-2 region">
 
 
 			<div class="form-group">
@@ -409,7 +419,8 @@ width:55px;
 				</select>
 			</div>
 		</div>
-		<div class="col-md-2 col-lg-2">
+		
+		<div class="col-md-2 col-lg-2 list">
 			<div class="form-group">
 				<select id="state" class="form-control">
 					<option>제목</option>
