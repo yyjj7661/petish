@@ -283,6 +283,28 @@ width:70px; height:70px;
 div#post-content{
 margin-top:50px;
 }
+
+@media screen and (max-width:750px){
+
+.btn.btn-template-outlined{
+margin-bottom:10px;
+}
+.date{
+display:none;
+}
+.view{
+display:none;
+}
+
+div.col-sm-3.col-md-2.text-center-xs{
+display:none;
+}
+
+button.btn.btn-template-outlined{
+margin-right: 1rem
+}
+}
+
 </style>
 </head>
 <body>
@@ -559,7 +581,7 @@ margin-top:50px;
 								
 
 										<nav aria-label="Page navigation example" class="d-flex justify-content-left">
-											<button type="submit" class="btn btn-template-outlined" style="margin-right: 2rem">
+											<button type="submit" class="btn btn-template-outlined">
 												<i class="fa fa-pencil"></i><a href="/cat/gatherboard/modifyForm">수정</a>
 											</button>
 											<button type="submit" class="btn btn-template-outlined">
