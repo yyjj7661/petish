@@ -240,6 +240,12 @@
 }
 
 
+.btn.btn-danger{
+float:right;
+margin-top:20px;
+margin-right:20px;
+}
+
 button.btn.btn-template-outlined{
 float: right;
 margin-right:15px;
@@ -482,14 +488,17 @@ margin-top:50px;
 							</div>					
 						</div>
 						
-						<div id="comments">
+					<div id="comments">
+
+
+
+
 							<h4 class="text-uppercase">댓글 수 2</h4>
 							<section class="bar bg-gray mb-0">
 								<div class="row comment">
 									<div class="col-sm-3 col-md-2 text-center-xs">
 										<p>
-											<img src="/resources/img/blog-avatar2.jpg" alt=""
-												class="img-fluid rounded-circle">
+											<img src="/resources/img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle">
 										</p>
 									</div>
 									<div class="col-sm-9 col-md-10">
@@ -497,7 +506,7 @@ margin-top:50px;
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
 										</p>
-										<p>재미있겠당!</p>
+										<p>안녕하세요.반갑습니다.</p>
 
 									</div>
 								</div>
@@ -513,11 +522,7 @@ margin-top:50px;
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>안녕하세요</p>
 
 									</div>
 								</div>
