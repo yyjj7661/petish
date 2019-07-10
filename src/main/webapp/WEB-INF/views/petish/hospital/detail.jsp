@@ -58,12 +58,12 @@
 									</div>
 								</li>
 								<li> 
-									<div class="fa fa-phone fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
+									<div class="fa fa-map-marker fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
 										<span id="hospital_address">서울특별시 강남구 비트캠프</span>
 									</div>
 								</li>
 								<li> 
-									<div class="fa fa-map-marker fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
+									<div class="fa fa-phone fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
 										<span id="phone_number">02-9999-9999</span>
 									</div>
 								</li>
@@ -78,12 +78,12 @@
 									</div>
 								</li>
 								<li> 
-									<div class="fa fa-map-marker fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
+									<div class="fa fa-car fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
 										<span id="parking">주차가능</span>
 									</div>
 								</li>
 								<li> 
-									<div class="fa fa-car fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
+									<div class="fa fa-plus-square fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
 										<span id="emergency">응급진료</span>
 									</div>
 								</li>
