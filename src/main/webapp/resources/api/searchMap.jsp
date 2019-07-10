@@ -51,13 +51,15 @@
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/kakaomap.css">
+
 </head>
 <body>
 <% 
 	String addr ="";
 %>
 <div class="map_wrap">
-    <div id="map" style="width:650px;height:550px;position:relative;overflow:hidden;"></div>
+    <div id="map"></div>
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
@@ -72,8 +74,7 @@
         <div id="pagination"></div>
     </div>
 </div>
-<input id="place" type="text" class="form-control">
-<!-- 다음지도 api 추가 -->
+	<!-- 다음지도 api 추가 -->
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	
@@ -85,7 +86,8 @@
 	
 	
 	//지도 클릭했을때 값 넘겨주고 원래 페이지에서 값적는코드
-	function setZipcode(addr ,lng){
+	// 마커 또는 검색목록 클릭시 오프너에 값적는 코드
+	function searchClick(addr ,lng){
 		opener.$('#place').val(addr);
 		//opener.ps.keywordSearch(addr, opener.placesSearchCB);
 		//opener.marker.setPosition(mouselatLng);
@@ -93,6 +95,16 @@
 		opener.setMarker(lng.Fa, lng.Ga); //클릭한곳 마커 찍어주는 함수
 		self.close();
 	}
+	
+	//주소가 맞는지 확인하고 맞으면 오프너에 값찍는 함수
+	//function addConfirm(addr, lng){
+		//if (confirm("이 주소가 맞습니까??\r"+addr) == true){    //확인
+		  //    searchClick(addr, lng);
+			//  self.close();
+		  //}else{   //취소
+		    //  return;
+		 // }
+	//}
 		
 	</script>
 <script>
@@ -136,7 +148,12 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
             infowindow.setContent(content);
             infowindow.open(map, marker);
-            setZipcode(juso, latLng);
+            //지도에 클릭시 생성된 마커에 클릭 이벤트 추가
+            kakao.maps.event.addListener(marker, 'click', function() {
+            	searchClick(juso, latLng);
+            });
+            //주소가 맞는지 확인하고 맞으면 오프너에 값찍는 함수
+            //addConfirm(juso, latLng);
         }   
     });
 });
@@ -225,7 +242,8 @@ function displayPlaces(places) {
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
+         
+         
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
@@ -233,23 +251,33 @@ function displayPlaces(places) {
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function(marker, title) {
+        (function(marker, title, address_name, placePosition) {
             kakao.maps.event.addListener(marker, 'mouseover', function() {
-                displayInfowindow(marker, title);
+                displayInfowindow(marker, title, address_name);
             });
 
             kakao.maps.event.addListener(marker, 'mouseout', function() {
                 infowindow.close();
             });
+            
+            //마커 클릭시 이벤트 설정
+            kakao.maps.event.addListener(marker, 'click', function() {
+            	searchClick(address_name, placePosition);
+            });
 
             itemEl.onmouseover =  function () {
-                displayInfowindow(marker, title);
+                displayInfowindow(marker, title, address_name);
             };
 
             itemEl.onmouseout =  function () {
                 infowindow.close();
             };
-        })(marker, places[i].place_name);
+            //검색목록 클릭시 오프너에 주소 찍음
+            itemEl.onclick = function() {
+            	searchClick(address_name, placePosition);
+            }
+          	
+        })(marker, places[i].place_name,places[i].address_name,placePosition);
 
         fragment.appendChild(itemEl);
     }
@@ -348,8 +376,9 @@ function displayPagination(pagination) {
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
-function displayInfowindow(marker, title) {
-    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+function displayInfowindow(marker, title, address_name) {
+	
+    var content = '<div class="bAddr"><span class="title">' + title + '</span><div>주소 : '+address_name+'</div></div>';
 
     infowindow.setContent(content);
     infowindow.open(map, marker);
