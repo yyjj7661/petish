@@ -284,6 +284,11 @@ div#post-content{
 margin-top:50px;
 }
 
+div.panel.panel-default.sidebar-menu{
+margin-top:40px;
+
+}
+
 @media screen and (max-width:750px){
 
 .btn.btn-template-outlined{
@@ -480,19 +485,36 @@ margin-right: 1rem
 					
 							<h2>모임 안내</h2>
 							<blockquote class="blockquote">
-								<ol>
-									<p>모임 일시 : 2019년 7월 29일</p>
+								<p>모임 일시 : 2019년 7월 29일</p>
+									
 									<p>장소 : 서울 서초구 서초동 서울숲</p>
 									<p>반려견 대상 : 오드아이</p>
-								</ol>
+								
 							</blockquote>
 
+
+<div class="panel panel-default sidebar-menu">
+                <div class="panel-heading">
+                  <h3 class="h3 panel-title">모임 장소 찾기</h3>
+                </div>
+      
+								
+                <div class="panel-body">
+                  <form role="search">
+                    <div class="input-group">
+                      <input type="text" placeholder="Search" value="서울숲" id="keyword" class="form-control"><span class="input-group-btn">                  
+                        <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                       </span>           
+                    </div>
+                  </form>
+                  
+						</div>
+                  
+                  
+                </div>
 							<div class="map_wrap">
 								<div id="map"
-									style="width: 100%; height: 100%; position: relative; overflow: hidden;"
-			
-									
-									></div>
+									style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
 								<div id="menu_wrap" class="bg_white">
 									<div class="option">
@@ -508,7 +530,15 @@ margin-right: 1rem
 									<div id="pagination"></div>
 								</div>
 							</div>					
-						</div>
+              </div>
+
+
+
+						
+						
+						
+						
+						
 						
 					<div id="comments">
 
@@ -601,7 +631,7 @@ margin-right: 1rem
 															<span aria-hidden="true">&times;</span>
 														</button>
 													</div>
-													<form>
+												
 													<div class="modal-body">
 														<table>
 															<tr>
