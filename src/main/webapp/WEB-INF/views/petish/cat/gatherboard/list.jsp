@@ -62,7 +62,9 @@ display:none;
 .test{
 display:none;
 }
-
+.col-md-2.col-lg-2.test{
+display:none;
+}
 }        
 </style>        
 </head>
@@ -100,7 +102,7 @@ display:none;
 								<tr>
 									<th width="110px" class="border-top-0">번호</th>
 									<th width="70px" class="border-top-0">지역</th>
-									<th width="120px" class="border-top-0">종별</th>
+									<th width="120px" class="test border-top-0">종별</th>
 									<th width="550px" class="border-top-0" colspan="10">제목 </th>
 									<th width="100px" class="border-top-0">작성자</th>
 									<th width="130px" class="test border-top-0">작성일자</th>
@@ -113,7 +115,7 @@ display:none;
 								<tr>
 									<td>100</td>
 									<td>서울</td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10"><a href="/cat/gatherboard/detail">비트캠프에서
 											만나요&&</a></td>
 									<td>
@@ -133,7 +135,7 @@ display:none;
 								<tr>
 									<td>99</td>
 									<td>서울</td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요1^^ <span
 										class="badge badge-secondary">42</span>
 
@@ -157,7 +159,7 @@ display:none;
 								<tr>
 									<td>98</td>
 									<td>인천</td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10">비트캠프에서 만나요%%
 										<span class="badge badge-secondary">40</span></td>
 									<td>Pet</td>
@@ -168,7 +170,7 @@ display:none;
 								<tr>
 									<td>97</td>
 									<td>인천</td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요$$ <span class="badge badge-secondary">
 										82</span></td>
 									<td>Pet</td>
@@ -179,7 +181,7 @@ display:none;
 								<tr>
 									<td>96</td>
 									<td></td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10">비트캠프에서 만나요1##</td>
 									<td>Pet1</td>
 									<td class=test>2019.07.01</td>
@@ -189,7 +191,7 @@ display:none;
 								<tr>
 									<td>95</td>
 									<td></td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요1##</td>
 									<td>Pet1</td>
 									<td class=test>2019.07.01</td>
@@ -199,7 +201,7 @@ display:none;
 								<tr>
 									<td>94</td>
 									<td>서울</td>
-									<td>스핑크스</td>
+									<td class=test>스핑크스</td>
 									<td colspan="10">비트캠프에서 만나요!!</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -209,7 +211,7 @@ display:none;
 								<tr>
 									<td>93</td>
 									<td></td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요1</td>
 									<td>Pet1</td>
 									<td class=test>2019.07.01</td>
@@ -219,7 +221,7 @@ display:none;
 								<tr>
 									<td>92</td>
 									<td></td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10">비트캠프에서 만나요23</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -229,7 +231,7 @@ display:none;
 								<tr>
 									<td>91</td>
 									<td></td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요234</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -239,7 +241,7 @@ display:none;
 								<tr>
 									<td>90</td>
 									<td></td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요12</td>
 									<td>Pet1</td>
 									<td class=test>2019.07.01</td>
@@ -249,7 +251,7 @@ display:none;
 								<tr>
 									<td>89</td>
 									<td></td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10">비트캠프에서 만나요24</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -259,7 +261,7 @@ display:none;
 								<tr>
 									<td>88</td>
 									<td>서울</td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10">비트캠프에서 만나요43</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -268,7 +270,7 @@ display:none;
 								<tr>
 									<td>87</td>
 									<td>서울</td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요61</td>
 									<td>Pet1</td>
 									<td class=test>2019.07.01</td>
@@ -278,7 +280,7 @@ display:none;
 								<tr>
 									<td>86</td>
 									<td>서울</td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10">비트캠프에서 만나요</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -288,7 +290,7 @@ display:none;
 								<tr>
 									<td>85</td>
 									<td>인천</td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요32</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -298,7 +300,7 @@ display:none;
 								<tr>
 									<td>84</td>
 									<td></td>
-									<td>샴</td>
+									<td class=test>샴</td>
 									<td colspan="10">비트캠프에서 만나요1</td>
 									<td>Pet1</td>
 									<td class=test>2019.07.01</td>
@@ -308,7 +310,7 @@ display:none;
 								<tr>
 									<td>83</td>
 									<td></td>
-									<td>먼치킨</td>
+									<td class=test>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요12</td>
 									<td>Pet</td>
 									<td class=test>2019.07.01</td>
@@ -376,7 +378,7 @@ display:none;
 			</div>
 		</div>
 
-		<div class="col-md-2 col-lg-2">
+		<div class="col-md-2 col-lg-2 test">
 			<div class="form-group">
 				<select id="state" class="form-control">
 					<option>묘종별</option>
