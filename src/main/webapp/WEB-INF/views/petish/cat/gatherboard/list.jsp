@@ -65,6 +65,12 @@ display:none;
 .col-md-2.col-lg-2.test{
 display:none;
 }
+.MoblieViewNumber{
+width:55px;
+}
+.MoblieViewRegion {width:55px;}
+
+.MoblieViewWriter {width:70px;}
 }        
 </style>        
 </head>
@@ -100,11 +106,11 @@ display:none;
 						<table class="table">
 							<thead>
 								<tr>
-									<th width="110px" class="border-top-0">번호</th>
-									<th width="70px" class="border-top-0">지역</th>
+									<th width="110px" class="MoblieViewNumber border-top-0">번호</th>
+									<th width="70px" class="MoblieViewRegion border-top-0">지역</th>
 									<th width="120px" class="test border-top-0">종별</th>
-									<th width="550px" class="border-top-0" colspan="10">제목 </th>
-									<th width="100px" class="border-top-0">작성자</th>
+									<th width="550px" class="MoblieViewText border-top-0" colspan="10">제목 </th>
+									<th width="100px" class="MoblieViewWriter border-top-0">작성자</th>
 									<th width="130px" class="test border-top-0">작성일자</th>
 									<th width="90px" class="test border-top-0">조회</th>
 									<th width="90px" class="test border-top-0">좋아요</th>
@@ -356,7 +362,7 @@ display:none;
 
 			<div class="form-group">
 				<select id="state" class="form-control">
-					<option>지역 전체</option>
+					<option>지역</option>
 					<option>서울</option>
 					<option>부산</option>
 					<option>대구</option>
