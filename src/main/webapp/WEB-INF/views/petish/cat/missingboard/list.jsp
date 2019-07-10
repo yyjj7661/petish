@@ -35,6 +35,10 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   <style>
+   
+   
+   </style>
   </head>
   
   <body>
@@ -59,19 +63,16 @@
       
       <div id="content">
         <div class="container">
-        <P></P>
-        <P></P>
-        <P></P>
-        <P></P>
-        <P></P>
+     
        	<button class="btn btn-template-outlined" style="float: right;">
 	       	<a href="/cat/missingboard/writeForm">	
 	       	글쓰기
 	       	</a>
        	</button>
+       	
           <div class="row bar">
-            <div id="customer-order" class="col-lg-20">
-              <table class="table" style="margin:auto; text-align:center;">
+            <div id="customer-order" class="col-lg-20" >
+              <table class="table" style="margin-right:15px; margin-left:15px; text-align:center;">  
                     <thead>
                       <tr>                    
                         <th width="130px" class="border-top-0 lead">상태</th>              
@@ -298,7 +299,7 @@
 		<div class="col-md-2 col-lg-2">             
 		<div class="form-group">
 	  
-			<select id="region" onchange="categoryChange(this)" class="form-control">
+			<select id="region" onchange="categoryChange(this)" class="form-control" style="min-width:3cm; padding-left: 15px">
 				<option value="">지역</option>
 				<option value="1">서울</option>
 				<option value="2">경기</option>
@@ -323,7 +324,7 @@
 
   		<div class="col-md-2 col-lg-2">             
 		<div class="form-group">
-  			<select id="sml_region" class="form-control">
+  			<select id="sml_region" class="form-control" style="min-width:2cm;">
   				<option>시/구</option>
                                     
             </select>
@@ -332,7 +333,7 @@
                                 
         <div class="col-md-2 col-lg-2">             
 		<div class="form-group">              
-			<select id="state" class="form-control">
+			<select id="state" class="form-control" style="min-width:2cm;">
 				<option>상태</option>
                 <option>발견 완료</option>
 		        <option>미발견</option>  
@@ -343,7 +344,7 @@
                       
         <div class="col-md-2 col-lg-2">             
 		<div class="form-group">              
-             <select id="state" class="form-control">
+             <select id="state" class="form-control" style="min-width:2cm;">
                  <option>제목</option>
                  <option>내용</option>
                  <option>작성자</option>                                             
@@ -355,7 +356,7 @@
                     
          <div class="panel panel-default sidebar-menu"> 
            <div class="panel-body">
-             <form role="search">
+             <form role="search" style="min-width:2cm;">
                <div class="input-group">
                  <input type="text" placeholder="Search" class="form-control"><span class="input-group-btn">
                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>

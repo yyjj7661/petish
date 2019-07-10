@@ -307,41 +307,6 @@
 							<P></P>
 							<P></P>
 							<P></P>
-							<div class="row portfolio text-center">
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-							</div>
 							
 							<blockquote class="blockquote">
 								<ol>
@@ -381,48 +346,9 @@
 								</ol>
 							</blockquote>
 
-							<p class="text-sm">Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit. Vivamus magna. Cras in mi at felis aliquet
-								congue. Ut a est eget ligula molestie gravida. Curabitur massa.
-								Donec eleifend, libero at sagittis mollis, tellus est malesuada
-								tellus, at luctus turpis elit sit amet quam. Vivamus pretium
-								ornare est.</p>
-							<h3>Header Level 3</h3>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing
-									elit.</li>
-								<li>Aliquam tincidunt mauris eu risus.</li>
-							</ul>
-							<p>
-								<img src="/resources/img/blog.jpg" alt="Example blog post alt"
-									class="img-fluid">
-							</p>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
+							
+							
+							
 						</div>
 
 						<div id="comments">

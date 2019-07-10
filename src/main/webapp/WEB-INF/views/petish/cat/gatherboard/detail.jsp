@@ -318,7 +318,7 @@
 						</div>
 
 						<h4>
-							<span class="h1 counter">15</span>30명
+							<span class="h1 counter">15</span> / 30명
 						</h4>
 
 						<button class="btn btn-template-outlined" type="button" data-toggle="modal" data-target="#myLargeModal">
@@ -417,29 +417,13 @@
 						<P></P>
 						<P></P>
 
-						<p class="lead">This is the lead paragraph of the article.
-							Pellentesque habitant morbi tristique senectus et netus et
-							malesuada fames ac turpis egestas. Vestibulum tortor quam,
-							feugiat vitae, ultricies eget.</p>
+						
 						<div id="post-content">
-							<p class="text-sm">
-								<strong>Pellentesque habitant morbi tristique</strong> senectus
-								et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-								quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
-								Donec eu libero sit amet quam egestas semper. <em>Aenean
-									ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque
-								sit amet est et sapien ullamcorper pharetra. Vestibulum erat
-								wisi, condimentum sed,
-								<code>commodo vitae</code>
-								, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-								condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim
-								ac dui. <a href="#">Donec non enim</a> in turpis pulvinar
-								facilisis. Ut felis.
-							</p>
-							<p>
-								<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
-									class="img-fluid">
-							</p>
+						
+						<P></P>
+						<P></P>
+						<P></P>
+						<P></P>
 							<h2>모임 안내</h2>
 							<blockquote class="blockquote">
 								<ol>
@@ -451,7 +435,10 @@
 
 							<div class="map_wrap">
 								<div id="map"
-									style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+									style="width: 100%; height: 100%; position: relative; overflow: hidden;"
+			
+									
+									></div>
 
 								<div id="menu_wrap" class="bg_white">
 									<div class="option">
@@ -466,50 +453,7 @@
 									<ul id="placesList"></ul>
 									<div id="pagination"></div>
 								</div>
-							</div>
-
-							<p class="text-sm">Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit. Vivamus magna. Cras in mi at felis aliquet
-								congue. Ut a est eget ligula molestie gravida. Curabitur massa.
-								Donec eleifend, libero at sagittis mollis, tellus est malesuada
-								tellus, at luctus turpis elit sit amet quam. Vivamus pretium
-								ornare est.</p>
-							<h3>Header Level 3</h3>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing
-									elit.</li>
-								<li>Aliquam tincidunt mauris eu risus.</li>
-							</ul>
-							<p>
-								<img src="/resources/img/blog.jpg" alt="Example blog post alt"
-									class="img-fluid">
-							</p>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
+							</div>					
 						</div>
 						
 						<div id="comments">
@@ -527,11 +471,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>재미있겠당!</p>
 
 									</div>
 								</div>

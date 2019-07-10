@@ -351,7 +351,7 @@
 					
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
-							<select id="sml_region" class="form-control">
+							<select id="sml_region" class="form-control" style="min-width:2cm;">
 								<option>시/구</option>
 							</select>
 						</div>
@@ -359,7 +359,7 @@
 			
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
-							<select id="state" class="form-control">
+							<select id="state" class="form-control" style="min-width:2cm;">
 								<option>싱태</option>
 								<option>발견완료</option>
 								<option>미발견</option>
@@ -369,7 +369,7 @@
 			
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
-							<select id="state" class="form-control">
+							<select id="state" class="form-control" style="min-width:2cm;">
 								<option>제목</option>
 								<option>내용</option>
 								<option>작성자</option>
@@ -379,7 +379,7 @@
 			
 					<div class="panel panel-default sidebar-menu">
 						<div class="panel-body">
-							<form role="search">
+							<form role="search" style="min-width:3cm; margin-right:15px;">
 								<div class="input-group">
 									<input type="text" placeholder="Search" class="form-control"><span
 										class="input-group-btn">

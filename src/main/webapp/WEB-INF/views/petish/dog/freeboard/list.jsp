@@ -3,7 +3,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+  
     <title>강아지 자유게시판</title>
+    
+    
+    
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -70,8 +74,11 @@
 	       글쓰기
 	       </a>
        </button>
+            <div padding-left: 15px;></div>
           <div class="row bar">
             <div id="customer-order" class="col-lg-20">
+            
+            
               <table class="table" style="margin:auto; text-align:center;">
                     <thead>
                       <tr>
@@ -298,8 +305,8 @@
          <P></P>
                       
         <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-        <!-- 검색 기능 -->                                		
-   			<div class="col-md-2 col-lg-2">
+        <!-- 검색 기능 -->                     
+   			<div class="col-md-2 col-lg-2">    		
      		<div class="form-group">              
 	            <select id="state" class="form-control">
 		            <option>전체</option>
@@ -307,7 +314,7 @@
 		            <option>웃긴자료</option>
 		            <option>정보</option>                        
 	            </select>
-            </div>
+            </div>         
             </div>
                       
             <div class="col-md-2 col-lg-2">             

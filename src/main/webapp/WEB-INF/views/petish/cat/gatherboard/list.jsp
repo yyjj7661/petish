@@ -4,6 +4,7 @@
 <html>
 
 <head>
+
 <title>고양이 정모게시판</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,6 +38,33 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<style>        
+button.btn.btn-template-outlined {
+float: right;
+margin: 20px;
+}
+
+.dropdown{
+text-align: center;
+
+}
+
+.table{
+margin: auto; 
+text-align: center;
+}
+        
+        
+@media screen and (max-width:750px){
+th.test.border-top-0{
+display:none;
+}
+.test{
+display:none;
+}
+
+}        
+</style>        
 </head>
 <body>
 	<div id="all">
@@ -59,35 +87,25 @@
 		</div>
 		<div id="content">
 			<div class="container">
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<button type="submit" class="btn btn-template-outlined"
-					style="float: right;">
+				<button type="submit" class="btn btn-template-outlined">
 					<a href="/cat/gatherboard/writeForm">
 					글쓰기
 					</a>
 				</button>
 					
-				<div class="row bar">
+			
 					<div id="customer-order" class="col-lg-20">
-						<table class="table" style="margin: auto; text-align: center;">
+						<table class="table">
 							<thead>
 								<tr>
-									<th width="110px" class="border-top-0"><class="lead">번호</class></th>
-									<th width="70px" class="border-top-0"><class="lead">지역</class></th>
-									<th width="120px" class="border-top-0"><class="lead">종별</class></th>
-									<th width="550px" class="border-top-0" colspan="10"><class="lead">
-										제목 </class></th>
-									<th width="100px" class="border-top-0"><class="lead">작성자</class></th>
-									<th width="130px" class="border-top-0"><class="lead">작성일자
-										</class></th>
-									<th width="90px" class="border-top-0"><class="lead">조회
-										</class></th>
-									<th width="90px" class="border-top-0"><class="lead">좋아요
-										</class></th>
+									<th width="110px" class="border-top-0">번호</th>
+									<th width="70px" class="border-top-0">지역</th>
+									<th width="120px" class="border-top-0">종별</th>
+									<th width="550px" class="border-top-0" colspan="10">제목 </th>
+									<th width="100px" class="border-top-0">작성자</th>
+									<th width="130px" class="test border-top-0">작성일자</th>
+									<th width="90px" class="test border-top-0">조회</th>
+									<th width="90px" class="test border-top-0">좋아요</th>
 								</tr>
 							</thead>
 
@@ -99,18 +117,18 @@
 									<td colspan="10"><a href="/cat/gatherboard/detail">비트캠프에서
 											만나요&&</a></td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 
 									</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>99</td>
@@ -121,42 +139,42 @@
 
 									</td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 
 
 
 									</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>98</td>
 									<td>인천</td>
 									<td>샴</td>
-									<td colspan="10">비트캠프에서 만나요%% &nbsp &nbsp <span
-										class="badge badge-secondary">40</span></td>
+									<td colspan="10">비트캠프에서 만나요%%
+										<span class="badge badge-secondary">40</span></td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>97</td>
 									<td>인천</td>
 									<td>먼치킨</td>
-									<td colspan="10">비트캠프에서 만나요$$&nbsp &nbsp <span
-										class="badge badge-secondary">82</span></td>
+									<td colspan="10">비트캠프에서 만나요$$ <span class="badge badge-secondary">
+										82</span></td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>96</td>
@@ -164,9 +182,9 @@
 									<td>샴</td>
 									<td colspan="10">비트캠프에서 만나요1##</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>95</td>
@@ -174,9 +192,9 @@
 									<td>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요1##</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>94</td>
@@ -184,9 +202,9 @@
 									<td>스핑크스</td>
 									<td colspan="10">비트캠프에서 만나요!!</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>93</td>
@@ -194,9 +212,9 @@
 									<td>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요1</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>92</td>
@@ -204,9 +222,9 @@
 									<td>샴</td>
 									<td colspan="10">비트캠프에서 만나요23</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>91</td>
@@ -214,9 +232,9 @@
 									<td>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요234</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>90</td>
@@ -224,9 +242,9 @@
 									<td>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요12</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>89</td>
@@ -234,9 +252,9 @@
 									<td>샴</td>
 									<td colspan="10">비트캠프에서 만나요24</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>88</td>
@@ -244,18 +262,18 @@
 									<td>샴</td>
 									<td colspan="10">비트캠프에서 만나요43</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								<tr>
 									<td>87</td>
 									<td>서울</td>
 									<td>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요61</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>86</td>
@@ -263,9 +281,9 @@
 									<td>샴</td>
 									<td colspan="10">비트캠프에서 만나요</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>85</td>
@@ -273,9 +291,9 @@
 									<td>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요32</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>84</td>
@@ -283,9 +301,9 @@
 									<td>샴</td>
 									<td colspan="10">비트캠프에서 만나요1</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>83</td>
@@ -293,9 +311,9 @@
 									<td>먼치킨</td>
 									<td colspan="10">비트캠프에서 만나요12</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 							</tbody>
 
@@ -304,15 +322,12 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 
 
-	<P></P>
-	<P></P>
-	<P></P>
+	
 	<!-- 번호   -->
-
-	<nav aria-label="Page navigation example"
+	<div aria-label="Page navigation example"
 		class="d-flex justify-content-center">
 		<ul class="pagination">
 			<li class="page-item"><a href="#" class="page-link"> <i
@@ -325,14 +340,10 @@
 			<li class="page-item"><a href="#" class="page-link"><i
 					class="fa fa-angle-double-right"></i></a></li>
 		</ul>
-	</nav>
-	<P></P>
-	<P></P>
-	<P></P>
-	<P></P>
-	<P></P>
+	</div>
 
-	<nav aria-label="Page navigation example"
+
+	<div aria-label="Page navigation example"
 		class="d-flex justify-content-center">
 
 
@@ -417,7 +428,7 @@
 				</form>
 			</div>
 		</div>
-	</nav>
+	</div>
 
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
