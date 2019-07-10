@@ -238,6 +238,43 @@
 #report-btn {
 	justify-content: right;
 }
+
+
+button.btn.btn-template-outlined{
+float: right;
+margin-right:15px;
+margin-top:20px;
+}
+.name{
+text-align:center;
+width:40px;
+}
+.grade{
+text-align:left;
+width:80px;
+}
+
+.date{
+text-align:left;
+width:150px;
+}
+
+.view{
+text-align:left;
+width:150px;
+}
+div.panel-heading{
+margin-top:40px;
+}
+.dropdown{
+text-align:center;
+}
+
+main.img-fluid rounded-circle{
+width:70px; height:70px;
+
+}
+
 </style>
 </head>
 <body>
@@ -261,55 +298,46 @@
 		
 		<div id="content">
 			<div class="container">
-				<div class="row bar">
+				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
-						<button class="btn btn-template-outlined" style="float: right;">
+						<button class="btn btn-template-outlined">
 						<a href="/cat/gatherboard/writeForm">
 						글쓰기
 						</a>
 						</button>
-						<button class="btn btn-template-outlined" style="float: right;">
+						<button class="btn btn-template-outlined">
 							<i class="fa fa-align-justify"></i> <a href="/cat/gatherboard/list">목록</a>
 						</button>
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
+					
 						<div class="panel-heading">
 							<h2 class="h3 panel-title">서울숲에서 만나요</h2>
 						</div>
 
 
 
-						<table>
-							<tbody>
+							<table>
+						
 								<tr>
-									<td><img src="/resources/img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
-									<td>
-										<ul class="nav navbar-nav ml-auto">
+									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
+										class="main img-fluid rounded-circle"></td>
+									<td class=name>
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
 
-									<td>준회원</td>
-
-									<td>2019-07-01 23:02:53</td>
-									<td><i class="fa fa-eye"></i>130186321</td>
-									<td><a href="#" class="btn btn-template-outlined"><i
-											class="fa fa-heart-o"></i>15</a></td>
+									<td class=grade>준회원</td>
+									<td class=date>2019-07-01 23:02:53</td>
+									<td class=view><i class="fa fa-eye"></i>130186321</td>
+									<td class=like><a href="#" class="btn btn-template-outlined"><i
+											class="fa fa-heart-o"></i>13</a></td>
 								</tr>
 
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-
-							</tbody>
 						</table>
 
 						<hr size="10px">
@@ -593,7 +621,7 @@
 			</div>
 		</div>
 				<div class="col-md-3"></div>
-	</div>
+	
 
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
