@@ -114,7 +114,7 @@ width:170px;
 			
 					<div id="customer-order" class="col-lg-20">
 						<table class="table">
-							<thead>
+							
 								<tr>
 									<th width="110px" class="MoblieViewNumber border-top-0">번호</th>
 									<th width="70px" class="MoblieViewRegion border-top-0">지역</th>
@@ -125,9 +125,7 @@ width:170px;
 									<th width="90px" class="test border-top-0">조회</th>
 									<th width="90px" class="test border-top-0">좋아요</th>
 								</tr>
-							</thead>
-
-							<tbody>
+						
 								<tr>
 									<td>100</td>
 									<td>서울</td>
