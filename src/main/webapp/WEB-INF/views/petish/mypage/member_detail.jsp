@@ -49,7 +49,7 @@
 <link rel="apple-touch-icon" sizes="152x152"
 	href="/resources/img/apple-touch-icon-152x152.png">
 
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/resources/css/mypage.css">
 <script src="/resources/js/mypage.js"></script>
 
@@ -65,13 +65,16 @@
 			<div class="container">
 				<div id="checkout">
 					<div style="max-width: 20cm; margin: auto;">
+						<!-- <form method="get" action=""> -->
+
 						<h3 style="margin-top: 10%;">My Page</h3>
 						<div class="memberInfo">
 							<div style="margin: 0.5cm;">
-								<img class="profile" src="/resources/img/member_detail_demo.JPG"
-									style="margin-right: 30px;"> <a>땡이누나(yeli****)</a> │ 정회원
-								│ <a class="nondeco" href="/mypage/modifyForm/"><i
-									class="fa fa-list">회원정보수정</a></i>
+								<img class="profile" src="/resources/img/member_detail_img.jpg"
+									style="margin-right: 30px;"> <a>달봉파더(dalb****)</a> │ 준회원
+								│ <a href="" data-toggle="modal"
+									data-target="#messageWrite-modal" class="nondeco"><i
+									class="fa fa-envelope" style="margin-right: 10px;"></i>쪽지 보내기</a>
 							</div>
 						</div>
 						<ul id="pills-tab" role="tablist"
@@ -89,7 +92,6 @@
 								aria-controls="pills-home" aria-selected="true" class="nav-link">내가
 									좋아요 한 글</a></li>
 						</ul>
-
 						<div id="pills-tabContent" class="tab-content">
 							<div class="text-right">
 								<button id="viewMore1" class="btn btn-sm btn-template-main"
@@ -182,21 +184,24 @@
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
+																</p></th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
+																</p></th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
+																</p></th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
@@ -247,14 +252,16 @@
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
+																</p></th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
+																</p></th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
@@ -266,6 +273,41 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 쪽지쓰기 모달 -->
+	<div id="messageWrite-modal" tabindex="-1" role="dialog"
+		aria-hidden="true" class="modal fade">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">쪽지 작성</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<form action="" method="get">
+						<div class="form-group">
+							<label>받는 사람</label> <input id="message_reveiver" type="text"
+								class="form-control" value="달봉파더" readonly>
+						</div>
+						<div class="form-group">
+							<label>내용</label>
+							<textarea id="message_content" rows="10" class="form-control"></textarea>
+						</div>
+						<p class="text-center">
+							<button type="submit" class="btn btn-outline-primary"
+								id="message_send">전송</button>
+							&nbsp;&nbsp;
+							<button type="submit" class="btn btn-outline-primary"
+								id="message_cancle">취소</button>
+						</p>
+					</form>
 				</div>
 			</div>
 		</div>

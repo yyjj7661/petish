@@ -8,30 +8,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 <!-- Bootstrap CSS-->
-<link rel="stylesheet" href="/resources/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
-<link rel="stylesheet" href="/resources/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="/resources/vendor/font-awesome/css/font-awesome.min.css">
 <!-- Google fonts - Roboto-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
 <!-- Bootstrap Select-->
-<link rel="stylesheet" href="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
+<link rel="stylesheet"
+	href="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
 <!-- owl carousel-->
-<link rel="stylesheet" href="/resources/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet" href="/resources/vendor/owl.carousel/assets/owl.theme.default.css">
+<link rel="stylesheet"
+	href="/resources/vendor/owl.carousel/assets/owl.carousel.css">
+<link rel="stylesheet"
+	href="/resources/vendor/owl.carousel/assets/owl.theme.default.css">
 <!-- theme stylesheet-->
-<link rel="stylesheet" href="/resources/css/style.lightblue.css" id="theme-stylesheet">
+<link rel="stylesheet" href="/resources/css/style.lightblue.css"
+	id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
 <link rel="stylesheet" href="/resources/css/custom.css">
 <!-- Favicon and apple touch icons-->
-<link rel="shortcut icon" href="/resources/img/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/resources/img/favicon.ico"
+	type="image/x-icon">
 <link rel="apple-touch-icon" href="/resources/img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="57x57" href="/resources/img/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/resources/img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76"  href="/resources/img/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/resources/img/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/resources/img/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/resources/mg/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/resources/img/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="57x57"
+	href="/resources/img/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="/resources/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="/resources/img/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="/resources/img/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="/resources/img/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144"
+	href="/resources/mg/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="/resources/img/apple-touch-icon-152x152.png">
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -40,8 +55,8 @@
 
 <body>
 	<div id="all">
-	
-		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+
+		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
 
 		<div id="heading-breadcrumbs">
 			<div class="container">
@@ -57,21 +72,14 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="content">
 			<div class="container">
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<button class="btn btn-template-outlined" style="float: right;">
-					<a href="/dog/missingboard/writeForm">
-					글쓰기
-					</a>
-				</button>
-				<div class="row bar">
+				<div class="row bar" style="overflow-x: auto;">
 					<div id="customer-order" class="col-lg-20">
+						<button class="btn btn-template-outlined">
+							<a href="/dog/missingboard/writeForm"> 글쓰기 </a>
+						</button>
 						<table class="table" style="margin: auto; text-align: center;">
 							<thead>
 								<tr>
@@ -93,8 +101,8 @@
 									<td><span class="badge badge-danger">미발견</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
 										class="img-fluid"></td>
-									<td colspan="10"><a href="/dog/missingboard/detail">[인천 서구]
-											페키니즈 / 여 / 3&&</a></td>
+									<td colspan="10"><a href="/dog/missingboard/detail">[인천
+											서구] 페키니즈 / 여 / 3&&</a></td>
 									<td>
 										<ul class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
@@ -108,7 +116,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-info">발견 완료</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -129,7 +137,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-info">발견 완료</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -140,7 +148,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-info">발견 완료</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -151,7 +159,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -161,7 +169,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -171,7 +179,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-danger">미발견</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -181,7 +189,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -191,7 +199,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -201,7 +209,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -211,7 +219,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -221,7 +229,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -231,7 +239,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-danger">미발견</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -241,7 +249,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-danger">미발견</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -251,7 +259,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-danger">미발견</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -261,7 +269,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td><span class="badge badge-info">발견 완료</span></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -271,7 +279,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -281,7 +289,7 @@
 									<td>2019.07.01</td>
 									<td>11</td>
 								</tr>
-								
+
 								<tr>
 									<td></td>
 									<td><img src="/resources/img/detailsquare.jpg" alt="..."
@@ -295,14 +303,13 @@
 						</table>
 					</div>
 				</div>
+				<P></P>
+				<P></P>
+				<P></P>
+				<!-- 번호   -->
 
-
-	<P></P>
-	<P></P>
-	<P></P>
-	<!-- 번호   -->
-
-				<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+				<nav aria-label="Page navigation example"
+					class="d-flex justify-content-center">
 					<ul class="pagination">
 						<li class="page-item"><a href="#" class="page-link"> <i
 								class="fa fa-angle-double-left"></i></a></li>
@@ -315,18 +322,20 @@
 								class="fa fa-angle-double-right"></i></a></li>
 					</ul>
 				</nav>
-	<P></P>
-	<P></P>
-	<P></P>
-	<P></P>
-	<P></P>
+				<P></P>
+				<P></P>
+				<P></P>
+				<P></P>
+				<P></P>
 
-				<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+				<nav aria-label="Page navigation example"
+					class="d-flex justify-content-center" style="margin-bottom:100px;">
 					<!-- 검색 기능 -->
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
-		
-							<select id="region" onchange="categoryChange(this)" class="form-control">
+
+							<select id="region" onchange="categoryChange(this)"
+								class="form-control">
 								<option value="">지역</option>
 								<option value="1">서울</option>
 								<option value="2">경기</option>
@@ -348,15 +357,16 @@
 							</select>
 						</div>
 					</div>
-					
+
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
-							<select id="sml_region" class="form-control">
+							<select id="sml_region" class="form-control"
+								>
 								<option>시/구</option>
 							</select>
 						</div>
 					</div>
-			
+
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
 							<select id="state" class="form-control">
@@ -366,20 +376,20 @@
 							</select>
 						</div>
 					</div>
-			
+
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
-							<select id="state" class="form-control">
+							<select id="state" class="form-control" style="min-width: 2cm;">
 								<option>제목</option>
 								<option>내용</option>
 								<option>작성자</option>
 							</select>
 						</div>
 					</div>
-			
+
 					<div class="panel panel-default sidebar-menu">
 						<div class="panel-body">
-							<form role="search">
+							<form role="search" style="margin-right: 15px;">
 								<div class="input-group">
 									<input type="text" placeholder="Search" class="form-control"><span
 										class="input-group-btn">
@@ -392,63 +402,61 @@
 						</div>
 					</div>
 				</nav>
-				
 			</div>
 		</div>
+	</div>
 	</div>
 
 
 	<script>
 		function categoryChange(e) {
 			var seoul = [ "종로구", "중구", "용산구", "성동구", "광진구", "동대문구", "중랑구",
-					"성북구", "강북구", "도봉구", "노원구", "은평구", "서대문구", "마포구",
-					"양천구", "강서구", "구로구", "금천구", "영등포구", "동작구", "관악구",
-					"서초구", "강남구", "송파구", "강동구" ];
-			var gyeonggi = [ "수원시", "수원시 장안구", "수원시 권선구", "수원시 팔달구",
-					"수원시 영통구", "성남시", "성남시 수정구", "성남시 중원구", "성남시 분당구",
-					"의정부시", "안양시", "안양시 만안구", "안양시 동안구", "부천시", "광명시",
-					"평택시", "동두천시", "안산시", "안산시 상록구", "안산시 단원구", "고양시",
-					"고양시 덕양구", "고양시 일산동구", "고양시 일산서구", "과천시", "구리시",
-					"남양주시", "오산시", "시흥시", "군포시", "의왕시", "하남시", "용인시",
-					"용인시 처인구", "용인시 기흥구", "용인시 수지구", "파주시", "이천시", "안성시",
-					"김포시", "화성시", "광주시", "양주시", "포천시", "여주시", "연천군", "가평군",
-					"양평군" ];
+					"성북구", "강북구", "도봉구", "노원구", "은평구", "서대문구", "마포구", "양천구",
+					"강서구", "구로구", "금천구", "영등포구", "동작구", "관악구", "서초구", "강남구",
+					"송파구", "강동구" ];
+			var gyeonggi = [ "수원시", "수원시 장안구", "수원시 권선구", "수원시 팔달구", "수원시 영통구",
+					"성남시", "성남시 수정구", "성남시 중원구", "성남시 분당구", "의정부시", "안양시",
+					"안양시 만안구", "안양시 동안구", "부천시", "광명시", "평택시", "동두천시", "안산시",
+					"안산시 상록구", "안산시 단원구", "고양시", "고양시 덕양구", "고양시 일산동구",
+					"고양시 일산서구", "과천시", "구리시", "남양주시", "오산시", "시흥시", "군포시",
+					"의왕시", "하남시", "용인시", "용인시 처인구", "용인시 기흥구", "용인시 수지구",
+					"파주시", "이천시", "안성시", "김포시", "화성시", "광주시", "양주시", "포천시",
+					"여주시", "연천군", "가평군", "양평군" ];
 			var inchun = [ "중구", "동구", "미추홀구", "연수구", "남동구", "부평구", "계양구",
 					"서구", "강화군", "옹진군" ];
-			var kangwon = [ "춘천시", "원주시", "강릉시", "동해시", "태백시", "속초시",
-					"삼척시", "홍천군", "횡성군", "영월군", "평창군", "정선군", "철원군", "화천군",
-					"양구군", "인제군", "고성군", "양양군" ];
+			var kangwon = [ "춘천시", "원주시", "강릉시", "동해시", "태백시", "속초시", "삼척시",
+					"홍천군", "횡성군", "영월군", "평창군", "정선군", "철원군", "화천군", "양구군",
+					"인제군", "고성군", "양양군" ];
 			var daejeon = [ "동구", "중구", "서구", "유성구", "대덕구" ];
-			var saejong = [ "반곡동", "소담동", "보람동", "대평동", "가람동", "한솔동",
-					"나성동", "새롬동", "다정동", "어진동", "종촌동", "고운동", "아름동", "도담동",
-					"조치원읍", "연기면", "연동면", "부강면", "금남면", "장군면", "연서면",
-					"전의면", "전동면", "소정면" ]
-			var chungnam = [ '천안시', '천안시 동남구', '천안시 서북구', '공주시', '보령시',
-					'아산시', '서산시', '논산시', '계룡시', '당진시', '금산군', '부여군', '서천군',
-					'청양군', '홍성군', '예산군', '태안군' ];
-			var chungbuk = [ '청주시', '청주시 상당구', '청주시 서원구', '청주시 흥덕구',
-					'청주시 청원구', '충주시', '제천시', '보은군', '옥천군', '영동군', '증평군',
-					'진천군', '괴산군', '음성군', '단양군' ];
-			var busan = [ '중구', '서구', '동구', '영도구', '부산진구', '동래구', '남구',
-					'북구', '해운대구', '사하구', '금정구', '강서구', '연제구', '수영구', '사상구',
-					'기장군' ];
+			var saejong = [ "반곡동", "소담동", "보람동", "대평동", "가람동", "한솔동", "나성동",
+					"새롬동", "다정동", "어진동", "종촌동", "고운동", "아름동", "도담동", "조치원읍",
+					"연기면", "연동면", "부강면", "금남면", "장군면", "연서면", "전의면", "전동면",
+					"소정면" ]
+			var chungnam = [ '천안시', '천안시 동남구', '천안시 서북구', '공주시', '보령시', '아산시',
+					'서산시', '논산시', '계룡시', '당진시', '금산군', '부여군', '서천군', '청양군',
+					'홍성군', '예산군', '태안군' ];
+			var chungbuk = [ '청주시', '청주시 상당구', '청주시 서원구', '청주시 흥덕구', '청주시 청원구',
+					'충주시', '제천시', '보은군', '옥천군', '영동군', '증평군', '진천군', '괴산군',
+					'음성군', '단양군' ];
+			var busan = [ '중구', '서구', '동구', '영도구', '부산진구', '동래구', '남구', '북구',
+					'해운대구', '사하구', '금정구', '강서구', '연제구', '수영구', '사상구', '기장군' ];
 			var ulsan = [ '중구', '남구', '동구', '북구', '울주군' ];
 			var kyungnam = [ '창원시', '창원시 의창구', '창원시 성산구', '창원시 마산합포구',
-					'창원시 마산회원구', '창원시 진해구', '진주시', '통영시', '사천시', '김해시',
-					'밀양시', '거제시', '양산시', '의령군', '함안군', '창녕군', '고성군', '남해군',
-					'하동군', '산청군', '함양군', '거창군', '합천군' ];
-			var kyungbuk = [ '포항시', '포항시 남구', '포항시 북구', '경주시', '김천시',
-					'안동시', '구미시', '영주시', '영천시', '상주시', '문경시', '경산시', '군위군',
-					'의성군', '청송군', '영양군', '영덕군', '청도군', '고령군', '성주군', '칠곡군',
-					'예천군', '봉화군', '울진군', '울릉군' ];
+					'창원시 마산회원구', '창원시 진해구', '진주시', '통영시', '사천시', '김해시', '밀양시',
+					'거제시', '양산시', '의령군', '함안군', '창녕군', '고성군', '남해군', '하동군',
+					'산청군', '함양군', '거창군', '합천군' ];
+			var kyungbuk = [ '포항시', '포항시 남구', '포항시 북구', '경주시', '김천시', '안동시',
+					'구미시', '영주시', '영천시', '상주시', '문경시', '경산시', '군위군', '의성군',
+					'청송군', '영양군', '영덕군', '청도군', '고령군', '성주군', '칠곡군', '예천군',
+					'봉화군', '울진군', '울릉군' ];
 			var daegu = [ '중구', '동구', '서구', '남구', '북구', '수성구', '달서구', '달성군' ];
 			var gwangju = [ '동구', '서구', '남구', '북구', '광산구' ];
-			var jeonnam = [ '목포시', '여수시', '순천시', '나주시', '광양시', '담양군',
-					'곡성군', '구례군', '고흥군', '보성군', '화순군', '장흥군', '강진군', '해남군',
-					'영암군', '무안군', '함평군', '영광군', '장성군', '완도군', '진도군', '신안군' ];
-			var jeonbuk = [ '전주시', '전주시 완산구', '전주시 덕진구', '군산시', '익산시',
-					'정읍시', '남원시', '김제시', '완주군', '진안군', '무주군', '장수군', '임실군',
-					'순창군', '고창군', '부안군' ];
+			var jeonnam = [ '목포시', '여수시', '순천시', '나주시', '광양시', '담양군', '곡성군',
+					'구례군', '고흥군', '보성군', '화순군', '장흥군', '강진군', '해남군', '영암군',
+					'무안군', '함평군', '영광군', '장성군', '완도군', '진도군', '신안군' ];
+			var jeonbuk = [ '전주시', '전주시 완산구', '전주시 덕진구', '군산시', '익산시', '정읍시',
+					'남원시', '김제시', '완주군', '진안군', '무주군', '장수군', '임실군', '순창군',
+					'고창군', '부안군' ];
 			var jeju = [ '제주시', '서귀포시' ];
 			//지역 마다 변경될 카테고리
 			var target = document.getElementById("sml_region");
@@ -501,20 +509,23 @@
 			}
 		}
 	</script>
-	
+
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="/resources/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
-	<script src="/resources/vendor/jquery.counterup/jquery.counterup.min.js"></script>
+	<script
+		src="/resources/vendor/jquery.counterup/jquery.counterup.min.js"></script>
 	<script src="/resources/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="/resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+	<script
+		src="/resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
 	<script src="/resources/js/jquery.parallax-1.1.3.js"></script>
-	<script src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<script
+		src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 	<script src="/resources/js/front.js"></script>
-	
+
 </body>
 </html>

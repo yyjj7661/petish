@@ -37,4 +37,9 @@ public class MypageController {
 		return "petish/mypage/question_write_form";
 	}
 	
+	@RequestMapping("/member/detail")
+	public String memberDetail() {
+		return "petish/mypage/member_detail";
+	}
+	
 }
