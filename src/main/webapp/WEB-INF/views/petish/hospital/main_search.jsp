@@ -86,12 +86,13 @@
 					<div class="map_wrap">
 						<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 					</div>
+					<br>
 					<!-- 지도 화면 끝 -->
 					<div id="content">
 						<div class="container">
 								<div class="row">
 									<div class="col-md-12">
-										<div class="heading">
+										<div class="hospital_list">
 											<h2>PET Hospital List</h2>
 										</div>
 										<p class="lead"></p>
@@ -114,7 +115,7 @@
 													</div>
 												</div>
 											</div>
-											<!-- /.team-member-->
+											
 											<div data-animate="fadeInUp" class="col-md-3">
 												<div class="team-member">
 													<div class="image">
@@ -133,7 +134,7 @@
 													</div>
 												</div>
 											</div>
-											<!-- /.team-member-->
+											
 											<div data-animate="fadeInUp" class="col-md-3">
 												<div class="team-member">
 													<div class="image">
@@ -152,7 +153,7 @@
 													</div>
 												</div>
 											</div>
-											<!-- /.team-member-->
+											
 											<div data-animate="fadeInUp" class="col-md-3">
 												<div class="team-member">
 													<div class="image">

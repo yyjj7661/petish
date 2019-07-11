@@ -124,7 +124,7 @@
 			
 			<table border="0" width="100%" height="150%">
 				<tr>
-					<td width="10%" bgcolor="#f5f5f5">
+					<td width="10%" bgcolor="#f5f5f5" id=superbee>
 
 					<span class="star-input">
 						  <span class="input">
@@ -139,9 +139,9 @@
 					</td>
 
 					<td><input style="width:90%; height:100%; boder:2px solid #38A7BB;" placeholder="자유롭게 작성하되 욕설 및 상대방에게 불쾌감을 줄 수 있는 단어는 금지합니다.(100자 이내)" 
-					type="text" name="star_reply" maxlength="100" autofocus/>
+					type="text" id="star_reply" maxlength="100" autofocus/>
 						<button type="button" class="btn btn-template-outlined">작성완료</button>
-					</td>
+					</td>			
 				</tr>
 				<tr>
 				</tr>
