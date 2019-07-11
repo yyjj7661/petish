@@ -308,6 +308,26 @@ display:none;
 button.btn.btn-template-outlined{
 margin-right: 1rem
 }
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+}
+
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+
+
+div.bg_white{
+display:none;
+}
 }
 
 </style>
@@ -336,12 +356,12 @@ margin-right: 1rem
 				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
-						<button class="btn btn-template-outlined">
+						<button class="write btn btn-template-outlined">
 						<a href="/cat/gatherboard/writeForm">
 						글쓰기
 						</a>
 						</button>
-						<button class="btn btn-template-outlined">
+						<button class="list btn btn-template-outlined">
 							<i class="fa fa-align-justify"></i> <a href="/cat/gatherboard/list">목록</a>
 						</button>
 					
@@ -581,7 +601,7 @@ margin-right: 1rem
 								</div>
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
 								
@@ -647,6 +667,7 @@ margin-right: 1rem
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 				<div class="col-md-3"></div>
 	
