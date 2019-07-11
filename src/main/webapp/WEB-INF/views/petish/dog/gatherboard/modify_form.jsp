@@ -6,53 +6,6 @@
 
 <meta charset="utf-8">
 <title>Universal - All In 1 Template</title>
-<!-- 다음지도 -->
-<style>
-#head{
-	display:inline;
-}
-.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-.bg_white {background:#fff;}
-#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-#menu_wrap .option{text-align: center;}
-#menu_wrap .option p {margin:10px 0;}  
-#menu_wrap .option button {margin-left:5px;}
-#placesList li {list-style: none;}
-#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-#placesList .item span {display: block;margin-top:4px;}
-#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#placesList .item .info{padding:10px 0 10px 55px;}
-#placesList .info .gray {color:#8a8a8a;}
-#placesList .info .jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
-#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-#placesList .item .marker_1 {background-position: 0 -10px;}
-#placesList .item .marker_2 {background-position: 0 -56px;}
-#placesList .item .marker_3 {background-position: 0 -102px}
-#placesList .item .marker_4 {background-position: 0 -148px;}
-#placesList .item .marker_5 {background-position: 0 -194px;}
-#placesList .item .marker_6 {background-position: 0 -240px;}
-#placesList .item .marker_7 {background-position: 0 -286px;}
-#placesList .item .marker_8 {background-position: 0 -332px;}
-#placesList .item .marker_9 {background-position: 0 -378px;}
-#placesList .item .marker_10 {background-position: 0 -423px;}
-#placesList .item .marker_11 {background-position: 0 -470px;}
-#placesList .item .marker_12 {background-position: 0 -516px;}
-#placesList .item .marker_13 {background-position: 0 -562px;}
-#placesList .item .marker_14 {background-position: 0 -608px;}
-#placesList .item .marker_15 {background-position: 0 -654px;}
-#pagination {margin:10px auto;text-align: center;}
-#pagination a {display:inline-block;margin-right:10px;}
-#pagination .on {font-weight: bold; cursor: default;color:#777;}
-.map_wrap {position:relative;width:100%;height:350px;}
-    .title {font-weight:bold;display:block;}
-    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
-    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-</style>
 
 
 <!-- 부트스트랩 추가 -->
@@ -109,6 +62,9 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        
+        <link rel="stylesheet" href="/resources/css/write-modify.css">
+        <link rel="stylesheet" href="/resources/css/kakaomap.css">
 </head>
 
 <body>
@@ -324,116 +280,9 @@
 		src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	<!-- include summernote-ko-KR -->
 	<script src="/resources/lang/summernote-ko-KR.js"></script>
-	<!-- 지도 -->
-	
-	<script>
-
-	//지도 api 선택한 곳 마커 표시하기(주소까지 출력)
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
-	
-	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
-	
-	//원래 게시글의 모임장소 주소를 좌표로 바꿔주고 지도에 표시해주는 함수//********************************************************
-	var callback = function(result, status) {
-	    if (status === kakao.maps.services.Status.OK) {
-	        setMarker(result[0].x, result[0].y);
-	    }
-	};
-	// '서울 서초구 서초동 1303-34'에 게시글의 모임장소 넣어준다.**********************************************************
-	geocoder.addressSearch('서울 서초구 서초동 1303-34', callback);
-	
-	var marker = new kakao.maps.Marker();
-	
-	//검색 하고 마커 찍어주는 함수
-	function setMarker(fa, ga){
-		//검색창에서 클릭한 좌표로 이동된 지도를 다시 생성
-	
-		mapOption = {
-		        center: new kakao.maps.LatLng(ga, fa), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
-		    };
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
-		//해당 위치에 마커를 표시
-		marker.setPosition(new kakao.maps.LatLng(ga, fa));
-		marker.setMap(map);
-	}
-	</script>
-	<script>
-	var forms = document.getElementById("searchMap");
-	
-	//검색 버튼눌렀을경우
-	function openZipcode(searchMap){			
-		var url="/resources/api/searchMap.jsp"
-		open(url, "confirm", "toolbar=no,location=no,"
-							+"status=no,menubar=no,"
-							+"scrollbars=yes,resizable=no,"
-							+"width=700,height=600");
-	}	
-	
-	$(document).ready(function() {
-		jQuery.datetimepicker.setLocale('kr'); //달력 한글표시
-
-		$('#datetimepicker').datetimepicker({	//달력함수
-			
-		});
-			
-		$('#summernote').summernote(	//섬머노트
-		{
-			height : 300, // set editor height
-			minHeight : null, // set minimum height of editor
-			maxHeight : null, // set maximum height of editor
-			focus : false, // set focus to editable area after initializing summernote
-			lang : 'ko-KR',
-			toolbar : [
-					[ 'style', [ 'style' ] ],
-					[
-							'font',
-							[
-									'bold',
-									'italic',
-									'underline',
-									'clear' ] ],
-					[ 'fontname',
-							[ 'fontname' ] ],
-					[ 'color', [ 'color' ] ],
-					[
-							'para',
-							[ 'ul', 'ol',
-									'paragraph' ] ],
-					[ 'height',
-							[ 'height' ] ],
-
-					[
-							'insert',
-							[
-									'link',
-									'picture',
-									'hr' ] ],
-
-			],
-			popover : {
-				image : [],
-				link : [],
-				air : []
-			}
-		});
-		
-		$('#resetbtn').click(function() {
-
-			$('#summernote').summernote('reset');
-		});
-			
-	});
-	</script>
+	<script src="/resources/js/summernote.js"></script>
+	<script src="/resources/js/datepicker.js"></script>
+	<script src="/resources/js/boardMap/modify_map.js"></script>
 
 </body>
 </html>
