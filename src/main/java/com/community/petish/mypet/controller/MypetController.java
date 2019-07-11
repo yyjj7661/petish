@@ -12,4 +12,14 @@ public class MypetController {
 		return "petish/mypet/list";
 	}
 	
+	@RequestMapping("/writeForm")
+	public String writeForm() {
+		return "petish/mypet/writeForm";
+	}
+	
+	@RequestMapping("/modifyForm")
+	public String modifyForm() {
+		return "petish/mypet/modifyForm";
+	}
+	
 }
