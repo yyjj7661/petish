@@ -50,7 +50,7 @@ text-align: center;
 margin: auto; 
 text-align: center;
 }
-   
+region form-control{min-width:3cm; padding-left: 15px;}
    </style>
   </head>
   
@@ -83,7 +83,7 @@ text-align: center;
 	       	</a>
        	</button>
        	
-          <div class="row bar">
+     
             <div id="customer-order" class="col-lg-20" >
               <table class="table" style="margin-right:15px; margin-left:15px; text-align:center;">              
                       <tr>                    
@@ -98,7 +98,7 @@ text-align: center;
                	      	<tr>
                         	<td><span class="badge badge-danger">미발견</span></td>
                     	    <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
-                	        <td colspan="10"><a href="/cat/missingboard/detail">[인천 서구] 페키니즈  / 여 / 3&&</a></td>
+                	        <td colspan="10"><a href="/cat/missingboard/detail">[인천 서구] 페키니즈  / 여 / 3</a></td>
             	            <td>				
 							 <div class="nav navbar-nav ml-auto">
     	            			<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
@@ -280,7 +280,7 @@ text-align: center;
               </div>
            </div>
          </div>
-       </div>
+   
            
 				<!-- 번호   -->
      
@@ -302,7 +302,7 @@ text-align: center;
 		<div class="col-md-2 col-lg-2">             
 		<div class="form-group">
 	  
-			<select id="region" onchange="categoryChange(this)" class="form-control" style="min-width:3cm; padding-left: 15px">
+			<select id="region" onchange="categoryChange(this)" class="region form-control">
 				<option value="">지역</option>
 				<option value="1">서울</option>
 				<option value="2">경기</option>
