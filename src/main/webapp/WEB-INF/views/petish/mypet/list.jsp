@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/resources/css/mypet/mypet.css">
     <link rel="stylesheet" href="/resources/css/mypet/mypetvote.css">
     <script src="/resources/js/mypet/mypet.js"></script>
-    <script src="/resources/js/mypet/mypetvote/js"></script>
+    <script src="/resources/js/mypet/mypetvote.js"></script>
     
 </head>
 <body>
