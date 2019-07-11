@@ -109,6 +109,25 @@ display:none;
 div.col-sm-3.col-md-2.text-center-xs{
 display:none;
 }
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+
+}
+button.delete.btn.btn-template-outlined{
+width:70px; height:40px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
+
 }
 </style>
 </head>
@@ -121,7 +140,7 @@ display:none;
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
 					<div class="col-md-7">
-						<h1 class="h2">고양이 정보게시판</h1>
+						<h1 class="h2">고양이 건강게시판</h1>
 					</div>
 					<div class="col-md-5">
 						<ul class="breadcrumb d-flex justify-content-end">
@@ -137,7 +156,7 @@ display:none;
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
 
-						<button class="btn btn-template-outlined">
+						<button class="write btn btn-template-outlined">
 							
 							<a href="/cat/infoboard/writeForm">
 							글쓰기
@@ -145,7 +164,7 @@ display:none;
 						</button>
 
 
-						<button class="btn btn-template-outlined">							
+						<button class="list btn btn-template-outlined">							
 							<i class="fa fa-align-justify"></i>
 							<a href="/cat/infoboard/list">
 							목록
@@ -321,7 +340,7 @@ display:none;
 								</div>
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
 							
