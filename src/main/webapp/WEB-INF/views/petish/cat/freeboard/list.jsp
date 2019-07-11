@@ -77,7 +77,7 @@ display:none;
 width:80px;
 }
 .MoblieViewText.border-top-0.lead{
-width:150px;
+width:180px;
 }
 .MoblieViewWriter.border-top-0.lead{
 width:100px;
@@ -122,19 +122,18 @@ width:200px;
 				
 					
 						<table class="table col-lg-20">
-							<thead>
+					
 								<tr>
-									<th width="130px" class="MoblieViewNumber border-top-0 lead">번호</th>
-									<th width="130px" class="test border-top-0 lead">분류</th>
-									<th width="550px" class="MoblieViewText border-top-0 lead" colspan="10">제목</th>
-									<th width="100px" class="MoblieViewWriter border-top-0 lead">작성자</th>
-									<th width="130px" class="test border-top-0 lead">작성일자</th>								
-									<th width="100px" class="test border-top-0 lead">조회</th>
-									<th width="100px" class="test border-top-0 lead">좋아요</th>
+									<th width="130px" class="MoblieViewNumber border-top-0">번호</th>
+									<th width="130px" class="test border-top-0">분류</th>
+									<th width="550px" class="MoblieViewText border-top-0" colspan="10">제목</th>
+									<th width="100px" class="MoblieViewWriter border-top-0">작성자</th>
+									<th width="130px" class="test border-top-0">작성일자</th>								
+									<th width="100px" class="test border-top-0">조회</th>
+									<th width="100px" class="test border-top-0">좋아요</th>
 								</tr>
-							</thead>
+						
 
-							<tbody>
 								<tr>
 									<td>100</td>
 									<td class=test>일상</td>
@@ -319,7 +318,7 @@ width:200px;
 									<td class=test>11</td>
 									<td class=test>11</td>
 								</tr>
-							</tbody>
+					
 
 						</table>
 					

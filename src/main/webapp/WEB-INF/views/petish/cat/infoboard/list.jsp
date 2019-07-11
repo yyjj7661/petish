@@ -116,7 +116,7 @@ width:130px;
 									<th width="130px" class="test border-top-0">분류	</th>
 									<th width="550px" class="border-top-0" colspan="10">제목 	</th>
 									<th width="100px" class="border-top-0">작성자	</th>
-									<th width="130px" class="test border-top-0">작성일자	</th>								
+									<th width="130px" class="test border-top-0">작성일자</th>								
 									<th width="100px" class="test border-top-0">조회	</th>
 									<th width="100px" class="test border-top-0">좋아요	</th>
 								</tr>

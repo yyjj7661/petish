@@ -65,12 +65,12 @@ display:none;
 .col-md-2.col-lg-2.test{
 display:none;
 }
-.MoblieViewNumber{
-width:55px;
+th.MoblieViewNumber.border-top-0{
+width:53px;
 }
-.MoblieViewRegion {width:55px;}
+th.MoblieViewRegion.border-top-0 {width:53px;}
 
-.MoblieViewWriter {width:70px;}
+th.MoblieViewWriter.border-top-0 {width:70px;}
 }        
 .col-md-2.col-lg-2.region{width:120px;}
 .col-md-2.col-lg-2.list{width:120px;}
