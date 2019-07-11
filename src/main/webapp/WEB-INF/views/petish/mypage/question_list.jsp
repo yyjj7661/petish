@@ -53,19 +53,10 @@
 <link rel="stylesheet" href="/resources/css/mypage.css">
 <script src="/resources/js/mypage.js"></script>
 <script src="/resources/css/mypage.css"></script>
-
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
-
 <body>
-	<script>
-		function showContents(){
-			$('tr.qnacontents').show();
-		}
-		
-		function hideContents(){
-			$('tr.qnacontents').hide();
-		}
-	</script>
+
 	<div id="all">
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
@@ -77,7 +68,7 @@
 					<div style="max-width: 20cm; margin: auto;">
 						<!-- <form method="get" action=""> -->
 
-						<h3 style="margin-top: 10%;font-weight:700;">Q & A</h3>
+						<h3 style="margin-top: 10%; font-weight: 700;">Q & A</h3>
 						<ul id="pills-tab" role="tablist"
 							class="nav nav-pills nav-justified" style="margin-top: 1cm;">
 							<li class="nav-item"><a id="pills-profile-tab"
@@ -97,50 +88,48 @@
 									<div class="col-md-12">
 										<div class="tile">
 											<div class="tile-body">
-												<table class="table table-hover table-bordered"
-													id="sampleTable">
-
-													<!-- 받은 쪽지 -->
-													<tr align="center" class="font-grey">
-														<th>문의사유</th>
-														<th>문의제목</th>
-														<th>답변상태</th>
+												<table class="table table-hover table-bordered" id="qnaList">
+													<tr align="center">
+														<th>문의번호</th>
+														<th>문의구분</th>
+														<th>제목</th>
 														<th>작성일자</th>
+														<th>답변상태</th>
+
 													</tr>
 													<tr>
-														<th class="font-grey">[등업관련]</th>
-														<th><a onclick="showContents()" class="nondeco">아니
-																제가 5월에 등업관련 문의글을 남겼는데요</a></th>
-														<th><span class="badge badge-danger">답변대기</span></th>
-														<th class="font-grey">19.07.04</th>
-														
-													</tr>
-													<tr style="display:none;" class="qnacontents">
-														<td colspan="4" onclick="hideContents()"> 안녕하세요. <br>제가 등업관련 문의글을 남겼는데요 아직 답변이 없네요.<br>빠른시일내에 답변 부탁드립니다.<br>빨리 커뮤니티 활동 하고 싶다구욧!</td>
+														<td><div class="arrow">1</div></td>
+														<td>[게시판요청]</td>
+														<td>이구아나 실종시 어디에 올려야 할까요?</td>
+														<td>19.07.11</td>
+														<td><span class="badge badge-danger">답변대기</span></td>
 													</tr>
 													<tr>
-														<th class="font-grey">[등업관련]</th>
-														<th><a href="/mypage/question/detail" class="nondeco">정회원
-																되려면 어떻게 해야하나요?</a></th>
-														<th><span class="badge badge-danger">답변대기</span></th>
-														<th class="font-grey">19.05.30</th>
+														<td colspan="5">이구아나 실종한 상태인데요<br>강아지,고양이 외에는 실종게시판이 따로 개설되어있지 않네요ㅠㅠ<br>자유게시판에 올려야할까요?</td>
 													</tr>
 													<tr>
-														<th class="font-grey">[게시판 추가요청]</th>
-														<th><a class="nondeco">참새
-																자유게시판 요청합니다.</a></th>
-														<th><span class="badge badge-info">답변완료</span></th>
-														<th class="font-grey">19.03.21</th>
-													</tr>
-													<tr style="display:none;" class="qnacontents">
-														<td colspan="4" onclick="hideContents()"> 안녕하세요. <br>참새 자유게시판 만들어주시면 안되나요?<br>빠른시일내에 답변 부탁드립니다.<br>빨리 커뮤니티 활동 하고 싶다구욧!</td>
+														<td><div class="arrow">1</div></td>
+														<td>[게시판요청]</td>
+														<td>앵무새 게시판 신규개설 요청합니다</td>
+														<td>19.05.10</td>
+														<td><span class="badge badge-info">답변완료</span></td>
 													</tr>
 													<tr>
-														<th class="font-grey">[게시판 추가요청]</th>
-														<th><a href="/mypage/question/detail" class="nondeco">도마뱀
-																자유게시판 요청합니다.</a></th>
-														<th><span class="badge badge-info">답변완료</span></th>
-														<th class="font-grey">19.01.05</th>
+														<td colspan="5">안녕하세요. <br>앵무새 게시판 신규개설 요청하려고 합니다.<br> 빠른 답변
+															부탁드려요.<br><br> ▶ 안녕하세요.<br> 문의 감사드립니다. <br>앵무새 게시판은 신규개설 요청이 많아 한 달 이내에
+															개설 될 예정이오니 참고 부탁드립니다. <br>감사합니다.</td>
+													</tr>
+													<tr>
+														<td><div class="arrow">2</div></td>
+														<td>[회원등급]</td>
+														<td>정회원으로 등업 하려면 어떻게 해야하나요</td>
+														<td>19.03.31</td>
+														<td><span class="badge badge-info">답변완료</span></td>
+													</tr>
+													<tr>
+														<td colspan="5">안녕하세요. <br>새로 가입했는데요.<br> 정회원으로 등업하려면 어떻게
+															해야하나요?<br><br> ▶ 안녕하세요. <br>문의 감사드립니다. <br>정회원으로 등업하시려면 마이페이지>회원정보수정에서
+															휴대폰 인증 완료하시면 됩니다. <br>감사합니다.</td>
 													</tr>
 												</table>
 											</div>
@@ -151,49 +140,42 @@
 							<div id="message-send" role="tabpanel"
 								aria-labelledby="pills-profile-tab" class="tab-pane fade">
 								<div class="row">
-									<div class="col-md-12">
-										<div class="tile">
-											<div class="tile-body">
-												<!-- 추가할부분 -->
-												<form>
-													<div class="row">
-														<div class="col-sm-6 col-md-3">
-															<div class="form-group">
-																<label for="category">문의 유형</label> <select
-																	id="category" class="form-control">
-																	<option value="1">문의유형 선택</option>
-																	<option value="fulldress">등업관련</option>
-																	<option value="tshirts">게시물 관련</option>
-																</select>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<label>문의 제목</label> <input type="text"
-																	class="form-control">
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<label>문의 내용</label>
-																<textarea class="form-control" rows="15"></textarea>
-															</div>
-														</div>
-														<div class="col-sm-12 text-center">
-															<!-- 문의 form 전송 -->
-															<button type="submit" class="btn btn-outline-primary"
-																id="question_submit">확인</button>
-															<a style="padding-right: 0.5rem;"></a>
-															<!-- 문의 리스트 화면으로 -->
-															<button type="submit" class="btn btn-outline-primary"
-																id="question_cancle">취소</button>
-														</div>
-													</div>
-												</form>
-
+									<form>
+										<div class="row">
+											<div class="col-sm-6 col-md-3">
+												<div class="form-group">
+													<label for="category">문의 유형</label> <select id="category"
+														class="form-control">
+														<option value="1">문의유형 선택</option>
+														<option value="fulldress">등업관련</option>
+														<option value="tshirts">게시물 관련</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+													<label>문의 제목</label> <input type="text"
+														class="form-control">
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+													<label>문의 내용</label>
+													<textarea class="form-control" rows="15"></textarea>
+												</div>
+											</div>
+											<div class="col-sm-12 text-center">
+												<!-- 문의 form 전송 -->
+												<button type="submit" class="btn btn-outline-primary"
+													id="question_submit">확인</button>
+												<a style="padding-right: 0.5rem;"></a>
+												<!-- 문의 리스트 화면으로 -->
+												<button type="submit" class="btn btn-outline-primary"
+													id="question_cancle">취소</button>
 											</div>
 										</div>
-									</div>
+									</form>
+
 								</div>
 							</div>
 						</div>

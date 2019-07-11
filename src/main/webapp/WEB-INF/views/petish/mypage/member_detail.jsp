@@ -71,8 +71,9 @@
 						<div class="memberInfo">
 							<div style="margin: 0.5cm;">
 								<img class="profile" src="/resources/img/member_detail_img.jpg"
-									style="margin-right: 30px;">
-								<a>달봉파더(dalb****)</a> │ 준회원 │ <a href="" class="nondeco"><i
+									style="margin-right: 30px;"> <a>달봉파더(dalb****)</a> │ 준회원
+								│ <a href="" data-toggle="modal"
+									data-target="#messageWrite-modal" class="nondeco"><i
 									class="fa fa-envelope" style="margin-right: 10px;"></i>쪽지 보내기</a>
 							</div>
 						</div>
@@ -271,22 +272,47 @@
 								</div>
 							</div>
 						</div>
-						<div class="content">
-							<div class="row">
-								<!--  <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input id="email" type="text" class="form-control">
-                        </div>
-                      </div> -->
-							</div>
-						</div>
-						<!-- </form> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 쪽지쓰기 모달 -->
+	<div id="messageWrite-modal" tabindex="-1" role="dialog"
+		aria-hidden="true" class="modal fade">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">쪽지 작성</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<form action="" method="get">
+						<div class="form-group">
+							<label>받는 사람</label> <input id="message_reveiver" type="text"
+								class="form-control" value="달봉파더" readonly>
+						</div>
+						<div class="form-group">
+							<label>내용</label>
+							<textarea id="message_content" rows="10" class="form-control"></textarea>
+						</div>
+						<p class="text-center">
+							<button type="submit" class="btn btn-outline-primary"
+								id="message_send">전송</button>
+							&nbsp;&nbsp;
+							<button type="submit" class="btn btn-outline-primary"
+								id="message_cancle">취소</button>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>

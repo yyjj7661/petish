@@ -65,14 +65,13 @@
 			<div class="container">
 				<div id="checkout">
 					<div style="max-width: 20cm; margin: auto;">
-						<!-- <form method="get" action=""> -->
-
 						<h3 style="margin-top: 10%;">My Page</h3>
 						<div class="memberInfo">
 							<div style="margin: 0.5cm;">
 								<img class="profile" src="/resources/img/member_detail_demo.JPG"
 									style="margin-right: 30px;"> <a>땡이누나(yeli****)</a> │ 정회원
-								│ <a class="nondeco" href="/mypage/modifyForm/">회원정보수정</a>
+								│ <a class="nondeco" href="/mypage/modifyForm/"><i
+									class="fa fa-list">회원정보수정</a></i>
 							</div>
 						</div>
 						<ul id="pills-tab" role="tablist"
@@ -93,7 +92,8 @@
 
 						<div id="pills-tabContent" class="tab-content">
 							<div class="text-right">
-								<button id="viewMore1" class="btn btn-sm btn-template-main" style="margin-bottom:0.2cm;">더보기</button>
+								<button id="viewMore1" class="btn btn-sm btn-template-main"
+									style="margin-bottom: 0.2cm;">더보기</button>
 							</div>
 							<div id="message-receive" role="tabpanel"
 								aria-labelledby="pills-home-tab"
@@ -182,24 +182,21 @@
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
-																</p></th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
-																</p></th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
-																</p></th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
@@ -250,16 +247,14 @@
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
-																</p></th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
 													<tr>
 														<th class="font-grey">모임게시판</th>
 														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나
-																</p></th>
+														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
 														<th class="font-grey">19.03.10</th>
 														<th class="font-grey">23</th>
 													</tr>
@@ -270,13 +265,12 @@
 								</div>
 							</div>
 						</div>
-
-						<!-- </form> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
