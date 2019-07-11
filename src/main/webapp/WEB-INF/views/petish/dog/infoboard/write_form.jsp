@@ -3,11 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-#head{
-	display:inline;
-}
-</style>
+
 
 <meta charset="utf-8">
 <title>Universal - All In 1 Template</title>
@@ -63,6 +59,8 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        
+        <link rel="stylesheet" href="/resources/css/write-modify.css">
 </head>
 
 <body>
@@ -177,55 +175,7 @@
 		src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	<!-- include summernote-ko-KR -->
 	<script src="/resources/lang/summernote-ko-KR.js"></script>
-	<script>
-		$(document).ready(function() {
-
-			$('#summernote').summernote(
-			{
-				height : 300, // set editor height
-				minHeight : null, // set minimum height of editor
-				maxHeight : null, // set maximum height of editor
-				focus : true, // set focus to editable area after initializing summernote
-				lang : 'ko-KR',
-				toolbar : [
-						[ 'style', [ 'style' ] ],
-						[
-								'font',
-								[
-										'bold',
-										'italic',
-										'underline',
-										'clear' ] ],
-						[ 'fontname',
-								[ 'fontname' ] ],
-						[ 'color', [ 'color' ] ],
-						[
-								'para',
-								[ 'ul', 'ol',
-										'paragraph' ] ],
-						[ 'height',
-								[ 'height' ] ],
-
-						[
-								'insert',
-								[
-										'link',
-										'picture',
-										'hr' ] ],
-
-				],
-				popover : {
-					image : [],
-					link : [],
-					air : []
-				}
-			});
-			
-			$('#resetbtn').click(function() {
-				$('#summernote').summernote('reset');
-			});
-			
-		});
-	</script>
+	<script src="/resources/js/summernote.js"></script>
+	
 </body>
 </html>
