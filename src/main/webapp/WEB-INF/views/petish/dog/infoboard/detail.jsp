@@ -149,14 +149,16 @@ margin-right:10px;
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="content">
 			<div class="container">
-				<div class="row bar">
+				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
+
 						<button class="write btn btn-template-outlined">
-							<a href="/dog/infoboard/writeForm">
+							
+							<a href="/cat/infoboard/writeForm">
 							글쓰기
 							</a>
 						</button>
@@ -328,7 +330,7 @@ margin-right:10px;
 								</div>
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
 									
