@@ -62,7 +62,7 @@ display:none;
 display:none;
 }
 .MoblieViewWriter {width:70px;}
-}
+
 .MoblieViewNumber.border-top-0 {width:70px;}
 
 div.test.col-md-2.col-lg-2{
@@ -70,9 +70,14 @@ display:none;
 }
 .panel.panel-default.sidebar-menu{
 width:180px;
+margin-rigth:15px;
 }
-.col-md-2.col-lg-2{
-width:130px;
+
+div.col-md-2.col-lg-2{
+width:100px;
+}
+div.teset.col-md-2.col-lg-2{
+display:none;
 }
 }
 
@@ -339,14 +344,13 @@ width:130px;
 
 		<!-- 검색 기능 -->
 
-		<div class="test col-md-2 col-lg-2">
+		<div class="teset col-md-2 col-lg-2">
 			<div class="form-group">
 				<select id="state" class="form-control">
 					<option>전체</option>
-					<option>건강</option>
 					<option>행동패턴</option>
+					<option>건강</option>
 				</select>
-
 			</div>
 		</div>
 
