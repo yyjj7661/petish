@@ -65,6 +65,10 @@ text-align:left;
 width:80px;
 }
 
+button.btn.btn-template-outlined{
+margin-right: 2rem;
+}
+
 .date{
 text-align:left;
 width:150px;
@@ -104,6 +108,24 @@ display:none;
 div.col-sm-3.col-md-2.text-center-xs{
 display:none;
 }
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+
+}
+button.delete.btn.btn-template-outlined{
+width:70px; height:40px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
 }
 
 </style>
@@ -133,13 +155,13 @@ display:none;
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
 
-						<button class="btn btn-template-outlined">
+						<button class="write btn btn-template-outlined">
 						<a href="/cat/freeboard/writeForm">
 						글쓰기
 						</a>
 						</button>
 
-						<button class="btn btn-template-outlined">
+						<button class="list btn btn-template-outlined">
 							<i class="fa fa-align-justify"></i> <a href="/cat/freeboard/list">목록</a>
 						</button>
 						
@@ -314,23 +336,22 @@ display:none;
 								</div>
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
 										
-										<nav aria-label="Page navigation example"
+										<div aria-label="Page navigation example"
 											class="d-flex justify-content-left">
 
 
-											<button type="submit" class="btn btn-template-outlined"
-												style="margin-right: 2rem">
+											<button type="submit" class="btn btn-template-outlined">												
 												<i class="fa fa-pencil"></i> <a href="/cat/freeboard/modifyForm">수정</a>
 											</button>
-											<button type="submit" class="btn btn-template-outlined">
+											<button type="submit" class="delete btn btn-template-outlined">
 												<i class="fa fa-trash-o"></i>삭제
 											</button>
 
-										</nav>
+										</div>
 
 										<button type="button" class="btn btn-danger"
 											data-toggle="modal" data-target="#myModal"
