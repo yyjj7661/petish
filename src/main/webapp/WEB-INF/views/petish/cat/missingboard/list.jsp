@@ -36,7 +36,20 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    <style>
-   
+button.btn.btn-template-outlined {
+float: right;
+margin: 20px;
+}
+
+.dropdown{
+text-align: center;
+
+}
+
+.table{
+margin: auto; 
+text-align: center;
+}
    
    </style>
   </head>
@@ -64,7 +77,7 @@
       <div id="content">
         <div class="container">
      
-       	<button class="btn btn-template-outlined" style="float: right;">
+       	<button class="btn btn-template-outlined">
 	       	<a href="/cat/missingboard/writeForm">	
 	       	글쓰기
 	       	</a>
@@ -72,31 +85,28 @@
        	
           <div class="row bar">
             <div id="customer-order" class="col-lg-20" >
-              <table class="table" style="margin-right:15px; margin-left:15px; text-align:center;">  
-                    <thead>
+              <table class="table" style="margin-right:15px; margin-left:15px; text-align:center;">              
                       <tr>                    
-                        <th width="130px" class="border-top-0 lead">상태</th>              
-                        <th width="200px" class="border-top-0 lead">이미지</th>                     
-                        <th width="550px" class="border-top-0 lead" colspan="10">제목</th>
-                        <th width="100px" class="border-top-0 lead">작성자</th>
-                        <th width="130px" class="border-top-0 lead">작성일자</th>                     
-                        <th width="100px" class="border-top-0 lead">조회</th>                     
+                        <th width="130px" class="border-top-0">상태</th>              
+                        <th width="200px" class="border-top-0">이미지</th>                     
+                        <th width="550px" class="border-top-0" colspan="10">제목</th>
+                        <th width="100px" class="border-top-0">작성자</th>
+                        <th width="130px" class="border-top-0">작성일자</th>                     
+                        <th width="100px" class="border-top-0">조회</th>                     
                       </tr>
-                    </thead>
-                    
-           	       <tbody>
+                          
                	      	<tr>
                         	<td><span class="badge badge-danger">미발견</span></td>
                     	    <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
-                	        <td colspan="10"><a href="/cat/missingboard/detail">[인천 서구] 페키니즈  / 여 / 3&&<a></a></td>
+                	        <td colspan="10"><a href="/cat/missingboard/detail">[인천 서구] 페키니즈  / 여 / 3&&</a></td>
             	            <td>				
-							 <ul class="nav navbar-nav ml-auto">
+							 <div class="nav navbar-nav ml-auto">
     	            			<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-	                  			<ul class="dropdown-menu">
-                    				<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-                	    			<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-            	      			</ul>
-        	       			</ul>
+	                  			<div class="dropdown-menu">
+                    				<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+                	    			<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+            	      			</div>
+        	       			</div>
     	                    </td>
 	                        <td>2019.07.01</td>  
                         	<td>11</td>             
@@ -110,13 +120,13 @@
                         	<span class="badge badge-secondary">42</span>
                     	    </td>
                 	        <td>
-              					<ul class="nav navbar-nav ml-auto">
+              					<div class="nav navbar-nav ml-auto">
                 					<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
-                  		   			<ul class="dropdown-menu">
-                   						<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-                    					<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-                  					</ul>
-               					</ul>        
+                  		   			<div class="dropdown-menu">
+                   						<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+                    					<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+                  					</div>
+               					</div>        
                         	</td>
                         	<td>2019.07.01</td> 
                         	<td>11</td>  
@@ -125,7 +135,7 @@
                        	<tr>
                        		<td><span class="badge badge-info">발견 완료</span></td>
                        		<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
-                        	<td colspan="10">[인천 서구] 페키니즈  / 남 / 2 	&nbsp &nbsp <span class="badge badge-secondary">40</span></td>
+                        	<td colspan="10">[인천 서구] 페키니즈  / 남 / 2 <span class="badge badge-secondary">40</span></td>
                         	<td>Pet</td>
                         	<td>2019.07.01</td>
                         	<td>11</td>                                  
@@ -134,7 +144,7 @@
                         <tr>
 	                        <td><span class="badge badge-info">발견 완료</span></td>
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
-	                        <td colspan="10">[인천 서구] 페키니즈  / 남 / 3$$&nbsp &nbsp <span class="badge badge-secondary">82</span></td>
+	                        <td colspan="10">[인천 서구] 페키니즈  / 남 / 3$$ <span class="badge badge-secondary">82</span></td>
 	                        <td>Pet</td>
 	                        <td>2019.07.01</td>
 	                        <td>11</td>
@@ -265,19 +275,16 @@
 	                        <td>2019.07.01</td>    
 	                        <td>11</td>                  
                       	</tr>
-              		</tbody>
+           
            		</table>
               </div>
            </div>
          </div>
        </div>
            
-		<P></P>
-        <P></P>
-        <P></P>
 				<!-- 번호   -->
      
-        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+        <div aria-label="Page navigation example" class="d-flex justify-content-center">
          <ul class="pagination">
            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-left"></i></a></li>
            <li class="page-item active"><a href="#" class="page-link">1</a></li>
@@ -287,12 +294,8 @@
            <li class="page-item"><a href="#" class="page-link">5</a></li>
            <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
          </ul>
-       </nav>
-       <P></P>
-       <P></P>
-       <P></P>
-        <P></P>
-       <P></P>
+       </div>
+ 
                       
 	<nav aria-label="Page navigation example" class="d-flex justify-content-center">
   	<!-- 검색 기능 -->                                				
@@ -322,52 +325,49 @@
 		</div>
 		</div>
 
-  		<div class="col-md-2 col-lg-2">             
+ <div class="col-md-2 col-lg-2">             
 		<div class="form-group">
-  			<select id="sml_region" class="form-control" style="min-width:2cm;">
-  				<option>시/구</option>
+  <select id="sml_region" class="form-control">
+  <option>시/구</option>
                                     
-            </select>
-        </div>
-        </div>
-                                
+                                 </select>
+                              </div>
+                              </div>
+                   
         <div class="col-md-2 col-lg-2">             
 		<div class="form-group">              
-			<select id="state" class="form-control" style="min-width:2cm;">
-				<option>상태</option>
-                <option>발견 완료</option>
-		        <option>미발견</option>  
+                        <select id="state" class="form-control">
+                         <option>상태</option>
+                        <option>발견 완료</option>
+                        <option>미발견</option>  
                                                                   
-            </select>
-        </div>
-        </div>
+                        </select>
+                      </div>
+                      </div>
                       
         <div class="col-md-2 col-lg-2">             
 		<div class="form-group">              
-             <select id="state" class="form-control" style="min-width:2cm;">
-                 <option>제목</option>
-                 <option>내용</option>
-                 <option>작성자</option>                                             
-                 </select>
-        </div>
-        </div>
+                        <select id="state" class="form-control">
+                          <option>제목</option>
+                        <option>내용</option>
+                        <option>작성자</option>                                             
+                        </select>
+                      </div>
+                      </div>
            
   				
                     
-         <div class="panel panel-default sidebar-menu"> 
-           <div class="panel-body">
-             <form role="search" style="min-width:2cm;">
-               <div class="input-group">
-                 <input type="text" placeholder="Search" class="form-control"><span class="input-group-btn">
-                   <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
-               </div>
-             </form>
-           </div>
-         </div>
-     </nav>    
-     
-     
-    </div>
+              <div class="panel panel-default sidebar-menu"> 
+                <div class="panel-body">
+                  <form role="search">
+                    <div class="input-group">
+                      <input type="text" placeholder="Search" class="form-control"><span class="input-group-btn">
+                        <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              </nav>
      
       
      
