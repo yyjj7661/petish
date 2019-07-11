@@ -44,6 +44,10 @@
 float: right;
 }
 
+.MoblieViewText.border-top-0{
+text-align:center;
+}
+
 #heading-breadcrumbs {
     margin-bottom: 25px;
 }
