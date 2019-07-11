@@ -300,10 +300,6 @@ span.badge.badge-danger{
 margin-top:30px;
 }
 
-
-
-
-
 div.col-sm-3.col-md-2.text-center-xs{
 display:none;
 }
@@ -386,7 +382,7 @@ display:none;
 										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown">&nbsp
+											<a href="#" data-toggle="dropdown" class="dropdown">
 												Pet</a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>

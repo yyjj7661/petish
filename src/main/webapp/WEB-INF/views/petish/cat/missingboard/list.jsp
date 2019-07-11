@@ -50,8 +50,50 @@ text-align: center;
 margin: auto; 
 text-align: center;
 }
-region form-control{min-width:3cm; padding-left: 15px;}
+
+region form-control{
+min-width:3cm; 
+padding-left: 15px;
+}
+
+
+@media screen and (max-width:750px){
+
+th.test.border-top-0{
+display:none;
+}
+.test{
+display:none;
+}
+th.condition.border-top-0{
+width:70px;
+}
+th.image.border-top-0{
+width:70px;
+}
+th.title.border-top-0{
+width:70px;
+}
+th.writer.border-top-0{
+width:70px;
+}
+.si.col-md-2.col-lg-2{
+display:none;
+}
+
+.condition.col-md-2.col-lg-2{
+display:none;
+}
+
+.panel.panel-default.sidebar-menu{
+width:450px;
+margin-right:10px;
+}
+
+}
    </style>
+   
+   
   </head>
   
   <body>
@@ -85,14 +127,14 @@ region form-control{min-width:3cm; padding-left: 15px;}
        	
      
             <div id="customer-order" class="col-lg-20" >
-              <table class="table" style="margin-right:15px; margin-left:15px; text-align:center;">              
+              <table class="table">              
                       <tr>                    
-                        <th width="130px" class="border-top-0">상태</th>              
-                        <th width="200px" class="border-top-0">이미지</th>                     
-                        <th width="550px" class="border-top-0" colspan="10">제목</th>
-                        <th width="100px" class="border-top-0">작성자</th>
-                        <th width="130px" class="border-top-0">작성일자</th>                     
-                        <th width="100px" class="border-top-0">조회</th>                     
+                        <th width="130px" class="condition border-top-0">상태</th>              
+                        <th width="200px" class="image border-top-0">이미지</th>                     
+                        <th width="550px" class="title border-top-0" colspan="10">제목</th>
+                        <th width="100px" class="writer border-top-0">작성자</th>
+                        <th width="130px" class="test border-top-0">작성일자</th>                     
+                        <th width="100px" class="test border-top-0">조회</th>                     
                       </tr>
                           
                	      	<tr>
@@ -108,8 +150,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
             	      			</div>
         	       			</div>
     	                    </td>
-	                        <td>2019.07.01</td>  
-                        	<td>11</td>             
+	                        <td class=test>2019.07.01</td>  
+                        	<td class=test>11</td>             
                    	  	</tr>
                    	  
                       	<tr>
@@ -128,8 +170,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
                   					</div>
                					</div>        
                         	</td>
-                        	<td>2019.07.01</td> 
-                        	<td>11</td>  
+                        	<td class=test>2019.07.01</td> 
+                        	<td class=test>11</td>  
                       	</tr>
                       
                        	<tr>
@@ -137,8 +179,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
                        		<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
                         	<td colspan="10">[인천 서구] 페키니즈  / 남 / 2 <span class="badge badge-secondary">40</span></td>
                         	<td>Pet</td>
-                        	<td>2019.07.01</td>
-                        	<td>11</td>                                  
+                        	<td class=test>2019.07.01</td>
+                        	<td class=test>11</td>                                  
                       	</tr>
                         
                         <tr>
@@ -146,8 +188,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 남 / 3$$ <span class="badge badge-secondary">82</span></td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>
+	                        <td class=test>11</td>
                       	</tr>
                       	
                       	<tr>
@@ -155,8 +197,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 31##</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>
+	                        <td class=test>11</td>  
                       	</tr>
                  		
                  		<tr>
@@ -164,8 +206,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 31##</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>  
                       	</tr>
                       	
                         <tr>
@@ -173,8 +215,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3!!</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>    
-	                        <td>11</td>          
+	                        <td class=test>2019.07.01</td>    
+	                        <td class=test>11</td>          
                       	</tr>
                       	
                       	<tr>
@@ -182,8 +224,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 31</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>  
                       	</tr>
                        	
                        	<tr>
@@ -191,8 +233,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 323</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>  
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>  
+	                        <td class=test>11</td>
                       	</tr>
                       	
                         <tr>
@@ -200,8 +242,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3234</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td> 
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td> 
+	                        <td class=test>11</td>
                       	</tr>
                       	
                       	<tr>
@@ -209,8 +251,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 312</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>  
                       	</tr>
                        	
                        	<tr>
@@ -218,8 +260,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 324</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>      
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>      
+	                        <td class=test>11</td>
                       	</tr>
                       	
                         <tr>
@@ -227,8 +269,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 343</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>         
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>         
+	                        <td class=test>11</td>  
                   		</tr>
                   		
                   		<tr>
@@ -236,8 +278,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 361</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>
                       	</tr>
                        	
                        	<tr>
@@ -245,8 +287,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	              			<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>         
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>         
+	                        <td class=test>11</td>
                       	</tr>
                       	
                         <tr>
@@ -254,8 +296,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                   		<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>
                       	</tr>
                       	
                       	<tr>
@@ -263,8 +305,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>  
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>  
+	                        <td class=test>11</td>
                       	</tr>
                       	
                        	<tr>
@@ -272,8 +314,8 @@ region form-control{min-width:3cm; padding-left: 15px;}
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 312</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>    
-	                        <td>11</td>                  
+	                        <td class=test>2019.07.01</td>    
+	                        <td class=test>11</td>                  
                       	</tr>
            
            		</table>
@@ -297,7 +339,7 @@ region form-control{min-width:3cm; padding-left: 15px;}
        </div>
  
                       
-	<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+	<div aria-label="Page navigation example" class="d-flex justify-content-center">
   	<!-- 검색 기능 -->                                				
 		<div class="col-md-2 col-lg-2">             
 		<div class="form-group">
@@ -325,7 +367,7 @@ region form-control{min-width:3cm; padding-left: 15px;}
 		</div>
 		</div>
 
- <div class="col-md-2 col-lg-2">             
+ <div class="si col-md-2 col-lg-2">             
 		<div class="form-group">
   <select id="sml_region" class="form-control">
   <option>시/구</option>
@@ -334,7 +376,7 @@ region form-control{min-width:3cm; padding-left: 15px;}
                               </div>
                               </div>
                    
-        <div class="col-md-2 col-lg-2">             
+        <div class="condition col-md-2 col-lg-2">             
 		<div class="form-group">              
                         <select id="state" class="form-control">
                          <option>상태</option>
@@ -367,8 +409,9 @@ region form-control{min-width:3cm; padding-left: 15px;}
                   </form>
                 </div>
               </div>
-              </nav>
-     
+              
+              </div>
+     </div>
       
      
      <script>
