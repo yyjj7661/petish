@@ -73,14 +73,14 @@ margin-right:20px;
 .test{
 display:none;
 }
-.MoblieViewNumber.border-top-0.lead{
-width:80px;
+.MoblieViewNumber.border-top-0{
+width:55px;
 }
-.MoblieViewText.border-top-0.lead{
+.MoblieViewText.border-top-0{
 width:180px;
 }
-.MoblieViewWriter.border-top-0.lead{
-width:100px;
+.MoblieViewWriter.border-top-0{
+width:70px;
 }
 select#state{
 width: 100px;
