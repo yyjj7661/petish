@@ -283,6 +283,61 @@ margin-right: 2rem;
 }
 
 
+@media screen and (max-width:750px){
+
+.btn.btn-template-outlined{
+margin-bottom:10px;
+}
+.date{
+display:none;
+}
+.view{
+display:none;
+}
+
+
+span.badge.badge-danger{
+margin-top:30px;
+}
+
+
+
+
+
+div.col-sm-3.col-md-2.text-center-xs{
+display:none;
+}
+
+button.btn.btn-template-outlined{
+margin-right: 1rem
+}
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+}
+
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+
+
+div.bg_white{
+display:none;
+}
+
+
+
+
+}
+
+
 </style>
 </head>
 <body>
@@ -412,11 +467,7 @@ margin-right: 2rem;
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>안타깝네요</p>
 
 									</div>
 								</div>
@@ -432,11 +483,7 @@ margin-right: 2rem;
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>빨리 찾길 바라겠습니다</p>
 
 									</div>
 								</div>
@@ -449,7 +496,7 @@ margin-right: 2rem;
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="name">닉네임 <span
+											<label for="name">아이디 <span
 												class="required text-primary">*</span></label> <input id="name"
 												type="text" class="form-control">
 										</div>
@@ -468,7 +515,7 @@ margin-right: 2rem;
 								
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
 								
