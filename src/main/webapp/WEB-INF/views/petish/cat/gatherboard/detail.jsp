@@ -239,6 +239,13 @@
 	justify-content: right;
 }
 
+div.map{
+width: 100%; 
+height: 100%; 
+position: relative; 
+overflow: hidden;
+}
+
 
 .btn.btn-danger{
 float:right;
@@ -514,8 +521,7 @@ display:none;
 
 			
 						<div class="map_wrap">
-								<div id="map"
-									style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+								<div id="map"></div>
 
 								<div id="menu_wrap" class="bg_white">
 									<div class="option">
@@ -615,7 +621,7 @@ display:none;
 											</button>
 										</nav>
 
-										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style="float: right;" id="report-btn">신고
+										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" id="report-btn">신고
 										</button>
 
 										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

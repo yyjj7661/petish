@@ -388,7 +388,7 @@ margin-right: 2rem;
 											<div id="pagination"></div>
 										</div>
 									</div>
-						
+							
 							</blockquote>
 
 							
@@ -471,10 +471,7 @@ margin-right: 2rem;
 										<button class="btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
-										<P></P>
-										<P></P>
-										<P></P>
-										<P></P>
+								
 
 										<nav aria-label="Page navigation example" class="d-flex justify-content-left">
 
@@ -504,7 +501,7 @@ margin-right: 2rem;
 													<div class="modal-body">
 														<table>
 															<tr>
-																<td>신고 분</td>
+																<td>신고 분류</td>
 																<td>
 																	<div class="form-group">
 																		<select id="state" class="form-control">
@@ -548,7 +545,7 @@ margin-right: 2rem;
 			<div class="col-md-3"></div>
 		</div>
 	</div>
-</div>
+
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	<script>
