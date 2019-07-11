@@ -10,10 +10,7 @@
 	<meta name="robots" content="all,follow">
 
 	<!-- 평점 별  -->
-	<link rel="stylesheet" href="/resources/css/star-rating.css" media="all" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/theme-krajee-fa.css" media="all" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/theme-krajee-svg.css" media="all" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/theme-krajee-uni.css" media="all" type="text/css" />
+	<link rel="stylesheet" href="/resources/css/hospital/star.css">
 	<!-- 평점 별  -->
 	
 	<link rel="stylesheet" href="/resources/css/hospital/main_search.css">
@@ -109,11 +106,8 @@
 													<h3 style="font-size: 25px;">
 														<a href="A동물병원상세페이지">A 동물병원</a>
 													</h3>
-													<p></p>
-													<form>
-														<br> <input type="text" class="rating rating-loading"
-															value="2" data-size="xs" title=""> <br>
-													</form>
+													<p style="font-size: 25px;">★★★★★</p>
+													
 													<div class="text">
 														<div>02-9999-9999</div>
 														<div>응급진료</div>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
 <html>
@@ -11,10 +11,7 @@
 	<meta name="robots" content="all,follow">
 
 	<!-- 평점 별  -->
-	<link rel="stylesheet" href="/resources/css/star-rating.css" media="all" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/theme-krajee-fa.css" media="all" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/theme-krajee-svg.css" media="all" type="text/css" />
-	<link rel="stylesheet" href="/resources/css/theme-krajee-uni.css" media="all" type="text/css" />
+	<link rel="stylesheet" href="/resources/css/hospital/star.css">
 	<!-- 평점 별  -->
 	<link rel="stylesheet" href="/resources/css/hospital/detail.css">
 
@@ -125,16 +122,23 @@
 				<span class="menu1" style="font-size: 23px;">한 줄로 말하기</span>
 			</div>
 			
-			<table border="0" width="100%" height="70%">
+			<table border="0" width="100%" height="150%">
 				<tr>
-					<td width="20%" bgcolor="#f5f5f5">
+					<td width="10%" bgcolor="#f5f5f5">
 
-						<form>
-							 <input type="text" class="rating rating-loading" value="2.5" data-size="lg" title=""> 
-						</form>
+					<span class="star-input">
+						  <span class="input">
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+						  </span>
+	  					<output style="line-height: 50px; vertical-align: middle;" for="star-input"><b>0</b>점</output>
+					</span>
 					</td>
 
-					<td><input style="width:82%; height:100%; boder:2px solid #38A7BB;" placeholder="자유롭게 작성하되 욕설 및 상대방에게 불쾌감을 줄 수 있는 단어는 금지합니다.(100자 이내)" 
+					<td><input style="width:90%; height:100%; boder:2px solid #38A7BB;" placeholder="자유롭게 작성하되 욕설 및 상대방에게 불쾌감을 줄 수 있는 단어는 금지합니다.(100자 이내)" 
 					type="text" name="star_reply" maxlength="100" autofocus/>
 						<button type="button" class="btn btn-template-outlined">작성완료</button>
 					</td>
@@ -185,7 +189,8 @@
 		
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e74e0d9232cbccbd2962414bf135d9c&libraries=services"></script>
 	<script src="/resources/js/hospital/detail.js"></script>
-	<script src="/resources/js/star-rating.js" type="text/javascript"></script>
+	<script src="/resources/js/hospital/star.js"></script>
+	
 
 	
 </body>
