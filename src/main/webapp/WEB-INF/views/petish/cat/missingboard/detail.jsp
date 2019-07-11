@@ -228,6 +228,61 @@
 #report-btn {
 	justify-content: right;
 }
+
+.btn.btn-danger{
+float:right;
+margin-top:20px;
+margin-right:20px;
+}
+
+button.btn.btn-template-outlined{
+float: right;
+margin-right:15px;
+margin-top:20px;
+}
+.name{
+text-align:center;
+width:40px;
+}
+td.grade{
+text-align:left;
+width:80px;
+}
+
+td.date{
+text-align:left;
+width:150px;
+}
+
+td.view{
+text-align:left;
+width:150px;
+}
+div.panel-heading{
+margin-top:40px;
+}
+.dropdown{
+text-align:center;
+}
+
+main.img-fluid rounded-circle{
+width:70px; height:70px;
+
+}
+div#post-content{
+margin-top:50px;
+}
+
+div.panel.panel-default.sidebar-menu{
+margin-top:40px;
+
+}
+
+button.btn.btn-template-outlined{
+margin-right: 2rem;
+}
+
+
 </style>
 </head>
 <body>
@@ -251,21 +306,18 @@
 		
 		<div id="content">
 			<div class="container">
-				<div class="row bar">
+				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
-						<button class="btn btn-template-outlined" style="float: right;">
+						<button class="btn btn-template-outlined">
 							<a href="/cat/missingboard/writeForm">
 							글쓰기
 							</a>
 						</button>
-						<button class="btn btn-template-outlined" style="float: right;">
+						<button class="btn btn-template-outlined">
 							<i class="fa fa-align-justify"></i><a href="/cat/missingboard/list">목록</a>
 						</button>
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
+				
 
 						<div class="panel-heading">
 							<span class="badge badge-danger">미발견</span>
@@ -273,43 +325,36 @@
 						</div>
 
 						<table>
-							<tbody>
+				
 								<tr>
 									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
 										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">&nbsp
 												Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
 
-									<td>준회원</td>
-									<td>2019-07-01 23:02:56</td>
-									<td><i class="fa fa-eye"></i>130186321</td>
+									<td class=grade>준회원</td>
+									<td class=date>2019-07-01 23:02:56</td>
+									<td class=view><i class="fa fa-eye"></i>130186321</td>
 
 								</tr>
 								
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-							</tbody>
+						
 						</table>
 
 						<hr size="10px">
 						<div class="heading">
-							<P></P>
-							<P></P>
-							<P></P>
-							<P></P>
+						
 							
 							<blockquote class="blockquote">
-								<ol>
+							
 									<p>
 										<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
 											class="img-fluid">
@@ -343,7 +388,7 @@
 											<div id="pagination"></div>
 										</div>
 									</div>
-								</ol>
+						
 							</blockquote>
 
 							
