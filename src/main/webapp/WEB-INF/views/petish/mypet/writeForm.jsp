@@ -23,7 +23,7 @@
 <body>
   <div id="all">
   
-  	<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+  	<%@ include file="/WEB-INF/views/commons/non-login.jspf" %>
   	
     <!-- MyPet Write Start -->
       <div id="heading-breadcrumbs">
