@@ -1,84 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
-<style>
-.top-bar {
-	background: #38a7bb;
-}
+	<!-- Css File -->
+    <link rel="stylesheet" href="/resources/css/top/top.css">
 
-.login-form-group {
-	width: 450px;
-}
-
-#email-login {
-	width: 365px;
-}
-
-#name-login {
-	width: 365px;
-}
-
-#adress1-login {
-	width: 305px;
-}
-
-#jumin1, #jumin2 {
-	width: 215px;
-}
-
-#logo {
-	width: 120px;
-}
-
-li {
-	list-style: none;
-}
-
-/* 드랍다운 메뉴 글씨 크기*/
-.nav-link {
-	font-size: 0.9rem;
-}
-</style>
-
-</head>
-		<!-- Login Modal-->
-		<div id="login-modal" tabindex="-1" role="dialog"
-			aria-labelledby="login-modalLabel" aria-hidden="true"
-			class="modal fade">
-			<div role="document" class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 id="login-modalLabel" class="modal-title">Customer Login</h4>
-						<button type="button" data-dismiss="modal" aria-label="Close"
-							class="close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form action="customer-orders.html" method="get">
-							<div class="login-form-group">
-								<input id="email_modal" type="text" placeholder="email"
-									class="form-control">
-							</div>
-							<div class="login-form-group">
-								<input id="password_modal" type="password"
-									placeholder="password" class="form-control">
-							</div>
-							<p class="text-center">
-								<button class="btn btn-template-outlined">
-									<i class="fa fa-sign-in"></i> Log in
-								</button>
-							</p>
-						</form>
-						<p class="text-center text-muted">Not registered yet?</p>
-						<p class="text-center text-muted">
-							<a href="customer-register.html"><strong>Register
-									now</strong></a>! It is easy and done in 1 minute and gives you access to
-							special discounts and much more!
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Login modal end-->
 		<!-- Top bar-->
 		<div class="top-bar">
 			<div class="container">
@@ -92,7 +15,7 @@ li {
 								<li class="list-inline-item"><a href="#"><i
 										class="fa fa-envelope"></i></a></li>
 							</ul>
-							<!-- Login User -->
+							<!-- Login User
 							<div class="login">
 								<li class="nav-item dropdown"><a href="javascript: void(0)"
 									style="color: #fff;" data-toggle="dropdown"
@@ -101,13 +24,11 @@ li {
 									<ul class="dropdown-menu">
 										<li class="dropdown-item"><a href="/mypage/" class="nav-link"
 											style="font-size: 0.9rem;">마이페이지</a></li>
-										<li class="dropdown-item"><a href="/mypage/message" class="nav-link" style="font-size:0.9rem;">쪽지함</a></li>
-										<li class="dropdown-item"><a href="/mypage/question/list" class="nav-link" style="font-size:0.9rem;">문의함</a></li>
 										<li class="dropdown-item"><a href="header.html"
 											class="nav-link" style="font-size: 0.9rem;">로그아웃</a></li>
 									</ul></li>
 							</div>
-							<!-- Login User END -->
+							 Login User END -->
 						</div>
 					</div>
 				</div>
@@ -118,7 +39,7 @@ li {
 		<header class="nav-holder make-sticky">
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
-					<a href="/mypage/" class="navbar-brand home"><img
+					<a href="/dog/freeboard/list" class="navbar-brand home"><img
 						src="/resources/img/logo.png" id="logo" alt="Universal logo"
 						class="d-none d-md-inline-block"><img
 						src="/resources/img/logo.png" id="logo"
@@ -133,68 +54,24 @@ li {
 					<div id="navigation" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav ml-auto">
 							<!--Dog -->
-							<li class="nav-item dropdown menu-large"><a href="#"
-								data-toggle="dropdown" class="dropdown-toggle">강아지 <b
-									class="caret"></b></a>
-								<ul class="dropdown-menu megamenu">
-									<li>
-										<div class="row">
-											<div class="col-lg-6">
-												<img src="/resources/img/dog.jpg" alt=""
-													class="img-fluid d-none d-lg-block">
-											</div>
-											<div class="col-lg-3 col-md-6">
-												<h5>커뮤니티</h5>
-												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="/dog/freeboard/list" class="nav-link">자유게시판</a></li>
-													<li class="nav-item"><a href="/dog/gatherboard/list" class="nav-link">정모게시판</a></li>
-													<li class="nav-item"><a href="#" class="nav-link">분양게시판</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3 col-md-6">
-												<h5>기타</h5>
-												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="/dog/infoboard/list"
-														class="nav-link">건강</a></li>
-													<li class="nav-item"><a href="/dog/missingboard/list"
-														class="nav-link">실종견</a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul></li>
+			                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">강아지<b class="caret"></b></a>
+			                  <ul class="dropdown-menu">
+			                    <li class="dropdown-item"><a href="/dog/freeboard/list" class="nav-link">자유게시판</a></li>
+			                    <li class="dropdown-item"><a href="/dog/gatherboard/list" class="nav-link">정모게시판</a></li>
+			                    <li class="dropdown-item"><a href="/dog/infoboard/list" class="nav-link">건강</a></li>
+			                    <li class="dropdown-item"><a href="/dog/missingboard/list" class="nav-link">실종견</a></li>
+			                  </ul>
+			                </li>
 							<!-- Dog END -->
 							<!-- Cat -->
-							<li class="nav-item dropdown menu-large"><a href="#"
-								data-toggle="dropdown" class="dropdown-toggle">고양이 <b
-									class="caret"></b></a>
-								<ul class="dropdown-menu megamenu">
-									<li>
-										<div class="row">
-											<div class="col-lg-6">
-												<img src="/resources/img/cat.jpg" alt=""
-													class="img-fluid d-none d-lg-block">
-											</div>
-											<div class="col-lg-3 col-md-6">
-												<h5>커뮤니티</h5>
-												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="/cat/freeboard/list" class="nav-link">자유게시판</a></li>
-													<li class="nav-item"><a href="/cat/gatherboard/list" class="nav-link">정모게시판</a></li>
-													<li class="nav-item"><a href="#" class="nav-link">분양게시판</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3 col-md-6">
-												<h5>기타</h5>
-												<ul class="list-unstyled mb-3">
-													<li class="nav-item"><a href="/cat/infoboard/list"
-														class="nav-link">건강</a></li>
-													<li class="nav-item"><a href="/cat/missingboard/list"
-														class="nav-link">실종견</a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul></li>
+			                <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">고양이<b class="caret"></b></a>
+			                  <ul class="dropdown-menu">
+			                    <li class="dropdown-item"><a href="/cat/freeboard/list" class="nav-link">자유게시판</a></li>
+			                    <li class="dropdown-item"><a href="/cat/gatherboard/list" class="nav-link">정모게시판</a></li>
+			                    <li class="dropdown-item"><a href="/cat/infoboard/list" class="nav-link">건강</a></li>
+			                    <li class="dropdown-item"><a href="/cat/missingboard/list" class="nav-link">실종묘</a></li>
+			                  </ul>
+			                </li>
 							<!-- Cat END -->
 							<!-- Etc -->
 
@@ -203,10 +80,22 @@ li {
 									<b class="caret"></b>
 							</a></li>
 							<!-- ========== My Pet END ==================-->
-							<!-- ========== Contact dropdown ==================-->
+							<!-- ========== Hospital ==================-->
 							<li class="nav-item dropdown"><a href="/hospital/searchForm">병원 <b
 									class="caret"></b></a></li>
-							<!-- ========== Contact dropdown end ==================-->
+							<!-- ========== Hospital END ==================-->
+							<!-- Login User -->
+								<li class="nav-item dropdown"><a href="javascript: void(0)"
+									 data-toggle="dropdown"
+									class="dropdown-toggle"><i class="fa fa-user"></i><span
+										class="d-none d-md-inline-block">petish님</span></a>
+									<ul class="dropdown-menu">
+										<li class="dropdown-item"><a href="/mypage/" class="nav-link"
+											style="font-size: 0.9rem;">마이페이지</a></li>
+										<li class="dropdown-item"><a href="header.html"
+											class="nav-link" style="font-size: 0.9rem;">로그아웃</a></li>
+									</ul></li>
+							<!-- Login User END -->
 						</ul>
 					</div>
 					<div id="search" class="collapse clearfix">
