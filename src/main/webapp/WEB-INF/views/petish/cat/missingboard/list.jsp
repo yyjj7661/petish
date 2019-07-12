@@ -35,64 +35,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-   <style>
-button.btn.btn-template-outlined {
-float: right;
-margin: 20px;
-}
-
-.dropdown{
-text-align: center;
-
-}
-
-.table{
-margin: auto; 
-text-align: center;
-}
-
-region form-control{
-min-width:3cm; 
-padding-left: 15px;
-}
-
-
-@media screen and (max-width:750px){
-
-th.test.border-top-0{
-display:none;
-}
-.test{
-display:none;
-}
-th.condition.border-top-0{
-width:70px;
-}
-th.image.border-top-0{
-width:70px;
-}
-th.title.border-top-0{
-width:70px;
-}
-th.writer.border-top-0{
-width:70px;
-}
-.si.col-md-2.col-lg-2{
-display:none;
-}
-
-.condition.col-md-2.col-lg-2{
-display:none;
-}
-
-.panel.panel-default.sidebar-menu{
-width:450px;
-margin-right:10px;
-}
-
-}
-   </style>
-   
+	<link rel="stylesheet" href="/resources/css/missingborad/list.css">
    
   </head>
   
