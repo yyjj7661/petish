@@ -50,9 +50,8 @@
 	href="/resources/img/apple-touch-icon-152x152.png">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="/resources/css/mypage.css">
-<script src="/resources/js/mypage.js"></script>
-<script src="/resources/css/mypage.css"></script>
+<link rel="stylesheet" href="/resources/css/mypage/mypage2.css">
+<script src="/resources/js/mypage/mypage2.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
