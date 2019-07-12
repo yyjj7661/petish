@@ -37,51 +37,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
-
-<style>        
-button.btn.btn-template-outlined {
-float: right;
-margin: 20px;
-}
-
-.dropdown{
-text-align: center;
-
-}
-
-.table{
-margin: auto; 
-text-align: center;
-}
-        
-@media screen and (max-width:750px){
-th.test.border-top-0{
-display:none;
-}
-.test{
-display:none;
-}
-.col-md-2.col-lg-2.test{
-display:none;
-}
-th.MoblieViewNumber.border-top-0{
-width:53px;
-}
-th.MoblieViewRegion.border-top-0 {width:53px;}
-
-th.MoblieViewWriter.border-top-0 {width:70px;}
-}        
-.col-md-2.col-lg-2.region{width:120px;}
-.col-md-2.col-lg-2.list{width:120px;}
-
-
-div.panel.panel-default.sidebar-menu{
-margin-right:15px;
-width:170px;
-}
-
-}
-</style>        
+<link href="/resources/css/gatherboard/list.css" rel="stylesheet">       
 </head>
 
 <body>
@@ -411,7 +367,6 @@ width:170px;
 			</div>
 		</div>
 	
-
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
