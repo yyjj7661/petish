@@ -232,14 +232,6 @@
 	justify-content: right;
 }
 
-div.map{
-width: 100%; 
-height: 100%; 
-position: relative; 
-overflow: hidden;
-}
-
-
 .btn.btn-danger{
 float:right;
 margin-top:20px;
@@ -538,8 +530,7 @@ display:none;
 							</blockquote>
 
 							<div class="map_wrap">
-								<div id="map"></div>
-
+								<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 								<div id="menu_wrap" class="bg_white">
 									<div class="option">
 										<div>
