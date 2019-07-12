@@ -59,7 +59,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
         
         <link rel="stylesheet" href="/resources/css/write-modify.css">
-        <link rel="stylesheet" href="/resources/css/kakaomap.css">
+        <link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 </head>
 
 <body>

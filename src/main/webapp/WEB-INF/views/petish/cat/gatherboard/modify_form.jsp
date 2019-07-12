@@ -62,7 +62,7 @@
         
         
         <link rel="stylesheet" href="/resources/css/write-modify.css">
-        <link rel="stylesheet" href="/resources/css/kakaomap.css">
+        <link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 </head>
 
 <body>
