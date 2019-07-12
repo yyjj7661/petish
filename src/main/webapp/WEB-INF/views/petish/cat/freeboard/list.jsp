@@ -38,65 +38,7 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
-<style>
-.btn.btn-template-outlined {  
-float: right;
-}
-
-.MoblieViewText.border-top-0{
-text-align:center;
-}
-
-#heading-breadcrumbs {
-    margin-bottom: 25px;
-}
-
-.table.col-lg-20{
-margin: auto; 
-text-align: center;
-}
-div.form-group div.form-group1{
-margin-top:20px;
-}
-
-a.nav-link{
-text-align:center;
-}
-
-.table.col-lg-20{
-margin-top:40px;
-}
-
-
-.btn.btn-template-main{
-margin-right:20px;
-}
-
-@media screen and (max-width:750px){
-.test{
-display:none;
-}
-.MoblieViewNumber.border-top-0{
-width:55px;
-}
-.MoblieViewText.border-top-0{
-width:180px;
-}
-.MoblieViewWriter.border-top-0{
-width:70px;
-}
-select#state{
-width: 100px;
-}
-div.input-group
-{
-width:200px;
-}
-
-}
-
-</style>
+<link href="/resources/css/freeboard/list.css" rel="stylesheet">
 
 </head>
 <body>
