@@ -35,53 +35,9 @@
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-<style type="text/css">        
-button.btn.btn-template-outlined {
-float: right;
-margin: 20px;
-}
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->             
 
-.dropdown{
-text-align: center;
-
-}
-
-.table{
-margin: auto; 
-text-align: center;
-}
-        
-@media screen and (max-width:750px){
-
-th.test.border-top-0{
-display:none;
-}
-.test{
-display:none;
-}
-.MoblieViewWriter {width:70px;}
-
-.MoblieViewNumber.border-top-0 {width:70px;}
-
-div.test.col-md-2.col-lg-2{
-display:none;
-}
-.panel.panel-default.sidebar-menu{
-width:180px;
-margin-rigth:15px;
-}
-
-div.col-md-2.col-lg-2{
-width:100px;
-}
-div.teset.col-md-2.col-lg-2{
-display:none;
-}
-}
-
-</style>               
-
+<link href="/resources/css/infoboard/list.css" rel="stylesheet">
 
 </head>
 <body>
@@ -113,269 +69,278 @@ display:none;
 					</a>
 				</button>
 				
-			<div id="customer-order" class="col-lg-20">
-						<table class="table">
+				<div id="customer-order" class="col-lg-20">
+					<table class="table">
 						
-								<tr>
-									<th width="130px" class="MoblieViewNumber border-top-0">번호	</th>
-									<th width="130px" class="test border-top-0">분류	</th>
-									<th width="550px" class="border-top-0" colspan="10">제목 	</th>
-									<th width="100px" class="border-top-0">작성자	</th>
-									<th width="130px" class="test border-top-0">작성일자</th>								
-									<th width="100px" class="test border-top-0">조회	</th>
-									<th width="100px" class="test border-top-0">좋아요	</th>
-								</tr>
+						<tr>
+							<th width="130px" class="MoblieViewNumber border-top-0">번호	</th>
+							<th width="130px" class="test border-top-0">분류	</th>
+							<th width="550px" class="border-top-0" colspan="10">제목 	</th>
+							<th width="100px" class="border-top-0">작성자	</th>
+							<th width="130px" class="test border-top-0">작성일자</th>								
+							<th width="100px" class="test border-top-0">조회	</th>
+							<th width="100px" class="test border-top-0">좋아요	</th>
+						</tr>
 					
 						<tr>
-									<td>100</td>
-									<td class=test>건강</td>
-									<td colspan="10"><a href="/cat/infoboard/detail">안녕하세요	</a></td>
-									<td>
-										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-											<div class="dropdown-menu">
-												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
-												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
-											</div>
-										</div>
-									
-									</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>99</td>
-									<td class=test>건강</td>
-									<td colspan="10">안녕하세요1^^ <span
-										class="badge badge-secondary">42</span>
-
-									</td>
-									<td>
-										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
-											<div class="dropdown-menu">
-												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
-												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
-											</div>
-										</div>
-
-
-
-									</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>98</td>
-									<td class=test>행동패턴</td>
-									<td colspan="10">안녕하세요%% <span	class="badge badge-secondary">40</span></td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>97</td>
-									<td class=test>행동패턴</td>
-									<td colspan="10">안녕하세요$$ <span	class="badge badge-secondary">82</span></td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>96</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요1##</td>
-									<td>Pet1</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>95</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요1##</td>
-									<td>Pet1</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>94</td>
-									<td class=test>건강</td>
-									<td colspan="10">안녕하세요!!</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>93</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요1</td>
-									<td>Pet1</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>92</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요23</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>91</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요234</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>90</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요12</td>
-									<td>Pet1</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>89</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요24</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>88</td>
-									<td class=test>건강</td>
-									<td colspan="10">안녕하세요43</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								<tr>
-									<td>87</td>
-									<td class=test>건강</td>
-									<td colspan="10">안녕하세요61</td>
-									<td>Pet1</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>86</td>
-									<td class=test>건강</td>
-									<td colspan="10">안녕하세요</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>85</td>
-									<td class=test>행동패턴</td>
-									<td colspan="10">안녕하세요32</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>84</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요1</td>
-									<td>Pet1</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-								<tr>
-									<td>83</td>
-									<td class=test></td>
-									<td colspan="10">안녕하세요12</td>
-									<td>Pet</td>
-									<td class=test>2019.07.01</td>
-									<td class=test>11</td>
-									<td class=test>11</td>
-								</tr>
-						
-
-						</table>
-					</div>
-				</div>
-		</div>
-		</div>
-	
-				<!-- 번호   -->
-
-				<div aria-label="Page navigation example" class="d-flex justify-content-center">
-					<ul class="pagination">
-						<li class="page-item">
-							<a href="#" class="page-link"><i class="fa fa-angle-double-left"></i></a>
-						</li>
-						<li class="page-item active"><a href="#" class="page-link">1</a></li>
-						<li class="page-item"><a href="#" class="page-link">2</a></li>
-						<li class="page-item"><a href="#" class="page-link">3</a></li>
-						<li class="page-item"><a href="#" class="page-link">4</a></li>
-						<li class="page-item"><a href="#" class="page-link">5</a></li>
-						<li class="page-item"><a href="#" class="page-link"><i
-								class="fa fa-angle-double-right"></i></a></li>
-					</ul>
-				</div>
-	
-
-				<div aria-label="Page navigation example" class="d-flex justify-content-center">
-					<!-- 검색 기능 -->
-					<div class="test col-md-2 col-lg-2">
-						<div class="form-group">
-							<select id="state" class="form-control">
-								<option>전체</option>
-								<option>건강</option>
-								<option>행동패턴</option>
-							</select>
-			
-						</div>
-					</div>
-			
-					<div class="col-md-2 col-lg-2">
-						<div class="form-group">
-							<select id="state" class="form-control">
-								<option>제목</option>
-								<option>내용</option>
-								<option>작성자</option>
-							</select>
-						</div>
-					</div>
-			
-					<div class="panel panel-default sidebar-menu">
-						<div class="panel-body">
-							<form role="search">
-								<div class="input-group">
-									<input type="text" placeholder="Search" class="form-control"><span
-										class="input-group-btn">
-										<button type="submit" class="btn btn-template-main">
-											<i class="fa fa-search"></i>
-										</button>
-									</span>
+							<td>100</td>
+							<td class=test>건강</td>
+							<td colspan="10"><a href="/cat/infoboard/detail">안녕하세요	</a></td>
+							<td>
+								<div class="nav navbar-nav ml-auto">
+									<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
+									<div class="dropdown-menu">
+										<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+										<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+									</div>
 								</div>
-							</form>
-						</div>
-					</div>
+							</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>99</td>
+							<td class=test>건강</td>
+							<td colspan="10">안녕하세요1^^ <span
+								class="badge badge-secondary">42</span>
+							</td>
+							<td>
+								<div class="nav navbar-nav ml-auto">
+									<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
+									<div class="dropdown-menu">
+										<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+										<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+									</div>
+								</div>
+							</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>98</td>
+							<td class=test>행동패턴</td>
+							<td colspan="10">안녕하세요%% <span	class="badge badge-secondary">40</span></td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>97</td>
+							<td class=test>행동패턴</td>
+							<td colspan="10">안녕하세요$$ <span	class="badge badge-secondary">82</span></td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>96</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요1##</td>
+							<td>Pet1</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>95</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요1##</td>
+							<td>Pet1</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>94</td>
+							<td class=test>건강</td>
+							<td colspan="10">안녕하세요!!</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>93</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요1</td>
+							<td>Pet1</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>92</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요23</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>91</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요234</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>90</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요12</td>
+							<td>Pet1</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>89</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요24</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>88</td>
+							<td class=test>건강</td>
+							<td colspan="10">안녕하세요43</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>87</td>
+							<td class=test>건강</td>
+							<td colspan="10">안녕하세요61</td>
+							<td>Pet1</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>86</td>
+							<td class=test>건강</td>
+							<td colspan="10">안녕하세요</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>85</td>
+							<td class=test>행동패턴</td>
+							<td colspan="10">안녕하세요32</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>84</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요1</td>
+							<td>Pet1</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+						<tr>
+							<td>83</td>
+							<td class=test></td>
+							<td colspan="10">안녕하세요12</td>
+							<td>Pet</td>
+							<td class=test>2019.07.01</td>
+							<td class=test>11</td>
+							<td class=test>11</td>
+						</tr>
+						
+					</table>
 				</div>
-
+			</div>
+		</div>
 		
+		<!-- 번호   -->
+		<div aria-label="Page navigation example" class="d-flex justify-content-center">
+			<ul class="pagination">
+				<li class="page-item">
+					<a href="#" class="page-link"><i class="fa fa-angle-double-left"></i></a>
+				</li>
+				<li class="page-item active"><a href="#" class="page-link">1</a></li>
+				<li class="page-item"><a href="#" class="page-link">2</a></li>
+				<li class="page-item"><a href="#" class="page-link">3</a></li>
+				<li class="page-item"><a href="#" class="page-link">4</a></li>
+				<li class="page-item"><a href="#" class="page-link">5</a></li>
+				<li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+			</ul>
+		</div>
+
+
+		<div aria-label="Page navigation example" class="d-flex justify-content-center">
+			<!-- 검색 기능 -->
+			<div class="test col-md-2 col-lg-2">
+				<div class="form-group">
+					<select id="state" class="form-control">
+						<option>전체</option>
+						<option>건강</option>
+						<option>행동패턴</option>
+					</select>
+	
+				</div>
+			</div>
+			
+			<div class="col-md-2 col-lg-2">
+				<div class="form-group">
+					<select id="state" class="form-control">
+						<option>제목</option>
+						<option>내용</option>
+						<option>작성자</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="panel panel-default sidebar-menu">
+				<div class="panel-body">
+					<form role="search">
+						<div class="input-group">
+							<input type="text" placeholder="Search" class="form-control"><span
+								class="input-group-btn">
+								<button type="submit" class="btn btn-template-main">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
 
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>

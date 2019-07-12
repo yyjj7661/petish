@@ -37,53 +37,8 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-<style type="text/css">        
-button.btn.btn-template-outlined {
-float: right;
-margin: 20px;
-}
 
-.dropdown{
-text-align: center;
-
-}
-
-.table{
-margin: auto; 
-text-align: center;
-}
-        
-@media screen and (max-width:750px){
-
-th.test.border-top-0{
-display:none;
-}
-.test{
-display:none;
-}
-.MoblieViewWriter {width:70px;}
-
-.MoblieViewNumber.border-top-0 {width:70px;}
-
-div.test.col-md-2.col-lg-2{
-display:none;
-}
-.panel.panel-default.sidebar-menu{
-width:180px;
-margin-rigth:15px;
-}
-
-div.col-md-2.col-lg-2{
-width:100px;
-}
-div.teset.col-md-2.col-lg-2{
-display:none;
-}
-}
-
-</style>        
-        
-        
+<link href="/resources/css/infoboard/list.css" rel="stylesheet">
         
 </head>
 <body>
@@ -382,7 +337,6 @@ display:none;
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
