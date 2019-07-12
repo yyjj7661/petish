@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <meta charset="utf-8">
 <title>Universal - All In 1 Template</title>
 <meta name="description" content="">
