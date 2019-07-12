@@ -36,11 +36,58 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
+<style>        
+button.btn.btn-template-outlined {
+float: right;
+margin: 20px;
+}
+
+.dropdown{
+text-align: center;
+
+}
+
+.table{
+margin: auto; 
+text-align: center;
+}
+        
+@media screen and (max-width:750px){
+th.test.border-top-0{
+display:none;
+}
+.test{
+display:none;
+}
+.col-md-2.col-lg-2.test{
+display:none;
+}
+th.MoblieViewNumber.border-top-0{
+width:53px;
+}
+th.MoblieViewRegion.border-top-0 {width:53px;}
+
+th.MoblieViewWriter.border-top-0 {width:70px;}
+}        
+.col-md-2.col-lg-2.region{width:120px;}
+.col-md-2.col-lg-2.list{width:120px;}
+
+
+div.panel.panel-default.sidebar-menu{
+margin-right:15px;
+width:170px;
+}
+
+}
+</style>        
 </head>
+
 <body>
 	<div id="all">
-	
-		<%@ include file="/WEB-INF/views/commons/top.jspf" %>s
+		
+		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
 
 		<div id="heading-breadcrumbs">
 			<div class="container">
@@ -56,245 +103,234 @@
 				</div>
 			</div>
 		</div>
-		
 		<div id="content">
 			<div class="container">
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<button class="btn btn-template-outlined" style="float: right;">
+				<button type="submit" class="btn btn-template-outlined">
 					<a href="/dog/gatherboard/writeForm">
 					글쓰기
 					</a>
 				</button>
-				<div class="row bar">
+			
 					<div id="customer-order" class="col-lg-20">
-						<table class="table" style="margin: auto; text-align: center;">
-							<thead>
+						<table class="table">
+							
 								<tr>
-									<th width="110px" class="border-top-0 lead">번호</th>
-									<th width="70px" class="border-top-0 lead">지역</th>
-									<th width="70px" class="border-top-0 lead">종별</th>
-									<th width="550px" class="border-top-0 lead" colspan="10">제목</th>
-									<th width="100px" class="border-top-0 lead">작성자</th>
-									<th width="130px" class="border-top-0 lead">작성일자</th>
-									<th width="100px" class="border-top-0 lead">조회</th>
-									<th width="100px" class="border-top-0 lead">좋아요</th>
-								</tr>
-							</thead>
-
-							<tbody>
+									<th width="110px" class="MoblieViewNumber border-top-0">번호</th>
+									<th width="70px" class="MoblieViewRegion border-top-0">지역</th>
+									<th width="120px" class="test border-top-0">종별</th>
+									<th width="550px" class="MoblieViewText border-top-0" colspan="10">제목 </th>
+									<th width="100px" class="MoblieViewWriter border-top-0">작성자</th>
+									<th width="130px" class="test border-top-0">작성일자</th>
+									<th width="90px" class="test border-top-0">조회</th>
+									<th width="90px" class="test border-top-0">좋아요</th>
+								</tr>	
 								<tr>
 									<td>100</td>
 									<td>서울</td>
-									<td>소형견</td>
-									<td colspan="10"><a href="/dog/gatherboard/detail">비트캠프에서 만나요&&</a></td>
+									<td class=test>소형견</td>
+									<td colspan="10"><a href="/dog/gatherboard/detail">비트캠프에서 만나요</a></td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>99</td>
 									<td>서울</td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요1^^ <span
 										class="badge badge-secondary">42</span>
 									</td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>98</td>
 									<td>인천</td>
-									<td>소형견</td>
-									<td colspan="10">비트캠프에서 만나요%% &nbsp &nbsp <span
+									<td class=test>소형견</td>
+									<td colspan="10">비트캠프에서 만나요%%<span
 										class="badge badge-secondary">40</span></td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>97</td>
 									<td>인천</td>
-									<td>중형견</td>
-									<td colspan="10">비트캠프에서 만나요$$&nbsp &nbsp <span
+									<td class=test>중형견</td>
+									<td colspan="10">비트캠프에서 만나요$$<span
 										class="badge badge-secondary">82</span></td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>96</td>
 									<td></td>
-									<td>소형견</td>
+									<td class=test>소형견</td>
 									<td colspan="10">비트캠프에서 만나요1##</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>95</td>
 									<td></td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요1##</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>94</td>
 									<td>서울</td>
-									<td>대형견</td>
+									<td class=test>대형견</td>
 									<td colspan="10">비트캠프에서 만나요!!</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>93</td>
 									<td></td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요1</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>92</td>
 									<td></td>
-									<td>소형견</td>
+									<td class=test>소형견</td>
 									<td colspan="10">비트캠프에서 만나요23</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>91</td>
 									<td></td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요234</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>90</td>
 									<td></td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요12</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>89</td>
 									<td></td>
-									<td>소형견</td>
+									<td class=test>소형견</td>
 									<td colspan="10">비트캠프에서 만나요24</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>88</td>
 									<td>서울</td>
-									<td>소형견</td>
+									<td class=test>소형견</td>
 									<td colspan="10">비트캠프에서 만나요43</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								<tr>
 									<td>87</td>
 									<td>서울</td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요61</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>86</td>
 									<td>서울</td>
-									<td>소형견</td>
+									<td class=test>소형견</td>
 									<td colspan="10">비트캠프에서 만나요</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>85</td>
 									<td>인천</td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요32</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>84</td>
 									<td></td>
-									<td>소형견</td>
+									<td class=test>소형견</td>
 									<td colspan="10">비트캠프에서 만나요1</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>83</td>
 									<td></td>
-									<td>중형견</td>
+									<td class=test>중형견</td>
 									<td colspan="10">비트캠프에서 만나요12</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
-							</tbody>
+						
 						</table>
 					</div>
 				</div>
-	<P></P>
-	<P></P>
-	<P></P>
+					
 				<!-- 번호   -->
 			
-				<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+				<div aria-label="Page navigation example" class="d-flex justify-content-center">
 					<ul class="pagination">
 						<li class="page-item"><a href="#" class="page-link"> <i
 								class="fa fa-angle-double-left"></i></a></li>
@@ -305,19 +341,16 @@
 						<li class="page-item"><a href="#" class="page-link">5</a></li>
 						<li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
 					</ul>
-				</nav>
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
+				</div>
 			
-				<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+			
+				<div aria-label="Page navigation example" class="d-flex justify-content-center">
+					
 					<!-- 검색 기능 -->
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">
 							<select id="state" class="form-control">
-								<option>지역 전체</option>
+								<option>지역 </option>
 								<option>서울</option>
 								<option>부산</option>
 								<option>대구</option>
@@ -339,7 +372,7 @@
 						</div>
 					</div>
 			
-					<div class="col-md-2 col-lg-2">
+					<div class="col-md-2 col-lg-2 test">
 						<div class="form-group">
 							<select id="state" class="form-control">
 								<option>견종별</option>
@@ -349,7 +382,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-2 col-lg-2">
+					<div class="col-md-2 col-lg-2 list">
 						<div class="form-group">
 							<select id="state" class="form-control">
 								<option>제목</option>
@@ -373,11 +406,11 @@
 							</form>
 						</div>
 					</div>
-				</nav>
+				</div>
 	
 			</div>
 		</div>
-	</div>
+	
 
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>

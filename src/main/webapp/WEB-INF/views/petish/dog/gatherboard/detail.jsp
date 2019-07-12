@@ -4,6 +4,8 @@
 <html>
 <head>
 <style>
+
+
 .map_wrap, .map_wrap * {
 	margin: 0;
 	padding: 0;
@@ -190,6 +192,8 @@
 	color: #777;
 }
 </style>
+
+
 <title>서울숲에서 만나요</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -227,6 +231,97 @@
 #report-btn {
 	justify-content: right;
 }
+
+.btn.btn-danger{
+float:right;
+margin-top:20px;
+margin-right:20px;
+}
+
+button.btn.btn-template-outlined{
+float: right;
+margin-right:15px;
+margin-top:20px;
+}
+.name{
+text-align:center;
+width:40px;
+}
+.grade{
+text-align:left;
+width:80px;
+}
+
+.date{
+text-align:left;
+width:150px;
+}
+
+.view{
+text-align:left;
+width:150px;
+}
+div.panel-heading{
+margin-top:40px;
+}
+.dropdown{
+text-align:center;
+}
+
+main.img-fluid rounded-circle{
+width:70px; height:70px;
+
+}
+div#post-content{
+margin-top:50px;
+}
+
+div.panel.panel-default.sidebar-menu{
+margin-top:40px;
+
+}
+
+@media screen and (max-width:750px){
+
+.btn.btn-template-outlined{
+margin-bottom:10px;
+}
+.date{
+display:none;
+}
+.view{
+display:none;
+}
+
+div.col-sm-3.col-md-2.text-center-xs{
+display:none;
+}
+
+button.btn.btn-template-outlined{
+margin-right: 1rem
+}
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+}
+
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+
+
+div.bg_white{
+display:none;
+}
+}
+
 </style>
 </head>
 <body>
@@ -250,7 +345,7 @@
 
 		<div id="content">
 			<div class="container">
-				<div class="row bar">
+			
 				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
@@ -260,70 +355,64 @@
 							글쓰기
 							</a>
 						</button>
-						<button class="btn btn-template-outlined"
-							style="float: right;">
+						<button class="btn btn-template-outlined">					
 							<i class="fa fa-align-justify"></i><a href="/dog/gatherboard/list">목록</a>
 						</button>
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
+				
 
 						<div class="panel-heading">
 							<h2 class="h3 panel-title">서울숲에서 만나요</h2>
 						</div>
 
 						<table>
-							<tbody>
+					
 								<tr>
 									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
-										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
+										class="img-fluid rounded-circle"></td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown"> Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
-									<td>준회원</td>
-									<td>2019-07-02 23:02:53</td>
-									<td><i class="fa fa-eye"></i>130186321</td>
-									<td><a href="#" class="btn btn-template-outlined"><i
-											class="fa fa-heart-o"></i>22</a></td>
+									<td class=grade>준회원</td>
+									<td class=date>2019-07-01 23:02:53</td>
+									<td class=view><i class="fa fa-eye"></i>130186321</td>
+									<td class=like><a href="#" class="btn btn-template-outlined"><i
+											class="fa fa-heart-o"></i>13</a></td>
 								</tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-							</tbody>
-						</table>
+							</table>
 
-						<hr size="10px">
+							<hr size="10px">
 						<div class="heading">
+						<button class="btn btn-template-outlined" type="button" data-toggle="modal" data-target="#myLargeModal">
+							<i class="fa fa-sign-in"></i> 신청
+						</button>
+						
+						<button type="button" class="btn btn-template-outlined" data-toggle="modal" data-target="#mySmallModal">
+							<i class="fa fa-users"></i>신청목록
+						</button>
 							<h3>참여 현황</h3>
+						
+						
 						</div>
 
 						<h4>
-							<span class="h1 counter">15</span>30명
+							<span class="h1 counter">15</span> / 30명
 						</h4>
 
-						<button class="btn btn-template-outlined" type="button"
-							data-toggle="modal" data-target="#myLargeModal">
-							<i class="fa fa-sign-in"></i> 신청
-						</button>
-
-						<div class="modal fade" id="myLargeModal" tabindex="-1"
-							role="dialog" aria-labelledby="myLargeModalLabel">
+						
+						<div class="modal fade" id="myLargeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 							<div class="modal-dialog modal-lg" role="document">
 								<div class="modal-content">
-									<form>
-										<div class="modal-header">
-											<h3 class="modal-title" id="myModalLabel">신청</h3>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
+									<div class="modal-header">
+										<h3 class="modal-title" id="myModalLabel">신청</h3>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
 										<div class="modal-body">
@@ -385,16 +474,11 @@
 												data-dismiss="modal" data-dismiss="modal">확 인</button>
 											<button type="button" class="btn btn-template-outlined"
 												data-dismiss="modal" data-dismiss="modal">취 소</button>
-										</div>
-									</form>
+										</div>									
 								</div>
 							</div>
 						</div>
-
-						<button type="button" class="btn btn-template-outlined"
-							data-toggle="modal" data-target="#mySmallModal">
-							<i class="fa fa-users"></i>신청목록
-						</button>
+					
 
 						<div class="modal fade" id="mySmallModal" tabindex="-1"
 							role="dialog" aria-labelledby="mySmallModalLabel">
@@ -433,53 +517,26 @@
 							</div>
 						</div>
 
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
-
-						<p class="lead">This is the lead paragraph of the article.
-							Pellentesque habitant morbi tristique senectus et netus et
-							malesuada fames ac turpis egestas. Vestibulum tortor quam,
-							feugiat vitae, ultricies eget.</p>
+				
 						<div id="post-content">
-							<p class="text-sm">
-								<strong>Pellentesque habitant morbi tristique</strong> senectus
-								et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-								quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
-								Donec eu libero sit amet quam egestas semper. <em>Aenean
-									ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque
-								sit amet est et sapien ullamcorper pharetra. Vestibulum erat
-								wisi, condimentum sed,
-								<code>commodo vitae</code>
-								, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-								condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim
-								ac dui. <a href="#">Donec non enim</a> in turpis pulvinar
-								facilisis. Ut felis.
-							</p>
-							<p>
-								<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
-									class="img-fluid">
-							</p>
+						
 							<h2>모임 안내</h2>
 							<blockquote class="blockquote">
-								<ol>
+							
 									<p>모임 일시 : 2019년 7월 29일</p>
 									<p>장소 : 서울 서초구 서초동 서울숲</p>
-									<p>반려견 대상 : 치와와</p>
-								</ol>
+									<p>반려견 대상 : 치와와 </p>
+								
 							</blockquote>
 
 							<div class="map_wrap">
-								<div id="map"
-									style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-
+								<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 								<div id="menu_wrap" class="bg_white">
 									<div class="option">
 										<div>
 											<form onsubmit="searchPlaces(); return false;">
-												키워드 : <input type="text" value="서울숲" id="keyword" size="15">
-
+											<input type="text" value="서울숲" id="keyword" size="15">
+											<button type="submit">검색하기</button>
 											</form>
 										</div>
 									</div>
@@ -488,49 +545,6 @@
 									<div id="pagination"></div>
 								</div>
 							</div>
-
-							<p class="text-sm">Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit. Vivamus magna. Cras in mi at felis aliquet
-								congue. Ut a est eget ligula molestie gravida. Curabitur massa.
-								Donec eleifend, libero at sagittis mollis, tellus est malesuada
-								tellus, at luctus turpis elit sit amet quam. Vivamus pretium
-								ornare est.</p>
-							<h3>Header Level 3</h3>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing
-									elit.</li>
-								<li>Aliquam tincidunt mauris eu risus.</li>
-							</ul>
-							<p>
-								<img src="/resources/img/blog.jpg" alt="Example blog post alt"
-									class="img-fluid">
-							</p>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
 						</div>
 
 						<div id="comments">
@@ -548,11 +562,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>기대됩니당</p>
 
 									</div>
 								</div>
@@ -585,7 +595,7 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="name">닉네임 <span
+											<label for="name">아이디<span
 												class="required text-primary">*</span></label> <input id="name"
 												type="text" class="form-control">
 										</div>
@@ -602,26 +612,22 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
-										<P></P>
-										<P></P>
-										<P></P>
-										<P></P>
-										<nav aria-label="Page navigation example"
+								
+										<div aria-label="Page navigation example"
 											class="d-flex justify-content-left">
-											<button class="btn btn-template-outlined"
-												style="margin-right: 2rem">
+											<button class="btn btn-template-outlined">
 												<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm">수정</a>
 											</button>
 											<button type="submit" class="btn btn-template-outlined">
 												<i class="fa fa-trash-o"></i>삭제
 											</button>
-										</nav>
+										</div>
 										<button type="button" class="btn btn-danger"
 											data-toggle="modal" data-target="#myModal"
-											style="float: right;" id="report-btn">신고</button>
+											 id="report-btn">신고</button>
 
 										<div class="modal fade" id="myModal" tabindex="-1"
 											role="dialog" aria-labelledby="myModalLabel">
@@ -678,7 +684,6 @@
 				<div class="col-md-3"></div>
 			</div>
 		</div>
-	</div>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>

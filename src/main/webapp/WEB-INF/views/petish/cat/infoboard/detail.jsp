@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>안녕하세요</title>
+<title>배변 훈련</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -40,6 +40,95 @@
 #report-btn {
 	justify-content: right;
 }
+
+.btn.btn-danger{
+float:right;
+margin-top:20px;
+margin-right:20px;
+}
+
+button.btn.btn-template-outlined{
+float: right;
+margin-right:15px;
+margin-top:20px;
+}
+.name{
+text-align:center;
+width:40px;
+}
+td.grade{
+text-align:left;
+width:80px;
+}
+
+td.date{
+text-align:left;
+width:150px;
+}
+
+td.view{
+text-align:left;
+width:150px;
+}
+div.panel-heading{
+margin-top:40px;
+}
+.dropdown{
+text-align:center;
+}
+
+main.img-fluid rounded-circle{
+width:70px; height:70px;
+
+}
+div#post-content{
+margin-top:50px;
+}
+
+div.panel.panel-default.sidebar-menu{
+margin-top:40px;
+
+}
+
+button.btn.btn-template-outlined{
+margin-right: 2rem;
+}
+
+@media screen and (max-width:750px){
+
+.btn.btn-template-outlined{
+margin-bottom:10px;
+}
+td.date{
+display:none;
+}
+td.view{
+display:none;
+}
+
+div.col-sm-3.col-md-2.text-center-xs{
+display:none;
+}
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+
+}
+button.delete.btn.btn-template-outlined{
+width:70px; height:40px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
+
+}
 </style>
 </head>
 <body>
@@ -51,7 +140,7 @@
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
 					<div class="col-md-7">
-						<h1 class="h2">고양이 정보게시판</h1>
+						<h1 class="h2">고양이 건강게시판</h1>
 					</div>
 					<div class="col-md-5">
 						<ul class="breadcrumb d-flex justify-content-end">
@@ -63,67 +152,52 @@
 
 		<div id="content">
 			<div class="container">
-				<div class="row bar">
+				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
 
-						<button class="btn btn-template-outlined"
-							style="float: right;">
+						<button class="write btn btn-template-outlined">
+							
 							<a href="/cat/infoboard/writeForm">
 							글쓰기
 							</a>
 						</button>
 
 
-						<button class="btn btn-template-outlined"
-							style="float: right;">
+						<button class="list btn btn-template-outlined">							
 							<i class="fa fa-align-justify"></i>
 							<a href="/cat/infoboard/list">
 							목록
 							</a>
 						</button>
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
-
+					
 						<div class="panel-heading">
-							<h2 class="h3 panel-title">안녕하세요!!!!!!!!!!!!!!</h2>
+							<h2 class="h3 panel-title">배변훈련!!!!!!!!!!!!!!</h2>
 						</div>
 
 
 
-						<table>
-							<tbody>
-
-
+						<table>		
 								<tr>
 									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
-										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
-									<td>
-										<ul class="nav navbar-nav ml-auto">
+										class="img-fluid rounded-circle"></td>
+									<td class=name>
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
 
-									<td>수의사</td>
-									<td>2019-07-01 23:02:53</td>
-									<td><i class="fa fa-eye"></i>130186321</td>
-									<td><a href="#" class="btn btn-template-outlined"><i class="fa fa-heart-o"></i>15</a></td>
+										
+											
+									<td class=grade>수의사</td>
+									<td class=date>2019-07-01 23:02:53</td>
+									<td class=view><i class="fa fa-eye"></i>130186321</td>
+									<td class=like><a href="#" class="btn btn-template-outlined"><i class="fa fa-heart-o"></i>15</a></td>
 								</tr>
-
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-								<tr>
-
-								</tr>
-
-							</tbody>
 						</table>
 
 						<hr size="10px">
@@ -219,11 +293,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>좋은 글 감사합니다.</p>
 
 									</div>
 								</div>
@@ -239,11 +309,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>도움이 되었습니다.</p>
 
 									</div>
 								</div>
@@ -256,7 +322,7 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="name">닉네임 <span
+											<label for="name">아이디 <span
 												class="required text-primary">*</span></label> <input id="name"
 												type="text" class="form-control">
 										</div>
@@ -274,21 +340,18 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
-										<P></P>
-										<P></P>
-										<P></P>
-										<P></P>
+							
 
 
-										<nav aria-label="Page navigation example"
+										<div aria-label="Page navigation example"
 											class="d-flex justify-content-left">
 
 
-											<button type="submit" class="btn btn-template-outlined"
-												style="margin-right: 2rem">
+											<button type="submit" class="btn btn-template-outlined">
+												
 												<i class="fa fa-pencil"></i><a href="/cat/infoboard/modifyForm">수정</a>
 											</button>
 											<button type="submit" class="btn btn-template-outlined">
@@ -297,11 +360,11 @@
 
 
 
-										</nav>
+										</div>
 
 										<button type="button" class="btn btn-danger"
 											data-toggle="modal" data-target="#myModal"
-											style="float: right;" id="report-btn">신고
+											id="report-btn">신고
 										</button>
 
 
@@ -365,7 +428,7 @@
 				<div class="col-md-3"></div>
 			</div>
 		</div>
-	</div>
+
 	
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>

@@ -228,6 +228,112 @@
 #report-btn {
 	justify-content: right;
 }
+
+.btn.btn-danger{
+float:right;
+margin-top:20px;
+margin-right:20px;
+}
+
+button.btn.btn-template-outlined{
+float: right;
+margin-right:15px;
+margin-top:20px;
+}
+.name{
+text-align:center;
+width:40px;
+}
+td.grade{
+text-align:left;
+width:80px;
+}
+
+td.date{
+text-align:left;
+width:150px;
+}
+
+td.view{
+text-align:left;
+width:150px;
+}
+div.panel-heading{
+margin-top:40px;
+}
+.dropdown{
+text-align:center;
+}
+
+main.img-fluid rounded-circle{
+width:70px; height:70px;
+
+}
+div#post-content{
+margin-top:50px;
+}
+
+div.panel.panel-default.sidebar-menu{
+margin-top:40px;
+
+}
+
+button.btn.btn-template-outlined{
+margin-right: 2rem;
+}
+
+
+@media screen and (max-width:750px){
+
+.btn.btn-template-outlined{
+margin-bottom:10px;
+}
+.date{
+display:none;
+}
+.view{
+display:none;
+}
+
+
+span.badge.badge-danger{
+margin-top:30px;
+}
+
+div.col-sm-3.col-md-2.text-center-xs{
+display:none;
+}
+
+button.btn.btn-template-outlined{
+margin-right: 1rem
+}
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+}
+
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+
+
+div.bg_white{
+display:none;
+}
+
+
+
+
+}
+
+
 </style>
 </head>
 <body>
@@ -251,21 +357,18 @@
 		
 		<div id="content">
 			<div class="container">
-				<div class="row bar">
+				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
-						<button class="btn btn-template-outlined" style="float: right;">
+						<button class="btn btn-template-outlined">
 							<a href="/cat/missingboard/writeForm">
 							글쓰기
 							</a>
 						</button>
-						<button class="btn btn-template-outlined" style="float: right;">
+						<button class="btn btn-template-outlined">
 							<i class="fa fa-align-justify"></i><a href="/cat/missingboard/list">목록</a>
 						</button>
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
+				
 
 						<div class="panel-heading">
 							<span class="badge badge-danger">미발견</span>
@@ -273,78 +376,36 @@
 						</div>
 
 						<table>
-							<tbody>
+				
 								<tr>
 									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
 										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown">&nbsp
+										<div class="nav navbar-nav ml-auto">
+											<a href="#" data-toggle="dropdown" class="dropdown">
 												Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
 
-									<td>준회원</td>
-									<td>2019-07-01 23:02:56</td>
-									<td><i class="fa fa-eye"></i>130186321</td>
+									<td class=grade>준회원</td>
+									<td class=date>2019-07-01 23:02:56</td>
+									<td class=view><i class="fa fa-eye"></i>130186321</td>
 
 								</tr>
 								
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-							</tbody>
+						
 						</table>
 
 						<hr size="10px">
 						<div class="heading">
-							<P></P>
-							<P></P>
-							<P></P>
-							<P></P>
-							<div class="row portfolio text-center">
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="box-image">
-										<div class="image">
-											<img src="/resources/img/portfolio-1.jpg" alt=""
-												class="img-fluid">
-										</div>
-									</div>
-								</div>
-							</div>
+						
 							
 							<blockquote class="blockquote">
-								<ol>
+							
 									<p>
 										<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
 											class="img-fluid">
@@ -378,51 +439,12 @@
 											<div id="pagination"></div>
 										</div>
 									</div>
-								</ol>
+							
 							</blockquote>
 
-							<p class="text-sm">Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit. Vivamus magna. Cras in mi at felis aliquet
-								congue. Ut a est eget ligula molestie gravida. Curabitur massa.
-								Donec eleifend, libero at sagittis mollis, tellus est malesuada
-								tellus, at luctus turpis elit sit amet quam. Vivamus pretium
-								ornare est.</p>
-							<h3>Header Level 3</h3>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing
-									elit.</li>
-								<li>Aliquam tincidunt mauris eu risus.</li>
-							</ul>
-							<p>
-								<img src="/resources/img/blog.jpg" alt="Example blog post alt"
-									class="img-fluid">
-							</p>
-							<p>Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Vestibulum tortor quam,
-								feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-								libero sit amet quam egestas semper. Aenean ultricies mi vitae
-								est. Mauris placerat eleifend leo. Quisque sit amet est et
-								sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-								sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum,
-								elit eget tincidunt condimentum, eros ipsum rutrum orci,
-								sagittis tempus lacus enim ac dui. Donec non enim in turpis
-								pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-								faucibus, tortor neque egestas augue, eu vulputate magna eros eu
-								erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
-								accumsan porttitor, facilisis luctus, metus</p>
+							
+							
+							
 						</div>
 
 						<div id="comments">
@@ -441,11 +463,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>안타깝네요</p>
 
 									</div>
 								</div>
@@ -461,11 +479,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>빨리 찾길 바라겠습니다</p>
 
 									</div>
 								</div>
@@ -478,7 +492,7 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="name">닉네임 <span
+											<label for="name">아이디 <span
 												class="required text-primary">*</span></label> <input id="name"
 												type="text" class="form-control">
 										</div>
@@ -497,13 +511,10 @@
 								
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
-										<P></P>
-										<P></P>
-										<P></P>
-										<P></P>
+								
 
 										<nav aria-label="Page navigation example" class="d-flex justify-content-left">
 
@@ -533,7 +544,7 @@
 													<div class="modal-body">
 														<table>
 															<tr>
-																<td>신고 분</td>
+																<td>신고 분류</td>
 																<td>
 																	<div class="form-group">
 																		<select id="state" class="form-control">
@@ -577,7 +588,7 @@
 			<div class="col-md-3"></div>
 		</div>
 	</div>
-</div>
+
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	<script>

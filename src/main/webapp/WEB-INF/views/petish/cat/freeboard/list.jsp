@@ -8,6 +8,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
+
 <!-- Bootstrap CSS-->
 <link rel="stylesheet" href="/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
@@ -37,6 +38,66 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+<style>
+.btn.btn-template-outlined {  
+float: right;
+}
+
+.MoblieViewText.border-top-0{
+text-align:center;
+}
+
+#heading-breadcrumbs {
+    margin-bottom: 25px;
+}
+
+.table.col-lg-20{
+margin: auto; 
+text-align: center;
+}
+div.form-group div.form-group1{
+margin-top:20px;
+}
+
+a.nav-link{
+text-align:center;
+}
+
+.table.col-lg-20{
+margin-top:40px;
+}
+
+
+.btn.btn-template-main{
+margin-right:20px;
+}
+
+@media screen and (max-width:750px){
+.test{
+display:none;
+}
+.MoblieViewNumber.border-top-0{
+width:55px;
+}
+.MoblieViewText.border-top-0{
+width:180px;
+}
+.MoblieViewWriter.border-top-0{
+width:70px;
+}
+select#state{
+width: 100px;
+}
+div.input-group
+{
+width:200px;
+}
+
+}
+
+</style>
+
 </head>
 <body>
 	<div id="all">
@@ -50,238 +111,228 @@
 						<h1 class="h2">고양이 자유게시판</h1>
 					</div>
 					<div class="col-md-5">
-						<ul class="breadcrumb d-flex justify-content-end">
+						<div class="breadcrumb d-flex justify-content-end">
 
-						</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="content">
-			<div class="container">
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<P></P>
-				<button class="btn btn-template-outlined"
-					style="float: right;">
+			<div class="container">	
+				<button class="btn btn-template-outlined">
 				<a href="/cat/freeboard/writeForm">글쓰기</a></button>
-				<div class="row bar">
-
-					<div id="customer-order" class="col-lg-20">
-						<table class="table" style="margin: auto; text-align: center;">
-							<thead>
+				
+				
+					
+						<table class="table col-lg-20">
+					
 								<tr>
-									<th width="130px" class="border-top-0 lead">번호</th>
-									<th width="130px" class="border-top-0 lead">분류</th>
-									<th width="550px" class="border-top-0 lead" colspan="10">제목</th>
-									<th width="100px" class="border-top-0 lead">작성자</th>
-									<th width="130px" class="border-top-0 lead">작성일자</th>
-									<th width="100px" class="border-top-0 lead">조회</th>
-									<th width="100px" class="border-top-0 lead">좋아요</th>
+									<th width="130px" class="MoblieViewNumber border-top-0">번호</th>
+									<th width="130px" class="test border-top-0">분류</th>
+									<th width="550px" class="MoblieViewText border-top-0" colspan="10">제목</th>
+									<th width="100px" class="MoblieViewWriter border-top-0">작성자</th>
+									<th width="130px" class="test border-top-0">작성일자</th>								
+									<th width="100px" class="test border-top-0">조회</th>
+									<th width="100px" class="test border-top-0">좋아요</th>
 								</tr>
-							</thead>
+						
 
-							<tbody>
 								<tr>
 									<td>100</td>
-									<td>일상</td>
-									<td colspan="10"><a href="/cat/freeboard/detail">안녕하세요 &&</a></td>
+									<td class=test>일상</td>
+									<td colspan="10"><a href="/cat/freeboard/detail">안녕하세요 </a></td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 
 									</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>99</td>
-									<td>일상</td>
+									<td class=test>일상</td>
 									<td colspan="10">안녕하세요1^^</td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 
 
 
 									</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>98</td>
-									<td>웃긴자료</td>
+									<td class=test>웃긴자료</td>
 									<td colspan="10">안녕하세요%% <span
 										class="badge badge-secondary">72</span></td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>97</td>
-									<td>웃긴자료</td>
+									<td class=test>웃긴자료</td>
 									<td colspan="10">안녕하세요$$$<span
 										class="badge badge-secondary">8</span></td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>96</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요1##$<span
 										class="badge badge-secondary">52</span></td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>95</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요1##</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>94</td>
-									<td>일상</td>
+									<td class=test>일상</td>
 									<td colspan="10">안녕하세요!!</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>93</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요1</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>92</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요23</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>91</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요234</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>90</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요12</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>89</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요24</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>88</td>
-									<td>일상</td>
+									<td class=test>일상</td>
 									<td colspan="10">안녕하세요43</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								<tr>
 									<td>87</td>
-									<td>일상</td>
+									<td class=test>일상</td>
 									<td colspan="10">안녕하세요61</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>86</td>
-									<td>일상</td>
+									<td class=test>일상</td>
 									<td colspan="10">안녕하세요</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>85</td>
-									<td>웃긴자료</td>
+									<td class=test>웃긴자료</td>
 									<td colspan="10">안녕하세요32</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>84</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요1</td>
 									<td>Pet1</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
 								<tr>
 									<td>83</td>
-									<td></td>
+									<td class=test></td>
 									<td colspan="10">안녕하세요12</td>
 									<td>Pet</td>
-									<td>2019.07.01</td>
-									<td>11</td>
-									<td>11</td>
+									<td class=test>2019.07.01</td>
+									<td class=test>11</td>
+									<td class=test>11</td>
 								</tr>
-							</tbody>
+					
 
 						</table>
-					</div>
+					
 				</div>
 			</div>
-		</div>
-
-	<P></P>
-	<P></P>
-	<P></P>
+		
+	
 	<!-- 번호   -->
 
-	<nav aria-label="Page navigation example"
+	<div aria-label="Page navigation example"
 		class="d-flex justify-content-center">
 		<ul class="pagination">
 			<li class="page-item"><a href="#" class="page-link"> <i
@@ -294,17 +345,13 @@
 			<li class="page-item"><a href="#" class="page-link"><i
 					class="fa fa-angle-double-right"></i></a></li>
 		</ul>
-	</nav>
-	<P></P>
-	<P></P>
-	<P></P>
-	<P></P>
-	<P></P>
+	</div>
 
-	<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+
+	<div aria-label="Page navigation example" class="d-flex justify-content-center">
 		<!-- 검색 기능 -->
-		<div class="col-md-2 col-lg-2">
-			<div class="form-group">
+		<div class="test col-md-2 col-lg-2">
+			<div class="form-group1">
 				<select id="state" class="form-control">
 					<option>전체</option>
 					<option>일상</option>
@@ -324,6 +371,7 @@
 			</div>
 		</div>
 		
+	<div class="form-group">
 		<div class="panel panel-default sidebar-menu">
 			<div class="panel-body">
 				<form role="search">
@@ -336,9 +384,10 @@
 						</span>
 					</div>
 				</form>
+				</div>
 			</div>
 		</div>
-	</nav>
+	</div>
 	</div>
 
 	<!-- Javascript files-->

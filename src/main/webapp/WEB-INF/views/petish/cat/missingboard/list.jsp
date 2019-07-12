@@ -35,6 +35,65 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   <style>
+button.btn.btn-template-outlined {
+float: right;
+margin: 20px;
+}
+
+.dropdown{
+text-align: center;
+
+}
+
+.table{
+margin: auto; 
+text-align: center;
+}
+
+region form-control{
+min-width:3cm; 
+padding-left: 15px;
+}
+
+
+@media screen and (max-width:750px){
+
+th.test.border-top-0{
+display:none;
+}
+.test{
+display:none;
+}
+th.condition.border-top-0{
+width:70px;
+}
+th.image.border-top-0{
+width:70px;
+}
+th.title.border-top-0{
+width:70px;
+}
+th.writer.border-top-0{
+width:70px;
+}
+.si.col-md-2.col-lg-2{
+display:none;
+}
+
+.condition.col-md-2.col-lg-2{
+display:none;
+}
+
+.panel.panel-default.sidebar-menu{
+width:450px;
+margin-right:10px;
+}
+
+}
+   </style>
+   
+   
   </head>
   
   <body>
@@ -59,46 +118,40 @@
       
       <div id="content">
         <div class="container">
-        <P></P>
-        <P></P>
-        <P></P>
-        <P></P>
-        <P></P>
-       	<button class="btn btn-template-outlined" style="float: right;">
+     
+       	<button class="btn btn-template-outlined">
 	       	<a href="/cat/missingboard/writeForm">	
 	       	글쓰기
 	       	</a>
        	</button>
-          <div class="row bar">
-            <div id="customer-order" class="col-lg-20">
-              <table class="table" style="margin:auto; text-align:center;">
-                    <thead>
+       	
+     
+            <div id="customer-order" class="col-lg-20" >
+              <table class="table">              
                       <tr>                    
-                        <th width="130px" class="border-top-0 lead">상태</th>              
-                        <th width="200px" class="border-top-0 lead">이미지</th>                     
-                        <th width="550px" class="border-top-0 lead" colspan="10">제목</th>
-                        <th width="100px" class="border-top-0 lead">작성자</th>
-                        <th width="130px" class="border-top-0 lead">작성일자</th>                     
-                        <th width="100px" class="border-top-0 lead">조회</th>                     
+                        <th width="130px" class="condition border-top-0">상태</th>              
+                        <th width="200px" class="image border-top-0">이미지</th>                     
+                        <th width="550px" class="title border-top-0" colspan="10">제목</th>
+                        <th width="100px" class="writer border-top-0">작성자</th>
+                        <th width="130px" class="test border-top-0">작성일자</th>                     
+                        <th width="100px" class="test border-top-0">조회</th>                     
                       </tr>
-                    </thead>
-                    
-           	       <tbody>
+                          
                	      	<tr>
                         	<td><span class="badge badge-danger">미발견</span></td>
                     	    <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
-                	        <td colspan="10"><a href="/cat/missingboard/detail">[인천 서구] 페키니즈  / 여 / 3&&<a></a></td>
+                	        <td colspan="10"><a href="/cat/missingboard/detail">[인천 서구] 페키니즈  / 여 / 3</a></td>
             	            <td>				
-							 <ul class="nav navbar-nav ml-auto">
+							 <div class="nav navbar-nav ml-auto">
     	            			<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
-	                  			<ul class="dropdown-menu">
-                    				<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-                	    			<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-            	      			</ul>
-        	       			</ul>
+	                  			<div class="dropdown-menu">
+                    				<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+                	    			<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+            	      			</div>
+        	       			</div>
     	                    </td>
-	                        <td>2019.07.01</td>  
-                        	<td>11</td>             
+	                        <td class=test>2019.07.01</td>  
+                        	<td class=test>11</td>             
                    	  	</tr>
                    	  
                       	<tr>
@@ -109,34 +162,34 @@
                         	<span class="badge badge-secondary">42</span>
                     	    </td>
                 	        <td>
-              					<ul class="nav navbar-nav ml-auto">
+              					<div class="nav navbar-nav ml-auto">
                 					<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
-                  		   			<ul class="dropdown-menu">
-                   						<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-                    					<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-                  					</ul>
-               					</ul>        
+                  		   			<div class="dropdown-menu">
+                   						<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+                    					<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+                  					</div>
+               					</div>        
                         	</td>
-                        	<td>2019.07.01</td> 
-                        	<td>11</td>  
+                        	<td class=test>2019.07.01</td> 
+                        	<td class=test>11</td>  
                       	</tr>
                       
                        	<tr>
                        		<td><span class="badge badge-info">발견 완료</span></td>
                        		<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
-                        	<td colspan="10">[인천 서구] 페키니즈  / 남 / 2 	&nbsp &nbsp <span class="badge badge-secondary">40</span></td>
+                        	<td colspan="10">[인천 서구] 페키니즈  / 남 / 2 <span class="badge badge-secondary">40</span></td>
                         	<td>Pet</td>
-                        	<td>2019.07.01</td>
-                        	<td>11</td>                                  
+                        	<td class=test>2019.07.01</td>
+                        	<td class=test>11</td>                                  
                       	</tr>
                         
                         <tr>
 	                        <td><span class="badge badge-info">발견 완료</span></td>
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
-	                        <td colspan="10">[인천 서구] 페키니즈  / 남 / 3$$&nbsp &nbsp <span class="badge badge-secondary">82</span></td>
+	                        <td colspan="10">[인천 서구] 페키니즈  / 남 / 3$$ <span class="badge badge-secondary">82</span></td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>
+	                        <td class=test>11</td>
                       	</tr>
                       	
                       	<tr>
@@ -144,8 +197,8 @@
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 31##</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>
+	                        <td class=test>11</td>  
                       	</tr>
                  		
                  		<tr>
@@ -153,8 +206,8 @@
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 31##</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>  
                       	</tr>
                       	
                         <tr>
@@ -162,8 +215,8 @@
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3!!</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>    
-	                        <td>11</td>          
+	                        <td class=test>2019.07.01</td>    
+	                        <td class=test>11</td>          
                       	</tr>
                       	
                       	<tr>
@@ -171,8 +224,8 @@
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 31</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>  
                       	</tr>
                        	
                        	<tr>
@@ -180,8 +233,8 @@
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 323</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>  
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>  
+	                        <td class=test>11</td>
                       	</tr>
                       	
                         <tr>
@@ -189,8 +242,8 @@
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3234</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td> 
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td> 
+	                        <td class=test>11</td>
                       	</tr>
                       	
                       	<tr>
@@ -198,8 +251,8 @@
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 312</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>  
                       	</tr>
                        	
                        	<tr>
@@ -207,8 +260,8 @@
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 324</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>      
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>      
+	                        <td class=test>11</td>
                       	</tr>
                       	
                         <tr>
@@ -216,8 +269,8 @@
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 343</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>         
-	                        <td>11</td>  
+	                        <td class=test>2019.07.01</td>         
+	                        <td class=test>11</td>  
                   		</tr>
                   		
                   		<tr>
@@ -225,8 +278,8 @@
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 361</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>
                       	</tr>
                        	
                        	<tr>
@@ -234,8 +287,8 @@
 	              			<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>         
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>         
+	                        <td class=test>11</td>
                       	</tr>
                       	
                         <tr>
@@ -243,8 +296,8 @@
 	                   		<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>   
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>   
+	                        <td class=test>11</td>
                       	</tr>
                       	
                       	<tr>
@@ -252,8 +305,8 @@
 	                    	<td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 3</td>
 	                        <td>Pet1</td>
-	                        <td>2019.07.01</td>  
-	                        <td>11</td>
+	                        <td class=test>2019.07.01</td>  
+	                        <td class=test>11</td>
                       	</tr>
                       	
                        	<tr>
@@ -261,22 +314,19 @@
 	                        <td><img src="/resources/img/detailsquare.jpg" alt="..." class="img-fluid"></td>
 	                        <td colspan="10">[인천 서구] 페키니즈  / 여 / 312</td>
 	                        <td>Pet</td>
-	                        <td>2019.07.01</td>    
-	                        <td>11</td>                  
+	                        <td class=test>2019.07.01</td>    
+	                        <td class=test>11</td>                  
                       	</tr>
-              		</tbody>
+           
            		</table>
               </div>
            </div>
          </div>
-       </div>
+   
            
-		<P></P>
-        <P></P>
-        <P></P>
 				<!-- 번호   -->
      
-        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+        <div aria-label="Page navigation example" class="d-flex justify-content-center">
          <ul class="pagination">
            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-left"></i></a></li>
            <li class="page-item active"><a href="#" class="page-link">1</a></li>
@@ -286,19 +336,15 @@
            <li class="page-item"><a href="#" class="page-link">5</a></li>
            <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
          </ul>
-       </nav>
-       <P></P>
-       <P></P>
-       <P></P>
-        <P></P>
-       <P></P>
+       </div>
+ 
                       
-	<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+	<div aria-label="Page navigation example" class="d-flex justify-content-center">
   	<!-- 검색 기능 -->                                				
 		<div class="col-md-2 col-lg-2">             
 		<div class="form-group">
 	  
-			<select id="region" onchange="categoryChange(this)" class="form-control">
+			<select id="region" onchange="categoryChange(this)" class="region form-control">
 				<option value="">지역</option>
 				<option value="1">서울</option>
 				<option value="2">경기</option>
@@ -321,53 +367,51 @@
 		</div>
 		</div>
 
-  		<div class="col-md-2 col-lg-2">             
+ <div class="si col-md-2 col-lg-2">             
 		<div class="form-group">
-  			<select id="sml_region" class="form-control">
-  				<option>시/구</option>
+  <select id="sml_region" class="form-control">
+  <option>시/구</option>
                                     
-            </select>
-        </div>
-        </div>
-                                
-        <div class="col-md-2 col-lg-2">             
+                                 </select>
+                              </div>
+                              </div>
+                   
+        <div class="condition col-md-2 col-lg-2">             
 		<div class="form-group">              
-			<select id="state" class="form-control">
-				<option>상태</option>
-                <option>발견 완료</option>
-		        <option>미발견</option>  
+                        <select id="state" class="form-control">
+                         <option>상태</option>
+                        <option>발견 완료</option>
+                        <option>미발견</option>  
                                                                   
-            </select>
-        </div>
-        </div>
+                        </select>
+                      </div>
+                      </div>
                       
         <div class="col-md-2 col-lg-2">             
 		<div class="form-group">              
-             <select id="state" class="form-control">
-                 <option>제목</option>
-                 <option>내용</option>
-                 <option>작성자</option>                                             
-                 </select>
-        </div>
-        </div>
+                        <select id="state" class="form-control">
+                          <option>제목</option>
+                        <option>내용</option>
+                        <option>작성자</option>                                             
+                        </select>
+                      </div>
+                      </div>
            
   				
                     
-         <div class="panel panel-default sidebar-menu"> 
-           <div class="panel-body">
-             <form role="search">
-               <div class="input-group">
-                 <input type="text" placeholder="Search" class="form-control"><span class="input-group-btn">
-                   <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
-               </div>
-             </form>
-           </div>
-         </div>
-     </nav>    
-     
-     
-    </div>
-     
+              <div class="panel panel-default sidebar-menu"> 
+                <div class="panel-body">
+                  <form role="search">
+                    <div class="input-group">
+                      <input type="text" placeholder="Search" class="form-control"><span class="input-group-btn">
+                        <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
+              </div>
+     </div>
       
      
      <script>
