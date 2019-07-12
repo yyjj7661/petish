@@ -50,8 +50,8 @@
 	href="/resources/img/apple-touch-icon-152x152.png">
 
 
-<link rel="stylesheet" href="/resources/css/mypage/mypage2.css"></script>
-<script src="/resources/js/mypage/mypage2.js"></script>
+<link rel="stylesheet" href="/resources/css/mypage/mypage.css"></script>
+<script src="/resources/js/mypage/mypage.js"></script>
 
 </head>
 
