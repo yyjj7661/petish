@@ -230,6 +230,112 @@
 #report-btn {
 	justify-content: right;
 }
+
+.btn.btn-danger{
+float:right;
+margin-top:20px;
+margin-right:20px;
+}
+
+button.btn.btn-template-outlined{
+float: right;
+margin-right:15px;
+margin-top:20px;
+}
+.name{
+text-align:center;
+width:40px;
+}
+td.grade{
+text-align:left;
+width:80px;
+}
+
+td.date{
+text-align:left;
+width:150px;
+}
+
+td.view{
+text-align:left;
+width:150px;
+}
+div.panel-heading{
+margin-top:40px;
+}
+.dropdown{
+text-align:center;
+}
+
+main.img-fluid rounded-circle{
+width:70px; height:70px;
+
+}
+div#post-content{
+margin-top:50px;
+}
+
+div.panel.panel-default.sidebar-menu{
+margin-top:40px;
+
+}
+
+button.btn.btn-template-outlined{
+margin-right: 2rem;
+}
+
+
+@media screen and (max-width:750px){
+
+.btn.btn-template-outlined{
+margin-bottom:10px;
+}
+.date{
+display:none;
+}
+.view{
+display:none;
+}
+
+
+span.badge.badge-danger{
+margin-top:30px;
+}
+
+div.col-sm-3.col-md-2.text-center-xs{
+display:none;
+}
+
+button.btn.btn-template-outlined{
+margin-right: 1rem
+}
+
+button.re.btn.btn-template-outlined{
+width:110px; margin-right:1px;
+}
+
+button.write.btn.btn-template-outlined{
+margin-right:1px;
+}
+
+button.list.btn.btn-template-outlined{
+margin-right:10px;
+}
+.btn.btn-danger{
+margin-right:1px;
+}
+
+
+div.bg_white{
+display:none;
+}
+
+
+
+
+}
+
+
 </style>
 </head>
 
@@ -254,26 +360,23 @@
 		
 		<div id="content">
 			<div class="container">
-				<div class="row bar">
+				
 					<!-- LEFT COLUMN _________________________________________________________-->
 					<div id="blog-post" class="col-md-13">
 
-						<button class="btn btn-template-outlined" style="float: right;">
+						<button class="btn btn-template-outlined">
 							<a href="/dog/missingboard/writeForm">
 							글쓰기
 							</a>
 						</button>
-						<button type="submit" class="btn btn-template-outlined" style="float: right;">
+						<button type="submit" class="btn btn-template-outlined">
 							<i class="fa fa-align-justify"></i>
 							<a href="/dog/missingboard/list">
 							목록
 							</a>
 						</button>
 						
-						<P></P>
-						<P></P>
-						<P></P>
-						<P></P>
+						
 
 						<div class="panel-heading">
 							<span class="badge badge-danger">미발견</span>
@@ -281,44 +384,32 @@
 						</div>
 
 						<table>
-							<tbody>
+							
 								<tr>
 									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
 										class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
 									<td>
-										<ul class="nav navbar-nav ml-auto">
+										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown">
 												Pet</a>
-											<ul class="dropdown-menu">
-												<li class="dropdown"><a href="#" class="nav-link">게시글보기</a></li>
-												<li class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></li>
-											</ul>
-										</ul>
+											<div class="dropdown-menu">
+												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+											</div>
+										</div>
 									</td>
 
-									<td>준회원</td>
-									<td>2019-07-01 23:02:43</td>
-									<td><i class="fa fa-eye"></i>130186321</td>
-								</tr>
+										<td class=grade>준회원</td>
+									<td class=date>2019-07-01 23:02:56</td>
+									<td class=view><i class="fa fa-eye"></i>130186321</td>
 
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-							</tbody>
+								</tr>
 						</table>
 
 						<hr size="10px">
 						<div class="heading">
-
-							<P></P>
-							<P></P>
-							<P></P>
-							<P></P>
-					
-
-							<blockquote class="blockquote">
-								<ol>
+						<blockquote class="blockquote">
+							
 									<p>
 										<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
 											class="img-fluid">
@@ -352,9 +443,9 @@
 											<div id="pagination"></div>
 										</div>
 									</div>
-								</ol>
+							
 							</blockquote>
-
+		</div>
 						
 					
 							
@@ -374,11 +465,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>안타깝네요.</p>
 
 									</div>
 								</div>
@@ -394,11 +481,7 @@
 										<p class="posted">
 											<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
 										</p>
-										<p>Pellentesque habitant morbi tristique senectus et netus
-											et malesuada fames ac turpis egestas. Vestibulum tortor quam,
-											feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-											eu libero sit amet quam egestas semper. Aenean ultricies mi
-											vitae est. Mauris placerat eleifend leo.</p>
+										<p>어디서 봤더라....</p>
 
 									</div>
 								</div>
@@ -411,7 +494,7 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="name">닉네임 <span
+											<label for="name">아이디 <span
 												class="required text-primary">*</span></label> <input id="name"
 												type="text" class="form-control">
 										</div>
@@ -429,17 +512,14 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-12 text-right">
-										<button class="btn btn-template-outlined">
+										<button class="re btn btn-template-outlined">
 											<i class="fa fa-comment-o"></i> 댓글 등록
 										</button>
-										<P></P>
-										<P></P>
-										<P></P>
-										<P></P>
+									
 										
 										<nav aria-label="Page navigation example" class="d-flex justify-content-left">
-											<button class="btn btn-template-outlined"
-												style="margin-right: 2rem">
+											<button class="btn btn-template-outlined">
+											
 												<i class="fa fa-pencil"></i>
 												<a href="/dog/missingboard/modifyForm">
 												수정
@@ -513,8 +593,8 @@
 				<div class="col-md-3"></div>
 			</div>
 		</div>
-	</div>
-				
+	
+	
 	<script type="text/javascript"
 							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	<script>
