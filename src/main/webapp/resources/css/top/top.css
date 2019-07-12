@@ -1,14 +1,19 @@
-/* ��ܹ� */
-.top-bar {
-	background: #38a7bb;
-}
+/* 占쏙옙炳占� */
 
-/* ����ٿ� �޴� �۾� ũ��*/
+/* 占쏙옙占쏙옙牟占� 占쌨댐옙 占쌜억옙 크占쏙옙*/
 .nav-link {
 	font-size: 0.9rem;
 }
 
-/*�ΰ� ũ�� ����*/
+/*占싸곤옙 크占쏙옙 占쏙옙占쏙옙*/
 #logo {
     width:120px;
+}
+
+.top-bar {
+	background-color: #fff;
+}
+
+#navbar {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);	
 }
