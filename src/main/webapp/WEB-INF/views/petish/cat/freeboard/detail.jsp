@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>안녕하세요</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,97 +37,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
         
-        
-<style type="text/css">
-#report-btn {
-	justify-content: right;
-}
-button.btn.btn-template-outlined{
-float: right;
-margin-right:15px;
-margin-top:20px;
-}
-div.panel-heading{
-margin-top:40px;
-}
-
-main.img-fluid rounded-circle{
-width:70px; height:70px;
-
-}
-.name{
-text-align:center;
-width:40px;
-}
-.grade{
-text-align:left;
-width:80px;
-}
-
-button.btn.btn-template-outlined{
-margin-right: 2rem;
-}
-
-.date{
-text-align:left;
-width:150px;
-}
-
-.view{
-text-align:left;
-width:150px;
-}
-
-.btn.btn-danger{
-float:right;
-margin-top:20px;
-margin-right:20px;
-}
-
-.text{
-width:70px;
-
-}
-.dropdown{
-text-align:center;
-}
-
-@media screen and (max-width:750px){
-
-.btn.btn-template-outlined{
-margin-bottom:10px;
-}
-.date{
-display:none;
-}
-.view{
-display:none;
-}
-
-div.col-sm-3.col-md-2.text-center-xs{
-display:none;
-}
-
-button.re.btn.btn-template-outlined{
-width:110px; margin-right:1px;
-
-}
-button.delete.btn.btn-template-outlined{
-width:70px; height:40px;
-}
-.btn.btn-danger{
-margin-right:1px;
-}
-button.write.btn.btn-template-outlined{
-margin-right:1px;
-}
-
-button.list.btn.btn-template-outlined{
-margin-right:10px;
-}
-}
-
-</style>
+<link href="resources/css/freeboard/detail.css" rel="stylesheet">
 </head>
 <body>
 	<div id="all">
