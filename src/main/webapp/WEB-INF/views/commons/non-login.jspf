@@ -75,7 +75,7 @@
 							<!-- ========== Hospital END ==================-->
 							<!-- Login User -->
 							<li class="nav-item dropdown">
-								<a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i>
+								<a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-user"></i>
 									로그인</a>
 							</li>
 							<!-- Login User END -->
