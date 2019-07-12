@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 <head>
 <title>강아지 자유게시판</title>
 <meta name="description" content="">
