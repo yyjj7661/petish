@@ -14,7 +14,7 @@
 	<!--  dataSource setting -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc.log4jdbc:oracle:thin:@localhost:31521:XE"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:31521:XE"></property>
 		<property name="username" value="travelyourself"></property>
 		<property name="password" value="travelyourself"></property>
 	</bean>
