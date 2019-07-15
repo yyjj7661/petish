@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class JoinUserParams {
 
-	private String email;
+	private String username;
 	private String password;
 	private String nickname;
 	private String address;

@@ -6,7 +6,7 @@ import lombok.Getter;
 public class UserDetailResponse {
 
 	private Long id;
-	private String email;
+	private String username;
 	private String nickname;
 	private String gender;
 	private String profileImage;
