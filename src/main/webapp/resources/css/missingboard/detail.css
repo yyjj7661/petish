@@ -6,6 +6,11 @@
 	margin-top:20px;
 	margin-right:20px;
 }
+
+table{
+	border-collapse: unset!important;
+}
+
 button.btn.btn-template-outlined{
 	float: right;
 	margin-right:15px;
