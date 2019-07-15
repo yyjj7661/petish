@@ -1,0 +1,2049 @@
+[33mcommit 60374b5ec6100199933400ec39825ef5dd424e52[m[33m ([m[1;36mHEAD -> [m[1;32mfrontdevelop[m[33m, [m[1;31mupstream/frontdevelop[m[33m)[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 03:19:50 2019 +0900
+
+    [ADD] mybatis scan을 위한 mapper의 경로를 지정하였습니다.
+
+[33mcommit 2b593e871b1dd44dff303ae36c6ec1475bf36eda[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 03:16:33 2019 +0900
+
+    [EDIT] DataSourceTest를 Junit5를 사용하여 실행하도록 하기 위해 RunWith를 ExtendWith(SpringExtension.class)로 변경하였습니다.
+
+[33mcommit fbae1b6c9f4658ea1f5e6fe03ab7e1a10c37223e[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 02:21:46 2019 +0900
+
+    [ADD] NoClassDefException을 해결하기 위해 spring-jdbc와 spring-tx를 추가하였습니다.
+
+[33mcommit c46c8c28607f51640d0286f6e467c0d6e4671fe8[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 01:31:08 2019 +0900
+
+    [ADD] log4jdbc를 사용하기 위해 설정파일을 추가하였습니다.
+
+[33mcommit d61a75f0b9ea8e39d1c7f4843273fd61ff8f161b[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 01:26:07 2019 +0900
+
+    [EDIT] jdbcurl 설정이 잘못되어 있어서 수정하였습니다.
+
+[33mcommit 9831a6094faa30fcffae6b134919c47e8e31b302[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 01:23:41 2019 +0900
+
+    [ADD] mybatis 사용을 위해 sqlSessionFactory를 bean으로 생성하였고, dataSource를 property로 추가하였습니다.
+
+[33mcommit 9004f8eee614b55fa85a4e8e8c8ac80de973ef49[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 01:20:00 2019 +0900
+
+    [ADD] root-context에 context를 사용하기 위해 name space를 추가하였습니다.
+
+[33mcommit 7cc34cd79565e21f0e1a91d898bb4ca50e387086[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 01:17:45 2019 +0900
+
+    [ADD] mybatis 사용을 위한 namespace를 추가하였습니다.
+
+[33mcommit 1c3b3f56299ca3a947d2679a0da73a26d2082175[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 01:06:53 2019 +0900
+
+    [ADD] hikariConfig를 사용하여 connection pool을 사용하도록 datasource bean을 구성하였습니다.
+
+[33mcommit 3462a970d016696a98c4551da6bb018c7bc66650[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 01:02:53 2019 +0900
+
+    [ADD] spring bean으로 만든 dataSource와 sqlSessionFactory의 bean 생성을 확인하는 테스트를 생성하였습니다.
+
+[33mcommit ef5986b99c2feadf3ecdef5ae6fd165c3ef5bd6a[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 15 00:52:44 2019 +0900
+
+    [ADD] DataBase 연동을 위한 JDBC 커넥션 테스트 클래스를 작성하고, 테스트를 완료하였습니다.
+
+[33mcommit 3de04a132070634bf8e9b301d6f866855a20bc94[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 19:58:35 2019 +0900
+
+    [ADD] root-context.xml에 datasource관련 빈을 추가하였습니다.
+    
+    - Hikari Config의 커넥션 풀 사용.
+    - Driver는 log4jdbc driver를 사용
+
+[33mcommit 698dd3b01a89c802e297425a41849dfdc888aac2[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 19:41:41 2019 +0900
+
+    [ADD] mybatis 관련 maven 설정을 pom.xml에 추가하였습니다.
+
+[33mcommit a3223e07818d4f539d6a0cecee5f011446e24f19[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 19:34:23 2019 +0900
+
+    [ADD] ojdbc에 대한 설정 파일을 변경하고 추가하였습니다.
+
+[33mcommit f027b7317972fcbabdd48a9fc5ebaf81a855fdfe[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 18:26:12 2019 +0900
+
+    [ADD] log4jdbc를 사용하기 위한 maven dependency를 추가하였습니다.
+
+[33mcommit bd7c62ff6e6f95df07f547a0beafcfa8ee3de630[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 18:25:16 2019 +0900
+
+    [ADD] Hikari connection pool울 사용하기 위해 maven dependency를 추가하였습니다.
+
+[33mcommit 64154d08c27ad2015ba330fdcf7e0825343db111[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 18:22:05 2019 +0900
+
+    [DELETED] 불필요한 파일을 삭제했습니다.
+
+[33mcommit 7708f06506c25be0683a2d43742c5ae1c817da14[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 18:05:43 2019 +0900
+
+    [EDIT] 마이펫에 스크립트 파일을 추가하였습니다.
+
+[33mcommit a36be73b1aee84e2ed5f4d0f802ac06e4901cfb6[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 18:01:41 2019 +0900
+
+    [EDIT] 실종게시판의 css 속성을 파일로 분리하고, 페이지에 설정을 추가하였습니다.
+
+[33mcommit 3d2c109084f2a8e35924e9e82ffa752fbbd06b63[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:56:38 2019 +0900
+
+    [EDIT] 정보게시판의 css 설정을 파일로 분리하고, css 파일을 추가하였습니다.
+
+[33mcommit 085423c380be7b4d705ad1d457975075598c7f3d[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:53:27 2019 +0900
+
+    [EDIT] 정모게시판의 css 설정을 파일로 분리하고, css 파일을 추가하였습니다.
+
+[33mcommit ddee5e6fe178ebf8a4b64ebfa53cf9f608b8c98e[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:53:03 2019 +0900
+
+    [EDIT] 변경한 kakao 맵의 경로대로 css 파일을 추가하였습니다.
+
+[33mcommit bad3b786796dfdc432fc34b657aa504d53f8cf82[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:48:55 2019 +0900
+
+    [EDIT] kakao 맵에 대한 css 파일의 위치를 변경하고, 수정하였습니다.
+
+[33mcommit ae2e561553a8ac0a1378f2cf43ab6604b2f05707[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:43:58 2019 +0900
+
+    [EDIT] 불필요한 부분을 삭제하였습니다.
+
+[33mcommit 13f06a6738fbe94c79ba1c595bf5d7fc8ca9531b[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:41:47 2019 +0900
+
+    [EDIT] 자유게시판 조회 페이지를 수정하고, css 파일을 분리하였습니다.
+
+[33mcommit 5b214c5e10ecd3eb36dc284e29000d393af42a30[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:35:15 2019 +0900
+
+    [EDIT] 정보게시판 리스트 조회를 수정하고, 설정 파일을 임포트하였습니다.
+
+[33mcommit 3d8968d64485b99cf609d389477ae5207d954717[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:27:10 2019 +0900
+
+    [EDIT] 정모게시판 리스트를 수정하고, 필요한 설정 파일들을 분리하였습니다.
+
+[33mcommit f04f18d6e607fc8243ce0bee8d28f92effe31f7d[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:19:26 2019 +0900
+
+    [EDIT] 자유게시판을 리팩토링하고, css를 파일로 분리하였습니다.
+
+[33mcommit 7ae2984f2a944cddc291859f4327fd1cabc713eb[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:04:07 2019 +0900
+
+    [EDIT] 강아지 자유게시판에 잘못 출력되는 부분을 수정하였습니다.
+
+[33mcommit 25591df3fcb33a718b622a366003ee3b26bbace4[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:01:47 2019 +0900
+
+    [EDIT] mypage에 들어가는 css와 js 파일의 경로를 재설정하였습니다.
+
+[33mcommit 83550ddaaccb8dd863f67fddb0539cb7a74fd293[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:00:34 2019 +0900
+
+    [EDIT] mypage에서 사용되는 javascript 파일의 이름을 변경하였습니다.
+
+[33mcommit 8cc10014ae2ea3d9c5b46150a9f29fde946cf2c7[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 17:00:05 2019 +0900
+
+    [EDIT] mypage에 해당하는 css 파일 2개를 하나로 합쳤습니다.
+
+[33mcommit 81c8f5e5ccf9f71113c7d1f570ca1489efc4ee1f[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 16:59:15 2019 +0900
+
+    [DELETED] mypage에 필요하지 않은 페이지를 삭제했습니다.
+
+[33mcommit 41abf1d4492668c141a006af21c1627cba2b6e69[m
+Merge: 18e3680 566aeba
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 16:55:25 2019 +0900
+
+    Merge branch 'yelim.front' into frontdevelop
+    예림의 작업물을 병합합니다.
+
+[33mcommit 18e368032d1f8d062be50efe0396f50dab641338[m
+Merge: 5e102fc 94b5b4b
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 16:41:09 2019 +0900
+
+    Merge branch 'yeji.front' into frontdevelop
+    예지의 작업물을 추가하였습니다.
+
+[33mcommit 94b5b4b193e8b9a8b9de2b150c77e495196ec800[m
+Merge: 86b549b 077bbbb
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Fri Jul 12 16:05:15 2019 +0900
+
+    Merge pull request #26 from yyjj7661/yeji.front
+    
+    [MOD] 프론트 작업물 수정했습니다.
+
+[33mcommit 5e102fc76add4d82ddc8495847a0eef974ff27de[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 15:56:45 2019 +0900
+
+    [EDIT] 설정파일이 변경되었습니다.
+
+[33mcommit 2f3ce115adc88a191bb155589452f55efe600c35[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 15:44:48 2019 +0900
+
+    [EDIT] 설정파일의 경로를 변경하였습니다.
+
+[33mcommit 8685cf7a6f57de6564f4a27c5af9daa6023aa440[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 15:27:21 2019 +0900
+
+    [EDIT] 실종견 게시판을 수정하였습니다.
+
+[33mcommit 566aebadd311865a7faa45da839112021725f313[m
+Author: yelim <yelim615@naver.com>
+Date:   Fri Jul 12 14:54:15 2019 +0900
+
+    [ADD] MYPAGE CSS,JS파일 경로 수정
+
+[33mcommit e7510ad232e8caeb7688f2ae714930e08a7e9725[m
+Merge: 8b21158 a7884c3
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 14:30:51 2019 +0900
+
+    Merge branch 'sangwon.front' into frontdevelop-for-merge
+    상원의 작업물을 머지합니다.
+
+[33mcommit 8b21158d7b0af97bb3a101d528bc7c0f4f8d5640[m
+Merge: b41521d 8a149df
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 14:18:15 2019 +0900
+
+    Merge branch 'byungyoon.front' into frontdevelop-for-merge
+    병윤이의 작업물을 머지하였습니다.
+
+[33mcommit 077bbbb88c00e5143a9679b97b3020479f33713d[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Fri Jul 12 14:14:40 2019 +0900
+
+    [MOD] 헤더 CSS 파일 수정 -예지
+
+[33mcommit 5f7a7ed1bc7c79a3cae51eab2aec45569f49c65f[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Fri Jul 12 14:14:15 2019 +0900
+
+    [MOD] 헤더 디자인 변경 -예지
+
+[33mcommit a7884c3f16d52a2bdf18fb28c38638017a696783[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Fri Jul 12 10:15:12 2019 +0900
+
+    [edit]강아지 실종게시판 조회 수정 완료,모바일포함-상원
+
+[33mcommit 37344548a9665fbfb4bcbd138154a572a8c616a6[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Fri Jul 12 10:05:04 2019 +0900
+
+    [edit]강아지 실종게시판 리스트 수정 완료,모바일포함-상원
+
+[33mcommit b41521d0cf7ac0602be962593641eae0ad22cfe3[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 09:57:53 2019 +0900
+
+    [EDIT] mypage 문의하기의 js 파일의 함수 구분을 다시하였습니다.
+
+[33mcommit 4b6c62e2ec3e749dcb323de9bd8975b7341128df[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 09:57:31 2019 +0900
+
+    [EDIT] 문의하기 리스트의 경로 설정을 변경하였습니다.
+
+[33mcommit f0eecfef447103d0686e485245d67cb2ffa052b2[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 09:49:14 2019 +0900
+
+    [ADD] 예지의 작업물을 추가합니다.
+
+[33mcommit 37a40f318a0371cdba03ef36a7ff81708f02ce4c[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Fri Jul 12 09:48:07 2019 +0900
+
+    Squashed commit of the following:
+    
+    commit 8966a035dbd690c83e6c9df81536ea43a86123e6
+    Author: jaeju.jang <jjj0611@gmail.com>
+    Date:   Fri Jul 12 09:20:56 2019 +0900
+    
+        [ADD] 임시로 UserController를 추가하였습니다.
+    
+    commit e01caee48111af7b0561e1715d774615e21d41b2
+    Author: jaeju.jang <jjj0611@gmail.com>
+    Date:   Fri Jul 12 09:20:27 2019 +0900
+    
+        [EDIT] petish 파일의 경로 변경으로 pom.properties 파일이 변경되었습니다.
+    
+    commit 9000b1c3faf50f45b9cf8a81e0e6ac226c044580
+    Merge: a31896f 86b549b
+    Author: jaeju.jang <jjj0611@gmail.com>
+    Date:   Fri Jul 12 00:33:28 2019 +0900
+    
+        Merge branch 'yeji.front' of https://github.com/jjj0611/petish into yeji.front
+        예지의 작업물을 추가했습니다.
+    
+    commit 86b549b4fe7ebd26e6899b81c2eb42326953bf56
+    Merge: 6803122 c979e6d
+    Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+    Date:   Fri Jul 12 00:32:43 2019 +0900
+    
+        Merge pull request #24 from yyjj7661/yeji.front
+    
+        [ADD] 프론트 작업한 것을 추가했습니다 -예지
+    
+    commit c979e6db9f259010f8686b9e7c3842a447c81fcc
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:12:49 2019 +0900
+    
+        [MOD] 마이페 컨트롤러 수정 -예지
+    
+    commit 6e17bf512cceaaf8af04e547e0f8b5d21d7d1f3e
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:09:51 2019 +0900
+    
+        [ADD] 헤더 JS 파일 추가 -예지
+    
+    commit 7a2049190978ace6cdb4ec38cfde675d85ed613f
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:09:28 2019 +0900
+    
+        [ADD] 헤더 CSS 파일 추가 -예지
+    
+    commit 82aa35aef4879e801caebf8611849c031507b4f6
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:09:05 2019 +0900
+    
+        [ADD] 로그인 안했을때 헤더 추가 -예지
+    
+    commit d96d370192133766a8639d9d140c16636c1e92a6
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:08:17 2019 +0900
+    
+        [ADD] 카카오맵 파일 추가 -예지
+    
+    commit 1535c9f0879f30aebfb9e59cd0b21184985ce87c
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:07:48 2019 +0900
+    
+        [ADD] 카카오맵 보기 위한 유저 컨트롤러 파일 추가 -예지
+    
+    commit 0b8ee979af0e59a3448c24b952fc3c8530967147
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:07:14 2019 +0900
+    
+        [MOD] 마이펫 글쓰기폼 로그인 안됐을때 헤더로 변경 -예지
+    
+    commit 85f5320afd73149073279ab09a49302d393e2f2c
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 21:06:47 2019 +0900
+    
+        [MOD] 헤더 경로 변경 -예지
+    
+    commit 922b722c9eec3a4e707fe0b873b3484c1ac7689f
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 20:59:09 2019 +0900
+    
+        [ADD] 마이펫 CSS 파일 추가 -예지
+    
+    commit 910a9f5adf363b5df25c71b05c3bcb17f4a70fb7
+    Author: yyjj7661 <yyjj7661@gmail.com>
+    Date:   Thu Jul 11 20:58:51 2019 +0900
+    
+        [ADD] 마이펫 글작성,수정 파일 추가 -예지
+
+[33mcommit bb3cacc4612a3bba1d27db19b059133a80d5221a[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Fri Jul 12 09:33:06 2019 +0900
+
+    [edit]강아지 정모게시판 조회 수정 완료,모바일포함-상원
+
+[33mcommit 86b549b4fe7ebd26e6899b81c2eb42326953bf56[m
+Merge: 6803122 c979e6d
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Fri Jul 12 00:32:43 2019 +0900
+
+    Merge pull request #24 from yyjj7661/yeji.front
+    
+    [ADD] 프론트 작업한 것을 추가했습니다 -예지
+
+[33mcommit c979e6db9f259010f8686b9e7c3842a447c81fcc[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:12:49 2019 +0900
+
+    [MOD] 마이페 컨트롤러 수정 -예지
+
+[33mcommit 6e17bf512cceaaf8af04e547e0f8b5d21d7d1f3e[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:09:51 2019 +0900
+
+    [ADD] 헤더 JS 파일 추가 -예지
+
+[33mcommit 7a2049190978ace6cdb4ec38cfde675d85ed613f[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:09:28 2019 +0900
+
+    [ADD] 헤더 CSS 파일 추가 -예지
+
+[33mcommit 82aa35aef4879e801caebf8611849c031507b4f6[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:09:05 2019 +0900
+
+    [ADD] 로그인 안했을때 헤더 추가 -예지
+
+[33mcommit d96d370192133766a8639d9d140c16636c1e92a6[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:08:17 2019 +0900
+
+    [ADD] 카카오맵 파일 추가 -예지
+
+[33mcommit 1535c9f0879f30aebfb9e59cd0b21184985ce87c[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:07:48 2019 +0900
+
+    [ADD] 카카오맵 보기 위한 유저 컨트롤러 파일 추가 -예지
+
+[33mcommit 0b8ee979af0e59a3448c24b952fc3c8530967147[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:07:14 2019 +0900
+
+    [MOD] 마이펫 글쓰기폼 로그인 안됐을때 헤더로 변경 -예지
+
+[33mcommit 85f5320afd73149073279ab09a49302d393e2f2c[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 21:06:47 2019 +0900
+
+    [MOD] 헤더 경로 변경 -예지
+
+[33mcommit a2086524d673680d8c16e704687ee1eb6d62cba3[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 21:03:49 2019 +0900
+
+    [edit]강아지 건강게시판 리스트 하단 버튼 기능수정,모바일포함-상원
+
+[33mcommit 922b722c9eec3a4e707fe0b873b3484c1ac7689f[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 20:59:09 2019 +0900
+
+    [ADD] 마이펫 CSS 파일 추가 -예지
+
+[33mcommit 910a9f5adf363b5df25c71b05c3bcb17f4a70fb7[m
+Author: yyjj7661 <yyjj7661@gmail.com>
+Date:   Thu Jul 11 20:58:51 2019 +0900
+
+    [ADD] 마이펫 글작성,수정 파일 추가 -예지
+
+[33mcommit 0bacce7165685d8b2f0c3835392d964173d5e97a[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 19:15:23 2019 +0900
+
+    [edit][모바일]강아지 건강게시판 조회수정-상원
+
+[33mcommit a31896f8537875ef6962c4b729c3ce3fea85cce2[m
+Merge: 1565aeb 98cee15
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 11 19:08:25 2019 +0900
+
+    Merge pull request #22 from july5087/frontdevelop
+    
+    [ADD] message_list.jsp, mypage.css 파일 추가
+
+[33mcommit 8a149dff067d2fc9ca1bb5ce3494769c467e6a2f[m
+Author: Byungyoon <wkdquddbs92@gmail.com>
+Date:   Thu Jul 11 19:08:21 2019 +0900
+
+    [EDIT] hospital/detail.jsp 파일 안에 있는 별 평점 수정하였음.
+
+[33mcommit 4d05d91e83c5cdd19bde220feceb4b8142832f0f[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 19:07:49 2019 +0900
+
+    [edit]강아지 정모게시판 조회수정-상원
+
+[33mcommit 98cee15cb76f0b9065cb476dbaf691ca36200691[m
+Author: july5087 <july5087@gmail.com>
+Date:   Thu Jul 11 18:58:58 2019 +0900
+
+    [ADD] mypage.css파일을 생성했습니다.
+
+[33mcommit 6a01fe4190c9472ea9eb8e3ab3d998828073b0b6[m
+Author: july5087 <july5087@gmail.com>
+Date:   Thu Jul 11 18:58:17 2019 +0900
+
+    [ADD] message_list.jsp 파일을 수정했습니다.
+
+[33mcommit b7ba63dfbfce36002fb9c3d9de11cc431f075063[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 18:52:55 2019 +0900
+
+    [edit]강아지 정모게시판 리스트(모바일포함)수정-상원
+
+[33mcommit 833dc100c7e1f5e0a58f1a085533a74d8d4177e3[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 18:38:40 2019 +0900
+
+    [edit]강아지 자유게시판 조회 수정(모바일포함)-상원
+
+[33mcommit efa65945e9d5fcfe7e1d9b6101086794c15b3c33[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 18:27:10 2019 +0900
+
+    [edit]강아지 자유게시판 리스트 수정(모바일포함)-상원
+
+[33mcommit 701ab796105e8ac2154714dfc47bd4fb001fea36[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 18:02:05 2019 +0900
+
+    [edit][모바일] 고양이 실종묘 리스트 수정-상원
+
+[33mcommit 5488dd3bb53c4137d33b7cedb81b723f006c10d1[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 17:20:58 2019 +0900
+
+    [edit][모바일] 고양이실종묘게시판조회 수정-상원
+
+[33mcommit bbdb2242d49f866b1bc81d3c65fa211cd2cee4eb[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 17:14:07 2019 +0900
+
+    [edit] 고양이실종묘게시판조회 하단  수정-상원
+
+[33mcommit 1565aebee7b53742fc6336fd0b7d5b26e74b6f64[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 17:02:32 2019 +0900
+
+    [EIDT] mypet 투표를 위한 js 파일의 임포트가 잘못설정되어 있어 경로를 수정하였습니다.
+
+[33mcommit 4c651c5331bda1ed3eeb177fbeb91e819aa9fe5f[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 17:01:00 2019 +0900
+
+    [edit] [모바일]고양이실종묘게시판조회 상단  수정-상원
+
+[33mcommit 3fe4c2500aeeff85d169b0d79995fe5590d70328[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 17:00:36 2019 +0900
+
+    [EDIT] mypage의 경로를 설정하였습니다.
+
+[33mcommit 056f7a22b129123800e8a7ab34e95865c8faa91f[m
+Merge: 4cda267 97ce791
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 16:56:13 2019 +0900
+
+    Merge branch 'frontdevelop' of https://github.com/yelim615/petish into yelim615-frontdevelop
+    예림의 작업물을 추가하였습니다.
+
+[33mcommit 4cda2675eb2203e4f42c0ff9277c371161f6f4da[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 16:55:17 2019 +0900
+
+    [ADD] 설정파일 추가
+
+[33mcommit 77f560e7b22a7e380e8aaf1d7f2b6db0c8d344f7[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 16:53:24 2019 +0900
+
+    [edit] [모바일]고양이실종묘게시판리스트 테이블 수정-상원
+
+[33mcommit 1c33e413471704092d5f6de7c52729534bddbbbd[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 16:47:42 2019 +0900
+
+    [edit] [모바일]고양이실종묘게시판리스트 상단 수정-상원
+
+[33mcommit 0f2a35f24355dedc7757288be7ed5e38f57d320f[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 16:32:57 2019 +0900
+
+    [edit] [모바일]고양이건강게시판 조회 버튼들 위치 수정-상원
+
+[33mcommit cc46aa9d8458152aca21679c93085a594a1b45f8[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 16:25:15 2019 +0900
+
+    [edit] [모바일]고양이정모게시판 조회 지도 수정-상원
+
+[33mcommit 53c1052696ed612ec42fe14e918567e9ea2fad05[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 16:06:33 2019 +0900
+
+    [edit] [모바일]고양이자유게시판 조회 하단 삭제 수정 크기 수정-상원
+
+[33mcommit 21cde38266a7b97b2cc9d8bf483431d95948baec[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 15:24:11 2019 +0900
+
+    [edit] [모바일]고양이 자유게시판및 정모게시판 리스트 테이블 간격 수정-상원
+
+[33mcommit 23dd5aca954ea7ad85a4199368806e097ad0a2f1[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 15:20:12 2019 +0900
+
+    [edit] [모바일]고양이 자유게시판 리스트 테이블 간격 수정-상원
+
+[33mcommit 8cf1dbdcd49a5d1434f19b3c45e9cd48980e2292[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:54:13 2019 +0900
+
+    [ADD] setting 파일을 추가합니다.
+
+[33mcommit a8e6469f92895fd85b195d9296e9bf513f3b812b[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Thu Jul 11 14:54:13 2019 +0900
+
+    [edit] 고양이 건강게시판 글자폰트 빼고 수정완료-상원
+
+[33mcommit 74f1f48679f1272dda705f24f6a0c8f2c1d29b10[m
+Merge: b53a611 3655bf5
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:53:32 2019 +0900
+
+    Merge branch 'frontdevelop' of https://github.com/jjj0611/petish into frontdevelop
+
+[33mcommit b53a611929344b94ae6661305d03d44783e4e5d7[m
+Merge: 7e4dac4 397daa6
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:42:29 2019 +0900
+
+    Merge branch 'joobang-frontdevelop' into frontdevelop
+    주환이의 작업물을 머지합니다.
+
+[33mcommit 397daa63fc614a18c7999f4d57de5dd3920b3cba[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:41:39 2019 +0900
+
+    [EDIT] 변경
+
+[33mcommit d90295813a1c19514a578ba63e7a141febaa26d5[m
+Merge: 7e4dac4 69292d5
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:40:40 2019 +0900
+
+    Merge branch 'frontdevelop' of https://github.com/joobang/petish into joobang-frontdevelop
+
+[33mcommit 7e4dac4562ec6baac96e5436289b9582f3f0a769[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:36:12 2019 +0900
+
+    [ADD] 주환이의 파일들을 추가했습니다.
+
+[33mcommit f9cf84fe9fcfd76ede843623101c215fd9367b64[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:32:24 2019 +0900
+
+    Revert "[EDIT] 설정파일 변경"
+    
+    This reverts commit c3b8c703af79f0cc938a0be096a5109b42053437.
+
+[33mcommit 3655bf56761be854097d99e34a99f85e0cafae16[m
+Merge: c3b8c70 610fcea
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:15:44 2019 +0900
+
+    Merge branch 'joobang-frontdevelop' into frontdevelop
+    [MERGE] 주환이의 작업 내용을 머지하였습니다.
+
+[33mcommit 610fceaba773b904ea3085abfde2fd3d54ec6964[m
+Merge: c3b8c70 69292d5
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:15:00 2019 +0900
+
+    Merge branch 'frontdevelop' of https://github.com/joobang/petish into joobang-frontdevelop
+
+[33mcommit c3b8c703af79f0cc938a0be096a5109b42053437[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 11 14:06:46 2019 +0900
+
+    [EDIT] 설정파일 변경
+
+[33mcommit 97ce791057bbea0b1de54616e1f7a94c063e07db[m
+Author: yelim <yelim615@naver.com>
+Date:   Thu Jul 11 12:22:49 2019 +0900
+
+    [UPDATE]변경된 js,css파일커밋:
+
+[33mcommit 3ae9d10cba1fb295065bf0bf325dc085c796bc17[m
+Author: yelim <yelim615@naver.com>
+Date:   Thu Jul 11 12:18:29 2019 +0900
+
+    [UPDATE] 마이페이지 변경사항 반영
+
+[33mcommit 02d4162fa0d0bf0d96af6d0cd437bbc4bf3a6a83[m
+Author: yoon <yoon@gmail.com>
+Date:   Thu Jul 11 12:13:27 2019 +0900
+
+    [EDIT} hospital의  기존의 별 평점css/js 파일을 삭제 후 새로운 css/js 파일로 추가하였음.
+
+[33mcommit c167d2ae07def7497f07ae52ff316e579515ccd6[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:24:36 2019 +0900
+
+    [ADD] mypet에 관련된 css 파일과 js 파일을 추가하였습니다.
+
+[33mcommit a06683f3d3025155a5988b6a507394b5ef97c15f[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:24:15 2019 +0900
+
+    [ADD] mypet 투표를 위한 js 파일을 추가하였습니다.
+
+[33mcommit a8713d83cde33170613b988a87a38c91e6e4627d[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:21:01 2019 +0900
+
+    [MOVED] mypet.js 파일의 위치를 js 디렉토리 하위에 mypet 디렉토리로 이동하였습니다.
+
+[33mcommit 98360a7c712ec13e10c821405c1e24649a60084c[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:19:48 2019 +0900
+
+    [ADD] mypet의 투표창을 위한 css 파일을 추가하였습니다.
+
+[33mcommit b3a877a66c913ca43a92b9b3fd5ac908ee5803ef[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:18:35 2019 +0900
+
+    [MOVED] mypet.css의 파일을 css 디렉토리 하위에 mypet폴더를 만들고 추가하였습니다.
+
+[33mcommit 9624d582c742a7aeed563c5ef694cd3fc17e415a[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:17:27 2019 +0900
+
+    [EDIT] 투표 모달창의 id 값을 변경하였습니다.
+
+[33mcommit e78920379371dda0cc089c925b610b9e70c63467[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:16:25 2019 +0900
+
+    [ADD] 투표 모달창을 list.jsp에 추가하였습니다.
+
+[33mcommit 6e8c7913b5ba3144331cbb3af7dccca65e726612[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Wed Jul 10 20:14:34 2019 +0900
+
+    [EDIT] 반응형 쿼리 부분에서 기존 모달창과의 혼동을 피하기 위해 css 선택자를 id로 변경하였습니다.
+
+[33mcommit e7a95a01b71bdcd15bff49d1d9ff795788373ce0[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 20:05:52 2019 +0900
+
+    [EDIT] 반응형 고양이 정모게시판조회 수정완료-상원
+
+[33mcommit e2a2de4db7358927937e941753778a99d578672b[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 19:49:42 2019 +0900
+
+    [EDIT] 반응형 고양이 정모게시판조회 지도부분 제외 나머지 수정완료-상원
+
+[33mcommit 50454e6fc50dfe1c28f0bfd6b90d0ca1bf57311a[m
+Author: yelim <yelim615@naver.com>
+Date:   Wed Jul 10 19:17:47 2019 +0900
+
+    [UPDATE] 완성된 jsp파일 및 설정 파일 커밋
+
+[33mcommit 71710762215fc444c1fb931600cc16737902b72a[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 18:10:08 2019 +0900
+
+    [EDIT] 반응형 고양이 정모게시판조회 지도부분 제외 나머지 수정완료-상원
+
+[33mcommit 385baa968ad616865121f6dc37a8bef06d870682[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 17:44:03 2019 +0900
+
+    [EDIT] 고양이 정모게시판 조회 수정완료-상원
+
+[33mcommit 9c2b069886c1e8c559851d7a21b7366e2ead8dd3[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 17:38:59 2019 +0900
+
+    [EDIT] 고양이 정모게시판 조회 중심 부분 수정-상원
+
+[33mcommit 791c09da6982bbd778c00cdc7e08bbb667583630[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 17:23:51 2019 +0900
+
+    [EDIT] 고양이 정모게시판 조회 상단부분수정-상원
+
+[33mcommit 3dfabd3b29e1de9c7c6a2251eea7edb171a71c76[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 17:11:37 2019 +0900
+
+    [EDIT]응용형 고양이 정모게시판 리스트 카테고리 크기 수정완료-상원
+
+[33mcommit 90ff2a48a67ee2b1ccb195c1a794cf7a332f54e9[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 16:59:37 2019 +0900
+
+    [EDIT]응용형 고양이 정모게시판 리스트 테이블 부분 수정완료
+
+[33mcommit 181efbbefffd5bf7ffb8e025525136c456a4ffa2[m
+Author: yoon <yoon@gmail.com>
+Date:   Wed Jul 10 16:55:37 2019 +0900
+
+    [EDIT]hospital/detail.jsp 파일의 icon 수정하였음
+
+[33mcommit ffca3a5791f66c8565d592efb727ab22d32d4c22[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 16:49:29 2019 +0900
+
+    [EDIT]응용형 고양이정모게시판 종별 카테고리 지우기
+
+[33mcommit 7b940e13d5f617cfd9d2217f746cb2f624764d82[m
+Author: heosangwon <lucker2004@naver.com>
+Date:   Wed Jul 10 16:35:54 2019 +0900
+
+    [ADD] 고양이 리스트및조회 수정했습니다-상원
+
+[33mcommit a5ffb225f4bce37837e04fc039c9a88c26611e4b[m
+Author: yoon <yoon@gmail.com>
+Date:   Wed Jul 10 16:27:35 2019 +0900
+
+    병원페이지 헤더부분 수정본 .병윤
+
+[33mcommit 69292d55b2d25c70163b5bcc6c976b638f869507[m[33m ([m[1;31morigin/frontdevelop[m[33m)[m
+Author: do <ehwnghks@gmail.com>
+Date:   Wed Jul 10 15:52:54 2019 +0900
+
+    [UPDATE] 지도 검색목록과 마커 클릭이벤트 생성 및 적용
+
+[33mcommit 6f60f78e5831500d09cf37fabe294036842c4a3e[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:25:30 2019 +0900
+
+    [UPDATE] dog/missingboard/modify_form.jsp에kakaomap.css 추가
+
+[33mcommit 98b83a89e4394c16b26604487a24b52d1845757a[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:24:25 2019 +0900
+
+    [UPDATE] dog/missingboard/write_form.jsp에kakaomap.css추가
+
+[33mcommit e27be57bd3a765b76957c46903b3d2ee1e90c502[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:23:21 2019 +0900
+
+    [UPDATE] dog/gatherboard/modify_form.jsp에kakaomap.css 추가
+
+[33mcommit 321d4b5c01057dcaf37184540a240a936b9c7e45[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:22:29 2019 +0900
+
+    [UPDATE] dog/gatherboard/write_form.jsp에kakaomap.css추가
+
+[33mcommit e3bb8cce22392f452097ebc7254bf0da6131b1b1[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:21:26 2019 +0900
+
+    [UPDATE] cat/missingboard/modify_form.jsp에kakaomap.css추가
+
+[33mcommit 0e1079a0434824769278ee9a6bb6f1c2cf3fe37e[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:20:30 2019 +0900
+
+    [UPDATE] cat/missingboard/write_form.jsp에kakaomap.css 추가
+
+[33mcommit e5bc7a8f1a4ab5b05169d46009f9a8c9583e25fd[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:18:57 2019 +0900
+
+    [UPDATE] cat/gatherboard/modify_form.jsp에kakaomap.css 추가
+
+[33mcommit 8ce1f595aef5304c73f4aad0f9e35e54d6739224[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:15:33 2019 +0900
+
+    [ADD] kakaomap.css 추가 및 cat/gatherboard/write_form.jsp에 설정
+
+[33mcommit 2854c24f8b6d0c0e2ac7af84474cc1276b37da97[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:09:17 2019 +0900
+
+    [UPDATE] dog/missingboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit 5ae09be8c329be076b7f0afec8b01187d6cf4eb5[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:08:35 2019 +0900
+
+    [UPDATE] dog/missingboard/write_form.jsp write-modify.css 추가
+
+[33mcommit 6071928aa7001c5b01ce0a4405fd69d68ad4f7d6[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:07:13 2019 +0900
+
+    [UPDATE] dog/infoboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit 5773d01b8f260093782642ae6b9381f87b0c5193[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:06:11 2019 +0900
+
+    [UPDATE] /dog/infoboard/write_form.jsp write-modify.css 추가
+
+[33mcommit 423fc03b3bf41ec8287dd33dc6936b1cd05a1eb6[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:04:56 2019 +0900
+
+    [UPDATE] dog/gatherboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit b0cd69b18180aca37bd20bb7f16023f9ada01b4d[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:04:01 2019 +0900
+
+    [UPDATE] dog/gatherboard/write_form.jsp write-modify.css 추가
+
+[33mcommit ab282571fce08062d8907e21d9f4aef5d7cf5193[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:03:02 2019 +0900
+
+    [UPDATE] dog/freeboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit 7f70ac8fec710c523ef4bc38272ec57e3a1627b3[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 19:01:40 2019 +0900
+
+    [UPDATE] dog/freeboard/write_form.jsp write-modify.css 추가
+
+[33mcommit 58827208092cea9c303a1b2915aefc056cdc3000[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:54:32 2019 +0900
+
+    [UPDATE] cat/missingboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit 11868824c7e68853ae095be241762e401f5874df[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:52:58 2019 +0900
+
+    [UPDATE] cat/missingboard/write_form.jsp write-modify.css 추가
+
+[33mcommit b459a75bcc2c3cb48c5e0f874fb1b6b97fcf660a[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:51:25 2019 +0900
+
+    [UPDATE] cat/infoboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit 0ba4f87355fc7f32895e383e91b69b6d1502f921[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:49:12 2019 +0900
+
+    [UPDATE] cat/infoboard/write_form.jsp write-modify.css 추가
+
+[33mcommit 3a395941f529b02fd19b798ab7566188002b9ae5[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:46:46 2019 +0900
+
+    [UPDATE] /cat/gatherboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit 2df30ad6a42f319ae8cd123e6a19911299627c18[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:38:38 2019 +0900
+
+    [UPDATE] cat/gatherboard/write_form.jsp write-modify.css 추가
+
+[33mcommit 56dc2feb43596e1bc34c9fd4e002d947db1d63e2[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:30:40 2019 +0900
+
+    [UPDATE] cat/freeboard/modify_form.jsp write-modify.css 추가
+
+[33mcommit b01888d5e4a2b4eafbf0a4cb532d4b489a5647df[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 18:01:40 2019 +0900
+
+    [ADD] write-modify.css 추가 및 cat/freeboard/write_form.jsp css 추가
+
+[33mcommit 29fc853ed47f70d773f56935cc81c9721e6f3526[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:32:50 2019 +0900
+
+    [UPDATE] dog/missingboard/modify_form.jsp js 파일들 추가
+
+[33mcommit 10292965f754fb585e239d8c1786c64dae8d2613[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:30:53 2019 +0900
+
+    [UPDATE] dog/missingboard/write_form.jsp js 파일들 추가
+
+[33mcommit e8789654aed436b2a97ece85aebb6df43ebff684[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:28:33 2019 +0900
+
+    [UPDATE] dog/infoboard/modify_form.jsp summernote.js 추가
+
+[33mcommit 98f0f028e8888dbcf0156bbe2e789da0584be3b4[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:27:10 2019 +0900
+
+    [UPDATE] dog/infoboard/write_form.jsp summernote.js 추가
+
+[33mcommit 9b225aeb14f782b04c2f53f3b89fc53bfc118325[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:25:50 2019 +0900
+
+    [UPDATE] dog/gatherboard/modify_form.jsp js파일들 추가
+
+[33mcommit 0e52e0b136579e8ec5aef7897f5bf8509e4fccb3[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:22:44 2019 +0900
+
+    [UPDATE] dog/gatherboard/write_form.jsp js 파일들 추가
+
+[33mcommit 5a859e2ea5deccc6c741827a9db66c262888a0aa[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:20:20 2019 +0900
+
+    [UPDATE] dog/freeboard/modify_form.jsp summernote.js 추가
+
+[33mcommit 68f46f7f926864dcdb283fb9120b4c30e186cac2[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:16:59 2019 +0900
+
+    [UPDATE] dog/freeboard/write_form.jsp summernote.js 추가
+
+[33mcommit bea80d05e8060932faf246d90b0fbe725900c659[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:09:42 2019 +0900
+
+    [UPDATE] cat/missingboard/modify_form.jsp script src 부분 위치 수정
+
+[33mcommit 107943239cdf3f79c5a68850d554905251271d55[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:03:27 2019 +0900
+
+    [UPDATE] cat/missingboard/modify_form.jsp region.js 추가
+
+[33mcommit 4fc93a46351673d7f66eb945892ee6d96fa1a998[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 17:01:52 2019 +0900
+
+    [ADD] region.js 추가 및 cat/missingboard/write_form.jsp js 설정
+
+[33mcommit e71eb261fd2f758035001c9068fb6833274c26d9[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 16:44:11 2019 +0900
+
+    [DELETE] 고양이 실종게시판 쓰기,수정게시판 summernote.js 삭제
+
+[33mcommit dd71d5ed70ea552612e10d351097bc6b3cf0dbd8[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 16:38:56 2019 +0900
+
+    [UPDATE] cat/missingboard/modify_form.jsp js 파일 설정추가
+
+[33mcommit c24d20a09564ae015a2facb5c0a15a94e49734e4[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 16:36:52 2019 +0900
+
+    [UPDATE] cat/missingboard/write_form.jsp js 파일 설정추가
+
+[33mcommit 9c89ce18d4ee4cfe27667c82436d8b746b5187a0[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 16:33:11 2019 +0900
+
+    [UPDATE] cat/infoboard/modify_form.jsp summernote.js 설정
+
+[33mcommit c98dec6c0c188261c66b540d97b4c20c34c0d8b7[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 16:30:52 2019 +0900
+
+    [UPDATE] 고양이 정보/write_form.jsp summernote.js 설정
+
+[33mcommit 3fe68e221ad3f5c12c209b5fb9e24b3e3779b42f[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 16:27:56 2019 +0900
+
+    [ADD] modify_map.js 추가 및 고양이 정모 modify_form.jsp 수정
+
+[33mcommit ba50733cb1c1a25a8e432947135cd7d69f8ff5e6[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 16:20:37 2019 +0900
+
+    [ADD] write_map.js 추가 및 고양이 정모 write_form.jsp 수정
+
+[33mcommit 53867864aa0bac4bd1c8689ff6430cf525357826[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 15:53:21 2019 +0900
+
+    [ADD] datepicker.js 추가 및 cat/gatherboard/write_form.jsp 수정
+
+[33mcommit 3879dbae29a4f4a50d2b09c1d1e280ad8a3185cd[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 15:47:56 2019 +0900
+
+    [UPDATE] summernote.js focus 설정 off
+
+[33mcommit 45380930d54203e35e67101ef45360e4b07f9a4b[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 15:45:33 2019 +0900
+
+    [UPDATE] cat/gatherboard/write_form.jsp summernote.js 설정
+
+[33mcommit 150198d5d882c16722f38fe52297de130ac895bb[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 15:41:17 2019 +0900
+
+    [UPDATE] cat/freeboard/modify_form.jsp summernote.js 설정
+
+[33mcommit 4fdcc0076d3ba7b3bebba1b460757ca4f583dd40[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 15:33:43 2019 +0900
+
+    [ADD] summernote.js 추가 및 cat/freeboard/write_form.jsp 수정
+
+[33mcommit d1807e86926222cbe1d017ba58a8d352d0456e77[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 14:44:49 2019 +0900
+
+    [UPDATE] searchMap.jsp setZipcode 함수 수정
+
+[33mcommit 7481f56c94c92e1ebfc6445da8da5a9d05f33d58[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 14:20:15 2019 +0900
+
+    [EDIT] mypet 로고 클릭시 마이페이지로 넘어가도록 경로를 설정하였습니다.
+
+[33mcommit f05747628cf793765d8a0c12db9b1a5b73c15ba2[m
+Author: do <ehwnghks@gmail.com>
+Date:   Tue Jul 9 12:18:34 2019 +0900
+
+    [DELETE] target 폴더 추적제외
+
+[33mcommit 782b98e30f9375036f625d90537cbeb2174d5d8b[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 02:26:08 2019 +0900
+
+    [ADD] stylesheet와 script 파일 추가를 위한 공통 파일을 추가하였습니다.
+
+[33mcommit 9e875d7db623997f587d1345f4b6de18a2f1ff24[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 02:25:43 2019 +0900
+
+    [EDIT] 상단바 코드를 수정하였습니다.
+
+[33mcommit 76d5d2596c232d5e8de02b84304911e64fb54e09[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 02:24:56 2019 +0900
+
+    [EDIT] view 파일에서 상단 바를 include를 통해 넣었습니다.
+
+[33mcommit d3aa5f2097ccf1c9ef2c9e548ed07d9355754adc[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:53:43 2019 +0900
+
+    [ADD] header 부분으로 사용할 top.jspf 파일을 작성하였습니다.
+
+[33mcommit ddb2f6c926f32743f8a5c35cd3692e89dc3564bf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:42:27 2019 +0900
+
+    [EDIT] HomeController를 초기상태로 되돌려 놓았습니다.
+
+[33mcommit e8df4f2a0a0655feb184c261f8d3760f99475ea1[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:38:36 2019 +0900
+
+    [EDIT] mypage와 관련되 파일들을 수정하였습니다.
+
+[33mcommit 78e5ad40fd3ae19ad250e1d21b0048c96ff38b88[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:35:37 2019 +0900
+
+    [ADD] 문의하기 작성을 위한 메서드를 추가하였습니다.
+
+[33mcommit 976d26640dd878808387fc1912c31e2e62ba2b4e[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:32:54 2019 +0900
+
+    [ADD] 문의하기 작성을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 7031a0196096bb99eb800dc3b6f6b983ae2348a8[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:29:45 2019 +0900
+
+    [ADD] 문의하기를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 5b6d21435e97af97edf4cfc5f033daaf11f3bf90[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:20:09 2019 +0900
+
+    [ADD] 쪽지함을 위한 메서드를 컨트롤러에 추가했습니다.
+
+[33mcommit d4a674d4847b3b981bb6bb4ae8d86f7fc177f85e[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:15:27 2019 +0900
+
+    [ADD] 회원 정보 수정을 위한 메서드를 컨트롤러에 추가했습니다.
+
+[33mcommit 150baac9d39ccbf8f2892690ef332251f17f9e57[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 01:15:05 2019 +0900
+
+    [ADD] mypage 메인을 위한 메서드를 컨트롤러에 추가했습니다.
+
+[33mcommit 9b98c473f8d7a6654f6d4c802a5ed98488e556d9[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 00:52:47 2019 +0900
+
+    [ADD] 마이페이지를 위한 컨트롤러를 생성하였습니다.
+
+[33mcommit aab79484e066fe38295397af117dd9966581e15d[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 00:48:15 2019 +0900
+
+    [EDIT] 병원 관련하여 수정하였지만, 더 많은 수정이 필요함.
+
+[33mcommit 97141c342f2a597f738c12e201f6217b5c029b42[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 00:33:12 2019 +0900
+
+    [ADD] 병원 세부 정보 보기를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 63a6515d3988b8a72fa50860c18cc9c6627f31b5[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Tue Jul 9 00:20:40 2019 +0900
+
+    [ADD] 병원 리스트를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 22baf91f2209dedb631db37d9fd499b46da730b2[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:57:43 2019 +0900
+
+    [ADD] 병원 검색을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit d470e8803fe1d59c431b14d7ab053033f056d47a[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:56:10 2019 +0900
+
+    [ADD] 병원에 관한 컨트롤러를 생성하였습니다.
+
+[33mcommit d040abe7d13ebf78bd335d9a9b9bd15a03fe69e9[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:53:15 2019 +0900
+
+    [EDIT] 마이펫 리소스 경로를 설정해주었습니다.
+
+[33mcommit 70a624fd24940121b740c9caf7c15eab3c3ae160[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:49:17 2019 +0900
+
+    [ADD] 마이펫 관련한 메서드를 컨트롤러에 추가하고, mypet.jsp의 이름을 list.jsp로 변경하였습니다.
+
+[33mcommit 5784a0b47bcba0827e2ba55511e6edf4ae07c195[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:45:07 2019 +0900
+
+    [ADD] 마이펫 게시판을 담당하는 마이펫 컨트롤러를 생성하였습니다.
+
+[33mcommit 5795ae486049a433322d6e178d265d06c4e2d74c[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:42:12 2019 +0900
+
+    [EDIT] 실종견 게시판 view에 해당하는 파일들에 대하여 리소스 파일들의 경로를 설정해주었습니다.
+
+[33mcommit e22a996069031c40434c8207b1300ee8402f017d[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:37:46 2019 +0900
+
+    [ADD] 실종견 게시판 글 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 8b6d0d48efce93023f8eba4547e8a21d0b5bb863[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:32:49 2019 +0900
+
+    [EDIT] 실종견 게시판 글작성에 대해 잘못된 경로 설정으로 경로를 수정하였습니다.
+
+[33mcommit 09d4f6559095947114267c60d6837d1d66f7e8bf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:31:12 2019 +0900
+
+    [ADD] 실종견 게시판 글 작성을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 689cae029fedb093d8eb921af4f66247b2c28fe6[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:24:53 2019 +0900
+
+    [ADD] 실종견 게시판 조회를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit f0260be672e1e8859a02895fed58782d7602d754[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:23:07 2019 +0900
+
+    [EDIT] 강아지 정보게시판 뷰에 관한 파일들의 리소스 경로를 설정하였습니다.
+
+[33mcommit 58331ee0093f5f61f1fb6853381269da0305a729[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:19:28 2019 +0900
+
+    [ADD] 강아지 정보 게시판 글 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 925311495945084d84dc431aa82147507289f198[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:15:19 2019 +0900
+
+    [ADD] 강아지 정보 게시판 글쓰기를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 047e1aa857049a460d5593f690e8bca0f0fc83cf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:13:22 2019 +0900
+
+    [ADD] 강아지 정보게시판 조회를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 3066419fb1fbbdafd2e54826f94397a4f5aa2913[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:06:22 2019 +0900
+
+    [ADD] 강아지 정모게시판에 해당하는 파일의 리소스 경로를 수정하였습니다.
+
+[33mcommit db0456a0c0f2c5c9c7a7267d1d5b227a7c82c43a[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 21:03:55 2019 +0900
+
+    [ADD] 강아지 정모게시판 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 201aa9ca0e0d6374c9683643a92087b2a9fa47d8[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:53:54 2019 +0900
+
+    [ADD] 강아지 정모게시판 글쓰기를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 80a69b259f7a747b9e2ccb8bcb424b476700dd13[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:43:56 2019 +0900
+
+    [ADD] 강아지 정모게시판 조회를 위한 메서드를 컨트롤러에 추가했습니다.
+
+[33mcommit 0404146f2c04a63c9b8632aa994a0ea4058f94f5[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:42:24 2019 +0900
+
+    [ADD] 강아지 자유게시판 목록에서 글쓰기 버튼에 링크를 추가했습니다.
+
+[33mcommit 86b65aa16b440da59a692d8b03e50008bd2f6cb2[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:40:21 2019 +0900
+
+    [EDIT] 강아지 자유게시판 view에 리소스 경로를 변경하였습니다.
+
+[33mcommit 8fe9d13025addf185056adcb5b73f052fbc43748[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:36:15 2019 +0900
+
+    [ADD] 강아지 자유게시판 글 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 9c401dc3da49c0cd3d3ede0e4bff06847667beaf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:30:57 2019 +0900
+
+    [ADD] 강아지 자유게시판 글 작성을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit aa9a7b23a40262cbaaf33e4bac43d8eb3016a6a5[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:26:17 2019 +0900
+
+    [ADD] 강아지 자유게시판 조회를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 3b6365561cdfe90273e91b990e8fc8e58af5b8cf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:08:14 2019 +0900
+
+    [EDIT] 신고 글자가 오타가 생겨서 수정합니다.
+
+[33mcommit 6650520c9ed86e0a8f7848584a6dce4887e1f97b[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:05:50 2019 +0900
+
+    [EDIT] 실종묘 게시판을 위한 파일들의 리소스 경로 설정을 새롭게하였습니다.
+
+[33mcommit 95d672c969623017830c252a841920b0f8e9a832[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 20:04:15 2019 +0900
+
+    [ADD] 실종묘 게시판 게시글 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 5eae4407c2b07096781933d3880a9b37457b7531[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:42:40 2019 +0900
+
+    [ADD] 실종묘 게시판 글쓰기를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 4d618971fc0aab42ac1bdfef3a846d2fb89b1fa3[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:39:53 2019 +0900
+
+    [EDIT] 리소스 경로 설정 및 링크 url 설정을 하였습니다.
+
+[33mcommit 67adf5ce94fbad17e23997395d9a15c92c632918[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:22:24 2019 +0900
+
+    [ADD] 고양이 정보 게시판 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 61a31b184d7cd47b742d080b0d951c968f8a38dd[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:17:35 2019 +0900
+
+    [ADD] 고양이 정보 게시판의 글 조회를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit ba75e98e8aaf6da11292803de25d0135ab0fdb96[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:15:38 2019 +0900
+
+    [EDIT] 고양이 정보 게시판 글쓰기를 위한 리소스 파일의 경로를 설정하였습니다.
+
+[33mcommit 2676b2938f1a01b1e4524eb5a31927e8b948bd6e[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:11:15 2019 +0900
+
+    [ADD] 고양이 정보 게시판 글쓰기를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit aac031351074726f16471de76e4118ce2d9cec89[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:08:17 2019 +0900
+
+    [EDIT] 고양이 정모 게시판 글 목록과 글 조회에 있는 링크를 수정하였습니다.
+
+[33mcommit 4cdf5dd6629ea6fade16812c2a850cd06765d398[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:07:37 2019 +0900
+
+    [EDIT] 고양이 정모 게시판 글 수정에 필요한 리소스 파일의 경로를 변경하였습니다.
+
+[33mcommit c7c4d24e87f0734726faa56e4a133d0e6fd83604[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 19:02:11 2019 +0900
+
+    [ADD] 고양이 정모게시판 글 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 55c4f49e740cd16f8904e15417fd607fc4b6de46[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:55:19 2019 +0900
+
+    [ADD] 고양이 정모 게시판 글 조회를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit e54342a0779512d974b83585b4caa0821d91f201[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:48:58 2019 +0900
+
+    [EDIT] 고양이 정모 게시판 글쓰기에 필요한 리소스 파일의 설정을 업데이트 하였습니다.
+
+[33mcommit 29a270fe029af7451e68632220fa41f7c23889c4[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:47:56 2019 +0900
+
+    [ADD] 다음 지도 Api를 사용하기 위한 파일을 추가하였습니다.
+
+[33mcommit 5fe8c1e2e2b41290fbab68eda6c6f8bee6e7a70f[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:37:43 2019 +0900
+
+    [ADD] 고양이 정모 게시판 글 작성을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 87a180ca3e5dcceb9d1e0e1c4fe9beb25ae82d98[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:34:16 2019 +0900
+
+    [ADD] 강아지 자유게시판 글 조회에 필요한 링크를 추가하였습니다.
+
+[33mcommit 7010f37c80377612d7ae31c3c3157775a70abfbd[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:33:33 2019 +0900
+
+    [EDIT] 수정 페이지의 리소스 경로를 수정하였습니다.
+
+[33mcommit c2b66b883dea4c46b309fcd4fa93704941158554[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:29:30 2019 +0900
+
+    [ADD] 고양이 자유게시판의 수정을 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit ca37a5a15b9d129ab42fde05e0fe26916fe14f7a[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:19:53 2019 +0900
+
+    [ADD] 고양이 자유게시판 글 조회를 위한 메서드를 추가하였습니다.
+
+[33mcommit 452f5c67d03ea20072daf9c23397ac5b53607d33[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:14:07 2019 +0900
+
+    [EDIT] 고양이 자유게시판 글쓰기의 리소스 설정 경로를 변경하였습니다.
+
+[33mcommit 96c0c4b4ba633b1df82351f2f2bb57b4c6427832[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:05:35 2019 +0900
+
+    [ADD] 고양이 자유게시판 글쓰기를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit db34324577dc5d9f6388982d81d36d2b0b013bea[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:04:30 2019 +0900
+
+    [EDIT] 실종묘 리스트의 리소스 파일 경로를 설정하였습니다.
+
+[33mcommit 4c23fb3dc1023ad8001e4508c183d75d6ace92cb[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 18:03:46 2019 +0900
+
+    [ADD] 실종묘 게시판 리스트를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 370cb9c442a3be7f0d8e338c55eac51dad804002[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:53:58 2019 +0900
+
+    [ADD&EDIT] 실종묘 게시판을 위한 controller를 생성하고, 실종견 게시판을 위한 controller의 이름을 변경하였습니다.
+
+[33mcommit f124c74895303188cad89f308887b42d17e0bda5[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:51:58 2019 +0900
+
+    [EDIT] 고양이 정보 게시판 리스트의 리소스 파일 경로를 수정하였습니다.
+
+[33mcommit afc4753ff52848e22036eb15af368bf4f9986f3f[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:49:08 2019 +0900
+
+    [ADD] 고양이 정보 게시판 리스트를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 2b70a9dc2abbfcfb93ba13ad4af61b543e739d27[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:48:14 2019 +0900
+
+    [ADD&EDIT] 고양이 정보 게시판을 위한 컨트롤러를 추가하고, 강아지 정보게시판 컨트롤러의 이름을 변경하였습니다.
+
+[33mcommit 4e51bee65307055e3bca540865497b8eb5583560[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:46:18 2019 +0900
+
+    [EDIT] 고양이 정모 게시판 리스트의 리소스 경로를 재설정하였습니다.
+
+[33mcommit 65399839af89e91608f26fd93995466bb8d40f1c[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:43:33 2019 +0900
+
+    [ADD] 고양이 정모 게시판 리스트를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit 31ca4caf4ca3e3dfe001a59bca8e85e91cad1f7a[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:42:32 2019 +0900
+
+    [EDIT] 강아지 정모게시판 컨트롤러의 이름을 변경하였습니다.
+
+[33mcommit 67f25ef2d32d9030822583456b949b00de515bd6[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:41:29 2019 +0900
+
+    [ADD] 고양이 정모게시판을 위한 컨트롤러를 추가하였습니다.
+
+[33mcommit 452b6efba061ed71d1785f1025172a5d0d07d3be[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:39:39 2019 +0900
+
+    [EDIT] 강아지 자유게시판을 위한 Controller의 이름을 수정하였습니다.
+
+[33mcommit 06f636e287813ac29b844d7126be4d5303946a4f[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:38:52 2019 +0900
+
+    [EDIT] 고양이 자유게시판의 리소스 파일 경로를 수정하였습니다.
+
+[33mcommit 2897a7c56f624d35f8957ec979746fd21578c58f[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:35:50 2019 +0900
+
+    [EDIT] 고양이 자유게시판의 controller의 이름이 강아지 자유게시판 controller의 이름과 중복되어 이름을 수정하였습니다.
+
+[33mcommit 39b8f1cbfbb2f4b1a67a802878a4e896f4a4ae3b[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:30:40 2019 +0900
+
+    [ADD] 고양이 자유게시판 리스트를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit fc8ef7291493aabed88202dac638a8a83c9e6cdd[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:29:46 2019 +0900
+
+    [ADD] 고양이 자유게시판을 위한 컨트롤러를 추가하였습니다.
+
+[33mcommit b7d5cdf022e6e1308c4f82b3f5d2e1f49706a611[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:27:55 2019 +0900
+
+    [EDIT] 실종견 게시판 리스트의 리소스 경로를 수정하였습니다.
+
+[33mcommit 156df4ecdaef77069cf93c4b51095ae36e151553[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:20:17 2019 +0900
+
+    [ADD] 실종견 게시판 리스트를 위한 메서드를 컨트롤러에 추가하였습니다.
+
+[33mcommit f265f882a79ff48f1471c600629ae028bbb86374[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:18:54 2019 +0900
+
+    [ADD] 실종견 게시판을 위한 컨트롤러를 추가하였습니다.
+
+[33mcommit b07be15aefa5008a6a9e7f30516bfb6c9aa026c1[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:17:12 2019 +0900
+
+    [EDIT] dog의 자유게시판, 정모게시판, 정보게시판의 패키지 경로를 controller로 설정하였습니다.
+
+[33mcommit 9f16c21802d060d6ff5f080a7914c7767d3b8951[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 17:12:26 2019 +0900
+
+    [EDIT] dog 정보 게시판 리스트 페이지의 리소스를 수정하였습니다.
+
+[33mcommit 38a4e00e181c754e9d63f18e85ff29967cb9ccdf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 16:52:16 2019 +0900
+
+    [ADD] dog  정보게시판을 확인하기 위한 메서드를 추가하였습빈다.
+
+[33mcommit 6a8dcc80886a2d413e7708934468e497a3117b5d[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 16:50:00 2019 +0900
+
+    [ADD] dog 정보게시판을 위한 컨트롤러를 추가하였습니다.
+
+[33mcommit 14d4225b2740493775d76bf2e21f1a1e41634480[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 16:46:15 2019 +0900
+
+    [ADD] 정보 게시판 리스트의 리소스 파일 경로를 수정하였습니다.
+
+[33mcommit a58592b4fab2fd56102e48951acac93846cdbf50[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 16:21:22 2019 +0900
+
+    [ADD] dog 정모 게시판을 위한 컨트롤러를 추가하고 list를 위한 메서드를 추가하였습니다.
+
+[33mcommit 8a86e1329e3851c4227232d1c218b798007d2432[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 16:20:47 2019 +0900
+
+    [EDIT] dog 자유게시판에 필요한 리소스 파일들의 경로를 재설정하였습니다.
+
+[33mcommit d2debfa3ed1ad6b6942fc61b196e6e26aaffef0e[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 15:59:26 2019 +0900
+
+    [ADD] petish에 필요한 사진들을 추가하였습니다.
+
+[33mcommit 9e23d014c5194cf571d206b7ba30f75cdb6d7a58[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 15:49:59 2019 +0900
+
+    [ADD] dog의 자유게시판 리스트에 대한 controller의 메서드와 jsp 파일을 수정하였습니다.
+
+[33mcommit ca3695902077b96b7282e3b796da3268429ae5c5[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 15:27:54 2019 +0900
+
+    [ADD] UTF-8 인코딩을 위한 필터를 web.xml에 추가하였습니다.
+
+[33mcommit d388bd98badfb0b87c07b540a7c0f925db7aa3bf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 15:19:43 2019 +0900
+
+    [ADD] dog 자유게시판을 위한 컨트롤러를 생성하였습니다.
+
+[33mcommit abf52c0efaac993fbc59164ea99c0cc8f649ac95[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 15:09:51 2019 +0900
+
+    [ADD] view에 해당하는 jsp 파일을 모두 추가하였습니다.
+
+[33mcommit 664620705e4254f960828962c3c594408002f881[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 10:59:47 2019 +0900
+
+    [ADD] mypage에 관련한 view 파일을 jsp 파일로 만들었습니다.
+
+[33mcommit 56770c2a7cf99073c18bfe00c13e2e9b4bddf196[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 10:37:27 2019 +0900
+
+    [EDIT] 병원에 대한 view 파일들을 업데이트 하였습니다.
+
+[33mcommit 6beaad3421c440f0916a930ab36d2b348799a674[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 10:32:36 2019 +0900
+
+    [EDIT] cat과 dog에 게시판의 글 작성과 글 수정에 대한 jsp 파일을 이동하였습니다.
+
+[33mcommit 66fc3799a4cb5065cbc78d5bc06f5d44ce05f8f3[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 10:26:36 2019 +0900
+
+    [DELETE] 앞에서 html 폴더 안으로 이동한 파일들을 모두 삭제하였습니다.
+
+[33mcommit 606d6f4009e581bd5b7bdd69876f115070619667[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 10:16:47 2019 +0900
+
+    [EDIT] html 파일들의 라인을 정리했습니다.
+
+[33mcommit a9c7895de4a8ba2ee15a4f0c628afff50e213eed[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 10:11:14 2019 +0900
+
+    [EDIT] 파일을 정리했습니다.
+
+[33mcommit 1d371d999aeef05277bd0211c4d11c2a73cbc299[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 10:04:54 2019 +0900
+
+    [EDIT] maven의 설정파일을 변경하였습니다.
+
+[33mcommit fa48c19c478a3ce778a01e02715c2e0e61a7a772[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 09:57:53 2019 +0900
+
+    [ADD] Top nav에 해당하는 부분에 대하여 commons에 top.jspf 파일로 생성하였습니다.
+
+[33mcommit fd57e37aa24afe9fc9abc55715b9b561130657b2[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 09:52:08 2019 +0900
+
+    [EDIT] html 파일들의 경로를 변경하였습니다.
+
+[33mcommit 2aa9bc0b5161ea580cafe901c7e66bb3b0c52f9a[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 09:51:23 2019 +0900
+
+    [EDIT] petish.jsp 파일의 이름을 mypet.jsp로 변경하였습니다.
+
+[33mcommit da18b951c23df8419bb36d0d4ba64a871f5cc679[m
+Merge: 448576b 28b068c
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Mon Jul 8 09:26:11 2019 +0900
+
+    Merge pull request #14 from jjj0611/jaeju.front
+    
+    [ADD] mypet 관련 UI를 추가하였습니다.
+
+[33mcommit 28b068c9453ba3441be7f0b0cc43cec0a94f8036[m[33m ([m[1;31morigin/jaeju.front[m[33m)[m
+Merge: 2334dcc 448576b
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Mon Jul 8 09:26:01 2019 +0900
+
+    Merge branch 'frontdevelop' into jaeju.front
+
+[33mcommit 2334dcc87c6eee6a114169acec07c76ccdab6e34[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 8 09:18:39 2019 +0900
+
+    [ADD] mypet 관련 UI를 추가하였습니다.
+
+[33mcommit 448576b3bfe406b284321e9eb97d40a627b47c52[m
+Merge: 91da427 62ec752
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:22:09 2019 +0900
+
+    Merge pull request #11 from jjj0611/sangwon.front
+    
+    Sangwon.front
+
+[33mcommit 62ec7528035024872eea4155eee4c1825e1df660[m[33m ([m[1;31morigin/sangwon.front[m[33m)[m
+Merge: 8c5944e 91da427
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:21:57 2019 +0900
+
+    Merge branch 'frontdevelop' into sangwon.front
+
+[33mcommit 91da427c79a5501e703dd43d8cbbc64111a7bf4a[m
+Merge: cb0bdb6 5a8ea34
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:20:42 2019 +0900
+
+    Merge pull request #9 from jjj0611/joohwan.front
+    
+    Joohwan.front
+
+[33mcommit cb0bdb6cde207b5ddda29f27b9f1d22e7ca054fa[m
+Merge: 7e4b02c 6d67bec
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:19:43 2019 +0900
+
+    Merge pull request #13 from jjj0611/yelim.front
+    
+    Yelim.front
+
+[33mcommit 7e4b02ce0ddc8b1ee437d95717f30ce9093d1070[m
+Merge: f0a698c 6803122
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:19:06 2019 +0900
+
+    Merge pull request #12 from jjj0611/yeji.front
+    
+    Yeji.front
+
+[33mcommit 8c5944ef9f19ad51b3c881a34bf855cc4f1dc309[m
+Merge: 47831c2 f0a698c
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:18:27 2019 +0900
+
+    Merge branch 'frontdevelop' into sangwon.front
+
+[33mcommit f0a698c73f5ef135a0bc6185d4f3dc8127b9275b[m
+Merge: 19ba430 740b8c5
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:16:16 2019 +0900
+
+    Merge pull request #10 from jjj0611/joohyun.front
+    
+    Joohyun.front
+
+[33mcommit 5a8ea3421b9570698dff37b820e21cc6ebda2e14[m[33m ([m[1;31morigin/joohwan.front[m[33m)[m
+Merge: bcd311c 19ba430
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:14:16 2019 +0900
+
+    Merge branch 'frontdevelop' into joohwan.front
+
+[33mcommit 19ba430ab523e3e431fcbcaa286eb9bad25744e8[m
+Merge: b6b933c 27574b5
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:11:47 2019 +0900
+
+    Merge pull request #8 from jjj0611/byungyoon.front
+    
+    Byungyoon.front
+
+[33mcommit 27574b581695e2d6c2ecec605115fc2a3277d4a3[m[33m ([m[1;31morigin/byungyoon.front[m[33m)[m
+Merge: b6b933c 9076d80
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:11:10 2019 +0900
+
+    Merge pull request #6 from Byungyoon2/byungyoon.front
+    
+    [ADD] 프론트를 추가하였습니다. 병윤
+
+[33mcommit 6d67bec9bff4e85fd42d7ffc5b84e73116e128f3[m[33m ([m[1;31morigin/yelim.front[m[33m)[m
+Merge: b6b933c 81677d1
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:10:53 2019 +0900
+
+    Merge pull request #5 from yelim615/yelim.front
+    
+    [add] 프론트 작업을 완료했습니다.예림
+
+[33mcommit 47831c26e9f2c87844eafce9a444af873005ece7[m
+Merge: b6b933c ade18e3
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:10:40 2019 +0900
+
+    Merge pull request #4 from heosangwon/sangwon.front
+    
+    [ADD] 프론트를 추가하였습니다. - 상원
+
+[33mcommit 68031228fea435a5bd4eed886cdc739aedc5570e[m[33m ([m[1;31morigin/yeji.front[m[33m)[m
+Merge: b6b933c 27c2a8d
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:10:29 2019 +0900
+
+    Merge pull request #3 from yyjj7661/yeji.front
+    
+    프론트 작업물 추가합니다 -예지
+
+[33mcommit 740b8c59e63e6eee7a2ddb428b20317b051d7947[m[33m ([m[1;31morigin/joohyun.front[m[33m)[m
+Merge: b6b933c 1ab844f
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:10:20 2019 +0900
+
+    Merge pull request #2 from july5087/joohyun.front
+    
+    [ADD]프론트 작업을 완료했습니다.주현
+
+[33mcommit bcd311cb12598adee73aa058e510ea1edfb4ddf6[m
+Merge: 5784722 5240621
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 17:10:10 2019 +0900
+
+    Merge pull request #7 from joobang/joohwan.front
+    
+    [ADD] html파일을 추가했습니다. 주환
+
+[33mcommit 52406219734e23172214eac2d31a7a7d1f72d553[m
+Author: do <ehwnghks@gmail.com>
+Date:   Thu Jul 4 17:01:16 2019 +0900
+
+    [ADD] html파일을 추가했습니다. 주환
+
+[33mcommit 9076d808847ebaac80c990bc2074fbb9fc54a107[m
+Author: yoon <yoon@gmail.com>
+Date:   Thu Jul 4 16:53:06 2019 +0900
+
+    [ADD] 프론트를 추가하였습니다. 병윤
+
+[33mcommit ade18e36ed9aacff887994e78aab5cd336af20ef[m
+Author: sangwon <lucker2004@naver.com>
+Date:   Thu Jul 4 16:27:45 2019 +0900
+
+    [ADD] 프론트를 추가하였습니다. - 상원
+
+[33mcommit 27c2a8dd1bb33a9a86e5707a5a572c095076a506[m
+Author: yyjj7661 <petish@gmail.com>
+Date:   Thu Jul 4 16:19:32 2019 +0900
+
+    프론트 작업물 추가합니다 -예지
+
+[33mcommit 81677d1f36cbee38ad7d035d3c895d31f3997dd4[m
+Author: AuroraPark <a20190212@gmail.com>
+Date:   Thu Jul 4 16:12:14 2019 +0900
+
+    [add] 프론트 작업을 완료했습니다.예림
+
+[33mcommit 1ab844fcf61f16d0d2a77369084bb16c15ce6ca1[m
+Author: july5087 <july5087@gmail.com>
+Date:   Thu Jul 4 16:07:19 2019 +0900
+
+    [ADD]프론트 작업을 완료했습니다.주현
+
+[33mcommit 57847226ccb3432d856e71063f2b41640dfdedf1[m
+Merge: b6b933c fe52112
+Author: jjj0611 <44603719+jjj0611@users.noreply.github.com>
+Date:   Thu Jul 4 15:23:38 2019 +0900
+
+    Merge pull request #1 from joobang/joohwan.front
+    
+    [ADD] 프론트 작업한 것을 추가했습니다. 주환
+
+[33mcommit fe521129f72f73abb76d6279b7740b361b3f72fb[m
+Author: do <ehwnghks@gmail.com>
+Date:   Thu Jul 4 15:18:30 2019 +0900
+
+    [ADD] 프론트 작업한 것을 추가했습니다. 주환
+
+[33mcommit b6b933c94d6b2c3f005e17d70bc6428c477e6bc9[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 14:53:08 2019 +0900
+
+    [ADD] lightblue css 파일을 추가했습니다.
+
+[33mcommit 34a9c596e13554b449ccd724f0ab05c801436264[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 14:47:03 2019 +0900
+
+    [ADD] 설정파일을 추가하였습니다.
+
+[33mcommit 1724384a5f12c4d3e97638d9cf1d463219a3b159[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 12:49:36 2019 +0900
+
+    [UPDATE] README 파일을 업데이트 하였습니다.
+
+[33mcommit ae6c83a6ade232642cf9064cfeabcc9b7df35d07[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 11:07:20 2019 +0900
+
+    [ADD] lombok dependency를 추가하였습니다.
+
+[33mcommit b862fdcc1ae12440dfc29ba18a4b1c3a44112aca[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 11:06:09 2019 +0900
+
+    [ADD] spring-test dependency를 추가하였습니다.
+
+[33mcommit fb1f53457fdff6f595a46e2117c1eff09113dc54[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 11:03:17 2019 +0900
+
+    [ADD] Junit5를 사용하기 위한 dependency를 추가하였습니다.
+
+[33mcommit 04760e2e0d8af309abacc3a037a5d4f20b7ef94f[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 10:52:16 2019 +0900
+
+    [UPDATE] junit의 버전을 4.12로 업데이트 하였습니다.
+
+[33mcommit 7cd5d66441e6b81144129e41dfd2cbe409cf887e[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 10:50:40 2019 +0900
+
+    [UPDATE] 기존 log4j관련 설정을 삭제하고, log4j 설정을 수정하였습니다.
+
+[33mcommit 93f12d34dab7e3d0103e5b34f4eeec72da520937[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 10:48:44 2019 +0900
+
+    [ADD] log4j 버전을 properties에 추가하였습니다.
+
+[33mcommit 4a7845c74954fbd8dedd6651dd1231dc47781be3[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 10:47:46 2019 +0900
+
+    [UPDATE] slf4j 버전을 프로퍼티에 업데이트했습니다.
+
+[33mcommit 35098108480a738b22ddb5fbb1dc09ee9e321f62[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 10:40:09 2019 +0900
+
+    [UPDATE] springframework의 버전을 5.0.7로 업데이트 하였습니다.
+
+[33mcommit 3c635f7ac9434820b553af617affe7868024eb53[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 10:38:41 2019 +0900
+
+    [UPDATE] java-version을 1.6에서 1.8로 업데이트 하였습니다.
+
+[33mcommit 307d52a3f1bf3d39d878a664ad88297c589ba6bf[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Thu Jul 4 10:37:20 2019 +0900
+
+    [INIT] petish spring project를 초기화하였습니다.
+
+[33mcommit 35bf1844452478a640ddf15fc2667e420b90c4fd[m
+Author: jaeju.jang <jjj0611@gmail.com>
+Date:   Mon Jul 1 20:28:00 2019 +0900
+
+    [INIT] pet community를 위한 저장소를 초기화하였습니다.
