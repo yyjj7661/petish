@@ -145,6 +145,14 @@
             <scope>test</scope>
 		</dependency>
 		
+		<!-- test를 위한 assertj dependency 추가 -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.12.2</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
