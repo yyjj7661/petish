@@ -51,7 +51,7 @@
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/kakaomap.css">
+<link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 
 </head>
 <body>
