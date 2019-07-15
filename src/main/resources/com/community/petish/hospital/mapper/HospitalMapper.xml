@@ -3,8 +3,8 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.spring.ajax.ReplyMapper">
- 	<resultMap type="HospitalVO" id="replyResultMap">
+<mapper namespace="com.community.petish.hospital.mapper.HospitalMapper">
+ 	<resultMap type="com.community.petish.hospital.domain.HospitalVO" id="hospitalResultMap">
  		<result property="id" column="ID"/>
  		<result property="hospital_name" column="HOSPITAL_NAME"/>
  		<result property="hospital_addr" column="HOSPITAL_ADDR"/>
@@ -18,8 +18,8 @@
  		
  	</resultMap>
  	<!-- id는 Mapper.java(여기선 MemberMapper.java)에 동일하게 사용 -->
- 	<select id="gethospitalList" resultMap="replyResultMap">
- 		select * from hospital_tb where hospital_addr like '%{hospital_addr}%' order by id
+ 	<select id="gethospitalList" resultMap="hospitalResultMap">
+ 		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' order by id
  	</select>
  	
  	

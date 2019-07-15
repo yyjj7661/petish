@@ -286,7 +286,7 @@
 	});
 	function gethospital(addr){
 		alert(addr);
-		$.ajax({
+		/* $.ajax({
 			url:'/hospital/search' +'?'+$.param({"hopital_addr":addr}),
 			type:'GET',
 			contentType:'application/x-www-form-urlencoded; charset=utf-8',
@@ -300,7 +300,8 @@
 			error:function(){
 				alert("ajax 통신 실패!!!");
 			}
-		 });
+		 }); */
+		window.location.href = "/hospital/search"+"?"+$.param({"hospital_addr":addr});
 	}
 	
 	</script>
