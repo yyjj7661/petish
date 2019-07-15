@@ -14,7 +14,8 @@
 	<!-- 평점 별  -->
 	
 	<link rel="stylesheet" href="/resources/css/hospital/main_search.css">
-	<script src="/resources/js/hospital/hospital.js"></script>
+	<link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
+	<script src="/resources/js/region.js"></script>
 	
 
 </head>
@@ -39,7 +40,7 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<select id="region" onchange="categoryChange(this)" class="form-control">
-										<option value="">지역</option>
+										<option value="0">지역</option>
 										<option value="1">서울</option>
 										<option value="2">경기</option>
 										<option value="3">인천</option>
@@ -63,7 +64,7 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<select id="sml_region" class="form-control">
-										<option selected>시 / 군 / 구</option>
+										<option value="0" selected>시 / 군 / 구</option>
 									</select>
 								</div>
 							</div>
@@ -71,7 +72,7 @@
 							<input type="checkbox"> 응급진료
 
 							<div class="col-md-3">
-								<button type="button" class="btn btn-primary btn-block" style="background-color: gray;">Search</button>
+								<button type="button" id="hos_search" class="btn btn-primary btn-block" style="background-color: gray;">Search</button>
 							</div>
 						</div>
 					</div>
@@ -105,7 +106,7 @@
 															class="img-fluid rounded-circle"></a>
 													</div>
 													<h3 style="font-size: 25px;">
-														<a href="A동물병원상세페이지">A 동물병원</a>
+														<a href="/hospital/detail">A 동물병원</a>
 													</h3>
 													<p style="font-size: 25px;">★★★★★</p>
 													
@@ -172,6 +173,24 @@
 													</div>
 												</div>
 											</div>
+											<div data-animate="fadeInUp" class="col-md-3">
+												<div class="team-member">
+													<div class="image">
+														<a href="D동물병원상세페이지"><img
+															src="/resources/img/hospital/hospital.jpg" alt=""
+															class="img-fluid rounded-circle"></a>
+													</div>
+													<h3 style="font-size: 25px;">
+														<a href="D동물병원상세페이지">D 동물병원</a>
+													</h3>
+													<p style="font-size: 25px;">★★★★★</p>
+
+													<div class="text">
+														<div>02-9999-9999</div>
+														<div>응급진료</div>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>				
@@ -194,6 +213,78 @@
 	<script src="/resources/js/jquery.parallax-1.1.3.js"></script>
 	<script src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
-	<script src="/resources/js/front.js"></script>
+	
+	<script>
+	//지도 api 선택한 곳 마커 표시하기(주소까지 출력)
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+ mapOption = {
+     center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+     level: 3 // 지도의 확대 레벨
+ };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	var marker = new kakao.maps.Marker();
+	
+	var infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+	// 인포윈도우에 장소명을 표시합니다
+	function displayInfowindow(map, marker) {
+		
+	    var content = '<div class="bAddr"><span class="title">' + '비트캠프병원' + '</span><div>주소 : '+'address_name'+'</div></div>';
+
+	    infowindow.setContent(content);
+	    infowindow.open(map, marker);
+	}
+	//검색 하고 마커 찍어주는 함수
+	function setMarker(fa, ga){
+		//검색창에서 클릭한 좌표로 이동된 지도를 다시 생성
+		mapOption = {
+		        center: new kakao.maps.LatLng(ga, fa), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		//해당 위치에 마커를 표시
+		marker.setPosition(new kakao.maps.LatLng(ga, fa));
+		marker.setMap(map);
+		kakao.maps.event.addListener(marker, 'click',function(){
+			displayInfowindow(map, marker);
+		});
+	}
+	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+	//var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+	
+	//원래 게시글의 모임장소 주소를 좌표로 바꿔주고 지도에 표시해주는 함수//********************************************************
+	var callback = function(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	        setMarker(result[0].x, result[0].y);
+	        
+	    }
+	};
+	
+	
+	</script>
+	<script>
+	$(document).ready(function(){
+		$('#hos_search').click(function(event){
+			if($('#sml_region').val()=="0" || $('#region').val()=="0" ){
+				
+				alert('지역을 선택해 주세요.');
+			}
+			else{
+				// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
+				geocoder.addressSearch('서울 용산구 한강로2가 115-2', callback);
+				
+			}
+		});
+	});
+	
+	
+	</script>
 </body>
 </html>
