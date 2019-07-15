@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.community.petish.hospital.domain.HospitalVO;
+import com.community.petish.hospital.mapper.HospitalMapper;
 
 @Service("hospitalService")
 public class HospitalServiceImpl implements HospitalService{

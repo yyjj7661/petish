@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ajax.ReplyMapper">
+ 	<resultMap type="HospitalVO" id="replyResultMap">
+ 		<result property="id" column="ID"/>
+ 		<result property="hospital_name" column="HOSPITAL_NAME"/>
+ 		<result property="hospital_addr" column="HOSPITAL_ADDR"/>
+ 		<result property="hospital_phone" column="HOSPITAL_PHONE"/>
+ 		<result property="hospital_hours" column="HOSPITAL_HOURS"/>
+ 		<result property="hospital_website" column="HOSPITAL_WEBSITE"/>
+ 		<result property="hospital_img" column="HOSPITAL_IMG"/>
+ 		<result property="isParking" column="ISPARKING"/>
+ 		<result property="isEmergency" column="ISEMERGENCY"/>
+ 		
+ 		
+ 	</resultMap>
+ 	<!-- id는 Mapper.java(여기선 MemberMapper.java)에 동일하게 사용 -->
+ 	<select id="gethospitalList" resultMap="replyResultMap">
+ 		select * from hospital_tb where hospital_addr like '%{hospital_addr}%' order by id
+ 	</select>
+ 	
+ 	
+ </mapper> 
