@@ -5,5 +5,5 @@ import java.util.List;
 import com.community.petish.hospital.domain.HospitalVO;
 
 public interface HospitalMapper {
-	List<HospitalVO> gethospitalList();
+	List<HospitalVO> gethospitalList(String hospital_addr);
 }

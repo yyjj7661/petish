@@ -13,13 +13,16 @@ import com.community.petish.hospital.mapper.HospitalMapper;
 public class HospitalServiceImpl implements HospitalService{
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private HospitalMapper hospitalMapper;
+	
 	@Override
-	public List<HospitalVO> gethospitalList() {
-		List<HospitalVO> hospitalList = null;
-		HospitalMapper hospitalMapper = sqlSession.getMapper(HospitalMapper.class);
-		hospitalList = hospitalMapper.gethospitalList();
-		return hospitalList;
+	public List<HospitalVO> gethospitalList(String hospital_addr) {
+		
+		 List<HospitalVO> hospitalList = null; 
+		 hospitalList=hospitalMapper.gethospitalList(hospital_addr); 
+		 
+		 return hospitalList;
+		 
 	}
 
 }

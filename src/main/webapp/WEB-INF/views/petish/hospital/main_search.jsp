@@ -278,12 +278,30 @@
 			}
 			else{
 				// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
-				geocoder.addressSearch('서울 용산구 한강로2가 115-2', callback);
+				
+				gethospital($('#sml_region').val());
 				
 			}
 		});
 	});
-	
+	function gethospital(addr){
+		alert(addr);
+		$.ajax({
+			url:'/hospital/search' +'?'+$.param({"hopital_addr":addr}),
+			type:'GET',
+			contentType:'application/x-www-form-urlencoded; charset=utf-8',
+			dataType:'json',
+			success:function(data){
+				$.each(data, function(index, item){
+					
+					geocoder.addressSearch(item.hospital_addr, callback);
+				})
+			},
+			error:function(){
+				alert("ajax 통신 실패!!!");
+			}
+		 });
+	}
 	
 	</script>
 </body>
