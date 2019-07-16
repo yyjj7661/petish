@@ -52,22 +52,23 @@
 	href="/resources/img/apple-touch-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152"
 	href="/resources/img/apple-touch-icon-152x152.png">
-	
+
 <!-- datetimepicker 추가 -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" >
-	
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css">
+
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-        <link rel="stylesheet" href="/resources/css/write-modify.css">
-        <link rel="stylesheet" href="/resources/css/kakaomap.css">
+<link rel="stylesheet" href="/resources/css/write-modify.css">
+<link rel="stylesheet" href="/resources/css/kakaomap.css">
 </head>
 
 <body>
 	<div id="all">
-		
-		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+
+		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
 
 		<div id="heading-breadcrumbs">
 			<div class="container">
@@ -92,27 +93,28 @@
 							<div class="heading" id="head">
 								<h3 class="text-uppercase">글 쓰기</h3>
 							</div>
-							<div class="col-lg-10 text-right p-3" style="display:inline-block;">
-										<a href="/dog/missingboard/list" class="btn btn-template-outlined"
-											style="margin-top: 10px;">목록</a>
+							<div class="col-lg-10 text-right p-3"
+								style="display: inline-block;">
+								<a href="/dog/missingboard/list"
+									class="btn btn-template-outlined" style="margin-top: 10px;">목록</a>
 							</div>
 							<h4>[실종견 정보]</h4>
 							<form id="missingMap">
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
-											<label for="category">이름</label>
-											<input type="text" class="form-control">
+											<label for="category">이름</label> <input type="text"
+												class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
-											<label for="category">나이</label>
-											<input type="text" class="form-control">
+											<label for="category">나이</label> <input type="text"
+												class="form-control">
 										</div>
 									</div>
 								</div>
-								<div class="row">	
+								<div class="row">
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">종</label> <select id="size"
@@ -150,43 +152,39 @@
 												<option value="30">콜리</option>
 												<option value="31">쉽독</option>
 												<option value="32">기타 강아지</option>
-												
+
 											</select>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label>성별</label>
-											<div class="checkbox" style="padding-top:10px;">
-												<label>
-													<input type="radio" value="male" name="gender" >
-													수컷
-												</label>
-												<label>
-													<input type="radio" value="female" name="gender" >
-													암컷
+											<div class="checkbox" style="padding-top: 10px;">
+												<label> <input type="radio" value="male"
+													name="gender"> 수컷
+												</label> <label> <input type="radio" value="female"
+													name="gender"> 암컷
 												</label>
 											</div>
-											
+
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="password_old">사진</label> 
-											<input type="file" >
-												
+											<label for="password_old">사진</label> <input type="file">
+
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-8">
 										<div class="form-group">
-											<label for="password_old">특징</label> 
-											<input type="text" class="form-control">
-												
+											<label for="password_old">특징</label> <input type="text"
+												class="form-control">
+
 										</div>
 									</div>
 								</div>
@@ -195,94 +193,63 @@
 								<div class="row">
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">연락처</label> <input type="text" class="form-control">
-											
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-4">
-										<div class="form-group">
-											<label for="category">사례금</label> <input type="text" class="form-control">
-											
+											<label for="category">실종 일시</label> <input
+												id="datetimepicker" type="text" class="form-control">
+
 										</div>
 									</div>
 								</div>
 								
 								<div class="row">
-									
-									<div class="col-sm-6 col-md-2">
-										<div class="form-group">
-											<label for="category">지역</label> <select id="region" onchange="categoryChange(this)"
-												class="form-control">
-												<option value="">지역</option>
-												<option value="1">서울</option>
-												<option value="2">경기</option>
-												<option value="3">인천</option>
-												<option value="4">강원</option>
-												<option value="5">대전</option>
-												<option value="6">세종</option>
-												<option value="7">충남</option>
-												<option value="8">충북</option>
-												<option value="9">부산</option>
-												<option value="10">울산</option>
-												<option value="11">경남</option>
-												<option value="12">경북</option>
-												<option value="13">대구</option>
-												<option value="14">광주</option>
-												<option value="15">전남</option>
-												<option value="16">전북</option>
-												<option value="17">제주</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-2">
-										<div class="form-group">
-											<label for="category">시/구</label> <select id="sml_region"
-												class="form-control">
-												<option>시/구</option>
-												
-											</select>
-										</div>
-									</div>
-									
-									<div class="col-sm-6 col-md-4">
-										<div class="form-group">
-											<label for="category">실종 일시</label> <input id="datetimepicker" type="text" class="form-control">
-											
-										</div>
-									</div>
-									
-								</div>
-								<div class="row" >
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="category">실종 장소</label>									
-											<input id="place" name="ADDR" type="text" class="form-control">
+											<label for="category">실종 장소</label> <input id="place"
+												name="ADDR" type="text" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-1.5" style="padding-top: 6px;">
 										<div class="form-group">
-											<label for="category">    </label>									
-											<input type="button" class="form-control" value="검색" onclick="openZipcode(this.form)" />
+											<label for="category"> </label> <input type="button"
+												class="form-control" value="검색"
+												onclick="openZipcode(this.form)" />
 										</div>
 									</div>
 								</div>
 								<div class="map_wrap">
-    								<div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
-    							</div>
+									<div id="map"
+										style="width: 100%; height: 350px; position: relative; overflow: hidden;"></div>
+								</div>
+								<div style="padding:20px;"></div>
 								
-									
-								
-								
-								
+								<div class="row">
+									<div class="col-sm-6 col-md-4">
+										<div class="form-group">
+											<label for="category">사례금</label> <input type="text"
+												class="form-control">
+
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-6 col-md-4">
+										<div class="form-group">
+											<label for="category">연락처</label> <input type="text"
+												class="form-control">
+
+										</div>
+									</div>
+								</div>
+
 								<div class="row" style="padding-top: 10px;">
 									<div class="col-md-12 text-right">
-										<button type="submit" class="btn btn-outline-primary">확인</button>
+										<button type="submit" class="btn btn-outline-primary" style="margin:1rem">확인</button>
 										<button type="reset" class="btn btn-outline-primary"
 											id="resetbtn">취소</button>
 									</div>
 								</div>
 							</form>
-						
+
 						</div>
 
 					</div>
@@ -305,7 +272,8 @@
 	<script src="/resources/vendor/waypoints/lib/jquery.waypoints.min.js">
 		
 	</script>
-	<script src="/resources/vendor/jquery.counterup/jquery.counterup.min.js">
+	<script
+		src="/resources/vendor/jquery.counterup/jquery.counterup.min.js">
 		
 	</script>
 	<script src="/resources/vendor/owl.carousel/owl.carousel.min.js"></script>
@@ -316,13 +284,15 @@
 		src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 	<script src="/resources/js/front.js"></script>
-	
-	
+
+
 	<!-- 다음지도 api 추가 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
-	
-	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
-		
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
+
+	<script
+		src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+
 	<script src="/resources/js/datepicker.js"></script>
 	<script src="/resources/js/boardMap/write_map.js"></script>
 	<script src="/resources/js/region.js"></script>
