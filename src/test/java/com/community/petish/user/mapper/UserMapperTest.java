@@ -25,7 +25,7 @@ public class UserMapperTest {
 	
 	@BeforeEach
 	void deleteUsers() {
-		mapper.deleteAll();
+		userMapper.deleteAll();
 	}
 	
 	@Test
@@ -40,7 +40,7 @@ public class UserMapperTest {
 		userMapper.save(joinUserParams);
 		
 		UserDetailResponse userDetailResponse = userMapper.findByUsername("jjj0611@hanmail.net");
-		log.info(userDetailResponse);
+		log.info("userDetailResponse : " + userDetailResponse);
 		assertThat(joinUserParams.getNickname()).isEqualTo(userDetailResponse.getNickname());
 	}
 	
