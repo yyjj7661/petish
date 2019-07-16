@@ -30,5 +30,10 @@
 	<select id="findByUsername" parameterType="String" resultMap="UserDetailResponse">
 		SELECT * FROM USER_TB WHERE username = #{username}
 	</select>
+	
+	
+	<delete id="deleteAll">
+		DELETE FROM USER_TB
+	</delete>
 
 </mapper>
