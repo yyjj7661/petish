@@ -58,11 +58,197 @@
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
 
 <style>
-table{
-	
+.poster-table {
+	width: 70%;
+	padding: 30px;
+	background-color: #F7F8E0;
+	text-align: center;
+	font-size: 23px;
+}
+
+th, td {
+	padding: 13px;
+	text-align: left;
+}
+
+.poster-title {
+	margin: 70px;
+	background-color: #df0101;
+	padding: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+}
+
+.text-uppercase {
+	margin: 5px;
+}
+
+.bar {
+	padding: 15px 0;
+}
+
+#lostdog {
+	min-width: 400px;
+	max-width: 500px;
+	min-height: 200px;
+	max-height: 300px;
+}
+
+.date {
+	min-width: 200px;
+}
+
+.index {
+	min-width: 200px;
+}
+
+/* 이미지 슬라이드 */
+* {
+	box-sizing: border-box
+}
+
+/* Slideshow container */
+.slideshow-container {
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+	display: none;
+}
+
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev {
+	left: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+	color: #f2f2f2;
+	font-size: 15px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+	background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
+
+.reply-image {
+	max-width: 100%;
+	height: auto;
+	border-radius: 50%;
+}
+
+}
+@
+-webkit-keyframes fade {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+
+}
+@
+keyframes fade {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+
+}
+
+/* 반응형 */
+@media ( max-width :400px) {
+	.poster-table {
+		width: 100%;
+		padding: 15px;
+		font-size: 18px;
+	}
+	.index {
+		min-width: 100px;
+		width: 130px;
+	}
+	.poster-title {
+		margin: 50px;
+		font-size: 30px;
+	}
+	#lostdog {
+		width: 100%;
+		height: 100%;
+	}
+	th, td {
+		padding: 10px;
+	}
 }
 </style>
-
 </head>
 
 <body>
@@ -70,6 +256,7 @@ table{
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
 
+		<!-- 게시판명 -->
 		<div id="heading-breadcrumbs" class="border-top-0 border-bottom-0">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
@@ -84,275 +271,422 @@ table{
 			</div>
 		</div>
 
-		<div id="content">
-			<div class="container">
 
-				<!-- LEFT COLUMN _________________________________________________________-->
-				<div id="blog-post" class="col-md-13">
+		<div class="container">
 
-					<button class="btn btn-template-outlined">
-						<a href="/dog/missingboard/writeForm"> 글쓰기 </a>
-					</button>
-					<button type="submit" class="btn btn-template-outlined">
-						<i class="fa fa-align-justify"></i> <a
-							href="/dog/missingboard/list"> 목록 </a>
-					</button>
+			<!-- LEFT COLUMN _________________________________________________________-->
+			<div id="blog-post" class="col-md-13">
 
+				<!-- 버튼 -->
+				<button class="btn btn-template-outlined">
+					<a href="/dog/missingboard/writeForm"> 글쓰기 </a>
+				</button>
+				<button type="submit" class="btn btn-template-outlined">
+					<i class="fa fa-align-justify"></i> <a
+						href="/dog/missingboard/list"> 목록 </a>
+				</button>
 
+				<!-- 글 제목 -->
+				<div class="panel-heading">
+					<span class="badge badge-danger">미발견</span>
+					<h2 class="h3 panel-title">[인천 부평구] 페키니즈 / 남 / 3</h2>
+				</div>
 
-					<div class="panel-heading">
-						<span class="badge badge-danger">미발견</span>
-						<h2 class="h3 panel-title">[인천 부평구] 페키니즈 / 남 / 3</h2>
-					</div>
-
-					<table>
-
-						<tr>
-							<td><img src="/resources/img/blog-avatar2.jpg" alt=""
-								class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
-							<td>
-								<div class="nav navbar-nav ml-auto">
-									<a href="#" data-toggle="dropdown" class="dropdown"> Pet</a>
-									<div class="dropdown-menu">
-										<div class="dropdown">
-											<a href="/mypage/member/detail" class="nav-link">게시글보기</a>
-										</div>
-										<div class="dropdown">
-											<a href="#" class="nav-link" data-toggle="modal"
-												data-target="#messageWrite-modal">쪽지보내기</a>
-										</div>
+				<!-- 게시 정보 -->
+				<table>
+					<tr>
+						<td><img src="/resources/img/blog-avatar2.jpg" alt=""
+							class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
+						<td>
+							<div class="nav navbar-nav ml-auto">
+								<a href="#" data-toggle="dropdown" class="dropdown"> Pet</a>
+								<div class="dropdown-menu">
+									<div class="dropdown">
+										<a href="/mypage/member/detail" class="nav-link">게시글보기</a>
+									</div>
+									<div class="dropdown">
+										<a href="#" class="nav-link" data-toggle="modal"
+											data-target="#messageWrite-modal">쪽지보내기</a>
 									</div>
 								</div>
-							</td>
+							</div>
+						</td>
 
-							<td class=grade>준회원</td>
-							<td class=date>2019-07-01 23:02:56</td>
-							<td class=view><i class="fa fa-eye"></i>130186321</td>
+						<td class=grade>준회원</td>
+						<td class=date><i class="fa fa-clock-o"></i> 2019-07-01
+							23:02:56</td>
+						<td class=view><i class="fa fa-eye"></i> 130186321</td>
 
-						</tr>
-					</table>
-					
-					<!-- 쪽지 쓰기 모달창 -->
-					<div id="messageWrite-modal" tabindex="-1" role="dialog"
-						aria-hidden="true" class="modal fade">
-						<div role="document" class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h4 align="center" class="modal-title">쪽지 작성</h4>
-									<button type="button" data-dismiss="modal" aria-label="Close"
-										class="close">
-										<span aria-hidden="true">×</span>
-									</button>
+					</tr>
+				</table>
+			</div>
+			<!-- blog-post -->
+
+			<hr size="10px">
+
+
+
+			<!-- <div class="heading"> -->
+			<!-- <blockquote class="blockquote"> -->
+
+			<!-- <p>
+				<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
+					class="img-fluid"> 
+			</p> -->
+
+
+			<!-- 글 내용 -->
+			<!-- 포스터 -->
+			<div class="d-flex justify-content-center">
+				<table class="poster-table">
+					<tr>
+						<th colspan="2" class="poster-title"><b>강아지를 찾습니다</b></th>
+					</tr>
+
+					<tr>
+						<th colspan="2" style="text-align: center">
+							<!-- <img id="lostdog" src="dog3.jpg"> -->
+
+							<div class="slideshow-container">
+
+								<!-- Full-width images with number and caption text -->
+								<div class="mySlides fade">
+									<div class="numbertext">1 / 3</div>
+									<img id="lostdog" src="/resources/img/dog.jpg"
+										style="width: 100%">
 								</div>
 
-								<div class="modal-body">
-									<form action="" method="get">
-										<div class="form-group">
-											<label>받는 사람</label> <input id="message_reveiver" type="text"
-												class="form-control" value="" readonly>
-										</div>
-										<div class="form-group">
-											<label>내용</label>
-											<textarea id="message_content" rows="10" class="form-control"></textarea>
-										</div>
-										<p class="text-center">
-											<button type="submit" class="btn btn-outline-primary"
-												id="message_send">전송</button>
-											<a style="padding-right:0.5rem;"></a>
-											<button type="submit" class="btn btn-outline-primary"
-												id="message_cancle">취소</button>
-										</p>
-									</form>
+								<div class="mySlides fade">
+									<div class="numbertext">2 / 3</div>
+									<img id="lostdog" src="/resources/img/dog2.jpg"
+										style="width: 100%">
 								</div>
+
+								<div class="mySlides fade">
+									<div class="numbertext">3 / 3</div>
+									<img id="lostdog" src="/resources/img/dog3.jpg"
+										style="width: 100%">
+								</div>
+
+								<!-- Next and previous buttons -->
+								<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
+									class="next" onclick="plusSlides(1)">&#10095;</a>
+							</div> <br> <!-- The dots/circles -->
+							<div style="text-align: center">
+								<span class="dot" onclick="currentSlide(1)"></span> <span
+									class="dot" onclick="currentSlide(2)"></span> <span class="dot"
+									onclick="currentSlide(3)"></span>
+							</div>
+						</th>
+					</tr>
+
+					<tr>
+						<th class="index">이름</th>
+						<th>뀨리</th>
+					</tr>
+
+					<tr>
+						<th class="index">종</th>
+						<th>페키니즈</th>
+					</tr>
+
+					<tr>
+						<th class="index">성별/나이</th>
+						<th>수컷 / 3</th>
+					</tr>
+
+					<tr>
+						<th class="index">특징</th>
+						<th>온순 / 중성화O / 귀가 접힘</th>
+					</tr>
+
+					<tr>
+						<th class="index">실종 날짜</th>
+						<th>2019/07/12</th>
+					</tr>
+
+					<tr>
+						<th class="index">실종 장소</th>
+						<th>인천 부평구 00아파트 xx공원 내</th>
+					</tr>
+
+					<tr>
+						<th class="index">사례금</th>
+						<th>20만원</th>
+					</tr>
+
+					<tr>
+						<th class="index">연락처</th>
+						<th style="color: #df0101">010-1234-1234</th>
+					</tr>
+				</table>
+			</div>
+			<div style="margin: 1rem"></div>
+
+
+			<!-- 지도 -->
+			<div class="map_wrap">
+				<div id="map"
+					style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+
+				<div id="menu_wrap" class="bg_white" style="height: auto;">
+					<div class="option">
+						<div>
+							<form onsubmit="searchPlaces(); return false;">
+								키워드 : <input type="text" value="서울숲" id="keyword" size="15">
+
+							</form>
+						</div>
+					</div>
+					<hr>
+					<ul id="placesList"></ul>
+					<div id="pagination"></div>
+				</div>
+
+			</div>
+			<div style="margin: 2rem"></div>
+
+
+			<!-- 댓글창 -->
+			<div id="comments">
+
+				<h4 class="text-uppercase">댓글 수 2</h4>
+				<section class="bar bg-gray mb-0">
+					<div class="row comment">
+						<div class="col-sm-3 col-md-2 text-center-xs">
+							<p>
+								<img src="/resources/img/blog-avatar2.jpg" alt=""
+									class="reply-image">
+							</p>
+						</div>
+						<div class="col-sm-9 col-md-10">
+							<h5 class="text-uppercase">Julie Alma</h5>
+							<p class="posted">
+								<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
+							</p>
+							<p>안타깝네요.</p>
+
+						</div>
+					</div>
+
+					<hr style="margin: 10px;">
+
+					<div class="row comment last">
+						<div class="col-sm-3 col-md-2 text-center-xs">
+							<p>
+								<img src="/resources/img/blog-avatar.jpg" alt=""
+									class="reply-image">
+							</p>
+						</div>
+						<div class="col-sm-9 col-md-10">
+							<h5 class="text-uppercase">Louise Armero</h5>
+							<p class="posted">
+								<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
+							</p>
+							<p>어디서 봤더라....</p>
+
+						</div>
+					</div>
+				</section>
+			</div>
+			<div style="margin: 2rem"></div>
+
+			<!-- 댓글 입력창 -->
+			<div id="comment-form">
+				<h4 class="text-uppercase">댓글 작성</h4>
+				<form>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="name">아이디 <span
+									class="required text-primary">*</span></label> <input id="name"
+									type="text" class="form-control">
 							</div>
 						</div>
 					</div>
 
-					<hr size="10px">
-					<div class="heading">
-						<blockquote class="blockquote">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="comment">내 용 <span
+									class="required text-primary">*</span></label>
+								<textarea id="comment" rows="4" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 text-right">
+							<button class="re btn btn-template-outlined">
+								<i class="fa fa-comment-o"></i> 댓글 등록
+							</button>
 
-							<p>
-								<img src="/resources/img/blog2.jpg" alt="Example blog post alt"
-									class="img-fluid">
-							</p>
-							<p>이름 : 꾸리</p>
-							<p>종 : 페키니즈</p>
-							<p>성별 / 나이 : 남 /3</p>
-							<p>성격 : 귀가 접힘 / 중성화 수술 O / 성격 온순</p>
-							<p>실종 날짜 : 2019/06/25</p>
-							<p>사례금 : 20만원</p>
-							<p>
-								연락처 : <font color="#b30000">010-1234-1234</font>
-							</p>
 
-							<div class="map_wrap">
-								<div id="map"
-									style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+							<nav aria-label="Page navigation example"
+								class="d-flex justify-content-left">
+								<button class="btn btn-template-outlined">
 
-								<div id="menu_wrap" class="bg_white">
-									<div class="option">
-										<div>
-											<form onsubmit="searchPlaces(); return false;">
-												키워드 : <input type="text" value="서울숲" id="keyword" size="15">
+									<i class="fa fa-pencil"></i> <a
+										href="/dog/missingboard/modifyForm"> 수정 </a>
+								</button>
+								<button type="submit" class="btn btn-template-outlined">
+									<i class="fa fa-trash-o"></i>삭제
+								</button>
+							</nav>
 
-											</form>
+							<button type="button" class="btn btn-danger" data-toggle="modal"
+								data-target="#myModal" style="float: right;" id="report-btn">신고</button>
+
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+								aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title" id="myModalLabel">신고</h3>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
 										</div>
-									</div>
-									<hr>
-									<ul id="placesList"></ul>
-									<div id="pagination"></div>
-								</div>
-							</div>
+										<div class="modal-body">
+											<table>
+												<tr>
+													<td>신고 분류</td>
+													<td>
+														<div class="form-group">
 
-						</blockquote>
-					</div>
+															<select id="state" class="form-control">
+																<option>부적절한 게시글</option>
+																<option>도배 게시글</option>
+																<option>광고 목적 게시글</option>
+																<option>기타</option>
+															</select>
+														</div>
+													</td>
+												</tr>
 
-
-
-					<div id="comments">
-
-						<h4 class="text-uppercase">댓글 수 2</h4>
-						<section class="bar bg-gray mb-0">
-							<div class="row comment">
-								<div class="col-sm-3 col-md-2 text-center-xs">
-									<p>
-										<img src="/resources/img/blog-avatar2.jpg" alt=""
-											class="img-fluid rounded-circle">
-									</p>
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<h5 class="text-uppercase">Julie Alma</h5>
-									<p class="posted">
-										<i class="fa fa-clock-o"></i> 2019-07-03 09:24:26
-									</p>
-									<p>안타깝네요.</p>
-
-								</div>
-							</div>
-							<div class="row comment last">
-								<div class="col-sm-3 col-md-2 text-center-xs">
-									<p>
-										<img src="/resources/img/blog-avatar.jpg" alt=""
-											class="img-fluid rounded-circle">
-									</p>
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<h5 class="text-uppercase">Louise Armero</h5>
-									<p class="posted">
-										<i class="fa fa-clock-o"></i> 2019-07-03 09:25:23
-									</p>
-									<p>어디서 봤더라....</p>
-
-								</div>
-							</div>
-						</section>
-					</div>
-
-					<div id="comment-form">
-						<h4 class="text-uppercase">댓글</h4>
-						<form>
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="name">아이디 <span
-											class="required text-primary">*</span></label> <input id="name"
-											type="text" class="form-control">
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="comment">내 용 <span
-											class="required text-primary">*</span></label>
-										<textarea id="comment" rows="4" class="form-control"></textarea>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12 text-right">
-									<button class="re btn btn-template-outlined">
-										<i class="fa fa-comment-o"></i> 댓글 등록
-									</button>
-
-
-									<nav aria-label="Page navigation example"
-										class="d-flex justify-content-left">
-										<button class="btn btn-template-outlined">
-
-											<i class="fa fa-pencil"></i> <a
-												href="/dog/missingboard/modifyForm"> 수정 </a>
-										</button>
-										<button type="submit" class="btn btn-template-outlined">
-											<i class="fa fa-trash-o"></i>삭제
-										</button>
-									</nav>
-
-									<button type="button" class="btn btn-danger"
-										data-toggle="modal" data-target="#myModal"
-										style="float: right;" id="report-btn">신고</button>
-
-									<div class="modal fade" id="myModal" tabindex="-1"
-										role="dialog" aria-labelledby="myModalLabel">
-										<div class="modal-dialog" role="document">
-
-											<div class="modal-content">
-												<div class="modal-header">
-													<h3 class="modal-title" id="myModalLabel">신고</h3>
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<table>
-														<tr>
-															<td>신고 분류</td>
-															<td>
-																<div class="form-group">
-
-																	<select id="state" class="form-control">
-																		<option>부적절한 게시글</option>
-																		<option>도배 게시글</option>
-																		<option>광고 목적 게시글</option>
-																		<option>기타</option>
-																	</select>
-																</div>
-															</td>
-														</tr>
-
-														<tr>
-															<td>내용</td>
-															<td><textarea id="comment" rows="4" cols="40"
-																	class="form-control"></textarea></td>
-														</tr>
-														<tr></tr>
-														<tr>
-															<td></td>
-															<td><button type="button"
-																	class="btn btn-template-outlined" data-dismiss="modal">확
-																	인</button>
-																<button type="button" class="btn btn-template-outlined"
-																	data-dismiss="modal">취 소</button></td>
-														</tr>
-													</table>
-												</div>
-												<div class="modal-footer"></div>
-											</div>
+												<tr>
+													<td>내용</td>
+													<td><textarea id="comment" rows="4" cols="40"
+															class="form-control"></textarea></td>
+												</tr>
+												<tr></tr>
+												<tr>
+													<td></td>
+													<td><button type="button"
+															class="btn btn-template-outlined" data-dismiss="modal">확
+															인</button>
+														<button type="button" class="btn btn-template-outlined"
+															data-dismiss="modal">취 소</button></td>
+												</tr>
+											</table>
 										</div>
+										<div class="modal-footer"></div>
 									</div>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
+				</form>
+			</div>
+			<!-- comment form -->
+
+			<div style="margin: 5rem"></div>
+		</div>
+		<!--  -->
+	</div>
+	<!-- all -->
+
+	<!-- 쪽지 쓰기 모달창 -->
+	<div id="messageWrite-modal" tabindex="-1" role="dialog"
+		aria-hidden="true" class="modal fade">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">쪽지 작성</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<form action="" method="get">
+						<div class="form-group">
+							<label>받는 사람</label> <input id="message_reveiver" type="text"
+								class="form-control" value="" readonly>
+						</div>
+						<div class="form-group">
+							<label>내용</label>
+							<textarea id="message_content" rows="10" class="form-control"></textarea>
+						</div>
+						<p class="text-center">
+							<button type="submit" class="btn btn-outline-primary"
+								id="message_send">전송</button>
+							<a style="padding-right: 0.5rem;"></a>
+							<button type="submit" class="btn btn-outline-primary"
+								id="message_cancle">취소</button>
+						</p>
+					</form>
 				</div>
 			</div>
-			<div class="col-md-3"></div>
 		</div>
 	</div>
 
+
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			alert("hi");
+			/* var slideIndex = 1;
+			showSlides(slideIndex); */
+		})
+
+		var slideIndex = 1;
+		showSlides(slideIndex);
+
+		// Next/previous controls
+		function plusSlides(n) {
+			showSlides(slideIndex += n);
+		}
+
+		// Thumbnail image controls
+		function currentSlide(n) {
+			showSlides(slideIndex = n);
+		}
+
+		function showSlides(n) {
+			var i;
+			var slides = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("dot");
+
+			if (n > slides.length) {
+				slideIndex = 1
+			}
+
+			if (n < 1) {
+				slideIndex = slides.length
+			}
+
+			//if(n = 1) {slideIndex = 1}
+
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+
+			slides[slideIndex - 1].style.display = "block";
+			dots[slideIndex - 1].className += " active";
+		}
+
+		if (n = 1) {
+			slideIndex = 1
+		}
+
+		;
+	</script>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
@@ -618,6 +952,8 @@ table{
 		}
 	</script>
 
+
+
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
@@ -634,6 +970,5 @@ table{
 		src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 	<script src="/resources/js/front.js"></script>
-
 </body>
 </html>
