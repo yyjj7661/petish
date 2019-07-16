@@ -26,7 +26,7 @@ public class HospitalController {
 	@RequestMapping(value="/search/{addr}/{isEmer}", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String gethospitalList(@PathVariable("addr") String addr, @PathVariable("isEmer")boolean isEmer) {
-		System.out.println(addr);
+		//System.out.println(addr);
 		List<HospitalVO> list;
 		//응급 진료 체크박스 체크 안했을때
 		if(isEmer==false) {
@@ -38,7 +38,7 @@ public class HospitalController {
 			list = hospitalService.getEmerhospitalList(addr);
 		}
 		
-		System.out.println(list);
+		//System.out.println(list);
 		String str ="";
 		ObjectMapper mapper = new ObjectMapper();
 		try {

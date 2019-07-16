@@ -260,7 +260,25 @@
 	    }   
 	    markers = [];
 	}
-	
+	// 마커를 찍는 함수
+	function createMarker(fa,ga, imgsrc,name,addr,isemer){
+		// 마커 이미지의 이미지 크기 입니다
+		   var imageSize = new kakao.maps.Size(35, 35); 
+		// 마커 이미지를 생성합니다    
+	  	  var markerImage = new kakao.maps.MarkerImage(imgsrc, imageSize);
+	 	// 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: new kakao.maps.LatLng(ga, fa),
+	        image : markerImage // 마커 이미지 
+	    });
+	  //마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
+		kakao.maps.event.addListener(marker, 'click',function(){
+			displayInfowindow(map, marker,name,addr,isemer);
+		});
+	  //마커 배열에 현재마커를 추가
+		markers.push(marker);
+	}
 		
 	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 	//var infowindow = new kakao.maps.InfoWindow({zIndex:1});
@@ -293,48 +311,32 @@
 			success:function(data){
 				// 지도에 표시되고 있는 마커를 제거합니다
 			    removeMarker();
-				console.log(data.length);
+				//console.log(data.length);
 				//좌표 객체 초기화
 				bounds = new kakao.maps.LatLngBounds(); 
 				$.each(data, function(index, item){
 					geocoder.addressSearch(item.hospital_addr, function(result, status){
-						Fa=result[0].x;
-				        Ga=result[0].y;
+						
 				        //응급지료가능 병원일경우 마커 이미지교체
 				        if(item.isEmergency == 1){
-				    		 // 마커 이미지의 이미지 크기 입니다
-				     		   var imageSize = new kakao.maps.Size(24, 35); 
-				    		 // 마커 이미지의 이미지 주소입니다
-				      		  var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-				      		// 마커 이미지를 생성합니다    
-				      	  	  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-				      	 	// 마커를 생성합니다
-				      	    var marker = new kakao.maps.Marker({
-				      	        map: map, // 마커를 표시할 지도
-				      	        position: new kakao.maps.LatLng(result[0].y, result[0].x),
-				      	        image : markerImage // 마커 이미지 
-				      	    });
+				    		 createMarker(result[0].x, result[0].y, "/resources/img/placeholder_red.png",item.hospital_name, item.hospital_addr ,item.isEmergency);
 				        }
 				        else{
 				        	
-							//새로운 마커를 찍음						
+							/* //새로운 마커를 찍음						
 							var marker = new kakao.maps.Marker();
 							//마커 위치설정
 							marker.setPosition(new kakao.maps.LatLng(result[0].y, result[0].x));
 							//마커 찍음
-							marker.setMap(map);
+							marker.setMap(map); */
+				        	// 마커 이미지의 이미지 크기 입니다
+				     		createMarker(result[0].x, result[0].y,"/resources/img/placeholder.png",item.hospital_name, item.hospital_addr ,item.isEmergency);
 				        }
-						//마커 배열에 현재마커를 추가
-						markers.push(marker);
-						//마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
-						kakao.maps.event.addListener(marker, 'click',function(){
-							displayInfowindow(map, marker,item.hospital_name, item.hospital_addr ,item.isEmergency);
-						});
 						
 						// LatLngBounds 객체에 좌표를 추가합니다
 					    bounds.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
 						
-						console.log('index='+index);
+						//console.log('index='+index);
 						//표시된 마커들로 지도를 재조정하는 함수
 						setBounds();
 					});
@@ -344,7 +346,6 @@
 				alert("ajax 통신 실패!!!");
 			}
 		 });
-		 console.log("함수의 끝");
 		//window.location.href = "/hospital/search"+"?"+$.param({"hospital_addr":addr});
 	}
 	
