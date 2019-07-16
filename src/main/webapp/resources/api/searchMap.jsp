@@ -233,9 +233,9 @@ function displayPlaces(places) {
     // 검색 결과 목록에 추가된 항목들을 제거합니다
     removeAllChildNods(listEl);
 
+    
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-    
     for ( var i=0; i<places.length; i++ ) {
 
         // 마커를 생성하고 지도에 표시합니다

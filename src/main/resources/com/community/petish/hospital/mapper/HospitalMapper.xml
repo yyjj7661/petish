@@ -21,6 +21,9 @@
  	<select id="gethospitalList" resultMap="hospitalResultMap">
  		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' order by id
  	</select>
+ 	<select id="getEmerhospitalList" resultMap="hospitalResultMap">
+ 		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' and isEmergency = 1 order by id
+ 	</select>
  	
  	
  </mapper> 

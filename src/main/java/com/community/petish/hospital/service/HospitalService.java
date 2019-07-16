@@ -7,4 +7,5 @@ import com.community.petish.hospital.domain.HospitalVO;
 
 public interface HospitalService {
 	List<HospitalVO> gethospitalList(String hospital_addr);
+	List<HospitalVO> getEmerhospitalList(String hospital_addr);
 }

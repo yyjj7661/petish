@@ -69,7 +69,7 @@
 								</div>
 							</div>
 
-							<input type="checkbox"> 응급진료
+							<input id="emergency" type="checkbox"> 응급진료
 
 							<div class="col-md-3">
 								<button type="button" id="hos_search" class="btn btn-primary btn-block" style="background-color: gray;">Search</button>
@@ -229,44 +229,46 @@
 	var geocoder = new kakao.maps.services.Geocoder();
 
 	var marker = new kakao.maps.Marker();
+	// 마커를 담을 배열입니다
+	var markers = [];
+
+	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+	var bounds = new kakao.maps.LatLngBounds(); 
 	
 	var infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
-	function displayInfowindow(map, marker) {
+	function displayInfowindow(map, marker,name,address_name, isEmer) {
 		
-	    var content = '<div class="bAddr"><span class="title">' + '비트캠프병원' + '</span><div>주소 : '+'address_name'+'</div></div>';
+		//응급 이미지 일경우 infowindow 값 변경
+		if(isEmer ==1){
+			var content = '<div class="bAddr"><span class="title">' + name + '</span><div>주소 : '+address_name+'</div><div>응급진료</div></div>';
+		}
+		else{
+			
+	   		 var content = '<div class="bAddr"><span class="title">' + name + '</span><div>주소 : '+address_name+'</div></div>';
+		}
 
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
 	}
-	//검색 하고 마커 찍어주는 함수
-	function setMarker(fa, ga){
-		//검색창에서 클릭한 좌표로 이동된 지도를 다시 생성
-		mapOption = {
-		        center: new kakao.maps.LatLng(ga, fa), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
-		    };
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
-		//해당 위치에 마커를 표시
-		marker.setPosition(new kakao.maps.LatLng(ga, fa));
-		marker.setMap(map);
-		kakao.maps.event.addListener(marker, 'click',function(){
-			displayInfowindow(map, marker);
-		});
+	
+	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+	function removeMarker() {
+	    for ( var i = 0; i < markers.length; i++ ) {
+	        markers[i].setMap(null);
+	    }   
+	    markers = [];
 	}
+	
+		
 	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 	//var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 	
-	//원래 게시글의 모임장소 주소를 좌표로 바꿔주고 지도에 표시해주는 함수//********************************************************
-	var callback = function(result, status) {
-	    if (status === kakao.maps.services.Status.OK) {
-	        setMarker(result[0].x, result[0].y);
-	        
-	    }
-	};
-	
+	//검색된 마커들 위치로 지도를 재조정
+	function setBounds(){
+		map.setBounds(bounds);
+	}
 	
 	</script>
 	<script>
@@ -277,31 +279,73 @@
 				alert('지역을 선택해 주세요.');
 			}
 			else{
-				// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
-				
-				gethospital($('#sml_region').val());
-				
+				gethospital($('#sml_region').val(), $('#emergency').prop('checked'));
 			}
 		});
 	});
-	function gethospital(addr){
-		alert(addr);
-		/* $.ajax({
-			url:'/hospital/search' +'?'+$.param({"hopital_addr":addr}),
+	//$('#sml_region') 지역구 카테고리로 검색하고 병원리스트 가져오는 함수.
+	function gethospital(addr, isEmer){
+		 $.ajax({
+			url:'/hospital/search/'+addr+'/'+isEmer,
 			type:'GET',
-			contentType:'application/x-www-form-urlencoded; charset=utf-8',
+			contentType:'application/json; charset=UTF-8',
 			dataType:'json',
 			success:function(data){
+				// 지도에 표시되고 있는 마커를 제거합니다
+			    removeMarker();
+				console.log(data.length);
+				//좌표 객체 초기화
+				bounds = new kakao.maps.LatLngBounds(); 
 				$.each(data, function(index, item){
-					
-					geocoder.addressSearch(item.hospital_addr, callback);
-				})
+					geocoder.addressSearch(item.hospital_addr, function(result, status){
+						Fa=result[0].x;
+				        Ga=result[0].y;
+				        //응급지료가능 병원일경우 마커 이미지교체
+				        if(item.isEmergency == 1){
+				    		 // 마커 이미지의 이미지 크기 입니다
+				     		   var imageSize = new kakao.maps.Size(24, 35); 
+				    		 // 마커 이미지의 이미지 주소입니다
+				      		  var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+				      		// 마커 이미지를 생성합니다    
+				      	  	  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+				      	 	// 마커를 생성합니다
+				      	    var marker = new kakao.maps.Marker({
+				      	        map: map, // 마커를 표시할 지도
+				      	        position: new kakao.maps.LatLng(result[0].y, result[0].x),
+				      	        image : markerImage // 마커 이미지 
+				      	    });
+				        }
+				        else{
+				        	
+							//새로운 마커를 찍음						
+							var marker = new kakao.maps.Marker();
+							//마커 위치설정
+							marker.setPosition(new kakao.maps.LatLng(result[0].y, result[0].x));
+							//마커 찍음
+							marker.setMap(map);
+				        }
+						//마커 배열에 현재마커를 추가
+						markers.push(marker);
+						//마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
+						kakao.maps.event.addListener(marker, 'click',function(){
+							displayInfowindow(map, marker,item.hospital_name, item.hospital_addr ,item.isEmergency);
+						});
+						
+						// LatLngBounds 객체에 좌표를 추가합니다
+					    bounds.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
+						
+						console.log('index='+index);
+						//표시된 마커들로 지도를 재조정하는 함수
+						setBounds();
+					});
+				});
 			},
 			error:function(){
 				alert("ajax 통신 실패!!!");
 			}
-		 }); */
-		window.location.href = "/hospital/search"+"?"+$.param({"hospital_addr":addr});
+		 });
+		 console.log("함수의 끝");
+		//window.location.href = "/hospital/search"+"?"+$.param({"hospital_addr":addr});
 	}
 	
 	</script>

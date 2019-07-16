@@ -24,5 +24,14 @@ public class HospitalServiceImpl implements HospitalService{
 		 return hospitalList;
 		 
 	}
+	@Override
+	public List<HospitalVO> getEmerhospitalList(String hospital_addr) {
+		
+		 List<HospitalVO> hospitalList = null; 
+		 hospitalList=hospitalMapper.getEmerhospitalList(hospital_addr); 
+		 
+		 return hospitalList;
+		 
+	}
 
 }
