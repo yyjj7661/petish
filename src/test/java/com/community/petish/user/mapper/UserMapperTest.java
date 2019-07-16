@@ -33,7 +33,7 @@ public class UserMapperTest {
 		JoinUserParams joinUserParams = new JoinUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "강아지");
 		userMapper.save(joinUserParams);
 		
-		UserDetailResponse userDetailResponse = userMapper.findByEmail("jjj0611@hanmail.net");
+		UserDetailResponse userDetailResponse = userMapper.findByUsername("jjj0611@hanmail.net");
 		
 		assertThat(joinUserParams.getNickname()).isEqualTo(userDetailResponse.getNickname());
 	}
