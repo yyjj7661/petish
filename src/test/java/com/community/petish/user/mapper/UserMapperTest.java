@@ -23,6 +23,11 @@ public class UserMapperTest {
 	@Autowired
 	UserMapper userMapper;
 	
+	@BeforeEach
+	void deleteUsers() {
+		mapper.deleteAll();
+	}
+	
 	@Test
 	void userMapperTest() {
 		log.info(userMapper);
