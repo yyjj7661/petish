@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.community.petish.dog.missingboard.mapper.DogLostPostMapper">
+
+<resultMap type="com.community.petish.dog.missingboard.domain.DogLostPostVO" id="DogLostPostVO">
+	<result property="ID" column="ID" />
+	<result property="DOG_NAME" column="DOG_NAME" />
+	<result property="DOG_AGE" column="DOG_AGE" />	
+	<result property="DOG_GENDER" column="DOG_GENDER" />
+	<result property="DOG_DESCRPTION" column="DOG_DESCRIPTION" />
+	<result property="DOG_IMAGE" column="DOG_IMAGE" />
+	
+	<result property="DOG_LOST_DATE" column="DOG_LOST_DATE" />
+	<result property="PHONE_NUMBER" column="PHONE_NUMBER" />
+	<result property="DOG_LOST_ADDRESS" column="DOG_LOST_ADDRESS" />
+	<result property="REWARD" column="REWARD" />
+	<result property="VIEW_COUNT" column="VIEW_COUNT" />
+	<result property="CREATE_DATE" column="CREATE_DATE" />
+	<result property="UPDATED_DATE" column="UPDATED_DATE" />
+	<result property="FOUND" column="FOUND" />
+	<result property="DELETED" column="DELETED" />
+	
+	<result property="REGION_ID" column="REGION_ID" />
+	<result property="USER_ID" column="USER_ID" />
+	<result property="SPECIED_ID" column="SPECIED_ID" />
+</resultMap>
+
+
+<resultMap type="com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO" id="DogLostPostListDTO">
+	<result property="ID" column="ID" />
+	
+	<result property="DOG_AGE" column="DOG_AGE" />	
+	<result property="DOG_GENDER" column="DOG_GENDER" />
+	
+	<result property="VIEW_COUNT" column="VIEW_COUNT" />
+	<result property="CREATE_DATE" column="CREATE_DATE" />
+	<result property="UPDATED_DATE" column="UPDATED_DATE" />
+	<result property="FOUND" column="FOUND" />
+	
+	<result property="REGION_ID" column="REGION_ID" />
+	<result property="USER_ID" column="USER_ID" />
+	<result property="SPECIED_ID" column="SPECIED_ID" />
+</resultMap>
+
+<!-- 게시글 수 조회 -->
+<select id="getPostCount" resultType="Integer">
+	SELECT COUNT(*) FROM dog_lost_post_tb WHERE deleted=0
+</select>
+
+<!-- 게시글 리스트 -->
+<select id="getDogLostList" resultType="DogLostPostListDTO">
+	SELECT
+	ID, DOG_AGE, DOG_GENDER, VIEW_COUNT, CREATE_DATE, UPDATED_DATE, FOUND, REGION_ID, USER_ID, SPECIES_ID
+	FROM dog_lost_post_tb
+	WHERE DELETED=0
+</select>
+
+<!-- 게시글 조회 -->
+<select id="getPostDetail" parameterType="Integer" resultMap="DogLostPostVO">
+	SELECT *
+	FROM dog_lost_post_tb
+	WHERE ID=#{ID}
+</select>
+
+<!-- 게시글 작성 -->
+<insert id="insertDogLostPost" parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
+insert into dog_lost_post_tb
+values(
+#{ID},
+#{DOG_NAME},
+#{DOG_AGE},
+#{DOG_GENDER},
+#{DOG_DESCRIPTION},
+#{DOG_IMAGE}, 
+#{DOG_LOST_DATE},
+#{PHONE_NUMBER},
+#{DOG_LOST_ADDRESS},
+#{REWARD},
+0, sysdate, sysdate, 0, 0, 0,
+#{USER_ID},
+#{SPECIES_ID}
+)
+
+</insert>
+
+<!-- 게시글 수정 -->
+<update id="updateDogLostPost" parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
+update dog_lost_post_tb
+set
+DOG_NAME=#{DOG_NAME},
+DOG_AGE=#{DOG_AGE},
+DOG_GENDER=#{DOG_GENDER},
+DOG_DESCRIPTION=#{DOG_DESCRIPTION},
+DOG_IMAGE=#{DOG_IMAGE},
+DOG_LOST_DATE=#{DOG_LOST_DATE}, 
+PHONE_NUMBER=#{PHONE_NUMBER}, 
+DOG_LOST_ADDRESS=#{DOG_LOST_ADDRESS}, 
+REWARD=#{REWARD},
+SPECIES_ID=#{SPECIES_ID}, 
+updated_date=sysdate, 
+FOUND=#{FOUND}, 
+REGION_ID=#{REGION_ID}
+</update>
+
+<!-- 게시글 삭제 -->
+<delete id="deleteDogLostPost" parameterType="Integer">
+DELETE FROM dog_lost_post_tb WHERER ID=#{ID}
+</delete>
+ 
+</mapper>
