@@ -97,100 +97,9 @@
 											<h2>PET Hospital List</h2>
 										</div>
 										<p class="lead"></p>
-										<div class="row text-center">
-											<div class="col-md-3">
-												<div data-animate="fadeInUp" class="team-member">
-													<div class="image">
-														<a href="A동물병원상세페이지"><img
-															src="/resources/img/hospital/hospital.jpg" alt=""
-															class="img-fluid rounded-circle"></a>
-													</div>
-													<h3 style="font-size: 25px;">
-														<a href="/hospital/detail">A 동물병원</a>
-													</h3>
-													<p style="font-size: 25px;">★★★★★</p>
-													
-													<div class="text">
-														<div>02-9999-9999</div>
-														<div>응급진료</div>
-													</div>
-												</div>
-											</div>
+										<div class="row text-center" id="hospList">
 											
-											<div data-animate="fadeInUp" class="col-md-3">
-												<div class="team-member">
-													<div class="image">
-														<a href="B동물병원상세페이지"><img
-															src="/resources/img/hospital/hospital.jpg" alt=""
-															class="img-fluid rounded-circle"></a>
-													</div>
-													<h3 style="font-size: 25px;">
-														<a href="B동물병원상세페이지">B 동물병원</a>
-													</h3>
-													<p style="font-size: 25px;">★★★★★</p>
-
-													<div class="text">
-														<div>02-9999-9999</div>
-														<div>응급진료</div>
-													</div>
-												</div>
-											</div>
 											
-											<div data-animate="fadeInUp" class="col-md-3">
-												<div class="team-member">
-													<div class="image">
-														<a href="C동물병원상세페이지"><img
-															src="/resources/img/hospital/hospital.jpg" alt=""
-															class="img-fluid rounded-circle"></a>
-													</div>
-													<h3 style="font-size: 25px;">
-														<a href="C동물병원상세페이지">C 동물병원</a>
-													</h3>
-													<p style="font-size: 25px;">★★★★★</p>
-
-													<div class="text">
-														<div>02-9999-9999</div>
-														<div>응급진료</div>
-													</div>
-												</div>
-											</div>
-											
-											<div data-animate="fadeInUp" class="col-md-3">
-												<div class="team-member">
-													<div class="image">
-														<a href="D동물병원상세페이지"><img
-															src="/resources/img/hospital/hospital.jpg" alt=""
-															class="img-fluid rounded-circle"></a>
-													</div>
-													<h3 style="font-size: 25px;">
-														<a href="D동물병원상세페이지">D 동물병원</a>
-													</h3>
-													<p style="font-size: 25px;">★★★★★</p>
-
-													<div class="text">
-														<div>02-9999-9999</div>
-														<div>응급진료</div>
-													</div>
-												</div>
-											</div>
-											<div data-animate="fadeInUp" class="col-md-3">
-												<div class="team-member">
-													<div class="image">
-														<a href="D동물병원상세페이지"><img
-															src="/resources/img/hospital/hospital.jpg" alt=""
-															class="img-fluid rounded-circle"></a>
-													</div>
-													<h3 style="font-size: 25px;">
-														<a href="D동물병원상세페이지">D 동물병원</a>
-													</h3>
-													<p style="font-size: 25px;">★★★★★</p>
-
-													<div class="text">
-														<div>02-9999-9999</div>
-														<div>응급진료</div>
-													</div>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>				
@@ -303,6 +212,7 @@
 	});
 	//$('#sml_region') 지역구 카테고리로 검색하고 병원리스트 가져오는 함수.
 	function gethospital(addr, isEmer){
+		$('#hospList').empty();
 		 $.ajax({
 			url:'/hospital/search/'+addr+'/'+isEmer,
 			type:'GET',
@@ -339,6 +249,25 @@
 						//console.log('index='+index);
 						//표시된 마커들로 지도를 재조정하는 함수
 						setBounds();
+						console.log(item.hospital_name);
+						//병원 리스트 지도 밑에 출력
+						var output='';
+						output += '<div data-animate="fadeInUp" class="col-md-3">';
+						output += '<div class="team-member">';
+						output += '<div class="image">';
+						output += '<a href="'+item.hospital_name+'">';
+						output += '<img src="/resources/img/hospital/'+item.hospital_img+'" alt="" class="img-fluid rounded-circle" style="height: 250px;"></a>';
+						output += '</div>';
+						output += '<h3 style="font-size: 25px;">';
+						output += '<a href="B동물병원상세페이지">'+item.hospital_name+'</a></h3>';
+						output += '<p style="font-size: 25px;">★★★★★</p>';
+						output += '<div class="text">';
+						output += '<div>'+item.hospital_addr+'</div>'
+						output += '<div>'+item.hospital_phone+'</div>';
+						output += '</div></div></div>';
+						$('#hospList').append(output);
+						
+						
 					});
 				});
 			},
