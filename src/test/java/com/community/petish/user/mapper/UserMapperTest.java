@@ -28,6 +28,11 @@ public class UserMapperTest {
 		userMapper.deleteAll();
 	}
 	
+	@BeforeEach
+	void userSeqInit() {
+		userMapper.initSeq();
+	}
+	
 	@Test
 	void userMapperTest() {
 		log.info(userMapper);
