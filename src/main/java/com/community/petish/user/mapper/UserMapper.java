@@ -9,4 +9,6 @@ public interface UserMapper {
 	
 	UserDetailResponse findByUsername(String username);
 	
+	void deleteAll();
+	
 }
