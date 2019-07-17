@@ -35,5 +35,9 @@
 	<delete id="deleteAll">
 		DELETE FROM USER_TB
 	</delete>
+	
+	<update id="initSeq">
+		drop sequence user_id_seq;
+	</update>
 
 </mapper>
