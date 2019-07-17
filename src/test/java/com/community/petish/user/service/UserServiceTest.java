@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.community.petish.user.dto.request.SaveUserParams;
+import com.community.petish.user.dto.response.UserDetailResponse;
 import com.community.petish.user.service.UserService;
 
 import lombok.extern.log4j.Log4j2;
@@ -28,6 +29,8 @@ public class UserServiceTest {
 		Long userId = userService.saveUser(saveUserParams);
 		
 		log.info("새롭게 생성된 유저 아이디 : " + userId);
+		
+		User resultUser = userService.findById(userId);
 		
 	}
 }
