@@ -3,6 +3,7 @@ package com.community.petish.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.community.petish.user.domain.User;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.mapper.UserMapper;
 
@@ -17,6 +18,12 @@ public class UserServiceImpl implements UserService{
 		
 		
 		return userMapper.save(saveUserParams);
+	}
+
+	@Override
+	public User findById(Long id) {
+
+		return userMapper.findById(id);
 	}
 	
 }
