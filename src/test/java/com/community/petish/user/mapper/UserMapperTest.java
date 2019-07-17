@@ -30,7 +30,8 @@ public class UserMapperTest {
 	
 	@BeforeEach
 	void userSeqInit() {
-		userMapper.initSeq();
+		userMapper.deleteSeq();
+		userMapper.createSeq();
 	}
 	
 	@Test
