@@ -13,22 +13,17 @@
 	</resultMap>
 	
 	<insert id="save" parameterType="com.community.petish.user.dto.request.JoinUserParams">
-		INSERT INTO USER_TB values(
-					user_id_seq.nextval, 
-					#{username}, 
-					#{password}, 
-					#{nickname}, 
-					#{address}, 
-					#{gender}, 
-					#{profileImage}, 
-					sysdate, 
-					0, 
-					(SELECT id from concern_tb where concern = #{concern})
-									)
+		
+		INSERT INTO USER_TB 
+			(id, username, password, nickname, address, gender, picture, join_date, deleted, concern_id)
+		values
+			(	( (select NVL(max(id), 0) from user_tb) + 1), #{username}, #{password}, #{nickname}, #{address}, #{gender}, #{profileImage}, sysdate, 0, 
+				(SELECT id from concern_tb where concern = #{concern})
+			)
 	</insert>
 	
 	<select id="findByUsername" parameterType="String" resultMap="UserDetailResponse">
-		SELECT * FROM USER_TB WHERE username = #{username}
+		SELECT id, username, nickname, gender, picture FROM USER_TB WHERE username = #{username} AND deleted = 0
 	</select>
 	
 	
