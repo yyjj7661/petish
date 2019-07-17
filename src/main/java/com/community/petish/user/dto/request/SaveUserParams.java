@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class JoinUserParams {
+public class SaveUserParams {
 
 	private String username;
 	private String password;

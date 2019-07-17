@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.community.petish.user.dto.request.JoinUserParams;
+import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.UserDetailResponse;
 
 import lombok.extern.log4j.Log4j;
@@ -36,12 +36,12 @@ public class UserMapperTest {
 	@Test
 	void saveUser() {
 		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
-		JoinUserParams joinUserParams = new JoinUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
-		userMapper.save(joinUserParams);
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		userMapper.save(saveUserParams);
 		
 		UserDetailResponse userDetailResponse = userMapper.findByUsername("jjj0611@hanmail.net");
 		log.info("userDetailResponse : " + userDetailResponse);
-		assertThat(joinUserParams.getNickname()).isEqualTo(userDetailResponse.getNickname());
+		assertThat(saveUserParams.getNickname()).isEqualTo(userDetailResponse.getNickname());
 	}
 	
 }
