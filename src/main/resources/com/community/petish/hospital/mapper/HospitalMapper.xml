@@ -17,15 +17,28 @@
  		
  		
  	</resultMap>
+ 	
+ 	<resultMap type="com.community.petish.hospital.domain.ListDTO" id="listResultMap">
+ 		<result property="id" column="ID"/>
+ 		<result property="hospital_name" column="HOSPITAL_NAME"/>
+ 		<result property="hospital_addr" column="HOSPITAL_ADDR"/>
+ 		<result property="hospital_phone" column="HOSPITAL_PHONE"/>
+ 		<result property="hospital_hours" column="HOSPITAL_HOURS"/>
+ 		<result property="hospital_img" column="HOSPITAL_IMG"/>
+ 		<result property="isEmergency" column="ISEMERGENCY"/>
+ 		
+ 		
+ 	</resultMap>
+ 	
  	<!-- id는 Mapper.java(여기선 MemberMapper.java)에 동일하게 사용 -->
- 	<select id="gethospitalList" resultMap="hospitalResultMap">
+ 	<select id="gethospitalList" resultMap="listResultMap">
  		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%'
  	</select>
- 	<select id="getEmerhospitalList" resultMap="hospitalResultMap">
+ 	<select id="getEmerhospitalList" resultMap="listResultMap">
  		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' and isEmergency = 1
  	</select>
  	
- 	<select id="getListWithPaging" resultMap="hospitalResultMap">
+ 	<select id="getListWithPaging" resultMap="listResultMap">
  		<![CDATA[
  			select * 
  			from
