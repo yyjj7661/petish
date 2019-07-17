@@ -2,11 +2,15 @@ package com.community.petish.user.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import oracle.sql.DATE;
 
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class User {
 
