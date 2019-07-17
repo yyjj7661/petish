@@ -30,6 +30,10 @@
 		SELECT id, username, nickname, gender, picture FROM USER_TB WHERE username = #{username} AND deleted = 0
 	</select>
 	
+	<select id="findById" parameterType="Long" resultType="com.community.petish.user.domain.User">
+		SELECT * FROM user_tb WHERE id = #{id}
+	</select>
+	
 	
 	<delete id="deleteAll">
 		DELETE FROM USER_TB
