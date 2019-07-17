@@ -16,6 +16,9 @@ public class UserRestController {
 	@Autowired
 	UserService userService;
 	
-	
+	@PostMapping
+	public void save(@RequestBody SaveUserParams saveUserParams) {
+		userService.saveUser(saveUserParams);
+	}
 
 }
