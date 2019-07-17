@@ -20,8 +20,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Long saveUser(SaveUserParams saveUserParams) {
 		
-		
-		return userMapper.save(saveUserParams);
+		String encodedPassword = passwordEncoder.encode(saveUserParams.getPassword());
+		saveUserParams.setPassword(encodedPassword);
+		Long userId =  userMapper.save(saveUserParams);
+		return userId;
 	}
 
 	@Override
