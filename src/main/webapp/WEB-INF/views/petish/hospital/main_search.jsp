@@ -103,7 +103,12 @@
 											
 											
 										</div>
-										<div class="row text-center" id="paging">
+										<!-- 번호   -->
+										<div aria-label="Page navigation" class="d-flex justify-content-center">
+											<ul class="pagination" id="paging">
+												
+           									</ul>
+       									 </div>
 									</div>
 								</div>				
 							</div>
@@ -212,6 +217,7 @@
 	//$('#sml_region') 지역구 카테고리로 검색하고 병원리스트 가져오는 함수.
 	function gethospital(addr, isEmer,page){
 		$('#hospList').empty();
+		$('#paging').empty();
 		 $.ajax({
 			url:'/hospital/search/'+addr+'/'+isEmer+'/'+page,
 			type:'GET',
@@ -225,6 +231,7 @@
 				console.log(data.list);
 				console.log(data.paging);
 				console.log(data.paging.startPage);
+				console.log('page='+page)
 				
 				bounds = new kakao.maps.LatLngBounds(); 
 				$.each(data.list, function(index, item){
@@ -275,7 +282,15 @@
 				});
 				
 				for(var i = data.paging.startPage; i<=data.paging.endPage; i++){
-					var output=i;
+					var output='';
+					if(i == 1){
+						output += '<li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-left"></i></a></li>';
+						
+					}
+					output += '<li class="page-item"><a href="#" class="page-link">'+i+'</a></li>';
+					if(i==data.paging.endPage){
+						output += '<li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-right"></i></a></li>';
+					}
 					$('#paging').append(output);
 				}
 				
