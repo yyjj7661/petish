@@ -11,6 +11,8 @@ public interface UserMapper {
 	
 	void deleteAll();
 	
-	void initSeq();
+	void deleteSeq();
+	
+	void createSeq();
 	
 }
