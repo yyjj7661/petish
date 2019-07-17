@@ -19,10 +19,10 @@
  	</resultMap>
  	<!-- id는 Mapper.java(여기선 MemberMapper.java)에 동일하게 사용 -->
  	<select id="gethospitalList" resultMap="hospitalResultMap">
- 		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' order by id
+ 		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%'
  	</select>
  	<select id="getEmerhospitalList" resultMap="hospitalResultMap">
- 		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' and isEmergency = 1 order by id
+ 		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' and isEmergency = 1
  	</select>
  	
  	<select id="getListWithPaging" resultMap="hospitalResultMap">
@@ -31,12 +31,12 @@
  			from
  				(
  				select
- 					rownum rn, id, hospital_name, hospital_addr, hospital_phone, hospital_img, isEmergency
+ 					rownum rn, id, hospital_name, hospital_addr, hospital_phone, hospital_hours,hospital_img, isEmergency
  				from
  					hospital_tb
- 				where rownum <=4
+ 				where hospital_addr like '%'||#{hospital_addr}||'%' and rownum <= #{pageNum}*#{amount}
  				)
- 			where rn >= 1
+ 			where rn > (#{pageNum}-1)*#{amount}
  		]]>
  	</select>
  	

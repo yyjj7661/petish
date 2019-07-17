@@ -147,16 +147,9 @@
 	var infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
-	function displayInfowindow(map, marker,name,address_name, isEmer) {
+	function displayInfowindow(map, marker,name,address_name,hours) {
 		
-		//응급 이미지 일경우 infowindow 값 변경
-		if(isEmer ==1){
-			var content = '<div class="bAddr"><span class="title">' + name + '</span><div>주소 : '+address_name+'</div><div>응급진료</div></div>';
-		}
-		else{
-			
-	   		 var content = '<div class="bAddr"><span class="title">' + name + '</span><div>주소 : '+address_name+'</div></div>';
-		}
+		var content = '<div class="bAddr"><span class="title">' + name + '</span><div>주소 : '+address_name+'</div><div>진료시간 : '+hours+'</div></div>';
 
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
@@ -170,7 +163,7 @@
 	    markers = [];
 	}
 	// 마커를 찍는 함수
-	function createMarker(fa,ga, imgsrc,name,addr,isemer){
+	function createMarker(fa,ga, imgsrc,name,addr,hours){
 		// 마커 이미지의 이미지 크기 입니다
 		   var imageSize = new kakao.maps.Size(35, 35); 
 		// 마커 이미지를 생성합니다    
@@ -183,7 +176,7 @@
 	    });
 	  //마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
 		kakao.maps.event.addListener(marker, 'mouseover',function(){
-			displayInfowindow(map, marker,name,addr,isemer);
+			displayInfowindow(map, marker,name,addr,hours);
 		});
 		kakao.maps.event.addListener(marker, 'mouseout',function(){
 			infowindow.close();
@@ -209,15 +202,15 @@
 				alert('지역을 선택해 주세요.');
 			}
 			else{
-				gethospital($('#sml_region').val(), $('#emergency').prop('checked'));
+				gethospital($('#sml_region').val(), $('#emergency').prop('checked'),1);
 			}
 		});
 	});
 	//$('#sml_region') 지역구 카테고리로 검색하고 병원리스트 가져오는 함수.
-	function gethospital(addr, isEmer){
+	function gethospital(addr, isEmer,page){
 		$('#hospList').empty();
 		 $.ajax({
-			url:'/hospital/search/'+addr+'/'+isEmer,
+			url:'/hospital/search/'+addr+'/'+isEmer+'/'+page,
 			type:'GET',
 			contentType:'application/json; charset=UTF-8',
 			dataType:'json',
@@ -232,7 +225,7 @@
 						
 				        //응급지료가능 병원일경우 마커 이미지교체
 				        if(item.isEmergency == 1){
-				    		 createMarker(result[0].x, result[0].y, "/resources/img/placeholder_red.png",item.hospital_name, item.hospital_addr ,item.isEmergency);
+				    		 createMarker(result[0].x, result[0].y, "/resources/img/placeholder_red.png",item.hospital_name, item.hospital_addr ,item.hospital_hours);
 				        }
 				        else{
 				        	
@@ -243,7 +236,7 @@
 							//마커 찍음
 							marker.setMap(map); */
 				        	// 마커 이미지의 이미지 크기 입니다
-				     		createMarker(result[0].x, result[0].y,"/resources/img/placeholder.png",item.hospital_name, item.hospital_addr ,item.isEmergency);
+				     		createMarker(result[0].x, result[0].y,"/resources/img/placeholder.png",item.hospital_name, item.hospital_addr ,item.hospital_hours);
 				        }
 						
 						// LatLngBounds 객체에 좌표를 추가합니다

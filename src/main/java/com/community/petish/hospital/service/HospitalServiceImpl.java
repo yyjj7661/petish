@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
 import com.community.petish.hospital.mapper.HospitalMapper;
 
@@ -32,6 +33,13 @@ public class HospitalServiceImpl implements HospitalService{
 		 
 		 return hospitalList;
 		 
+	}
+	@Override
+	public List<HospitalVO> getListWithPaging(Criteria cri) {
+		 List<HospitalVO> hospitalList = null; 
+		 hospitalList=hospitalMapper.getListWithPaging(cri); 
+		 
+		 return hospitalList;
 	}
 
 }

@@ -24,7 +24,9 @@ public class HospitalMapperTests {
 	@Test
 	public void testPaging() {
 		Criteria cri = new Criteria();
-		
+		cri.setHospital_addr("강남구");
+		cri.setPageNum(2);
+		cri.setAmount(4);
 		List<HospitalVO> list = hospitalMapper.getListWithPaging(cri);
 		list.forEach(board -> log.info(board));
 	}
