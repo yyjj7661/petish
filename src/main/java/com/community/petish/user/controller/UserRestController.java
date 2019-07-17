@@ -1,12 +1,14 @@
 package com.community.petish.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.community.petish.user.dto.request.SaveUserParams;
+import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.service.UserService;
 
 @RestController
@@ -15,6 +17,11 @@ public class UserRestController {
 	
 	@Autowired
 	UserService userService;
+	
+	@GetMapping
+	public UserListResponse getUsers()   {
+		return userService.getUsers();
+	}
 	
 	@PostMapping
 	public void save(@RequestBody SaveUserParams saveUserParams) {
