@@ -182,8 +182,11 @@
 	        image : markerImage // 마커 이미지 
 	    });
 	  //마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
-		kakao.maps.event.addListener(marker, 'click',function(){
+		kakao.maps.event.addListener(marker, 'mouseover',function(){
 			displayInfowindow(map, marker,name,addr,isemer);
+		});
+		kakao.maps.event.addListener(marker, 'mouseout',function(){
+			infowindow.close();
 		});
 	  //마커 배열에 현재마커를 추가
 		markers.push(marker);
