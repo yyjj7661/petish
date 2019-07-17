@@ -1,14 +1,12 @@
 package com.community.petish.mypage.dto;
 
-import java.util.Date;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
+//사용자에게 전달받은 question을 db에 저장하기 위한 DTO
 @Data
 public class QuestionRequestDTO {
-	
-	// 문의 식별자 => 문의번호
-	private int id;
 
 	// 문의 제목
 	private String title;
@@ -16,18 +14,10 @@ public class QuestionRequestDTO {
 	// 문의 내용
 	private String content;
 
-	// 답변 상태
-	private int replied;
-
-	// 문의카테고리 식별자로 검색한 카테고리명
-	private String category;
-	
 	// 유저식별자
 	private int user_id;
 
-	// 작성일자
-	private String question_created_date;
+	// 문의카테고리 식별자
+	private int category_id;
 	
-	// 삭제여부
-	private int deleted;
 }

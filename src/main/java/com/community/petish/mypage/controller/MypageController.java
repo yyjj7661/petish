@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.dto.QuestionResponseDTO;
+import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.service.QuestionService;
 
 import lombok.extern.log4j.Log4j;
@@ -43,7 +43,7 @@ public class MypageController {
 	public String questionList(Model model, HttpSession session) {
 		int user_id = (int)session.getAttribute("user_id");
 		log.info(user_id);
-		ArrayList<QuestionRequestDTO> list = questionServiceImpl.getQuestionList(user_id);
+		ArrayList<QuestionResponseDTO> list = questionServiceImpl.getQuestionList(user_id);
 		int amount = questionServiceImpl.getUndeleted(user_id);
 		model.addAttribute("amount", amount);
 		model.addAttribute("list",list);
@@ -57,9 +57,9 @@ public class MypageController {
 	}
 
 	@RequestMapping("/question/insert")
-	public String insertQuestion(QuestionResponseDTO dto) {
+	public String insertQuestion(QuestionRequestDTO dto) {
 		log.info(dto);
-		QuestionResponseDTO dto2 = new QuestionResponseDTO();
+		QuestionRequestDTO dto2 = new QuestionRequestDTO();
 		dto2.setUser_id(dto.getUser_id());
 		dto2.setTitle(dto.getTitle());
 		dto2.setContent(dto.getContent());

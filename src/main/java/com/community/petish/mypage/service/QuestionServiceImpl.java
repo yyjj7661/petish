@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.dto.QuestionResponseDTO;
+import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.mapper.QuestionMapper;
 
 @Service
@@ -17,13 +17,13 @@ public class QuestionServiceImpl implements QuestionService{
 	private QuestionMapper questionMapper;
 	
 	@Override
-	public void insertQuestion(QuestionResponseDTO dto) {
+	public void insertQuestion(QuestionRequestDTO dto) {
 
 		questionMapper.insertQuestion(dto);
 	}
 
 	@Override
-	public ArrayList<QuestionRequestDTO> getQuestionList(int user_id) {
+	public ArrayList<QuestionResponseDTO> getQuestionList(int user_id) {
 		ArrayList list;
 		list = questionMapper.getQuestionList(user_id);
 		return list;

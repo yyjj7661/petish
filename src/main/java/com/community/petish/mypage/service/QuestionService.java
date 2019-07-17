@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.dto.QuestionResponseDTO;
+import com.community.petish.mypage.dto.QuestionRequestDTO;
 
 
 public interface QuestionService {
 		//1. 문의 등록
-		public void insertQuestion(QuestionResponseDTO dto);
+		public void insertQuestion(QuestionRequestDTO dto);
 		//2. 문의 조회
-		public ArrayList<QuestionRequestDTO> getQuestionList(int user_id);
+		public ArrayList<QuestionResponseDTO> getQuestionList(int user_id);
 		//3. 문의 수정
 //		public void modifyQuestion(QuestionResponseDTO dto);
 		//4. 문의 삭제
