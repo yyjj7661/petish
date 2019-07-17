@@ -53,4 +53,8 @@
  		]]>
  	</select>
  	
+ 	<select id="getTotalCount" resultType="int">
+ 		select count(*) from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%'
+ 	</select>
+ 	
  </mapper> 

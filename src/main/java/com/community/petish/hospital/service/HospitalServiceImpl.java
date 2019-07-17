@@ -41,5 +41,10 @@ public class HospitalServiceImpl implements HospitalService{
 		 
 		 return hospitalList;
 	}
+	@Override
+	public int getTotalCount(String hospital_addr) {
+		
+		return hospitalMapper.getTotalCount(hospital_addr);
+	}
 
 }

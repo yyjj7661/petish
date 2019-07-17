@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,11 +97,13 @@
 										<div class="hospital_list">
 											<h2>PET Hospital List</h2>
 										</div>
+										
 										<p class="lead"></p>
 										<div class="row text-center" id="hospList">
 											
 											
 										</div>
+										<div class="row text-center" id="paging">
 									</div>
 								</div>				
 							</div>
@@ -219,8 +222,12 @@
 			    removeMarker();
 				//console.log(data.length);
 				//좌표 객체 초기화
+				console.log(data.list);
+				console.log(data.paging);
+				console.log(data.paging.startPage);
+				
 				bounds = new kakao.maps.LatLngBounds(); 
-				$.each(data, function(index, item){
+				$.each(data.list, function(index, item){
 					geocoder.addressSearch(item.hospital_addr, function(result, status){
 						
 				        //응급지료가능 병원일경우 마커 이미지교체
@@ -266,6 +273,13 @@
 						
 					});
 				});
+				
+				for(var i = data.paging.startPage; i<=data.paging.endPage; i++){
+					var output=i;
+					$('#paging').append(output);
+				}
+				
+				
 			},
 			error:function(){
 				alert("ajax 통신 실패!!!");

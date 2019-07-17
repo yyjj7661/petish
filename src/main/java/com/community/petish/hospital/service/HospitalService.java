@@ -10,4 +10,5 @@ public interface HospitalService {
 	List<HospitalVO> gethospitalList(String hospital_addr);
 	List<HospitalVO> getEmerhospitalList(String hospital_addr);
 	List<HospitalVO> getListWithPaging(Criteria cri);
+	int getTotalCount(String hospital_addr);
 }
