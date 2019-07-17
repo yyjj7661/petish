@@ -8,7 +8,7 @@
 	<result property="DOG_NAME" column="DOG_NAME" />
 	<result property="DOG_AGE" column="DOG_AGE" />	
 	<result property="DOG_GENDER" column="DOG_GENDER" />
-	<result property="DOG_DESCRPTION" column="DOG_DESCRIPTION" />
+	<result property="DOG_DESCRIPTION" column="DOG_DESCRIPTION" />
 	<result property="DOG_IMAGE" column="DOG_IMAGE" />
 	
 	<result property="DOG_LOST_DATE" column="DOG_LOST_DATE" />
@@ -49,7 +49,7 @@
 </select>
 
 <!-- 게시글 리스트 -->
-<select id="getDogLostList" resultType="DogLostPostListDTO">
+<select id="getDogLostList" resultMap="DogLostPostListDTO">
 	SELECT
 	ID, DOG_AGE, DOG_GENDER, VIEW_COUNT, CREATE_DATE, UPDATED_DATE, FOUND, REGION_ID, USER_ID, SPECIES_ID
 	FROM dog_lost_post_tb
@@ -77,7 +77,7 @@ values(
 #{PHONE_NUMBER},
 #{DOG_LOST_ADDRESS},
 #{REWARD},
-0, sysdate, sysdate, 0, 0, 0,
+0, sysdate, sysdate, 0, 0, 1,
 #{USER_ID},
 #{SPECIES_ID}
 )
@@ -97,15 +97,15 @@ DOG_LOST_DATE=#{DOG_LOST_DATE},
 PHONE_NUMBER=#{PHONE_NUMBER}, 
 DOG_LOST_ADDRESS=#{DOG_LOST_ADDRESS}, 
 REWARD=#{REWARD},
-SPECIES_ID=#{SPECIES_ID}, 
-updated_date=sysdate, 
-FOUND=#{FOUND}, 
-REGION_ID=#{REGION_ID}
+UPDATED_DATE=sysdate,
+FOUND=#{FOUND},
+SPECIES_ID=#{SPECIES_ID}
+where ID=#{ID}
 </update>
 
 <!-- 게시글 삭제 -->
 <delete id="deleteDogLostPost" parameterType="Integer">
-DELETE FROM dog_lost_post_tb WHERER ID=#{ID}
+DELETE FROM dog_lost_post_tb WHERE ID=#{ID}
 </delete>
  
 </mapper>
