@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.community.petish.user.domain.User;
 import com.community.petish.user.dto.request.SaveUserParams;
+import com.community.petish.user.dto.response.UserListResponse;
+import com.community.petish.user.exception.UserNotFoundException;
 import com.community.petish.user.mapper.UserMapper;
 
 @Service
@@ -29,7 +31,20 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findById(Long id) {
 
-		return userMapper.findById(id);
+		User user = userMapper.findById(id);
+		
+		if (user == null) {
+			throw new UserNotFoundException("해당하는 유저를 찾을 수 없습니다. userId : " + id);
+		}
+		
+		return user;
+	}
+
+	@Override
+	public UserListResponse getUsers() {
+		
+		userMapper.findAll()
+		return null;
 	}
 	
 }
