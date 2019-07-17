@@ -12,7 +12,7 @@
 		<result property="concern" column="concern"></result>
 	</resultMap>
 	
-	<insert id="save" parameterType="com.community.petish.user.dto.request.JoinUserParams">
+	<insert id="save" parameterType="com.community.petish.user.dto.request.SaveUserParams">
 		
 		INSERT INTO USER_TB 
 			(id, username, password, nickname, address, gender, picture, join_date, deleted, concern_id)
@@ -20,6 +20,10 @@
 			(	( (select NVL(max(id), 0) from user_tb) + 1), #{username}, #{password}, #{nickname}, #{address}, #{gender}, #{profileImage}, sysdate, 0, 
 				(SELECT id from concern_tb where concern = #{concern})
 			)
+			
+		<selectKey resultType="Long" order="AFTER">
+			SELECT id FROM user_tb where username = #{username} AND deleted = 0
+		</selectKey>
 	</insert>
 	
 	<select id="findByUsername" parameterType="String" resultMap="UserDetailResponse">
