@@ -19,14 +19,12 @@ public interface DogLostPostService {
 
 	// 게시글 작성
 	//void register(DogLostPostRequestDTO dto);
-	void register(DogLostPostRequestWriteDTO dto);
+	int register(DogLostPostRequestWriteDTO dto);
 
 	// 게시글 수정
-	void modify(DogLostPostRequestWriteDTO dto);
+	int modify(DogLostPostRequestWriteDTO dto);
 
 	// 게시글 삭제
-	void delete(int num);
-
-	
+	int delete(int num);
 
 }

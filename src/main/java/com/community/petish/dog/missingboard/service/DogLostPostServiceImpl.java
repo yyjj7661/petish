@@ -36,20 +36,20 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 
 	// 게시글 작성
 	@Override
-	public void register(DogLostPostRequestWriteDTO dto) {
-		mapper.insertDogLostPost(dto);	
+	public int register(DogLostPostRequestWriteDTO dto) {
+		return mapper.insertDogLostPost(dto);	
 	}
 	
 	// 게시글 수정
 	@Override
-	public void modify(DogLostPostRequestWriteDTO dto) {
-		mapper.updateDogLostPost(dto);
+	public int modify(DogLostPostRequestWriteDTO dto) {
+		return mapper.updateDogLostPost(dto);
 	}
 	
 	//게시글 삭제
 	@Override
-	public void delete(int num) {
-		mapper.deleteDogLostPost(num);
+	public int delete(int num) {
+		return mapper.deleteDogLostPost(num);
 	}
 	
 }
