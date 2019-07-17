@@ -17,7 +17,7 @@ public interface QuestionService {
 //		public void modifyQuestion(QuestionResponseDTO dto);
 		//4. 문의 삭제
 		public void deleteQuestion(int id);
-		//5. 삭제 안된 글 갯수 가져오기
-		public int getUndeleted();
+		//5. 해당 사용자의 삭제 안된 글 갯수 가져오기
+		public int getUndeleted(int user_id);
 
 }

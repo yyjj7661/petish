@@ -42,8 +42,8 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 
 	@Override
-	public int getUndeleted() {
-		int undeleted = questionMapper.getUndeleted();
+	public int getUndeleted(int user_id) {
+		int undeleted = questionMapper.getUndeleted(user_id);
 		return undeleted;
 	}
 

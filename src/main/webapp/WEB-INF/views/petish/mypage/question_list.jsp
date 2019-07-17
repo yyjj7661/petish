@@ -1,5 +1,12 @@
+<%@page import="com.community.petish.mypage.dto.QuestionRequestDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.community.petish.mypage.*" %>
+<% 
+	ArrayList<QuestionRequestDTO> list = (ArrayList)request.getAttribute("list");
+	QuestionRequestDTO dto = null;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,16 +54,13 @@
 <link rel="apple-touch-icon" sizes="144x144"
 	href="/resources/img/apple-touch-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152"
-	href="/resources/img/apple-touch-icon-152x152.png">å
-
+	href="/resources/img/apple-touch-icon-152x152.png">
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
 <script src="/resources/js/mypage/mypage.js"></script>
 </head>
 <body>
-
 	<div id="all">
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
@@ -67,7 +71,6 @@
 				<div id="checkout">
 					<div style="max-width: 20cm; margin: auto;">
 						<!-- <form method="get" action=""> -->
-
 						<h3 style="margin-top: 10%; font-weight: 700;">Q & A</h3>
 						<ul id="pills-tab" role="tablist"
 							class="nav nav-pills nav-justified" style="margin-top: 1cm;">
@@ -97,40 +100,34 @@
 														<th>답변상태</th>
 
 													</tr>
-													<tr>
-														<td><div class="arrow">1</div></td>
-														<td>[게시판요청]</td>
-														<td>이구아나 실종시 어디에 올려야 할까요?</td>
-														<td>19.07.11</td>
-														<td><span class="badge badge-danger">답변대기</span></td>
+													<%
+													int amount = (int)request.getAttribute("amount");
+													for(int i=0; i<list.size(); i++){
+														dto = list.get(i);
+														if(dto.getDeleted()==0){
+														 %>
+														<tr>
+														<td><div class="text-center"><%=amount %></div></td>
+														<td><%=dto.getCategory() %></td>
+														<td><%=dto.getTitle() %></td>
+														<td><%=dto.getQuestion_created_date().substring(0, 10) %></td>
+														<td>
+														<%if(dto.getReplied()==0){ %>
+														<span class="badge badge-danger">답변대기</span></td>
+														<%}else if(dto.getReplied()==1){ %>
+														<span class="badge badge-info">답변완료</span></td>
+														<%} %>
 													</tr>
 													<tr>
-														<td colspan="5">이구아나 실종한 상태인데요<br>강아지,고양이 외에는 실종게시판이 따로 개설되어있지 않네요ㅠㅠ<br>자유게시판에 올려야할까요?</td>
+														<td colspan="5">
+														<div class="text-right"><a href='./delete?id=<%=dto.getId()%>'>삭제</a></div>
+														<pre><%=dto.getContent() %></pre></td>
 													</tr>
-													<tr>
-														<td><div class="arrow">1</div></td>
-														<td>[게시판요청]</td>
-														<td>앵무새 게시판 신규개설 요청합니다</td>
-														<td>19.05.10</td>
-														<td><span class="badge badge-info">답변완료</span></td>
-													</tr>
-													<tr>
-														<td colspan="5">안녕하세요. <br>앵무새 게시판 신규개설 요청하려고 합니다.<br> 빠른 답변
-															부탁드려요.<br><br> ▶ 안녕하세요.<br> 문의 감사드립니다. <br>앵무새 게시판은 신규개설 요청이 많아 한 달 이내에
-															개설 될 예정이오니 참고 부탁드립니다. <br>감사합니다.</td>
-													</tr>
-													<tr>
-														<td><div class="arrow">2</div></td>
-														<td>[회원등급]</td>
-														<td>정회원으로 등업 하려면 어떻게 해야하나요</td>
-														<td>19.03.31</td>
-														<td><span class="badge badge-info">답변완료</span></td>
-													</tr>
-													<tr>
-														<td colspan="5">안녕하세요. <br>새로 가입했는데요.<br> 정회원으로 등업하려면 어떻게
-															해야하나요?<br><br> ▶ 안녕하세요. <br>문의 감사드립니다. <br>정회원으로 등업하시려면 마이페이지>회원정보수정에서
-															휴대폰 인증 완료하시면 됩니다. <br>감사합니다.</td>
-													</tr>
+													<%
+														amount--;
+														}
+													}
+													%>
 												</table>
 											</div>
 										</div>
@@ -140,38 +137,40 @@
 							<div id="message-send" role="tabpanel"
 								aria-labelledby="pills-profile-tab" class="tab-pane fade">
 								<div class="row">
-									<form>
+									<form action="./insert">
 										<div class="row">
 											<div class="col-sm-6 col-md-3">
 												<div class="form-group">
 													<label for="category">문의 유형</label> <select id="category"
-														class="form-control">
-														<option value="1">문의유형 선택</option>
-														<option value="fulldress">등업관련</option>
-														<option value="tshirts">게시물 관련</option>
+														class="form-control" name="category_id">
+														<option >문의유형 선택</option>
+														<option value="1">게시판요청</option>
+														<option value="2">회원등급</option>
+														<option value="3">기타</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
 													<label>문의 제목</label> <input type="text"
-														class="form-control">
+														class="form-control" name="title">
 												</div>
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
 													<label>문의 내용</label>
-													<textarea class="form-control" rows="15"></textarea>
+													<textarea class="form-control" rows="15" name="content"></textarea>
 												</div>
 											</div>
+											<input type="hidden" name="user_id" value='<%=session.getAttribute("user_id") %>'>
 											<div class="col-sm-12 text-center">
 												<!-- 문의 form 전송 -->
 												<button type="submit" class="btn btn-outline-primary"
 													id="question_submit">확인</button>
+												<button type="reset" class="btn btn-outline-primary"
+													id="question_submit">취소</button>
 												<a style="padding-right: 0.5rem;"></a>
 												<!-- 문의 리스트 화면으로 -->
-												<button type="submit" class="btn btn-outline-primary"
-													id="question_cancle">취소</button>
 											</div>
 										</div>
 									</form>

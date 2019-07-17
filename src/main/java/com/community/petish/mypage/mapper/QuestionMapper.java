@@ -17,6 +17,6 @@ public interface QuestionMapper {
 	//4. 문의 삭제
 	public void deleteQuestion(int num);
 	//5. 삭제 안된 글 갯수 가져오기
-	public int getUndeleted();
+	public int getUndeleted(int user_id);
 
 }

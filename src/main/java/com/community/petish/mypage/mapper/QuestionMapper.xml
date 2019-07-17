@@ -37,7 +37,9 @@
 		UPDATE QUESTION_TB SET DELETED = 1 WHERE ID=#{id}
 	</update>
 	
-	<select id="getUndeleted" resultType="int">
-		SELECT COUNT (*) FROM QUESTION_TB WHERE DELETED = 0;
+	<!-- 해당사용자 삭제되지 않은 문의 갯수 확인 -->
+	<select id="getUndeleted" resultType="int" parameterType="int">
+		SELECT COUNT (*) FROM QUESTION_TB WHERE DELETED = 0 and user_id = #{user_id}
 	</select>
+	
 </mapper>

@@ -2,6 +2,8 @@ package com.community.petish.mypage.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/mypage/*")
 public class MypageController {
 
-
+	
 	@Autowired
 	private QuestionService questionServiceImpl;
 	
@@ -38,8 +40,12 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/question/list")
-	public String questionList(Model model) {
-		ArrayList<QuestionRequestDTO> list = questionServiceImpl.getQuestionList(1);
+	public String questionList(Model model, HttpSession session) {
+		int user_id = (int)session.getAttribute("user_id");
+		log.info(user_id);
+		ArrayList<QuestionRequestDTO> list = questionServiceImpl.getQuestionList(user_id);
+		int amount = questionServiceImpl.getUndeleted(user_id);
+		model.addAttribute("amount", amount);
 		model.addAttribute("list",list);
 		return "petish/mypage/question_list";
 	}
