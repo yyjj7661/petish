@@ -2,10 +2,12 @@ package com.community.petish.user.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 import oracle.sql.DATE;
 
 @Getter
 @AllArgsConstructor
+@ToString
 public class User {
 
 	private Long id;
