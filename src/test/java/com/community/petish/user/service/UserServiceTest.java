@@ -1,4 +1,4 @@
-package com.community.petish.user.mapper;
+package com.community.petish.user.service;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,4 +19,8 @@ public class UserServiceTest {
 	@Autowired
 	UserService userService;
 	
+	@Test
+	void saveUserTest() {
+		
+	}
 }
