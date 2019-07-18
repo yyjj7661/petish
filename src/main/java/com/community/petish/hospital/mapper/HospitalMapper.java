@@ -8,8 +8,12 @@ import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
 
 public interface HospitalMapper {
+	HospitalVO getHospital(String id);
+	
 	List<HospitalVO> gethospitalList(String hospital_addr);
 	List<HospitalVO> getEmerhospitalList(String hospital_addr);
+	
+	
 	List<HospitalVO> getListWithPaging(Criteria cri);
 	List<HospitalVO> getEmerListWithPaging(Criteria cri);
 	int getTotalCount(String hospital_addr);

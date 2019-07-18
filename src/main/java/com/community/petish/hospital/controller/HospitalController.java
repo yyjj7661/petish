@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
@@ -74,9 +75,16 @@ public class HospitalController {
 		return result;
 	}
 	
-	@RequestMapping("/detail")
-	public String hospitalDetail() {
-		return "petish/hospital/detail";
+	@RequestMapping(value="/{id}", produces="application/json;charset=UTF-8")
+	public ModelAndView hospitalDetail(@PathVariable("id") String id) {
+		System.out.println("id="+id);
+		
+		HospitalVO vo = hospitalService.getHospital(id);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("petish/hospital/detail");
+		mv.addObject("hospital", vo);
+		return mv;
 	}
 	
 	

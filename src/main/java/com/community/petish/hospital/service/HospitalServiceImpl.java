@@ -58,5 +58,10 @@ public class HospitalServiceImpl implements HospitalService{
 		// TODO Auto-generated method stub
 		return hospitalMapper.getEmerTotalCount(hospital_addr);
 	}
+	@Override
+	public HospitalVO getHospital(String id) {
+		HospitalVO vo = hospitalMapper.getHospital(id);
+		return vo;
+	}
 
 }

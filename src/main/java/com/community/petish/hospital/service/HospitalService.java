@@ -7,6 +7,8 @@ import com.community.petish.hospital.domain.HospitalVO;
 
 
 public interface HospitalService {
+	HospitalVO getHospital(String id);
+	
 	List<HospitalVO> gethospitalList(String hospital_addr);
 	List<HospitalVO> getEmerhospitalList(String hospital_addr);
 	List<HospitalVO> getListWithPaging(Criteria cri);

@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="/resources/css/hospital/star.css">
 	<!-- 평점 별  -->
 	<link rel="stylesheet" href="/resources/css/hospital/detail.css">
+	<link rel="stylesheet" href="/resources/css/write-modify.css">
 
 </head>
 
@@ -30,18 +31,22 @@
 		<div id="content">
 			<div class="container">
 				<div class="bar">
-					<div class="row">
+					
 						<div class="col-md-12">
-							<div class="heading">
-								<h2>PET HOSPITAL</h2>
+							<div class="heading" id="head">
+								<h2 class="text-uppercase">PET HOSPITAL</h2>
+							</div>
+							<div class="col-lg-8 text-right p-3" style="display:inline-block;">
+										<a href="/dog/freeboard/list" class="btn btn-template-outlined"
+											style="margin-top: 10px;">목록</a>
 							</div>
 						</div>
-					</div>
+					
 					<div class="row portfolio text-center">
 						<div class="col-md-6">
 							<div class="hospital-image">
 								<div class="image">
-									<img src="/resources/img/hospital/hospital.jpg" alt="" class="img-fluid">
+									<img src="/resources/img/hospital/${hospital.hospital_img }" alt="" class="img-fluid">
 								</div>
 							</div>
 						</div>
@@ -49,41 +54,43 @@
 						<div class="col-md-6">
 							<div class="icon">
 							<ul>
-								<li> 
-									<div class="fa fa-home fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
-										<span id="hospital_name">A동물병원</span>
+								
+									<div class="fa fa-home fa-pull-left fa-fw" id="spec" aria-hidden="true"style="font-size:24px;">
+										<span id="hospital_name">${hospital.hospital_name }</span>
 									</div>
-								</li>
-								<li> 
-									<div class="fa fa-map-marker fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
-										<span id="hospital_address">서울특별시 강남구 비트캠프</span>
+								
+								
+									<div class="fa fa-map-marker fa-pull-left fa-fw" id="spec" aria-hidden="true"style="font-size:24px;">
+										<span id="hospital_address">${hospital.hospital_addr }</span>
 									</div>
-								</li>
-								<li> 
-									<div class="fa fa-phone fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
-										<span id="phone_number">02-9999-9999</span>
+								
+								
+									<div class="fa fa-phone fa-pull-left fa-fw" id="spec" aria-hidden="true"style="font-size:24px;">
+										<span id="phone_number">${hospital.hospital_phone }</span>
 									</div>
-								</li>
-								<li> 
-									<div class="fa fa-clock-o fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
-										<span id="opertion_time">AM 09:00 ~ PM 09:00</span>
+								
+								
+									<div class="fa fa-clock-o fa-pull-left fa-fw" id="spec" aria-hidden="true"style="font-size:24px;">
+										<span id="opertion_time">${hospital.hospital_hours }</span>
 									</div>
-								</li>
-								<li> 
-									<div class="fa fa-laptop fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
-										<span id="site_address">www.naver.com</span>
+								
+								
+									<div class="fa fa-laptop fa-pull-left fa-fw" id="spec" aria-hidden="true"style="font-size:24px;">
+										<span id="site_address">${hospital.hospital_website }</span>
 									</div>
-								</li>
-								<li> 
-									<div class="fa fa-car fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
+								
+								<c:if test="${hospital.isParking == 1 }">
+									<div class="fa fa-car fa-pull-left fa-fw" id="spec" aria-hidden="true" style="font-size:24px;">
 										<span id="parking">주차가능</span>
 									</div>
-								</li>
-								<li> 
-									<div class="fa fa-plus-square fa-pull-left fa-2x fa-fw" id="spec" aria-hidden="true">
+								</c:if>
+								 
+								 <c:if test="${hospital.isEmergency == 1 }">
+									<div class="fa fa-plus-square fa-pull-left fa-fw" id="spec" aria-hidden="true" style="font-size:24px;">
 										<span id="emergency">응급진료</span>
 									</div>
-								</li>
+								</c:if>
+								
 							</ul>
 						</div>
 						</div>
@@ -96,18 +103,12 @@
 			<div class="fa fa-list fa-2x" aria-hidden="true" id="subject">
 				<span>진료 과목</span>
 			</div>
-			<div class="fa fa-circle" style="font-size:18px;" id="subject">
-				<span>종합 검진</span>
-			</div>
-			<div class="fa fa-circle" style="font-size:18px;" id="subject">
-				<span>수의 안과</span>
-			</div>
-			<div class="fa fa-circle" style="font-size:18px;" id="subject">
-				<span>피부과</span>
-			</div>
-			<div class="fa fa-circle" style="font-size:18px;" id="subject">
-				<span>치과</span>
-			</div>
+			<c:forTokens var="jinryo" items="${hospital.hospital_check }" delims=",">
+				<div class="fa fa-circle" style="font-size:18px;" id="subject">
+					<span>${ jinryo}</span>
+				</div>
+			</c:forTokens>
+			
 		</div>
 
 		<div class="container">
@@ -139,7 +140,7 @@
 					</td>
 
 					<td><input style="width:90%; height:100%; boder:2px solid #38A7BB;" placeholder="자유롭게 작성하되 욕설 및 상대방에게 불쾌감을 줄 수 있는 단어는 금지합니다.(100자 이내)" 
-					type="text" id="star_reply" maxlength="100" autofocus/>
+					type="text" id="star_reply" maxlength="100" />
 						<button type="button" class="btn btn-template-outlined">작성완료</button>
 					</td>			
 				</tr>
@@ -188,9 +189,47 @@
 	<script src="/resources/js/front.js"></script>
 		
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e74e0d9232cbccbd2962414bf135d9c&libraries=services"></script>
-	<script src="/resources/js/hospital/detail.js"></script>
-	<script src="/resources/js/hospital/star.js"></script>
 	
+	<script src="/resources/js/hospital/star.js"></script>
+	<script>
+	//지도 api 선택한 곳 마커 표시하기(주소까지 출력)
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	//원래 게시글의 모임장소 주소를 좌표로 바꿔주고 지도에 표시해주는 함수//********************************************************
+	var callback = function(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	        setMarker(result[0].x, result[0].y);
+	    }
+	};
+	// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
+	geocoder.addressSearch("${hospital.hospital_addr }", callback);
+	
+	var marker = new kakao.maps.Marker();
+
+	//검색 하고 마커 찍어주는 함수
+	function setMarker(fa, ga){
+		//검색창에서 클릭한 좌표로 이동된 지도를 다시 생성
+		mapOption = {
+		        center: new kakao.maps.LatLng(ga, fa), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		//해당 위치에 마커를 표시
+		marker.setPosition(new kakao.maps.LatLng(ga, fa));
+		marker.setMap(map);
+	}
+	</script>
 
 	
 </body>

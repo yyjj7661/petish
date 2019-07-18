@@ -31,6 +31,10 @@
  		
  	</resultMap>
  	
+ 	<select id="getHospital" resultMap="hospitalResultMap">
+ 		select * from hospital_tb where id = #{id}
+ 	</select>
+ 	
  	<!-- id는 Mapper.java(여기선 MemberMapper.java)에 동일하게 사용 -->
  	<select id="gethospitalList" resultMap="listResultMap">
  		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%'

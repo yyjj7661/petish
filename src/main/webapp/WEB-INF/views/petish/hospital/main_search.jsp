@@ -267,7 +267,7 @@
 						output += '<img src="/resources/img/hospital/'+item.hospital_img+'" alt="" class="img-fluid rounded-circle" style="height: 250px;"></a>';
 						output += '</div>';
 						output += '<h4 style="font-size: 25px;">';
-						output += '<a href="B동물병원상세페이지">'+item.hospital_name+'</a></h4>';
+						output += '<a href="/hospital/'+item.id+'">'+item.hospital_name+'</a></h4>';
 						output += '<p style="font-size: 25px;">★★★★★</p>';
 						output += '<div class="text">';
 						output += '<div>'+item.hospital_addr+'</div>'
