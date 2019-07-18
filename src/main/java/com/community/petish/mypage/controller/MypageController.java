@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.community.petish.mypage.dto.QuestionResponseDTO;
+import com.community.petish.mypage.dto.MessageResponseDTO;
 import com.community.petish.mypage.dto.QuestionRequestDTO;
+import com.community.petish.mypage.dto.QuestionResponseDTO;
+import com.community.petish.mypage.service.MessageService;
+import com.community.petish.mypage.service.MessageServiceImpl;
 import com.community.petish.mypage.service.QuestionService;
 
 import lombok.extern.log4j.Log4j;
@@ -24,6 +27,9 @@ public class MypageController {
 	@Autowired
 	private QuestionService questionServiceImpl;
 	
+	@Autowired
+	private MessageService messageServiceImpl;
+	
 	@RequestMapping("/")
 	public String mypage() {
 		return "petish/mypage/default";
@@ -34,16 +40,12 @@ public class MypageController {
 		return "petish/mypage/info_modify_form";
 	}
 	
-	@RequestMapping("/message")
-	public String messageList() {
-		return "petish/mypage/message_list";
-	}
 	@RequestMapping("/member/detail")
 	public String memberDetail() {
 		return "petish/mypage/member_detail";
 	}
 	
-	//question 관련
+	//question start
 	@RequestMapping("/question/list")
 	public String questionList(Model model, HttpSession session) {
 		int user_id = (int)session.getAttribute("user_id");
@@ -73,4 +75,37 @@ public class MypageController {
 		questionServiceImpl.deleteQuestion(id);
 		return "redirect:./list";
 	}
+	
+	//question end
+
+	//message start
+	@RequestMapping("/message/list")
+	public String messageList(Model model, HttpSession session) {
+		int user_id = (int)session.getAttribute("user_id");
+		log.info(user_id);
+		ArrayList<MessageResponseDTO> receivedList = messageServiceImpl.getReceivedMessageList(user_id);
+		int undeletedReceived = messageServiceImpl.getUndeletedReceived(user_id);
+		ArrayList<MessageResponseDTO> sentList = messageServiceImpl.getSentMessageList(user_id);
+		int undeletedSent = messageServiceImpl.getUndeletedSent(user_id);
+		model.addAttribute("receivedList", receivedList);
+		model.addAttribute("undeletedReceived", undeletedReceived);
+		model.addAttribute("sentList", sentList);
+		model.addAttribute("undeletedSent", undeletedSent);
+		return "petish/mypage/message_list";
+	}
+	
+	@RequestMapping("/message/detail")
+	public String messageDetail(int id) {
+		messageServiceImpl.getMessageDetail(id);
+		log.info(id);
+		return "redirect:./list";
+	}
+	
+	@RequestMapping("/message/delete")
+	public String messageDelete(int id) {
+		messageServiceImpl.deleteMessage(id);
+		log.info(id);
+		return "redirect:./list";
+	}
+	//message end
 }

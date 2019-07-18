@@ -29,39 +29,39 @@ public class MyPageMessageMapperTests {
 		log.info(mapper);
 	}
 
-	// create test => 성공
-	@Test
-	public void testInsert() {
-		MessageRequestDTO dto = new MessageRequestDTO();
-		dto.setTitle("message mapper insert test 제목5");
-		dto.setContent("message mapper insert test 내용5");
-		dto.setSender_id(1);
-		dto.setReceiver_id(2);
-		mapper.writeMessage(dto);
-		log.info(dto);
-	}
-
-	// read test => 성공
-	@Test
-	public void testRead() {
-		ArrayList<MessageResponseDTO> list = null;
-		log.info(list);
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("user_id", new Integer(1));
-//		list = mapper.getReceiveMessageList(1);
+//	// create test => 성공
+//	@Test
+//	public void testInsert() {
+//		MessageRequestDTO dto = new MessageRequestDTO();
+//		dto.setTitle("message mapper insert test 제목5");
+//		dto.setContent("message mapper insert test 내용5");
+//		dto.setSender_id(1);
+//		dto.setReceiver_id(2);
+//		mapper.writeMessage(dto);
+//		log.info(dto);
+//	}
+//
+//	// read test => 성공
+//	@Test
+//	public void testRead() {
+//		ArrayList<MessageResponseDTO> list = null;
 //		log.info(list);
-		list = mapper.getSendMessageList(1);
-		log.info(list);
-	}
+//		HashMap<String, Integer> map = new HashMap<String, Integer>();
+//		map.put("user_id", new Integer(1));
+//		list = mapper.getReceivedMessageList(1);
+//		log.info(list);
+//		list = mapper.getSentMessageList(1);
+//		log.info(list);
+//	}
 	// delete test => 성공
 	@Test
 	public void testDelete() {
-		mapper.deleteMessage(3);
+		mapper.deleteMessage(4);
 	}
 
 	@Test
 	public void testReadDetail() {
-		MessageResponseDTO dto = mapper.getMessageDetail(4);
-		log.info(dto);
+		int res = mapper.getMessageDetail(3);
+		log.info(res);
 	}
 }

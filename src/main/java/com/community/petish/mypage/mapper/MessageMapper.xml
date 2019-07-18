@@ -18,23 +18,29 @@
 		INSERT INTO MESSAGE (title, content, sender_id, receiver_id) values (#{title}, #{content}, #{sender_id}, #{receiver_id})
 	</insert>
 	
-	<select id="getReceiveMessageList" resultMap="MessageResultMap" parameterType="int">
+	<select id="getReceivedMessageList" resultMap="MessageResultMap" parameterType="int">
 		SELECT id, title, content, sent_date, read, deleted, sender_id from message
 		where receiver_id = #{user_id}
 	</select>
 	
-	<select id="getSendMessageList" resultMap="MessageResultMap" parameterType="int">
+	<select id="getSentMessageList" resultMap="MessageResultMap" parameterType="int">
 		select id, title, content, sent_date, read, deleted, receiver_id from message
 		where sender_id = #{user_id}
 	</select>
 	
-	<select id="getMessageDetail" resultMap="MessageResultMap" parameterType="int">
-		select id, title, content, sent_date, read, receiver_id from message
-		where id = #{id}
-	</select>
+	<update id="getMessageDetail" parameterType="int">
+		update message set read=1 where id=#{id}
+	</update>
 	
-	<delete id="deleteMessage" parameterType="int">
-		delete from message where id=#{id}
-	</delete>
+	<update id="deleteMessage" parameterType="int">
+		update message set deleted=1 where id=#{id}
+ 	</update>
 
+	<select id="getUndeletedReceived" parameterType="int" resultType="int">
+		select count(*) from message where deleted = 0 and receiver_id = #{user_id}
+	</select>
+
+	<select id="getUndeletedSent" parameterType="int" resultType="int">
+		select count(*) from message where deleted = 0 and sender_id= #{user_id}
+	</select>
 </mapper>

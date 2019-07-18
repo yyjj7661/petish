@@ -1,3 +1,14 @@
+<%@page import="com.community.petish.mypage.dto.MessageRequestDTO"%>
+<%@page import="com.community.petish.mypage.dto.MessageResponseDTO"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.community.petish.mypage.*"%>
+<%
+	ArrayList<MessageResponseDTO> receivedList = (ArrayList) request.getAttribute("receivedList");
+	int undeletedReceived = (int) request.getAttribute("undeletedReceived");
+	ArrayList<MessageResponseDTO> sentList = (ArrayList) request.getAttribute("sentList");
+	int undeletedSent = (int) request.getAttribute("undeletedSent");
+	MessageResponseDTO dto = null;
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -48,7 +59,8 @@
 	href="/resources/img/apple-touch-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152"
 	href="/resources/img/apple-touch-icon-152x152.png">
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- CSS파일 추가 -->
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
 
@@ -58,7 +70,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <style>
-
 .modal {
 	position: fixed;
 	top: 15%;
@@ -82,13 +93,13 @@
 		<div id="content">
 			<div class="container">
 
-				<div>					
-					<div style="max-width:20cm; margin:auto;" id="checkout">
-						<div style="margin-top:5rem;">
-						<h3>쪽지함</h3>
+				<div>
+					<div style="max-width: 20cm; margin: auto;" id="checkout">
+						<div style="margin-top: 5rem;">
+							<h3>쪽지함</h3>
 						</div>
-						<div class="box border-bottom-0" style="margin-top:0rem;">
-						
+						<div class="box border-bottom-0" style="margin-top: 0rem;">
+
 							<!-- <form method="get" action=""> -->
 
 							<ul id="pills-tab" role="tablist"
@@ -118,61 +129,82 @@
 														<thead>
 															<tr align="center">
 																<th><input type="checkbox" id="received-check-all"></th>
-																<th class="mobile-none">번호</th>
-																<th class="mobile-none">받는 사람</th>
-																<th>내용</th>
-																<th class="mobile-none">보낸 날짜</th>
+																<th class="mobile-none">보낸사람</th>
+																<th class="mobile-none">제목</th>
+																<th class="mobile-none">날짜</th>
+																<th class="mobile-none">수신확인</th>
 															</tr>
 														</thead>
 														<tbody>
+															<%
+																for (int i = 0; i < receivedList.size(); i++) {
+																	dto = receivedList.get(i);
+																	if (dto.getDeleted() == 0) {
+															%>
 															<tr align="center">
 																<th><input type="checkbox"
 																	class="received-check-one"></th>
-																<td align="center" class="mobile-none">4</td>
-																<td class="mobile-none">주예림</td>
+																<td align="center" class="mobile-none"><%=dto.getSender_id()%></td>
 																<td><a href="#" class="messageText"
 																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
+																	data-target="#messageRead_receive-modal" ><%=dto.getTitle()%></a></td>
+																<td class="mobile-none"><%=dto.getSent_date().substring(2, 4) + "/" + dto.getSent_date().substring(4, 6) + "/"
+																+ dto.getSent_date().substring(6, 8)%></td>
+																<td class="mobile-none">
+																	<%
+																		if (dto.getRead() == 0) {
+																	%> <i class="fa fa-envelope" style="font-size: 24px;"></i>
+																	<%
+																		} else if (dto.getRead() == 1) {
+																	%> <i class="fa fa-envelope-open"
+																	style="font-size: 24px; color: grey"></i> <%
+ 	}
+ %>
+																</td>
 															</tr>
-															<tr align="center">
-																<th><input type="checkbox"
-																	class="received-check-one"></th>
-																<td align="center" class="mobile-none">3</td>
-																<td class="mobile-none">도주환</td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
-															</tr>
-															<tr align="center">
-																<th><input type="checkbox"
-																	class="received-check-one"></th>
-																<td align="center" class="mobile-none">2</td>
-																<td class="mobile-none">장재주</td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
-															</tr>
-															<tr align="center">
-																<th><input type="checkbox"
-																	class="received-check-one"></th>
-																<td align="center" class="mobile-none">1</td>
-																<td class="mobile-none">이예지</td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
-															</tr>
+															<!-- 받은 쪽지 보기 모달창 -->
+															<div id="messageRead_receive-modal" tabindex="-1"
+																role="dialog" aria-hidden="true" class="modal fade">
+																<div role="document" class="modal-dialog">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h4 align="center" class="modal-title">받은 쪽지</h4>
+																			<button type="button" data-dismiss="modal"
+																				aria-label="Close" class="close">
+																				<span aria-hidden="true">×</span>
+																			</button>
+																		</div>
+																		<div class="modal-body">
+																			<form action="" method="get">
+																				<div class="form-group">
+																					<label>보낸 사람</label> <input id="message_sender"
+																						type="text" class="form-control"
+																						value=<%=dto.getSender_id()%> readonly>
+																				</div>
+																				<div class="form-group">
+																					<label>보낸 날짜</label> <input id="message_date"
+																						type="text" class="form-control"
+																						value=<%=dto.getSent_date()%> readonly>
+																				</div>
+																				<div class="form-group">
+																					<textarea id="message_content" rows="10"
+																						class="form-control" readonly>
+																						<%=dto.getContent() %>
+																						</textarea>
+																				</div>
+																				<div class="text-center">
+																					<a href='./detail?id=<%=dto.getId()%>'>확인</a>
+																					<a href='./delete?id=<%=dto.getId()%>'>삭제</a>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<%
+																}
+																}
+															%>
 														</tbody>
 													</table>
 												</div>
@@ -193,61 +225,76 @@
 														<thead>
 															<tr align="center">
 																<th><input type="checkbox" id="sent-check-all"></th>
-																<th class="mobile-none">번호</th>
-																<th class="mobile-none">보낸 사람</th>
-																<th>내용</th>
-																<th class="mobile-none">받은 날짜</th>
+																<th class="mobile-none">받는사람</th>
+																<th class="mobile-none">제목</th>
+																<th class="mobile-none">날짜</th>
+																<th class="mobile-none">수신확인</th>
 															</tr>
 														</thead>
 														<tbody>
+															<%
+																for (int i = 0; i < sentList.size(); i++) {
+																	dto = sentList.get(i);
+																	if (dto.getDeleted() == 0) {
+															%>
 															<tr align="center">
 																<th><input type="checkbox"
-																	class="sent-check-one"></th>
-																<td align="center" class="mobile-none">4</td>
-																<td class="mobile-none">주예림</td>
+																	class="received-check-one"></th>
+																<td align="center" class="mobile-none"><%=dto.getReceiver_id()%></td>
 																<td><a href="#" class="messageText"
 																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
+																	data-target="#messageRead_send-modal"><%=dto.getTitle()%></a></td>
+																<td class="mobile-none"><%=dto.getSent_date().substring(2, 4) + "/" + dto.getSent_date().substring(4, 6) + "/"
+																+ dto.getSent_date().substring(6, 8)%></td>
+																<td class="mobile-none">
+																	<%
+																		if (dto.getRead() == 0) {
+																	%> <i class="fa fa-envelope" style="font-size: 24px;"></i>
+																	<%
+																		} else if (dto.getRead() == 1) {
+																	%> <i class="fa fa-envelope-open"
+																	style="font-size: 24px; color: grey"></i> <%
+ 	}
+ %>
+																</td>
 															</tr>
-															<tr align="center">
-																<th><input type="checkbox"
-																	class="sent-check-one"></th>
-																<td align="center" class="mobile-none">3</td>
-																<td class="mobile-none">도주환</td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
-															</tr>
-															<tr align="center">
-																<th><input type="checkbox"
-																	class="sent-check-one"></th>
-																<td align="center" class="mobile-none">2</td>
-																<td class="mobile-none">장재주</td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
-															</tr>
-															<tr align="center">
-																<th><input type="checkbox"
-																	class="sent-check-one"></th>
-																<td align="center" class="mobile-none">1</td>
-																<td class="mobile-none">이예지</td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal">쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용 길게~~쪽지내용
-																		길게~~쪽지내용 길게~~쪽지내용 길게~~</a></td>
-																<td class="mobile-none">2019/07/02</td>
-															</tr>
+															<!-- 보낸 쪽지 보기 모달창 -->
+															<div id="messageRead_send-modal" tabindex="-1"
+																role="dialog" aria-hidden="true" class="modal fade">
+																<div role="document" class="modal-dialog">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h4 align="center" class="modal-title">보낸 쪽지</h4>
+																			<button type="button" data-dismiss="modal"
+																				aria-label="Close" class="close">
+																				<span aria-hidden="true">×</span>
+																			</button>
+																		</div>
+																		<div class="modal-body">
+																			<form action="" method="get">
+																				<div class="form-group">
+																					<label>받는 사람</label> <input id="message_sender"
+																						type="text" class="form-control" value=<%=dto.getReceiver_id() %> readonly>
+																				</div>
+																				<div class="form-group">
+																					<label>보낸 날짜</label> <input id="message_date"
+																						type="text" class="form-control" value=<%=dto.getSent_date() %> readonly>
+																				</div>
+																				<div class="form-group">
+																					<label>내용</label>
+																					<textarea id="message_content" rows="10"
+																						class="form-control" readonly><%=dto.getContent() %></textarea>
+																				</div>
+																				<div class="text-right"><a href='./delete?id=<%=dto.getId()%>'>삭제</a></div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<%
+																}
+																}
+															%>
 														</tbody>
 													</table>
 												</div>
@@ -292,129 +339,8 @@
 										삭제</a> <a href="" class="btn btn-secondary mt-0" id="delete-all">전체
 										삭제</a>
 								</div>
-
-								<div class="right-col">
-									<a href="#" data-toggle="modal"
-										data-target="#messageWrite-modal"
-										class="btn btn-outline-primary"><span
-										class="d-none d-md-inline-block">쪽지 쓰기</span> <i
-										class="fa fa-chevron-right"></i></a>
-								</div>
 							</div>
 							<!-- </form> -->
-						</div>
-					</div>
-
-
-					<!-- 쪽지 쓰기 모달창 -->
-					<div id="messageWrite-modal" tabindex="-1" role="dialog"
-						aria-hidden="true" class="modal fade">
-						<div role="document" class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h4 align="center" class="modal-title">쪽지 작성</h4>
-									<button type="button" data-dismiss="modal" aria-label="Close"
-										class="close">
-										<span aria-hidden="true">×</span>
-									</button>
-								</div>
-
-								<div class="modal-body">
-									<form action="" method="get">
-										<div class="form-group">
-											<label>받는 사람</label> <input id="message_reveiver" type="text"
-												class="form-control" value="" readonly>
-										</div>
-										<div class="form-group">
-											<label>내용</label>
-											<textarea id="message_content" rows="10" class="form-control"></textarea>
-										</div>
-										<p class="text-center">
-											<button type="submit" class="btn btn-outline-primary"
-												id="message_send">전송</button>
-											<a style="padding-right:0.5rem;"></a>
-											<button type="submit" class="btn btn-outline-primary"
-												id="message_cancle">취소</button>
-										</p>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- 받은 쪽지 보기 모달창 -->
-					<div id="messageRead_receive-modal" tabindex="-1" role="dialog"
-						aria-hidden="true" class="modal fade">
-						<div role="document" class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h4 align="center" class="modal-title">받은 쪽지</h4>
-									<button type="button" data-dismiss="modal" aria-label="Close"
-										class="close">
-										<span aria-hidden="true">×</span>
-									</button>
-								</div>
-
-								<div class="modal-body">
-									<form action="" method="get">
-										<div class="form-group">
-											<label>보낸 사람</label> <input id="message_sender" type="text"
-												class="form-control" value="" readonly>
-										</div>
-										<div class="form-group">
-											<label>보낸 날짜</label> <input id="message_date" type="text"
-												class="form-control" value="" readonly>
-										</div>
-										<div class="form-group">
-											<label>내용</label>
-											<textarea id="message_content" rows="10" class="form-control"
-												value="" readonly></textarea>
-										</div>
-										<p class="text-center">
-											<button type="submit" class="btn btn-outline-primary"
-												id="message_send">확인</button>
-										</p>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- 보낸 쪽지 보기 모달창 -->
-					<div id="messageRead_send-modal" tabindex="-1" role="dialog"
-						aria-hidden="true" class="modal fade">
-						<div role="document" class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h4 align="center" class="modal-title">보낸 쪽지</h4>
-									<button type="button" data-dismiss="modal" aria-label="Close"
-										class="close">
-										<span aria-hidden="true">×</span>
-									</button>
-								</div>
-
-								<div class="modal-body">
-									<form action="" method="get">
-										<div class="form-group">
-											<label>받는 사람</label> <input id="message_sender" type="text"
-												class="form-control" value="" readonly>
-										</div>
-										<div class="form-group">
-											<label>보낸 날짜</label> <input id="message_date" type="text"
-												class="form-control" value="" readonly>
-										</div>
-										<div class="form-group">
-											<label>내용</label>
-											<textarea id="message_content" rows="10" class="form-control"
-												value="" readonly></textarea>
-										</div>
-										<p class="text-center">
-											<button type="submit" class="btn btn-outline-primary"
-												id="message_send">확인</button>
-										</p>
-									</form>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -474,7 +400,6 @@
 	<script src="/resources/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script
 		src="/resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
-	<script src="/resources/js/jquery.p arallax-1.1.3.js"></script>
 	<script
 		src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>

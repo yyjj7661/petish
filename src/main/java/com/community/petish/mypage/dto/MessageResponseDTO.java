@@ -1,6 +1,9 @@
 package com.community.petish.mypage.dto;
 
+import lombok.Data;
+
 //db에서 가져온 message(수신,발신) 조회할 때 쓰일 DTO
+@Data
 public class MessageResponseDTO {
 	//쪽지식별자(쪽지번호, 개인별 x,전체o)
 	int id;

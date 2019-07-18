@@ -23,21 +23,21 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public ArrayList<MessageResponseDTO> getReceiveMessageList(int user_id) {
-		ArrayList list = messageMapper.getReceiveMessageList(user_id);
+	public ArrayList<MessageResponseDTO> getReceivedMessageList(int user_id) {
+		ArrayList list = messageMapper.getReceivedMessageList(user_id);
 		return list;
 	}
 
 	@Override
-	public ArrayList<MessageResponseDTO> getSendMessageList(int user_id) {
-		ArrayList list = messageMapper.getSendMessageList(user_id);
+	public ArrayList<MessageResponseDTO> getSentMessageList(int user_id) {
+		ArrayList list = messageMapper.getSentMessageList(user_id);
 		return list;
 	}
 
 	@Override
-	public MessageResponseDTO getMessageDetail(int id) {
-		MessageResponseDTO dto = messageMapper.getMessageDetail(id);
-		return dto;
+	public int getMessageDetail(int id) {
+		int res = messageMapper.getMessageDetail(id);
+		return res;
 	}
 
 	@Override
@@ -45,5 +45,18 @@ public class MessageServiceImpl implements MessageService{
 		int res = messageMapper.deleteMessage(id);
 		return res;
 	}
+
+	@Override
+	public int getUndeletedReceived(int user_id) {
+		int undeletedReceived = messageMapper.getUndeletedReceived(user_id);
+		return undeletedReceived;
+	}
+
+	@Override
+	public int getUndeletedSent(int user_id) {
+		int undeletedSent = messageMapper.getUndeletedSent(user_id);
+		return undeletedSent;
+	}
+	
 
 }
