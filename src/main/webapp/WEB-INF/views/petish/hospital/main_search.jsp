@@ -200,7 +200,10 @@
 	function setBounds(){
 		map.setBounds(bounds);
 	}
-	
+	//페이지 버튼 클릭 이벤트
+	function pageClick(page){
+		gethospital($('#sml_region').val(), $('#emergency').prop('checked'),page);
+	}
 	</script>
 	<script>
 	$(document).ready(function(){
@@ -280,18 +283,18 @@
 						
 					});
 				});
-				
+				//페이징 처리 반복문
 				for(var i = data.paging.startPage; i<=data.paging.endPage; i++){
 					var output='';
-					if(i == 1){
-						output += '<li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-left"></i></a></li>';
-						
+					if(i == data.paging.startPage){
+						output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+data.paging.startPage+')"> <i class="fa fa-angle-double-left"></i></a></li>';
 					}
-					output += '<li class="page-item"><a href="#" class="page-link">'+i+'</a></li>';
-					if(i==data.paging.endPage){
-						output += '<li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-right"></i></a></li>';
+					output += '<li class="page-item"id="page'+i+'"><a href="#" class="page-link" onclick="pageClick('+i+');">'+i+'</a></li>';
+					if(i == data.paging.endPage){
+						output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+data.paging.endPage+')"> <i class="fa fa-angle-double-right"></i></a></li>';
 					}
 					$('#paging').append(output);
+					$("#page"+page).attr('class','page-item active');
 				}
 				
 				

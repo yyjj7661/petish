@@ -31,15 +31,16 @@ public class HospitalController {
 	@ResponseBody
 	public Map<String, Object> gethospitalList(@PathVariable("addr") String addr, @PathVariable("isEmer")boolean isEmer, @PathVariable("page")int page, Model model) {
 		List<HospitalVO> list;
-		
+		//페이징 설정위해 만드는 객체
 		Criteria cri = new Criteria();
 		cri.setHospital_addr(addr);
 		cri.setPageNum(page);
 		cri.setAmount(4);
+		
+		//해당 시/군 의 해당하는 총개수 구하는 함수
 		int total = hospitalService.getTotalCount(addr);
 		System.out.println(total);
 		PageDTO paging = new PageDTO(cri, total);
-		//model.addAttribute("pageMarker", new PageDTO(cri, total));
 		
 		//응급 진료 체크박스 체크 안했을때
 		if(isEmer==false) {
@@ -62,6 +63,7 @@ public class HospitalController {
 //		}
 //						
 //		return str;
+		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("paging", paging);
 		result.put("list", list);
