@@ -1,5 +1,7 @@
 package com.community.petish.user.domain;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +27,9 @@ public class User {
 	private DATE updated_date;
 	private int deleted;
 	private int concern_id;
+	
+	public boolean matchPassword(String password, PasswordEncoder passwordEncoder) {
+		return passwordEncoder.matches(password, this.password);
+	}
 	
 }
