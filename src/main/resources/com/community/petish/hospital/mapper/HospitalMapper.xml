@@ -9,6 +9,7 @@
  		<result property="hospital_name" column="HOSPITAL_NAME"/>
  		<result property="hospital_addr" column="HOSPITAL_ADDR"/>
  		<result property="hospital_phone" column="HOSPITAL_PHONE"/>
+ 		<result property="hospital_check" column="HOSPITAL_CHECK"/>
  		<result property="hospital_hours" column="HOSPITAL_HOURS"/>
  		<result property="hospital_website" column="HOSPITAL_WEBSITE"/>
  		<result property="hospital_img" column="HOSPITAL_IMG"/>
