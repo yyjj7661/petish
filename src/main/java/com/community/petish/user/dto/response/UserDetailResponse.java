@@ -12,6 +12,5 @@ public class UserDetailResponse {
 	private String nickname;
 	private String gender;
 	private String profileImage;
-	private String concern;
 	
 }
