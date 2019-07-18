@@ -10,6 +10,7 @@ import com.community.petish.user.domain.User;
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.UserListResponse;
+import com.community.petish.user.exception.PasswordNotMatchException;
 import com.community.petish.user.exception.UserNotFoundException;
 import com.community.petish.user.mapper.UserMapper;
 
@@ -50,6 +51,8 @@ public class UserServiceImpl implements UserService{
 			session.setAttribute("LOGIN_USER", loginUserParams);
 			return;
 		}
+		
+		throw new PasswordNotMatchException();
 		
 	}
 
