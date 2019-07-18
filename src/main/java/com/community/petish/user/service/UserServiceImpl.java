@@ -1,10 +1,13 @@
 package com.community.petish.user.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.community.petish.user.domain.User;
+import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.exception.UserNotFoundException;
@@ -32,6 +35,23 @@ public class UserServiceImpl implements UserService{
 		Long userId =  userMapper.save(saveUserParams);
 		return userId;
 	}
+	
+	@Override
+	public void login(LoginUserParams loginUserParams, HttpSession session) {
+		String username = loginUserParams.getUsername();
+		User user = userMapper.findByUsername(username);
+		
+		if (user == null) {
+			throw new UserNotFoundException("잘못된 아이디입니다.");
+		}
+		
+		if (user.matchPassword(loginUserParams.getPassword(), passwordEncoder)) {
+			log.info("로그인 성공! userParams = {}", loginUserParams);
+			session.setAttribute("LOGIN_USER", loginUserParams);
+			return;
+		}
+		
+	}
 
 	@Override
 	public User findById(Long id) {
@@ -51,5 +71,7 @@ public class UserServiceImpl implements UserService{
 		UserListResponse userListResponse = new UserListResponse(userMapper.findAll());
 		return userListResponse;
 	}
+
+	
 	
 }
