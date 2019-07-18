@@ -34,6 +34,10 @@
 		SELECT * FROM user_tb WHERE id = #{id}
 	</select>
 	
+	<select id="findAll" resultMap="UserDetailResponse">
+		SELECT id, username, nickname, gender, picture FROM user_tb
+	</select>
+	
 	
 	<delete id="deleteAll">
 		DELETE FROM USER_TB
