@@ -10,6 +10,9 @@ import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.exception.UserNotFoundException;
 import com.community.petish.user.mapper.UserMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService{
 
