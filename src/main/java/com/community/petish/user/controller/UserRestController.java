@@ -1,5 +1,7 @@
 package com.community.petish.user.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.service.UserService;
@@ -24,13 +27,21 @@ public class UserRestController {
 	
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public UserListResponse getUsers()   {
+		log.info("전체 유저에 대한 조회 요청");
 		UserListResponse userListResponse = userService.getUsers();
 		log.info(userListResponse.toString());
 		return userListResponse;
 	}
 	
+	@PostMapping("/login")
+	public void Login(@RequestBody LoginUserParams loginUserParams, HttpSession session) {
+		log.info("로그인 요청 loginUserParams = {}", loginUserParams);
+		userService.login(loginUserParams, session);
+	}
+	
 	@PostMapping(consumes = {"application/json"})
 	public void save(@RequestBody SaveUserParams saveUserParams) {
+		log.info("회원가입 요청");
 		userService.saveUser(saveUserParams);
 	}
 
