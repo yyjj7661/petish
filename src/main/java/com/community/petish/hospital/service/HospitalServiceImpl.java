@@ -42,9 +42,21 @@ public class HospitalServiceImpl implements HospitalService{
 		 return hospitalList;
 	}
 	@Override
+	public List<HospitalVO> getEmerListWithPaging(Criteria cri) {
+		 List<HospitalVO> hospitalList = null; 
+		 hospitalList=hospitalMapper.getEmerListWithPaging(cri); 
+		 
+		 return hospitalList;
+	}
+	@Override
 	public int getTotalCount(String hospital_addr) {
 		
 		return hospitalMapper.getTotalCount(hospital_addr);
+	}
+	@Override
+	public int getEmerTotalCount(String hospital_addr) {
+		// TODO Auto-generated method stub
+		return hospitalMapper.getEmerTotalCount(hospital_addr);
 	}
 
 }

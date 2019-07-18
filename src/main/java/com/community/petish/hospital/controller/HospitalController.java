@@ -49,7 +49,10 @@ public class HospitalController {
 		}
 		//응급진료 체크박스 체크 했을때
 		else {
-			list = hospitalService.getEmerhospitalList(addr);
+			total = hospitalService.getEmerTotalCount(addr);
+			paging = new PageDTO(cri, total);
+			list = hospitalService.getEmerListWithPaging(cri);
+			//list = hospitalService.getEmerhospitalList(addr);
 		}
 		
 		System.out.println("list="+list);
