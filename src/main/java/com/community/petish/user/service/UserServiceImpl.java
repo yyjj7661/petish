@@ -25,6 +25,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Long saveUser(SaveUserParams saveUserParams) {
 		
+		log.info("회원가입 요청 saveUserParam = {} " + saveUserParams );
+		
 		String encodedPassword = passwordEncoder.encode(saveUserParams.getPassword());
 		saveUserParams.setPassword(encodedPassword);
 		Long userId =  userMapper.save(saveUserParams);
