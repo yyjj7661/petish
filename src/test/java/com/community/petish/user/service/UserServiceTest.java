@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -32,6 +33,36 @@ public class UserServiceTest {
 	@AfterEach
 	void deleteUsers() {
 		userMapper.deleteAll();
+	}
+	
+	@Test
+	void bcryptEncoderLearningTest() {
+		/* Given: bcryptEncoder로 패스워드를 암호화했을 떄 암호화된 패스워드는 일치하지 않는다. */
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String password = "장재주짱";
+		
+		String encodedPassword1 = bCryptPasswordEncoder.encode(password);
+		String encodedPassword2 = bCryptPasswordEncoder.encode(password);
+		String encodedPassword3 = bCryptPasswordEncoder.encode(password);
+		String encodedPassword4 = bCryptPasswordEncoder.encode(password);
+		String encodedPassword5 = bCryptPasswordEncoder.encode(password);
+		
+		System.out.println("encodedPassword : " + encodedPassword1);
+		System.out.println("encodedPassword : " + encodedPassword2);
+		System.out.println("encodedPassword : " + encodedPassword3);
+		System.out.println("encodedPassword : " + encodedPassword4);
+		System.out.println("encodedPassword : " + encodedPassword5);
+		
+		assertThat(encodedPassword1).isNotEqualTo(encodedPassword2);
+		
+		/* When: bcryptEncoder 내부에 있는 matches라는 함수를 이용하면, Password는 일치한다. */
+		assertThat(bCryptPasswordEncoder.matches(password, encodedPassword1)).isTrue();
+		assertThat(bCryptPasswordEncoder.matches(password, encodedPassword2)).isTrue();
+		assertThat(bCryptPasswordEncoder.matches(password, encodedPassword3)).isTrue();
+		assertThat(bCryptPasswordEncoder.matches(password, encodedPassword4)).isTrue();
+		assertThat(bCryptPasswordEncoder.matches(password, encodedPassword5)).isTrue();
+		
+		
 	}
 	
 	@Test
