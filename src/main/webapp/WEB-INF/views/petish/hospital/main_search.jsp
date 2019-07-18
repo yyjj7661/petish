@@ -231,11 +231,6 @@
 			    removeMarker();
 				//console.log(data.length);
 				//좌표 객체 초기화
-				console.log(data.list);
-				console.log(data.paging);
-				console.log(data.paging.startPage);
-				console.log('page='+page)
-				
 				bounds = new kakao.maps.LatLngBounds(); 
 				$.each(data.list, function(index, item){
 					geocoder.addressSearch(item.hospital_addr, function(result, status){
@@ -287,11 +282,17 @@
 				for(var i = data.paging.startPage; i<=data.paging.endPage; i++){
 					var output='';
 					if(i == data.paging.startPage){
-						output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+data.paging.startPage+')"> <i class="fa fa-angle-double-left"></i></a></li>';
+						output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+1+')"> <i class="fa fa-angle-double-left"></i></a></li>';
+						if(page != 1){
+							output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+(page-1)+')"> <i class="fa fa-angle-left"></i></a></li>';
+						}
 					}
 					output += '<li class="page-item"id="page'+i+'"><a href="#" class="page-link" onclick="pageClick('+i+');">'+i+'</a></li>';
 					if(i == data.paging.endPage){
-						output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+data.paging.endPage+')"> <i class="fa fa-angle-double-right"></i></a></li>';
+						if(page != data.paging.realEnd){
+							output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+(page+1)+')"> <i class="fa fa-angle-right"></i></a></li>';
+						}
+						output += '<li class="page-item"><a href="#" class="page-link" onclick="pageClick('+data.paging.realEnd+')"> <i class="fa fa-angle-double-right"></i></a></li>';
 					}
 					$('#paging').append(output);
 					$("#page"+page).attr('class','page-item active');

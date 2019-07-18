@@ -53,6 +53,7 @@ public class HospitalController {
 		}
 		
 		System.out.println("list="+list);
+		System.out.println("paging="+paging);
 //		String str ="";
 //		ObjectMapper mapper = new ObjectMapper();
 //		try {
