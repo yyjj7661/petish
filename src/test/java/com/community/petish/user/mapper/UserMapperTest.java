@@ -15,7 +15,7 @@ import com.community.petish.user.dto.request.SaveUserParams;
 import lombok.extern.log4j.Log4j;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/spring-security.xml" })
 @Log4j
 public class UserMapperTest {
 
