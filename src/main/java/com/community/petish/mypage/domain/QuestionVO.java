@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class QuestionVO {
-	//문의 식별자 => 문의번호
+	//문의번호 => 시퀀스로 자동생성
 	private int id; 
 	
 	//문의 제목
@@ -21,10 +21,10 @@ public class QuestionVO {
 	//삭제 유무
 	private int deleted;
 	
-	//유저식별자
+	//유저 번호
 	private int user_id;
 	
-	//문의카테고리 식별자
+	//문의카테고리 번호
 	private int category_id;
 	
 	//문의작성일자

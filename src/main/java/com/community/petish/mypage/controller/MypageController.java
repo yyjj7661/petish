@@ -38,7 +38,12 @@ public class MypageController {
 	public String messageList() {
 		return "petish/mypage/message_list";
 	}
+	@RequestMapping("/member/detail")
+	public String memberDetail() {
+		return "petish/mypage/member_detail";
+	}
 	
+	//question 관련
 	@RequestMapping("/question/list")
 	public String questionList(Model model, HttpSession session) {
 		int user_id = (int)session.getAttribute("user_id");
@@ -48,12 +53,6 @@ public class MypageController {
 		model.addAttribute("amount", amount);
 		model.addAttribute("list",list);
 		return "petish/mypage/question_list";
-	}
-	
-	
-	@RequestMapping("/member/detail")
-	public String memberDetail() {
-		return "petish/mypage/member_detail";
 	}
 
 	@RequestMapping("/question/insert")

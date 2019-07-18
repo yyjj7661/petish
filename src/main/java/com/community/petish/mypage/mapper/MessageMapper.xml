@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.community.petish.mypage.mapper.MessageMapper">
+	<resultMap type="com.community.petish.mypage.dto.MessageResponseDTO" id="MessageResultMap">
+		<result property="id" column="ID" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="sent_date" column="SENT_DATE" />
+		<result property="read" column="READ" />
+		<result property="deleted" column="DELETED" />
+		<result property="sender_id" column="SENDER_ID" />
+		<result property="receiver_id" column="RECEIVER_ID" />
+	</resultMap>
+	
+	<insert id="writeMessage" parameterType="com.community.petish.mypage.dto.MessageRequestDTO">
+		INSERT INTO MESSAGE (title, content, sender_id, receiver_id) values (#{title}, #{content}, #{sender_id}, #{receiver_id})
+	</insert>
+	
+	<select id="getReceiveMessageList" resultMap="MessageResultMap" parameterType="int">
+		SELECT id, title, content, sent_date, read, deleted, sender_id from message
+		where receiver_id = #{user_id}
+	</select>
+	
+	<select id="getSendMessageList" resultMap="MessageResultMap" parameterType="int">
+		select id, title, content, sent_date, read, deleted, receiver_id from message
+		where sender_id = #{user_id}
+	</select>
+	
+	<select id="getMessageDetail" resultMap="MessageResultMap" parameterType="int">
+		select id, title, content, sent_date, read, receiver_id from message
+		where id = #{id}
+	</select>
+	
+	<delete id="deleteMessage" parameterType="int">
+		delete from message where id=#{id}
+	</delete>
+
+</mapper>

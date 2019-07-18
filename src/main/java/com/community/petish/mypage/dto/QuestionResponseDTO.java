@@ -4,7 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 
-//Question list 사용자에게 보여주기 위한 DTO
+//db에서 가져온 Question list를 사용자에게 보여주기 위한 DTO
 
 @Data
 public class QuestionResponseDTO {

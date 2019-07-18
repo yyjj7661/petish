@@ -24,16 +24,9 @@ public class QuestionServiceImpl implements QuestionService{
 
 	@Override
 	public ArrayList<QuestionResponseDTO> getQuestionList(int user_id) {
-		ArrayList list;
-		list = questionMapper.getQuestionList(user_id);
+		ArrayList list = questionMapper.getQuestionList(user_id);
 		return list;
 	}
-
-//	@Override
-//	public void modifyQuestion(QuestionResponseDTO dto) {
-//		
-//		questionMapper.modifyQuestion(dto);
-//	}
 
 	@Override
 	public void deleteQuestion(int id) {

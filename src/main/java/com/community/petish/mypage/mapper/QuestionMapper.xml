@@ -27,17 +27,12 @@
 		WHERE (q1.category_id=q2.id) and (q1.user_id = #{user_id}) order by id desc
 	</select> 
 	
-	<!-- 문의 수정 -->
-	<!-- <update id="modifyQuestion" parameterType="com.community.petish.mypage.dto.QuestionResponseDTO">
-		UPDATE QUESTION_TB SET TITLE = #{title}, CONTENT = #{content} where ID=#{id}
-	</update> -->
-	
 	<!-- 문의 삭제 -->
 	<update id="deleteQuestion" parameterType="int">
 		UPDATE QUESTION_TB SET DELETED = 1 WHERE ID=#{id}
 	</update>
 	
-	<!-- 해당사용자 삭제되지 않은 문의 갯수 확인 -->
+	<!-- 사용자의 삭제 안된 글 갯수 확인 -->
 	<select id="getUndeleted" resultType="int" parameterType="int">
 		SELECT COUNT (*) FROM QUESTION_TB WHERE DELETED = 0 and user_id = #{user_id}
 	</select>
