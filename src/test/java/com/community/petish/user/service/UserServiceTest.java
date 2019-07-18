@@ -52,19 +52,25 @@ public class UserServiceTest {
 	
 	@Test
 	void findAllTest() {
-		String imgaddr = "y";
-		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
 		
-		userService.saveUser(saveUserParams);
+		/* Given : 2명의 유저에 대한 saveUserParams 생성 */
+		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
 		
 		String imgaddr2 = "https://image.ytn.co.kr/general/jpg/2017/1018/201710181100063682_d.jpg";
 		SaveUserParams saveUserParams2 = new SaveUserParams("djw627@gmail.com", "5678", "djw", "서울 동대문구 휘경동 209번지", "여", imgaddr2, "cat");
 		
+		userService.saveUser(saveUserParams);
 		userService.saveUser(saveUserParams2);
-		
-		UserListResponse userListResponse = userService.getUsers();
 
-		log.info("모든 유저 : " + userListResponse);
+		/* When : UserService의 모든 유저를 불러오는 getUsers 호출  */
+		
+		UserListResponse users = userService.getUsers();
+
+		/* Then : 조회된 유저 전체 목록의 크기가 2인지 검증 */
+		assertThat(users.getUsers().size()).isEqualTo(2);
+		
+		log.info("모든 유저 : " + users);
 
 	}
 }
