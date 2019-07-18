@@ -26,8 +26,8 @@
 		</selectKey>
 	</insert>
 	
-	<select id="findByUsername" parameterType="String" resultMap="UserDetailResponse">
-		SELECT id, username, nickname, gender, picture FROM USER_TB WHERE username = #{username} AND deleted = 0
+	<select id="findByUsername" parameterType="String" resultType="com.community.petish.user.domain.User">
+		SELECT * FROM USER_TB WHERE username = #{username} AND deleted = 0
 	</select>
 	
 	<select id="findById" parameterType="Long" resultType="com.community.petish.user.domain.User">
