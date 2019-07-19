@@ -40,6 +40,7 @@
 		
 		
 		
+		
 $('.rating').on('change', function() {
 	console.log('Rating selected: ' + $(this).val());
 });
