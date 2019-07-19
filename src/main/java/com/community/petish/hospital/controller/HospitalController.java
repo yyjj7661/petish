@@ -76,7 +76,7 @@ public class HospitalController {
 	}
 	
 	@RequestMapping(value="/{id}", produces="application/json;charset=UTF-8")
-	public ModelAndView hospitalDetail(@PathVariable("id") String id) {
+	public ModelAndView hospitalDetail(@PathVariable("id") Long id) {
 		System.out.println("id="+id);
 		
 		HospitalVO vo = hospitalService.getHospital(id);

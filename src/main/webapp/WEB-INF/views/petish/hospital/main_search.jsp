@@ -26,7 +26,7 @@
 	
 	<%@ include file="/WEB-INF/views/commons/top.jspf"%>
 	
-	<div class="container">
+	<div class="container" id="totalHtml">
 
 		<div class="container">
 			<div class="row">
@@ -132,6 +132,9 @@
 	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 	
 	<script>
+	//지역 시/군 을 저장할 변수
+	var region = '';
+	
 	//지도 api 선택한 곳 마커 표시하기(주소까지 출력)
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
  mapOption = {
@@ -202,18 +205,50 @@
 	}
 	//페이지 버튼 클릭 이벤트
 	function pageClick(page){
-		gethospital($('#sml_region').val(), $('#emergency').prop('checked'),page);
+		gethospital(region, $('#emergency').prop('checked') ,page);
 	}
 	</script>
 	<script>
 	$(document).ready(function(){
+		
+		//-- 문서가 로드 될때마다 hash 체크  뒤로가기를 위한 함수
+		checkForHash();
+
+		//--click 이벤트를 걸어 이벤트가 발생할때마다 현재 페이지를 내부링크처럼 hash에 저장해둡니다.
+		
+		
+		//-- check hash
+		function checkForHash() {	
+			//뒤로가기를 했으면
+			if(document.location.hash)
+			{
+			//hash 가 있다면 ^ 를 구분자로 하나씩 string을 추출하여 각각 페이지정보를 가져옵니다.
+				var str_hash = document.location.hash;
+				str_hash = str_hash.replace("#","");
+				var back=str_hash.split("^");
+				$('#sml_region').val(back[0]);
+				
+				// 지역 변수에 뒤로가기전에 검색했던 지역을 저장
+				region = back[0];
+				
+				//ajax콜 날릴 함수
+				gethospital(back[0],$('#emergency').prop('checked'),back[1]);
+			} 
+			else 
+			{
+				//nothing..
+			}
+		}
+
 		$('#hos_search').click(function(event){
 			if($('#sml_region').val()=="0" || $('#region').val()=="0" ){
 				
 				alert('지역을 선택해 주세요.');
 			}
 			else{
-				gethospital($('#sml_region').val(), $('#emergency').prop('checked'),1);
+				region = $('#sml_region').val();
+				emer = $('#emergency').prop('checked');
+				gethospital(region,emer ,1);
 			}
 		});
 	});
@@ -227,12 +262,15 @@
 			contentType:'application/json; charset=UTF-8',
 			dataType:'json',
 			success:function(data){
+				console.log(page);
 				// 지도에 표시되고 있는 마커를 제거합니다
 			    removeMarker();
 				//console.log(data.length);
 				//좌표 객체 초기화
 				bounds = new kakao.maps.LatLngBounds(); 
 				$.each(data.list, function(index, item){
+					
+					console.log('리스트불러오는중');
 					geocoder.addressSearch(item.hospital_addr, function(result, status){
 						
 				        //응급지료가능 병원일경우 마커 이미지교체
@@ -257,7 +295,6 @@
 						//console.log('index='+index);
 						//표시된 마커들로 지도를 재조정하는 함수
 						setBounds();
-						console.log(item.hospital_name);
 						//병원 리스트 지도 밑에 출력
 						var output='';
 						output += '<div data-animate="fadeInUp" class="col-md-3">';
@@ -267,13 +304,24 @@
 						output += '<img src="/resources/img/hospital/'+item.hospital_img+'" alt="" class="img-fluid rounded-circle" style="height: 250px;"></a>';
 						output += '</div>';
 						output += '<h4 style="font-size: 25px;">';
-						output += '<a href="/hospital/'+item.id+'">'+item.hospital_name+'</a></h4>';
+						output += '<a href="/hospital/'+item.id+'"name="link">'+item.hospital_name+'</a></h4>';
 						output += '<p style="font-size: 25px;">★★★★★</p>';
 						output += '<div class="text">';
 						output += '<div>'+item.hospital_addr+'</div>'
 						output += '<div>'+item.hospital_phone+'</div>';
 						output += '</div></div></div>';
 						$('#hospList').append(output);
+						
+						//병원 상세보기를 클릭했을때 발생하는 이벤트
+						$('a[name=link]').click(function(e) {
+							//상세보기를 눌렀을때의 페이지
+							var currentPage=page;
+													
+
+							//상세보기를 누르기 전에 불러왔던 페이지 정보와 지역정보를 hash에 저장
+							document.location.hash = "#" + region + "^"+currentPage;
+
+						});
 						
 						
 					});
@@ -297,6 +345,7 @@
 					$('#paging').append(output);
 					$("#page"+page).attr('class','page-item active');
 				}
+				
 				
 				
 			},

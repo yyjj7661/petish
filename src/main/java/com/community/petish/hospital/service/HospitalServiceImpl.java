@@ -59,7 +59,7 @@ public class HospitalServiceImpl implements HospitalService{
 		return hospitalMapper.getEmerTotalCount(hospital_addr);
 	}
 	@Override
-	public HospitalVO getHospital(String id) {
+	public HospitalVO getHospital(Long id) {
 		HospitalVO vo = hospitalMapper.getHospital(id);
 		return vo;
 	}
