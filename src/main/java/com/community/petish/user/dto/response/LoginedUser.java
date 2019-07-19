@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSessionDTO {
+public class LoginedUser {
 	
 	private Long id;
 	private String username;
 	private String nickname;
 
-	public UserSessionDTO (User user) {
+	public LoginedUser (User user) {
 		this.id = user.getId();
 		this.username = user.getUsername();
 		this.nickname = user.getNickname();
