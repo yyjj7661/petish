@@ -1,5 +1,7 @@
 package com.community.petish.user.controller;
 
+import java.util.Objects;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.UserListResponse;
+import com.community.petish.user.dto.response.LoginedUser;
+import com.community.petish.user.exception.AuthenticationException;
 import com.community.petish.user.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +35,14 @@ public class UserRestController {
 		UserListResponse userListResponse = userService.getUsers();
 		log.info(userListResponse.toString());
 		return userListResponse;
+	}
+	
+	@GetMapping("/authenticate")
+	public LoginedUser isAuthenticated(HttpSession session) {
+		if (Objects.isNull(session.getAttribute("LOGIN_USER"))) {
+			throw new AuthenticationException();
+		}
+		return (LoginedUser) session.getAttribute("LOGIN_USER");
 	}
 	
 	@PostMapping("/login")
