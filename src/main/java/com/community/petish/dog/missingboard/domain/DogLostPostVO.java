@@ -27,11 +27,10 @@ CREATE TABLE dog_lost_post_tb (
 	species_id NUMBER NOT NULL REFERENCES dog_species_tb (id)  강아지 종류 식별자 
 );
 */
-
 @Data
 public class DogLostPostVO {
 	
-	private String ID; //게시글 번호
+	private Long ID; //게시글 번호
 
 	private String DOG_NAME; //강아지 이름
 	private int DOG_AGE; //강아지 나이
