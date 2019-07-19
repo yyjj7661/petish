@@ -2,6 +2,8 @@ package com.community.petish.mypage.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.community.petish.mypage.dto.MessageRequestDTO;
 import com.community.petish.mypage.dto.MessageResponseDTO;
 
@@ -22,8 +24,13 @@ public interface MessageService {
 	// 5. 쪽지 삭제
 	public int deleteMessage(int id);
 	
-	
+	//6. 받은 메세지중 삭제안된 메세지 갯수
 	public int getUndeletedReceived(int user_id);
 	
+	//7. 보낸 메세지중 삭제안된 메세지 갯수
 	public int getUndeletedSent(int user_id);
+	
+	//8. 쪽지 읽음으로 변경
+	public int changeReadAttr(int id, int user_id);
+	
 }

@@ -309,8 +309,9 @@
 							name='content' readonly></textarea>
 					</div>
 					<div class="text-right">
-						<input type="button" value="삭제">
+						<input type="button" value="삭제" id="modalDeleteBtn">
 					</div>
+					<input type="hidden" name="id">
 				</div>
 			</div>
 		</div>
@@ -321,15 +322,17 @@
 
 				function() {
 					var modal = $(".modal");
+					var modalInputId = modal.find("input[id='id']");
 					var modalInputReceiver_id = modal
 							.find("input[name='receiver_id']");
+					var modalInputSender_id = modal.find("input[name='sender_id']");
 					var modalInputSent_date = modal
 							.find("input[name='sent_date']");
 					var modalInputContent = modal
 							.find("textarea[name='content']");
 					var modalCloseBtn = $("#modalCloseBtn");
-					var modalInputSender_id = modal.find("input[name='sender_id']");
-
+					var modalDeleteBtn = $("#modalDeleteBtn");
+					
 					$(".message").on("click", "a", function(e) {
 						var id = $(this).data("id");
 						messageService.getMessageDetail(id, function(message) {
@@ -337,13 +340,21 @@
 							modalInputSender_id.val(message.sender_id);
 							modalInputSent_date.val(message.sent_date);
 							modalInputContent.val(message.content);
-
-							modal.find("button[id ]")
+							modal.data("id", message.id);
 							$(".modal").modal("show");
 
 						});
 					});
+					
+					modalDeleteBtn.on("click", function(e){
+						var id = modal.data("id");
+						messageService.deleteMessage(id, function(result){
+							alert(result);
+							modal.modal("hide");
+						});
+					});
 
+					
 					var messageService = (function() {
 						function getMessageDetail(id, callback, error) {
 							$.get("/mypage/api/message/" + id + ".json",
@@ -356,11 +367,30 @@
 									error();
 								}
 							});
+							
 						}
-
+						
+						function deleteMessage(id, callback, error){
+							$.ajax({
+								type : 'delete',
+								url : '/mypage/api/message/' + id,
+								success : function(deleteResult, status, xhr){
+									
+									if(callback){
+										callback(deleteResult);
+									}
+								},
+								error:function(xhr,status, er){
+									if(error){
+										error(er);
+									}
+								}
+							})
+						}
 						
 						return {
-							getMessageDetail : getMessageDetail
+							getMessageDetail : getMessageDetail,
+							deleteMessage : deleteMessage
 						};
 					})();
 				});

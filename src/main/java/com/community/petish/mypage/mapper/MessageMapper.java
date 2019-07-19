@@ -16,7 +16,7 @@ public interface MessageMapper {
 	//3. 보낸 쪽지 리스트 조회
 	public ArrayList<MessageResponseDTO> getSentMessageList(int user_id);
 	
-	//4. 쪽지 상세조회
+	//4. 받은 쪽지 상세조회
 	public MessageResponseDTO getMessageDetail(int id);
 	
 	//5. 쪽지 삭제
@@ -27,4 +27,7 @@ public interface MessageMapper {
 	
 	//7. 보낸 메세지중 삭제안된 메세지 갯수
 	public int getUndeletedSent(int user_id);
+	
+	//8. 쪽지 읽음으로 변경
+	public int changeReadAttr(int id, int user_id);
 }

@@ -14,37 +14,49 @@
 		<result property="receiver_id" column="RECEIVER_ID" />
 	</resultMap>
 	
+	<!-- 1. 쪽지 작성 -->
 	<insert id="writeMessage" parameterType="com.community.petish.mypage.dto.MessageRequestDTO">
 		INSERT INTO MESSAGE (title, content, sender_id, receiver_id) values (#{title}, #{content}, #{sender_id}, #{receiver_id})
 	</insert>
 	
+	<!-- 2. 받은 쪽지 리스트 조회 -->
 	<select id="getReceivedMessageList" resultMap="MessageResultMap" parameterType="int">
 		SELECT id, title, content, sent_date, read, deleted, sender_id from message
 		where receiver_id = #{user_id}
 	</select>
 	
+	<!-- 3. 보낸 쪽지 리스트 조회 -->
 	<select id="getSentMessageList" resultMap="MessageResultMap" parameterType="int">
 		select id, title, content, sent_date, read, deleted, receiver_id from message
 		where sender_id = #{user_id}
 	</select>
 	
+	<!-- 4. 쪽지 상세조회 -->
 	<select id="getMessageDetail" resultMap="MessageResultMap" parameterType="int" >
 		select id, title, content, sent_date, receiver_id, sender_id 
 		from message
 		where id = #{id}
 	</select>
 	
+	<!-- 5. 쪽지 삭제 -->
 	<update id="deleteMessage" parameterType="int">
 		update message set deleted=1 where id=#{id}
  	</update>
 
+	<!-- 6. 받은 메세지중 삭제안된 메세지 갯수 -->
 	<select id="getUndeletedReceived" parameterType="int" resultType="int">
 		select count(*) from message where deleted = 0 and receiver_id = #{user_id}
 	</select>
 
+	<!-- 7. 보낸 메세지중 삭제안된 메세지 갯수 -->
 	<select id="getUndeletedSent" parameterType="int" resultType="int">
 		select count(*) from message where deleted = 0 and sender_id= #{user_id}
 	</select>
+	
+	<!-- 8. 쪽지 읽음으로 변경 -->
+	<update id="changeReadAttr" parameterType="int">
+		update message set read=1 where id=#{id} and sender_id={#user_id}
+	</update>
 	
 </mapper>
 
