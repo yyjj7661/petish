@@ -10,7 +10,7 @@ import com.community.petish.user.domain.User;
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.UserListResponse;
-import com.community.petish.user.dto.response.UserSessionDTO;
+import com.community.petish.user.dto.response.LoginedUser;
 import com.community.petish.user.exception.PasswordNotMatchException;
 import com.community.petish.user.exception.UserNotFoundException;
 import com.community.petish.user.mapper.UserMapper;
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
 		
 		if (user.matchPassword(loginUserParams.getPassword(), passwordEncoder)) {
 			log.info("로그인 성공! userParams = {}", loginUserParams);
-			UserSessionDTO userSession = new UserSessionDTO(user);
+			LoginedUser userSession = new LoginedUser(user);
 			session.setAttribute("LOGIN_USER", userSession);
 			return;
 		}
