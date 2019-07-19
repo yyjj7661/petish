@@ -32,51 +32,90 @@
 	
 	<result property="DOG_AGE" column="DOG_AGE" />	
 	<result property="DOG_GENDER" column="DOG_GENDER" />
+	<result property="DOG_IMAGE" column="DOG_IMAGE" />	
+	
+	<result property="DOG_LOST_ADDRESS" column="DOG_LOST_ADDRESS" />
 	
 	<result property="VIEW_COUNT" column="VIEW_COUNT" />
 	<result property="CREATE_DATE" column="CREATE_DATE" />
 	<result property="UPDATED_DATE" column="UPDATED_DATE" />
 	<result property="FOUND" column="FOUND" />
 	
-	<result property="REGION_ID" column="REGION_ID" />
 	<result property="USER_ID" column="USER_ID" />
 	<result property="SPECIED_ID" column="SPECIED_ID" />
 </resultMap>
 
+
+<resultMap type="com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO" id="DogLostPostDetailDTO">
+	<result property="ID" column="ID" />
+	
+	<result property="DOG_NAME" column="DOG_NAME" />
+	<result property="DOG_AGE" column="DOG_AGE" />	
+	<result property="DOG_GENDER" column="DOG_GENDER" />
+	<result property="DOG_DESCRIPTION" column="DOG_DESCRIPTION" />
+	<result property="DOG_IMAGE" column="DOG_IMAGE" />
+	
+	<result property="DOG_LOST_DATE" column="DOG_LOST_DATE" />
+	<result property="PHONE_NUMBER" column="PHONE_NUMBER" />
+	<result property="DOG_LOST_ADDRESS" column="DOG_LOST_ADDRESS" />
+	<result property="REWARD" column="REWARD" />
+	
+	<result property="VIEW_COUNT" column="VIEW_COUNT" />
+	<result property="CREATE_DATE" column="CREATE_DATE" />
+	<result property="UPDATED_DATE" column="UPDATED_DATE" />
+	
+	<result property="FOUND" column="FOUND" />
+	
+	<result property="DOG_SPECIES" column="DOG_SPECIES" />
+</resultMap>
+
+
+
 <!-- 게시글 수 조회 -->
 <select id="getPostCount" resultType="Integer">
-	SELECT COUNT(*) FROM dog_lost_post_tb WHERE deleted=0
+	SELECT COUNT(*) FROM dog_lost_post_tb WHERE DELETED=0
 </select>
 
 <!-- 게시글 리스트 -->
 <select id="getDogLostList" resultMap="DogLostPostListDTO">
 	SELECT
-	ID, DOG_AGE, DOG_GENDER, VIEW_COUNT, CREATE_DATE, UPDATED_DATE, FOUND, REGION_ID, USER_ID, SPECIES_ID
-	FROM dog_lost_post_tb
-	WHERE DELETED=0
+	post.ID, post.DOG_AGE, post.DOG_GENDER, post.DOG_LOST_ADDRESS,
+	post.VIEW_COUNT, post.CREATE_DATE, post.UPDATED_DATE, post.FOUND,
+	post.USER_ID, post.SPECIES_ID, species.DOG_SPECIES 
+	FROM dog_lost_post_tb post, dog_species_tb species
+	WHERE species.ID=post.SPECIES_ID AND post.DELETED=0
+	ORDER BY CREATE_DATE DESC
 </select>
 
 <!-- 게시글 조회 -->
-<select id="getPostDetail" parameterType="Integer" resultMap="DogLostPostVO">
-	SELECT *
-	FROM dog_lost_post_tb
-	WHERE ID=#{ID}
+<select id="getPostDetail" parameterType="Long" resultMap="DogLostPostDetailDTO">
+	SELECT
+	post.ID, post.DOG_NAME, post.DOG_AGE, post.DOG_GENDER, post.DOG_DESCRIPTION, post.DOG_IMAGE,
+	post.DOG_LOST_DATE, post.PHONE_NUMBER, post.DOG_LOST_ADDRESS, post.REWARD,
+	post.VIEW_COUNT, post.CREATE_DATE, post.UPDATED_DATE, post.FOUND, species.DOG_SPECIES
+	FROM dog_lost_post_tb post, dog_species_tb species
+	WHERE post.SPECIES_ID = species.ID AND post.ID=#{ID}
 </select>
 
 <!-- 게시글 작성 -->
-<insert id="insertDogLostPost" parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
+<insert id="insertPost" parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
+
+<!-- <selectKey keyProperty="ID" order="BEFORE" resultType="Long">
+	select ID_SEQ.nextval from dual
+</selectKey>  -->
+
 insert into dog_lost_post_tb
 values(
-#{ID},
-#{DOG_NAME},
-#{DOG_AGE},
-#{DOG_GENDER},
-#{DOG_DESCRIPTION},
-#{DOG_IMAGE}, 
-#{DOG_LOST_DATE},
-#{PHONE_NUMBER},
-#{DOG_LOST_ADDRESS},
-#{REWARD},
+ID_SEQ.nextval,
+#{DOG_NAME, jdbcType=VARCHAR},
+#{DOG_AGE, jdbcType=VARCHAR},
+#{DOG_GENDER, jdbcType=VARCHAR},
+#{DOG_DESCRIPTION, jdbcType=VARCHAR},
+#{DOG_IMAGE, jdbcType=VARCHAR}, 
+#{DOG_LOST_DATE, jdbcType=DATE},
+#{PHONE_NUMBER, jdbcType=VARCHAR},
+#{DOG_LOST_ADDRESS, jdbcType=VARCHAR},
+#{REWARD, jdbcType=INTEGER},
 0, sysdate, sysdate, 0, 0, 1,
 #{USER_ID},
 #{SPECIES_ID}
@@ -85,7 +124,7 @@ values(
 </insert>
 
 <!-- 게시글 수정 -->
-<update id="updateDogLostPost" parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
+<update id="updatePost" parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
 update dog_lost_post_tb
 set
 DOG_NAME=#{DOG_NAME},
@@ -104,8 +143,9 @@ where ID=#{ID}
 </update>
 
 <!-- 게시글 삭제 -->
-<delete id="deleteDogLostPost" parameterType="Integer">
+<delete id="deletePost" parameterType="Long">
 DELETE FROM dog_lost_post_tb WHERE ID=#{ID}
 </delete>
- 
+
+
 </mapper>
