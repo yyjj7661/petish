@@ -35,9 +35,9 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public int getMessageDetail(int id) {
-		int res = messageMapper.getMessageDetail(id);
-		return res;
+	public MessageResponseDTO getMessageDetail(int id) {
+		MessageResponseDTO dto = messageMapper.getMessageDetail(id);
+		return dto;
 	}
 
 	@Override

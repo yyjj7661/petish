@@ -34,4 +34,6 @@ public class QuestionResponseDTO {
 	// 삭제여부
 	private int deleted;
 	
+	private int category_id;
+	
 }

@@ -13,6 +13,7 @@
 		<result property="user_id" column="USER_ID" />
 		<result property="question_created_date" column="QUESTION_CREATED_DATE" />
 		<result property="deleted" column="DELETED" />
+		<result property="category_id" column="CATEGORY_ID"/>
 	</resultMap>
 	
 	<!-- 문의 등록-->
@@ -22,7 +23,7 @@
 	
 	<!-- 문의 조회 -->
 	<select id="getQuestionList" parameterType="int" resultMap="QuestionResultMap">
-		SELECT q1.id, q1.title, q1.content, q1.replied, q2.category, q1.user_id, q1.question_created_date, deleted
+		SELECT q1.category_id, q1.id, q1.title, q1.content, q1.replied, q2.category, q1.user_id, q1.question_created_date, deleted
 		FROM question_tb q1, question_category_tb q2
 		WHERE (q1.category_id=q2.id) and (q1.user_id = #{user_id}) order by id desc
 	</select> 
@@ -36,5 +37,6 @@
 	<select id="getUndeleted" resultType="int" parameterType="int">
 		SELECT COUNT (*) FROM QUESTION_TB WHERE DELETED = 0 and user_id = #{user_id}
 	</select>
+	
 	
 </mapper>

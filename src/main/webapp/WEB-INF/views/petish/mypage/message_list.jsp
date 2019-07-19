@@ -8,6 +8,7 @@
 	ArrayList<MessageResponseDTO> sentList = (ArrayList) request.getAttribute("sentList");
 	int undeletedSent = (int) request.getAttribute("undeletedSent");
 	MessageResponseDTO dto = null;
+	int user_id = (int)session.getAttribute("user_id");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -63,11 +64,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- CSS파일 추가 -->
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
-
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <style>
 .modal {
@@ -82,7 +79,6 @@
 	outline: 0
 }
 </style>
-
 
 <body>
 	<!-- 테이블 -->
@@ -145,9 +141,8 @@
 																<th><input type="checkbox"
 																	class="received-check-one"></th>
 																<td align="center" class="mobile-none"><%=dto.getSender_id()%></td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_receive-modal" ><%=dto.getTitle()%></a></td>
+																<td class="message"><a class="messageText"
+																	data-id=<%=dto.getId()%>><%=dto.getTitle()%></a></td>
 																<td class="mobile-none"><%=dto.getSent_date().substring(2, 4) + "/" + dto.getSent_date().substring(4, 6) + "/"
 																+ dto.getSent_date().substring(6, 8)%></td>
 																<td class="mobile-none">
@@ -158,54 +153,23 @@
 																		} else if (dto.getRead() == 1) {
 																	%> <i class="fa fa-envelope-open"
 																	style="font-size: 24px; color: grey"></i> <%
- 	}
- %>
+ 																			}
+ 																	%>
 																</td>
 															</tr>
-															<!-- 받은 쪽지 보기 모달창 -->
-															<div id="messageRead_receive-modal" tabindex="-1"
-																role="dialog" aria-hidden="true" class="modal fade">
-																<div role="document" class="modal-dialog">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<h4 align="center" class="modal-title">받은 쪽지</h4>
-																			<button type="button" data-dismiss="modal"
-																				aria-label="Close" class="close">
-																				<span aria-hidden="true">×</span>
-																			</button>
-																		</div>
-																		<div class="modal-body">
-																			<form action="" method="get">
-																				<div class="form-group">
-																					<label>보낸 사람</label> <input id="message_sender"
-																						type="text" class="form-control"
-																						value=<%=dto.getSender_id()%> readonly>
-																				</div>
-																				<div class="form-group">
-																					<label>보낸 날짜</label> <input id="message_date"
-																						type="text" class="form-control"
-																						value=<%=dto.getSent_date()%> readonly>
-																				</div>
-																				<div class="form-group">
-																					<textarea id="message_content" rows="10"
-																						class="form-control" readonly>
-																						<%=dto.getContent() %>
-																						</textarea>
-																				</div>
-																				<div class="text-center">
-																					<a href='./detail?id=<%=dto.getId()%>'>확인</a>
-																					<a href='./delete?id=<%=dto.getId()%>'>삭제</a>
-																				</div>
-																			</form>
-																		</div>
-																	</div>
-																</div>
-															</div>
 															<%
 																}
 																}
 															%>
 														</tbody>
+
+														<script>
+															function hi() {
+																alert("hello0");
+																location.href = "www.naver.com";
+
+															}
+														</script>
 													</table>
 												</div>
 											</div>
@@ -241,9 +205,8 @@
 																<th><input type="checkbox"
 																	class="received-check-one"></th>
 																<td align="center" class="mobile-none"><%=dto.getReceiver_id()%></td>
-																<td><a href="#" class="messageText"
-																	data-toggle="modal"
-																	data-target="#messageRead_send-modal"><%=dto.getTitle()%></a></td>
+																<td class="message"><a class="messageText"
+																	data-id=<%=dto.getId()%>><%=dto.getTitle()%></a></td>
 																<td class="mobile-none"><%=dto.getSent_date().substring(2, 4) + "/" + dto.getSent_date().substring(4, 6) + "/"
 																+ dto.getSent_date().substring(6, 8)%></td>
 																<td class="mobile-none">
@@ -254,43 +217,10 @@
 																		} else if (dto.getRead() == 1) {
 																	%> <i class="fa fa-envelope-open"
 																	style="font-size: 24px; color: grey"></i> <%
- 	}
- %>
+ 																	}
+ 																	%>
 																</td>
 															</tr>
-															<!-- 보낸 쪽지 보기 모달창 -->
-															<div id="messageRead_send-modal" tabindex="-1"
-																role="dialog" aria-hidden="true" class="modal fade">
-																<div role="document" class="modal-dialog">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<h4 align="center" class="modal-title">보낸 쪽지</h4>
-																			<button type="button" data-dismiss="modal"
-																				aria-label="Close" class="close">
-																				<span aria-hidden="true">×</span>
-																			</button>
-																		</div>
-																		<div class="modal-body">
-																			<form action="" method="get">
-																				<div class="form-group">
-																					<label>받는 사람</label> <input id="message_sender"
-																						type="text" class="form-control" value=<%=dto.getReceiver_id() %> readonly>
-																				</div>
-																				<div class="form-group">
-																					<label>보낸 날짜</label> <input id="message_date"
-																						type="text" class="form-control" value=<%=dto.getSent_date() %> readonly>
-																				</div>
-																				<div class="form-group">
-																					<label>내용</label>
-																					<textarea id="message_content" rows="10"
-																						class="form-control" readonly><%=dto.getContent() %></textarea>
-																				</div>
-																				<div class="text-right"><a href='./delete?id=<%=dto.getId()%>'>삭제</a></div>
-																			</form>
-																		</div>
-																	</div>
-																</div>
-															</div>
 															<%
 																}
 																}
@@ -303,6 +233,7 @@
 									</div>
 								</div>
 							</div>
+
 
 							<!-- 페이징 -->
 							<div class="d-flex justify-content-center">
@@ -347,46 +278,93 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<!--  쪽지 보기 모달창 -->
+	<div id="messageRead_receive-modal" tabindex="-1" role="dialog"
+		aria-hidden="true" class="modal fade">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">보낸쪽지</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>받는사람</label> <input class="form-control"
+							name='receiver_id' readonly>
+					</div>
+					<div class="form-group">
+						<label>보낸사람</label> <input class="form-control"
+							name='sender_id' readonly>
+					</div>
+					<div class="form-group">
+						<label>보낸 날짜</label> <input type="text" class="form-control"
+							name='sent_date' readonly>
+					</div>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea id="message_content" rows="10" class="form-control"
+							name='content' readonly></textarea>
+					</div>
+					<div class="text-right">
+						<input type="button" value="삭제">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script>
-		$(document).ready(function() {
+		//쪽지 상세보기
+		$(document).ready(
 
-			$('#received-check-all').change(function() { //전체 체크 변화 다루는 함수        	
-				if (this.checked) { //전체(All) 체크된 경우
-					$('.received-check-one').prop('checked', true);
-				}
+				function() {
+					var modal = $(".modal");
+					var modalInputReceiver_id = modal
+							.find("input[name='receiver_id']");
+					var modalInputSent_date = modal
+							.find("input[name='sent_date']");
+					var modalInputContent = modal
+							.find("textarea[name='content']");
+					var modalCloseBtn = $("#modalCloseBtn");
+					var modalInputSender_id = modal.find("input[name='sender_id']");
 
-				else { //전체(All) 체크되지 않은 경우(체크 해제)
+					$(".message").on("click", "a", function(e) {
+						var id = $(this).data("id");
+						messageService.getMessageDetail(id, function(message) {
+							modalInputReceiver_id.val(message.receiver_id);
+							modalInputSender_id.val(message.sender_id);
+							modalInputSent_date.val(message.sent_date);
+							modalInputContent.val(message.content);
 
-					$('.received-check-one').prop('checked', false);
-				}
-			});
+							modal.find("button[id ]")
+							$(".modal").modal("show");
 
-			$('#sent-check-all').change(function() { //전체 체크 변화 다루는 함수        	
-				if (this.checked) { //전체(All) 체크된 경우
-					$('.sent-check-one').prop('checked', true);
-				}
+						});
+					});
 
-				else { //전체(All) 체크되지 않은 경우(체크 해제)
+					var messageService = (function() {
+						function getMessageDetail(id, callback, error) {
+							$.get("/mypage/api/message/" + id + ".json",
+									function(result) {
+										if (callback) {
+											callback(result);
+										}
+									}).fail(function(xhr, status, err) {
+								if (error) {
+									error();
+								}
+							});
+						}
 
-					$('.sent-check-one').prop('checked', false);
-				}
-			});
-
-			//선택 삭제 버튼
-			$('#delete-choice').click(function() {
-				alert("선택 삭제");
-			});
-
-			//전체 삭제 버튼
-			$('#delete-all').click(function() {
-				alert("전체 삭제");
-			});
-
-		});
+						
+						return {
+							getMessageDetail : getMessageDetail
+						};
+					})();
+				});
 	</script>
-
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js">
@@ -404,23 +382,6 @@
 		src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 	<script src="/resources/js/front.js"></script>
-
-	<script>
-		/* 테이블 반응형 */
-		$(window).resize(function() {
-
-			if (window.innerWidth < 400) { //0~399
-				alert("400");
-				$('.mobile-none').css('display', 'none');
-			}
-
-			/* if (window.innerWidth >= 400 && window.innerWidth < 700) { //401~700
-				alert("700");
-				$('.mobile-none').css('display', 'inline-block');
-			} */
-
-		})
-	</script>
 
 </body>
 </html>

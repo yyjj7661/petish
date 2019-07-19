@@ -17,10 +17,11 @@ public interface MessageService {
 	public ArrayList<MessageResponseDTO> getSentMessageList(int user_id);
 
 	// 4. 쪽지 상세조회
-	public int getMessageDetail(int id);
+	public MessageResponseDTO getMessageDetail(int id);
 
 	// 5. 쪽지 삭제
 	public int deleteMessage(int id);
+	
 	
 	public int getUndeletedReceived(int user_id);
 	

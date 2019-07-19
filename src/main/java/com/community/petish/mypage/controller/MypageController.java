@@ -97,15 +97,15 @@ public class MypageController {
 	@RequestMapping("/message/detail")
 	public String messageDetail(int id) {
 		messageServiceImpl.getMessageDetail(id);
-		log.info(id);
+		log.info("메세지 상세보기" + id);
 		return "redirect:./list";
-	}
+	}	
 	
 	@RequestMapping("/message/delete")
 	public String messageDelete(int id) {
 		messageServiceImpl.deleteMessage(id);
 		log.info(id);
-		return "redirect:./list";
+		return "redirect:./list";	
 	}
 	//message end
 }

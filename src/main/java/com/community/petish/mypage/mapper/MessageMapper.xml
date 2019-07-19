@@ -28,9 +28,11 @@
 		where sender_id = #{user_id}
 	</select>
 	
-	<update id="getMessageDetail" parameterType="int">
-		update message set read=1 where id=#{id}
-	</update>
+	<select id="getMessageDetail" resultMap="MessageResultMap" parameterType="int" >
+		select id, title, content, sent_date, receiver_id, sender_id 
+		from message
+		where id = #{id}
+	</select>
 	
 	<update id="deleteMessage" parameterType="int">
 		update message set deleted=1 where id=#{id}
@@ -43,4 +45,47 @@
 	<select id="getUndeletedSent" parameterType="int" resultType="int">
 		select count(*) from message where deleted = 0 and sender_id= #{user_id}
 	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
