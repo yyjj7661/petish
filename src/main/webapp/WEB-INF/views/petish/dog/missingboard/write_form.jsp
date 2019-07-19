@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="utf-8">
-<title>Universal - All In 1 Template</title>
+<title></title>
 
 
 <!-- 부트스트랩 추가 -->
@@ -98,26 +98,30 @@
 								<a href="/dog/missingboard/list"
 									class="btn btn-template-outlined" style="margin-top: 10px;">목록</a>
 							</div>
-							<h4>[실종견 정보]</h4>
-							<form id="missingMap">
+							<h4>[실종견 정보 작성]</h4>
+							<form name="dogLostPostForm" action="/dog/missingboard/register" method="post" enctype="multipart/form-data">
+								
+								<!-- <input type="hidden" name="ID" value="223"> -->
+								<input type="hidden" name="USER_ID" value="5">
+
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
-											<label for="category">이름</label> <input type="text"
+											<label>이름</label> <input name="DOG_NAME" type="text"
 												class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
-											<label for="category">나이</label> <input type="text"
-												class="form-control">
+											<label>나이</label> <input type="text"
+												class="form-control" name="DOG_AGE">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">종</label> <select id="size"
+											<label for="category">종</label> <select name="SPECIES_ID"
 												class="form-control">
 												<option value="">종</option>
 												<option value="1">믹스견</option>
@@ -160,22 +164,19 @@
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label>성별</label>
-											<div class="checkbox" style="padding-top: 10px;">
-												<label> <input type="radio" value="male"
-													name="gender"> 수컷
-												</label> <label> <input type="radio" value="female"
-													name="gender"> 암컷
-												</label>
+											<div class="checkbox" id="dogGender"
+												style="padding-top: 10px;">
+												<input type="radio" value="수컷" name="DOG_GENDER"> 수컷
+												<input type="radio" value="암컷" name="DOG_GENDER"> 암컷
 											</div>
-
 										</div>
 									</div>
 								</div>
+
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="password_old">사진</label> <input type="file">
-
+											<label>사진</label> <input type="file" name="DOG_IMAGE">
 										</div>
 									</div>
 								</div>
@@ -183,33 +184,35 @@
 									<div class="col-md-8">
 										<div class="form-group">
 											<label for="password_old">특징</label> <input type="text"
-												class="form-control">
-
+												class="form-control" name="DOG_DESCRIPTION">
 										</div>
 									</div>
 								</div>
+
 								<hr>
-								<h4>[실종 관련 정보]</h4>
+
+								<h4>[실종 관련 정보 작성]</h4>
 								<div class="row">
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">실종 일시</label> <input
-												id="datetimepicker" type="text" class="form-control">
-
+												id="datetimepicker" name="DOG_LOST_DATE" type="datetime"
+												class="form-control">
+											<!-- type="datetime-local" -->
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="category">실종 장소</label> <input id="place"
-												name="ADDR" type="text" class="form-control">
+												name="DOG_LOST_ADDRESS" type="text" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-1.5" style="padding-top: 6px;">
 										<div class="form-group">
-											<label for="category"> </label> <input type="button"
+											<label for="category"></label> <input type="button"
 												class="form-control" value="검색"
 												onclick="openZipcode(this.form)" />
 										</div>
@@ -219,14 +222,13 @@
 									<div id="map"
 										style="width: 100%; height: 350px; position: relative; overflow: hidden;"></div>
 								</div>
-								<div style="padding:20px;"></div>
-								
+								<div style="padding: 20px;"></div>
+
 								<div class="row">
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">사례금</label> <input type="text"
-												class="form-control">
-
+												class="form-control" name="REWARD">
 										</div>
 									</div>
 								</div>
@@ -235,17 +237,17 @@
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">연락처</label> <input type="text"
-												class="form-control">
-
+												class="form-control" name="PHONE_NUMBER">
 										</div>
 									</div>
 								</div>
 
 								<div class="row" style="padding-top: 10px;">
 									<div class="col-md-12 text-right">
-										<button type="submit" class="btn btn-outline-primary" style="margin:1rem">확인</button>
-										<button type="reset" class="btn btn-outline-primary"
-											id="resetbtn">취소</button>
+										<input type="submit" value="확인" class="btn btn-outline-primary"
+											name="submitBtn" style="margin: 1rem">
+										<input type="reset" value="취소" class="btn btn-outline-primary"
+											name="resetBtn">
 									</div>
 								</div>
 							</form>
@@ -257,10 +259,10 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
+
 	<!-- Javascript files-->
+	
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js">
 		

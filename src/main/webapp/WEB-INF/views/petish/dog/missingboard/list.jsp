@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*" %>
+<%@ page import="javax.naming.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import = "com.community.petish.dog.missingboard.dto.*" %>
+<%@ page import = "com.community.petish.dog.missingboard.domain.*" %>
+<%
+	List<DogLostPostResponseListDTO> dtoList = (List<DogLostPostResponseListDTO>)request.getAttribute("dtoList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,6 +62,62 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
 <link href="/resources/css/dog/missingboard/list.css" rel="stylesheet">
+<script src="/resources/js/dog/missingboard/post.js"></script>
+
+<!-- <script>
+$(document).ready(function(){
+	
+	varPostUL = $('.post');
+	
+	function showList(){
+		console.log("게시글 리스트");
+		
+		service.getPostList(function(postCnt, list){
+			console.log("postCnt : " + postCnt);
+			console.log("list : " + list);
+			console.log(list);
+			
+			var str = "";
+			
+			if(list == null || list.length==0){
+				return;
+			}
+			
+			for(var i=0, len=list.length || 0; i<len; i++){
+				str += "<tr><td><span class="badge badge-info">발견 완료</span></td>"
+				str += "<td><img src='/resources/img/dog.jpg' class='img-fluid'></td>"
+				str += "<td colspan='10'>" + "[" +list[i].regionId+ "] "
+				str += list[i].speciesId+ " / " +list[i].dogGender+ " / " +list[i].dogAge
+				str += "<div style='padding:1rem'></div><span class='badge badge-secondary'>"
+				str += "댓글수<span></td>"
+				str += "<td>" +list[i].userId + "</td>"
+				str += "<td class='test'>"+list[i].createDate+"+</td>"
+				str += "<td class='test'>"+list[i].viewCount+"</td>"
+			}
+			
+			PostUL.html(str);
+			
+			showPostPage(postCnt);
+			
+		});
+	}
+	
+	/*
+	<tr>
+		<td><span class="badge badge-info">발견 완료</span></td>
+		<td><img src="/resources/img/detailsquare.jpg" alt="..."
+			class="img-fluid"></td>
+		<td colspan="10">[인천 서구] 페키니즈 / 남 / 2 &nbsp &nbsp <span
+			class="badge badge-secondary">40</span></td>
+		<td>Pet</td>
+		<td class=test>2019.07.01</td>
+		<td class=test>11</td>
+	</tr>
+	*/
+	
+});
+</script> -->
+
 </head>
 
 <body>
@@ -74,36 +139,74 @@
 				</div>
 			</div>
 		</div>
-
+		
+		<div style="padding:0.5rem"></div>
+		
 		<div id="content">
-			<div class="container">			
+			<div class="container" >
+				<div style="text-align:right; margin:1rem">		
 				<button class="btn btn-template-outlined">
 					<a href="/dog/missingboard/writeForm">
 					글쓰기
 					</a>
 				</button>
+				</div>
 				
 					<div id="customer-order" class="col-lg-20">
-						<table class="table">							
+						<table class="table" id="post" style="text-align:center">
 							<tr>
 								<th width="130px" class="condition border-top-0">상태</th>              
                       			<th width="200px" class="image border-top-0">이미지</th>                     
                         		<th width="550px" class="title border-top-0" colspan="10">제목</th>
                        	 		<th width="100px" class="writer border-top-0">작성자</th>
-                        		<th width="130px" class="test border-top-0">작성일자</th>                     
+                        		<th width="130px" class="test border-top-0">작성일</th>                     
                         		<th width="100px" class="test border-top-0">조회</th>
 							</tr>
-						
-
-	
-							<tr>
+							
+							
+						<% 
+							for (int i=0; i<dtoList.size(); i++)
+							{
+								DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO)dtoList.get(i);
+								
+								String address = dto.getDOG_LOST_ADDRESS();
+								
+								String[] array = address.split(" ");
+								
+								String addr1 = null;
+								String addr2 = null;
+								
+								if(array[0] != null)
+								addr1 = array[0];
+								
+								if(array[1] != null)
+								addr2 = array[1];
+								
+								String addrSplit = addr1 + " " + addr2;
+								
+						%>
+							<tr>							
+								<%
+									if(dto.getFOUND() == 0) {
+								%>
 								<td><span class="badge badge-danger">미발견</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10"><a href="/dog/missingboard/detail">[인천 서구] 페키니즈 / 여 / 3</a></td>
+								<%
+									} else{
+								%>
+								<td><span class="badge badge-info">발견</span></td>
+								<%
+									}
+								%>								
+								
+								<td><img src="<%=dto.getDOG_IMAGE() %>" alt="..."
+									class="img-fluid" style="width:30px!important; height:30px!important;"></td>
+								<td colspan="10"><a href="/dog/missingboard/detail/<%=dto.getID() %>">[<%=addrSplit %>] <%=dto.getDOG_SPECIES() %> / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></a>
+								<a style="padding:0.15rem"></a>
+								<span class="badge badge-secondary">5</span>
+								</td>
 								<td>
 									<div class="nav navbar-nav ml-auto">
-										<a href="#" data-toggle="dropdown" class="dropdown">Pet</a>
+										<a href="#" data-toggle="dropdown" class="dropdown"><%=dto.getUSER_ID() %></a>
 										<div class="dropdown-menu">
 											<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
 											<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
@@ -111,192 +214,13 @@
 									</div>
 
 								</td>
-							  	<td class=test>2019.07.01</td>  
-                       			<td class=test>11</td>  
+							  	<td class=test></td>  
+                       			<td class=test><%=dto.getVIEW_COUNT()%></td>  
 							</tr>
+						<%
+							}
+						%>
 
-							<tr>
-								<td><span class="badge badge-info">발견 완료</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 31^^ <span
-									class="badge badge-secondary">42</span>
-								</td>
-								<td>
-									<div class="nav navbar-nav ml-auto">
-										<a href="#" data-toggle="dropdown" class="dropdown">PET</a>
-										<div class="dropdown-menu">
-											<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
-											<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
-										</div>
-									</div>
-								</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td><span class="badge badge-info">발견 완료</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 남 / 2 &nbsp &nbsp <span
-									class="badge badge-secondary">40</span></td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td><span class="badge badge-info">발견 완료</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 남 / 3 <span
-									class="badge badge-secondary">82</span></td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 31##</td>
-								<td>Pet1</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 31##</td>
-								<td>Pet1</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td><span class="badge badge-danger">미발견</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 3!!</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 31</td>
-								<td>Pet1</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 323</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 3234</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 312</td>
-								<td>Pet1</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 324</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td><span class="badge badge-danger">미발견</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 343</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td><span class="badge badge-danger">미발견</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 361</td>
-								<td>Pet1</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td><span class="badge badge-danger">미발견</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 3</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td><span class="badge badge-info">발견 완료</span></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 3</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 3</td>
-								<td>Pet1</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td><img src="/resources/img/detailsquare.jpg" alt="..."
-									class="img-fluid"></td>
-								<td colspan="10">[인천 서구] 페키니즈 / 여 / 312</td>
-								<td>Pet</td>
-								<td class=test>2019.07.01</td>
-								<td class=test>11</td>
-							</tr>
 						</table>
 					</div>
 			</div>
@@ -315,56 +239,12 @@
 							class="fa fa-angle-double-right"></i></a></li>
 				</ul>
 			</div>
+			
+			<div style="padding:1rem"></div>
 				
 			<div aria-label="Page navigation example" class="d-flex justify-content-center">
 
 				<!-- 검색 기능 -->
-				<div class="col-md-2 col-lg-2">
-					<div class="form-group">
-
-						<select id="region" onchange="categoryChange(this)"
-							class="form-control">
-							<option value="">지역</option>
-							<option value="1">서울</option>
-							<option value="2">경기</option>
-							<option value="3">인천</option>
-							<option value="4">강원</option>
-							<option value="5">대전</option>
-							<option value="6">세종</option>
-							<option value="7">충남</option>
-							<option value="8">충북</option>
-							<option value="9">부산</option>
-							<option value="10">울산</option>
-							<option value="11">경남</option>
-							<option value="12">경북</option>
-							<option value="13">대구</option>
-							<option value="14">광주</option>
-							<option value="15">전남</option>
-							<option value="16">전북</option>
-							<option value="17">제주</option>
-						</select>
-					</div>
-				</div>
-				
-				<div class="si col-md-2 col-lg-2">
-					<div class="form-group">
-						<select id="sml_region" class="form-control"
-							>
-							<option>시/구</option>
-						</select>
-					</div>
-				</div>
-		
-				<div class="condition col-md-2 col-lg-2">
-					<div class="form-group">
-						<select id="state" class="form-control">
-							<option>싱태</option>
-							<option>발견완료</option>
-							<option>미발견</option>
-						</select>
-					</div>
-				</div>
-
 				<div class="col-md-2 col-lg-2">
 					<div class="form-group">
 						<select id="state" class="form-control" style="min-width: 2cm;">
@@ -388,9 +268,10 @@
 							</div>
 						</form>
 					</div>
-				</div>
-				
+				</div>				
 			</div>
+			
+			<div style="padding:1rem"></div>
 
 		</div>
 	</div>

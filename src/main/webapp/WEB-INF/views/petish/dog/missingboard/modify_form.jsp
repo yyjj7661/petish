@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "com.community.petish.dog.missingboard.dto.*" %>
+<%
+	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO)request.getAttribute("dto");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="utf-8">
-<title>Universal - All In 1 Template</title>
+<title></title>
 
 
 <!-- 부트스트랩 추가 -->
@@ -99,27 +103,28 @@
 							</div>
 							<h4 style="display:inline-block;">[실종견 정보]</h4>
 							<div class="col-md-10 text-right" style="display:inline-block;">
-								<input type="checkbox"><span style="color: red;"> 반려견을 찾았습니다.</span>
+								<input type="checkbox" name="FOUND"><span style="color: red;"><b>반려견을 찾았습니다.</b></span>
 							</div>
 							<form id="missingMap">
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label for="category">이름</label>
-											<input type="text" value="첵스" class="form-control">
+											<input type="text" name="DOG_NAME" value=<%=dto.getDOG_NAME() %> class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label for="category">나이</label>
-											<input type="text" value="3" class="form-control">
+											<input type="text" name="DOG_AGE" value=<%=dto.getDOG_AGE() %> class="form-control">
 										</div>
 									</div>
 								</div>
 								<div class="row">	
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">종</label> <select id="species"
+											<label for="category">종</label>
+											<select id="species" name="DOG_SPECIES_ID"
 												class="form-control">
 												<option value="">종</option>
 												<option value="1">믹스견</option>
@@ -163,14 +168,19 @@
 										<div class="form-group">
 											<label>성별</label>
 											<div class="checkbox" style="padding-top:10px;">
-												<label>
-													<input type="radio" value="male" name="gender"  >
-													수컷
-												</label>
-												<label>
-													<input type="radio" value="female" name="gender" >
-													암컷
-												</label>
+											<%
+												if(dto.getDOG_GENDER().equals("수컷")) {
+											%>
+												<input type="radio" value="수컷" name="DOG_GENDER" checked><label>수컷</label>
+												<input type="radio" value="암컷" name="DOG_GENDER" ><label>암컷</label>
+											<%
+												} else {
+											%>
+												<input type="radio" value="수컷" name="DOG_GENDER" ><label>수컷<label>
+												<input type="radio" value="암컷" name="DOG_GENDER" checked><label>암컷</label>
+											<%
+												}
+											%>
 											</div>
 											
 										</div>
@@ -180,7 +190,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											
-											<input type="file" value="포메리안.jpg" >
+											<input type="file" name="DOG_IMAGE" value=<%=dto.getDOG_IMAGE() %>>
 												
 										</div>
 									</div>
@@ -189,7 +199,7 @@
 									<div class="col-md-8">
 										<div class="form-group">
 											<label for="password_old">특징</label> 
-											<input type="text" value="졸귀 중성화수술했음"class="form-control">
+											<input type="text" name="DOG_DESCRIPTION" value="<%=dto.getDOG_DESCRIPTION() %>" class="form-control">
 												
 										</div>
 									</div>
@@ -199,68 +209,35 @@
 								<div class="row">
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">연락처</label> <input type="text" value="01062206697" class="form-control">
+											<label for="category">연락처</label> <input type="text" value="<%=dto.getPHONE_NUMBER() %>" class="form-control">
 											
 										</div>
 									</div>
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">사례금</label> <input type="text" value="1000000" class="form-control">
+											<label for="category">사례금</label>
+											<input type="text" name="FOUND" value="<%=dto.getREWARD() %>" class="form-control">
 											
 										</div>
 									</div>
 								</div>
 								
 								<div class="row">
-									
-									<div class="col-sm-6 col-md-2">
-										<div class="form-group">
-											<label for="category">지역</label> <select id="region" onchange="categoryChange(this)"
-												class="form-control">
-												<option value="">지역</option>
-												<option value="1">서울</option>
-												<option value="2">경기</option>
-												<option value="3">인천</option>
-												<option value="4">강원</option>
-												<option value="5">대전</option>
-												<option value="6">세종</option>
-												<option value="7">충남</option>
-												<option value="8">충북</option>
-												<option value="9">부산</option>
-												<option value="10">울산</option>
-												<option value="11">경남</option>
-												<option value="12">경북</option>
-												<option value="13">대구</option>
-												<option value="14">광주</option>
-												<option value="15">전남</option>
-												<option value="16">전북</option>
-												<option value="17">제주</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-6 col-md-2">
-										<div class="form-group">
-											<label for="category">시/구</label> <select id="sml_region"
-												class="form-control">
-												<option>시/구</option>
-												
-											</select>
-										</div>
-									</div>
-									
+																	
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">실종 일시</label> <input id="datetimepicker" type="text" value="2019/07/11 12:19" class="form-control">
+											<label for="category">실종 일시</label>
+											<input id="datetimepicker" type="datetime" value="<%=dto.getDOG_LOST_DATE() %>" class="form-control">
 											
 										</div>
-									</div>
-									
+									</div>									
 								</div>
+								
 								<div class="row" >
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="category">실종 장소</label>									
-											<input id="place" name="ADDR" type="text" value="서울 서초구 서초동 1303-34" class="form-control">
+											<input id="place" name="DOG_LOST_ADDRESS" type="text" value="<%=dto.getDOG_LOST_ADDRESS() %>" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-1.5" style="padding-top: 6px;">
@@ -270,28 +247,26 @@
 										</div>
 									</div>
 								</div>
+								
 								<div class="map_wrap">
     								<div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
-    							</div>
-								
-									
-								
-								
-								
+    							</div>								
 																
 								<div class="row" style="padding-top: 10px;">
 									<div class="col-md-3">
-										<a href="#" class="btn btn-template-outlined"
+										<a href="/dog/missingboard/delete/" class="btn btn-template-outlined"
 											style="margin-top: 0px;">삭제</a>
 									</div>
 									<div class="col-md-9 text-right">
-										<button type="submit" class="btn btn-template-outlined">수정</button>
-										<button type="reset" class="btn btn-template-outlined"
-											id="resetbtn">취소</button>
+										<button type="submit" class="btn btn-template-outlined">
+										<a href="/dog/missingboard/modifyForm"> 수정 </a>
+										</button>
+										<button type="reset" class="btn btn-template-outlined" id="resetbtn">
+										<a href="javascript:history.back()"> 취소</a>
+										</button>
 									</div>
 								</div>
-							</form>
-						
+							</form>						
 						</div>
 
 					</div>

@@ -1,9 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import = "com.community.petish.dog.missingboard.dto.*" %>	
+<%
+	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO)request.getAttribute("dto");
+
+	String address = dto.getDOG_LOST_ADDRESS();
+	
+	String[] array = address.split(" ");
+	
+	String addr1 = null;
+	String addr2 = null;
+	
+	if(array[0] != null)
+	addr1 = array[0];
+	
+	if(array[1] != null)
+	addr2 = array[1];
+	
+	String addrSplit = addr1 + " " + addr2;
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>[인천 부평구] 페키니즈 / 남 / 3</title>
+<title>[<%=addrSplit %>] <%=dto.getDOG_SPECIES() %> / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -60,6 +81,7 @@
 <style>
 .poster-table {
 	width: 70%;
+	margin: 1rem;
 	padding: 30px;
 	background-color: #F7F8E0;
 	text-align: center;
@@ -203,7 +225,11 @@ th, td {
 	border-radius: 50%;
 }
 
+.report-modal-title{
+	min-width:65px;
 }
+
+
 @
 -webkit-keyframes fade {
 	from {opacity: .4
@@ -288,8 +314,20 @@ to {
 
 				<!-- 글 제목 -->
 				<div class="panel-heading">
+				
+				<%
+					if(dto.getFOUND() == 0) {
+				%>
 					<span class="badge badge-danger">미발견</span>
-					<h2 class="h3 panel-title">[인천 부평구] 페키니즈 / 남 / 3</h2>
+				<%
+					} else{
+				%>
+					<span class="badge badge-info">발견</span>
+				<%
+					}
+				%>
+					
+					<h2 class="h3 panel-title">[<%=addrSplit %>] 페키니즈 / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></h2>
 				</div>
 
 				<!-- 게시 정보 -->
@@ -313,9 +351,8 @@ to {
 						</td>
 
 						<td class=grade>준회원</td>
-						<td class=date><i class="fa fa-clock-o"></i> 2019-07-01
-							23:02:56</td>
-						<td class=view><i class="fa fa-eye"></i> 130186321</td>
+						<td class=date><i class="fa fa-clock-o"></i> <%=dto.getCREATE_DATE() %></td>
+						<td class=view><i class="fa fa-eye"></i> <%=dto.getVIEW_COUNT() %></td>
 
 					</tr>
 				</table>
@@ -352,20 +389,17 @@ to {
 								<!-- Full-width images with number and caption text -->
 								<div class="mySlides fade">
 									<div class="numbertext">1 / 3</div>
-									<img id="lostdog" src="/resources/img/dog.jpg"
-										style="width: 100%">
+									<img id="lostdog" src="<%=dto.getDOG_IMAGE() %>" style="width: 100%">
 								</div>
 
 								<div class="mySlides fade">
 									<div class="numbertext">2 / 3</div>
-									<img id="lostdog" src="/resources/img/dog2.jpg"
-										style="width: 100%">
+									<img id="lostdog" src"<%=dto.getDOG_IMAGE() %>" style="width: 100%">
 								</div>
 
 								<div class="mySlides fade">
 									<div class="numbertext">3 / 3</div>
-									<img id="lostdog" src="/resources/img/dog3.jpg"
-										style="width: 100%">
+									<img id="lostdog" src="<%=dto.getDOG_IMAGE() %>" style="width: 100%">
 								</div>
 
 								<!-- Next and previous buttons -->
@@ -382,7 +416,7 @@ to {
 
 					<tr>
 						<th class="index">이름</th>
-						<th>뀨리</th>
+						<th><%=dto.getDOG_NAME() %></th>
 					</tr>
 
 					<tr>
@@ -391,33 +425,33 @@ to {
 					</tr>
 
 					<tr>
-						<th class="index">성별/나이</th>
-						<th>수컷 / 3</th>
+						<th class="index">성별 / 나이</th>
+						<th><%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></th>
 					</tr>
 
 					<tr>
 						<th class="index">특징</th>
-						<th>온순 / 중성화O / 귀가 접힘</th>
+						<th><%=dto.getDOG_DESCRIPTION() %></th>
 					</tr>
 
 					<tr>
 						<th class="index">실종 날짜</th>
-						<th>2019/07/12</th>
+						<th><%=dto.getDOG_LOST_DATE() %></th>
 					</tr>
 
 					<tr>
 						<th class="index">실종 장소</th>
-						<th>인천 부평구 00아파트 xx공원 내</th>
+						<th><%=dto.getDOG_LOST_ADDRESS() %></th>
 					</tr>
 
 					<tr>
 						<th class="index">사례금</th>
-						<th>20만원</th>
+						<th><%=dto.getREWARD() %></th>
 					</tr>
 
 					<tr>
 						<th class="index">연락처</th>
-						<th style="color: #df0101">010-1234-1234</th>
+						<th style="color: #df0101"><%=dto.getPHONE_NUMBER() %></th>
 					</tr>
 				</table>
 			</div>
@@ -433,7 +467,7 @@ to {
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
-								키워드 : <input type="text" value="서울숲" id="keyword" size="15">
+								키워드 : <input type="text" value="<%=dto.getDOG_LOST_ADDRESS() %>" id="keyword" size="15">
 
 							</form>
 						</div>
@@ -495,7 +529,7 @@ to {
 			<div id="comment-form">
 				<h4 class="text-uppercase">댓글 작성</h4>
 				<form>
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="name">아이디 <span
@@ -503,13 +537,13 @@ to {
 									type="text" class="form-control">
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label for="comment">내 용 <span
-									class="required text-primary">*</span></label>
+								<!-- <label for="comment">내 용 <span
+									class="required text-primary">*</span></label> -->
 								<textarea id="comment" rows="4" class="form-control"></textarea>
 							</div>
 						</div>
@@ -524,12 +558,12 @@ to {
 							<nav aria-label="Page navigation example"
 								class="d-flex justify-content-left">
 								<button class="btn btn-template-outlined">
-
-									<i class="fa fa-pencil"></i> <a
-										href="/dog/missingboard/modifyForm"> 수정 </a>
+									<i class="fa fa-pencil"></i>
+									<a href="/dog/missingboard/modifyForm/<%=dto.getID()%>"> 수정 </a>
 								</button>
 								<button type="submit" class="btn btn-template-outlined">
-									<i class="fa fa-trash-o"></i>삭제
+									<i class="fa fa-trash-o"></i>
+									<a href="/dog/missingboard/delete"> 삭제 </a>
 								</button>
 							</nav>
 
@@ -551,7 +585,7 @@ to {
 										<div class="modal-body">
 											<table>
 												<tr>
-													<td>신고 분류</td>
+													<td id="report-modal-title">신고 분류</td>
 													<td>
 														<div class="form-group">
 
@@ -637,7 +671,6 @@ to {
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			alert("hi");
 			/* var slideIndex = 1;
 			showSlides(slideIndex); */
 		})
