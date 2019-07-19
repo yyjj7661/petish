@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.community.petish.dog.missingboard.domain.DogLostPostVO;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
+import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
 
 public interface DogLostPostService {
@@ -15,7 +16,7 @@ public interface DogLostPostService {
 	List<DogLostPostResponseListDTO> getPostList();
 
 	// 게시글 조회
-	DogLostPostVO getPostDetail(int num);
+	DogLostPostResponseDetailDTO getPostDetail(Long id);
 
 	// 게시글 작성
 	//void register(DogLostPostRequestDTO dto);
@@ -25,6 +26,6 @@ public interface DogLostPostService {
 	int modify(DogLostPostRequestWriteDTO dto);
 
 	// 게시글 삭제
-	int delete(int num);
-
+	int delete(Long id);
+	
 }

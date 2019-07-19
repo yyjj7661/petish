@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.community.petish.dog.missingboard.domain.DogLostPostVO;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
+import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
 import com.community.petish.dog.missingboard.mapper.DogLostPostMapper;
 
@@ -30,26 +30,29 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 
 	// 게시글 조회
 	@Override
-	public DogLostPostVO getPostDetail(int num) {
-		return mapper.getPostDetail(num);
+	public DogLostPostResponseDetailDTO getPostDetail(Long id) {
+		return mapper.getPostDetail(id);
 	}
 
 	// 게시글 작성
 	@Override
 	public int register(DogLostPostRequestWriteDTO dto) {
-		return mapper.insertDogLostPost(dto);	
+		System.out.println("[Service] : "+dto.getDOG_NAME());
+		return mapper.insertPost(dto);
+		
 	}
 	
 	// 게시글 수정
 	@Override
 	public int modify(DogLostPostRequestWriteDTO dto) {
-		return mapper.updateDogLostPost(dto);
+		return mapper.updatePost(dto);
 	}
 	
 	//게시글 삭제
 	@Override
-	public int delete(int num) {
-		return mapper.deleteDogLostPost(num);
+	public int delete(Long id) {
+		return mapper.deletePost(id);
 	}
+	
 	
 }
