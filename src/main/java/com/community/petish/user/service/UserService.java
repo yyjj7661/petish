@@ -12,6 +12,8 @@ public interface UserService {
 	Long saveUser(SaveUserParams saveUserParams);
 	
 	void login(LoginUserParams loginUserParams, HttpSession session);
+	
+	void logout(HttpSession session);
 
 	User findById(Long id);
 	

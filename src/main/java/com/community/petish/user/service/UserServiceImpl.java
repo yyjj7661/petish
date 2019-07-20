@@ -57,6 +57,14 @@ public class UserServiceImpl implements UserService{
 		throw new PasswordNotMatchException();
 		
 	}
+	
+	@Override
+	public void logout(HttpSession session) {
+		
+		log.info("로그아웃");
+
+		session.invalidate();
+	}
 
 	@Override
 	public User findById(Long id) {
@@ -76,6 +84,8 @@ public class UserServiceImpl implements UserService{
 		UserListResponse userListResponse = new UserListResponse(userMapper.findAll());
 		return userListResponse;
 	}
+
+	
 
 	
 	
