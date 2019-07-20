@@ -36,3 +36,53 @@ function openZipcode(){
               +"scrollbars=yes,resizable=no,"
               +"width=700,height=500");
   }
+
+const handledLoginClick = (e) => {
+	let username = $("#email_input").val();
+	let password = $("#password_input").val();
+	
+	if (username == "" || username == null) {
+		return
+	}
+	if (password == "" || password == null) {
+		return
+	}
+	
+	let loginUserParams = {
+			"username" : username,
+			"password" : password
+	}
+	
+	$.ajax({
+		type: "POST",
+		url: "/api/users/login",
+		contentType:"application/json; charset=utf-8",
+		data: JSON.stringify(loginUserParams),
+		success: function(result, status, xhr) {
+			alert("로그인 성공!")
+			location.reload();
+		},
+		error: function(error, status, xhr) {
+			if (error) {
+				alert("error : " + JSON.stringify(error) + "\n" + "status: " + status + "\n" + "xhr : " + xhr);
+			}
+		}
+		
+	})
+}
+
+const handledLogoutClick = (e) => {
+	e.preventDefault();
+	
+	$.ajax({
+		type: "POST",
+		url:"/api/users/logout",
+		success: function(result, status, xhr) {
+			alert("로그아웃 성공!");
+			location.reload();
+		},
+		error: function(error, status, xhr) {
+			
+		}
+	})
+}
