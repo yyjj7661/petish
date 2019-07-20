@@ -30,6 +30,12 @@ public class UserRestController {
 	@Autowired
 	UserService userService;
 	
+	@PostMapping(consumes = {"application/json"})
+	public void save(@RequestBody SaveUserParams saveUserParams) {
+		log.info("회원가입 요청 saveUserParams = {}", saveUserParams);
+		userService.saveUser(saveUserParams);
+	}
+	
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public UserListResponse getUsers()   {
 		log.info("전체 유저에 대한 조회 요청");
@@ -46,7 +52,7 @@ public class UserRestController {
 		return (LoginedUser) session.getAttribute("LOGIN_USER");
 	}
 	
-	@PostMapping("/login")
+	@PostMapping(value = "/login", consumes = { "application/json" })
 	public void Login(@RequestBody LoginUserParams loginUserParams, HttpSession session) {
 		log.info("로그인 요청 loginUserParams = {}", loginUserParams);
 		userService.login(loginUserParams, session);
@@ -62,10 +68,6 @@ public class UserRestController {
 		userService.logout(session);
 	}
 	
-	@PostMapping(consumes = {"application/json"})
-	public void save(@RequestBody SaveUserParams saveUserParams) {
-		log.info("회원가입 요청 saveUserParams = {}", saveUserParams);
-		userService.saveUser(saveUserParams);
-	}
+	
 
 }
