@@ -1,5 +1,9 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page import="com.community.petish.user.dto.response.LoginedUser"%>
+<link rel="stylesheet" href="/resources/css/top/top.css"> 
+<link rel="stylesheet" href="/resources/css/top/modal.css?after"> 
+<!-- JavaScript File -->
+<script src="/resources/js/top/top.js"></script>
 
 <%
 	LoginedUser loginedUser = (LoginedUser) session.getAttribute("LOGIN_USER");
@@ -8,30 +12,30 @@
 %>
 	<!-- Login Modal-->
 	<div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
-		<div role="document" class="modal-dialog">
+		<div role="document" class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 id="login-modalLabel" class="modal-title">로그인</h4>
 						<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 				</div>
 				<div class="modal-body">
-					<form action="loginUser.html" method="post">
+					
 						<div class="text-center">
-							<label for="inp" class="inp">
-								<input type="text" id="inp" placeholder=" ">
+							<label for="email_input" class="inp">
+								<input type="text" id="email_input">
 									<span class="label">이메일</span>
 									<span class="border"></span>
 							</label>					  
 							<label for="inp" class="inp">
-								<input type="password" id="inp" placeholder=" ">
+								<input type="password" id="password_input">
 									<span class="label">비밀번호</span>
 									<span class="border"></span>
 							</label>
 		                </div>
 							<div class="text-center" id="login-button">
-								<button type="submit" class="btn btn-template-outlined" id="login-button"><i class="fa fa-sign-in"></i> 로그인</button>
+								<button class="btn btn-template-outlined" id="login-button" onclick="handledLoginClick(event)"><i class="fa fa-sign-in"></i> 로그인</button>
 							</div>
-	                </form>
+	                
 						<p class="text-center text-muted">
 							<a href="#" data-toggle="modal" data-target="#login-modal2" id="joinBtn"><strong>회원가입</strong>
 							<a href="#" data-toggle="modal" data-target="#login-modal3" id="findBtn"><strong>아이디/비밀번호 찾기</strong></a>
@@ -44,7 +48,7 @@
 	
 	<!-- Sign Up Modal -->
 	<div id="login-modal2" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
-		<div role="document" class="modal-dialog">
+		<div role="document" class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
                   	<h4 id="login-modalLabel" class="modal-title">회원가입</h4>
@@ -113,7 +117,7 @@
 	
 	<!-- Find Id/Password Modal-->
 	<div id="login-modal3" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
-		<div role="document" class="modal-dialog">
+		<div role="document" class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 id="login-modalLabel" class="modal-title">아이디/비밀번호 찾기</h4>
@@ -215,7 +219,7 @@
 
 						<!-- ========== My Pet ==================-->
 						<li class="nav-item dropdown menu-large">
-							<a href="/mypet/list">마이펫
+							<a href="/mypet">마이펫
 								<b class="caret"></b>
 							</a>
 						</li>
@@ -228,7 +232,7 @@
 						</li> 
 						<!-- ========== Hospital END ==================-->
 						<!-- Login User -->
-						<% if (LoginedUser != null) { %>
+						<% if (loginedUser != null) { %>
 						<li class="nav-item dropdown">
 							<a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">
 								<i class="fa fa-user"></i>
@@ -238,7 +242,7 @@
 								<li class="dropdown-item"><a href="/mypage/" class="nav-link" style="font-size: 0.9rem;">마이페이지</a></li>
 								<li class="dropdown-item"><a href="/mypage/message" class="nav-link" style="font-size:0.9rem;">쪽지함</a></li>
 								<li class="dropdown-item"><a href="/mypage/question/list" class="nav-link" style="font-size:0.9rem;">문의함</a></li>
-								<li class="dropdown-item"><a href="header.html" class="nav-link" style="font-size: 0.9rem;">로그아웃</a></li>
+								<li class="dropdown-item"><a href="#" class="nav-link" onclick="handledLogoutClick(event)" style="font-size: 0.9rem;">로그아웃</a></li>
 							</ul>
 						</li>
 						<%} else { %>
