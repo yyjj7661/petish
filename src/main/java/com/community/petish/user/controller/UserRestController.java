@@ -17,6 +17,7 @@ import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.dto.response.LoginedUser;
 import com.community.petish.user.exception.AuthenticationException;
+import com.community.petish.user.exception.NotLoginedException;
 import com.community.petish.user.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -51,9 +52,19 @@ public class UserRestController {
 		userService.login(loginUserParams, session);
 	}
 	
+	@PostMapping("/logout")
+	public void logout(HttpSession session) {
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+		if ( user == null) {
+			throw new NotLoginedException();
+		}
+		log.info("로그아웃 요청 user = {}", user);
+		userService.logout(session);
+	}
+	
 	@PostMapping(consumes = {"application/json"})
 	public void save(@RequestBody SaveUserParams saveUserParams) {
-		log.info("회원가입 요청");
+		log.info("회원가입 요청 saveUserParams = {}", saveUserParams);
 		userService.saveUser(saveUserParams);
 	}
 
