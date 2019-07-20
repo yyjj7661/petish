@@ -19,7 +19,7 @@
 <body>
 <div class="all">
 
-	<%@ include file="/WEB-INF/views/commons/non-login.jspf" %>
+	<%@ include file="/WEB-INF/views/commons/top.jspf" %>
 
     <div class="container-fluid">
 
