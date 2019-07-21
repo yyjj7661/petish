@@ -3,6 +3,8 @@
 <%@ page import = "com.community.petish.dog.missingboard.dto.*" %>
 <%
 	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO)request.getAttribute("dto");
+
+	System.out.println("게시글 아이디 : " + dto.getID());
 %>
 <!DOCTYPE html>
 <html>
@@ -105,8 +107,11 @@
 							<div class="col-md-10 text-right" style="display:inline-block;">
 								<input type="checkbox" name="FOUND"><span style="color: red;"><b>반려견을 찾았습니다.</b></span>
 							</div>
-							<form id="missingMap">
+							<form action="/dog/missingboard/modify" method="POST">
 								<div class="row">
+									
+									<input type="hidden" name="ID" value=<%=dto.getID() %>>
+									
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label for="category">이름</label>
@@ -124,7 +129,7 @@
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">종</label>
-											<select id="species" name="DOG_SPECIES_ID"
+											<select id="species" name="SPECIES_ID"
 												class="form-control">
 												<option value="">종</option>
 												<option value="1">믹스견</option>
@@ -209,7 +214,7 @@
 								<div class="row">
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">연락처</label> <input type="text" value="<%=dto.getPHONE_NUMBER() %>" class="form-control">
+											<label for="category">연락처</label> <input type="text" name="PHONE_NUMBER" value="<%=dto.getPHONE_NUMBER() %>" class="form-control">
 											
 										</div>
 									</div>
@@ -227,7 +232,7 @@
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">실종 일시</label>
-											<input id="datetimepicker" type="datetime" value="<%=dto.getDOG_LOST_DATE() %>" class="form-control">
+											<input id="datetimepicker" name="DOG_LOST_DATE" type="datetime" value="<%=dto.getDOG_LOST_DATE() %>" class="form-control">
 											
 										</div>
 									</div>									
@@ -254,16 +259,12 @@
 																
 								<div class="row" style="padding-top: 10px;">
 									<div class="col-md-3">
-										<a href="/dog/missingboard/delete/" class="btn btn-template-outlined"
+										<a href="/dog/missingboard/delete/<%=dto.getID() %>" class="btn btn-template-outlined"
 											style="margin-top: 0px;">삭제</a>
 									</div>
 									<div class="col-md-9 text-right">
-										<button type="submit" class="btn btn-template-outlined">
-										<a href="/dog/missingboard/modifyForm"> 수정 </a>
-										</button>
-										<button type="reset" class="btn btn-template-outlined" id="resetbtn">
-										<a href="javascript:history.back()"> 취소</a>
-										</button>
+										<input type="submit" value="수정" class="btn btn-template-outlined">
+										<input type="reset" value="취소" class="btn btn-template-outlined">
 									</div>
 								</div>
 							</form>						

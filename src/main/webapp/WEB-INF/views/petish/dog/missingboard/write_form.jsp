@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	//유저 아이디
+	String str = session.getAttribute("userId").toString();
+	Long userId = Long.parseLong(str);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,8 +106,7 @@
 							<h4>[실종견 정보 작성]</h4>
 							<form name="dogLostPostForm" action="/dog/missingboard/register" method="post" enctype="multipart/form-data">
 								
-								<!-- <input type="hidden" name="ID" value="223"> -->
-								<input type="hidden" name="USER_ID" value="5">
+								<input type="hidden" name="USER_ID" value=<%=userId %>>
 
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
@@ -183,8 +187,13 @@
 								<div class="row">
 									<div class="col-md-8">
 										<div class="form-group">
-											<label for="password_old">특징</label> <input type="text"
-												class="form-control" name="DOG_DESCRIPTION">
+											<label for="password_old" style="display:block">특징</label>
+											
+											<table id="addTable">
+												<input type="text" class="form-control" name="DOG_DESCRIPTION" style="display:inline-block; width:80%;">
+												<button name="addButton" class="btn btn-sm btn-template-main" style="font-size:0.9rem!important;">추가</button>
+											</table>
+											
 										</div>
 									</div>
 								</div>
@@ -262,6 +271,25 @@
 	</div>
 
 	<!-- Javascript files-->
+	<script>
+	var oTbl;
+	//Row 추가
+	function insRow() {
+	  oTbl = document.getElementById("addTable");
+	  var oRow = oTbl.insertRow();
+	  oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+	  var oCell = oRow.insertCell();
+
+	  //form 태그 추가
+	   var frmTag = "<input type='text' class='form-control' name='addText[]' style='display:inline-block; width:80%;'>";
+	   frmTag += "<button onClick='removeRow()' style='cursor:hand'>삭제</button>";
+	   oCell.innerHTML = frmTag;
+	}
+	//Row 삭제
+	function removeRow() {
+	  oTbl.deleteRow(oTbl.clickedRowIndex);
+	}
+	</script>
 	
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js">

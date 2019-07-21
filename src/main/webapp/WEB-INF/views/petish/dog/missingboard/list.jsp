@@ -1,18 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import = "com.community.petish.dog.missingboard.dto.*" %>
-<%@ page import = "com.community.petish.dog.missingboard.domain.*" %>
+<%@ page import="javax.sql.*"%>
+<%@ page import="javax.naming.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.community.petish.dog.missingboard.dto.*"%>
+<%@ page import="com.community.petish.dog.missingboard.domain.*"%>
 <%
-	List<DogLostPostResponseListDTO> dtoList = (List<DogLostPostResponseListDTO>)request.getAttribute("dtoList");
+	List<DogLostPostResponseListDTO> dtoList = (List<DogLostPostResponseListDTO>) request.getAttribute("dtoList");
+
+	//게시판 아이디 4번
+	session.setAttribute("boardId", "4");
+
+	//유저 아이디 7번
+	session.setAttribute("userId", "7");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>실종견 게시판</title>
+
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -55,7 +62,7 @@
 <link rel="apple-touch-icon" sizes="144x144"
 	href="/resources/mg/apple-touch-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152"
-	href="/resources/img/apple-touch-icon-152x152.png">	
+	href="/resources/img/apple-touch-icon-152x152.png">
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -139,94 +146,97 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
-		
-		<div style="padding:0.5rem"></div>
-		
+
+		<div style="padding: 0.5rem"></div>
+
 		<div id="content">
-			<div class="container" >
-				<div style="text-align:right; margin:1rem">		
-				<button class="btn btn-template-outlined">
-					<a href="/dog/missingboard/writeForm">
-					글쓰기
-					</a>
-				</button>
+			<div class="container">
+				<div style="text-align: right; margin: 1rem">
+					<button class="btn btn-template-outlined">
+						<a href="/dog/missingboard/writeForm"> 글쓰기 </a>
+					</button>
 				</div>
-				
-					<div id="customer-order" class="col-lg-20">
-						<table class="table" id="post" style="text-align:center">
-							<tr>
-								<th width="130px" class="condition border-top-0">상태</th>              
-                      			<th width="200px" class="image border-top-0">이미지</th>                     
-                        		<th width="550px" class="title border-top-0" colspan="10">제목</th>
-                       	 		<th width="100px" class="writer border-top-0">작성자</th>
-                        		<th width="130px" class="test border-top-0">작성일</th>                     
-                        		<th width="100px" class="test border-top-0">조회</th>
-							</tr>
-							
-							
-						<% 
-							for (int i=0; i<dtoList.size(); i++)
-							{
-								DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO)dtoList.get(i);
-								
+
+				<div id="customer-order" class="col-lg-20">
+					<table class="table" id="post" style="text-align: center">
+						<tr>
+							<th width="130px" class="condition border-top-0">상태</th>
+							<th width="200px" class="image border-top-0">이미지</th>
+							<th width="550px" class="title border-top-0" colspan="10">제목</th>
+							<th width="100px" class="writer border-top-0">작성자</th>
+							<th width="130px" class="test border-top-0">작성일</th>
+							<th width="100px" class="test border-top-0">조회</th>
+						</tr>
+
+
+						<%
+							for (int i = 0; i < dtoList.size(); i++) {
+								DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);
+
 								String address = dto.getDOG_LOST_ADDRESS();
-								
+
 								String[] array = address.split(" ");
-								
+
 								String addr1 = null;
 								String addr2 = null;
-								
-								if(array[0] != null)
-								addr1 = array[0];
-								
-								if(array[1] != null)
-								addr2 = array[1];
-								
+
+								if (array[0] != null)
+									addr1 = array[0];
+
+								if (array[1] != null)
+									addr2 = array[1];
+
 								String addrSplit = addr1 + " " + addr2;
-								
 						%>
-							<tr>							
-								<%
-									if(dto.getFOUND() == 0) {
-								%>
-								<td><span class="badge badge-danger">미발견</span></td>
-								<%
-									} else{
-								%>
-								<td><span class="badge badge-info">발견</span></td>
-								<%
-									}
-								%>								
-								
-								<td><img src="<%=dto.getDOG_IMAGE() %>" alt="..."
-									class="img-fluid" style="width:30px!important; height:30px!important;"></td>
-								<td colspan="10"><a href="/dog/missingboard/detail/<%=dto.getID() %>">[<%=addrSplit %>] <%=dto.getDOG_SPECIES() %> / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></a>
-								<a style="padding:0.15rem"></a>
-								<span class="badge badge-secondary">5</span>
-								</td>
-								<td>
-									<div class="nav navbar-nav ml-auto">
-										<a href="#" data-toggle="dropdown" class="dropdown"><%=dto.getUSER_ID() %></a>
-										<div class="dropdown-menu">
-											<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
-											<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+						<tr>
+							<%
+								if (dto.getFOUND() == 0) {
+							%>
+							<td><span class="badge badge-danger">미발견</span></td>
+							<%
+								} else {
+							%>
+							<td><span class="badge badge-info">발견</span></td>
+							<%
+								}
+							%>
+
+							<td><img src="<%=dto.getDOG_IMAGE()%>" alt="..."
+								class="img-fluid"
+								style="width: 30px !important; height: 30px !important;"></td>
+							<td colspan="10"><a
+								href="/dog/missingboard/detail/<%=dto.getID()%>">[<%=addrSplit%>]
+									<%=dto.getDOG_SPECIES()%> / <%=dto.getDOG_GENDER()%> / <%=dto.getDOG_AGE()%></a>
+								<a style="padding: 0.15rem"></a> <span
+								class="badge badge-secondary">5</span></td>
+							<td>
+								<div class="nav navbar-nav ml-auto">
+									<a href="#" data-toggle="dropdown" class="dropdown"><%=dto.getNICKNAME() %></a>
+									<div class="dropdown-menu">
+										<div class="dropdown">
+											<a href="/mypage/member/detail" class="nav-link">게시글보기</a>
+										</div>
+										<div class="dropdown">
+											<a href="#" class="nav-link">쪽지보내기</a>
 										</div>
 									</div>
+								</div>
 
-								</td>
-							  	<td class=test></td>  
-                       			<td class=test><%=dto.getVIEW_COUNT()%></td>  
-							</tr>
+							</td>
+							<td class=test><%=dto.getCREATE_DATE()%></td>
+							<td class=test><%=dto.getVIEW_COUNT()%></td>
+						</tr>
 						<%
 							}
 						%>
 
-						</table>
-					</div>
+					</table>
+				</div>
 			</div>
 
 
-			<div aria-label="Page navigation example" class="d-flex justify-content-center">
+			<div aria-label="Page navigation example"
+				class="d-flex justify-content-center">
 				<ul class="pagination">
 					<li class="page-item"><a href="#" class="page-link"> <i
 							class="fa fa-angle-double-left"></i></a></li>
@@ -239,10 +249,11 @@ $(document).ready(function(){
 							class="fa fa-angle-double-right"></i></a></li>
 				</ul>
 			</div>
-			
-			<div style="padding:1rem"></div>
-				
-			<div aria-label="Page navigation example" class="d-flex justify-content-center">
+
+			<div style="padding: 1rem"></div>
+
+			<div aria-label="Page navigation example"
+				class="d-flex justify-content-center">
 
 				<!-- 검색 기능 -->
 				<div class="col-md-2 col-lg-2">
@@ -268,17 +279,25 @@ $(document).ready(function(){
 							</div>
 						</form>
 					</div>
-				</div>				
+				</div>
 			</div>
-			
-			<div style="padding:1rem"></div>
+
+			<div style="padding: 1rem"></div>
 
 		</div>
 	</div>
+
+	<script>
+		if ('${delete_msg}' == "success")
+			alert("게시글 삭제 완료");
+		else if ('${delete_msg}' == "failure")
+			alert("게시글 삭제 실패");
+	</script>
 	
 	<script src="/resources/js/dog/missingboard/list.js"></script>
 
 	<!-- Javascript files-->
+
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>

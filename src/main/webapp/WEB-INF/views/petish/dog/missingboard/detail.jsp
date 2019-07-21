@@ -4,9 +4,20 @@
 <%@ page import = "com.community.petish.dog.missingboard.dto.*" %>	
 <%
 	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO)request.getAttribute("dto");
-
-	String address = dto.getDOG_LOST_ADDRESS();
 	
+	//게시글 아이디
+	Long idLong = dto.getID();
+	String ID = idLong.toString();
+
+	//유저 아이디
+	String userId = session.getAttribute("userId").toString();
+
+	//게시판 아이디
+	String str = session.getAttribute("boardId").toString();
+	Long boardId = Long.parseLong(str);
+	
+	//실종 장소
+	String address = dto.getDOG_LOST_ADDRESS();
 	String[] array = address.split(" ");
 	
 	String addr1 = null;
@@ -327,7 +338,7 @@ to {
 					}
 				%>
 					
-					<h2 class="h3 panel-title">[<%=addrSplit %>] 페키니즈 / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></h2>
+					<h2 class="h3 panel-title">[<%=addrSplit %>] <%=dto.getDOG_SPECIES() %> / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></h2>
 				</div>
 
 				<!-- 게시 정보 -->
@@ -421,7 +432,7 @@ to {
 
 					<tr>
 						<th class="index">종</th>
-						<th>페키니즈</th>
+						<th><%=dto.getDOG_SPECIES() %></th>
 					</tr>
 
 					<tr>
@@ -559,7 +570,7 @@ to {
 								class="d-flex justify-content-left">
 								<button class="btn btn-template-outlined">
 									<i class="fa fa-pencil"></i>
-									<a href="/dog/missingboard/modifyForm/<%=dto.getID()%>"> 수정 </a>
+									<a href="/dog/missingboard/modifyForm/<%=ID %>"> 수정 </a>
 								</button>
 								<button type="submit" class="btn btn-template-outlined">
 									<i class="fa fa-trash-o"></i>
@@ -590,10 +601,13 @@ to {
 														<div class="form-group">
 
 															<select id="state" class="form-control">
-																<option>부적절한 게시글</option>
-																<option>도배 게시글</option>
-																<option>광고 목적 게시글</option>
-																<option>기타</option>
+																<option value="">신고 사유 선택</option>
+																<option value="1">부적절한 게시물</option>
+																<option value="2">도배 게시물</option>
+																<option value="3">광고성 게시물</option>
+																<option value="4">비방/비하/욕설 게시물</option>
+																<option value="5">음란성 또는 청소년 유해 게시물</option>
+																<option value="6">기타</option>
 															</select>
 														</div>
 													</td>
@@ -601,15 +615,14 @@ to {
 
 												<tr>
 													<td>내용</td>
-													<td><textarea id="comment" rows="4" cols="40"
+													<td><textarea name="DESCRIPTION" rows="4" cols="40"
 															class="form-control"></textarea></td>
 												</tr>
 												<tr></tr>
 												<tr>
 													<td></td>
 													<td><button type="button"
-															class="btn btn-template-outlined" data-dismiss="modal">확
-															인</button>
+															class="btn btn-template-outlined" data-dismiss="modal">확인</button>
 														<button type="button" class="btn btn-template-outlined"
 															data-dismiss="modal">취 소</button></td>
 												</tr>
