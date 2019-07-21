@@ -37,7 +37,6 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	// 게시글 작성
 	@Override
 	public int register(DogLostPostRequestWriteDTO dto) {
-		System.out.println("[Service] : "+dto.getDOG_NAME());
 		return mapper.insertPost(dto);
 		
 	}

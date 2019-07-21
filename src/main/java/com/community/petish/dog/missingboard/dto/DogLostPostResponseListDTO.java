@@ -20,7 +20,7 @@ public class DogLostPostResponseListDTO {
 	private Date UPDATED_DATE; //게시글 수정 시간
 	private int FOUND; //발견
 	
-	private int USER_ID; //유저 식별자
+	private String NICKNAME; //유저 닉네임
 	private String DOG_SPECIES; //강아지 종
 	
 }

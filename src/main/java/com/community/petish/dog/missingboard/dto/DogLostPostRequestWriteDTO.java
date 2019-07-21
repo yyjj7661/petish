@@ -1,6 +1,6 @@
 package com.community.petish.dog.missingboard.dto;
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class DogLostPostRequestWriteDTO {
 	
-	//private Long id; //게시글 번호
+	private Long ID; //게시글 번호
 
 	private String DOG_NAME; //강아지 이름
 	private int DOG_AGE; //강아지 나이
@@ -27,6 +27,5 @@ public class DogLostPostRequestWriteDTO {
 	
 	private int USER_ID; //유저 식별자
 	private int SPECIES_ID; //강아지 종류 식별자	
-	
 	
 }

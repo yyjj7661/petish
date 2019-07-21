@@ -1,5 +1,6 @@
 package com.community.petish.dog.missingboard.domain;
 
+
 import java.util.Date;
 
 import lombok.Data;
