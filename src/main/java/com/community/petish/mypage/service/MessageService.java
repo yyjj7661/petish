@@ -1,8 +1,7 @@
 package com.community.petish.mypage.service;
 
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import com.community.petish.mypage.dto.MessageRequestDTO;
 import com.community.petish.mypage.dto.MessageResponseDTO;
@@ -31,6 +30,6 @@ public interface MessageService {
 	public int getUndeletedSent(int user_id);
 	
 	//8. 쪽지 읽음으로 변경
-	public int changeReadAttr(int id, int user_id);
+	public int changeReadAttr(MessageRequestDTO dto);
 	
 }

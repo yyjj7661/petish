@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.community.petish.mypage.dto.MessageRequestDTO;
 import com.community.petish.mypage.dto.MessageResponseDTO;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.QuestionService;
@@ -49,7 +51,20 @@ public class MypageRESTController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	//쪽지 읽음으로 변경
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH},
+			value="/message/{id}/{receiver_id}",
+			consumes = "application/json",
+			produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> changeReadAttr(
+			@RequestBody MessageRequestDTO dto,
+			@PathVariable ("id") int id,
+			@PathVariable ("receiver_id") int receiver_id){
+			dto.setId(id);
+			dto.setReceiver_id(receiver_id);
+			
+		return messageServiceImpl.changeReadAttr(dto)==1
+				? new ResponseEntity<> ("success", HttpStatus.OK)
+				: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
-	
 }

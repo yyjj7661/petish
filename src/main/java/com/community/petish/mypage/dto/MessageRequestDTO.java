@@ -16,4 +16,10 @@ public class MessageRequestDTO {
 
 	// 수신자
 	int receiver_id;
+
+	// 쪽지 수신확인 => 수신자가 user_id인 메시지를 클릭했을 때 해당 데이터값이 1로 변동
+	int read;
+	
+	int id;
+
 }

@@ -311,7 +311,6 @@
 					<div class="text-right">
 						<input type="button" value="삭제" id="modalDeleteBtn">
 					</div>
-					<input type="hidden" name="id">
 				</div>
 			</div>
 		</div>
@@ -332,7 +331,8 @@
 							.find("textarea[name='content']");
 					var modalCloseBtn = $("#modalCloseBtn");
 					var modalDeleteBtn = $("#modalDeleteBtn");
-					
+					var user_id = <%=user_id%>;
+					//메세지리스트에서 a태그(메세지 제목)을 누르면, 해당 글 id의 세부데이터를 받아서 모달로 보내준다
 					$(".message").on("click", "a", function(e) {
 						var id = $(this).data("id");
 						messageService.getMessageDetail(id, function(message) {
@@ -342,10 +342,13 @@
 							modalInputContent.val(message.content);
 							modal.data("id", message.id);
 							$(".modal").modal("show");
-
 						});
+						
+						messageService.changeReadAttr(id, user_id);
+						
 					});
 					
+					//모달에서 삭제버튼을 클릭하면, 해당id값의 데이터를 삭제하고 모달을 숨긴다(=>리스트 재조회 필요)
 					modalDeleteBtn.on("click", function(e){
 						var id = modal.data("id");
 						messageService.deleteMessage(id, function(result){
@@ -356,6 +359,7 @@
 
 					
 					var messageService = (function() {
+						//메세지 세부조회 메서드
 						function getMessageDetail(id, callback, error) {
 							$.get("/mypage/api/message/" + id + ".json",
 									function(result) {
@@ -367,9 +371,29 @@
 									error();
 								}
 							});
-							
 						}
 						
+						function changeReadAttr(id, user_id, callback, error){
+								var a = {id:id, receiver_id:user_id};
+							$.ajax({
+								type:'put',
+								url : '/mypage/api/message/'+id+'/'+user_id,
+								data : JSON.stringify(a),
+								contentType : "application/json; charset=utf-8",
+								success : function(result, status, xhr){
+									if(callback){
+										callback(result);
+									}
+								},
+								error : function(xhr, status, er){
+									if(error){
+										error(er);
+									}
+								}
+							});
+						}
+						
+						//메세지 삭제 메서드
 						function deleteMessage(id, callback, error){
 							$.ajax({
 								type : 'delete',
@@ -385,12 +409,13 @@
 										error(er);
 									}
 								}
-							})
+							});
 						}
 						
 						return {
 							getMessageDetail : getMessageDetail,
-							deleteMessage : deleteMessage
+							deleteMessage : deleteMessage,
+							changeReadAttr : changeReadAttr
 						};
 					})();
 				});

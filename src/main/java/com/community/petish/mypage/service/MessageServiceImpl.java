@@ -1,8 +1,8 @@
 package com.community.petish.mypage.service;
 
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,10 +67,11 @@ public class MessageServiceImpl implements MessageService{
 		return undeletedSent;
 	}
 
+	//8. 쪽지 읽음으로 변경
 	@Override
-	public int changeReadAttr(int id, int user_id) {
-		int res = messageMapper.changeReadAttr(id, user_id);
-		return res;
+	public int changeReadAttr(MessageRequestDTO dto) {
+	       int res = messageMapper.changeReadAttr(dto);
+	       return res;
 	}
 
 	

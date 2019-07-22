@@ -61,7 +61,7 @@ public class MyPageMessageMapperTests {
 
 	@Test
 	public void testReadDetail() {
-		int res = mapper.getMessageDetail(3);
-		log.info(res);
+		MessageResponseDTO dto = mapper.getMessageDetail(3);
+		log.info(dto);
 	}
 }

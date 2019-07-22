@@ -1,6 +1,7 @@
 package com.community.petish.mypage.mapper;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.community.petish.mypage.dto.MessageRequestDTO;
 import com.community.petish.mypage.dto.MessageResponseDTO;
@@ -29,5 +30,5 @@ public interface MessageMapper {
 	public int getUndeletedSent(int user_id);
 	
 	//8. 쪽지 읽음으로 변경
-	public int changeReadAttr(int id, int user_id);
+	public int changeReadAttr(MessageRequestDTO dto);
 }
