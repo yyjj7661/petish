@@ -10,13 +10,15 @@ import com.community.petish.user.dto.response.UserListResponse;
 public interface UserService {
 
 	Long saveUser(SaveUserParams saveUserParams);
+		
+	UserListResponse getUsers();
+	
+	Boolean checkNicknameDuplication(String nickname);
+
+	User findById(Long id);
 	
 	void login(LoginUserParams loginUserParams, HttpSession session);
 	
 	void logout(HttpSession session);
-
-	User findById(Long id);
-	
-	UserListResponse getUsers();
 	
 }

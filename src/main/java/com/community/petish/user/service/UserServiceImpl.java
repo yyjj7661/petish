@@ -39,6 +39,20 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public UserListResponse getUsers() {
+		
+		UserListResponse userListResponse = new UserListResponse(userMapper.findAll());
+		return userListResponse;
+	}
+	
+	@Override
+	public Boolean checkNicknameDuplication(String nickname) {
+		String nicknameFromDB = userMapper.findByNickname(nickname);
+		Boolean isDuplicated = nicknameFromDB != null;
+		return isDuplicated;
+	}
+	
+	@Override
 	public void login(LoginUserParams loginUserParams, HttpSession session) {
 		String username = loginUserParams.getUsername();
 		User user = userMapper.findByUsername(username);
@@ -78,12 +92,7 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
-	@Override
-	public UserListResponse getUsers() {
-		
-		UserListResponse userListResponse = new UserListResponse(userMapper.findAll());
-		return userListResponse;
-	}
+	
 
 	
 
