@@ -285,8 +285,9 @@
 				//좌표 객체 초기화
 				bounds = new kakao.maps.LatLngBounds(); 
 				$.each(data.list, function(index, item){
-					
-					console.log('리스트불러오는중');
+					console.log(data.scorelist.length);
+					console.log(data.scorelist[0]);
+					console.log(item.hospital_name);
 					geocoder.addressSearch(item.hospital_addr, function(result, status){
 						
 				        //응급지료가능 병원일경우 마커 이미지교체
@@ -311,6 +312,8 @@
 						//console.log('index='+index);
 						//표시된 마커들로 지도를 재조정하는 함수
 						setBounds();
+						
+						
 						//병원 리스트 지도 밑에 출력
 						var output='';
 						output += '<div data-animate="fadeInUp" class="col-md-3">';
@@ -321,16 +324,12 @@
 						output += '</div>';
 						output += '<h4 style="font-size: 25px;">';
 						output += '<a href="/hospital/'+item.id+'"name="link">'+item.hospital_name+'</a></h4>';
-						output += '<span class="star-input">';
-						output += '<span class="input">';
-						output += '<input style="visibility: hidden;" type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>';
-						output += '<input style="visibility: hidden;" type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>';
-						output += '<input style="visibility: hidden;" type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>';
-						output += '<input style="visibility: hidden;" type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>';				    
-						output += '<input style="visibility: hidden;" type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>';
-						output += '</span>';
-						output += '</span>';
-						
+						for(var j=0; j<data.scorelist[index]; j++){
+								output += '★';
+						}
+						for(var i=0; i<(5-data.scorelist[index]); i++){
+							output += '☆';
+						}
 						output += '<div class="text">';
 						output += '<div>'+item.hospital_addr+'</div>';
 						output += '<div>'+item.hospital_phone+'</div>';

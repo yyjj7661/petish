@@ -50,8 +50,8 @@ public class HospitalController {
 			list = hospitalService.getListWithPaging(cri);
 			//list = hospitalService.gethospitalList(addr);
 			for(ListDTO vo : list) {
-				
-				scoreList.add((int)(Math.ceil(hospitalService.getScore(vo.getId()))));
+				System.out.println(hospitalService.getScore(vo.getId()));
+				scoreList.add((int)(Math.round(hospitalService.getScore(vo.getId()))));
 				
 			}
 			System.out.println(scoreList);
@@ -64,13 +64,14 @@ public class HospitalController {
 			//list = hospitalService.getEmerhospitalList(addr);
 			for(ListDTO vo : list) {
 				
-				System.out.println(hospitalService.getScore(vo.getId()));
-				scoreList.add((int)(Math.ceil(hospitalService.getScore(vo.getId()))));
+				
+				scoreList.add((int)(Math.round((hospitalService.getScore(vo.getId())))));
 			}
 		}
 		
 		System.out.println("list="+list);
 		System.out.println("paging="+paging);
+		
 //		String str ="";
 //		ObjectMapper mapper = new ObjectMapper();
 //		try {
@@ -85,6 +86,7 @@ public class HospitalController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("paging", paging);
 		result.put("list", list);
+		result.put("scorelist", scoreList);
 		return result;
 	}
 	
