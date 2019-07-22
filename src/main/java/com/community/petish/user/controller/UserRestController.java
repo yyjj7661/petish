@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
-import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.dto.response.LoginedUser;
+import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.exception.AuthenticationException;
 import com.community.petish.user.exception.NotLoginedException;
 import com.community.petish.user.service.UserService;
@@ -33,7 +34,8 @@ public class UserRestController {
 	@PostMapping(consumes = {"application/json"})
 	public void save(@RequestBody SaveUserParams saveUserParams) {
 		log.info("회원가입 요청 saveUserParams = {}", saveUserParams);
-		userService.saveUser(saveUserParams);
+		Long userId = userService.saveUser(saveUserParams);
+		log.info("회원가입 성공 userId = ", userId);
 	}
 	
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
@@ -42,6 +44,13 @@ public class UserRestController {
 		UserListResponse userListResponse = userService.getUsers();
 		log.info(userListResponse.toString());
 		return userListResponse;
+	}
+	
+	@GetMapping(value="/duplicate/{nickname}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public Boolean nicknameDuplicateCheck(@PathVariable("nickname") String nickname) {
+		log.info("nickname 중복 체크 : " + nickname);
+		Boolean isNicknameDuplicated = userService.checkNicknameDuplication(nickname);
+		return isNicknameDuplicated;
 	}
 	
 	@GetMapping("/authenticate")
