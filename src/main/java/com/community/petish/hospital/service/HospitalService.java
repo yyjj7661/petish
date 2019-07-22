@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
+import com.community.petish.hospital.domain.ListDTO;
 
 
 public interface HospitalService {
@@ -11,8 +12,8 @@ public interface HospitalService {
 	
 	List<HospitalVO> gethospitalList(String hospital_addr);
 	List<HospitalVO> getEmerhospitalList(String hospital_addr);
-	List<HospitalVO> getListWithPaging(Criteria cri);
-	List<HospitalVO> getEmerListWithPaging(Criteria cri);
+	List<ListDTO> getListWithPaging(Criteria cri);
+	List<ListDTO> getEmerListWithPaging(Criteria cri);
 	
 	int getTotalCount(String hospital_addr);
 	int getEmerTotalCount(String hospital_addr);

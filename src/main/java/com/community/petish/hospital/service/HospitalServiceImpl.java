@@ -2,12 +2,12 @@ package com.community.petish.hospital.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
+import com.community.petish.hospital.domain.ListDTO;
 import com.community.petish.hospital.mapper.HospitalMapper;
 
 @Service("hospitalService")
@@ -35,17 +35,17 @@ public class HospitalServiceImpl implements HospitalService{
 		 
 	}
 	@Override
-	public List<HospitalVO> getListWithPaging(Criteria cri) {
-		 List<HospitalVO> hospitalList = null; 
+	public List<ListDTO> getListWithPaging(Criteria cri) {
+		 List<ListDTO> hospitalList = null; 
 		 hospitalList=hospitalMapper.getListWithPaging(cri); 
 		 
 		 return hospitalList;
 	}
 	@Override
-	public List<HospitalVO> getEmerListWithPaging(Criteria cri) {
-		 List<HospitalVO> hospitalList = null; 
+	public List<ListDTO> getEmerListWithPaging(Criteria cri) {
+		 List<ListDTO> hospitalList = null; 
 		 hospitalList=hospitalMapper.getEmerListWithPaging(cri); 
-		 
+		 System.out.println(hospitalList);
 		 return hospitalList;
 	}
 	@Override
@@ -66,7 +66,16 @@ public class HospitalServiceImpl implements HospitalService{
 	@Override
 	public double getScore(Long id) {
 		// TODO Auto-generated method stub
-		return hospitalMapper.getScore(id);
+		double avg;
+		if(hospitalMapper.getScore(id) == null) {
+			
+			avg =0;
+		}
+		else {
+			avg = hospitalMapper.getScore(id);
+		}
+		
+		return avg;
 	}
 
 }

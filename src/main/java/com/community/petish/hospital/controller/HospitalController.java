@@ -1,5 +1,6 @@
 package com.community.petish.hospital.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
+import com.community.petish.hospital.domain.ListDTO;
 import com.community.petish.hospital.domain.PageDTO;
 import com.community.petish.hospital.service.HospitalService;
 
@@ -31,7 +33,8 @@ public class HospitalController {
 	@RequestMapping(value="/search/{addr}/{isEmer}/{page}", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Map<String, Object> gethospitalList(@PathVariable("addr") String addr, @PathVariable("isEmer")boolean isEmer, @PathVariable("page")int page, Model model) {
-		List<HospitalVO> list;
+		List<ListDTO> list;
+		List<Integer> scoreList = new ArrayList<Integer>();
 		//페이징 설정위해 만드는 객체
 		Criteria cri = new Criteria();
 		cri.setHospital_addr(addr);
@@ -42,11 +45,16 @@ public class HospitalController {
 		int total = hospitalService.getTotalCount(addr);
 		System.out.println(total);
 		PageDTO paging = new PageDTO(cri, total);
-		
 		//응급 진료 체크박스 체크 안했을때
 		if(isEmer==false) {
 			list = hospitalService.getListWithPaging(cri);
 			//list = hospitalService.gethospitalList(addr);
+			for(ListDTO vo : list) {
+				
+				scoreList.add((int)(Math.ceil(hospitalService.getScore(vo.getId()))));
+				
+			}
+			System.out.println(scoreList);
 		}
 		//응급진료 체크박스 체크 했을때
 		else {
@@ -54,6 +62,11 @@ public class HospitalController {
 			paging = new PageDTO(cri, total);
 			list = hospitalService.getEmerListWithPaging(cri);
 			//list = hospitalService.getEmerhospitalList(addr);
+			for(ListDTO vo : list) {
+				
+				System.out.println(hospitalService.getScore(vo.getId()));
+				scoreList.add((int)(Math.ceil(hospitalService.getScore(vo.getId()))));
+			}
 		}
 		
 		System.out.println("list="+list);

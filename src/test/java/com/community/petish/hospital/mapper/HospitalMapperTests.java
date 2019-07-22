@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.community.petish.hospital.domain.Criteria;
-import com.community.petish.hospital.domain.HospitalVO;
+import com.community.petish.hospital.domain.ListDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -27,7 +27,7 @@ public class HospitalMapperTests {
 		cri.setHospital_addr("강남구");
 		cri.setPageNum(2);
 		cri.setAmount(4);
-		List<HospitalVO> list = hospitalMapper.getListWithPaging(cri);
+		List<ListDTO> list = hospitalMapper.getListWithPaging(cri);
 		list.forEach(board -> log.info(board));
 	}
 }
