@@ -1,21 +1,27 @@
 package com.community.petish.user.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.community.petish.user.domain.User;
+import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
+import com.community.petish.user.dto.response.LoginedUser;
 import com.community.petish.user.dto.response.UserListResponse;
+import com.community.petish.user.exception.NotLoginedException;
+import com.community.petish.user.exception.PasswordNotMatchException;
+import com.community.petish.user.exception.UserNotFoundException;
 import com.community.petish.user.mapper.UserMapper;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 
 @ExtendWith(SpringExtension.class)
@@ -89,7 +95,7 @@ public class UserServiceTest {
 		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
 		
 		String imgaddr2 = "https://image.ytn.co.kr/general/jpg/2017/1018/201710181100063682_d.jpg";
-		SaveUserParams saveUserParams2 = new SaveUserParams("djw627@gmail.com", "5678", "djw", "서울 동대문구 휘경동 209번지", "여", imgaddr2, "cat");
+		SaveUserParams saveUserParams2 = new SaveUserParams("djw627@gmail.com", "5678", "djw", "서울 동대문구 휘경동 209번지", "여자", imgaddr2, "cat");
 		
 		userService.saveUser(saveUserParams);
 		userService.saveUser(saveUserParams2);
@@ -104,4 +110,81 @@ public class UserServiceTest {
 		log.info("모든 유저 : " + users);
 
 	}
+	
+	@Test
+	void checkNicknameDuplication() {
+		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		
+		userService.saveUser(saveUserParams);
+		
+		Boolean isDuplicated = userService.checkNicknameDuplication("dipord");
+		
+		assertThat(isDuplicated).isEqualTo(true);
+		
+	}
+	
+	@Test
+	void loginTest() {
+		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		
+		Long userId = userService.saveUser(saveUserParams);
+		
+		LoginUserParams loginUserParams = new LoginUserParams("jjj0611@hanmail.net", "1234");
+		
+		MockHttpSession session = new MockHttpSession();
+		
+		userService.login(loginUserParams, session);
+		
+		LoginedUser loginedUser = (LoginedUser) session.getAttribute("LOGIN_USER");
+		
+		assertThat(loginedUser.getId()).isEqualTo(userId);
+		assertThat(loginedUser.getUsername()).isEqualTo("jjj0611@hanmail.net");
+		assertThat(loginedUser.getNickname()).isEqualTo("dipord");
+	}
+	
+	@Test
+	void wrongLoginTest() {
+		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		
+		Long userId = userService.saveUser(saveUserParams);
+		
+		LoginUserParams wrongPasswordLoginUserParams = new LoginUserParams("jjj0611@hanmail.net", "1235");
+		
+		MockHttpSession session = new MockHttpSession();
+		
+		assertThrows(PasswordNotMatchException.class, () -> userService.login(wrongPasswordLoginUserParams, session));
+		
+		LoginUserParams wrongUsernameLoginUserParams = new LoginUserParams("jiwoo@naver.com", "1234");
+		assertThrows(UserNotFoundException.class, () -> userService.login(wrongUsernameLoginUserParams, session));
+		
+	}
+	
+	@Test
+	void logoutTest() {
+		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		
+		Long userId = userService.saveUser(saveUserParams);
+		
+		LoginUserParams loginUserParams = new LoginUserParams("jjj0611@hanmail.net", "1234");
+		
+		MockHttpSession session = new MockHttpSession();
+		
+		userService.login(loginUserParams, session);
+				
+		userService.logout(session);
+	
+		assertThat(session.isInvalid()).isEqualTo(true);
+
+	}
+	
+	@Test
+	void wrongLogoutTest() {
+		MockHttpSession session = new MockHttpSession();
+		assertThrows(NotLoginedException.class, () -> userService.logout(session));
+	}
+	
 }
