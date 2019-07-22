@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ListDTO {
-	private int id;
+	private Long id;
 	private String hospital_name;
 	private String hospital_addr;
 	private String hospital_phone;

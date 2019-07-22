@@ -63,5 +63,10 @@ public class HospitalServiceImpl implements HospitalService{
 		HospitalVO vo = hospitalMapper.getHospital(id);
 		return vo;
 	}
+	@Override
+	public double getScore(Long id) {
+		// TODO Auto-generated method stub
+		return hospitalMapper.getScore(id);
+	}
 
 }

@@ -18,4 +18,5 @@ public interface HospitalMapper {
 	List<HospitalVO> getEmerListWithPaging(Criteria cri);
 	int getTotalCount(String hospital_addr);
 	int getEmerTotalCount(String hospital_addr);
+	double getScore(Long id);
 }

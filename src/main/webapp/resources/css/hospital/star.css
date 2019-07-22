@@ -48,7 +48,7 @@
     background-image: none;
 }
 .star-input>.input>label[for="p1"]{ 
-    width: 60px;
+    width: 40px;
     z-index: 10;
 }
 .star-input>.input>label[for="p2"]{ 

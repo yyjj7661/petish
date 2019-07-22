@@ -16,4 +16,6 @@ public interface HospitalService {
 	
 	int getTotalCount(String hospital_addr);
 	int getEmerTotalCount(String hospital_addr);
+
+	double getScore(Long id);
 }
