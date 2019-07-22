@@ -2,6 +2,8 @@ package com.community.petish.user.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.community.petish.user.domain.User;
 import com.community.petish.user.dto.request.SaveUserParams;
+import com.community.petish.user.dto.response.UserDetailResponse;
 
 import lombok.extern.log4j.Log4j;
 
@@ -41,6 +44,36 @@ public class UserMapperTest {
 		User user = userMapper.findById(id);
 		log.info("savedUser : " + user);
 		assertThat(saveUserParams.getNickname()).isEqualTo(user.getNickname());
+	}
+	
+	@Test
+	void findAllTest() {
+		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		
+		String imgaddr2 = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams2 = new SaveUserParams("jiwoo627@naver.com", "1234", "jiwoo", "서울 동대문구 회기동 102-179번지", "남자", imgaddr2, "dog");
+		
+		Long id = userMapper.save(saveUserParams);
+		Long id2 = userMapper.save(saveUserParams2);
+		
+		List<UserDetailResponse> users = userMapper.findAll();
+		
+		assertThat(users.size()).isEqualTo(2);
+	}
+	
+	@Test 
+	void findByUsername() {
+		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		
+		Long userId = userMapper.save(saveUserParams);
+		
+		User userFoundByUsername = userMapper.findByUsername("jjj0611@hanmail.net");
+		
+		assertThat(userFoundByUsername.getId()).isEqualTo(userId);
+		assertThat(userFoundByUsername.getPassword()).isEqualTo("1234");
+		assertThat(userFoundByUsername.getNickname()).isEqualTo("dipord");
 	}
 	
 }
