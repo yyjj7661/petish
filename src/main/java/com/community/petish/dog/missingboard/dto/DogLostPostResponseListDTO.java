@@ -2,6 +2,8 @@ package com.community.petish.dog.missingboard.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Data
@@ -16,7 +18,10 @@ public class DogLostPostResponseListDTO {
 	private String DOG_LOST_ADDRESS; //실종 장소
 	
 	private int VIEW_COUNT; //조회수
+	
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date CREATE_DATE; //게시글 등록 시간
+	@DateTimeFormat(pattern = "yyyy/MM/dd")	
 	private Date UPDATED_DATE; //게시글 수정 시간
 	private int FOUND; //발견
 	

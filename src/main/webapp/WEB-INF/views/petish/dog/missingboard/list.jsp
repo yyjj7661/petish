@@ -6,6 +6,9 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.community.petish.dog.missingboard.dto.*"%>
 <%@ page import="com.community.petish.dog.missingboard.domain.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%
 	List<DogLostPostResponseListDTO> dtoList = (List<DogLostPostResponseListDTO>) request.getAttribute("dtoList");
 
@@ -15,6 +18,7 @@
 	//유저 아이디 7번
 	session.setAttribute("userId", "7");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -223,7 +227,9 @@ $(document).ready(function(){
 								</div>
 
 							</td>
-							<td class=test><%=dto.getCREATE_DATE()%></td>
+							<td class=test>
+							<fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getCREATE_DATE() %>"/>
+							</td>
 							<td class=test><%=dto.getVIEW_COUNT()%></td>
 						</tr>
 						<%
@@ -235,7 +241,7 @@ $(document).ready(function(){
 			</div>
 
 
-			<div aria-label="Page navigation example"
+			<div aria-label="Page navigation example"S
 				class="d-flex justify-content-center">
 				<ul class="pagination">
 					<li class="page-item"><a href="#" class="page-link"> <i
