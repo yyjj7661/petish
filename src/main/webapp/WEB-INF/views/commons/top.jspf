@@ -58,20 +58,23 @@
                 <div class="modal-body">
 					<form action="#" method="get" name="joinform" id="joinform" onsubmit="return check()">
 						<label for="inp" class="inp">
-							<input type="text" id="email" placeholder=" " required>
+							<input type="text" id="email" name="username" placeholder=" " required>
 							<span class="label">이메일</span>
 						  	<span class="border"></span>
 						</label>					  
 						     <button type="button" class="btn btn-template-outlined joinBtn">중복확인</button>
 						<label for="inp" class="inp">
-						  	<input type="password" id="password1" placeholder=" " required>
+						  	<input type="password" id="password1" onkeyup="handledPasswordMatchCheck()" name="password" placeholder=" " required>
 						  	<span class="label">비밀번호</span>
 						  	<span class="border"></span>
 						</label>
 						<label for="inp" class="inp">
-						  	<input type="password" id="password2" placeholder=" " required>
+						  	<input type="password" id="password2" onkeyup="handledPasswordMatchCheck()" placeholder=" " required>
 						  	<span class="label">비밀번호 확인</span>
 						  	<span class="border"></span>
+						</label>
+						<label id="passwordCheck" class="inp" style="display:none; margin-top:0px;">
+							<font size="1" color='red'>비밀번호가 일치하지 않습니다.</font>	
 						</label>
 						<label for="inp" class="inp">
 						  	<input type="text" id="nickname" placeholder=" " required>
@@ -236,7 +239,7 @@
 						<li class="nav-item dropdown">
 							<a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">
 								<i class="fa fa-user"></i>
-								<span class="d-none d-md-inline-block">petish님</span>
+								<span class="d-none d-md-inline-block"><%= loginedUser.getNickname() %>님</span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-item"><a href="/mypage/" class="nav-link" style="font-size: 0.9rem;">마이페이지</a></li>
