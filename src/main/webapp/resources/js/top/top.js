@@ -59,7 +59,6 @@ const handledLoginClick = (e) => {
 		contentType:"application/json; charset=utf-8",
 		data: JSON.stringify(loginUserParams),
 		success: function(result, status, xhr) {
-			alert("로그인 성공!")
 			location.reload();
 		},
 		error: function(error, status, xhr) {
@@ -78,7 +77,6 @@ const handledLogoutClick = (e) => {
 		type: "POST",
 		url:"/api/users/logout",
 		success: function(result, status, xhr) {
-			alert("로그아웃 성공!");
 			location.reload();
 		},
 		error: function(error, status, xhr) {
