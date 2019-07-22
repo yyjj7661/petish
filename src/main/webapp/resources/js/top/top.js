@@ -86,3 +86,18 @@ const handledLogoutClick = (e) => {
 		}
 	})
 }
+
+const handledJoinClick = (e) => {
+	
+}
+
+const handledPasswordMatchCheck = () => {
+	let password1 = $('#password1').val();
+	let password2 = $('#password2').val();
+	
+	if ( password1 !== password2 ) {
+		$('#passwordCheck').css("display", "inline-block");
+	} else {
+		$('#passwordCheck').css('display', 'none');
+	}
+}
