@@ -1,5 +1,7 @@
 package com.community.petish.user.service;
 
+import java.util.Objects;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,9 @@ import org.springframework.stereotype.Service;
 import com.community.petish.user.domain.User;
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
-import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.dto.response.LoginedUser;
+import com.community.petish.user.dto.response.UserListResponse;
+import com.community.petish.user.exception.NotLoginedException;
 import com.community.petish.user.exception.PasswordNotMatchException;
 import com.community.petish.user.exception.UserNotFoundException;
 import com.community.petish.user.mapper.UserMapper;
@@ -77,6 +80,11 @@ public class UserServiceImpl implements UserService{
 		
 		log.info("로그아웃");
 
+		LoginedUser loginedUser = (LoginedUser) session.getAttribute("LOGIN_USER");
+		if (Objects.isNull(loginedUser)) {
+			throw new NotLoginedException();
+		}
+		
 		session.invalidate();
 	}
 
