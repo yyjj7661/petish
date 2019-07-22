@@ -9,12 +9,15 @@ import com.community.petish.user.dto.response.UserDetailResponse;
 public interface UserMapper {
 
 	Long save(SaveUserParams saveUserParams);
+
+	List<UserDetailResponse> findAll();
+	
+	String findByNickname(String nickname);
 	
 	User findByUsername(String username);
 	
 	User findById(Long id);
 	
-	List<UserDetailResponse> findAll();
 	
 	void deleteAll();
 	

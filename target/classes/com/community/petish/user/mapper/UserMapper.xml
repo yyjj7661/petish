@@ -26,6 +26,10 @@
 		</selectKey>
 	</insert>
 	
+	<select id="findByNickname" parameterType="String" resultType="String">
+		SELECT nickname FROM USER_TB WHERE nickname = #{nickname} AND deleted = 0
+	</select>
+	
 	<select id="findByUsername" parameterType="String" resultType="com.community.petish.user.domain.User">
 		SELECT * FROM USER_TB WHERE username = #{username} AND deleted = 0
 	</select>
