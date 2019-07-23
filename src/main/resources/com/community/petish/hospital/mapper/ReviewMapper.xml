@@ -20,4 +20,11 @@
  	<select id="getHospitalReview" resultMap="reviewMap">
  		select * from hospital_review_tb_test where hospital_id =#{id} order by id desc
  	</select>
+ 	
+ 	<insert id="insertReview" parameterType="com.community.petish.hospital.domain.ReviewVO">
+ 		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+ 			select reviewId_seq_test.nextval from dual
+ 		</selectKey>
+ 		insert into hospital_review_tb_test values(#{id},#{content},#{score},sysdate,0,#{user_id},#{hospital_id})
+ 	</insert>
 </mapper>

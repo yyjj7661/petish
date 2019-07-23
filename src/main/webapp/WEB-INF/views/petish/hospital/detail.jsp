@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-
+<%Long id = (Long)session.getAttribute("id"); %>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -163,7 +163,9 @@
 						<!-- 평점 기준 별표시 출력 -->
 
 						<tr style="font-size: 15px;">
-							<td><c:forEach varStatus="status" begin="1" end="${ review.score }">★</c:forEach></td>
+							<td><c:forEach varStatus="status" begin="1" end="${ review.score }">★</c:forEach>
+								
+							</td>
 							<td>${review.user_id }</td>
 							<td>${review.content }</td>
 						</tr>
@@ -232,22 +234,73 @@
 	
 	<script>
 	$(document).ready(function(){
-
 		$('#reInsert').click(function(event){
-			/* var params = {
-					'user_id' :,
+			var user_id = <%=session.getAttribute("id")%>;
+			if(user_id ==null){
+				user_id = 4;
+			}
+			var params = {
+					'user_id' : user_id,
 					'content' : $('#review_content').val(),
 					'score' : $("input[name=star-input]:checked").val(),
 					'hospital_id' : "${hospital.id}",
-			}; */
-			getReview("${hospital.id}");
+			};
+			$.ajax({
+				url:'/hospital/review/',
+				type:'POST',
+				data:JSON.stringify(params),
+				contentType:'application/json; charset=utf-8',
+				dataType:'json',
+				success: function(retVal){
+					if(retVal.res == "OK"){
+						//데이타 성공일때 이벤트 작성
+						getReview("${hospital.id}");
+						//초기화
+						$('#review_content').val('');
+					
+						
+					}
+					else{
+						alert("Insert Fail!!!");
+					}
+				},
+				error:function(request,status,error){
+					alert("ajax 통신 실패!!!");
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+				}
+			}); 
+			
+			
 		});
 	});
 	
 	function getReview(id){
 		$('#reviews').empty();
-		alert(id);
-		alert($('#review_content').val());
+		
+		$.ajax({
+			url:'/hospital/review/'+id,
+			type:'GET',
+			contentType:'application/json; charset=UTF-8',
+			dataType:'json',
+			success:function(data){
+				$.each(data, function(index, item){
+					var output='';
+					output += '<tr style="font-size: 15px;">';
+					output += '<td>';
+					for(var i =0; i<item.score;i++){
+						output += '★';
+					}
+					output += '</td>';
+					output += '<td>'+item.user_id+'</td>';
+					output += '<td>'+item.content+'</td>';
+					output += '</tr>';
+					
+					
+					$('#reviews').append(output);
+				});
+			}
+		});
 		
 	}
 	</script>

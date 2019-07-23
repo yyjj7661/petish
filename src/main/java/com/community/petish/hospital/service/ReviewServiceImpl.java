@@ -20,6 +20,13 @@ public class ReviewServiceImpl implements ReviewService{
 		rlist=reviewMapper.getHospitalReview(id); 
 		return rlist;
 	}
+
+	@Override
+	public int insertReview(ReviewVO vo) {
+
+		int retVal= reviewMapper.insertReview(vo);
+		return retVal;
+	}
 	
 	
 }

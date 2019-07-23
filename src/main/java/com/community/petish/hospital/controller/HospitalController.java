@@ -114,20 +114,5 @@ public class HospitalController {
 		return mv;
 	}
 	
-	@PostMapping(value="/review/{id}", produces="application/json;charset=UTF-8")
-	public String getReview(@PathVariable("id") Long id) {
-		String str = "";
-		List<ReviewVO> rlist;
-		rlist = reviewService.getHospitalReview(id);
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			str = mapper.writeValueAsString(rlist);
-		}catch(Exception e) {
-			System.out.println("first() mapper : "+ e.getMessage());
-		}
-		return str;
-		
-	}
-	
 	
 }
