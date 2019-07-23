@@ -10,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.community.petish.mypage.dto.MessageResponseDTO;
+import com.community.petish.mypage.dto.MyWritingsDTO;
 import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.dto.QuestionResponseDTO;
+import com.community.petish.mypage.dto.Writings_CommentedDTO;
+import com.community.petish.mypage.dto.Writings_LikedDTO;
+import com.community.petish.mypage.service.DefaultService;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.MessageServiceImpl;
 import com.community.petish.mypage.service.QuestionService;
@@ -30,8 +34,18 @@ public class MypageController {
 	@Autowired
 	private MessageService messageServiceImpl;
 	
+	@Autowired
+	private DefaultService defaultServiceImpl;
+	
 	@RequestMapping("/")
-	public String mypage() {
+	public String mypage(Model model, HttpSession session) {
+		int user_id = 1;
+		ArrayList<MyWritingsDTO> writingList = defaultServiceImpl.getMyWritings(user_id);
+		model.addAttribute("writingList", writingList);
+		ArrayList<Writings_CommentedDTO> writingCommented = defaultServiceImpl.getCommented(user_id);
+		model.addAttribute("writingCommented", writingCommented);
+		ArrayList<Writings_LikedDTO> writingLiked= defaultServiceImpl.getLiked(user_id);
+		model.addAttribute("writingLiked", writingLiked);
 		return "petish/mypage/default";
 	}
 	
@@ -41,7 +55,13 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/member/detail")
-	public String memberDetail() {
+	public String memberDetail(long user_id, Model model) {
+		ArrayList<MyWritingsDTO> writingList = defaultServiceImpl.getMyWritings(user_id);
+		model.addAttribute("writingList", writingList);
+		ArrayList<Writings_CommentedDTO> writingCommented = defaultServiceImpl.getCommented(user_id);
+		model.addAttribute("writingCommented", writingCommented);
+		ArrayList<Writings_LikedDTO> writingLiked= defaultServiceImpl.getLiked(user_id);
+		model.addAttribute("writingLiked", writingLiked);
 		return "petish/mypage/member_detail";
 	}
 	
@@ -94,13 +114,6 @@ public class MypageController {
 		return "petish/mypage/message_list";
 	}
 	
-	@RequestMapping("/message/detail")
-	public String messageDetail(int id) {
-		messageServiceImpl.getMessageDetail(id);
-		log.info("메세지 상세보기" + id);
-		return "redirect:./list";
-	}	
-	
 	@RequestMapping("/message/delete")
 	public String messageDelete(int id) {
 		messageServiceImpl.deleteMessage(id);
@@ -108,4 +121,6 @@ public class MypageController {
 		return "redirect:./list";	
 	}
 	//message end
+	
+	
 }

@@ -140,8 +140,8 @@
 															<tr align="center">
 																<th><input type="checkbox"
 																	class="received-check-one"></th>
-																<td align="center" class="mobile-none"><%=dto.getSender_id()%></td>
-																<td class="message"><a class="messageText"
+																<td align="center" class="mobile-none"><%=dto.getNickname()%></td>
+																<td class="receivedMessage"><a class="messageText"
 																	data-id=<%=dto.getId()%>><%=dto.getTitle()%></a></td>
 																<td class="mobile-none"><%=dto.getSent_date().substring(2, 4) + "/" + dto.getSent_date().substring(4, 6) + "/"
 																+ dto.getSent_date().substring(6, 8)%></td>
@@ -204,8 +204,8 @@
 															<tr align="center">
 																<th><input type="checkbox"
 																	class="received-check-one"></th>
-																<td align="center" class="mobile-none"><%=dto.getReceiver_id()%></td>
-																<td class="message"><a class="messageText"
+																<td align="center" class="mobile-none"><%=dto.getNickname() %></td>
+																<td class="sentMessage"><a class="messageText"
 																	data-id=<%=dto.getId()%>><%=dto.getTitle()%></a></td>
 																<td class="mobile-none"><%=dto.getSent_date().substring(2, 4) + "/" + dto.getSent_date().substring(4, 6) + "/"
 																+ dto.getSent_date().substring(6, 8)%></td>
@@ -278,9 +278,9 @@
 			</div>
 		</div>
 	</div>
-	<!--  쪽지 보기 모달창 -->
+	<!--  쪽지보기 모달창 -->
 	<div id="messageRead_receive-modal" tabindex="-1" role="dialog"
-		aria-hidden="true" class="modal fade">
+		aria-hidden="true" class="modal fade" >
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -292,12 +292,8 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>받는사람</label> <input class="form-control"
-							name='receiver_id' readonly>
-					</div>
-					<div class="form-group">
-						<label>보낸사람</label> <input class="form-control"
-							name='sender_id' readonly>
+						<label>닉네임</label> <input class="form-control"
+							name='nickname' readonly>
 					</div>
 					<div class="form-group">
 						<label>보낸 날짜</label> <input type="text" class="form-control"
@@ -309,7 +305,7 @@
 							name='content' readonly></textarea>
 					</div>
 					<div class="text-right">
-						<input type="button" value="삭제" id="modalDeleteBtn">
+						<input type="button" value="삭제" class="modalDeleteBtn">
 					</div>
 				</div>
 			</div>
@@ -321,23 +317,21 @@
 
 				function() {
 					var modal = $(".modal");
-					var modalInputId = modal.find("input[id='id']");
-					var modalInputReceiver_id = modal
-							.find("input[name='receiver_id']");
-					var modalInputSender_id = modal.find("input[name='sender_id']");
+					var modalInputSentNickname = modal
+							.find("input[name='nickname']");
+					var modalInputReceivedNickname = modal
+					.find("input[name='nickname']");
 					var modalInputSent_date = modal
 							.find("input[name='sent_date']");
 					var modalInputContent = modal
 							.find("textarea[name='content']");
-					var modalCloseBtn = $("#modalCloseBtn");
-					var modalDeleteBtn = $("#modalDeleteBtn");
+					var modalDeleteBtn = $(".modalDeleteBtn");
 					var user_id = <%=user_id%>;
 					//메세지리스트에서 a태그(메세지 제목)을 누르면, 해당 글 id의 세부데이터를 받아서 모달로 보내준다
-					$(".message").on("click", "a", function(e) {
+					$(".receivedMessage").on("click", "a", function(e) {
 						var id = $(this).data("id");
-						messageService.getMessageDetail(id, function(message) {
-							modalInputReceiver_id.val(message.receiver_id);
-							modalInputSender_id.val(message.sender_id);
+						messageService.receivedMessageDetail(id, function(message) {
+							modalInputSentNickname.val(message.nickname);
 							modalInputSent_date.val(message.sent_date);
 							modalInputContent.val(message.content);
 							modal.data("id", message.id);
@@ -348,20 +342,39 @@
 						
 					});
 					
+					//모달 닫기버튼 누르면 화면 리로드됨
+					$(".close").on("click", function(e){
+						location.reload();
+					})
+					
+					$(".sentMessage").on("click", "a", function(e) {
+						var id = $(this).data("id");
+						messageService.sentMessageDetail(id, function(message) {
+							modalInputSentNickname.val(message.nickname);
+							modalInputSent_date.val(message.sent_date);
+							modalInputContent.val(message.content);
+							modal.data("id", message.id);
+							$(".modal").modal("show");
+						});
+						
+					});
+				
+					
 					//모달에서 삭제버튼을 클릭하면, 해당id값의 데이터를 삭제하고 모달을 숨긴다(=>리스트 재조회 필요)
 					modalDeleteBtn.on("click", function(e){
 						var id = modal.data("id");
 						messageService.deleteMessage(id, function(result){
 							alert(result);
 							modal.modal("hide");
+							location.reload();
 						});
 					});
 
 					
 					var messageService = (function() {
 						//메세지 세부조회 메서드
-						function getMessageDetail(id, callback, error) {
-							$.get("/mypage/api/message/" + id + ".json",
+						function receivedMessageDetail(id, callback, error) {
+							$.get("/mypage/api/message/received/" + id + ".json",
 									function(result) {
 										if (callback) {
 											callback(result);
@@ -373,6 +386,18 @@
 							});
 						}
 						
+						function sentMessageDetail(id, callback, error) {
+							$.get("/mypage/api/message/sent/" + id + ".json",
+									function(result) {
+										if (callback) {
+											callback(result);
+										}
+									}).fail(function(xhr, status, err) {
+								if (error) {
+									error();
+								}
+							});
+						}
 						function changeReadAttr(id, user_id, callback, error){
 								var a = {id:id, receiver_id:user_id};
 							$.ajax({
@@ -413,11 +438,46 @@
 						}
 						
 						return {
-							getMessageDetail : getMessageDetail,
+							sentMessageDetail : sentMessageDetail,
+							receivedMessageDetail : receivedMessageDetail,
 							deleteMessage : deleteMessage,
 							changeReadAttr : changeReadAttr
 						};
 					})();
+					
+					 $('#received-check-all').change(function() { //전체 체크 변화 다루는 함수           
+				            if (this.checked) { //전체(All) 체크된 경우
+				               $('.received-check-one').prop('checked', true);
+				            }
+
+				            else { //전체(All) 체크되지 않은 경우(체크 해제)
+
+				               $('.received-check-one').prop('checked', false);
+				            }
+				         });
+
+				         $('#sent-check-all').change(function() { //전체 체크 변화 다루는 함수           
+				            if (this.checked) { //전체(All) 체크된 경우
+				               $('.sent-check-one').prop('checked', true);
+				            }
+
+				            else { //전체(All) 체크되지 않은 경우(체크 해제)
+
+				               $('.sent-check-one').prop('checked', false);
+				            }
+				         });
+
+				         //선택 삭제 버튼
+				         $('#delete-choice').click(function() {
+				            alert("선택 삭제");
+				         });
+
+				         //전체 삭제 버튼
+				         $('#delete-all').click(function() {
+				            alert("전체 삭제");
+				         });
+
+
 				});
 	</script>
 	<!-- Javascript files-->

@@ -1,7 +1,17 @@
+<%@page import="com.community.petish.mypage.dto.Writings_LikedDTO"%>
+<%@page import="com.community.petish.mypage.dto.Writings_CommentedDTO"%>
+<%@page import="com.community.petish.mypage.dto.MyWritingsDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <%
 	session.setAttribute("user_id", 1);
+	ArrayList<MyWritingsDTO> writingList = (ArrayList) request.getAttribute("writingList");
+	ArrayList<Writings_CommentedDTO> writingCommented = (ArrayList) request.getAttribute("writingCommented");
+	ArrayList<Writings_LikedDTO> writingLiked = (ArrayList) request.getAttribute("writingLiked");
+	MyWritingsDTO dto1 = null;
+	Writings_CommentedDTO dto2 = null;
+	Writings_LikedDTO dto3 = null;
 %>
 <!DOCTYPE html>
 <html>
@@ -53,9 +63,44 @@
 	href="/resources/img/apple-touch-icon-152x152.png">
 
 
-<link rel="stylesheet" href="/resources/css/mypage/mypage.css"></script>
-<script src="/resources/js/mypage/mypage.js"></script>
+<link rel="stylesheet" href="/resources/css/mypage/mypage.css">
+<style>
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
 
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: grey;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+</style>
+</head>
+<body>
+	</style>
 </head>
 
 <body>
@@ -80,15 +125,15 @@
 						<ul id="pills-tab" role="tablist"
 							class="nav nav-pills nav-justified" style="margin-top: 1cm;">
 							<li class="nav-item"><a id="pills-profile-tab"
-								data-toggle="pill" href="#message-receive" role="tab"
+								data-toggle="pill" href="#writingList" role="tab"
 								aria-controls="pills-profile" aria-selected="false"
 								class="nav-link active">내가 쓴 글</a></li>
 							<li class="nav-item"><a id="pills-home-tab"
-								data-toggle="pill" href="#message-send" role="tab"
+								data-toggle="pill" href="#writingCommented" role="tab"
 								aria-controls="pills-home" aria-selected="true" class="nav-link">내가
 									댓글 쓴 글</a></li>
 							<li class="nav-item"><a id="pills-home-tab"
-								data-toggle="pill" href="#message-send" role="tab"
+								data-toggle="pill" href="#writingLiked" role="tab"
 								aria-controls="pills-home" aria-selected="true" class="nav-link">내가
 									좋아요 한 글</a></li>
 						</ul>
@@ -98,7 +143,7 @@
 								<button id="viewMore1" class="btn btn-sm btn-template-main"
 									style="margin-bottom: 0.2cm;">더보기</button>
 							</div>
-							<div id="message-receive" role="tabpanel"
+							<div id="writingList" role="tabpanel"
 								aria-labelledby="pills-home-tab"
 								class="tab-pane fade show active">
 								<div class="row">
@@ -115,43 +160,27 @@
 														<th>작성일자</th>
 														<th>조회수</th>
 													</tr>
+													<%
+														for (int i = 0; i < writingList.size(); i++) {
+															dto1 = writingList.get(i);
+													%>
 													<tr>
 														<th class="font-grey">자유게시판</th>
-														<th><a href="" class="nondeco">땡이 입양해왔어요~</a></th>
-														<th class="font-grey">06.05.23</th>
-														<th class="font-grey">100</th>
+														<th><a href="" class="nondeco"><%=dto1.getTitle()%></a></th>
+														<th class="font-grey"><%=dto1.getCreated_date().substring(2, 4) + "/" + dto1.getCreated_date().substring(4, 6) + "/"
+						+ dto1.getCreated_date().substring(6, 8)%></th>
+														<th class="font-grey"><%=dto1.getView_count()%></th>
 													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">서울숲 산책하실분</a></th>
-														<th class="font-grey">15.10.21</th>
-														<th class="font-grey">40</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
+													<%
+														}
+													%>
 												</table>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div id="message-send" role="tabpanel"
+							<div id="writingCommented" role="tabpanel"
 								aria-labelledby="pills-profile-tab" class="tab-pane fade">
 								<div class="row">
 									<div class="col-md-12">
@@ -167,49 +196,41 @@
 														<th>작성일자</th>
 														<th>조회수</th>
 													</tr>
+													<%
+														for (int i = 0; i < writingCommented.size(); i++) {
+															dto2 = writingCommented.get(i);
+													%>
 													<tr>
 														<th class="font-grey">자유게시판</th>
-														<th><a href="" class="nondeco">강아지가 초콜릿 먹었는데
-																괜찮을까요?</a></th>
-														<th><a href="" class="nondeco">뿌꾸맘</a></th>
-														<th class="font-grey">10.06.18</th>
+														<th><a href="" class="nondeco"><%=dto2.getTitle()%></a></th>
+														<%
+															long a = dto2.getUser_id();
+														%>
+														<!-- 1.먼저 해당 구역(이름이 들어가는 tr)안 모든 부분을 div(class="dropdown")으로 묶음 -->
+														<th><div class="dropdown">
+																<a href="#" class="nondeco"><%=dto2.getNickname()%></a>
+																<!-- db의 닉네임값 들어가는 밑에 div(class="dropdown-content")추가 -->
+																<div class="dropdown-content">
+																	<a
+																		href="./member/detail?user_id=<%=dto2.getUser_id()%>">작성게시글
+																		보기</a> <a href="#" data-toggle="modal"
+																		data-target="#messageWrite-modal">쪽지보내기</a>
+																</div>
+															</div></th>
+														<th class="font-grey"><%=dto2.getCreated_date().substring(2, 4) + "/" + dto2.getCreated_date().substring(4, 6) + "/"
+						+ dto2.getCreated_date().substring(6, 8)%></th>
 														<th class="font-grey">30</th>
 													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">한강에서 산책하실 분</a></th>
-														<th><a href="" class="nondeco">우리아지체고</a></th>
-														<th class="font-grey">17.07.09</th>
-														<th class="font-grey">80</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
+													<%
+														}
+													%>
 												</table>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div id="message-send" role="tabpanel"
+							<div id="writingLiked" role="tabpanel"
 								aria-labelledby="pills-profile-tab" class="tab-pane fade">
 								<div class="row">
 									<div class="col-md-12">
@@ -225,42 +246,31 @@
 														<th>작성일자</th>
 														<th>조회수</th>
 													</tr>
+													<%
+														for (int i = 0; i < writingLiked.size(); i++) {
+															dto3 = writingLiked.get(i);
+															System.out.println(dto3);
+													%>
 													<tr>
 														<th class="font-grey">자유게시판</th>
-														<th><a href="" class="nondeco">강아지가 초콜릿 먹었는데
-																괜찮을까요?</th>
-														<th><a href="" class="nondeco">뿌꾸맘</a></th>
-														<th class="font-grey">10.06.18</th>
-														<th class="font-grey">30</th>
+														<th><a href="" class="nondeco"><%=dto3.getTitle()%></th>
+														<th><div class="dropdown">
+																<a href="#" class="nondeco"><%=dto3.getNickname()%></a>
+																<!-- db의 닉네임값 들어가는 밑에 div(class="dropdown-content")추가 -->
+																<div class="dropdown-content">
+																	<a
+																		href="./member/detail?user_id=<%=dto3.getUser_id()%>">작성게시글
+																		보기</a> <a href="#" data-toggle="modal"
+																		data-target="#messageWrite-modal">쪽지보내기</a>
+																</div>
+															</div></th>
+														<th class="font-grey"><%=dto3.getCreated_date().substring(2, 4) + "/" + dto3.getCreated_date().substring(5, 7) + "/"
+														+ dto3.getCreated_date().substring(8, 10)%></th>
+														<th class="font-grey"><%=dto3.getView_count()%></th>
 													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">한강에서 산책하실 분</th>
-														<th><a href="" class="nondeco">우리아지체고</a></th>
-														<th class="font-grey">17.07.09</th>
-														<th class="font-grey">80</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</th>
-														<th><a href="" class="nondeco">땡이누나</a></th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
-													<tr>
-														<th class="font-grey">모임게시판</th>
-														<th><a href="" class="nondeco">땡이 13번째 생일이에요^_^</a></th>
-														<th><a href="/mypage/member/detail" class="nondeco">땡이누나</th>
-														<th class="font-grey">19.03.10</th>
-														<th class="font-grey">23</th>
-													</tr>
+													<%
+														}
+													%>
 												</table>
 											</div>
 										</div>
@@ -273,7 +283,8 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- 쪽지쓰기 모달 -->
+	<%@ include file="/WEB-INF/views/commons/sendMessage.jspf"%>
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>

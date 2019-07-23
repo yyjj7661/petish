@@ -28,5 +28,7 @@ public class MessageResponseDTO {
 
 	// 수신자
 	int receiver_id;
-
+	
+	String nickname;
+	
 }

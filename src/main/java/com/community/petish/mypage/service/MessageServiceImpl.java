@@ -38,14 +38,22 @@ public class MessageServiceImpl implements MessageService{
 		return list;
 	}
 
-	//4. 쪽지 상세조회
+	//4. 받은 쪽지 상세조회
 	@Override
-	public MessageResponseDTO getMessageDetail(int id) {
+	public MessageResponseDTO receivedMessageDetail(int id) {
 		
-		MessageResponseDTO dto = messageMapper.getMessageDetail(id);
+		MessageResponseDTO dto = messageMapper.receivedMessageDetail(id);
 		return dto;
 	}
 
+	// 보낸 쪽지 상세조회
+	@Override
+	public MessageResponseDTO sentMessageDetail(int id) {
+		
+		MessageResponseDTO dto = messageMapper.sentMessageDetail(id);
+		return dto;
+	}
+	
 	//5. 쪽지 삭제
 	@Override
 	public int deleteMessage(int id) {

@@ -18,7 +18,10 @@ public interface MessageMapper {
 	public ArrayList<MessageResponseDTO> getSentMessageList(int user_id);
 	
 	//4. 받은 쪽지 상세조회
-	public MessageResponseDTO getMessageDetail(int id);
+	public MessageResponseDTO receivedMessageDetail(int id);
+	
+	//4. 보낸 쪽지 상세조회
+	public MessageResponseDTO sentMessageDetail(int id);
 	
 	//5. 쪽지 삭제
 	public int deleteMessage(int id);

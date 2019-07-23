@@ -61,7 +61,8 @@ public class MyPageMessageMapperTests {
 
 	@Test
 	public void testReadDetail() {
-		MessageResponseDTO dto = mapper.getMessageDetail(3);
+		MessageResponseDTO dto = mapper.receivedMessageDetail(6);
 		log.info(dto);
+		log.info(dto.getNickname());
 	}
 }
