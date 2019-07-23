@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
 import com.community.petish.hospital.domain.ListDTO;
+import com.community.petish.hospital.domain.ReviewVO;
 import com.community.petish.hospital.mapper.HospitalMapper;
 
 @Service("hospitalService")
@@ -76,6 +77,12 @@ public class HospitalServiceImpl implements HospitalService{
 		}
 		
 		return avg;
+	}
+	@Override
+	public List<ReviewVO> getHospitalReview(Long id) {
+		 List<ReviewVO> rlist = null; 
+		 rlist=hospitalMapper.getHospitalReview(id); 
+		return rlist;
 	}
 
 }

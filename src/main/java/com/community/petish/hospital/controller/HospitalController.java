@@ -17,6 +17,7 @@ import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
 import com.community.petish.hospital.domain.ListDTO;
 import com.community.petish.hospital.domain.PageDTO;
+import com.community.petish.hospital.domain.ReviewVO;
 import com.community.petish.hospital.service.HospitalService;
 
 @Controller
@@ -96,9 +97,14 @@ public class HospitalController {
 		
 		HospitalVO vo = hospitalService.getHospital(id);
 		
+		List<ReviewVO> rlist;
+		rlist = hospitalService.getHospitalReview(id);
+		
+		System.out.println("rlist="+rlist);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("petish/hospital/detail");
 		mv.addObject("hospital", vo);
+		mv.addObject("rlist", rlist);
 		return mv;
 	}
 	

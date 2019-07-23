@@ -159,14 +159,13 @@
 				</thead>
 
 				<tbody>
-					<c:forEach var="review" items="${ reviews }" varStatus="status">
+					<c:forEach var="review" items="${ rlist }" varStatus="status">
 						<!-- 평점 기준 별표시 출력 -->
 
 						<tr style="font-size: 15px;">
-							<td><c:forEach var="rating" items="${ ratingOptions }"
-									varStatus="status" begin="1" end="${ review.rating }">★</c:forEach></td>
-							<td>익명</td>
-							<td>으아아아아앙아아아악!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</td>
+							<td><c:forEach varStatus="status" begin="1" end="${ review.score }">★</c:forEach></td>
+							<td>${review.user_id }</td>
+							<td>${review.content }</td>
 						</tr>
 					</c:forEach>
 				</tbody>

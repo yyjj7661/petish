@@ -5,6 +5,7 @@ import java.util.List;
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.HospitalVO;
 import com.community.petish.hospital.domain.ListDTO;
+import com.community.petish.hospital.domain.ReviewVO;
 
 public interface HospitalMapper {
 	HospitalVO getHospital(Long id);
@@ -15,6 +16,7 @@ public interface HospitalMapper {
 	
 	List<ListDTO> getListWithPaging(Criteria cri);
 	List<ListDTO> getEmerListWithPaging(Criteria cri);
+	List<ReviewVO> getHospitalReview(Long id);
 	Integer getTotalCount(String hospital_addr);
 	Integer getEmerTotalCount(String hospital_addr);
 	Double getScore(Long id);

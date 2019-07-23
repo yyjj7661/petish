@@ -325,7 +325,7 @@
 						output += '<h4 style="font-size: 25px;">';
 						output += '<a href="/hospital/'+item.id+'"name="link">'+item.hospital_name+'</a></h4>';
 						for(var j=0; j<data.scorelist[index]; j++){
-								output += '★';
+							output += '★';
 						}
 						for(var i=0; i<(5-data.scorelist[index]); i++){
 							output += '☆';

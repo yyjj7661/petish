@@ -31,6 +31,18 @@
  		
  	</resultMap>
  	
+ 	<resultMap type="com.community.petish.hospital.domain.ReviewVO" id="reviewMap">
+ 		<result property="id" column="ID"/>
+ 		<result property="content" column="CONTENT"/>
+ 		<result property="score" column="SCORE"/>
+ 		<result property="create_date" column="CREATE_DATE"/>
+ 		<result property="deleted" column="DELETED"/>
+ 		<result property="user_id" column="USER_ID"/>
+ 		<result property="hospital_id" column="HOSPITAL_ID"/>
+ 		
+ 		
+ 	</resultMap>
+ 	
  	<select id="getHospital" resultMap="hospitalResultMap">
  		select * from hospital_tb where id = #{id}
  	</select>
@@ -41,6 +53,10 @@
  	</select>
  	<select id="getEmerhospitalList" resultMap="listResultMap">
  		select * from hospital_tb where hospital_addr like '%'||#{hospital_addr}||'%' and isEmergency = 1
+ 	</select>
+ 	
+ 	<select id="getHospitalReview" resultMap="reviewMap">
+ 		select * from hospital_review_tb_test where hospital_id =#{id} order by id desc
  	</select>
  	
  	<select id="getListWithPaging" resultMap="listResultMap">
