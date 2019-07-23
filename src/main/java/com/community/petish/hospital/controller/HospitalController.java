@@ -29,9 +29,6 @@ public class HospitalController {
 	@Autowired
 	public HospitalService hospitalService;
 	
-	@Autowired
-	public ReviewService reviewService;
-	
 	@RequestMapping("/search")
 	public String hospitalSerachForm() {
 		return "petish/hospital/main_search";
@@ -41,7 +38,7 @@ public class HospitalController {
 	@ResponseBody
 	public Map<String, Object> gethospitalList(@PathVariable("addr") String addr, @PathVariable("isEmer")boolean isEmer, @PathVariable("page")int page, Model model) {
 		List<ListDTO> list;
-		List<Integer> scoreList = new ArrayList<Integer>();
+		List<Double> scoreList = new ArrayList<Double>();
 		//페이징 설정위해 만드는 객체
 		Criteria cri = new Criteria();
 		cri.setHospital_addr(addr);
@@ -58,7 +55,8 @@ public class HospitalController {
 			//list = hospitalService.gethospitalList(addr);
 			for(ListDTO vo : list) {
 				System.out.println(hospitalService.getScore(vo.getId()));
-				scoreList.add((int)(Math.round(hospitalService.getScore(vo.getId()))));
+				double avg = hospitalService.getScore(vo.getId());
+				scoreList.add(Math.round(avg*100)/100.0);
 				
 			}
 			System.out.println(scoreList);
@@ -71,8 +69,8 @@ public class HospitalController {
 			//list = hospitalService.getEmerhospitalList(addr);
 			for(ListDTO vo : list) {
 				
-				
-				scoreList.add((int)(Math.round((hospitalService.getScore(vo.getId())))));
+				double avg = hospitalService.getScore(vo.getId());
+				scoreList.add(Math.round(avg*100)/100.0);
 			}
 		}
 		
@@ -102,15 +100,13 @@ public class HospitalController {
 		System.out.println("id="+id);
 		
 		HospitalVO vo = hospitalService.getHospital(id);
-		
-		List<ReviewVO> rlist;
-		rlist = reviewService.getHospitalReview(id);
-		
-		System.out.println("rlist="+rlist);
+		double avg = hospitalService.getScore(id);
+		avg = Math.round(avg*100)/100.0;
+		avg = avg*20;
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("petish/hospital/detail");
 		mv.addObject("hospital", vo);
-		mv.addObject("rlist", rlist);
+		mv.addObject("score",avg);
 		return mv;
 	}
 	

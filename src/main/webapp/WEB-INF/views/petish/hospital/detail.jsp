@@ -54,6 +54,11 @@
 						<div class="col-md-6">
 							<div class="icon">
 							<ul>
+									<div class="fa fa-star" id="spec" aria-hidden="true"style="font-size:24px;">
+										평점 : <span class='star-rating'>
+											<span style ="width:${score }%"></span>
+										</span>
+									</div>
 								
 									<div class="fa fa-home fa-pull-left fa-fw" id="spec" aria-hidden="true"style="font-size:24px;">
 										<span id="hospital_name">${hospital.hospital_name }</span>
@@ -159,17 +164,7 @@
 				</thead>
 
 				<tbody id="reviews">
-					<c:forEach var="review" items="${ rlist }" varStatus="status">
-						<!-- 평점 기준 별표시 출력 -->
-
-						<tr style="font-size: 15px;">
-							<td><c:forEach varStatus="status" begin="1" end="${ review.score }">★</c:forEach>
-								
-							</td>
-							<td>${review.user_id }</td>
-							<td>${review.content }</td>
-						</tr>
-					</c:forEach>
+				
 				</tbody>
 			</table>
 		</div>
@@ -234,6 +229,9 @@
 	
 	<script>
 	$(document).ready(function(){
+		
+		getReview("${hospital.id}");
+		
 		$('#reInsert').click(function(event){
 			var user_id = <%=session.getAttribute("id")%>;
 			if(user_id ==null){
@@ -288,9 +286,9 @@
 					var output='';
 					output += '<tr style="font-size: 15px;">';
 					output += '<td>';
-					for(var i =0; i<item.score;i++){
-						output += '★';
-					}
+					output += '<span class="star-rating"style="text-align:left;">';
+					output += '<span style ="width:'+(item.score*20.0)+'%"></span>';
+					output += '</span>';
 					output += '</td>';
 					output += '<td>'+item.user_id+'</td>';
 					output += '<td>'+item.content+'</td>';

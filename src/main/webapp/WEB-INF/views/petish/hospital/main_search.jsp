@@ -324,12 +324,9 @@
 						output += '</div>';
 						output += '<h4 style="font-size: 25px;">';
 						output += '<a href="/hospital/'+item.id+'"name="link">'+item.hospital_name+'</a></h4>';
-						for(var j=0; j<data.scorelist[index]; j++){
-							output += '★';
-						}
-						for(var i=0; i<(5-data.scorelist[index]); i++){
-							output += '☆';
-						}
+						output += '<span class="star-rating"style="text-align:left;">';
+						output += '<span style ="width:'+(data.scorelist[index]*20.0)+'%"></span>';
+						output += '</span>';
 						output += '<div class="text">';
 						output += '<div>'+item.hospital_addr+'</div>';
 						output += '<div>'+item.hospital_phone+'</div>';
