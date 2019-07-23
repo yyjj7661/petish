@@ -1,41 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import = "com.community.petish.dog.missingboard.dto.*" %>	
+<%@ page import="com.community.petish.dog.missingboard.dto.*"%>
 <%
-	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO)request.getAttribute("dto");
-	
+	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO) request.getAttribute("dto");
+
+	//게시판 아이디
+	String strBoard = session.getAttribute("boardId").toString();
+	Long boardId = Long.parseLong(strBoard);
+	System.out.println("게시판 아이디 : " + boardId);
+
 	//게시글 아이디
 	Long idLong = dto.getID();
 	String ID = idLong.toString();
+	System.out.println("게시글 아이디 : " + ID);
 
-	//유저 아이디
-	String userId = session.getAttribute("userId").toString();
+	//접속한 유저 아이디
+	String strUser = session.getAttribute("userId").toString();
+	Long userId = Long.parseLong(strUser);
+	System.out.println("접속한 유저 아이디 : " + userId);
 
-	//게시판 아이디
-	String str = session.getAttribute("boardId").toString();
-	Long boardId = Long.parseLong(str);
+	//작성자 아이디
+	Long writerId = dto.getUSER_ID();
+	//String writer = writerId.toString();
+	System.out.println("작성자 아이디 : " + writerId);	
 	
 	//실종 장소
 	String address = dto.getDOG_LOST_ADDRESS();
 	String[] array = address.split(" ");
-	
+
 	String addr1 = null;
 	String addr2 = null;
-	
-	if(array[0] != null)
-	addr1 = array[0];
-	
-	if(array[1] != null)
-	addr2 = array[1];
-	
+
+	if (array[0] != null)
+		addr1 = array[0];
+
+	if (array[1] != null)
+		addr2 = array[1];
+
 	String addrSplit = addr1 + " " + addr2;
-	
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>[<%=addrSplit %>] <%=dto.getDOG_SPECIES() %> / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></title>
+<title>[<%=addrSplit%>] <%=dto.getDOG_SPECIES()%> / <%=dto.getDOG_GENDER()%>
+	/ <%=dto.getDOG_AGE()%></title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -236,10 +245,9 @@ th, td {
 	border-radius: 50%;
 }
 
-.report-modal-title{
-	min-width:65px;
+.report-modal-title {
+	min-width: 65px;
 }
-
 
 @
 -webkit-keyframes fade {
@@ -258,6 +266,11 @@ keyframes fade {
 
 to {
 	opacity: 1
+}
+
+}
+label {
+	text-align: left !important;
 }
 
 }
@@ -325,20 +338,26 @@ to {
 
 				<!-- 글 제목 -->
 				<div class="panel-heading">
-				
-				<%
-					if(dto.getFOUND() == 0) {
-				%>
+
+					<%
+						if (dto.getFOUND() == 0) {
+					%>
 					<span class="badge badge-danger">미발견</span>
-				<%
-					} else{
-				%>
+					<%
+						} else {
+					%>
 					<span class="badge badge-info">발견</span>
-				<%
-					}
-				%>
-					
-					<h2 class="h3 panel-title">[<%=addrSplit %>] <%=dto.getDOG_SPECIES() %> / <%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></h2>
+					<%
+						}
+					%>
+
+					<h2 class="h3 panel-title">
+						[<%=addrSplit%>]
+						<%=dto.getDOG_SPECIES()%>
+						/
+						<%=dto.getDOG_GENDER()%>
+						/
+						<%=dto.getDOG_AGE()%></h2>
 				</div>
 
 				<!-- 게시 정보 -->
@@ -348,7 +367,7 @@ to {
 							class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
 						<td>
 							<div class="nav navbar-nav ml-auto">
-								<a href="#" data-toggle="dropdown" class="dropdown"> Pet</a>
+								<a href="#" data-toggle="dropdown" class="dropdown"><%=dto.getNICKNAME()%></a>
 								<div class="dropdown-menu">
 									<div class="dropdown">
 										<a href="/mypage/member/detail" class="nav-link">게시글보기</a>
@@ -362,8 +381,8 @@ to {
 						</td>
 
 						<td class=grade>준회원</td>
-						<td class=date><i class="fa fa-clock-o"></i> <%=dto.getCREATE_DATE() %></td>
-						<td class=view><i class="fa fa-eye"></i> <%=dto.getVIEW_COUNT() %></td>
+						<td class=date><i class="fa fa-clock-o"></i> <%=dto.getCREATE_DATE()%></td>
+						<td class=view><i class="fa fa-eye"></i> <%=dto.getVIEW_COUNT()%></td>
 
 					</tr>
 				</table>
@@ -400,17 +419,20 @@ to {
 								<!-- Full-width images with number and caption text -->
 								<div class="mySlides fade">
 									<div class="numbertext">1 / 3</div>
-									<img id="lostdog" src="<%=dto.getDOG_IMAGE() %>" style="width: 100%">
+									<img id="lostdog" src="<%=dto.getDOG_IMAGE()%>"
+										style="width: 100%">
 								</div>
 
 								<div class="mySlides fade">
 									<div class="numbertext">2 / 3</div>
-									<img id="lostdog" src"<%=dto.getDOG_IMAGE() %>" style="width: 100%">
+									<img id="lostdog"
+										src"<%=dto.getDOG_IMAGE()%>" style="width: 100%">
 								</div>
 
 								<div class="mySlides fade">
 									<div class="numbertext">3 / 3</div>
-									<img id="lostdog" src="<%=dto.getDOG_IMAGE() %>" style="width: 100%">
+									<img id="lostdog" src="<%=dto.getDOG_IMAGE()%>"
+										style="width: 100%">
 								</div>
 
 								<!-- Next and previous buttons -->
@@ -427,42 +449,42 @@ to {
 
 					<tr>
 						<th class="index">이름</th>
-						<th><%=dto.getDOG_NAME() %></th>
+						<th><%=dto.getDOG_NAME()%></th>
 					</tr>
 
 					<tr>
 						<th class="index">종</th>
-						<th><%=dto.getDOG_SPECIES() %></th>
+						<th><%=dto.getDOG_SPECIES()%></th>
 					</tr>
 
 					<tr>
 						<th class="index">성별 / 나이</th>
-						<th><%=dto.getDOG_GENDER() %> / <%=dto.getDOG_AGE() %></th>
+						<th><%=dto.getDOG_GENDER()%> / <%=dto.getDOG_AGE()%></th>
 					</tr>
 
 					<tr>
 						<th class="index">특징</th>
-						<th><%=dto.getDOG_DESCRIPTION() %></th>
+						<th><%=dto.getDOG_DESCRIPTION()%></th>
 					</tr>
 
 					<tr>
 						<th class="index">실종 날짜</th>
-						<th><%=dto.getDOG_LOST_DATE() %></th>
+						<th><%=dto.getDOG_LOST_DATE()%></th>
 					</tr>
 
 					<tr>
 						<th class="index">실종 장소</th>
-						<th><%=dto.getDOG_LOST_ADDRESS() %></th>
+						<th><%=dto.getDOG_LOST_ADDRESS()%></th>
 					</tr>
 
 					<tr>
 						<th class="index">사례금</th>
-						<th><%=dto.getREWARD() %></th>
+						<th><%=dto.getREWARD()%></th>
 					</tr>
 
 					<tr>
 						<th class="index">연락처</th>
-						<th style="color: #df0101"><%=dto.getPHONE_NUMBER() %></th>
+						<th style="color: #df0101"><%=dto.getPHONE_NUMBER()%></th>
 					</tr>
 				</table>
 			</div>
@@ -478,7 +500,8 @@ to {
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
-								키워드 : <input type="text" value="<%=dto.getDOG_LOST_ADDRESS() %>" id="keyword" size="15">
+								키워드 : <input type="text" value="<%=dto.getDOG_LOST_ADDRESS()%>"
+									id="keyword" size="15">
 
 							</form>
 						</div>
@@ -534,6 +557,7 @@ to {
 					</div>
 				</section>
 			</div>
+			
 			<div style="margin: 2rem"></div>
 
 			<!-- 댓글 입력창 -->
@@ -565,80 +589,37 @@ to {
 								<i class="fa fa-comment-o"></i> 댓글 등록
 							</button>
 
+							<%
+								if (userId.equals(writerId)) {
+							%>
 
 							<nav aria-label="Page navigation example"
 								class="d-flex justify-content-left">
 								<button class="btn btn-template-outlined">
-									<i class="fa fa-pencil"></i>
-									<a href="/dog/missingboard/modifyForm/<%=ID %>"> 수정 </a>
+									<i class="fa fa-pencil"></i> <a
+										href="/dog/missingboard/modifyForm/<%=ID%>"> 수정 </a>
 								</button>
 								<button type="submit" class="btn btn-template-outlined">
-									<i class="fa fa-trash-o"></i>
-									<a href="/dog/missingboard/delete"> 삭제 </a>
+									<i class="fa fa-trash-o"></i> <a
+										href="/dog/missingboard/delete"> 삭제 </a>
 								</button>
 							</nav>
+							<%
+								}
+							%>
 
+							<!-- 게시글 신고 버튼 -->
 							<button type="button" class="btn btn-danger" data-toggle="modal"
-								data-target="#myModal" style="float: right;" id="report-btn">신고</button>
-
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-
-									<div class="modal-content">
-										<div class="modal-header">
-											<h3 class="modal-title" id="myModalLabel">신고</h3>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<table>
-												<tr>
-													<td id="report-modal-title">신고 분류</td>
-													<td>
-														<div class="form-group">
-
-															<select id="state" class="form-control">
-																<option value="">신고 사유 선택</option>
-																<option value="1">부적절한 게시물</option>
-																<option value="2">도배 게시물</option>
-																<option value="3">광고성 게시물</option>
-																<option value="4">비방/비하/욕설 게시물</option>
-																<option value="5">음란성 또는 청소년 유해 게시물</option>
-																<option value="6">기타</option>
-															</select>
-														</div>
-													</td>
-												</tr>
-
-												<tr>
-													<td>내용</td>
-													<td><textarea name="DESCRIPTION" rows="4" cols="40"
-															class="form-control"></textarea></td>
-												</tr>
-												<tr></tr>
-												<tr>
-													<td></td>
-													<td><button type="button"
-															class="btn btn-template-outlined" data-dismiss="modal">확인</button>
-														<button type="button" class="btn btn-template-outlined"
-															data-dismiss="modal">취 소</button></td>
-												</tr>
-											</table>
-										</div>
-										<div class="modal-footer"></div>
-									</div>
-								</div>
-							</div>
+								data-target="#report-modal" style="float: right;"
+								id="report-btn">신고
+							</button>
 						</div>
 					</div>
 				</form>
 			</div>
 			<!-- comment form -->
-
 			<div style="margin: 5rem"></div>
+			
 		</div>
 		<!--  -->
 	</div>
@@ -671,7 +652,7 @@ to {
 							<button type="submit" class="btn btn-outline-primary"
 								id="message_send">전송</button>
 							<a style="padding-right: 0.5rem;"></a>
-							<button type="submit" class="btn btn-outline-primary"
+							<button type="reset" class="btn btn-outline-primary"
 								id="message_cancle">취소</button>
 						</p>
 					</form>
@@ -679,14 +660,112 @@ to {
 			</div>
 		</div>
 	</div>
+	
+	<!-- 신고 모달창 -->
+	<div id="report-modal" tabindex="-1" role="dialog" aria-hidden="true"
+		class="modal fade">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">게시글 신고</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
 
+				<div class="modal-body">
+					<form id="report_form" method="POST">
+
+						<input type="hidden" name="BOARD_ID" id="BOARD_ID" value=<%=boardId%>>
+						<input type="hidden" name="POST_ID" id="POST_ID" value=<%=ID%>>
+						<input type="hidden" name="USER_ID" id="USER_ID" value=<%=userId%>>
+						
+						<label style="text-align: left !important;">신고 분류</label>
+						<div class="form-group">
+							<select id="state" name="CATEGORY_ID" id="CATEGORY_ID"
+								class="form-control">
+								<option value="">신고 사유 선택</option>
+								<option value="1">부적절한 게시물</option>
+								<option value="2">도배 게시물</option>
+								<option value="3">광고성 게시물</option>
+								<option value="4">비방/비하/욕설 게시물</option>
+								<option value="5">음란성 또는 청소년 유해 게시물</option>
+								<option value="6">기타</option>
+							</select>
+						</div>
+						<label>내용</label>
+						<div class="form-group">
+							<textarea name="DESCRIPTION" id="DESCRIPTION" rows="10"
+								class="form-control"></textarea>
+						</div>
+						<p class="text-center">
+							<input type="submit" value="신고" class="btn btn-outline-primary"
+								id="input_report">
+							<a style="padding-right: 0.5rem;"></a>
+							<input type="reset" class="btn btn-outline-primary" value="취소">
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /report-modal -->
 
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
+
+	<script>	
+	$(document).ready(function() {
+		
+		$('#input_report').click(function(event) { 
+			/* var report = {
+				'BOARD_ID' : $('#BOARD_ID').val(),
+				'POST_ID' : $('#POST_ID').val(),
+				'USER_ID' : $('#USER_ID').val(),
+				'CATEGORY_ID' : $('#CATEGORY_ID').val(),
+				'DESCRIPTION' : $('#DESCRIPTION').val()
+			} */
+			
+			var report = $("#report_form").serialize();			
+			alert(report);
+			
+			var boardID = $('#BOARD_ID').val();
+			var postID = $('#POST_ID').val();
+			
+			alert(boardID);
+			alert(postID);
+			
+			$.ajax({
+				url : '/report/new',
+				type : 'POST',
+				data : report,
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				dataType : "json",
+				success : function(retVal) {
+					if (retVal.res == "OK") {
+						alert("입력 성공");
+					}
+					else{
+						alert("입력 실패");
+					}
+				},
+				error : function() {
+					alert("AJAX 통신 실패");
+				}
+			});
+			//기본 이벤트 제거
+			event.preventDefault();
+		});
+	});
+	</script>
+
+
+	<script>
+		/* $(document).ready(function() {
 			/* var slideIndex = 1;
-			showSlides(slideIndex); */
-		})
+			showSlides(slideIndex); 
+		}) 
+		*/
 
 		var slideIndex = 1;
 		showSlides(slideIndex);
@@ -998,6 +1077,7 @@ to {
 		}
 	</script>
 
+	<script type="text/javascript" src="/resources/js/report/report.js"></script>
 
 
 	<!-- Javascript files-->
