@@ -11,6 +11,7 @@
 	MyWritingsDTO dto1 = null;
 	Writings_CommentedDTO dto2 = null;
 	Writings_LikedDTO dto3 = null;
+	int user_id = (int)session.getAttribute("user_id");
 %>
 <!DOCTYPE html>
 <html>
@@ -66,7 +67,7 @@
 <script src="/resources/js/mypage/mypage.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <style>
-.dropdown {
+.dropdown_ {
 	position: relative;
 	display: inline-block;
 }
@@ -91,13 +92,10 @@
 	background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown_:hover .dropdown-content {
 	display: block;
 }
 
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 </style>
 </head>
 
@@ -138,7 +136,7 @@
 								aria-controls="pills-home" aria-selected="true" class="nav-link">내가
 									좋아요 한 글</a></li>
 						</ul>
-						
+
 						<div id="pills-tabContent" class="tab-content">
 							<div class="text-right">
 								<button id="viewMore1" class="btn btn-sm btn-template-main"
@@ -169,7 +167,7 @@
 														<th class="font-grey">자유게시판</th>
 														<th><a href="" class="nondeco"><%=dto1.getTitle()%></a></th>
 														<th class="font-grey"><%=dto1.getCreated_date().substring(2, 4) + "/" + dto1.getCreated_date().substring(4, 6) + "/"
-						+ dto1.getCreated_date().substring(6, 8)%></th>
+														+ dto1.getCreated_date().substring(6, 8)%></th>
 														<th class="font-grey"><%=dto1.getView_count()%></th>
 													</tr>
 													<%
@@ -212,13 +210,15 @@
 																<a href="#" class="nondeco"><%=dto2.getNickname()%></a>
 																<!-- db의 닉네임값 들어가는 밑에 div(class="dropdown-content")추가 -->
 																<div class="dropdown-content">
-																	<a href="./detail?user_id=<%=dto2.getUser_id()%>">작성게시글 보기</a> 
-																	<a href="#" data-toggle="modal"
-																		data-target="#messageWrite-modal" data-id=<%=dto2.getNickname() %> class="showmodal">쪽지보내기</a>
+																	<a href="./detail?user_id=<%=dto2.getUser_id()%>">작성게시글
+																		보기</a> <a href="#" data-toggle="modal"
+																		data-target="#new-modal"
+																		data-id=<%=dto2.getNickname()%> class="showmodal">쪽지보내기</a>
+																		<input type="hidden" value=<%=dto2.getUser_id() %> class="writer">
 																</div>
 															</div></th>
 														<th class="font-grey"><%=dto2.getCreated_date().substring(2, 4) + "/" + dto2.getCreated_date().substring(4, 6) + "/"
-														+ dto2.getCreated_date().substring(6, 8)%></th>
+															+ dto2.getCreated_date().substring(6, 8)%></th>
 														<th class="font-grey">30</th>
 													</tr>
 													<%
@@ -254,18 +254,19 @@
 													<tr>
 														<th class="font-grey">자유게시판</th>
 														<th><a href="" class="nondeco"><%=dto3.getTitle()%></th>
-														<th><div class="dropdown">
+														<th><div class="dropdown_">
 																<a href="#" class="nondeco"><%=dto3.getNickname()%></a>
 																<!-- db의 닉네임값 들어가는 밑에 div(class="dropdown-content")추가 -->
 																<div class="dropdown-content">
-																	<a
-																		href="./detail?user_id=<%=dto3.getUser_id()%>">작성게시글
+																	<a href="./detail?user_id=<%=dto3.getUser_id()%>">작성게시글
 																		보기</a> <a href="#" data-toggle="modal"
-																		data-target="#messageWrite-modal">쪽지보내기</a>
+																		data-target="#new-modal" class="showmodal">쪽지보내기</a>
 																</div>
+																<input type="hidden" value=<%=dto3.getUser_id() %> name="receiver_id">
+																<input type="hidden" value=<%=dto3.getNickname() %> name="nickname">
 															</div></th>
 														<th class="font-grey"><%=dto3.getCreated_date().substring(2, 4) + "/" + dto3.getCreated_date().substring(5, 7) + "/"
-														+ dto3.getCreated_date().substring(8, 10)%></th>
+															+ dto3.getCreated_date().substring(8, 10)%></th>
 														<th class="font-grey"><%=dto3.getView_count()%></th>
 													</tr>
 													<%
@@ -283,41 +284,107 @@
 			</div>
 		</div>
 	</div>
-	<!-- 쪽지쓰기 모달 -->
-	<div id="messageWrite-modal" tabindex="-1" role="dialog"
-		aria-hidden="true" class="modal fade">
+
+	<!-- 쪽지보내기 모달창 -->
+	<div id="new-modal" tabindex="-1" role="dialog" aria-hidden="true"
+		class="modal fade">
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 align="center" class="modal-title">쪽지 작성</h4>
+					<h4 align="center" class="modal-title">쪽지보내기</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close"
 						class="close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="" method="get">
-						<div class="form-group">
-							<label>받는 사람</label> <input id="message_receiver" type="text"
-								class="form-control" name="nickname" readonly>
-						</div>
-						<div class="form-group">
-							<label>내용</label>
-							<textarea id="message_content" rows="10" class="form-control"></textarea>
-						</div>
-						<p class="text-center">
-							<button type="submit" class="btn btn-outline-primary"
-								id="message_send">전송</button>
-							&nbsp;&nbsp;
-							<button type="submit" class="btn btn-outline-primary"
-								id="message_cancle">취소</button>
-						</p>
-					</form>
+					<div class="form-group">
+						<label>받는사람</label> <input class="form-control" name='nickname'
+							readonly>
+					</div>
+					<input type="hidden" name="receiver_id">
+					<div class="form-group">
+						<label>제목</label> <input class="form-control" name='title'>
+					</div>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea id="message_content" rows="10" class="form-control"
+							name='content'></textarea>
+					</div>
+					<div class="text-left">
+						<input type="button" value="보내기" class="modalSendBtn">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<script>
+	$(document).ready(
+			function() {
+	var newModal = $("#new-modal");
+	var modalInputReceivedNickname3 = newModal
+	.find("input[name='nickname']");
+	var modalInputTitle3 = newModal
+	.find("input[name='title']");
+	var modalInputContent3 = newModal
+	.find("textarea[name='content']");
+	var modalInputReceiver_id3 = newModal
+	.find("input[name='receiver_id']");
+	
+	
+	var modalSendBtn = $(".modalSendBtn");
+	var user_id = <%=user_id%>;
+	
+	$("#showmodal").on("click", function(e){
+		modalInputReceivedNickname3.val();
+		modalInputReceiver_id3.val();
+		$("#new-modal").modal("show");
+	});
+	
+	modalSendBtn.on("click", function(e){
+						var message = {
+								title : modalInputTitle3.val(),	
+								content : modalInputContent3.val(),
+								sender_id : user_id,
+								receiver_id : modalInputReceiver_id3.val()
+								
+						}
+						messageService.writeMessage(message, function(result){
+							alert("result : "+result);
+						$("#new-modal").modal("hide");
+						location.reload();
+						});
+	});
+	//ajax메서드 정의
+	var messageService = (function() {
+		
+		//메세지 작성 메서드
+		
+		function writeMessage(message, callback, error){
+			$.ajax({
+				type:'post',
+				url : '/mypage/api/message/new',
+				data : JSON.stringify(message),
+				contentType : "application/json; charset=utf-8",
+				success : function(result, status, xhr){
+					if(callback){
+						callback(result);
+					}
+				},
+				error : function(xhr, status, er){
+					if(error){
+						error(er);
+					}
+				}
+			})
+		}
+		return {
+			writeMessage : writeMessage
+		};
+	})();
+	
+});
 	
 	</script>
 	<!-- Javascript files-->

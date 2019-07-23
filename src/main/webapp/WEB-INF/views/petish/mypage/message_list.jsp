@@ -162,14 +162,6 @@
 																}
 															%>
 														</tbody>
-
-														<script>
-															function hi() {
-																alert("hello0");
-																location.href = "www.naver.com";
-
-															}
-														</script>
 													</table>
 												</div>
 											</div>
@@ -278,8 +270,45 @@
 			</div>
 		</div>
 	</div>
-	<!--  쪽지보기 모달창 -->
-	<div id="messageRead_receive-modal" tabindex="-1" role="dialog"
+	<!--  받은 쪽지 모달창 -->
+	<div id="receive-modal" tabindex="-1" role="dialog"
+		aria-hidden="true" class="modal fade" >
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">받은쪽지</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>보낸사람</label> <input class="form-control"
+							name='nickname1' readonly>
+					</div>
+					<div class="form-group">
+						<label>날짜</label> <input type="text" class="form-control"
+							name='sent_date1' readonly>
+					</div>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea id="message_content" rows="10" class="form-control"
+							name='content1' readonly></textarea>
+					</div>
+					<input type="hidden" name="sender_id">
+					<div class="text-left">
+						<input type="button" value="삭제" class="modalDeleteBtn">
+					</div>
+						<div class="text-right">
+						<input type="button" value="답장" class="modalAnswerBtn">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 보낸 쪽지 모달창 -->
+	<div id="sent-modal" tabindex="-1" role="dialog"
 		aria-hidden="true" class="modal fade" >
 		<div role="document" class="modal-dialog">
 			<div class="modal-content">
@@ -292,85 +321,180 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>닉네임</label> <input class="form-control"
-							name='nickname' readonly>
+						<label>받는사람</label> <input class="form-control"
+							name='nickname2' readonly>
 					</div>
 					<div class="form-group">
-						<label>보낸 날짜</label> <input type="text" class="form-control"
-							name='sent_date' readonly>
+						<label>날짜</label> <input type="text" class="form-control"
+							name='sent_date2' readonly>
 					</div>
 					<div class="form-group">
 						<label>내용</label>
 						<textarea id="message_content" rows="10" class="form-control"
-							name='content' readonly></textarea>
+							name='content2' readonly></textarea>
 					</div>
-					<div class="text-right">
+					<div class="text-left">
 						<input type="button" value="삭제" class="modalDeleteBtn">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 쪽지보내기 모달창 -->
+	<div id="new-modal" tabindex="-1" role="dialog"
+		aria-hidden="true" class="modal fade" >
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">쪽지보내기</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>받는사람</label> <input class="form-control"
+							name='nickname' readonly>
+					</div>
+					<input type="hidden" name="receiver_id">
+					<div class="form-group">
+						<label>제목</label> <input class="form-control"
+							name='title'>
+					</div>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea id="message_content" rows="10" class="form-control"
+							name='content'></textarea>
+					</div>	
+					<div class="text-left">
+						<input type="button" value="보내기" class="modalSendBtn">
+					</div>				
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<script>
 		//쪽지 상세보기
 		$(document).ready(
 
 				function() {
-					var modal = $(".modal");
-					var modalInputSentNickname = modal
-							.find("input[name='nickname']");
-					var modalInputReceivedNickname = modal
+					//받은 쪽지 모달
+					var receivedModal = $("#receive-modal");
+					var modalInputSentNickname1 = receivedModal
+					.find("input[name='nickname1']");
+					var modalInputSent_date1 = receivedModal
+					.find("input[name='sent_date1']");
+					var modalInputContent1 = receivedModal
+					.find("textarea[name='content1']");
+					var modalInputSender_id1 = receivedModal
+					.find("input[name='sender_id']");
+					
+					//보낸 쪽지 모달
+					var sentModal = $("#sent-modal");
+					var modalInputReceivedNickname2 = sentModal
+					.find("input[name='nickname2']");
+					var modalInputSent_date2 = sentModal
+					.find("input[name='sent_date2']");
+					var modalInputContent2 = sentModal
+					.find("textarea[name='content2']");
+					
+					//쪽지보내기 모달
+					var newModal = $("#new-modal");
+					var modalInputReceivedNickname3 = newModal
 					.find("input[name='nickname']");
-					var modalInputSent_date = modal
-							.find("input[name='sent_date']");
-					var modalInputContent = modal
-							.find("textarea[name='content']");
+					var modalInputTitle3 = newModal
+					.find("input[name='title']");
+					var modalInputContent3 = newModal
+					.find("textarea[name='content']");
+					var modalInputReceiver_id3 = newModal
+					.find("input[name='receiver_id']");
+					
+					//버튼 
 					var modalDeleteBtn = $(".modalDeleteBtn");
+					var modalAnswerBtn = $(".modalAnswerBtn");
+					var modalSendBtn = $(".modalSendBtn");
 					var user_id = <%=user_id%>;
+					
 					//메세지리스트에서 a태그(메세지 제목)을 누르면, 해당 글 id의 세부데이터를 받아서 모달로 보내준다
+					
+					//받은 쪽지 상세보기
 					$(".receivedMessage").on("click", "a", function(e) {
 						var id = $(this).data("id");
 						messageService.receivedMessageDetail(id, function(message) {
-							modalInputSentNickname.val(message.nickname);
-							modalInputSent_date.val(message.sent_date);
-							modalInputContent.val(message.content);
-							modal.data("id", message.id);
-							$(".modal").modal("show");
+							modalInputSentNickname1.val(message.nickname);
+							modalInputSent_date1.val(message.sent_date);
+							modalInputContent1.val(message.content);
+							modalInputSender_id1.val(message.sender_id);
+							receivedModal.data("id", message.id);
+							$("#receive-modal").modal("show");
 						});
 						
 						messageService.changeReadAttr(id, user_id);
 						
 					});
 					
+					//보낸 쪽지 상세보기
+					$(".sentMessage").on("click", "a", function(e) {
+						var id = $(this).data("id");
+						messageService.sentMessageDetail(id, function(message) {
+							modalInputSentNickname2.val(message.nickname);
+							modalInputSent_date2.val(message.sent_date);
+							modalInputContent2.val(message.content);
+							modal.data("id", message.id);
+							$("#sent-modal").modal("show");
+						});	
+					});
+					
+			
+					
+					//받은쪽지에서 답장하기 누르면 기존 모달 꺼지고 새로운 모달 열림 
+					modalAnswerBtn.on("click", function(e){
+						$("#receive-modal").modal("hide");
+						modalInputReceivedNickname3.val(modalInputSentNickname1.val());
+						modalInputReceiver_id3.val(modalInputSender_id1.val());
+						$("#new-modal").modal("show");
+					})
+					
+					
+					//쪽지보내기 창에서 쪽지보내기 버튼 클릭시 ajax연결				
+					modalSendBtn.on("click", function(e){
+						var message = {
+								title : modalInputTitle3.val(),	
+								content : modalInputContent3.val(),
+								sender_id : user_id,
+								receiver_id : modalInputReceiver_id3.val()
+								
+						}
+						messageService.writeMessage(message, function(result){
+							alert("result : "+result);
+						$("#new-modal").modal("hide");
+						location.reload();
+						});
+					});
+					
+					
+					//공통
+					//모달에서 삭제버튼을 클릭하면, 해당id값의 데이터를 삭제하고 모달을 숨긴다(=>리스트 재조회 필요)
+					modalDeleteBtn.on("click", function(e){
+						var id = receivedModal.data("id");
+						messageService.deleteMessage(id, function(result){
+							alert(result);
+							receivedModal.modal("hide");
+							location.reload();
+						});
+					});
+					
 					//모달 닫기버튼 누르면 화면 리로드됨
 					$(".close").on("click", function(e){
 						location.reload();
 					})
-					
-					$(".sentMessage").on("click", "a", function(e) {
-						var id = $(this).data("id");
-						messageService.sentMessageDetail(id, function(message) {
-							modalInputSentNickname.val(message.nickname);
-							modalInputSent_date.val(message.sent_date);
-							modalInputContent.val(message.content);
-							modal.data("id", message.id);
-							$(".modal").modal("show");
-						});
-						
-					});
-				
-					
-					//모달에서 삭제버튼을 클릭하면, 해당id값의 데이터를 삭제하고 모달을 숨긴다(=>리스트 재조회 필요)
-					modalDeleteBtn.on("click", function(e){
-						var id = modal.data("id");
-						messageService.deleteMessage(id, function(result){
-							alert(result);
-							modal.modal("hide");
-							location.reload();
-						});
-					});
 
 					
+					
+					
+					//ajax메서드 정의
 					var messageService = (function() {
 						//메세지 세부조회 메서드
 						function receivedMessageDetail(id, callback, error) {
@@ -423,10 +547,9 @@
 							$.ajax({
 								type : 'delete',
 								url : '/mypage/api/message/' + id,
-								success : function(deleteResult, status, xhr){
-									
+								success : function(result, status, xhr){
 									if(callback){
-										callback(deleteResult);
+										callback(result);
 									}
 								},
 								error:function(xhr,status, er){
@@ -437,11 +560,32 @@
 							});
 						}
 						
+						//메세지 작성 메서드
+						
+						function writeMessage(message, callback, error){
+							$.ajax({
+								type:'post',
+								url : '/mypage/api/message/new',
+								data : JSON.stringify(message),
+								contentType : "application/json; charset=utf-8",
+								success : function(result, status, xhr){
+									if(callback){
+										callback(result);
+									}
+								},
+								error : function(xhr, status, er){
+									if(error){
+										error(er);
+									}
+								}
+							})
+						}
 						return {
 							sentMessageDetail : sentMessageDetail,
 							receivedMessageDetail : receivedMessageDetail,
 							deleteMessage : deleteMessage,
-							changeReadAttr : changeReadAttr
+							changeReadAttr : changeReadAttr,
+							writeMessage : writeMessage
 						};
 					})();
 					
