@@ -177,7 +177,15 @@
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
 	}
-	
+	function clickInfowindow(map, marker, name,fa,ga){
+		var iwContent = '<div style="padding:5px;">'+name+' <br><a href="https://map.kakao.com/link/map/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
+		 infowindow= new kakao.maps.InfoWindow({
+		        position : new kakao.maps.LatLng(ga, fa), 
+		        content : iwContent 
+		    });
+		    
+		    infowindow.open(map,marker);
+	}
 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
 	function removeMarker() {
 	    for ( var i = 0; i < markers.length; i++ ) {
@@ -187,22 +195,30 @@
 	}
 	// 마커를 찍는 함수
 	function createMarker(fa,ga, imgsrc,name,addr,hours){
+		
 		// 마커 이미지의 이미지 크기 입니다
 		   var imageSize = new kakao.maps.Size(35, 35); 
 		// 마커 이미지를 생성합니다    
 	  	  var markerImage = new kakao.maps.MarkerImage(imgsrc, imageSize);
 	 	// 마커를 생성합니다
+	 	
 	    var marker = new kakao.maps.Marker({
 	        map: map, // 마커를 표시할 지도
 	        position: new kakao.maps.LatLng(ga, fa),
 	        image : markerImage // 마커 이미지 
 	    });
+	    
+	   
 	  //마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
 		kakao.maps.event.addListener(marker, 'mouseover',function(){
 			displayInfowindow(map, marker,name,addr,hours);
 		});
 		kakao.maps.event.addListener(marker, 'mouseout',function(){
+			//infowindow.close();
+		});
+		kakao.maps.event.addListener(marker, 'click',function(){
 			infowindow.close();
+			clickInfowindow(map,marker,name,fa,ga);
 		});
 	  //마커 배열에 현재마커를 추가
 		markers.push(marker);
@@ -269,6 +285,9 @@
 	});
 	//$('#sml_region') 지역구 카테고리로 검색하고 병원리스트 가져오는 함수.
 	function gethospital(addr, isEmer,page){
+		//마커의 정보창 닫아주기
+		infowindow.close();
+		
 		$('#hospList').empty();
 		$('#paging').empty();
 		 $.ajax({
