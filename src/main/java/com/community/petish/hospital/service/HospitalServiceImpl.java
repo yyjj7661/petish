@@ -78,11 +78,6 @@ public class HospitalServiceImpl implements HospitalService{
 		
 		return avg;
 	}
-	@Override
-	public List<ReviewVO> getHospitalReview(Long id) {
-		 List<ReviewVO> rlist = null; 
-		 rlist=hospitalMapper.getHospitalReview(id); 
-		return rlist;
-	}
+	
 
 }

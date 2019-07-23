@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,12 +20,17 @@ import com.community.petish.hospital.domain.ListDTO;
 import com.community.petish.hospital.domain.PageDTO;
 import com.community.petish.hospital.domain.ReviewVO;
 import com.community.petish.hospital.service.HospitalService;
+import com.community.petish.hospital.service.ReviewService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/hospital")
 public class HospitalController {
 	@Autowired
 	public HospitalService hospitalService;
+	
+	@Autowired
+	public ReviewService reviewService;
 	
 	@RequestMapping("/search")
 	public String hospitalSerachForm() {
@@ -98,7 +104,7 @@ public class HospitalController {
 		HospitalVO vo = hospitalService.getHospital(id);
 		
 		List<ReviewVO> rlist;
-		rlist = hospitalService.getHospitalReview(id);
+		rlist = reviewService.getHospitalReview(id);
 		
 		System.out.println("rlist="+rlist);
 		ModelAndView mv = new ModelAndView();
@@ -106,6 +112,21 @@ public class HospitalController {
 		mv.addObject("hospital", vo);
 		mv.addObject("rlist", rlist);
 		return mv;
+	}
+	
+	@PostMapping(value="/review/{id}", produces="application/json;charset=UTF-8")
+	public String getReview(@PathVariable("id") Long id) {
+		String str = "";
+		List<ReviewVO> rlist;
+		rlist = reviewService.getHospitalReview(id);
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str = mapper.writeValueAsString(rlist);
+		}catch(Exception e) {
+			System.out.println("first() mapper : "+ e.getMessage());
+		}
+		return str;
+		
 	}
 	
 	

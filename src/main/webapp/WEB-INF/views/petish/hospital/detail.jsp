@@ -140,8 +140,8 @@
 					</td>
 
 					<td><input style="width:90%; height:100%; boder:2px solid #38A7BB;" placeholder="자유롭게 작성하되 욕설 및 상대방에게 불쾌감을 줄 수 있는 단어는 금지합니다.(100자 이내)" 
-					type="text" id="star_reply" maxlength="100" />
-						<button type="button" class="btn btn-template-outlined">작성완료</button>
+					type="text" id="review_content" maxlength="100" />
+						<button type="button" class="btn btn-template-outlined" id="reInsert">작성완료</button>
 					</td>			
 				</tr>
 				<tr>
@@ -149,7 +149,7 @@
 			</table>
 
 		
-			<table class="table table-stripped" id="reviews">
+			<table class="table table-stripped" >
 				<thead>
 					<tr style="font-size: 15px;">
 						<th width=15%>평점</th>
@@ -158,7 +158,7 @@
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="reviews">
 					<c:forEach var="review" items="${ rlist }" varStatus="status">
 						<!-- 평점 기준 별표시 출력 -->
 
@@ -227,6 +227,28 @@
 		//해당 위치에 마커를 표시
 		marker.setPosition(new kakao.maps.LatLng(ga, fa));
 		marker.setMap(map);
+	}
+	</script>
+	
+	<script>
+	$(document).ready(function(){
+
+		$('#reInsert').click(function(event){
+			/* var params = {
+					'user_id' :,
+					'content' : $('#review_content').val(),
+					'score' : $("input[name=star-input]:checked").val(),
+					'hospital_id' : "${hospital.id}",
+			}; */
+			getReview("${hospital.id}");
+		});
+	});
+	
+	function getReview(id){
+		$('#reviews').empty();
+		alert(id);
+		alert($('#review_content').val());
+		
 	}
 	</script>
 
