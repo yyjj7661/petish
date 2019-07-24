@@ -1,15 +1,7 @@
 package com.community.petish.dog.missingboard.controller;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,14 +15,12 @@ import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
 import com.community.petish.dog.missingboard.service.DogLostPostService;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/dog/missingboard/*")
 @Controller
-//@RestController
-//@Log4j
-
+@Slf4j
 public class DogMissingboardController {
 
 	@Autowired
@@ -42,6 +32,28 @@ public class DogMissingboardController {
 
 		List<DogLostPostResponseListDTO> dtoList = service.getPostList();
 
+	    //dtoList
+		//System.out.println( dtoList.get(0).getCREATE_DATE() instanceof java.util.Date );
+	    
+		/*
+		 * SimpleDateFormat recvSimpleFormat = new
+		 * SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		 * //SimpleDateFormat tranSimpleFormat = new
+		 * SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH); SimpleDateFormat
+		 * tranSimpleFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.ENGLISH);
+		 * 
+		 * for(int i=0; i<dtoList.size(); i++) { String textDate =
+		 * dtoList.get(i).getCREATE_DATE().toString(); String strDate = null;
+		 * 
+		 * 
+		 * try { Date data = recvSimpleFormat.parse(textDate); //String -> Date strDate
+		 * = tranSimpleFormat.format(data); // Date -> String
+		 * 
+		 * //dtoList.get(i).setCREATE_DATE(strDate);
+		 * 
+		 * } catch (ParseException e) { e.printStackTrace(); } }
+		 */
+	   
 		model.addAttribute("dtoList", dtoList);
 
 		return "petish/dog/missingboard/list";
@@ -50,13 +62,14 @@ public class DogMissingboardController {
 	// 게시글 조회
 	@RequestMapping("/detail/{id}")
 	public String dogMissingBoardDetail(@PathVariable Long id, Model model) {
-
-		DogLostPostResponseDetailDTO dto = service.getPostDetail(id);
-
+		//조회 수 갱신
+		service.updateViewCount(id);
+		//조회
+		DogLostPostResponseDetailDTO dto = service.getPostDetail(id);		
+		
 		model.addAttribute("dto", dto);
 
 		return "petish/dog/missingboard/detail";
-
 	}
 
 	// 게시글 입력 폼
@@ -67,8 +80,10 @@ public class DogMissingboardController {
 	}
 
 	// 게시글 입력
+	/*
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String Register(DogLostPostRequestWriteDTO dto, HttpServletRequest request, Model model,
+	
+	public String register(DogLostPostRequestWriteDTO dto, HttpServletRequest request, Model model,
 			RedirectAttributes rttr) {
 
 		int maxSize = 5 * 1024 * 1024;
@@ -78,7 +93,6 @@ public class DogMissingboardController {
 		int res = 0; // 결과 저장
 
 		try {
-
 			MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8",
 					new DefaultFileRenamePolicy());
 			Enumeration<String> files = multi.getFileNames();
@@ -98,7 +112,7 @@ public class DogMissingboardController {
 			}
 
 			SimpleDateFormat transformat = new SimpleDateFormat("yyyy/MM/dd HH:mm"); // 변환할 Date 형식
-			System.out.println("날짜 : " + multi.getParameter("DOG_LOST_DATE"));
+			log.info("날짜 : " + multi.getParameter("DOG_LOST_DATE"));
 
 			// dto.setID(Integer.parseInt(multi.getParameter("ID")));
 			dto.setUSER_ID(Integer.parseInt(multi.getParameter("USER_ID")));
@@ -122,20 +136,21 @@ public class DogMissingboardController {
 
 			model.addAttribute("dto", dto);
 
-			System.out.println("Result : " + res);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		if (res == 1) {
+			log.info("입력 성공");
 			rttr.addFlashAttribute("msg", "success");
 			return "redirect:/dog/missingboard/list";
 		} else {
+			log.info("입력 실패");
 			rttr.addFlashAttribute("msg", "fail");
 			return "redirect:/dog/missingboard/list";
 		}
 	}
+	*/
 
 	// 개시글 수정 폼
 	@RequestMapping(value="/modifyForm/{id}")
@@ -152,8 +167,17 @@ public class DogMissingboardController {
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String dogMissingBoardModify(DogLostPostRequestWriteDTO dto) {
 
-		service.modify(dto);
+		int result = service.modify(dto);
 
+		if(result == 1) {
+			log.info("수정 성공");			
+			//수정한 페이지 조회 화면으로 (수정하기)
+			
+		}
+		else {
+			log.info("수정 실패");
+		}
+		
 		return "redirect:/dog/missingboard/list";
 	}
 
@@ -164,13 +188,13 @@ public class DogMissingboardController {
 		int result = service.delete(id);
 
 		if (result == 1) {
+			log.info("삭제 성공");
 			rttr.addFlashAttribute("delete_msg", "success");
 		}
-
 		else {
+			log.info("삭제 실패");
 			rttr.addFlashAttribute("delete_msg", "failure");
 		}
-
 		return "redirect:/dog/missingboard/list";
 	}
 
