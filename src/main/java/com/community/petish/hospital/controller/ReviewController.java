@@ -37,8 +37,8 @@ public class ReviewController {
 		PageDTO paging = new PageDTO(cri, total, isReview);
 		rlist = reviewService.getReviewWithPaging(cri);
 		
-		System.out.println("list="+rlist);
-		System.out.println("paging="+paging);
+//		System.out.println("list="+rlist);
+//		System.out.println("paging="+paging);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("paging", paging);
 		result.put("rlist", rlist);
@@ -48,9 +48,6 @@ public class ReviewController {
 	
 	@PostMapping(produces="application/json;charset=UTF-8")
 	public Map<String, Object> insertReview(@RequestBody ReviewVO vo){
-		System.out.println("score="+vo.getScore());
-		System.out.println("content="+vo.getContent());
-		System.out.println("hospital_id="+vo.getHospital_id());
 		
 		Map<String, Object> retVal = new HashMap<String, Object>();
 		try {

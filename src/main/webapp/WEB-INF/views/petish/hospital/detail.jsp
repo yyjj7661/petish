@@ -257,6 +257,7 @@
 		getReview("${hospital.id}",1);
 		
 		$('#reInsert').click(function(event){
+			
 			var user_id = <%=session.getAttribute("id")%>;
 			if(user_id ==null){
 				user_id = 4;
@@ -276,7 +277,7 @@
 				success: function(retVal){
 					if(retVal.res == "OK"){
 						//데이타 성공일때 이벤트 작성
-						getReview("${hospital.id}");
+						getReview("${hospital.id}",1);
 						//초기화
 						$('#review_content').val('');
 					
@@ -292,7 +293,10 @@
 
 				}
 			}); 
-			
+			//별점라디오버튼 초기화
+			$("input[name=star-input]:radio").prop("checked",false);
+			//평점 0점으로 초기화
+			$(".star-input").find("output>b").text(0);
 			
 		});
 	});
