@@ -1,13 +1,15 @@
 package com.community.petish.dog.missingboard.domain;
 
-import java.util.Date;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class testVO {
+@AllArgsConstructor
+@NoArgsConstructor
+public class TestVO {
 	
-	private int ID; //게시글 번호
+	private Long ID; //게시글 번호
 
 	private String DOG_NAME; //강아지 이름
 	private int DOG_AGE; //강아지 나이
@@ -16,3 +18,4 @@ public class testVO {
 	private String DOG_IMAGE; //강아지 사진
 	
 }
+
