@@ -18,6 +18,9 @@ public interface DogLostPostService {
 	// 게시글 조회
 	DogLostPostResponseDetailDTO getPostDetail(Long id);
 
+	// 게시글 조회 수 갱신
+	int updateViewCount(Long id);
+		
 	// 게시글 작성
 	//void register(DogLostPostRequestDTO dto);
 	int register(DogLostPostRequestWriteDTO dto);

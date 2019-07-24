@@ -3,41 +3,54 @@ package com.community.petish.dog.missingboard.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.community.petish.dog.missingboard.domain.testVO;
-import com.community.petish.dog.missingboard.mapper.testMapper;
+import com.community.petish.dog.missingboard.domain.TestVO;
+import com.community.petish.dog.missingboard.mapper.TestMapper;
 
-public class testServiceImpl implements testService {
+import lombok.AllArgsConstructor;
+
+
+@Service
+@AllArgsConstructor
+
+public class TestServiceImpl implements TestService {
 	
 	@Autowired
-	private testMapper mapper;
+	private TestMapper mapper;
 	
-	//게시글 수
+		//게시글 수
+		@Override
 		public int getPostCount() {
 			return mapper.getCount();
 		};
 		
 		//게시글 리스트
-		public List<testVO> getPostList(){
+		@Override
+		public List<TestVO> getPostList(){
 			return mapper.getPostList();
 		}
 		
 		//게시글 조회
-		public testVO getPostDetail(int num) {
+		@Override
+		public TestVO getPostDetail(int num) {
 			return mapper.getPostDetail(num);
 		}
 		
 		//게시글  작성
-		public int insertTest(testVO vo) {
+		@Override
+		public int insertTest(TestVO vo) {
 			return mapper.insertTest(vo);
 		}
 		
 		//게시글 수정
-		public int updateTest(testVO vo) {
+		@Override
+		public int updateTest(TestVO vo) {
 			return mapper.updateTest(vo);
 		}
 		
 		//게시글 삭제
+		@Override
 		public int deleteTest(int num) {
 			return mapper.deleteTest(num);
 		}

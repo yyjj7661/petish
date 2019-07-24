@@ -33,6 +33,11 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	public DogLostPostResponseDetailDTO getPostDetail(Long id) {
 		return mapper.getPostDetail(id);
 	}
+	
+	// 게시글 조회 수 갱신
+	public int updateViewCount(Long id) {
+		return mapper.updateViewCount(id);
+	}
 
 	// 게시글 작성
 	@Override
@@ -44,6 +49,9 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	// 게시글 수정
 	@Override
 	public int modify(DogLostPostRequestWriteDTO dto) {
+		System.out.println("[Service] 수정 dto : " + dto.getDog_name());
+		System.out.println("[Service] 수정 dto : " + dto.getDog_description());
+		
 		return mapper.updatePost(dto);
 	}
 	
