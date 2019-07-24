@@ -287,7 +287,6 @@
 	function gethospital(addr, isEmer,page){
 		//마커의 정보창 닫아주기
 		infowindow.close();
-		
 		$('#hospList').empty();
 		$('#paging').empty();
 		 $.ajax({
@@ -338,7 +337,7 @@
 						output += '<div data-animate="fadeInUp" class="col-md-3">';
 						output += '<div class="team-member">';
 						output += '<div class="image">';
-						output += '<a href="'+item.hospital_name+'">';
+						output += '<a href="/hospital/'+item.id+'"name="link">';
 						output += '<img src="/resources/img/hospital/'+item.hospital_img+'" alt="" class="img-fluid rounded-circle" style="height: 250px;"></a>';
 						output += '</div>';
 						output += '<h4 style="font-size: 25px;">';

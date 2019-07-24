@@ -21,6 +21,30 @@
  		select * from hospital_review_tb_test where hospital_id =#{id} order by id desc
  	</select>
  	
+ 	<select id="getTotalCount" resultType="int">
+ 		select count(*) from hospital_review_tb_test where hospital_id =#{id}
+ 	</select>
+ 	
+ 	<select id="getReviewWithPaging" resultMap="reviewMap">
+ 		<![CDATA[
+ 			select *
+			from
+       			(
+       			select rownum rn, id, content, score, user_id, hospital_id   
+        		from
+              		 (
+              		 select
+ 							 id, content, score, user_id, hospital_id
+ 					 from
+ 							hospital_review_tb_test
+ 					 where hospital_id =#{hospital_id} order by id desc
+ 					 )
+          		  where rownum<=#{pageNum}*#{amount}
+       			 )
+       		 where rn >(#{pageNum}-1)*#{amount}
+ 		]]>
+ 	</select>
+ 	
  	<insert id="insertReview" parameterType="com.community.petish.hospital.domain.ReviewVO">
  		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
  			select reviewId_seq_test.nextval from dual

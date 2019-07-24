@@ -167,6 +167,12 @@
 				
 				</tbody>
 			</table>
+			<!-- 번호   -->
+			<div aria-label="Page navigation" class="d-flex justify-content-center">
+				<ul class="pagination" id="paging">
+												
+           		</ul>
+       		</div>
 		</div>
 	</div>
 
@@ -204,7 +210,7 @@
 	//원래 게시글의 모임장소 주소를 좌표로 바꿔주고 지도에 표시해주는 함수//********************************************************
 	var callback = function(result, status) {
 	    if (status === kakao.maps.services.Status.OK) {
-	        setMarker(result[0].x, result[0].y);
+	        setMarker(result[0].x, result[0].y,"${hospital.hospital_name }");
 	    }
 	};
 	// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
@@ -213,7 +219,7 @@
 	var marker = new kakao.maps.Marker();
 
 	//검색 하고 마커 찍어주는 함수
-	function setMarker(fa, ga){
+	function setMarker(fa, ga, name){
 		//검색창에서 클릭한 좌표로 이동된 지도를 다시 생성
 		mapOption = {
 		        center: new kakao.maps.LatLng(ga, fa), // 지도의 중심좌표
@@ -224,13 +230,31 @@
 		//해당 위치에 마커를 표시
 		marker.setPosition(new kakao.maps.LatLng(ga, fa));
 		marker.setMap(map);
+		kakao.maps.event.addListener(marker, 'click',function(){
+			clickInfowindow(map,marker,name,fa,ga);
+		});
+	}
+	
+	function clickInfowindow(map, marker, name,fa,ga){
+		var iwContent = '<div style="padding:5px;">'+name+' <br><a href="https://map.kakao.com/link/map/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
+		 infowindow= new kakao.maps.InfoWindow({
+		        position : new kakao.maps.LatLng(ga, fa), 
+		        content : iwContent 
+		    });
+		    
+		    infowindow.open(map,marker);
+	}
+	
+	//페이지 버튼 클릭 이벤트
+	function pageClick(page){
+		getReview("${hospital.id}",page);
 	}
 	</script>
 	
 	<script>
 	$(document).ready(function(){
 		
-		getReview("${hospital.id}");
+		getReview("${hospital.id}",1);
 		
 		$('#reInsert').click(function(event){
 			var user_id = <%=session.getAttribute("id")%>;
@@ -273,16 +297,17 @@
 		});
 	});
 	
-	function getReview(id){
+	function getReview(id,page){
 		$('#reviews').empty();
-		
+		$('#paging').empty();
 		$.ajax({
-			url:'/hospital/review/'+id,
+			url:'/hospital/review/'+id+'/'+page,
 			type:'GET',
 			contentType:'application/json; charset=UTF-8',
 			dataType:'json',
 			success:function(data){
-				$.each(data, function(index, item){
+				
+				$.each(data.rlist, function(index, item){
 					var output='';
 					output += '<tr style="font-size: 15px;">';
 					output += '<td>';
@@ -297,8 +322,31 @@
 					
 					$('#reviews').append(output);
 				});
+				//페이징 처리 반복문
+				for(var i = data.paging.startPage; i<=data.paging.endPage; i++){
+					var output='';
+					if(i == data.paging.startPage){
+						output += '<li class="page-item"><a class="page-link" onclick="pageClick('+1+')"> <i class="fa fa-angle-double-left"></i></a></li>';
+						if(page != 1){
+							output += '<li class="page-item"><a class="page-link" onclick="pageClick('+(page-1)+')"> <i class="fa fa-angle-left"></i></a></li>';
+						}
+					}
+					output += '<li class="page-item"id="page'+i+'"><a class="page-link" onclick="pageClick('+i+');">'+i+'</a></li>';
+					if(i == data.paging.endPage){
+						if(page != data.paging.realEnd){
+							output += '<li class="page-item"><a class="page-link" onclick="pageClick('+(page+1)+')"> <i class="fa fa-angle-right"></i></a></li>';
+						}
+						output += '<li class="page-item"><a class="page-link" onclick="pageClick('+data.paging.realEnd+')"> <i class="fa fa-angle-double-right"></i></a></li>';
+					}
+					$('#paging').append(output);
+					$("#page"+page).attr('class','page-item active');
+				}
+			},
+			error:function(){
+				alert("ajax 통신 실패!!!");
 			}
 		});
+		
 		
 	}
 	</script>

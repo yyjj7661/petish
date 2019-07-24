@@ -11,6 +11,7 @@ public class Criteria {
 	private int pageNum;
 	private int amount;
 	private String hospital_addr;
+	private Long hospital_id;
 	public Criteria() {
 		this(1,4);
 	}

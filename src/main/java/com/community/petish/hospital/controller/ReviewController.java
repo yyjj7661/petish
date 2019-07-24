@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.community.petish.hospital.domain.Criteria;
+import com.community.petish.hospital.domain.PageDTO;
 import com.community.petish.hospital.domain.ReviewVO;
 import com.community.petish.hospital.service.ReviewService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 @RequestMapping("/hospital/review")
 public class ReviewController {
@@ -22,19 +22,27 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	@RequestMapping(value="/{id}", produces="application/json;charset=UTF-8")
-	public String getReview(@PathVariable("id") Long id) {
-		String str = "";
+	@RequestMapping(value="/{id}/{page}", produces="application/json;charset=UTF-8")
+	public Map<String, Object> getReview(@PathVariable("id") Long id,@PathVariable("page")int page) {
 		List<ReviewVO> rlist;
 		rlist = reviewService.getHospitalReview(id);
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			str = mapper.writeValueAsString(rlist);
-			System.out.println(str);
-		}catch(Exception e) {
-			System.out.println("first() mapper : "+ e.getMessage());
-		}
-		return str;
+		boolean isReview = true;
+		//페이징 설정위해 만드는 객체
+		Criteria cri = new Criteria();
+		cri.setHospital_id(id);
+		cri.setPageNum(page);
+		cri.setAmount(10);
+		
+		int total = reviewService.getTotalCount(id);
+		PageDTO paging = new PageDTO(cri, total, isReview);
+		rlist = reviewService.getReviewWithPaging(cri);
+		
+		System.out.println("list="+rlist);
+		System.out.println("paging="+paging);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("paging", paging);
+		result.put("rlist", rlist);
+		return result;
 		
 	}
 	

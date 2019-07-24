@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.ReviewVO;
 import com.community.petish.hospital.mapper.ReviewMapper;
 
@@ -26,6 +27,20 @@ public class ReviewServiceImpl implements ReviewService{
 
 		int retVal= reviewMapper.insertReview(vo);
 		return retVal;
+	}
+
+	@Override
+	public List<ReviewVO> getReviewWithPaging(Criteria cri) {
+		List<ReviewVO> rlist = null; 
+		rlist=reviewMapper.getReviewWithPaging(cri);
+		System.out.println(rlist);
+		return rlist;
+	}
+
+	@Override
+	public int getTotalCount(Long id) {
+		// TODO Auto-generated method stub
+		return reviewMapper.getTotalCount(id);
 	}
 	
 	
