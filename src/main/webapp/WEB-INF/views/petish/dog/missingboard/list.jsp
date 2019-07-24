@@ -15,8 +15,8 @@
 	//게시판 아이디 4번
 	session.setAttribute("boardId", "4");
 
-	//유저 아이디 7번
-	session.setAttribute("userId", "7");
+	//유저 아이디 1번
+	session.setAttribute("userId", "1");
 %>
 
 <!DOCTYPE html>
@@ -75,60 +75,6 @@
 <link href="/resources/css/dog/missingboard/list.css" rel="stylesheet">
 <script src="/resources/js/dog/missingboard/post.js"></script>
 
-<!-- <script>
-$(document).ready(function(){
-	
-	varPostUL = $('.post');
-	
-	function showList(){
-		console.log("게시글 리스트");
-		
-		service.getPostList(function(postCnt, list){
-			console.log("postCnt : " + postCnt);
-			console.log("list : " + list);
-			console.log(list);
-			
-			var str = "";
-			
-			if(list == null || list.length==0){
-				return;
-			}
-			
-			for(var i=0, len=list.length || 0; i<len; i++){
-				str += "<tr><td><span class="badge badge-info">발견 완료</span></td>"
-				str += "<td><img src='/resources/img/dog.jpg' class='img-fluid'></td>"
-				str += "<td colspan='10'>" + "[" +list[i].regionId+ "] "
-				str += list[i].speciesId+ " / " +list[i].dogGender+ " / " +list[i].dogAge
-				str += "<div style='padding:1rem'></div><span class='badge badge-secondary'>"
-				str += "댓글수<span></td>"
-				str += "<td>" +list[i].userId + "</td>"
-				str += "<td class='test'>"+list[i].createDate+"+</td>"
-				str += "<td class='test'>"+list[i].viewCount+"</td>"
-			}
-			
-			PostUL.html(str);
-			
-			showPostPage(postCnt);
-			
-		});
-	}
-	
-	/*
-	<tr>
-		<td><span class="badge badge-info">발견 완료</span></td>
-		<td><img src="/resources/img/detailsquare.jpg" alt="..."
-			class="img-fluid"></td>
-		<td colspan="10">[인천 서구] 페키니즈 / 남 / 2 &nbsp &nbsp <span
-			class="badge badge-secondary">40</span></td>
-		<td>Pet</td>
-		<td class=test>2019.07.01</td>
-		<td class=test>11</td>
-	</tr>
-	*/
-	
-});
-</script> -->
-
 </head>
 
 <body>
@@ -177,8 +123,8 @@ $(document).ready(function(){
 							for (int i = 0; i < dtoList.size(); i++) {
 								DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);
 
-								String address = dto.getDOG_LOST_ADDRESS();
-
+								String address = dto.getDog_lost_address();
+								
 								String[] array = address.split(" ");
 
 								String addr1 = null;
@@ -194,7 +140,7 @@ $(document).ready(function(){
 						%>
 						<tr>
 							<%
-								if (dto.getFOUND() == 0) {
+								if (dto.getFound() == 0) {
 							%>
 							<td><span class="badge badge-danger">미발견</span></td>
 							<%
@@ -204,18 +150,18 @@ $(document).ready(function(){
 							<%
 								}
 							%>
-
-							<td><img src="<%=dto.getDOG_IMAGE()%>" alt="..."
+							
+							<td><img src="<%=dto.getDog_image()%>" alt="..."
 								class="img-fluid"
 								style="width: 30px !important; height: 30px !important;"></td>
 							<td colspan="10"><a
-								href="/dog/missingboard/detail/<%=dto.getID()%>">[<%=addrSplit%>]
-									<%=dto.getDOG_SPECIES()%> / <%=dto.getDOG_GENDER()%> / <%=dto.getDOG_AGE()%></a>
+								href="/dog/missingboard/detail/<%=dto.getId()%>">[<%=addrSplit%>]
+									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
 								<a style="padding: 0.15rem"></a> <span
 								class="badge badge-secondary">5</span></td>
 							<td>
 								<div class="nav navbar-nav ml-auto">
-									<a href="#" data-toggle="dropdown" class="dropdown"><%=dto.getNICKNAME() %></a>
+									<a href="#" data-toggle="dropdown" class="dropdown"><%=dto.getNickname() %></a>
 									<div class="dropdown-menu">
 										<div class="dropdown">
 											<a href="/mypage/member/detail" class="nav-link">게시글보기</a>
@@ -228,9 +174,9 @@ $(document).ready(function(){
 
 							</td>
 							<td class=test>
-							<fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getCREATE_DATE() %>"/>
+							<fmt:formatDate pattern="yyyy-MM-dd" value="<%=dto.getCreate_date() %>"/>
 							</td>
-							<td class=test><%=dto.getVIEW_COUNT()%></td>
+							<td class=test><%=dto.getView_count()%></td>
 						</tr>
 						<%
 							}
