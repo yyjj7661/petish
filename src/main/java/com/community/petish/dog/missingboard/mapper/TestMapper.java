@@ -2,24 +2,24 @@ package com.community.petish.dog.missingboard.mapper;
 
 import java.util.List;
 
-import com.community.petish.dog.missingboard.domain.testVO;
+import com.community.petish.dog.missingboard.domain.TestVO;
 
-public interface testMapper {
+public interface TestMapper {
 	
 	//게시글 수
 	int getCount();
 	
 	//게시글 리스트
-	List<testVO> getPostList();
+	List<TestVO> getPostList();
 	
 	//게시글 조회
-	testVO getPostDetail(int num);
+	TestVO getPostDetail(int num);
 	
 	//게시글  작성
-	int insertTest(testVO vo);
+	int insertTest(TestVO vo);
 	
 	//게시글 수정
-	int updateTest(testVO vo);
+	int updateTest(TestVO vo);
 	
 	//게시글 삭제
 	int deleteTest(int num);

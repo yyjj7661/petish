@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.community.petish.dog.missingboard.mapper.testMapper">
+<mapper namespace="com.community.petish.dog.missingboard.mapper.TestMapper">
 
-<resultMap type="com.community.petish.dog.missingboard.domain.testVO" id="testVO">
+<resultMap type="com.community.petish.dog.missingboard.domain.TestVO" id="TestVO">
 	<result property="ID" column="ID" />
 	<result property="DOG_NAME" column="DOG_NAME" />
 	<result property="DOG_AGE" column="DOG_AGE" />	
 	<result property="DOG_GENDER" column="DOG_GENDER" />
-	<result property="DOG_DESCRPTION" column="DOG_DESCRIPTION" />
+	<result property="DOG_DESCRIPTION" column="DOG_DESCRIPTION" />
 	<result property="DOG_IMAGE" column="DOG_IMAGE" />
 </resultMap>
 
@@ -18,20 +18,20 @@
 </select>
 
 <!-- 게시글 리스트 -->
-<select id="getPostList" resultMap="testVO">
+<select id="getPostList" resultMap="TestVO">
 	SELECT *
 	FROM dog_lost_test
 </select>
 
 <!-- 게시글 조회 -->
-<select id="getPostDetail" parameterType="Integer" resultMap="testVO">
+<select id="getPostDetail" parameterType="Integer" resultMap="TestVO">
 	SELECT *
 	FROM dog_lost_test
 	WHERE ID=#{ID}
 </select>
 
 <!-- 게시글 작성 -->
-<insert id="insertTest" parameterType="com.community.petish.dog.missingboard.domain.testVO">
+<insert id="insertTest" parameterType="com.community.petish.dog.missingboard.domain.TestVO">
 insert into dog_lost_test
 values(
 #{ID},
@@ -44,7 +44,7 @@ values(
 </insert>
 
 <!-- 게시글 수정 -->
-<update id="updateTest" parameterType="com.community.petish.dog.missingboard.domain.testVO">
+<update id="updateTest" parameterType="com.community.petish.dog.missingboard.domain.TestVO">
 update dog_lost_test
 set
 DOG_NAME=#{DOG_NAME},
@@ -57,7 +57,7 @@ where ID=#{ID}
 
 <!-- 게시글 삭제 -->
 <delete id="deleteTest" parameterType="Integer">
-DELETE FROM dog_lost_test WHERER ID=#{ID}
+DELETE FROM dog_lost_test WHERE ID=#{ID}
 </delete>
 	
 </mapper>
