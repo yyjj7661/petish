@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 
 <%@ page import="com.community.petish.dog.missingboard.dto.*"%>
 <%
 	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO) request.getAttribute("dto");
+	
+	//폐이지 번호
+	String pageNum = session.getAttribute("pageNum").toString();
 
-	//게시판 아이디
+	 //게시판 아이디
 	String strBoard = session.getAttribute("boardId").toString();
 	Long boardId = Long.parseLong(strBoard);
 	System.out.println("게시판 아이디 : " + boardId);
@@ -434,8 +439,8 @@ label {
 					<a href="/dog/missingboard/writeForm"> 글쓰기 </a>
 				</button>
 				<button type="submit" class="btn btn-template-outlined">
-					<i class="fa fa-align-justify"></i> <a
-						href="/dog/missingboard/list"> 목록 </a>
+					<i class="fa fa-align-justify"></i>
+					<a href="<c:url value='/dog/missingboard/${pageNum}'/>"> 목록 </a>
 				</button>
 
 				<!-- 글 제목 -->
@@ -443,7 +448,7 @@ label {
 
 					<%
 						if (dto.getFound() == 0) {
-					%>
+					%>`
 					<span class="badge badge-danger">미발견</span>
 					<%
 						} else {

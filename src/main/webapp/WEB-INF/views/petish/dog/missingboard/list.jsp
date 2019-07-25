@@ -11,10 +11,12 @@
 
 <%
 	List<DogLostPostResponseListDTO> dtoList = (List<DogLostPostResponseListDTO>) request.getAttribute("dtoList");
- 
-	int length = dtoList.size();
-	System.out.println("[list.jsp]Length : " + length);
 
+	//페이지  번호
+	DogLostPostPageDTO pageDTO = (DogLostPostPageDTO)request.getAttribute("pageMaker");
+	int pageNum = pageDTO.getCri().getPageNum();
+	session.setAttribute("pageNum", pageNum);
+	
 	//게시판 아이디 4번
 	session.setAttribute("boardId", "4");
 	//유저 아이디 1번
@@ -84,6 +86,10 @@
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
 
+		<form action="/dog/missingboard/<%=pageNum %>" method="post">
+			<input type="hidden" value=<%=pageNum %>>
+		</form>
+
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
@@ -119,8 +125,7 @@
 							<th width="130px" class="test border-top-0">작성일</th>
 							<th width="100px" class="test border-top-0">조회</th>
 						</tr>
-
-
+						
 						<%
 						if(dtoList.size() != 0){
 							for (int i = 0; i < dtoList.size() ; i++) {
