@@ -1,13 +1,14 @@
 package com.community.petish.mypet.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/mypet/*")
+@RequestMapping("/mypet")
 public class MypetController {
-
-	@RequestMapping("/list")
+	
+	@GetMapping
 	public String mypetList() {
 		return "petish/mypet/list";
 	}
