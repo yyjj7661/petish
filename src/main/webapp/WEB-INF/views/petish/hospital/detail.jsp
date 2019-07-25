@@ -46,7 +46,7 @@
 						<div class="col-md-6">
 							<div class="hospital-image">
 								<div class="image">
-									<img src="/resources/img/hospital/${hospital.hospital_img }" alt="" class="img-fluid">
+									<img src="/resources/img/hospital/${hospital.hospital_img }" alt="" class="img-fluid" style="height: 350px;">
 								</div>
 							</div>
 						</div>
