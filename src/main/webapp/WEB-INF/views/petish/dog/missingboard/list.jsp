@@ -11,10 +11,12 @@
 
 <%
 	List<DogLostPostResponseListDTO> dtoList = (List<DogLostPostResponseListDTO>) request.getAttribute("dtoList");
+ 
+	int length = dtoList.size();
+	System.out.println("[list.jsp]Length : " + length);
 
 	//게시판 아이디 4번
 	session.setAttribute("boardId", "4");
-
 	//유저 아이디 1번
 	session.setAttribute("userId", "1");
 %>
@@ -103,7 +105,7 @@
 			<div class="container">
 				<div style="text-align: right; margin: 1rem">
 					<button class="btn btn-template-outlined">
-						<a href="/dog/missingboard/writeForm"> 글쓰기 </a>
+						<a href="/dog/missingboard/writeForm"> 글쓰기 </a>						
 					</button>
 				</div>
 
@@ -120,7 +122,8 @@
 
 
 						<%
-							for (int i = 0; i < dtoList.size(); i++) {
+						if(dtoList.size() != 0){
+							for (int i = 0; i < dtoList.size() ; i++) {
 								DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);
 
 								String address = dto.getDog_lost_address();
@@ -129,11 +132,11 @@
 
 								String addr1 = null;
 								String addr2 = null;
-
-								if (array[0] != null)
+								
+								if (array.length >0 && array[0] != null)
 									addr1 = array[0];
 
-								if (array[1] != null)
+								if (array.length >0 && array[1] != null)
 									addr2 = array[1];
 
 								String addrSplit = addr1 + " " + addr2;
@@ -180,27 +183,55 @@
 						</tr>
 						<%
 							}
+						}
 						%>
 
 					</table>
+					
+					<!-- 페이징  -->			
+					<div aria-label="Page navigation example" class="d-flex justify-content-center">
+						<ul class="pagination">
+						<c:if test="${pageMaker.prev }">
+							<li class="page-item"><a href="${pageMaker.startPage-1 }" class="page-link">
+							<i class="fa fa-angle-double-legt"></i></a></li>
+						</c:if>
+						
+						<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+							<li class="page-item ${pageMaker.cri.pageNum == num ? "active" : ""}">
+							<a href="${num }" class="page-link">${num }</a></li>
+						</c:forEach>
+						
+						<c:if test="${pageMaker.next }">
+							<li class="page-item"><a href="${pageMaker.endPage+1 }" class="page-link">
+							<i class="fa fa-angle-double-right"></i></a></li>
+						</c:if>
+						</ul>
+					</div>
+					
 				</div>
 			</div>
 
-
+			<!-- 페이징 -->
+			<!-- 
 			<div aria-label="Page navigation example"S
 				class="d-flex justify-content-center">
 				<ul class="pagination">
-					<li class="page-item"><a href="#" class="page-link"> <i
-							class="fa fa-angle-double-left"></i></a></li>
+				
+					<li class="page-item"><a href="#" class="page-link">
+					<i class="fa fa-angle-double-left"></i></a></li>
+					
 					<li class="page-item active"><a href="#" class="page-link">1</a></li>
 					<li class="page-item"><a href="#" class="page-link">2</a></li>
 					<li class="page-item"><a href="#" class="page-link">3</a></li>
 					<li class="page-item"><a href="#" class="page-link">4</a></li>
 					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link"><i
-							class="fa fa-angle-double-right"></i></a></li>
+					
+					<li class="page-item"><a href="#" class="page-link">
+					<i class="fa fa-angle-double-right"></i></a></li>
+					
 				</ul>
-			</div>
+			</div> 
+			-->			
 
 			<div style="padding: 1rem"></div>
 
