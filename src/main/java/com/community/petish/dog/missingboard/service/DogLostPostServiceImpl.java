@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.community.petish.dog.missingboard.dto.Criteria;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
@@ -18,15 +19,28 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	
 	//게시글 수
 	@Override
-	public int getPostCount() {
-		return mapper.getPostCount();
+	public int getPostCount(Criteria cri) {
+		return mapper.getPostCount(cri);
 	}
 	
 	//게시글 리스트
 	@Override
-	public List<DogLostPostResponseListDTO> getPostList(){
-		return mapper.getDogLostList();
+	public List<DogLostPostResponseListDTO> getPostList(Criteria cri){
+		
+		System.out.println("[Service]Cri : " + cri);
+		
+		return mapper.getDogLostList(cri);
 	}
+	
+	//게시글 리스트(페이징)
+	/*
+	 * public List<DogLostPostResponseListDTO> getListWithPaging(Criteria cri){
+	 * 
+	 * System.out.println("[Service]Cri : " + cri);
+	 * 
+	 * 
+	 * return mapper.getListWithPaging(cri); }
+	 */
 
 	// 게시글 조회
 	@Override
