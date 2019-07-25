@@ -37,7 +37,7 @@
 								<h2 class="text-uppercase">PET HOSPITAL</h2>
 							</div>
 							<div class="col-lg-8 text-right p-3" style="display:inline-block;">
-										<a href="/dog/freeboard/list" class="btn btn-template-outlined"
+										<a onclick="javascript:history.back();" class="btn btn-template-outlined"
 											style="margin-top: 10px;">목록</a>
 							</div>
 						</div>
@@ -127,33 +127,7 @@
 			<div class="fa fa-comments fa-3x" aria-hidden="true" id="subject">
 				<span class="menu1" style="font-size: 23px;">한 줄로 말하기</span>
 			</div>
-			
-			<table border="0" width="100%" height="150%">
-				<tr>
-					<td width="10%" bgcolor="#f5f5f5" id=superbee>
 
-					<span class="star-input">
-						  <span class="input">
-						    <input style="visibility: hidden;" type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
-						    <input style="visibility: hidden;" type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
-						    <input style="visibility: hidden;" type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
-						    <input style="visibility: hidden;" type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
-						    <input style="visibility: hidden;" type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
-						  </span>
-	  					<output style="line-height: 50px; vertical-align: middle;" for="star-input"><b>0</b>점</output>
-					</span>
-					</td>
-
-					<td><input style="width:90%; height:100%; boder:2px solid #38A7BB;" placeholder="자유롭게 작성하되 욕설 및 상대방에게 불쾌감을 줄 수 있는 단어는 금지합니다.(100자 이내)" 
-					type="text" id="review_content" maxlength="100" />
-						<button type="button" class="btn btn-template-outlined" id="reInsert">작성완료</button>
-					</td>			
-				</tr>
-				<tr>
-				</tr>
-			</table>
-
-		
 			<table class="table table-stripped" >
 				<thead>
 					<tr style="font-size: 15px;">
@@ -167,6 +141,24 @@
 				
 				</tbody>
 			</table>
+			<div>
+					<span class="star-input">
+						  <span class="input">
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+						    <input style="visibility: hidden;" type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+						  </span>
+	  					<output style="line-height: 50px; vertical-align: middle;" for="star-input"><b>0</b>점</output>
+					</span>
+					
+
+					<textarea style="width:90%; height:100%; boder:2px solid #38A7BB;" placeholder="자유롭게 작성하되 욕설 및 상대방에게 불쾌감을 줄 수 있는 단어는 금지합니다.(100자 이내)" 
+					 id="review_content" maxlength="100"></textarea>
+						<button type="button" class="btn btn-template-outlined" id="reInsert" style="margin-bottom: 25px;">작성완료</button>
+			
+			</div>
 			<!-- 번호   -->
 			<div aria-label="Page navigation" class="d-flex justify-content-center">
 				<ul class="pagination" id="paging">
@@ -280,7 +272,8 @@
 						getReview("${hospital.id}",1);
 						//초기화
 						$('#review_content').val('');
-					
+						//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
+						location.reload();
 						
 					}
 					else{
@@ -298,7 +291,10 @@
 			//평점 0점으로 초기화
 			$(".star-input").find("output>b").text(0);
 			
+			
+			
 		});
+		
 	});
 	
 	function getReview(id,page){
