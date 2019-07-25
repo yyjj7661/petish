@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.community.petish.dog.missingboard.dto.Criteria;
+import com.community.petish.dog.missingboard.dto.DogLostPostPageDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
@@ -25,39 +27,59 @@ public class DogMissingboardController {
 
 	@Autowired
 	private DogLostPostService service;
-
+		
 	// 게시글 리스트
-	@RequestMapping("/list")
-	public String dogMissingBoardList(Model model) throws ParseException {
+	//@RequestMapping("/list")
+	public String dogMissingBoardList(Criteria cri, Model model) throws ParseException {
 
-		List<DogLostPostResponseListDTO> dtoList = service.getPostList();
-
-	    //dtoList
-		//System.out.println( dtoList.get(0).getCREATE_DATE() instanceof java.util.Date );
-	    
-		/*
-		 * SimpleDateFormat recvSimpleFormat = new
-		 * SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-		 * //SimpleDateFormat tranSimpleFormat = new
-		 * SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH); SimpleDateFormat
-		 * tranSimpleFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.ENGLISH);
-		 * 
-		 * for(int i=0; i<dtoList.size(); i++) { String textDate =
-		 * dtoList.get(i).getCREATE_DATE().toString(); String strDate = null;
-		 * 
-		 * 
-		 * try { Date data = recvSimpleFormat.parse(textDate); //String -> Date strDate
-		 * = tranSimpleFormat.format(data); // Date -> String
-		 * 
-		 * //dtoList.get(i).setCREATE_DATE(strDate);
-		 * 
-		 * } catch (ParseException e) { e.printStackTrace(); } }
-		 */
-	   
+		List<DogLostPostResponseListDTO> dtoList = service.getPostList(cri);
+		
+		log.info("list : " + cri);
 		model.addAttribute("dtoList", dtoList);
-
+		
+		int total = service.getPostCount(cri); //전체 게시글 수
+		System.out.println("Total : " + total);
+		System.out.println("cri.amount : " + cri.getAmount());
+		System.out.println("cri.pageNum : " + cri.getPageNum());		
+		System.out.println("dtoList 길이" + dtoList.size());		
+		
+		model.addAttribute("pageMaker",  new DogLostPostPageDTO(cri, total));
+		
 		return "petish/dog/missingboard/list";
 	}
+	
+	
+	@RequestMapping("/{num}")
+	public String dogMissingBoardListPaging(@PathVariable int num, Criteria cri, Model model) throws ParseException {
+
+		cri.setPageNum(num);
+		log.info("num : " + num);
+		List<DogLostPostResponseListDTO> dtoList = service.getPostList(cri);		
+		
+		log.info("pageNum : " + cri.getPageNum());
+		model.addAttribute("dtoList", dtoList);
+		
+		int total = service.getPostCount(cri); //전체 게시글 수
+		System.out.println("Total : " + total);
+		System.out.println("cri.amount : " + cri.getAmount());
+		System.out.println("cri.pageNum : " + cri.getPageNum());		
+		System.out.println("dtoList 길이" + dtoList.size());		
+		
+		model.addAttribute("pageMaker",  new DogLostPostPageDTO(cri, total));
+		
+		return "petish/dog/missingboard/list";
+	}
+	
+	//게시글 리스트(페이징)
+	/*
+	 * @RequestMapping("/list/page") public void list(Criteria cri, Model model) {
+	 * log.info("list : " + cri);
+	 * 
+	 * model.addAttribute("list", service.getListWithPaging(cri));
+	 * 
+	 * //전체 데이터 수 임의로 처리(123) model.addAttribute("pageMaker", new
+	 * DogLostPostPageDTO(cri, 5)); }
+	 */		
 
 	// 게시글 조회
 	@RequestMapping("/detail/{id}")
@@ -76,7 +98,6 @@ public class DogMissingboardController {
 	@RequestMapping("/writeForm")
 	public String dogMissingBoardWriteForm() {
 		return "petish/dog/missingboard/write_form";
-
 	}
 
 	// 게시글 입력
