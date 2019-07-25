@@ -20,6 +20,9 @@ import com.community.petish.mypage.dto.MessageRequestDTO;
 import com.community.petish.mypage.dto.MessageResponseDTO;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.QuestionService;
+import com.community.petish.mypage.service.UserService;
+import com.community.petish.mypage.service.UserServiceImpl;
+import com.community.petish.user.dto.UserModifyPictureDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -32,6 +35,9 @@ public class MypageRESTController {
 
 	@Autowired
 	private MessageService messageServiceImpl;
+	
+	@Autowired
+	private UserService userServiceImpl;
 
 	// 받은 메세지 세부내용 보기
 	@GetMapping(value = "/message/received/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
@@ -80,4 +86,18 @@ public class MypageRESTController {
 			? new ResponseEntity<>("success", HttpStatus.OK)
 			: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);	
 	}
+	
+	//프로필 사진 수정	
+	@RequestMapping(method = {RequestMethod.PUT,
+			RequestMethod.PATCH }, value="/modifyPicture/{id}/{picture}", consumes = "application/json", produces = {
+					MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> modifyPicture(UserModifyPictureDTO dto, 
+			@PathVariable("id") long id, @PathVariable("picture") String picture){
+		dto.setId(id);
+		dto.setPicture(picture);
+		
+		return userServiceImpl.modifyPicture(dto) == 1? new ResponseEntity<>("success", HttpStatus.OK)
+				:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+			
 }

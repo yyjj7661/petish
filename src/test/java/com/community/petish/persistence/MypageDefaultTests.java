@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.community.petish.mypage.dto.Criteria;
 import com.community.petish.mypage.dto.MyWritingsDTO;
 import com.community.petish.mypage.dto.Writings_CommentedDTO;
 import com.community.petish.mypage.dto.Writings_LikedDTO;
@@ -29,21 +30,30 @@ public class MypageDefaultTests {
 		log.info(mapper);
 	}
 	
-	@Test
-	public void selectTest1() {
-		ArrayList<MyWritingsDTO> list = null;
-		list = mapper.getMyWritings(1);
-	}
-
-	@Test
-	public void selectTest2() {
-		ArrayList<Writings_CommentedDTO> list = null;
-		list = mapper.getCommented(1);
-	}
+//	@Test
+//	public void selectTest1() {
+//		ArrayList<MyWritingsDTO> list = null;
+//		list = mapper.getMyWritings(1);
+//	}
+//
+//	@Test
+//	public void selectTest2() {
+//		ArrayList<Writings_CommentedDTO> list = null;
+//		list = mapper.getCommented(1);
+//	}
+//	
+//	@Test
+//	public void selectTest3() {
+//		ArrayList<Writings_LikedDTO> list = null;
+//		list = mapper.getLiked(1);
+//	}
 	
 	@Test
-	public void selectTest3() {
-		ArrayList<Writings_LikedDTO> list = null;
-		list = mapper.getLiked(1);
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		cri.setPageNum(1);
+		cri.setAmount(10);
+		cri.setUser_id(1);
+		ArrayList<Writings_CommentedDTO> list = mapper.getCommentedWithPaging(cri);
 	}
 }

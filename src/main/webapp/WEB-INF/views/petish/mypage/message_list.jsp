@@ -378,7 +378,6 @@
 	<script>
 		//쪽지 상세보기
 		$(document).ready(
-
 				function() {
 					//받은 쪽지 모달
 					var receivedModal = $("#receive-modal");
@@ -439,10 +438,10 @@
 					$(".sentMessage").on("click", "a", function(e) {
 						var id = $(this).data("id");
 						messageService.sentMessageDetail(id, function(message) {
-							modalInputSentNickname2.val(message.nickname);
+							modalInputReceivedNickname2.val(message.nickname);
 							modalInputSent_date2.val(message.sent_date);
 							modalInputContent2.val(message.content);
-							modal.data("id", message.id);
+							sentModal.data("id", message.id);
 							$("#sent-modal").modal("show");
 						});	
 					});
@@ -460,6 +459,7 @@
 					
 					//쪽지보내기 창에서 쪽지보내기 버튼 클릭시 ajax연결				
 					modalSendBtn.on("click", function(e){
+						<%System.out.println(user_id);%>
 						var message = {
 								title : modalInputTitle3.val(),	
 								content : modalInputContent3.val(),

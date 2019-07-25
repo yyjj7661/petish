@@ -1,17 +1,20 @@
+<%@page import="com.community.petish.user.dto.UserResponseDTO"%>
 <%@page import="com.community.petish.mypage.dto.Writings_LikedDTO"%>
 <%@page import="com.community.petish.mypage.dto.Writings_CommentedDTO"%>
 <%@page import="com.community.petish.mypage.dto.MyWritingsDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-	session.setAttribute("user_id", 1);
+	UserResponseDTO user = (UserResponseDTO) request.getAttribute("user");
 	ArrayList<MyWritingsDTO> writingList = (ArrayList) request.getAttribute("writingList");
 	ArrayList<Writings_CommentedDTO> writingCommented = (ArrayList) request.getAttribute("writingCommented");
 	ArrayList<Writings_LikedDTO> writingLiked = (ArrayList) request.getAttribute("writingLiked");
 	MyWritingsDTO dto1 = null;
 	Writings_CommentedDTO dto2 = null;
 	Writings_LikedDTO dto3 = null;
+	session.setAttribute("user_id", 1);
 %>
 <!DOCTYPE html>
 <html>
@@ -62,7 +65,7 @@
 <link rel="apple-touch-icon" sizes="152x152"
 	href="/resources/img/apple-touch-icon-152x152.png">
 
-
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
 <style>
 .dropdown {
@@ -117,9 +120,11 @@
 						<div class="memberInfo">
 							<div style="margin: 0.5cm;">
 								<img class="profile" src="/resources/img/member_detail_demo.JPG"
-									style="margin-right: 30px;"> <a>땡이누나(yeli****)</a> │ 정회원
-								│ <a class="nondeco" href="/mypage/modifyForm/"><i
+									style="margin-right: 30px;"> <a><%=user.getNickname() %>(<%=user.getUsername().substring(0,5) %>***)</a> │ 정회원
+								│ <a class="nondeco" href="/mypage/modifyForm?user_id=<%=user.getId() %>"><i
 									class="fa fa-list">회원정보수정</a></i>
+								<script>var user_id = <%=user.getId()%>;</script>
+								<%long user_id = user.getId(); %>
 							</div>
 						</div>
 						<ul id="pills-tab" role="tablist"
@@ -175,6 +180,29 @@
 														}
 													%>
 												</table>
+												
+												<!-- paging start -->
+												<div class="d-flex justify-content-center">
+													<ul class="pagination">
+														<c:if test = "${pageMaker.prev}">
+															<li class="wp-example"><a href="${pageMaker.startPage -1}">Previous</a>
+															</li>
+														</c:if>
+														
+														<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+															<li class="page-item ${pageMaker.cri.pageNum == num ? "active":""}"><a href="${num}" class="page-link">${num}</a></li>
+														</c:forEach>
+														
+														<c:if test="${pageMaker.next}">
+															<li calss="paginate_button next"><a href="${pageMaker.endPage+1 }">Next</a></li>
+														</c:if>
+													</ul>
+												</div>
+												<!-- paging start -->
+												<form id='actionForm' action="/mypage/" method='get'>
+													<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum}'>
+													<input type="hidden" name='amount' value='${pageMaker.cri.amount}'>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -203,28 +231,29 @@
 													<tr>
 														<th class="font-grey">자유게시판</th>
 														<th><a href="" class="nondeco"><%=dto2.getTitle()%></a></th>
-														<%
-															long a = dto2.getUser_id();
-														%>
 														<!-- 1.먼저 해당 구역(이름이 들어가는 tr)안 모든 부분을 div(class="dropdown")으로 묶음 -->
 														<th><div class="dropdown">
 																<a href="#" class="nondeco"><%=dto2.getNickname()%></a>
 																<!-- db의 닉네임값 들어가는 밑에 div(class="dropdown-content")추가 -->
+																<%if(user_id==dto2.getId()){ %>
+																<%}else{ %>
 																<div class="dropdown-content">
-																	<a
-																		href="./member/detail?user_id=<%=dto2.getUser_id()%>">작성게시글
-																		보기</a> <a href="#" data-toggle="modal"
-																		data-target="#messageWrite-modal">쪽지보내기</a>
+																	<a href="./member/detail?user_id=<%=dto2.getUser_id()%>">작성게시글 보기</a> 
+																	<a href="#" data-toggle="modal" class="showmodal"
+																	data-id=<%=dto2.getUser_id()%> data-nick=<%=dto2.getNickname() %>
+																	data-target="#messageWrite-modal">쪽지보내기</a>
 																</div>
+																<%} %>
 															</div></th>
 														<th class="font-grey"><%=dto2.getCreated_date().substring(2, 4) + "/" + dto2.getCreated_date().substring(4, 6) + "/"
-						+ dto2.getCreated_date().substring(6, 8)%></th>
+														+ dto2.getCreated_date().substring(6, 8)%></th>
 														<th class="font-grey">30</th>
 													</tr>
 													<%
 														}
 													%>
 												</table>
+		
 											</div>
 										</div>
 									</div>
@@ -249,7 +278,7 @@
 													<%
 														for (int i = 0; i < writingLiked.size(); i++) {
 															dto3 = writingLiked.get(i);
-															System.out.println(dto3);
+															
 													%>
 													<tr>
 														<th class="font-grey">자유게시판</th>
@@ -257,13 +286,21 @@
 														<th><div class="dropdown">
 																<a href="#" class="nondeco"><%=dto3.getNickname()%></a>
 																<!-- db의 닉네임값 들어가는 밑에 div(class="dropdown-content")추가 -->
+																<%if(user_id==dto3.getId()){ %>
+																<%}else{ %>
 																<div class="dropdown-content">
-																	<a
+																	<a 
 																		href="./member/detail?user_id=<%=dto3.getUser_id()%>">작성게시글
 																		보기</a> <a href="#" data-toggle="modal"
-																		data-target="#messageWrite-modal">쪽지보내기</a>
+																		data-target="#new-modal" class="showmodal"
+																		data-id=<%=dto3.getUser_id()%>
+																		data-nick=<%=dto3.getNickname() %>
+																		>쪽지보내기</a>
 																</div>
+																<%} %>
 															</div></th>
+															<input type="hidden" value=<%=dto3.getUser_id() %> class="receiver_id">
+															<input type="hidden" value=<%=dto3.getNickname() %> class="nickname">
 														<th class="font-grey"><%=dto3.getCreated_date().substring(2, 4) + "/" + dto3.getCreated_date().substring(5, 7) + "/"
 														+ dto3.getCreated_date().substring(8, 10)%></th>
 														<th class="font-grey"><%=dto3.getView_count()%></th>
@@ -284,7 +321,118 @@
 		</div>
 	</div>
 	<!-- 쪽지쓰기 모달 -->
-	<%@ include file="/WEB-INF/views/commons/sendMessage.jspf"%>
+	<div id="new-modal" tabindex="-1" role="dialog" aria-hidden="true"
+		class="modal fade">
+		<div role="document" class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 align="center" class="modal-title">쪽지보내기</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close"
+						class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>받는사람</label> <input class="form-control" name='nickname'
+							readonly>
+					</div>
+					<input type="hidden" name="receiver_id">
+					<div class="form-group">
+						<label>제목</label> <input class="form-control" name='title'>
+					</div>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea id="message_content" rows="10" class="form-control"
+							name='content'></textarea>
+					</div>
+					<div class="text-left">
+						<input type="button" value="보내기" class="modalSendBtn">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	$(document).ready(
+			function() {
+	var newModal = $("#new-modal");
+	var showmodal = $(".showmodal");
+	var modalInputReceivedNickname3 = newModal
+	.find("input[name='nickname']");
+	var modalInputTitle3 = newModal
+	.find("input[name='title']");
+	var modalInputContent3 = newModal
+	.find("textarea[name='content']");
+	var modalInputReceiver_id3 = newModal
+	.find("input[name='receiver_id']");
+
+	var modalSendBtn = $(".modalSendBtn");
+	
+	
+	showmodal.on("click", function(e){
+		var id = $(this).data("id");
+		var nick = $(this).data("nick");
+		modalInputReceiver_id3.val(id);
+		modalInputReceivedNickname3.val(nick);
+		$("#new-modal").modal("show");
+	});
+	
+	modalSendBtn.on("click", function(e){
+						var message = {
+								title : modalInputTitle3.val(),	
+								content : modalInputContent3.val(),
+								sender_id : user_id,
+								receiver_id : modalInputReceiver_id3.val()
+								
+						}
+						messageService.writeMessage(message, function(result){
+							alert("result : "+result);
+						$("#new-modal").modal("hide");
+						location.reload();
+						});
+	});
+	//ajax메서드 정의
+	var messageService = (function() {
+		
+		//메세지 작성 메서드
+		
+		function writeMessage(message, callback, error){
+			$.ajax({
+				type:'post',
+				url : '/mypage/api/message/new',
+				data : JSON.stringify(message),
+				contentType : "application/json; charset=utf-8",
+				success : function(result, status, xhr){
+					if(callback){
+						callback(result);
+					}
+				},
+				error : function(xhr, status, er){
+					if(error){
+						error(er);
+					}
+				}
+			})
+		}
+		return {
+			writeMessage : writeMessage
+		};
+	})();
+	
+	var actionForm = $("#actionForm");
+	
+	$(".page-item a").on("click", function(e){
+		e.preventDefault();
+		console.log('click');
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.submit();
+	});
+	
+	
+});
+	
+	</script>
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>

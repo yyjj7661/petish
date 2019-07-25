@@ -1,3 +1,4 @@
+<%@page import="com.community.petish.user.dto.UserResponseDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
@@ -11,6 +12,7 @@
 	MyWritingsDTO dto1 = null;
 	Writings_CommentedDTO dto2 = null;
 	Writings_LikedDTO dto3 = null;
+	UserResponseDTO member = (UserResponseDTO)request.getAttribute("member");
 	int user_id = (int)session.getAttribute("user_id");
 %>
 <!DOCTYPE html>
@@ -115,9 +117,9 @@
 						<div class="memberInfo">
 							<div style="margin: 0.5cm;">
 								<img class="profile" src="/resources/img/member_detail_img.jpg"
-									style="margin-right: 30px;"> <a>달봉파더(dalb****)</a> │ 준회원
+									style="margin-right: 30px;"> <a><%=member.getNickname() %>(<%=member.getUsername().substring(0,5) %>***)</a> │ 준회원
 								│ <a href="" data-toggle="modal"
-									data-target="#messageWrite-modal" class="nondeco"><i
+									data-target="#messageWrite-modal" class="showmodal" data-id=<%=member.getId() %> data-nick=<%=member.getNickname() %>><i
 									class="fa fa-envelope" style="margin-right: 10px;"></i>쪽지 보내기</a>
 							</div>
 						</div>
@@ -206,15 +208,15 @@
 															long a = dto2.getUser_id();
 														%>
 														<!-- 1.먼저 해당 구역(이름이 들어가는 tr)안 모든 부분을 div(class="dropdown")으로 묶음 -->
-														<th><div class="dropdown">
+														<th><div class="dropdown_">
 																<a href="#" class="nondeco"><%=dto2.getNickname()%></a>
 																<!-- db의 닉네임값 들어가는 밑에 div(class="dropdown-content")추가 -->
 																<div class="dropdown-content">
 																	<a href="./detail?user_id=<%=dto2.getUser_id()%>">작성게시글
 																		보기</a> <a href="#" data-toggle="modal"
-																		data-target="#new-modal"
-																		data-id=<%=dto2.getNickname()%> class="showmodal">쪽지보내기</a>
-																		<input type="hidden" value=<%=dto2.getUser_id() %> class="writer">
+																		data-target="#new-modal" class="showmodal"
+																		data-id=<%=dto2.getUser_id()%> data-nick=<%=dto2.getNickname() %>
+																		>쪽지보내기</a>
 																</div>
 															</div></th>
 														<th class="font-grey"><%=dto2.getCreated_date().substring(2, 4) + "/" + dto2.getCreated_date().substring(4, 6) + "/"
@@ -249,7 +251,6 @@
 													<%
 														for (int i = 0; i < writingLiked.size(); i++) {
 															dto3 = writingLiked.get(i);
-															System.out.println(dto3);
 													%>
 													<tr>
 														<th class="font-grey">자유게시판</th>
@@ -260,16 +261,20 @@
 																<div class="dropdown-content">
 																	<a href="./detail?user_id=<%=dto3.getUser_id()%>">작성게시글
 																		보기</a> <a href="#" data-toggle="modal"
-																		data-target="#new-modal" class="showmodal">쪽지보내기</a>
+																		data-target="#new-modal" class="showmodal"
+																		data-id=<%=dto3.getUser_id()%>
+																		data-nick=<%=dto3.getNickname() %>
+																		>쪽지보내기</a>
 																</div>
-																<input type="hidden" value=<%=dto3.getUser_id() %> name="receiver_id">
-																<input type="hidden" value=<%=dto3.getNickname() %> name="nickname">
 															</div></th>
+																<input type="hidden" value=<%=dto3.getUser_id() %> class="receiver_id">
+																<input type="hidden" value=<%=dto3.getNickname() %> class="nickname">
 														<th class="font-grey"><%=dto3.getCreated_date().substring(2, 4) + "/" + dto3.getCreated_date().substring(5, 7) + "/"
 															+ dto3.getCreated_date().substring(8, 10)%></th>
 														<th class="font-grey"><%=dto3.getView_count()%></th>
 													</tr>
 													<%
+											
 														}
 													%>
 												</table>
@@ -323,6 +328,7 @@
 	$(document).ready(
 			function() {
 	var newModal = $("#new-modal");
+	var showmodal = $(".showmodal");
 	var modalInputReceivedNickname3 = newModal
 	.find("input[name='nickname']");
 	var modalInputTitle3 = newModal
@@ -331,14 +337,15 @@
 	.find("textarea[name='content']");
 	var modalInputReceiver_id3 = newModal
 	.find("input[name='receiver_id']");
-	
-	
+
 	var modalSendBtn = $(".modalSendBtn");
 	var user_id = <%=user_id%>;
 	
-	$("#showmodal").on("click", function(e){
-		modalInputReceivedNickname3.val();
-		modalInputReceiver_id3.val();
+	showmodal.on("click", function(e){
+		var id = $(this).data("id");
+		var nick = $(this).data("nick");
+		modalInputReceiver_id3.val(id);
+		modalInputReceivedNickname3.val(nick);
 		$("#new-modal").modal("show");
 	});
 	
