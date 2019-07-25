@@ -56,8 +56,8 @@
 							<ul>
 									<div class="fa fa-star" id="spec" aria-hidden="true"style="font-size:24px;">
 										평점 : <span class='star-rating'>
-											<span style ="width:${score }%"></span>
-										</span>
+											<span style ="width:${score_star }%"></span>
+										</span><span class="title" style="display:inline-block;font-size:40px;">${score }</span>
 									</div>
 								
 									<div class="fa fa-home fa-pull-left fa-fw" id="spec" aria-hidden="true"style="font-size:24px;">

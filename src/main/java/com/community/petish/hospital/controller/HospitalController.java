@@ -102,11 +102,13 @@ public class HospitalController {
 		HospitalVO vo = hospitalService.getHospital(id);
 		double avg = hospitalService.getScore(id);
 		avg = Math.round(avg*100)/100.0;
-		avg = avg*20;
+		double score_star =avg*20;
+		avg = avg*2;
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("petish/hospital/detail");
 		mv.addObject("hospital", vo);
 		mv.addObject("score",avg);
+		mv.addObject("score_star",score_star);
 		return mv;
 	}
 	
