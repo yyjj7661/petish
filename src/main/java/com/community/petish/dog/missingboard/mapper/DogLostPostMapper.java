@@ -2,6 +2,7 @@ package com.community.petish.dog.missingboard.mapper;
 
 import java.util.List;
 
+import com.community.petish.dog.missingboard.dto.Criteria;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
@@ -10,10 +11,13 @@ import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
 public interface DogLostPostMapper {
 	
 	//게시글 수
-	int getPostCount();
+	int getPostCount(Criteria cri);
 	
 	//게시글 리스트
-	List<DogLostPostResponseListDTO> getDogLostList();
+	List<DogLostPostResponseListDTO> getDogLostList(Criteria cri);
+	
+	//게시글 리스트(페이징)
+	//List<DogLostPostResponseListDTO> getListWithPaging(Criteria cri);
 	
 	//게시글 조회
 	DogLostPostResponseDetailDTO getPostDetail(Long id);
