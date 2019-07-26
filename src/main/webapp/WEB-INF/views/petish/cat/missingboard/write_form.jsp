@@ -64,7 +64,7 @@
 
 <body>
 	<div id="all">
-		
+		<script src="/resources/vendor/jquery/jquery.min.js"></script>
 		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
 
 		<div id="heading-breadcrumbs">
@@ -279,7 +279,7 @@
 
 	</div>
 	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	
 	<script src="/resources/vendor/popper.js/umd/popper.min.js">
 		
 	</script>

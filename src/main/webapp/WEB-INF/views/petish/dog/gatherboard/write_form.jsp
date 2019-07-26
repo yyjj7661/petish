@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 <meta charset="utf-8">
 <title>Universal - All In 1 Template</title>
 
@@ -64,7 +64,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
         
         <link rel="stylesheet" href="/resources/css/write-modify.css">
-        <link rel="stylesheet" href="/resources/css/kakaomap.css">
+        <link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 </head>
 
 <body>

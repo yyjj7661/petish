@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.community.petish.user.dto.response.LoginedUser"%>
 <!DOCTYPE html>
 <%Long id = (Long)session.getAttribute("id"); %>
 <html>
@@ -15,7 +16,7 @@
 	<!-- 평점 별  -->
 	<link rel="stylesheet" href="/resources/css/hospital/detail.css">
 	<link rel="stylesheet" href="/resources/css/write-modify.css">
-
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
@@ -169,7 +170,7 @@
 	</div>
 
 	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js"></script>

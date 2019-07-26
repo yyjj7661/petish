@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.community.petish.user.dto.response.LoginedUser"%>
 <%
  response.setHeader("Cache-Control","no-cache");
  response.setHeader("Pragma","no-cache");
@@ -31,6 +32,8 @@
 	<link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 	<script src="/resources/js/region.js"></script>
 	
+	
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 
 </head>
 
@@ -38,6 +41,8 @@
 <body>
 	
 	<%@ include file="/WEB-INF/views/commons/top.jspf"%>
+	
+	
 	
 	<div class="container" id="totalHtml">
 
@@ -131,7 +136,6 @@
 
 	<!-- /////////////////////////////////// 지  도  //////////////////////////////////////// -->
 	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"> </script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js"> </script>

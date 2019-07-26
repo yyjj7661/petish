@@ -30,7 +30,7 @@ function check() {
 }
 
 function openZipcode(){			
-    var url="/kakaomap"
+    var url="/resources/api/searchMap.jsp"
     open(url, "confirm", "toolbar=no,location=no,"
               +"status=no,menubar=no,"
               +"scrollbars=yes,resizable=no,"

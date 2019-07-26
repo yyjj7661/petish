@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.community.petish.user.dto.response.LoginedUser"%>
 <!DOCTYPE html>
 <html>
 <head>
+<% LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER"); %>
 <style>
 #head{
 	display:inline;
@@ -55,9 +57,7 @@
 
 </head>
 <body>
-<% 
-	String addr ="";
-%>
+
 <div class="map_wrap">
     <div id="map"></div>
     <div id="menu_wrap" class="bg_white">
@@ -88,11 +88,20 @@
 	//지도 클릭했을때 값 넘겨주고 원래 페이지에서 값적는코드
 	// 마커 또는 검색목록 클릭시 오프너에 값적는 코드
 	function searchClick(addr ,lng){
-		opener.$('#place').val(addr);
+		var sessionid = "<%= user%>";
+		if(sessionid == "null"){
+			opener.$('#addressInput').val(addr);
+			
+		}
+		else{
+			
+			opener.$('#place').val(addr);
+		}
 		//opener.ps.keywordSearch(addr, opener.placesSearchCB);
 		//opener.marker.setPosition(mouselatLng);
 		//opener.marker.setMap(map);
-		opener.setMarker(lng.Fa, lng.Ga); //클릭한곳 마커 찍어주는 함수
+		console.log(lng.Ha+", "+ lng.Ga);
+		opener.setMarker(lng.Ga, lng.Ha); //클릭한곳 마커 찍어주는 함수
 		self.close();
 	}
 	
