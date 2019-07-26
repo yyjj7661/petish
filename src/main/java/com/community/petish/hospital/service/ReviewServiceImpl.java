@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.ReviewVO;
+import com.community.petish.hospital.domain.getReviewDTO;
 import com.community.petish.hospital.mapper.ReviewMapper;
 
 @Service("reviewService")
@@ -16,29 +17,36 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewMapper reviewMapper;
 	
 	@Override
-	public List<ReviewVO> getHospitalReview(Long id) {
+	public List<ReviewVO> getHospitalReviewList(Long id) {
 		List<ReviewVO> rlist = null; 
-		rlist=reviewMapper.getHospitalReview(id); 
+		rlist=reviewMapper.getHospitalReviewList(id); 
 		return rlist;
 	}
 
 	@Override
-	public int insertReview(ReviewVO vo) {
-
-		int retVal= reviewMapper.insertReview(vo);
+	public Integer insertReview(ReviewVO vo) {
+		Integer checkReview = reviewMapper.getHospitalReview(vo);
+		Integer retVal;
+		if(checkReview !=0) {
+			retVal = 0;
+		}
+		else {
+			
+			retVal= reviewMapper.insertReview(vo);
+		}
 		return retVal;
 	}
 
 	@Override
-	public List<ReviewVO> getReviewWithPaging(Criteria cri) {
-		List<ReviewVO> rlist = null; 
+	public List<getReviewDTO> getReviewWithPaging(Criteria cri) {
+		List<getReviewDTO> rlist = null; 
 		rlist=reviewMapper.getReviewWithPaging(cri);
 		System.out.println(rlist);
 		return rlist;
 	}
 
 	@Override
-	public int getTotalCount(Long id) {
+	public Integer getTotalCount(Long id) {
 		// TODO Auto-generated method stub
 		return reviewMapper.getTotalCount(id);
 	}

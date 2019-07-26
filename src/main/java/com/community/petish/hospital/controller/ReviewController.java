@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.PageDTO;
 import com.community.petish.hospital.domain.ReviewVO;
+import com.community.petish.hospital.domain.getReviewDTO;
 import com.community.petish.hospital.service.ReviewService;
 @RestController
 @RequestMapping("/hospital/review")
@@ -24,8 +25,7 @@ public class ReviewController {
 	
 	@RequestMapping(value="/{id}/{page}", produces="application/json;charset=UTF-8")
 	public Map<String, Object> getReview(@PathVariable("id") Long id,@PathVariable("page")int page) {
-		List<ReviewVO> rlist;
-		rlist = reviewService.getHospitalReview(id);
+		List<getReviewDTO> rlist;
 		boolean isReview = true;
 		//페이징 설정위해 만드는 객체
 		Criteria cri = new Criteria();
@@ -48,11 +48,17 @@ public class ReviewController {
 	
 	@PostMapping(produces="application/json;charset=UTF-8")
 	public Map<String, Object> insertReview(@RequestBody ReviewVO vo){
-		
+		System.out.println("id="+vo.getUser_id());
 		Map<String, Object> retVal = new HashMap<String, Object>();
 		try {
-			int res = reviewService.insertReview(vo);
-			retVal.put("res","OK");
+			Integer res = reviewService.insertReview(vo);
+			System.out.println("res="+res);
+			if(res == 0) {
+				retVal.put("res","duplication");
+			}else {
+				
+				retVal.put("res","OK");
+			}
 			
 		}catch(Exception e) {
 			retVal.put("res", "FAIL");

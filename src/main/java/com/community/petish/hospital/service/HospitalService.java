@@ -16,8 +16,8 @@ public interface HospitalService {
 	List<ListDTO> getListWithPaging(Criteria cri);
 	List<ListDTO> getEmerListWithPaging(Criteria cri);
 	
-	int getTotalCount(String hospital_addr);
-	int getEmerTotalCount(String hospital_addr);
+	Integer getTotalCount(String hospital_addr);
+	Integer getEmerTotalCount(String hospital_addr);
 
-	double getScore(Long id);
+	Double getScore(Long id);
 }

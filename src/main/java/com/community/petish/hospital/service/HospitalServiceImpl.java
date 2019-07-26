@@ -50,12 +50,12 @@ public class HospitalServiceImpl implements HospitalService{
 		 return hospitalList;
 	}
 	@Override
-	public int getTotalCount(String hospital_addr) {
+	public Integer getTotalCount(String hospital_addr) {
 		
 		return hospitalMapper.getTotalCount(hospital_addr);
 	}
 	@Override
-	public int getEmerTotalCount(String hospital_addr) {
+	public Integer getEmerTotalCount(String hospital_addr) {
 		// TODO Auto-generated method stub
 		return hospitalMapper.getEmerTotalCount(hospital_addr);
 	}
@@ -65,7 +65,7 @@ public class HospitalServiceImpl implements HospitalService{
 		return vo;
 	}
 	@Override
-	public double getScore(Long id) {
+	public Double getScore(Long id) {
 		// TODO Auto-generated method stub
 		double avg;
 		if(hospitalMapper.getScore(id) == null) {

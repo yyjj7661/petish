@@ -4,12 +4,13 @@ import java.util.List;
 
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.ReviewVO;
+import com.community.petish.hospital.domain.getReviewDTO;
 
 public interface ReviewMapper {
-	List<ReviewVO> getHospitalReview(Long id);
-	List<ReviewVO> getReviewWithPaging(Criteria cri);
+	List<ReviewVO> getHospitalReviewList(Long id);
+	List<getReviewDTO> getReviewWithPaging(Criteria cri);
+	Integer getHospitalReview(ReviewVO vo);
+	Integer insertReview(ReviewVO vo);
 	
-	int insertReview(ReviewVO vo);
-	
-	int getTotalCount(Long id);
+	Integer getTotalCount(Long id);
 }

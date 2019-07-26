@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="com.community.petish.user.dto.response.LoginedUser"%>
 <!DOCTYPE html>
-<%Long id = (Long)session.getAttribute("id"); %>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -133,7 +133,7 @@
 				<thead>
 					<tr style="font-size: 15px;">
 						<th width=15%>평점</th>
-						<th width=25%>아이디</th>
+						<th width=25%>글쓴이</th>
 						<th>내용</th>
 					</tr>
 				</thead>
@@ -242,6 +242,13 @@
 	function pageClick(page){
 		getReview("${hospital.id}",page);
 	}
+	
+	function modifyReview(id){
+		console.log('modify id='+id);
+	}
+	function deleteReview(id){
+		console.log('delete id='+id);
+	}
 	</script>
 	
 	<script>
@@ -251,47 +258,60 @@
 		
 		$('#reInsert').click(function(event){
 			
-			var user_id = <%=session.getAttribute("id")%>;
-			if(user_id ==null){
-				user_id = 4;
-			}
-			var params = {
-					'user_id' : user_id,
-					'content' : $('#review_content').val(),
-					'score' : $("input[name=star-input]:checked").val(),
-					'hospital_id' : "${hospital.id}",
-			};
-			$.ajax({
-				url:'/hospital/review/',
-				type:'POST',
-				data:JSON.stringify(params),
-				contentType:'application/json; charset=utf-8',
-				dataType:'json',
-				success: function(retVal){
-					if(retVal.res == "OK"){
-						//데이타 성공일때 이벤트 작성
-						getReview("${hospital.id}",1);
-						//초기화
-						$('#review_content').val('');
-						//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
-						location.reload();
-						
-					}
-					else{
-						alert("Insert Fail!!!");
-					}
-				},
-				error:function(request,status,error){
-					alert("ajax 통신 실패!!!");
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-				}
-			}); 
-			//별점라디오버튼 초기화
-			$("input[name=star-input]:radio").prop("checked",false);
-			//평점 0점으로 초기화
-			$(".star-input").find("output>b").text(0);
 			
+			<%if (loginedUser == null){ %>
+				$('#login-modal').modal('show');
+			<%}else{%>
+				
+				var params = {
+						'user_id' : '<%=loginedUser.getId()%>',
+						'content' : $('#review_content').val(),
+						'score' : $("input[name=star-input]:checked").val(),
+						'hospital_id' : "${hospital.id}",
+				};
+				$.ajax({
+					url:'/hospital/review/',
+					type:'POST',
+					data:JSON.stringify(params),
+					contentType:'application/json; charset=utf-8',
+					dataType:'json',
+					success: function(retVal){
+						if(retVal.res == "OK"){
+							//데이타 성공일때 이벤트 작성
+							getReview("${hospital.id}",1);
+							//초기화
+							$('#review_content').val('');
+							//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
+							location.reload();
+							
+						}
+						//한줄리뷰 중복 등록시
+						else if(retVal.res == "duplication"){
+							alert('이미 작성된 한줄평이 존재합니다.');
+							
+							//데이타 성공일때 이벤트 작성
+							getReview("${hospital.id}",1);
+							//초기화
+							$('#review_content').val('');
+							//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
+							location.reload();
+						}
+						else{
+							alert("Insert Fail!!!");
+						}
+					},
+					error:function(request,status,error){
+						alert("ajax 통신 실패!!!");
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+					}
+				}); 
+				//별점라디오버튼 초기화
+				$("input[name=star-input]:radio").prop("checked",false);
+				//평점 0점으로 초기화
+				$(".star-input").find("output>b").text(0);
+			
+			<%}%>
 			
 			
 		});
@@ -316,8 +336,22 @@
 					output += '<span style ="width:'+(item.score*20.0)+'%"></span>';
 					output += '</span>';
 					output += '</td>';
-					output += '<td>'+item.user_id+'</td>';
-					output += '<td>'+item.content+'</td>';
+					output += '<td>'+item.nickname+'</td>';
+					output += '<td>'+item.content;
+					<%if (loginedUser != null){ %>
+						var user_id ='<%=loginedUser.getId()%>'
+						if(user_id == item.user_id){
+							output += '<br><button type="button" class="btn btn-template-outlined" id="re_modify" style="padding-top: 0px; padding-bottom: 0px; padding-left: 5px; padding-right: 5px; margin-right: 10px;">수 정</button>';
+							output += '<button type="button" class="btn btn-template-outlined" id="re_delete" style="padding-top: 0px; padding-bottom: 0px; padding-left: 5px; padding-right: 5px;">삭 제</button></td>';
+							
+							$('#re_modify').click(function(event){
+								modifyReview(item.id);
+							});
+							$('#re_delete').click(function(event){
+								deleteReview(item.id);
+							});
+						}
+					<%}%>
 					output += '</tr>';
 					
 					
