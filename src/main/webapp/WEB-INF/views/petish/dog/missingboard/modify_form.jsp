@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.community.petish.dog.missingboard.dto.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%
 	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO) request.getAttribute("dto");
 
@@ -266,9 +269,9 @@
 
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">실종 일시</label> <input
-												id="datetimepicker" name="DOG_LOST_DATE" type="datetime"
-												value="<%=dto.getDog_lost_date()%>" class="form-control">
+											<label for="category">실종 일시</label>
+											<input id="datetimepicker" name="DOG_LOST_DATE" type="datetime"
+												value="<fmt:formatDate pattern='yyyy-MM-dd HH:mm' value='<%=dto.getCreate_date() %>'/>" class="form-control">
 
 										</div>
 									</div>
