@@ -338,12 +338,13 @@
 					output += '</td>';
 					output += '<td>'+item.nickname+'</td>';
 					output += '<td>'+item.content;
-					<%if (loginedUser != null){ %>
+					<%if (loginedUser != null){ %> //로그인이 되어있을경우
 						var user_id ='<%=loginedUser.getId()%>'
-						if(user_id == item.user_id){
+						if(user_id == item.user_id){ //로그인된 유저와 글쓴이가 똑같을 경우
 							output += '<br><button type="button" class="btn btn-template-outlined" id="re_modify" style="padding-top: 0px; padding-bottom: 0px; padding-left: 5px; padding-right: 5px; margin-right: 10px;">수 정</button>';
 							output += '<button type="button" class="btn btn-template-outlined" id="re_delete" style="padding-top: 0px; padding-bottom: 0px; padding-left: 5px; padding-right: 5px;">삭 제</button></td>';
-							
+							output += '</tr>';
+							$('#reviews').append(output);
 							$('#re_modify').click(function(event){
 								modifyReview(item.id);
 							});
@@ -351,11 +352,16 @@
 								deleteReview(item.id);
 							});
 						}
+						else{
+							output += '</td>';
+							output += '</tr>';
+							$('#reviews').append(output);
+						}
+					<%}else{%> //로그인 안되어 있을 경우
+						output += '</td>';
+						output += '</tr>';
+						$('#reviews').append(output);
 					<%}%>
-					output += '</tr>';
-					
-					
-					$('#reviews').append(output);
 				});
 				//페이징 처리 반복문
 				for(var i = data.paging.startPage; i<=data.paging.endPage; i++){
