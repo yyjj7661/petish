@@ -380,7 +380,10 @@
                     </div>
 
                     <div class="modal-body" id="reply-form">
-                        <input class="form-control" placeholder="댓글 달기..." onkeypress="handleKeyPress(event)">
+                    	<form>
+	                        <input name="content" class="form-control" placeholder="댓글 달기..." onkeypress="handleKeyPress(event, this.id)">
+	                        <input name="postId" id="post-id" type="hidden" value="2">
+                    	</form>
                     </div>
 
                 </div>

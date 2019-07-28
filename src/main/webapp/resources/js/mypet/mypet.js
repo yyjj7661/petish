@@ -44,19 +44,39 @@ likeClick = () => {
     $('#like-count').html(likeCount);
 }
 
-handleKeyPress = (e) => {
+addLike = () => {
+	console.log("add되었습니다.");
+}
+
+const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-        console.log("찍히냐");
+    	e.preventDefault();
+        let formData = new FormData(e.target.form);
+        addReply(formData);
+        
         e.target.value = '';
-        addReply();
     }
 }
 
-addLike = () => {
-    console.log("add되었습니다.");
+const addReply = (formData) => {
+	
+	$.ajax({
+		type: "POST",
+		url: "/api/mypet/comments",
+		data: formData,
+		processData: false,
+	    contentType: false,
+	    success: function(result, status, xhr) {
+	    	
+	    },
+	    error: function(error, status, xhr) {
+	    	
+	    }
+	})
 }
 
-openPost = (id) => {
+
+const openPost = (id) => {
 	let userId;
 	
 	$.ajax({
@@ -66,19 +86,21 @@ openPost = (id) => {
 			let images = result.image.split(",");
 			let imageTag = "<img src=" + images[0] + ">";
 			
-			// date 변환
-			let createdDate = new Date(result.createdDate);
-			
-			//userId 부여
-			let userId = result.userId;
-		
-		    $('#post-picture').html(imageTag);
+			$('#post-id').val(result.postId);
+
+			$('#post-picture').html(imageTag);
 			$('#post-title').html(result.title);
 			$('#post-content').html(result.content);
+
+			// date 변환
+			let createdDate = new Date(result.createdDate);
 		    $('#created-date').html(createdDate.toDateString());
 		    
 		    $('#like-count').html(result.likeCount);
 		    $('#comment-count').html(result.commentCount);
+		    
+		    //userId 부여
+		    let userId = result.userId;
 		    
 		    $.ajax({
 				type: "GET",
@@ -96,6 +118,8 @@ openPost = (id) => {
 	        
 	    }
 	});
+	
+	
 	
 //    let post = mypetList[id-1];
 //    let postSource = "<img src=" + post.image + ">";
