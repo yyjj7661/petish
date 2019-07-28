@@ -113,7 +113,7 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	@Override
 	public List<AttachFileVO> getAttachList(Long postId) {
 
-		System.out.println("get Attach list by bno" + postId);
+		System.out.println("get Attach list by postId" + postId);
 
 		return attachMapper.findByPostId(postId);
 	}

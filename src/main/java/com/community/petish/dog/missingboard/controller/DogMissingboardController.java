@@ -4,15 +4,20 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.community.petish.dog.missingboard.domain.DogLostPostVO;
+import com.community.petish.dog.missingboard.domain.AttachFileVO;
 import com.community.petish.dog.missingboard.dto.Criteria;
 import com.community.petish.dog.missingboard.dto.DogLostPostPageDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
@@ -56,6 +61,7 @@ public class DogMissingboardController {
 		return "petish/dog/missingboard/list";
 	}
 	*/
+	
 	@RequestMapping("/list")
 	public String getList() {
 		return "petish/dog/missingboard/list";
@@ -241,6 +247,16 @@ public class DogMissingboardController {
 			rttr.addFlashAttribute("delete_msg", "failure");
 		}
 		return "redirect:/dog/missingboard/1";
+	}
+	
+	// 첨부 파일 목록 조회	
+	@GetMapping(value = "/getAttachList/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<AttachFileVO>> getAttachList(@PathVariable Long id) {
+	
+		log.info("getAttachList " + id);
+	
+		return new ResponseEntity<>(service.getAttachList(id), HttpStatus.OK);
 	}
 
 }
