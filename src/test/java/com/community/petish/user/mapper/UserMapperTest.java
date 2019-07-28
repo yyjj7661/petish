@@ -38,7 +38,7 @@ public class UserMapperTest {
 	@Test
 	void saveUser() {
 		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
-		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", "dog");
 		Long id = userMapper.save(saveUserParams);
 		
 		User user = userMapper.findById(id);
@@ -49,10 +49,10 @@ public class UserMapperTest {
 	@Test
 	void findAllTest() {
 		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
-		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", "dog");
 		
 		String imgaddr2 = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
-		SaveUserParams saveUserParams2 = new SaveUserParams("jiwoo627@naver.com", "1234", "jiwoo", "서울 동대문구 회기동 102-179번지", "남자", imgaddr2, "dog");
+		SaveUserParams saveUserParams2 = new SaveUserParams("jiwoo627@naver.com", "1234", "jiwoo", "서울 동대문구 회기동 102-179번지", "남자", "dog");
 		
 		Long id = userMapper.save(saveUserParams);
 		Long id2 = userMapper.save(saveUserParams2);
@@ -65,7 +65,7 @@ public class UserMapperTest {
 	@Test 
 	void findByUsername() {
 		String imgaddr = "https://image.fmkorea.com/files/attach/new/20181128/486616/796418645/1413259662/fa0f4a56ff0bc3e2d25ab1f3c6e42fc7.jpeg";
-		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", imgaddr, "dog");
+		SaveUserParams saveUserParams = new SaveUserParams("jjj0611@hanmail.net", "1234", "dipord", "서울 동대문구 휘경동 183-108번지", "남자", "dog");
 		
 		Long userId = userMapper.save(saveUserParams);
 		

@@ -35,7 +35,7 @@ public class UserRestController {
 	public void save(@RequestBody SaveUserParams saveUserParams) {
 		log.info("회원가입 요청 saveUserParams = {}", saveUserParams);
 		Long userId = userService.saveUser(saveUserParams);
-		log.info("회원가입 성공 userId = ", userId);
+		log.info("회원가입 성공 userId = {}", userId);
 	}
 	
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
