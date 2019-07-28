@@ -7,6 +7,10 @@
 <%
 	DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO) request.getAttribute("dto");
 
+	//페이지 번호
+	String pageNum = session.getAttribute("pageNum").toString();	
+
+
 	String dogSpecies = dto.getDog_species(); //강아지 종 이름
 	Long speciesId = dto.getSpecies_id();
 	
@@ -131,7 +135,7 @@
 							</div>
 							<div class="col-lg-10 text-right p-3"
 								style="display: inline-block;">
-								<a href="/dog/missingboard/list"
+								<a href="/dog/missingboard/<%=pageNum %>"
 									class="btn btn-template-outlined" style="margin-top: 10px;">목록</a>
 							</div>
 							<h4 style="display: inline-block;">[실종견 정보]</h4>
