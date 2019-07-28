@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.community.petish.dog.missingboard.domain.AttachFileVO;
 import com.community.petish.dog.missingboard.dto.Criteria;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseListDTO;
+import com.community.petish.dog.missingboard.mapper.AttachFileMapper;
 import com.community.petish.dog.missingboard.mapper.DogLostPostMapper;
 
 @Service
@@ -16,6 +19,9 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	
 	@Autowired
 	private DogLostPostMapper mapper;
+	
+	@Autowired
+	private AttachFileMapper attachMapper;
 	
 	//게시글 수
 	@Override
@@ -54,10 +60,38 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	}
 
 	// 게시글 작성
+	@Transactional
 	@Override
-	public int register(DogLostPostRequestWriteDTO dto) {
-		return mapper.insertPost(dto);
+	public void register(DogLostPostRequestWriteDTO dto) {
 		
+		System.out.println("[Service] register");
+
+		mapper.insertPost(dto); //게시글 저장
+		
+		if(dto.getAttachList() == null || dto.getAttachList().size() <=0 ) {
+			return;
+		}
+		
+		try {
+			
+		dto.getAttachList().forEach(attach -> {
+			
+			System.out.println("[UUID]" + attach.getUuid());
+			System.out.println("[attach] : " + attach);			
+			
+			Long id = dto.getId();			
+			attach.setPostId(id);
+			
+			System.out.println("[PostId()]" + attach.getPostId());
+			
+			attachMapper.insert(attach); //사진 저장
+		});		
+		
+		}
+		
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// 게시글 수정
@@ -75,5 +109,13 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 		return mapper.deletePost(id);
 	}
 	
+	//사진 첨부
+	@Override
+	public List<AttachFileVO> getAttachList(Long postId) {
+
+		System.out.println("get Attach list by bno" + postId);
+
+		return attachMapper.findByPostId(postId);
+	}
 	
 }

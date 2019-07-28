@@ -2,6 +2,8 @@ package com.community.petish.dog.missingboard.service;
 
 import java.util.List;
 
+import com.community.petish.dog.missingboard.domain.AttachFileVO;
+import com.community.petish.dog.missingboard.domain.DogLostPostVO;
 import com.community.petish.dog.missingboard.dto.Criteria;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;
@@ -25,8 +27,7 @@ public interface DogLostPostService {
 	int updateViewCount(Long id);
 		
 	// 게시글 작성
-	//void register(DogLostPostRequestDTO dto);
-	int register(DogLostPostRequestWriteDTO dto);
+	void register(DogLostPostRequestWriteDTO dto);
 
 	// 게시글 수정
 	int modify(DogLostPostRequestWriteDTO dto);
@@ -34,4 +35,6 @@ public interface DogLostPostService {
 	// 게시글 삭제
 	int delete(Long id);
 	
+	// 사진 첨부
+	List<AttachFileVO> getAttachList(Long postId);
 }
