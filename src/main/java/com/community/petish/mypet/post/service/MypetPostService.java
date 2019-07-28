@@ -9,4 +9,6 @@ public interface MypetPostService {
 
 	Long savePost(MultipartHttpServletRequest request) throws Exception;
 	
+	MypetPostDetailResponse getPost(Long postId);
+	
 }

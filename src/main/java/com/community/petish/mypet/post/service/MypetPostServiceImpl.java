@@ -69,4 +69,12 @@ public class MypetPostServiceImpl implements MypetPostService{
 		
 	}
 
+	@Override
+	public MypetPostDetailResponse getPost(Long postId) {
+		log.info("mypet post 조회 요청 postId={}", postId);
+		MypetPostDetailResponse mypetPostDetailResponse = mypetPostMapper.findById(postId);
+		log.info("mypet post 조회 완료 postDetail = {}", mypetPostDetailResponse);
+		return mypetPostDetailResponse;
+	}
+
 }
