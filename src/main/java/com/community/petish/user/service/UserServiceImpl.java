@@ -12,6 +12,7 @@ import com.community.petish.user.domain.User;
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.LoginedUser;
+import com.community.petish.user.dto.response.UserDetailResponse;
 import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.exception.NotLoginedException;
 import com.community.petish.user.exception.PasswordNotMatchException;
@@ -46,6 +47,13 @@ public class UserServiceImpl implements UserService{
 		
 		UserListResponse userListResponse = new UserListResponse(userMapper.findAll());
 		return userListResponse;
+	}
+	
+	@Override
+	public UserDetailResponse getUser(Long userId) {
+		User user = userMapper.findById(userId);
+		UserDetailResponse userDetailResponse = new UserDetailResponse(user.getId(), user.getUsername(), user.getNickname(), user.getGender(), user.getPicture());
+		return userDetailResponse;
 	}
 	
 	@Override
