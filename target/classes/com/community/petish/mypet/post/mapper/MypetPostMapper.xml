@@ -8,6 +8,8 @@
 		<result property="title" column="title" />
 		<result property="content" column="content" />
 		<result property="image" column="image"/>
+		<result property="createdDate" column="created_date" />
+		<result property="userId" column="user_id" />
 		<result property="likeCount" column="like_count" />
 		<result property="commentCount" column="comment_count" />		
 	</resultMap>
@@ -24,13 +26,15 @@
 		</selectKey>
 	</insert>
 	
-	<select id="findById" resultMap="">
+	<select id="findById" resultMap="mypetPostDetailResponse">
 		
-		SELECT id, image, title, content,
+		SELECT id, title, content, image, created_date,
 			(SELECT count(*) from mypet_comment_tb where id=#{postId} ) as comment_count,
-			(SELECT count(*) from mypet_post_like_tb where id=#{postId}) as like_count
+			(SELECT count(*) from mypet_post_like_tb where id=#{postId}) as like_count,
+			user_id
 		FROM mypet_post_tb
 		WHERE id = #{postId}
+		AND deleted = 0
 		
 	</select>
 

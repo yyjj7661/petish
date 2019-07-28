@@ -1,5 +1,7 @@
 package com.community.petish.mypet.post.dto.response;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.ToString;
 
@@ -11,6 +13,9 @@ public class MypetPostDetailResponse {
 	private String title;
 	private String content;
 	private String image;
+	private Date createdDate;
+	private Long userId;
+	
 	private Long likeCount;
 	private Long commentCount;
 	
