@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.community.petish.dog.missingboard.domain.DogLostPostVO;
 import com.community.petish.dog.missingboard.dto.Criteria;
 import com.community.petish.dog.missingboard.dto.DogLostPostPageDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
@@ -28,8 +30,14 @@ public class DogMissingboardController {
 	@Autowired
 	private DogLostPostService service;
 		
+	@RequestMapping("/image")
+	public String imageUpload() {
+		return "petish/dog/missingboard/imageInput_form";
+	}
+	
 	// 게시글 리스트
 	//@RequestMapping("/list")
+	/*
 	public String dogMissingBoardList(Criteria cri, Model model) throws ParseException {
 
 		List<DogLostPostResponseListDTO> dtoList = service.getPostList(cri);
@@ -47,8 +55,13 @@ public class DogMissingboardController {
 		
 		return "petish/dog/missingboard/list";
 	}
+	*/
+	@RequestMapping("/list")
+	public String getList() {
+		return "petish/dog/missingboard/list";
+	}
 	
-	
+	//게시글 리스트(페이징)
 	@RequestMapping("/{num}")
 	public String dogMissingBoardListPaging(@PathVariable int num, Criteria cri, Model model) throws ParseException {
 
@@ -60,27 +73,18 @@ public class DogMissingboardController {
 		model.addAttribute("dtoList", dtoList);
 		
 		int total = service.getPostCount(cri); //전체 게시글 수
+				
 		System.out.println("Total : " + total);
 		System.out.println("cri.amount : " + cri.getAmount());
 		System.out.println("cri.pageNum : " + cri.getPageNum());		
 		System.out.println("dtoList 길이" + dtoList.size());		
 		
-		model.addAttribute("pageMaker",  new DogLostPostPageDTO(cri, total));
+		model.addAttribute("pageMaker",  new DogLostPostPageDTO(cri, total));		
+		model.addAttribute("pageNum", cri.getPageNum());
 		
 		return "petish/dog/missingboard/list";
 	}
 	
-	//게시글 리스트(페이징)
-	/*
-	 * @RequestMapping("/list/page") public void list(Criteria cri, Model model) {
-	 * log.info("list : " + cri);
-	 * 
-	 * model.addAttribute("list", service.getListWithPaging(cri));
-	 * 
-	 * //전체 데이터 수 임의로 처리(123) model.addAttribute("pageMaker", new
-	 * DogLostPostPageDTO(cri, 5)); }
-	 */		
-
 	// 게시글 조회
 	@RequestMapping("/detail/{id}")
 	public String dogMissingBoardDetail(@PathVariable Long id, Model model) {
@@ -98,6 +102,26 @@ public class DogMissingboardController {
 	@RequestMapping("/writeForm")
 	public String dogMissingBoardWriteForm() {
 		return "petish/dog/missingboard/write_form";
+	}
+	
+	
+	//입력
+	@PostMapping("/register")
+	public String register(DogLostPostRequestWriteDTO dto, Model model, RedirectAttributes rttr) {
+
+		log.info("==========================");
+		log.info("register: " + dto);		
+
+		if (dto.getAttachList() != null) {
+			dto.getAttachList().forEach(attach -> log.info(attach.toString()));
+		}
+		log.info("==========================");
+
+		service.register(dto);
+		
+		rttr.addFlashAttribute("result", dto.getId());
+
+		return "redirect:/petish/dog/missingboard/1";
 	}
 
 	// 게시글 입력
@@ -216,7 +240,7 @@ public class DogMissingboardController {
 			log.info("삭제 실패");
 			rttr.addFlashAttribute("delete_msg", "failure");
 		}
-		return "redirect:/dog/missingboard/list";
+		return "redirect:/dog/missingboard/1";
 	}
 
 }

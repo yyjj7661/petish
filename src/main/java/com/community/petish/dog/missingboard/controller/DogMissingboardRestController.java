@@ -31,14 +31,21 @@ public class DogMissingboardRestController {
 		
 		log.info("글 작성 요청");
 		
+		log.info("===============================");
+		log.info("register : " + dto);		
+		
+		if(dto.getAttachList() != null) {
+			dto.getAttachList().forEach(attach -> log.info(attach.toString()));
+		}		
+		log.info("===============================");		
+		
 		Map<String, Object> retVal = new HashMap<String, Object>(); //리턴값 저장		
-		
-		log.info("dto : " + dto.getDog_name());
-		log.info(dto.getDog_gender());
-		
+		//log.info("dto : " + dto.getDog_name());
+		//log.info(dto.getDog_gender());		
 		try {
 			service.register(dto);
 			retVal.put("res", "OK");
+
 		}
 		catch(Exception e) {
 			retVal.put("res", "FAIL");
