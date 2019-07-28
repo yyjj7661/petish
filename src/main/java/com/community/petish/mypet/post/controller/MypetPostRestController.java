@@ -31,4 +31,14 @@ public class MypetPostRestController {
 		
 	}
 	
+	@GetMapping(value="/{postId}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public MypetPostDetailResponse getPost(@PathVariable("postId") Long postId) {
+		log.info("mypet post 요청 postId = {}", postId);
+		
+		MypetPostDetailResponse mypetPostDetailResponse = mypetPostService.getPost(postId);
+		
+		return mypetPostDetailResponse;
+		
+	}
+	
 }
