@@ -14,8 +14,8 @@ public class Criteria {
 	private int pageNum; //페이지 번호
 	private int amount; //한 페이지 당 데이터 갯수
 	
-	private String type;
-	private String keyword;
+	private String type; //검색 조건(제목, 작성자, 내용)
+	private String keyword; //검색 키워드
 	
 	//생성자
 	public Criteria() {
