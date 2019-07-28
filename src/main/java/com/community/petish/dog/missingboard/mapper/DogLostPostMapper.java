@@ -2,6 +2,7 @@ package com.community.petish.dog.missingboard.mapper;
 
 import java.util.List;
 
+import com.community.petish.dog.missingboard.domain.DogLostPostVO;
 import com.community.petish.dog.missingboard.dto.Criteria;
 import com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.dog.missingboard.dto.DogLostPostResponseDetailDTO;

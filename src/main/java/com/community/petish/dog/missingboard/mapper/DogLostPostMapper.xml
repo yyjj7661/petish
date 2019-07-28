@@ -92,7 +92,7 @@
 	</select> -->
 	
 	<!-- 게시글 리스트(페이징) -->
-	<select id="getDogLostList" resultMap="DogLostPostListDTO">
+	<!-- <select id="getDogLostList" resultMap="DogLostPostListDTO">
 	<![CDATA[
 		SELECT
 		ID, DOG_AGE, DOG_GENDER, DOG_LOST_ADDRESS,
@@ -109,7 +109,53 @@
 		WHERE rn > (#{pageNum} - 1) * #{amount}
 		ORDER BY CREATE_DATE DESC
 	]]>
+	</select> -->
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							NICKNAME like '%'||#{keyword}||'%'
+						</when>				
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>	
+	
+	<!-- 게시판 리스트(페이징 + 검색) -->
+	<select id="getDogLostList" resultMap="DogLostPostListDTO">
+	<![CDATA[
+		SELECT
+		ID, DOG_AGE, DOG_GENDER, DOG_LOST_ADDRESS,
+		VIEW_COUNT, CREATE_DATE, UPDATED_DATE, FOUND,
+		SPECIES_ID, DOG_SPECIES, NICKNAME
+		FROM 
+		(SELECT rownum rn, post.ID, post.DOG_AGE, post.DOG_GENDER, post.DOG_LOST_ADDRESS,
+		post.VIEW_COUNT, post.CREATE_DATE, post.UPDATED_DATE, post.FOUND,
+		post.SPECIES_ID, species.DOG_SPECIES, u.NICKNAME
+		FROM dog_lost_post_tb post, dog_species_tb species, user_tb u
+		WHERE		
+	]]>
+		<include refid="criteria"></include>
+				
+	<![CDATA[
+		rownum <= #{pageNum} * #{amount}
+		AND post.DELETED=0 AND species.ID=post.SPECIES_ID AND u.ID=post.USER_ID
+		ORDER BY FOUND ASC, CREATE_DATE DESC
+		)		
+		WHERE rn > (#{pageNum} - 1) * #{amount}
+	]]>
 	</select>
+
 
 	<!-- 게시글 조회 -->
 	<select id="getPostDetail" parameterType="Long"
@@ -131,15 +177,15 @@
 	</update>
 
 	<!-- 게시글 작성 -->
-	<insert id="insertPost"
-		parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
+	<insert id="insertPost" parameterType="com.community.petish.dog.missingboard.dto.DogLostPostRequestWriteDTO">
 
-		<!-- <selectKey keyProperty="ID" order="BEFORE" resultType="Long"> select 
-			dog_lost_post_id_seq.nextval from dual </selectKey> -->
+		<selectKey keyProperty="id" order="BEFORE" resultType="Long">
+		select dog_lost_post_id_seq.nextval from dual
+		</selectKey>
 
 		insert into dog_lost_post_tb
 		values(
-		dog_lost_post_id_seq.nextval,
+		#{id},
 		#{dog_name, jdbcType=VARCHAR},
 		#{dog_age, jdbcType=VARCHAR},
 		#{dog_gender, jdbcType=VARCHAR},
