@@ -104,10 +104,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="photo-join">사진</label>
-                            <input id="photo" type="file" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <a></a>
                             <label for="concern-login">관심사</label>
                             <div class="row" id="concern">
@@ -142,13 +138,13 @@
                     		<label for="find-login">이름과 주민등록번호를 정확히 입력해주세요.</label>
                   		</div>
 	                <div class="text-center">
-						<label for="inp" class="inp">
-							<input type="text" id="inp" placeholder=" ">
+						<label for="nameInput" class="inp">
+							<input type="text" id="nameInput" placeholder=" ">
 							<span class="label">이름</span>
 							<span class="border"></span>
 						</label>					  
-						<label for="inp" class="inp">
-							<input type="password" id="inp" placeholder=" ">
+						<label for="SSNInput" class="inp">
+							<input type="password" id="SSNInput" placeholder=" ">
 							<span class="label">주민번호</span>
 							<span class="border"></span>
 						</label>
