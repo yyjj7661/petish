@@ -2,9 +2,11 @@ package com.community.petish.dog.missingboard.dto;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.community.petish.dog.missingboard.domain.AttachFileVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -37,5 +39,6 @@ public class DogLostPostRequestWriteDTO {
 	private int user_id; //유저 식별자
 	private int species_id; //강아지 종류 식별자	
 	
+	private List<AttachFileVO> attachList; //이미지 업로드
 	
 }
