@@ -57,15 +57,55 @@ addLike = () => {
 }
 
 openPost = (id) => {
-    let post = mypetList[id-1];
-    let postSource = "<img src=" + post.image + ">";
-    $('#user-id').html(post.user);
-    $('#post-picture').html(postSource);
-    $('#post-title').html(post.title);
-    $('#created-date').html(post.createdDate);
-    $('#post-content').html(post.content);
-    $('#like-count').html(post.likeCount);
-    $('#comment-count').html(post.commentCount);
+	let userId;
+	
+	$.ajax({
+	    type:"GET",
+	    url:"/api/mypet/posts/" + id,
+	    success: function(result, status, xhr) {
+			let images = result.image.split(",");
+			let imageTag = "<img src=" + images[0] + ">";
+			
+			// date 변환
+			let createdDate = new Date(result.createdDate);
+			
+			//userId 부여
+			let userId = result.userId;
+		
+		    $('#post-picture').html(imageTag);
+			$('#post-title').html(result.title);
+			$('#post-content').html(result.content);
+		    $('#created-date').html(createdDate.toDateString());
+		    
+		    $('#like-count').html(result.likeCount);
+		    $('#comment-count').html(result.commentCount);
+		    
+		    $.ajax({
+				type: "GET",
+				url: "/api/users/" + userId,
+				success: function(result, status, xhr) {
+					$('#user-id').html(result.nickname);
+				},
+				error: function(error, status, xhr) {
+					
+				}
+			})
+			
+	    },
+	    error: function(error, status, xhr) {
+	        
+	    }
+	});
+	
+//    let post = mypetList[id-1];
+//    let postSource = "<img src=" + post.image + ">";
+//    $('#user-id').html(post.user);
+//    $('#post-picture').html(postSource);
+//    $('#post-title').html(post.title);
+//    $('#created-date').html(post.createdDate);
+//    $('#post-content').html(post.content);
+//    $('#like-count').html(post.likeCount);
+//    $('#comment-count').html(post.commentCount);
     $('#mypet-detail-modal').modal('show');
 }
 
