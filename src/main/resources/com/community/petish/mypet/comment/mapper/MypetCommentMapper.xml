@@ -3,5 +3,17 @@
 
 <mapper namespace="com.community.petish.mypet.comment.mapper.MypetCommentMapper">
 
+	<insert id="save">
+		<selectKey keyProperty="commentId" resultType="Long" order="BEFORE">
+			SELECT mypet_comment_seq.nextval from dual
+		</selectKey>
+	
+		INSERT INTO mypet_comment_tb
+			(id, content, post_id, user_id)
+		VALUES
+			( #{commentId}, #{content}, #{postId}, #{userId})
+	</insert>
+
+
 
 </mapper>
