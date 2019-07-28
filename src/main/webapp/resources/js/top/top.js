@@ -169,7 +169,6 @@ const handledJoinClick = (e) => {
 			"address" : address,
 			"gender" : gender,
 			"concern" : concern,
-			"profileImage" : "hihi"
 	};
 	
 	$.ajax({
