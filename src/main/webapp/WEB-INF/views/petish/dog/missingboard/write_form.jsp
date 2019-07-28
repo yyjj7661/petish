@@ -10,6 +10,49 @@
 <html>
 <head>
 
+<!-- 이미지 업로드 관련 -->
+<style>
+  .uploadResult {
+    width: 100%;
+    background-color: gray;
+  }
+  
+  .uploadResult ul {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .uploadResult ul li {
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .uploadResult ul li img {
+    width: 100px;
+  }
+  
+  .bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}   
+  </style>
+
 <meta charset="utf-8">
 <title></title>
 
@@ -104,33 +147,35 @@
                      </div>
                      <div class="col-lg-10 text-right p-3"
                         style="display: inline-block;">
-                        <a href="/dog/missingboard/list"
-                           class="btn btn-template-outlined" style="margin-top: 10px;">목록</a>
+                        <a href="/dog/missingboard/list" class="btn btn-template-outlined" style="margin-top: 10px;">목록</a>
                      </div>
                      <h4>[실종견 정보 작성]</h4>
                      <!-- <form name="dogLostPostForm" id="dogLostPostForm" action="/dog/missingboard/register"
                         method="post" enctype="multipart/form-data"> -->
-                     <form name="dogLostPostForm" id="dogLostPostForm" method="post">
-                        <input type="hidden" name="USER_ID" id="USER_ID" value=<%=userId%>>
+                        
+                     <form role="form" name="dogLostPostForm" id="dogLostPostForm"
+                     action="/dog/missingboard/register" method="post">
+                     	<!-- user_id -->
+                        <input type="hidden" name="user_id" id="USER_ID" value=<%=userId%>>
 
                         <div class="row">
                            <div class="col-sm-6 col-md-2">
                               <div class="form-group">
-                                 <label>이름</label> <input id="DOG_NAME" type="text"
+                                 <label>이름</label> <input id="DOG_NAME" name="dog_name" type="text"
                                     class="form-control">
                               </div>
                            </div>
                            <div class="col-sm-6 col-md-2">
                               <div class="form-group">
                                  <label>나이</label> <input type="text" class="form-control"
-                                    name="DOG_AGE" id="DOG_AGE">
+                                    name="dog_age" id="DOG_AGE">
                               </div>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-sm-6 col-md-4">
                               <div class="form-group">
-                                 <label for="category">종</label> <select name="SPECIES_ID" id="SPECIES_ID"
+                                 <label for="category">종</label> <select name="species_id" id="SPECIES_ID"
                                     class="form-control">
                                     <option value="">종</option>
                                     <option value="1">믹스견</option>
@@ -174,8 +219,9 @@
                                  <label>성별</label>
                                  <!-- <div class="checkbox" id="dogGender" -->
                                  <div class="checkbox" style="padding-top: 10px;">
-                                    <input type="radio" value="수컷" name="DOG_GENDER" id="DOG_GENDER"> 수컷
-                                    <input type="radio" value="암컷" name="DOG_GENDER" id="DOG_GENDER"> 암컷
+                                    <input type="radio" value="수컷" id="male"> 수컷
+                                    <input type="radio" value="암컷" id="female"> 암컷
+                                    <input type="hidden" value="" name="dog_gender">
                                  </div>
                               </div>
                            </div>
@@ -183,18 +229,35 @@
 
                         <div class="row">
                            <div class="col-md-4">
-                              <div class="form-group">
-                                 <label>사진</label> <input type="file" name="DOG_IMAGE" id="DOG_IMAGE">
+                                <div class="panel panel-default">
+                              
+                              <!-- <div class="form-group"> -->
+                                 
+                                 <!-- <div class="panel-heading">파일 첨부</div> -->
+                                 <div class="panel-body">
+                                    <div class="form-group uploadDiv">
+                                      <label>사진</label>
+                                      <input type="file" id="uploadFile" name='dog_image' multiple>
+                                   </div>
+                                   
+                                   <div class='uploadResult'>
+                                      <ul>
+                                         
+                                      </ul>                                
+                                   </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
+                        
+                        
                         <div class="row">
                            <div class="col-md-8">
                               <div class="form-group">
                                  <label style="display: block">특징(최대 5개까지 입력)</label>
 
                                  <table id="addTable">
-                                    <input type="text" class="form-control" id="description1" name="DOG_DESCRIPTION"
+                                    <input type="text" class="form-control" id="description1" name="dog_description"
                                        style="display: inline-block; width: 80%;">
                                        
                                     <!-- <input type="text" class="form-control" id="description2" name="DOG_DESCRIPTION"
@@ -221,7 +284,7 @@
                            <div class="col-sm-6 col-md-4">
                               <div class="form-group">
                                  <label for="category">실종 일시</label> <input
-                                    id="datetimepicker" name="DOG_LOST_DATE" id="DOG_LOST_DATE" type="datetime"
+                                    id="datetimepicker" name="dog_lost_date" id="DOG_LOST_DATE" type="datetime"
                                     class="form-control">
                                  <!-- type="datetime-local" -->
                               </div>
@@ -232,7 +295,7 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="category">실종 장소</label>
-                                 <input name="DOG_LOST_ADDRESS" id="place" type="text" class="form-control">
+                                 <input name="dog_lost_address" id="place" type="text" class="form-control">
                               </div>
                            </div>
                            <div class="col-md-1.5" style="padding-top: 6px;">
@@ -253,7 +316,7 @@
                            <div class="col-sm-6 col-md-4">
                               <div class="form-group">
                                  <label for="category">사례금</label> <input type="text"
-                                    class="form-control" name="REWARD" id="REWARD">
+                                    class="form-control" name="reward" id="REWARD">
                               </div>
                            </div>
                         </div>
@@ -262,7 +325,7 @@
                            <div class="col-sm-6 col-md-4">
                               <div class="form-group">
                                  <label for="category">연락처</label>
-                                 <input type="text" class="form-control" name="PHONE_NUMBER" id="PHONE_NUMBER">
+                                 <input type="text" class="form-control" name="phone_number" id="PHONE_NUMBER">
                                  <!-- <select name="PHONE_NUMBER1" class="form-control">
                                     <option value="010" selected>010</option>
                                     <option value="011">011</option>
@@ -298,91 +361,341 @@
    
    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>   
    <!-- 입력 AJAX -->
-   <script>
-   
-   </script>  
    
    <script> 
    $(document).ready(function() {
-	   
-	   var inputBtn = $("#input_post");	   
-	   
-	   inputBtn.on("click", function(e){
-		   e.preventDefault();
-		   	alert("click");		   	
-		   	
-		 	//강아지 특징
-	         var description = "";          
-	         if($('#description1').val())
-	            description += "" + $('#description1').val();
-	         if($('#description2').val())
-	            description += " / " + $('#description2').val();
-	         if($('#description3').val())
-	            description += " / " + $('#description3').val();
-	         if($('#description4').val())
-	            description += " / " + $('#description4').val();
-	         if($('#description5').val())
-	            description += " / " + $('#description5').val();
-	         alert(description);
-	         
-	         //연락처
-	         var telephone = "";
-	         if($('#tel1').val() != '')
-	            telephone += "" + $('#tel1').val();
-	         if($('#tel2').val() != '')
-	            telephone += "-" + $('#tel2').val();
-	         if($('#tel3').val() != '')
-	            telephone += "-" + $('#tel3').val();
-	         alert(telephone);
-	         
-	         //입력 데이터
-	         var post = {
-	               "dog_name" : $('#DOG_NAME').val(),
-	               "dog_age" : $("#DOG_AGE").val(),
-	               "dog_gender" : $("input:radio[name=DOG_GENDER]:checked").val(),
-	               "dog_description" : description,
-	               "dog_image" : $('#DOG_IMAGE').val(),
-	               "dog_lost_date" : $('input[name="DOG_LOST_DATE"]').val(),
-	               "phone_number" : $('#PHONE_NUMBER').val(),
-	               "dog_lost_address" :  $('input[name="DOG_LOST_ADDRESS"]').val(),
-	               "reward" : $('#REWARD').val(),
-	               "user_id" : $('#USER_ID').val(),
-	               "species_id" : $('#SPECIES_ID').val()
-	         };	         
-	         alert(JSON.stringify(post));
-	         
-	         add(post, function(result){
-	        	alert(post);
-	        	alert(result);
-	         });	         
-	   });
-	   
-	   function add(post, callback, error){      	
-	       $.ajax({
-	          url : '/dog/missingboard/POST',
-	          type : 'POST',
-	          data : JSON.stringify(post),
-	          dataType:"json",
-	          contentType : 'application/json; charset=utf-8',
-	          success : function(retVal) {
-	        	  alert("200!!")
-	          	if (retVal.res == "OK") {
-						alert("입력 성공");
-					} else {
-						alert("입력 실패");
-					}
-	          },
-	          error : function() {
-					alert("AJAX 통신 실패");
-				}
-	       }); //ajax
-	       //event.preventDefault();
-	   } //add	   
-	   
+      
+      
+      var formObj = $("form[role='form']");
+      
+      
+     /*  function imageAttach(){
+         
+       e.preventDefault();        
+        console.log("imageAttach clicked");
+        
+        var str = "";        
+        
+        $(".uploadResult ul li").each(function(i, obj){
+          
+          var jobj = $(obj);
+          
+          console.dir(jobj);
+          console.log("-------------------------");
+          console.log(jobj.data("filename"));          
+          
+          str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+          str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+          str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+          str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";          
+        });
+        
+        console.log(str);        
+        formObj.append(str).submit();      
+        
+      }; */
+
+      
+      var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+      var maxSize = 5242880; //5MB
+      
+      function checkExtension(fileName, fileSize){
+        
+        if(fileSize >= maxSize){
+          alert("파일 사이즈 초과");
+          return false;
+        }
+        
+        if(regex.test(fileName)){
+          alert("해당 종류의 파일은 업로드할 수 없습니다.");
+          return false;
+        }
+        return true;
+      }
+      
+      $("input[type='file']").change(function(e){
+
+        var formData = new FormData();
+        
+        var inputFile = $("#uploadFile");
+        
+        var files = inputFile[0].files;
+        
+        for(var i = 0; i < files.length; i++){
+
+          if(!checkExtension(files[i].name, files[i].size) ){
+            return false;
+          }
+          formData.append("uploadFile", files[i]);
+          
+        }
+        
+        //사진 등록(경로 C:\\)
+        $.ajax({
+          url: '/uploadAjaxAction',
+          processData: false, 
+          contentType: false,
+          data: formData,
+          type: 'POST',
+          dataType:'json',
+            success: function(result){
+              console.log(result); 
+              showUploadResult(result); //업로드 결과 처리 함수 
+          }
+        }); //$.ajax
+        
+      });  
+      
+      
+      //파일 첨부 시 미리보기 썸네일 출력
+      function showUploadResult(uploadResultArr){
+   
+       alert("showUploadResult 호출");
+         
+        if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+        
+        var uploadUL = $(".uploadResult ul");
+        
+        var str ="";
+        
+        $(uploadResultArr).each(function(i, obj){
+        
+            /* //image type
+            if(obj.image){
+              var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+              str += "<li><div>";
+              str += "<span> "+ obj.fileName+"</span>";
+              str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+              str += "<img src='/display?fileName="+fileCallPath+"'>";
+              str += "</div>";
+              str +"</li>";
+            }else{
+              var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);            
+                var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+                  
+              str += "<li><div>";
+              str += "<span> "+ obj.fileName+"</span>";
+              str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+              str += "<img src='/resources/img/attach.png'></a>";
+              str += "</div>";
+              str +"</li>";
+            } */
+          //image type
+          
+          if(obj.image){
+             var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+             str += "<li data-path='"+obj.uploadPath+"'";
+             str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+             str +" ><div>";
+             str += "<span> "+ obj.fileName+"</span>";
+             str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+             str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+             str += "<img src='/display?fileName="+fileCallPath+"'>";
+             str += "</div>";
+             str +"</li>";
+             
+             console.log("(obj.image)str : " + str);
+          }
+          else{
+             var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);               
+              var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+                
+             str += "<li "
+             str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+             str += "<span> "+ obj.fileName+"</span>";
+             str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+             str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+             str += "<img src='/resources/img/attach.png'></a>";
+             str += "</div>";
+             str +"</li>";
+             
+             console.log("str : " + str)
+          }
+
+        });
+        
+        //console.log("[append 전 ]str : " + str)
+        uploadUL.append(str);
+      }
+      
+      
+      //첨부 파일 삭제
+      $(".uploadResult").on("click", "button", function(e){
+           
+        console.log("delete file");
+          
+        var targetFile = $(this).data("file");
+        var type = $(this).data("type");
+        
+        var targetLi = $(this).closest("li");
+        
+        $.ajax({
+          url: '/deleteFile',
+          data: {fileName: targetFile, type:type},
+          dataType:'text',
+          type: 'POST',
+            success: function(result){
+               alert(result);
+               
+               targetLi.remove();
+             }
+        }); //$.ajax
+       });
+      
+      
+      
+      
+      //글 입력 버튼
+      var inputBtn = $("#input_post");      
+      
+      inputBtn.on("click", function(e){
+         e.preventDefault();
+            alert("click");            
+            
+          //강아지 특징
+            var description = "";          
+            if($('#description1').val())
+               description += "" + $('#description1').val();
+            if($('#description2').val())
+               description += " / " + $('#description2').val();
+            if($('#description3').val())
+               description += " / " + $('#description3').val();
+            if($('#description4').val())
+               description += " / " + $('#description4').val();
+            if($('#description5').val())
+               description += " / " + $('#description5').val();
+            alert(description);
+            
+            //연락처
+            var telephone = "";
+            if($('#tel1').val() != '')
+               telephone += "" + $('#tel1').val();
+            if($('#tel2').val() != '')
+               telephone += "-" + $('#tel2').val();
+            if($('#tel3').val() != '')
+               telephone += "-" + $('#tel3').val();
+            alert(telephone);
+            
+           //첨부 이미지     
+           console.log("imageAttach clicked");
+        
+           var str = "";
+           
+           var fileName = "";
+           var uuid = "";
+           var uploadPath = "";
+           var fileType = "";
+           
+           //성별 바뀔때마다
+           
+           $('#input[name=dog_gender]').change(function(){
+		    var checked = $(this).prop('checked');  // checked 상태 (true, false)
+		   
+		    var gender = $("input[name='dog_gender']:checked").val(); 
+	        alert(gender);	           
+		    
+		    if(gender == "수컷"){
+		    	$("input[name='dog_gender']").prop("value","수컷")
+	        }
+	        else{
+	        	$("input[name='dog_gender']").prop("value","암컷")
+	        }
+		    
+		 });
+           
+           
+           
+           $(".uploadResult ul li").each(function(i, obj){
+          
+             var jobj = $(obj);
+             
+             console.dir(jobj);
+             console.log("-------------------------");
+             console.log(jobj.data("filename"));          
+             
+             str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+             
+             str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+             
+             str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+             
+             str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+             
+           });
+           
+           console.log(str);       
+           
+           //특징
+           $("input[name=dog_description]").val(description); //특징 입력 폼 5개 내용 1개로
+           
+           //성별
+           var gender = $('input[type=radio]:checked').val();
+           alert(gender);
+           $("input[name=dog_gender]").val(gender);
+           
+           
+           formObj.append(str).submit(); //폼 전송
+           
+           
+            //입력 데이터
+            /* var post = {
+                  "dog_name" : $('#DOG_NAME').val(),
+                  "dog_age" : $("#DOG_AGE").val(),
+                  "dog_gender" : $("input:radio[name=DOG_GENDER]:checked").val(),
+                  "dog_description" : description,
+                  "dog_image" : $('#DOG_IMAGE').val(),
+                  "dog_lost_date" : $('input[name="DOG_LOST_DATE"]').val(),
+                  "phone_number" : $('#PHONE_NUMBER').val(),
+                  "dog_lost_address" :  $('input[name="DOG_LOST_ADDRESS"]').val(),
+                  "reward" : $('#REWARD').val(),
+                  "user_id" : $('#USER_ID').val(),
+                  "species_id" : $('#SPECIES_ID').val()
+             
+                  "attachList" : [
+                     {"fileName", $(jobj).data("filename")},
+                     {"fileName", $(jobj).data("filename")},
+                     {"fileName", $(jobj).data("filename")},
+                     {"fileName", $(jobj).data("filename")},                     
+                  ]
+                  
+            };            
+            alert(JSON.stringify(post));
+            
+            add(post, function(result){
+              alert(post);
+              alert(result);
+            });             */
+            
+      });
+      
+      function add(post, callback, error){         
+          $.ajax({
+             url : '/dog/missingboard/POST',
+             type : 'POST',
+             data : JSON.stringify(post),
+             dataType:"json",
+             contentType : 'application/json; charset=utf-8',
+             success : function(retVal) {
+                alert("200!!");
+                if (retVal.res == "OK") {
+                  alert("입력 성공");
+                  //location.href="/dog/missingboard/list";
+               } else {
+                  alert("입력 실패");
+               }
+             },
+             error : function() {
+               alert("AJAX 통신 실패");
+            }
+          }); //ajax          
+          //event.preventDefault();
+      } //add
+      
+      
+      
    });
    </script>
    
-   <script src="/resources/vendor/jquery/jquery.min.js"></script>
    
    <script>
 // 강아지 특징 작성하는 input 폼 추가
@@ -390,27 +703,27 @@
    var descriptionIndex = 1;
    function insRow() {
 
-   	oTbl = document.getElementById("addTable"); // 입력 폼
+      oTbl = document.getElementById("addTable"); // 입력 폼
 
-   	var oRow = oTbl.insertRow();
-   	oRow.onmouseover = function() {
-   		oTbl.clickedRowIndex = this.rowIndex // clickedRowIndex - 클릭한 Row의
-   												// 위치를 확인;
-   	};
+      var oRow = oTbl.insertRow();
+      oRow.onmouseover = function() {
+         oTbl.clickedRowIndex = this.rowIndex // clickedRowIndex - 클릭한 Row의
+                                       // 위치를 확인;
+      };
 
-   	var oCell = oRow.insertCell();
-   	
-   	// 삽입될 Form Tag
-   	var frmTag = '<input type="text" class="form-control" id="description'+(++descriptionIndex)+'" name="DOG_DESCRIPTION" style="display: inline-block; width: 80%;">';
-   	
-   	
-   	frmTag += "<button onClick='removeRow()' style='font-size: 0.9rem; margin-left:0.2rem;' class='btn btn-sm btn-template-main'>삭제</button>";
+      var oCell = oRow.insertCell();
+      
+      // 삽입될 Form Tag
+      var frmTag = '<input type="text" class="form-control" id="description'+(++descriptionIndex)+'" style="display: inline-block; width: 80%;">';
+      
+      
+      frmTag += "<button onClick='removeRow()' style='font-size: 0.9rem; margin-left:0.2rem;' class='btn btn-sm btn-template-main'>삭제</button>";
 
-   	oCell.innerHTML = frmTag;
+      oCell.innerHTML = frmTag;
    }
    // 특징 input 행 삭제
    function removeRow() {
-   	oTbl.deleteRow(oTbl.clickedRowIndex);
+      oTbl.deleteRow(oTbl.clickedRowIndex);
    }
    </script>
    
