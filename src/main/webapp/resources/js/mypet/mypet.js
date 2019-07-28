@@ -66,7 +66,7 @@ openPost = (id) => {
     $('#post-content').html(post.content);
     $('#like-count').html(post.likeCount);
     $('#comment-count').html(post.commentCount);
-    openModal();
+    $('#mypet-detail-modal').modal('show');
 }
 
 mypetList = [
