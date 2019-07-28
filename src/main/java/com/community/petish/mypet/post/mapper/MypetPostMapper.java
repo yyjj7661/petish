@@ -10,4 +10,6 @@ public interface MypetPostMapper {
 
 	Long save(SaveMypetPostParams saveMypetPostParams);
 	
+	MypetPostDetailResponse findById(Long postId);
+	
 }

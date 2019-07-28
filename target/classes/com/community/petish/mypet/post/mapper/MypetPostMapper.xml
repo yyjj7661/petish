@@ -3,6 +3,15 @@
 
 <mapper namespace="com.community.petish.mypet.post.mapper.MypetPostMapper">
 
+	<resultMap type="com.community.petish.mypet.post.dto.response.MypetPostDetailResponse" id="mypetPostDetailResponse">
+		<result property="postId" column="id"/>
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="image" column="image"/>
+		<result property="likeCount" column="like_count" />
+		<result property="commentCount" column="comment_count" />		
+	</resultMap>
+
 	<insert id="save" parameterType="com.community.petish.mypet.post.dto.request.SaveMypetPostParams">
 		
 		INSERT INTO mypet_post_tb
@@ -14,6 +23,16 @@
 			select id from mypet_post_tb where images = #{images}
 		</selectKey>
 	</insert>
+	
+	<select id="findById" resultMap="">
+		
+		SELECT id, image, title, content,
+			(SELECT count(*) from mypet_comment_tb where id=#{postId} ) as comment_count,
+			(SELECT count(*) from mypet_post_like_tb where id=#{postId}) as like_count
+		FROM mypet_post_tb
+		WHERE id = #{postId}
+		
+	</select>
 
 </mapper>
 
