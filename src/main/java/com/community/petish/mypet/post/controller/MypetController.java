@@ -1,4 +1,4 @@
-package com.community.petish.mypet.controller;
+package com.community.petish.mypet.post.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
