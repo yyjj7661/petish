@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.LoginedUser;
+import com.community.petish.user.dto.response.UserDetailResponse;
 import com.community.petish.user.dto.response.UserListResponse;
 import com.community.petish.user.exception.AuthenticationException;
 import com.community.petish.user.exception.NotLoginedException;
@@ -44,6 +45,13 @@ public class UserRestController {
 		UserListResponse userListResponse = userService.getUsers();
 		log.info(userListResponse.toString());
 		return userListResponse;
+	}
+	
+	@GetMapping(value="/{userId}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public UserDetailResponse getUser(@PathVariable("userId") Long userId) {
+		log.info("user 조회 : userId = {}", userId);
+		UserDetailResponse userDetailResponse = userService.getUser(userId);
+		return userDetailResponse;
 	}
 	
 	@GetMapping(value="/duplicate/{nickname}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
