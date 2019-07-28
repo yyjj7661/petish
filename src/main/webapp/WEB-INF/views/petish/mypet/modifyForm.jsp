@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="/resources/css/mypet/mypet.css">
     <link rel="stylesheet" href="/resources/css/mypet/mypetForm.css">
-    <script src="/resources/js/mypet.js"></script>
+    <script src="/resources/js/mypet/mypet.js"></script>
     
 </head>
 <body>
