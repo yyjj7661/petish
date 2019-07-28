@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 
 <%@ page import="com.community.petish.dog.missingboard.dto.*"%>
 <%
@@ -229,9 +229,9 @@ th, td {
 }
 
 /* Hide the images by default */
-.mySlides {
+/* .mySlides {
 	display: none;
-}
+} */
 
 .prev, .next {
 	cursor: pointer;
@@ -523,30 +523,32 @@ label {
 							<!-- <img id="lostdog" src="dog3.jpg"> -->
 
 							<div class="slideshow-container">
+								<div id="imageSlides">
 
 								<!-- Full-width images with number and caption text -->
-								<div class="mySlides fade">
-									<div class="numbertext">1 / 3</div>
-									<img id="lostdog" src="<%=dto.getDog_image()%>"
-										style="width: 100%">
-								</div>
+								<!-- <div class="mySlides fade">
+																			
+								</div> -->	
 
-								<div class="mySlides fade">
+								<%-- <div class="mySlides fade">
 									<div class="numbertext">2 / 3</div>
-									<img id="lostdog"
-										src"<%=dto.getDog_image()%>" style="width: 100%">
+									<img id="lostdog" src"<%=dto.getDog_image()%>" style="width: 100%">
 								</div>
 
 								<div class="mySlides fade">
 									<div class="numbertext">3 / 3</div>
-									<img id="lostdog" src="<%=dto.getDog_image()%>"
-										style="width: 100%">
+									<img id="lostdog" src="<%=dto.getDog_image()%>" style="width: 100%">
+								</div> --%>
+								
 								</div>
-
+								
 								<!-- Next and previous buttons -->
 								<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
 									class="next" onclick="plusSlides(1)">&#10095;</a>
-							</div> <br> <!-- The dots/circles -->
+							</div> 
+							
+							<br>
+							<!-- The dots/circles -->
 							<div style="text-align: center">
 								<span class="dot" onclick="currentSlide(1)"></span> <span
 									class="dot" onclick="currentSlide(2)"></span> <span class="dot"
@@ -819,14 +821,100 @@ label {
 		</div>
 	</div>
 	
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	
 	<!-- JS 파일 추가 -->
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>	
 	<script type="text/javascript" src="/resources/js/missingboard/detail.js"></script>
 	
 	<script>
-	$(document).ready(function() {
+	$(document).ready(function() {		
+		(function(){
+			  
+		    var id = '<c:out value="${dto.id}"/>';
+		    
+		   <%--  $.getJSON("/dog/missingboard/getAttachList/<%=ID%>", function(arr){
+		      console.log(arr);
+		    }); //end getjson --%>
+		    
+		    
+		    $.getJSON("/dog/missingboard/getAttachList/<%=ID%>", function(arr){
+		        
+		        console.log(arr);
+		        
+		        var str = "";
+		        
+		        $(arr).each(function(i, attach){
+		            
+		            //이미지 파일
+		            if(attach.fileType){
+		              var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName); //파일 저장 경로
+		             
+		              str += "<div class='mySlides fade'>"
+		              str += "<img id='lostdog' style='width:100%' src='/display?fileName="+fileCallPath+"'>";		              
+		              str += "</div>";
+		            }
+		            //이미지 파일 X		            
+		            else{
+		              str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+		              str += "<span> "+ attach.fileName+"</span><br/>";
+		              str += "<img src='/resources/img/attach.png'></a>";
+		              str += "</div>";
+		              str +"</li>";
+		            }
+		          });
+		        
+		        alert(str);		        
+		          
+		        $("#imageSlides").html(str);		          
+		          
+		        });//end getjson		    
+		    
+		    
+		  })();//end function
+		  
+		  
+		  
+		  //이미지 클릭 이벤트
+		  $(".uploadResult").on("click","li", function(e){
+		      
+		    console.log("view image");
+		    
+		    var liObj = $(this);
+		    
+		    var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
+		    
+		    if(liObj.data("type")){
+		      showImage(path.replace(new RegExp(/\\/g),"/"));
+		    }else {
+		      //download 
+		      self.location ="/download?fileName="+path
+		    }
+		    
+		    
+		  });
+		  
+		  function showImage(fileCallPath){
+			    
+		    alert(fileCallPath);
+		    
+		    $(".bigPictureWrapper").css("display","flex").show();
+		    
+		    $(".bigPicture")
+		    .html("<img src='/display?fileName="+fileCallPath+"' >")
+		    .animate({width:'100%', height: '100%'}, 1000);
+		    
+		  }
+
+		  $(".bigPictureWrapper").on("click", function(e){
+		    $(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+		    setTimeout(function(){
+		      $('.bigPictureWrapper').hide();
+		    }, 1000);
+		  });
+
+		  
 		
 		//신고 작성
 		$('#input_report').click(function(event) {
@@ -862,10 +950,10 @@ label {
 				error : function() {
 					alert("AJAX 통신 실패");
 				}
-			});
+			}); //ajax
 			// 기본 이벤트 제거
 			event.preventDefault();
-		});
+		}); //input_report.onclick
 	});
 
 	/*
@@ -900,12 +988,12 @@ label {
 
 		// if(n = 1) {slideIndex = 1}
 
-		for (i = 0; i < slides.length; i++) {
+		/* for (i = 0; i < slides.length; i++) {
 			slides[i].style.display = "none";
 		}
 		for (i = 0; i < dots.length; i++) {
 			dots[i].className = dots[i].className.replace(" active", "");
-		}
+		} */
 
 		slides[slideIndex - 1].style.display = "block";
 		dots[slideIndex - 1].className += " active";
