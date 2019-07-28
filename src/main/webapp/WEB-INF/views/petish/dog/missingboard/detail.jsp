@@ -11,7 +11,8 @@
 	
 	//폐이지 번호
 	String pageNum = session.getAttribute("pageNum").toString();
-
+	session.setAttribute("pageNum", pageNum);
+	
 	 //게시판 아이디
 	String strBoard = session.getAttribute("boardId").toString();
 	Long boardId = Long.parseLong(strBoard);
@@ -104,7 +105,7 @@
 <link href="/resources/css/commons/kakaomap.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
 
-<link href="/resources/css/missingboard/detail2.css" rel="stylesheet">
+<link href="/resources/css/missingboard/detail.css" rel="stylesheet">
 
 <style>
 #report-btn {
@@ -708,7 +709,7 @@ label {
 								</button>
 								<button type="submit" class="btn btn-template-outlined">
 									<i class="fa fa-trash-o"></i> <a
-										href="/dog/missingboard/delete"> 삭제 </a>
+										href="/dog/missingboard/delete/<%=ID%>"> 삭제 </a>
 								</button>
 							</nav>
 							<%
@@ -823,6 +824,7 @@ label {
 	<!-- JS 파일 추가 -->
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>	
 	<script type="text/javascript" src="/resources/js/missingboard/detail.js"></script>
+	
 	<script>
 	$(document).ready(function() {
 		
