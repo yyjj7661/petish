@@ -14,7 +14,11 @@
 <style>
   .uploadResult {
     width: 100%;
-    background-color: gray;
+  }
+  
+  .btn-warning {
+  	background-color: #ffffff!important;
+  	border-color: #ffffff!important;
   }
   
   .uploadResult ul {
