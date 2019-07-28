@@ -12,10 +12,14 @@
 <%
 	List<DogLostPostResponseListDTO> dtoList = (List<DogLostPostResponseListDTO>) request.getAttribute("dtoList");
 
+
 	//페이지  번호
-	DogLostPostPageDTO pageDTO = (DogLostPostPageDTO)request.getAttribute("pageMaker");
-	int pageNum = pageDTO.getCri().getPageNum();
-	session.setAttribute("pageNum", pageNum);
+	int pageNum = 1;
+	if((DogLostPostPageDTO)request.getAttribute("pageMaker") != null){
+		DogLostPostPageDTO pageDTO = (DogLostPostPageDTO)request.getAttribute("pageMaker");
+		pageNum = pageDTO.getCri().getPageNum();		
+		session.setAttribute("pageNum", pageNum);
+	}
 	
 	//게시판 아이디 4번
 	session.setAttribute("boardId", "4");
@@ -76,8 +80,15 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
-<link href="/resources/css/dog/missingboard/list.css" rel="stylesheet">
-<script src="/resources/js/dog/missingboard/post.js"></script>
+	
+
+<link href="/resources/css/missingboard/list.css" rel="stylesheet">
+
+
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
+<script src="/resources/js/missingboard/post.js"></script>
+<script src="/resources/js/missingboard/list.js"></script>
 
 </head>
 
@@ -197,7 +208,7 @@
 					<div aria-label="Page navigation example" class="d-flex justify-content-center">
 						<ul class="pagination">
 						<c:if test="${pageMaker.prev }">
-							<li class="page-item"><a href="${pageMaker.startPage-1 }" class="page-link">
+							<li class="page-item"><a href="${pageMaker.startPage-1 }" name="" class="page-link">
 							<i class="fa fa-angle-double-legt"></i></a></li>
 						</c:if>
 						
@@ -214,76 +225,115 @@
 					</div>
 					
 				</div>
-			</div>
+			</div>	
 
-			<!-- 페이징 -->
-			<!-- 
-			<div aria-label="Page navigation example"S
-				class="d-flex justify-content-center">
-				<ul class="pagination">
-				
-					<li class="page-item"><a href="#" class="page-link">
-					<i class="fa fa-angle-double-left"></i></a></li>
-					
-					<li class="page-item active"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					
-					<li class="page-item"><a href="#" class="page-link">
-					<i class="fa fa-angle-double-right"></i></a></li>
-					
-				</ul>
-			</div> 
-			-->			
-
-			<div style="padding: 1rem"></div>
-
+			<div style="padding: 1rem"></div>	
+			
+			<!-- 검색 -->
 			<div aria-label="Page navigation example"
 				class="d-flex justify-content-center">
-
-				<!-- 검색 기능 -->
 				<div class="col-md-2 col-lg-2">
 					<div class="form-group">
-						<select id="state" class="form-control" style="min-width: 2cm;">
-							<option>제목</option>
-							<option>내용</option>
-							<option>작성자</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="panel panel-default sidebar-menu">
-					<div class="panel-body">
-						<form role="search" style="margin-right: 15px;">
-							<div class="input-group">
-								<input type="text" placeholder="Search" class="form-control"><span
-									class="input-group-btn">
-									<button type="submit" class="btn btn-template-main">
-										<i class="fa fa-search"></i>
+           				<form id="searchForm" action="/dog/missingboard/list" style="margin-right: 15px;">
+							<select id="state" name="type" class="form-control" style="min-width: 2cm;">
+		           				<option value=""
+	           					<c:out value="${pageMaker.cri.type == null ? 'selected':''}"/>>--</option>
+	           					<option value="T"
+	           					<c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/>>제목</option>
+	           					<option value="C"
+	           					<c:out value="${pageMaker.cri.type eq 'C' ? 'selected':''}"/>>내용</option>
+	           					<option value="W"
+	           					<c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
+	           					<option value="TC"
+	           					<c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목 or 내용</option>
+	           					<option value="TW"
+	           					<c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목 or 작성자</option>
+	           					<option value="TWC"
+	           					<c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목 or 내용 or 작성자</option>
+	           				</select>
+	           		
+								<div class="input-group">
+			           			<input type='text' name='keyword' placeholder="Search" class="form-control" 
+			           			value='<c:out value="${pageMaker.cri.keyword}"/>' />
+			           			
+			           			<input type='hidden' name='pageNum'
+			           			value='<c:out value="${pageMaker.cri.pageNum}"/>' />
+			           			<input type='hidden' name='amount'
+			           			value='<c:out value="${pageMaker.cri.amount}"/>' />
+			           			
+			           			
+			           			<span class="input-group-btn">
+									<button type="submit" id="searchBtn" class="btn btn-template-main">
+									<i class="fa fa-search"></i>
 									</button>
 								</span>
-							</div>
-						</form>
+								</div>
+							</form>
+						</div>
 					</div>
-				</div>
+				</div>				
 			</div>
-
+       
+            
 			<div style="padding: 1rem"></div>
-
 		</div>
 	</div>
+	
+	<form id='actionForm' action="/dog/missingboard/list" method='get'>
+	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+	<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
+	<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
+	</form>
 
+
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script>
+	$(document).ready(function(){
+		//삭제 확인 메세지
 		if ('${delete_msg}' == "success")
 			alert("게시글 삭제 완료");
 		else if ('${delete_msg}' == "failure")
 			alert("게시글 삭제 실패");
+		
+		//
+		 var actionForm = $("#actionForm");
+	 
+		 $(".paginate_button a").on("click", function(e){
+			 e.preventDefault(); //<a>태그 동작 막음
+			 
+			 console.log('click');
+			 
+			 actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			 actionForm.submit();
+		 });
+		
+		//검색
+		 var searchForm = $("#searchForm");
+		 $("#searchBtn").on("click", function(e){
+			 
+			 alert("click");
+			 
+			 if(!searchForm.find("option:selected").val()){
+				 alert("검색종류를 선택하세요");
+				 return false;
+			 }
+			 
+			 if(!searchForm.find("input[name='keyword']").val()){
+				 alert("키워드를 입력하세요");
+				 return false;
+			 }
+			 
+			 //검색 결과 페이지 1페이지
+			 searchForm.find("input[name='pageNum']").val("1");
+			 e.preventDefault();
+			 
+			 searchForm.submit();
+		 })
+		
+	});
 	</script>
 	
-	<script src="/resources/js/dog/missingboard/list.js"></script>
-
 	<!-- Javascript files-->
 
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
