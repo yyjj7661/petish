@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.community.petish.mypet.post.mapper.MypetPostMapper">
+
+	<insert id="save" parameterType="com.community.petish.mypet.post.dto.request.SaveMypetPostParams">
+		
+		INSERT INTO mypet_post_tb
+			(id, title, content, image, user_id)
+		VALUES
+			( ( (select NVL(max(id), 0) from mypet_post_tb) + 1), #{title}, #{content}, #{images}, #{userId})
+		
+		<selectKey resultType="Long" order="AFTER">
+			select id from mypet_post_tb where images = #{images}
+		</selectKey>
+	</insert>
+
+</mapper>
+
+
+
