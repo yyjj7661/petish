@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -15,6 +17,7 @@ public class DogLostPostResponseListDTO {
 	private String dog_gender; //강아지 성별 
 	private String dog_image; //강아지 사진
 	
+	@JsonFormat(pattern="yyyy/MM/dd HH:mm")
 	private String dog_lost_address; //실종 장소
 	
 	private int view_count; //조회수
