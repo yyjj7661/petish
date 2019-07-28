@@ -256,7 +256,7 @@
                             </div>
 
                             <div class="mypet-created-date">
-                                <span id="create-date">2019-06-11</span>
+                                <span id="created-date">2019-06-11</span>
                             </div>
 
                             <div class="mypet-content" id="post-content">
@@ -285,7 +285,7 @@
                             <table class="s-caption-table">
                                 <tr>
                                     <td class="pr-1"> <i id="like-icon" class="like-icon fas fa-paw s-likes-icon" onclick="likeClick()"></i> 좋아요 <span class="s-likes" id="like-count">49</span> </td>
-                                    <td class="px-1"> <i id="1" class='comment-icon far fa-comment'></i> 댓글 <span class="s-comments" id="commnent-count">3</span></td>
+                                    <td class="px-1"> <i id="1" class='comment-icon far fa-comment'></i> 댓글 <span class="s-comments" id="comment-count">3</span></td>
                                 </tr>
                             </table>
                         </div>
