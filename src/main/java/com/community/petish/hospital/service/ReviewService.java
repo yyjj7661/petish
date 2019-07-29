@@ -10,5 +10,6 @@ public interface ReviewService {
 	List<ReviewVO> getHospitalReviewList(Long id);
 	List<getReviewDTO> getReviewWithPaging(Criteria cri);
 	Integer insertReview(ReviewVO vo);
+	Integer deleteReview(Long id);
 	Integer getTotalCount(Long id);
 }

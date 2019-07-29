@@ -11,6 +11,6 @@ public interface ReviewMapper {
 	List<getReviewDTO> getReviewWithPaging(Criteria cri);
 	Integer getHospitalReview(ReviewVO vo);
 	Integer insertReview(ReviewVO vo);
-	
+	Integer deleteReview(Long id);
 	Integer getTotalCount(Long id);
 }

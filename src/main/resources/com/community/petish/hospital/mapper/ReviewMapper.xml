@@ -72,4 +72,7 @@
  		</selectKey>
  		insert into hospital_review_tb values(#{id},#{content},#{score},sysdate,0,#{user_id},#{hospital_id})
  	</insert>
+ 	<delete id="deleteReview" parameterType="Long">
+ 		delete from hospital_review_tb where id = #{id}
+ 	</delete>
 </mapper>

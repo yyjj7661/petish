@@ -50,6 +50,12 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return reviewMapper.getTotalCount(id);
 	}
+
+	@Override
+	public Integer deleteReview(Long id) {
+		Integer retVal = reviewMapper.deleteReview(id);
+		return retVal;
+	}
 	
 	
 }

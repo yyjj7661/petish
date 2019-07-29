@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,6 +60,21 @@ public class ReviewController {
 				
 				retVal.put("res","OK");
 			}
+			
+		}catch(Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		return retVal;
+	}
+	
+	@DeleteMapping(value="/delete/{id}", produces="application/json;charset=UTF-8")
+	public Map<String, Object> deleteReveiw(@PathVariable("id") Long id){
+		System.out.println("review id="+id);
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		try {
+			Integer res= reviewService.deleteReview(id);
+			retVal.put("res","OK");
 			
 		}catch(Exception e) {
 			retVal.put("res", "FAIL");

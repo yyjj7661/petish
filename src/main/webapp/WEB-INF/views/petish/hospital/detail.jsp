@@ -12,7 +12,7 @@
 	<meta name="robots" content="all,follow">
 
 	<!-- 평점 별  -->
-	<link rel="stylesheet" href="/resources/css/hospital/star.css">
+	<link rel="stylesheet" href="/resources/css/hospital/star.css?ver=2">
 	<!-- 평점 별  -->
 	<link rel="stylesheet" href="/resources/css/hospital/detail.css">
 	<link rel="stylesheet" href="/resources/css/write-modify.css">
@@ -128,7 +128,7 @@
 			<div class="fa fa-comments fa-3x" aria-hidden="true" id="subject">
 				<span class="menu1" style="font-size: 23px;">한 줄로 말하기</span>
 			</div>
-
+		<div id="reviewList" style="display: block;">
 			<table class="table table-stripped" >
 				<thead>
 					<tr style="font-size: 15px;">
@@ -160,6 +160,10 @@
 						<button type="button" class="btn btn-template-outlined" id="reInsert" style="margin-bottom: 25px;">작성완료</button>
 			
 			</div>
+		</div>
+		<div id="modifyForm">
+		</div>
+			
 			<!-- 번호   -->
 			<div aria-label="Page navigation" class="d-flex justify-content-center">
 				<ul class="pagination" id="paging">
@@ -185,7 +189,7 @@
 		
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e74e0d9232cbccbd2962414bf135d9c&libraries=services"></script>
 	
-	<script src="/resources/js/hospital/star.js"></script>
+	<script src="/resources/js/hospital/star.js?ver=2"></script>
 	<script>
 	//지도 api 선택한 곳 마커 표시하기(주소까지 출력)
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -243,11 +247,67 @@
 		getReview("${hospital.id}",page);
 	}
 	
-	function modifyReview(id){
-		console.log('modify id='+id);
+	function modifyReviewForm(vo,page){
+		console.log('modify id='+vo.id);
+		console.log('modify page='+page);
+		$('#reviewList').attr('style', "display:none;");
+		$('#paging').attr('style', "display:none;");
+		var output = '';
+		output +='<span class="star-modify">';
+		output += '<span class="input">';
+		output += '<input style="visibility: hidden;" type="radio" name="star-modify" id="mp1" value="1"><label for="mp1">1</label>';
+		output +='<input style="visibility: hidden;" type="radio" name="star-modify" id="mp2" value="2"><label for="mp2">2</label>';
+		output +='<input style="visibility: hidden;" type="radio" name="star-modify" id="mp3" value="3"><label for="mp3">3</label>';
+		output +='<input style="visibility: hidden;" type="radio" name="star-modify" id="mp4" value="4"><label for="mp4">4</label>';
+		output +='<input style="visibility: hidden;" type="radio" name="star-modify" id="mp5" value="5"><label for="mp5">5</label>';
+		output +='</span>';
+		output +='<output style="line-height: 50px; vertical-align: middle;" for="star-modify"><b>0</b>점</output>';
+		output +='</span>';
+		output +='<textarea style="width:90%; height:100%; boder:2px solid #38A7BB;" id="review_modify" maxlength="100">'+vo.content+'</textarea>';
+		output +='<br><button type="button" class="btn btn-template-outlined" id="reModify">수 정</button>';
+		output +='<button type="button" class="btn btn-template-outlined" id="reCancle" style="margin-left: 10px;">취 소</button>';
+		
+		$('#modifyForm').append(output);
+		//취소버튼 클릭이벤트
+		$('#reCancle').click(function(event){
+			modifyCancle();
+		});
+		//수정 버튼 클릭이벤트
+		$('#reCancle').click(function(event){
+			modifyReview(vo.id,page);
+		});
+		//댓글 수정 js 함수 호출
+		mstarRating();
+		$('input:radio[name="star-modify"]:input[value="'+vo.score+'"]').prop("checked", true);
+		$('.star-modify').find("output>").text(vo.score);
+		
+		
+		
 	}
-	function deleteReview(id){
-		console.log('delete id='+id);
+	function modifyCancle(){
+		$('#reviewList').attr('style', "display:block;");
+		$('#paging').attr('style', "display:flex;");
+		$('#modifyForm').empty();
+	}
+	function deleteReview(id,page){
+		$.ajax({
+			url:'/hospital/review/delete/'+id,
+			type:'DELETE',
+			success:function(retVal){
+				if(retVal.res=="OK"){
+					getReview("${hospital.id}",page);
+				}
+				else{
+					alert("Delete Fail!!!");
+				}
+			},
+			error:function(){
+				alert("ajax 통신실패!!!");
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+			}
+		});
+		
 	}
 	</script>
 	
@@ -316,6 +376,7 @@
 			
 		});
 		
+		
 	});
 	
 	function getReview(id,page){
@@ -346,10 +407,10 @@
 							output += '</tr>';
 							$('#reviews').append(output);
 							$('#re_modify').click(function(event){
-								modifyReview(item.id);
+								modifyReviewForm(item,page);
 							});
 							$('#re_delete').click(function(event){
-								deleteReview(item.id);
+								deleteReview(item.id,page);
 							});
 						}
 						else{
