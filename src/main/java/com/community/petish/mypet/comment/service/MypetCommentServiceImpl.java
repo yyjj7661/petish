@@ -1,12 +1,18 @@
 package com.community.petish.mypet.comment.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.community.petish.mypet.comment.domain.MypetComment;
 import com.community.petish.mypet.comment.dto.request.SaveMypetCommentParams;
+import com.community.petish.mypet.comment.dto.response.MypetCommentDetailResponse;
+import com.community.petish.mypet.comment.dto.response.MypetCommentListResponse;
 import com.community.petish.mypet.comment.mapper.MypetCommentMapper;
 import com.community.petish.user.dto.response.LoginedUser;
 
@@ -35,6 +41,23 @@ public class MypetCommentServiceImpl implements MypetCommentService{
 		log.info("mypet comment 작성 완료 commentId = {}", commentId);
 		
 		return commentId;
+	}
+
+	@Override
+	public MypetCommentListResponse getCommentsByPostId(Long postId) {
+
+		log.info("comments 조회 요청 postId = {}", postId);
+		
+		List<MypetComment> comments = mypetCommentMapper.findAllByPostId(postId);
+		
+		List<MypetCommentDetailResponse> commentDetail = comments.stream()
+			.map(comment -> new MypetCommentDetailResponse(comment)).collect(Collectors.toList());
+		
+		MypetCommentListResponse mypetCommentListResponse = new MypetCommentListResponse(commentDetail);
+
+		log.info("comments 조회 완료 mypetCommentsListResponse = {}", mypetCommentListResponse);
+		
+		return mypetCommentListResponse;
 	}
 
 }
