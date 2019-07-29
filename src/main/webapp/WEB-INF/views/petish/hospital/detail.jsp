@@ -289,6 +289,15 @@
 		$('#paging').attr('style', "display:flex;");
 		$('#modifyForm').empty();
 	}
+	
+	function modifyReview(id,page){
+		var params = {
+				'id' : id,
+				'content' : $('#review_modify').val(),
+				'score' : $("input[name=star-modify]:checked").val()
+		};
+		
+	}
 	function deleteReview(id,page){
 		$.ajax({
 			url:'/hospital/review/delete/'+id,
