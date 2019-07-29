@@ -9,6 +9,7 @@
 	<%@ include file="/WEB-INF/views/commons/link.jspf" %>
 	
     <%@ include file="/WEB-INF/views/commons/script.jspf" %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
 
     <link rel="stylesheet" href="/resources/css/mypet/mypet.css">
     <link rel="stylesheet" href="/resources/css/mypet/mypetvote.css">
@@ -228,7 +229,7 @@
                         </div>
                             
                         <div class="user-profile-info">
-                            <a href="" id="user-id">
+                            <a id='post-creator' href="" class="user-detail">
                                 아이디
                             </a>
                         </div>
@@ -290,7 +291,7 @@
                             </table>
                         </div>
 
-                        <div class="mypet-replies">
+                        <div id="mypet-replies-body" class="mypet-replies">
 
                             <!-- reply 한개 -->
                             <div class="mypet-reply">
