@@ -26,11 +26,11 @@ const openModal = () => {
     $(".modal").modal('show');
 }
 
-likeDoubleClick = (id) => {
+const likeDoubleClick = (id) => {
     console.log(id);
 }
 
-likeClick = () => {
+const likeClick = () => {
     
     const like= $('#like-icon');
     let likeCount = parseInt($('#like-count').text());
@@ -70,7 +70,9 @@ const addReply = (formData) => {
 	    	
 	    },
 	    error: function(error, status, xhr) {
-	    	
+	    	alert("로그인이 필요합니다.");
+	    	$(".modal").modal("hide");
+	    	$("#login-modal").modal("show");
 	    }
 	})
 }
@@ -106,7 +108,7 @@ const openPost = (id) => {
 				type: "GET",
 				url: "/api/users/" + userId,
 				success: function(result, status, xhr) {
-					$('#user-id').html(result.nickname);
+					$('#post-creator').html(result.nickname);
 				},
 				error: function(error, status, xhr) {
 					
@@ -118,6 +120,61 @@ const openPost = (id) => {
 	        
 	    }
 	});
+	
+	$.ajax({
+		type: "GET",
+		url: "/api/mypet/post/like/" + id,
+		success: function(data, status, xhr) {
+			console.log(data);
+		},
+		error: function(error, status, xhr) {
+			
+		}
+	})
+	
+	$.ajax({
+		type: "GET",
+		url: "/api/mypet/comments/post/" + id,
+		success: function(data, status, xhr) {
+			$("#mypet-replies-body").html("");
+			$.each(data.comments, function(index, value) {
+				console.log(index);
+				console.log(value);
+				let reply = "<div id='commentId" + value.commentId + "' class='mypet-reply'>";
+				reply += "<div class='replyer'>";
+				reply += "<div class='replyer-wrapper'>";
+				reply += "<div class='user-profile-picture'>";
+				reply += "<i class='fas fa-user-circle fa-lg'></i>";
+				reply += "</div>";
+                reply += "<div class='user-profile-info'>";
+                reply += "<a class='userId" + value.userId + " user-detail' href=''>";
+                reply += "</a>";
+                reply += "</div>";
+                reply += "</div>";
+                reply += "</div>";
+                reply += "<div class='reply-content'>";
+                reply += value.content;
+                reply += "</div>";
+                reply += "<div class='reply-created-date'>";
+                reply += new Date(value.createdDate).toDateString();
+                reply += "</div>";
+                reply += "</div>";
+				$("#mypet-replies-body").append(reply);
+				
+				$.ajax({
+					type: "GET",
+					url: "/api/users/" + value.userId,
+					success: function(result, status, xhr) {
+						$('.userId'+value.userId).html(result.nickname);
+					},
+					error: function(error, status, xhr) {
+						
+					}
+				})
+				
+			})
+		}
+	})
 	
 	
 	
