@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.community.petish.hospital.domain.Criteria;
 import com.community.petish.hospital.domain.PageDTO;
+import com.community.petish.hospital.domain.ReviewModifyDTO;
 import com.community.petish.hospital.domain.ReviewVO;
 import com.community.petish.hospital.domain.getReviewDTO;
 import com.community.petish.hospital.service.ReviewService;
@@ -80,6 +82,22 @@ public class ReviewController {
 			retVal.put("res", "FAIL");
 			retVal.put("message", "Failure");
 		}
+		return retVal;
+	}
+	
+	@PutMapping(value="/modify/{id}", produces="application/json;charset=UTF-8")
+	public Map<String, Object> modifyReview(@RequestBody ReviewModifyDTO dto){
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		System.out.println(dto);
+		try {
+			Integer res = reviewService.modifyReview(dto);
+			retVal.put("res","OK");
+			
+		}catch(Exception e) {
+			retVal.put("res", "FAIL");
+			retVal.put("message", "Failure");
+		}
+		
 		return retVal;
 	}
 }

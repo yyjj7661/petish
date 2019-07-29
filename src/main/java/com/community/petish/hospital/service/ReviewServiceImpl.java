@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.community.petish.hospital.domain.Criteria;
+import com.community.petish.hospital.domain.ReviewModifyDTO;
 import com.community.petish.hospital.domain.ReviewVO;
 import com.community.petish.hospital.domain.getReviewDTO;
 import com.community.petish.hospital.mapper.ReviewMapper;
@@ -54,6 +55,12 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public Integer deleteReview(Long id) {
 		Integer retVal = reviewMapper.deleteReview(id);
+		return retVal;
+	}
+
+	@Override
+	public Integer modifyReview(ReviewModifyDTO dto) {
+		Integer retVal = reviewMapper.modifyReview(dto);
 		return retVal;
 	}
 	

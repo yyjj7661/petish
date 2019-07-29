@@ -293,6 +293,7 @@
 	//$('#sml_region') 지역구 카테고리로 검색하고 병원리스트 가져오는 함수.
 	function gethospital(addr, isEmer,page){
 		//마커의 정보창 닫아주기
+		//console.log('gethospital');
 		infowindow.close();
 		$('#hospList').empty();
 		$('#paging').empty();
@@ -302,7 +303,7 @@
 			contentType:'application/json; charset=UTF-8',
 			dataType:'json',
 			success:function(data){
-				console.log(page);
+				//console.log(page);
 				
 				// 지도에 표시되고 있는 마커를 제거합니다
 			    removeMarker();
@@ -310,9 +311,9 @@
 				//좌표 객체 초기화
 				bounds = new kakao.maps.LatLngBounds(); 
 				$.each(data.list, function(index, item){
-					console.log(data.scorelist.length);
-					console.log(data.scorelist[0]);
-					console.log(item.hospital_name);
+					//console.log(data.scorelist.length);
+					//console.log(data.scorelist[0]);
+					//console.log(item.hospital_name);
 					geocoder.addressSearch(item.hospital_addr, function(result, status){
 						
 				        //응급지료가능 병원일경우 마커 이미지교체

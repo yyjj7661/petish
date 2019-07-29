@@ -231,7 +231,7 @@
 			clickInfowindow(map,marker,name,fa,ga);
 		});
 	}
-	
+	//지도 마커 클릭시 길찾기, 더큰지도에서보기 기능
 	function clickInfowindow(map, marker, name,fa,ga){
 		var iwContent = '<div style="padding:5px;">'+name+' <br><a href="https://map.kakao.com/link/map/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
 		 infowindow= new kakao.maps.InfoWindow({
@@ -246,10 +246,8 @@
 	function pageClick(page){
 		getReview("${hospital.id}",page);
 	}
-	
+	//본인이 쓴 댓글에 경우 수정 버튼 클릭시 실행되는 함수
 	function modifyReviewForm(vo,page){
-		console.log('modify id='+vo.id);
-		console.log('modify page='+page);
 		$('#reviewList').attr('style', "display:none;");
 		$('#paging').attr('style', "display:none;");
 		var output = '';
@@ -273,23 +271,26 @@
 			modifyCancle();
 		});
 		//수정 버튼 클릭이벤트
-		$('#reCancle').click(function(event){
+		$('#reModify').click(function(event){
 			modifyReview(vo.id,page);
 		});
 		//댓글 수정 js 함수 호출
 		mstarRating();
+		//DB에 있는 값으로 별점을 표시해줌
 		$('input:radio[name="star-modify"]:input[value="'+vo.score+'"]').prop("checked", true);
+		//DB에 있는 값으로 평점을 표시해줌
 		$('.star-modify').find("output>").text(vo.score);
 		
 		
 		
 	}
+	//취소 버튼을 눌렀을 경우 실행되는 함수
 	function modifyCancle(){
 		$('#reviewList').attr('style', "display:block;");
 		$('#paging').attr('style', "display:flex;");
 		$('#modifyForm').empty();
 	}
-	
+	//수정 폼에서 수정 버튼을 눌렀을 경우 실행되는 함수
 	function modifyReview(id,page){
 		var params = {
 				'id' : id,
@@ -297,7 +298,33 @@
 				'score' : $("input[name=star-modify]:checked").val()
 		};
 		
+		$.ajax({
+			url:'/hospital/review/modify/'+id,
+			type:'PUT',
+			data:JSON.stringify(params),
+			contentType:'application/json; charset=utf-8',
+			dataType:'json',
+			success:function(retVal){
+				if(retVal.res == "OK"){
+					//데이타 성공일때 이벤트 작성
+					//리뷰호출
+					getReview("${hospital.id}",page);
+					//리뷰부분 다시 보이게 출력
+					modifyCancle();
+					location.reload();					
+				}
+				else{
+					alert("Modify Fail!!!");
+				}
+			},
+			error:function(request,status,error){
+				alert("ajax 통신 실패!!!");
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+			}
+		});
 	}
+	//리뷰 삭제 하는 함수
 	function deleteReview(id,page){
 		$.ajax({
 			url:'/hospital/review/delete/'+id,
@@ -310,8 +337,8 @@
 					alert("Delete Fail!!!");
 				}
 			},
-			error:function(){
-				alert("ajax 통신실패!!!");
+			error:function(request,status,error){
+				alert("ajax 통신 실패!!!");
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 			}
@@ -322,16 +349,17 @@
 	
 	<script>
 	$(document).ready(function(){
-		
+		//리뷰호출
 		getReview("${hospital.id}",1);
-		
+		//리뷰등록 버튼 클릭이벤트
 		$('#reInsert').click(function(event){
 			
-			
+			//세션아이디가 없을 경우
 			<%if (loginedUser == null){ %>
+				//로그인창 띄움
 				$('#login-modal').modal('show');
 			<%}else{%>
-				
+				//로그인 되어있을경우
 				var params = {
 						'user_id' : '<%=loginedUser.getId()%>',
 						'content' : $('#review_content').val(),
@@ -387,8 +415,9 @@
 		
 		
 	});
-	
+	//리뷰 호출 함수
 	function getReview(id,page){
+		//리뷰부분, 페이징 부분 초기화
 		$('#reviews').empty();
 		$('#paging').empty();
 		$.ajax({

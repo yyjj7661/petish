@@ -75,4 +75,7 @@
  	<delete id="deleteReview" parameterType="Long">
  		delete from hospital_review_tb where id = #{id}
  	</delete>
+ 	<update id="modifyReview" parameterType="com.community.petish.hospital.domain.ReviewModifyDTO">
+ 		update hospital_review_tb set content =#{content}, score =#{score} where id = #{id}
+ 	</update>
 </mapper>
