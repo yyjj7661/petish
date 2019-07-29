@@ -29,8 +29,8 @@
 	<select id="findById" resultMap="mypetPostDetailResponse">
 		
 		SELECT id, title, content, image, created_date,
-			(SELECT count(*) from mypet_comment_tb where id=#{postId} ) as comment_count,
-			(SELECT count(*) from mypet_post_like_tb where id=#{postId}) as like_count,
+			(SELECT count(*) from mypet_comment_tb where post_id=#{postId} ) as comment_count,
+			(SELECT count(*) from mypet_post_like_tb where post_id=#{postId}) as like_count,
 			user_id
 		FROM mypet_post_tb
 		WHERE id = #{postId}
