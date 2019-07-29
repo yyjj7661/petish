@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.community.petish.mypage.dto.Criteria;
 import com.community.petish.mypage.dto.MyWritingsDTO;
 import com.community.petish.mypage.dto.Writings_CommentedDTO;
 import com.community.petish.mypage.dto.Writings_LikedDTO;
 import com.community.petish.mypage.mapper.DefaultMapper;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class DefaultServiceImpl implements DefaultService{
 
@@ -17,8 +21,9 @@ public class DefaultServiceImpl implements DefaultService{
 	DefaultMapper mapper;
 	
 	@Override
-	public ArrayList<MyWritingsDTO> getMyWritings(long user_id) {
-		ArrayList list = mapper.getMyWritings(user_id);
+	public ArrayList<MyWritingsDTO> getMyWritingsWithPaging(Criteria cri) {
+		log.info(cri);
+		ArrayList list = mapper.getMyWritingsWithPaging(cri);
 		return list;
 	}
 

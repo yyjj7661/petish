@@ -119,7 +119,7 @@
 						<h3 style="margin-top: 10%;">My Page</h3>
 						<div class="memberInfo">
 							<div style="margin: 0.5cm;">
-								<img class="profile" src="/resources/img/member_detail_demo.JPG"
+								<img class="profile" src="\resources\img\<%=user.getPicture()%>"
 									style="margin-right: 30px;"> <a><%=user.getNickname() %>(<%=user.getUsername().substring(0,5) %>***)</a> │ 정회원
 								│ <a class="nondeco" href="/mypage/modifyForm?user_id=<%=user.getId() %>"><i
 									class="fa fa-list">회원정보수정</a></i>

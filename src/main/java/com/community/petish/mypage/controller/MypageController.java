@@ -1,5 +1,6 @@
 package com.community.petish.mypage.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.community.petish.mypage.dto.Criteria;
 import com.community.petish.mypage.dto.MessageResponseDTO;
@@ -22,6 +24,7 @@ import com.community.petish.mypage.service.DefaultService;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.QuestionService;
 import com.community.petish.mypage.service.UserService;
+import com.community.petish.user.dto.UserModifyPictureDTO;
 import com.community.petish.user.dto.UserModifyRequestDTO;
 import com.community.petish.user.dto.UserResponseDTO;
 
@@ -79,14 +82,14 @@ public class MypageController {
 		log.info("수정"+dto);
 		userServiceImpl.modifyUserInfo(dto);
 		long user_id2 = 1;
-//		UserResponseDTO user = userServiceImpl.findUser(user_id2);
-//		model.addAttribute("user", user);
-//		ArrayList<MyWritingsDTO> writingList = defaultServiceImpl.getMyWritings(user_id2);
-//		model.addAttribute("writingList", writingList);
-//		ArrayList<Writings_CommentedDTO> writingCommented = defaultServiceImpl.getCommented(user_id2);
-//		model.addAttribute("writingCommented", writingCommented);
-//		ArrayList<Writings_LikedDTO> writingLiked= defaultServiceImpl.getLiked(user_id2);
-//		model.addAttribute("writingLiked", writingLiked);
+		Criteria cri = new Criteria();
+		cri.setUser_id(user_id2);
+		ArrayList<MyWritingsDTO> writingList = defaultServiceImpl.getMyWritingsWithPaging(cri);
+		model.addAttribute("writingList", writingList);
+		ArrayList<Writings_CommentedDTO> writingCommented = defaultServiceImpl.getCommented(user_id2);
+		model.addAttribute("writingCommented", writingCommented);
+		ArrayList<Writings_LikedDTO> writingLiked= defaultServiceImpl.getLiked(user_id2);
+		model.addAttribute("writingLiked", writingLiked);
 		return "redirect:./";
 	}
 
@@ -183,4 +186,29 @@ public class MypageController {
 		return "redirect:./list";	
 	}
 	//message end
+	
+	
+	@RequestMapping(value="/uploadFormAction", method = {RequestMethod.POST})
+	public String uploadFormAction(MultipartFile[] picture, Model model, long id) {
+		String uploadFolder = "C:\\Users\\bit-user\\Desktop\\PetCommunity\\petish\\src\\main\\webapp\\resources\\img";
+		log.info("여기까지?1");
+		for (MultipartFile multipartFile : picture) {
+			log.info("name:"+multipartFile.getOriginalFilename());
+			log.info("size:"+multipartFile.getSize());
+			
+			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
+			try {
+				multipartFile.transferTo(saveFile);
+				UserModifyPictureDTO dto = new UserModifyPictureDTO();
+				dto.setId(id);
+				dto.setPicture(multipartFile.getOriginalFilename());
+				int res = userServiceImpl.modifyPicture(dto);
+				log.info("res"+res);
+			}catch(Exception e) {
+				log.error(e.getMessage());
+			}
+			model.addAttribute("user_id", id);
+		}
+		return "redirect:./modifyForm";	
+	}
 }

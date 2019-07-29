@@ -87,17 +87,5 @@ public class MypageRESTController {
 			: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);	
 	}
 	
-	//프로필 사진 수정	
-	@RequestMapping(method = {RequestMethod.PUT,
-			RequestMethod.PATCH }, value="/modifyPicture/{id}/{picture}", consumes = "application/json", produces = {
-					MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> modifyPicture(UserModifyPictureDTO dto, 
-			@PathVariable("id") long id, @PathVariable("picture") String picture){
-		dto.setId(id);
-		dto.setPicture(picture);
-		
-		return userServiceImpl.modifyPicture(dto) == 1? new ResponseEntity<>("success", HttpStatus.OK)
-				:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-			
+
 }

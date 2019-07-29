@@ -76,11 +76,16 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 						<h3 style="margin-top: 10%;font-weight:700;">회원정보 수정</h3>
 						<div class="memberInfo" style="margin-bottom:1cm;">
 							<div style="margin: 0.5cm;">
-								<img class="profile" src="/resources/img/member_detail_demo.JPG"
+								<img class="profile" src="\resources\img\<%=dto.getPicture() %>"
 									style="margin-right: 30px;">
 							</div>
-							<button id="modifyPictureBtn">사진변경</button>
-							<input type="file" name="picture" id="file"/>
+							<form action="./uploadFormAction" method="post" enctype="multipart/form-data" accept-charset="UTF-8" onsubmit="document.charset='utf-8';">
+
+								<input type="file" name="picture" multiple/>
+								<input type="hidden" name="id" value=<%=dto.getId() %>>
+								<button>submit</button>
+							</form>
+							
 						</div>
 						<form action="./modifyUserInfo" method = "POST">
 							<input type="hidden" value=<%=dto.getId() %> name="id">
@@ -127,8 +132,30 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 												style="width: 70%; height: 0.961cm;" name="address">
 										</div></td>
 								</tr>
-								
-								
+								<tr style="height: 1.5cm;">
+									<td class="font-grey"><label
+										class="control-label col-md-8">성별</label></td>
+									<td><label class="form-check-label"
+										style="margin-left: 20px; margin-right: 30px;"> <input
+											class="form-check-input" type="radio" name="gender">여자
+									</label> <label class="form-check-label"> <input
+											class="form-check-input" type="radio" name="gender">남자
+									</label></td>
+								</tr>
+								<tr style="height: 1.5cm;">
+									<td class="font-grey"><label
+										class="control-label col-md-8">관심사</label></td>
+									<td><label class="form-check-label"
+										style="margin-left: 20px; margin-right: 30px;"> <input
+											class="form-check-input" type="radio" name="interest">강아지
+									</label> <label class="form-check-label"
+										style="margin-left: 20px; margin-right: 30px;"> <input
+											class="form-check-input" type="radio" name="interest"">고양이
+									</label> <label class="form-check-label"
+										style="margin-left: 20px; margin-right: 30px;"> <input
+											class="form-check-input" type="radio" name="interest"">기타
+									</label></td>
+								</tr>
 							</table>
 							<div class="box-footer d-flex flex-wrap align-items-center justify-content-between"
 								style="margin-top: 1cm;">
