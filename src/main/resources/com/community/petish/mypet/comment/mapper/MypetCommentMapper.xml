@@ -14,6 +14,22 @@
 			( #{commentId}, #{content}, #{postId}, #{userId})
 	</insert>
 
-
+	<select id="findAllByPostId" resultType="com.community.petish.mypet.comment.domain.MypetComment">
+		SELECT * FROM mypet_comment_tb 
+			WHERE post_id = #{postId}
+			AND deleted = 0
+	</select>
+	
+	<select id="countLikeByCommentId">
+		SELECT count(*) from mypet_comment_like_tb 
+			WHERE comment_id = #{commentId} 
+			AND dislike_like = 1
+	</select>
+	
+	<select id="countDislikeByCommentId">
+		SELECT count(*) from mypet_comment_like_tb 
+			WHERE comment_id = #{commentId} 
+			AND dislike_like = 0
+	</select>
 
 </mapper>
