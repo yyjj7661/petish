@@ -79,15 +79,14 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 								<img class="profile" src="\resources\img\<%=dto.getPicture() %>"
 									style="margin-right: 30px;">
 							</div>
-							<form action="./uploadFormAction" method="post" enctype="multipart/form-data" accept-charset="UTF-8" onsubmit="document.charset='utf-8';">
-
-								<input type="file" name="picture" multiple/>
+							<div>
+								<input type="file" name="uploadFile" multiple/>
 								<input type="hidden" name="id" value=<%=dto.getId() %>>
-								<button>submit</button>
-							</form>
+							</div>
+							<button id='uploadBtn'>submit</button>
 							
 						</div>
-						<form action="./modifyUserInfo" method = "POST">
+						<form action="/mypage/modifyUserInfo" method = "POST">
 							<input type="hidden" value=<%=dto.getId() %> name="id">
 							<table class="col-md-12">
 								<tr style="height: 1.5cm;">
@@ -110,13 +109,13 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 								<tr style="height: 1.5cm;">
 									<td style="padding-right: 15px;"><input type="password"
 										placeholder="새 비밀번호 확인" class="form-control"
-										name="password" value=<%=dto.getPassword() %>>
+										name="password">
 								</tr>
 								<tr style="height: 1.5cm;">
 									<td class="font-grey"><label
 										class="control-label col-md-8">닉네임</label></td>
-									<td style="padding-right: 15px;"><input type="text"
-										value=<%=dto.getNickname() %> class="form-control" name="nickname"></td>
+									<td style="padding-right: 15px;"><input type="text" class="form-control" name="nickname"
+										value=<%=dto.getNickname() %>></td>
 								</tr>
 								<tr style="height: 1.5cm;">
 									<td class="font-grey"><label
@@ -183,9 +182,10 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 		$('#modifyPictureBtn').on("click", function(e){
 			$("input:file").click();
 		})
+		
 		var userModifyService = (function(){
-			function modifyUserPicture(id, picture, callback, error){
-				var a = {id:id, picture:picture};
+			function modifyUserPicture(id, uploadFile, callback, error){
+				var a = {id:id, uploadFile:uploadFile};
 				$.ajax({
 					type:'put',
 					url : '/mypage/api/modifyPicture/'+id+'/'+picture,

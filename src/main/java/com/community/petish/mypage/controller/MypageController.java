@@ -8,16 +8,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.community.petish.mypage.dto.Criteria;
 import com.community.petish.mypage.dto.MessageResponseDTO;
 import com.community.petish.mypage.dto.MyWritingsDTO;
-import com.community.petish.mypage.dto.PageDTO;
 import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.dto.QuestionResponseDTO;
+import com.community.petish.mypage.dto.Criteria;
+import com.community.petish.mypage.dto.WritingPageDTO;
 import com.community.petish.mypage.dto.Writings_CommentedDTO;
 import com.community.petish.mypage.dto.Writings_LikedDTO;
 import com.community.petish.mypage.service.DefaultService;
@@ -54,19 +55,11 @@ public class MypageController {
 		//세션이 널이면 로그인페이지로 이동 (if)
 		UserResponseDTO user = userServiceImpl.findUser(user_id);
 		model.addAttribute("user", user);
-		cri.setUser_id(user_id);
-		ArrayList<MyWritingsDTO> writingList = defaultServiceImpl.getMyWritingsWithPaging(cri);
-		model.addAttribute("writingList", writingList);
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
-		ArrayList<Writings_CommentedDTO> writingCommented = defaultServiceImpl.getCommented(user_id);
-		model.addAttribute("writingCommented", writingCommented);
-		ArrayList<Writings_LikedDTO> writingLiked= defaultServiceImpl.getLiked(user_id);
-		model.addAttribute("writingLiked", writingLiked);
 		return "petish/mypage/default";
 	}
 	
-	@RequestMapping(value="/modifyForm")
-	public String modifyForm(long user_id, Model model, HttpSession session) {
+	@RequestMapping(value="/modifyForm/{user_id}")
+	public String modifyForm(@PathVariable("user_id") long user_id, Model model, HttpSession session) {
 		//로그인 여부 확인
 		if(session.getAttribute("user_id")==null) {
 			return "petish/loginpage";
@@ -81,44 +74,9 @@ public class MypageController {
 	public String modifyUserInfo(UserModifyRequestDTO dto, Model model) {
 		log.info("수정"+dto);
 		userServiceImpl.modifyUserInfo(dto);
-		long user_id2 = 1;
-		Criteria cri = new Criteria();
-		cri.setUser_id(user_id2);
-		ArrayList<MyWritingsDTO> writingList = defaultServiceImpl.getMyWritingsWithPaging(cri);
-		model.addAttribute("writingList", writingList);
-		ArrayList<Writings_CommentedDTO> writingCommented = defaultServiceImpl.getCommented(user_id2);
-		model.addAttribute("writingCommented", writingCommented);
-		ArrayList<Writings_LikedDTO> writingLiked= defaultServiceImpl.getLiked(user_id2);
-		model.addAttribute("writingLiked", writingLiked);
 		return "redirect:./";
 	}
 
-	
-	@RequestMapping("/member/detail")
-	public String memberDetail(long user_id, Model model, HttpSession session) {
-		//로그인 여부 확인
-		if(session.getAttribute("user_id")==null) {
-			return "petish/loginpage";
-		}else {
-			Criteria cri = new Criteria();
-			cri.setAmount(10);
-			cri.setPageNum(1);
-			cri.setUser_id(user_id);
-		ArrayList<MyWritingsDTO> writingList = defaultServiceImpl.getMyWritingsWithPaging(cri);
-		
-		model.addAttribute("writingList", writingList);
-		ArrayList<Writings_CommentedDTO> writingCommented = defaultServiceImpl.getCommented(user_id);
-		
-		model.addAttribute("writingCommented", writingCommented);
-		ArrayList<Writings_LikedDTO> writingLiked= defaultServiceImpl.getLiked(user_id);
-		
-		model.addAttribute("writingLiked", writingLiked);
-		UserResponseDTO dto = userServiceImpl.findUser(user_id);
-		
-		model.addAttribute("member", dto);
-		return "petish/mypage/member_detail";
-		}
-	}
 	
 	//question start
 	@RequestMapping("/question/list")

@@ -44,10 +44,22 @@
 	</select>
 	
 	<!-- 내가 좋아요 한 글 -->
-	<select id="getLiked" resultType="com.community.petish.mypage.dto.Writings_LikedDTO" parameterType="long">
+	<select id="getLiked" resultType="com.community.petish.mypage.dto.Writings_LikedDTO">
 		select dfpt.id, dfpt.user_id, dfpt.title, dfpt.created_date, dfpt.view_count, u.nickname
 		from dog_free_post_tb dfpt, user_tb u
 		where dfpt.id in (select post_id from dog_free_post_like_tb where user_id=#{user_id}) and dfpt.user_id=u.id and dfpt.deleted=0
+	</select>
+	
+	<!-- 내가 좋아요 한 글 + 페이징 -->
+	<select id="getLikedWithPaging" resultType="com.community.petish.mypage.dto.Writings_LikedDTO">
+		<![CDATA[
+		select id, user_id, title, created_date, view_count, nickname
+		from
+		(select rownum rn, dfpt.id, dfpt.user_id, dfpt.title, dfpt.created_date, dfpt.view_count, u.nickname
+		from dog_free_post_tb dfpt, user_tb u
+		where rownum <= #{pageNum} * #{amount} and dfpt.id in (select post_id from dog_free_post_like_tb where user_id=#{user_id}) and dfpt.user_id=u.id and dfpt.deleted=0)
+		where rn > (#{pageNum} -1)*#{amount}
+		]]>
 	</select>
 </mapper>
 
