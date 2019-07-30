@@ -168,7 +168,10 @@ button.btn.btn-template-outlined{
    margin-right: 2rem;
 }
 
-@charset "EUC-KR";.poster-table {
+@charset "EUC-KR";
+
+
+.poster-table {
    width: 70%;
    margin: 1rem;
    padding: 30px;
@@ -202,10 +205,12 @@ th, td {
 }
 
 #lostdog {
-   min-width: 400px;
-   max-width: 500px;
-   min-height: 200px;
-   max-height: 300px;
+   width:100% !important;
+   height:100% !important;
+   min-width: 400px !important;
+   max-width: 500px !important;
+   min-height: 200px !important;
+   max-height: 300px !important;
 }
 
 .date {
@@ -296,7 +301,7 @@ th, td {
    transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.dot:hover {
    background-color: #717171;
 }
 
@@ -404,6 +409,8 @@ label {
    div.bg_white{
       display:none;
    }
+   
+   
 
 }
 </style>
@@ -524,31 +531,16 @@ label {
 
                      <div class="slideshow-container">
                         <div id="imageSlides">
-
-                        <!-- Full-width images with number and caption text -->
-                        <!-- <div class="mySlides fade">
-                                                         
-                        </div> -->   
-
-                        <%-- <div class="mySlides fade">
-                           <div class="numbertext">2 / 3</div>
-                           <img id="lostdog" src"<%=dto.getDog_image()%>" style="width: 100%">
-                        </div>
-
-                        <div class="mySlides fade">
-                           <div class="numbertext">3 / 3</div>
-                           <img id="lostdog" src="<%=dto.getDog_image()%>" style="width: 100%">
-                        </div> --%>
-                        
+                        <!-- 이미지 들어갈 곳 -->
                         </div>
                         
-                        <!-- Next and previous buttons -->
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
-                           class="next" onclick="plusSlides(1)">&#10095;</a>
+                        <!-- 이전/다음 버튼 -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
                      </div> 
                      
                      <br>
-                     <!-- The dots/circles -->
+                     <!-- Dots -->
                      <div style="text-align: center">
                         <span class="dot" onclick="currentSlide(1)"></span> <span
                            class="dot" onclick="currentSlide(2)"></span> <span class="dot"
@@ -810,13 +802,12 @@ label {
    
    <script>
    $(document).ready(function() {      
-      (function(){
-    	  
-           
+      
+	   //즉시 실행 함수
+	   (function(){
           var id = '<c:out value="${dto.id}"/>';
           
-          $.getJSON("/dog/missingboard/getAttachList/<%=ID%>", function(arr){
-              
+          $.getJSON("/dog/missingboard/getAttachList/<%=ID%>", function(arr){              
               console.log(arr);
               
               var str = "";
@@ -825,12 +816,12 @@ label {
                   
                   //이미지 파일
                   if(attach.fileType){
-                    var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName); //파일 이름(썸네일)
+                	
+                    var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName); //파일 이름(썸네일)
                    
                     str += "<div class='mySlides active'>"
                     str += "<img id='lostdog' style='width:100%' src='/display?fileName="+fileCallPath+"'>";                                   
-                    str += "</div>";
-                    
+                    str += "</div>";                    
                   }
                   //이미지 파일 X                  
                   else{
@@ -840,9 +831,9 @@ label {
                     str += "</div>";
                     str +"</li>";
                   }
-                });
+              });
               
-              alert(str);              
+              //alert(str);              
                 
               $("#imageSlides").html(str);                
                 
@@ -855,7 +846,7 @@ label {
             
           console.log("view image");
           
-          var liObj = $(this);
+          var liObj = $(".uploadResult");
           
           var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
           
@@ -886,46 +877,8 @@ label {
             $('.bigPictureWrapper').hide();
           }, 1000);
         });
-
-    
-      //신고 작성
-      $('#input_report').click(function(event) {
-         /*
-          * var report = { 'BOARD_ID' : $('#BOARD_ID').val(), 'POST_ID' :
-          * $('#POST_ID').val(), 'USER_ID' : $('#USER_ID').val(), 'CATEGORY_ID' :
-          * $('#CATEGORY_ID').val(), 'DESCRIPTION' : $('#DESCRIPTION').val() }
-          */
-
-         var report = $("#report_form").serialize();
-         alert(report);
-
-         var boardID = $('#BOARD_ID').val();
-         var postID = $('#POST_ID').val();
-
-         alert(boardID);
-         alert(postID);
-
-         $.ajax({
-            url : '/report/new',
-            type : 'POST',
-            data : report,
-            contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-            dataType : "json",
-            success : function(retVal) {
-               if (retVal.res == "OK") {
-                  alert("신고 완료");
-                  $(".modal").modal("hide");
-               } else {
-                  alert("신고 실패");
-               }
-            },
-            error : function() {
-               alert("AJAX 통신 실패");
-            }
-         }); //ajax
-         // 기본 이벤트 제거
-         event.preventDefault();
-      }); //input_report.onclick
+        
+        
    }); 
    
    
@@ -969,9 +922,9 @@ label {
 	}
    </script>
    
-   <script>
-   
-   var slideIndex = 1;   
+   <script>   
+   var slideIndex = 1;
+   showSlides(1);
 
    function plusSlides(n) {
      showSlides(slideIndex += n);
@@ -995,12 +948,8 @@ label {
      }
      slides[slideIndex-1].style.display = "block";  
      dots[slideIndex-1].className += " active";
-   }
-   
-   
-   </script>
-   
-   
+   }   
+   </script>   
    
    <!-- Javascript files-->
    <script src="/resources/vendor/jquery/jquery.min.js"></script>
