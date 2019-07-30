@@ -10,14 +10,15 @@
 	//페이지 번호
 	String pageNum = session.getAttribute("pageNum").toString();	
 
-
+	//강아지 종
 	String dogSpecies = dto.getDog_species(); //강아지 종 이름
 	Long speciesId = dto.getSpecies_id();
-	
+	System.out.println("종" + dto.getSpecies_id());
+
+	//강아지 특징
 	String dogDescriptions = dto.getDog_description();
 	String des[] = dogDescriptions.split(" / ");
 	
-	System.out.println("종" + dto.getSpecies_id());
 	
 	/* if(des[0] != "") des1 = des[0];
 	if(des[1] != "") des2 = des[1];	
@@ -188,21 +189,24 @@
 								<input type="checkbox" name="FOUND" id="FOUND" value="0">
 								<span style="color: red;"><b> 반려견을 찾았습니다.</b></span>
 							</div>
-							<form action="/dog/missingboard/modify" method="POST">
+							<form action="/dog/missingboard/update" method="POST">
 								<div class="row">
 
-									<input type="hidden" name="ID" id="ID" value=<%=dto.getId()%>>
+									<input type="hidden" id="ID" name="id" value=<%=dto.getId()%>>
+									<input type="hidden" id="USER_ID" name="user_id" value=<%=dto.getUser_id() %>>
+									<input type="hidden" id="SPECIES_ID" name="species_id" value=<%=dto.getSpecies_id() %>>
+									
 
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label for="category">이름</label>
-											<input type="text" name="DOG_NAME" id="DOG_NAME" value=<%=dto.getDog_name()%> class="form-control">
+											<input type="text" name="dog_name" id="DOG_NAME" value=<%=dto.getDog_name()%> class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label for="category">나이</label> <input type="text"
-												name="DOG_AGE" id="DOG_AGE" value=<%=dto.getDog_age()%>
+												name="dog_age" id="DOG_AGE" value=<%=dto.getDog_age()%>
 												class="form-control">
 										</div>
 									</div>
@@ -211,8 +215,8 @@
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">종</label>
-											<select id="SPECIES_ID" name="SPECIES_ID" value="<%=dto.getSpecies_id() %>" class="form-control">
-												<option value="">종</option>
+											<select id="SPECIES_ID" name="species_id" value="<%=dto.getSpecies_id() %>" class="form-control">
+												<option value="0">종</option>
 												<option value="1">믹스견</option>
 												<option value="2">스피츠</option>
 												<option value="3">시츄</option>
@@ -256,13 +260,13 @@
 												<%
 													if (dto.getDog_gender().equals("수컷")) {
 												%>
-												<input type="radio" value="수컷" name="DOG_GENDER" id="DOG_GENDER_M" checked><label>수컷</label>
-												<input type="radio" value="암컷" name="DOG_GENDER" id="DOG_GENDER_F"><label>암컷</label>
+												<input type="radio" value="수컷" name="dog_gender" id="DOG_GENDER_M" checked><label>수컷</label>
+												<input type="radio" value="암컷" name="dog_gender" id="DOG_GENDER_F"><label>암컷</label>
 												<%
 													} else {
 												%>
-												<input type="radio" value="수컷" name="DOG_GENDER" id="DOG_GENDER_M"><label>수컷</label>
-												<input type="radio" value="암컷" name="DOG_GENDER" id="DOG_GENDER_F" checked><label>암컷</label>
+												<input type="radio" value="수컷" name="dog_gender" id="DOG_GENDER_M"><label>수컷</label>
+												<input type="radio" value="암컷" name="dog_gender" id="DOG_GENDER_F" checked><label>암컷</label>
 												<%
 													}
 												%>
@@ -304,7 +308,7 @@
 										<div class="form-group">
 											<label for="password_old">특징</label> 
 											<% for(int i=0; i<des.length; i++){ %>
-											<input type="text" name="DOG_DESCRIPTION" id=description<%=i+1%> value="<%=des[i]%>" class="form-control">															
+											<input type="text" name="dog_description" id=description<%=i+1%> value="<%=des[i]%>" class="form-control">															
 											<%} %>
 
 										</div>
@@ -317,7 +321,7 @@
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">연락처</label> <input type="text"
-												name="PHONE_NUMBER" id="PHONE_NUMBER" value="<%=dto.getPhone_number()%>"
+												name="phone_number" id="PHONE_NUMBER" value="<%=dto.getPhone_number()%>"
 												class="form-control">
 
 										</div>
@@ -325,7 +329,7 @@
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">사례금</label> <input type="text"
-												name="REWARD" id="REWARD" value="<%=dto.getReward()%>"
+												name="reward" id="REWARD" value="<%=dto.getReward()%>"
 												class="form-control">
 
 										</div>
@@ -337,7 +341,7 @@
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
 											<label for="category">실종 일시</label>
-											<input id="datetimepicker" name="DOG_LOST_DATE" type="datetime"
+											<input id="datetimepicker" name="dog_lost_date" type="datetime"
 												value="<fmt:formatDate pattern='yyyy-MM-dd HH:mm' value='<%=dto.getCreate_date() %>'/>" class="form-control">
 
 										</div>
@@ -348,7 +352,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="category">실종 장소</label>
-											<input id="place" name="DOG_LOST_ADDRESS" type="text"
+											<input id="place" name="dog_lost_address" type="text"
 												value="<%=dto.getDog_lost_address()%>" class="form-control">
 										</div>
 									</div>
@@ -372,7 +376,7 @@
 											class="btn btn-template-outlined" style="margin-top: 0px;">삭제</a>
 									</div>
 									<div class="col-md-9 text-right">
-										<input type="submit" id="modify_post" value="수정"
+										<input type="submit" id="modifyBtn" value="수정"
 											class="btn btn-template-outlined"> <input
 											type="reset" value="취소" class="btn btn-template-outlined">
 									</div>
@@ -390,7 +394,6 @@
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>	
 	
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>   
-	<script type="text/javascript" src="/resources/js/missingboard/detail.js"></script>
 
 	<script>
 	var species = "<%=dto.getDog_species()%>"
@@ -411,6 +414,7 @@
 		 (function(){			    
 			var id = '<c:out value="${dto.id}"/>';		    
 			 
+			//저장된 이미지 가져옴
 			$.getJSON("/dog/missingboard/getAttachList/<%=dto.getId()%>", function(arr){  		    
 		      console.log(arr);		      
 		      var str = "";
@@ -454,8 +458,9 @@
   		
   		
   		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-	  	var maxSize = 5242880; //5MB
-	  	  
+	  	var maxSize = 5242880; //5MB	  	
+	  	
+	  	//파일 크기, 확장자 체크
   	  	function checkExtension(fileName, fileSize){
   	    
   	    if(fileSize >= maxSize){
@@ -470,7 +475,7 @@
   	    	return true;
   	  	}
 	  
-	  //첨부 파일 추가
+	  //첨부 파일 추가(화면에서만 추가)
   	  $("input[type='file']").change(function(e){
 
   	    var formData = new FormData();  	    
@@ -485,7 +490,7 @@
   	      alert(files[i]);
   	    }  	    
   	    
-  	    alert(formData);
+  	    alert(formData);  	    
   	    
   	    $.ajax({
   	      url: '/uploadAjaxAction',
@@ -503,6 +508,7 @@
   	    
   	  });
 	  
+	 //추가한 첨부 파일 출력
   	 function showUploadResult(uploadResultArr){
  	    
   	    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
@@ -531,27 +537,30 @@
   	    
   	    uploadUL.append(str);
   	  }
-		
+	 
   	 
-  	 //게시글 수정
-  	 var modifyBtn = $("#modify_post");
-		 
-		//found 수정 
-		 $('#FOUND').change(function(){
-		    var checked = $(this).prop('checked');  // checked 상태 (true, false)
-		 
-		    if(checked){
-		    	$('#FOUND').prop("value","1")
-	        }
-	        else{
-	        	$('#FOUND').prop("value","0")
-	        }
-		    alert($('#FOUND').val());
-		 });		 
-		 
-		 modifyBtn.on("click", function(e){
+	//found 수정 
+	 $('#FOUND').change(function(){
+	    var checked = $(this).prop('checked');  // checked 상태 (true, false)
+	 
+	    if(checked){
+	    	$('#FOUND').prop("value","1")
+        }
+        else{
+        	$('#FOUND').prop("value","0")
+        }
+	    alert($('#FOUND').val());
+	 });	
+	
+	
+	 //게시글 수정
+  	 //var modifyBtn = $("#modify_post");
+	 var formObj = $("form");
+	 
+		 $('#modifyBtn').on("click", function(e){
+			 
 			 e.preventDefault();
-			 alert("click");
+			 alert("modify click");			 
 			 
 			 //강아지 특징 수정
 			 var description = "";
@@ -565,64 +574,95 @@
 	            description += " / " + $('#description4').val();
 	         if($('#description5').val())
 	            description += " / " + $('#description5').val();
-			 alert(description);	 
+	         
+			 alert(description);
 			 
-			/*  var modifyPost = {
+			//첨부 이미지
+			
+			var str = "";
+			
+			 $(".uploadResult ul li").each(function(i, obj){
+		          
+	             var jobj = $(obj);
+	             
+	             console.dir(jobj);
+	             
+	             console.log("-------------------------");
+	             console.log(jobj.data("filename"));	             
+	             
+	             str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";     
+	             str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";             
+	             str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";             
+	             str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+	             
+	         });
+	         console.log(str);
+		 
+			//특징
+	         $("input[name=dog_description]").val(description); //특징 입력 폼 5개 -> 1개로 합침
+	         
+	       	//성별
+	         var gender = $('input[type=radio]:checked').val();
+	         alert(gender);		
+         
+	         var modifyPost = {
 					 "id" : $('#ID').val(),
 					 "dog_name" : $('#DOG_NAME').val(),
 					 "dog_age" : $("#DOG_AGE").val(),
-		             "dog_gender" : $("input:radio[name=DOG_GENDER]:checked").val(),
-		             "dog_description" : description,
-		             "dog_image" : $('#DOG_IMAGE').val(),
-		             "dog_lost_date" : $('input[name="DOG_LOST_DATE"]').val(),
-		             "phone_number" : $('#PHONE_NUMBER').val(),
-		             "dog_lost_address" :  $('input[name="DOG_LOST_ADDRESS"]').val(),
-		             "reward" : $('#REWARD').val(),
-		             "found" : $('#FOUND').val(),
-		             "species_id" : $('#SPECIES_ID').val()
-			 }; */
+			         "dog_gender" : $("input:radio[name=DOG_GENDER]:checked").val(),
+			         "dog_description" : description,
+			         "dog_image" : $('#DOG_IMAGE').val(),
+			         "dog_lost_date" : $('input[name="DOG_LOST_DATE"]').val(),
+			         "phone_number" : $('#PHONE_NUMBER').val(),
+			         "dog_lost_address" :  $('input[name="DOG_LOST_ADDRESS"]').val(),
+			         "reward" : $('#REWARD').val(),
+			         "found" : $('#FOUND').val(),
+			         "species_id" : $('#SPECIES_ID').val()
+			};
 			 
-			 alert("FOUND : " + $('#FOUND').val());
-			 alert("SPECIES ID : " + $('#SPECIES_ID').val());
+			 //alert("FOUND : " + $('#FOUND').val());
+			 //alert("SPECIES ID : " + $('#SPECIES_ID').val());
 			 alert(JSON.stringify(modifyPost));
 			 
-			 modify(modifyPost, function(result){
-				 alert(modifyPost);
-			 });
-			 
+			 //modify(modifyPost, function(result){ //수정 Ajax 호출
+			 //  alert(modifyPost);
+			 //});
+			 formObj.append(str).submit(); //폼 전송	
 		 });
-		 
-		 //게시글 수정
-		 function modify(modifyPost, callback, error){
-			 $.ajax({
-				 url : '/dog/missingboard/PUT',
-				 type : 'PUT',
-				 data : JSON.stringify(modifyPost),
-				 dataType:"json",
-				 contentType : 'application/json; charset=utf-8',
-				 success : function(retVal) {
-		        	  alert("200!!")
-		          	if (retVal.res == "OK") {
-							alert("수정 성공");
-							//글 조회 페이지로 이동
-							location.href = "/dog/missingboard/detail/" + "<%=dto.getId()%>";
-					} else {
-						alert("수정 실패");
-					}
-		          },
-		          error : function() {
-						alert("AJAX 통신 실패");
-					}
-			 }); //ajax
-		 } //modify
-		 
-		 
-	 });
+         
+       //게시글 수정
+    	<%--  function modify(modifyPost, callback, error){
+    		 $.ajax({
+    			 url : '/dog/missingboard/PUT',
+    			 type : 'PUT',
+    			 data : JSON.stringify(modifyPost),
+    			 dataType:"json",
+    			 contentType : 'application/json; charset=utf-8',
+    			 success : function(retVal) {
+    	        	  alert("200!!")
+    	          	if (retVal.res == "OK") {
+    						alert("수정 성공");
+    						//글 조회 페이지로 이동
+    						location.href = "/dog/missingboard/detail/" + "<%=dto.getId()%>";
+    				} else {
+    					alert("수정 실패");
+    				}
+    	          },
+    	          error : function() {
+    					alert("AJAX 통신 실패");
+    				}
+    		 }); //ajax
+    	 } //modify --%>
+    	 
+	 }); //document.ready
+	 
 	</script>
 	
+	
+	
 	<script>
-	//지도
-	   //지도 api 선택한 곳 마커 표시하기(주소까지 출력)
+		//지도
+	    //지도 api 선택한 곳 마커 표시하기(주소까지 출력)
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	   mapOption = {
 	       center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -641,7 +681,8 @@
 		        setMarker(result[0].x, result[0].y);
 		    }
 		};
-		// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
+		
+		//입력받은 위치 출력
 		geocoder.addressSearch("<%=dto.getDog_lost_address()%>", callback);
 		
 		var marker = new kakao.maps.Marker();
