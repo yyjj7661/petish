@@ -46,6 +46,51 @@
 <meta charset="utf-8">
 <title></title>
 
+<style>
+.uploadResult {
+    width: 100%;
+  }
+  
+  .btn-warning {
+  	background-color: #ffffff!important;
+  	border-color: #ffffff!important;
+  }
+  
+  .uploadResult ul {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .uploadResult ul li {
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .uploadResult ul li img {
+    width: 100px;
+  }
+  
+  .bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}   
+  </style>
 
 <!-- 부트스트랩 추가 -->
 <meta name="description" content="">
@@ -227,16 +272,33 @@
 										</div>
 									</div>
 								</div>
+								
+								
 								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<input type="file" name="DOG_IMAGE" id="DOG_IMAGE"
-												value=<%=dto.getDog_image()%>>
-
-										</div>
-									</div>
-								</div>
+		                           <div class="col-md-4">
+		                                <div class="panel panel-default">
+		                              
+		                              <!-- <div class="form-group"> -->
+		                                 
+		                                 <!-- <div class="panel-heading">파일 첨부</div> -->
+		                                 <div class="panel-body">
+		                                    <div class="form-group uploadDiv">
+		                                      <label>사진 추가</label>
+		                                      <input type="file" id="uploadFile" name='dog_image' multiple>
+		                                   </div>
+		                                   
+		                                   <div class='uploadResult'>
+		                                  	  <label>첨부된 파일</label>
+		                                      <ul>
+		                                         
+		                                      </ul>                                
+		                                   </div>
+		                                 </div>
+		                              </div>
+		                           </div>
+		                        </div>
+								
+								
 								<div class="row">
 									<div class="col-md-8">
 										<div class="form-group">
@@ -248,6 +310,7 @@
 										</div>
 									</div>
 								</div>
+								
 								<hr>
 								<h4>[실종 관련 정보]</h4>
 								<div class="row">
@@ -324,10 +387,12 @@
 		</div>
 	</div>
 	
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>		
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>	
 	
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>   
+	<script type="text/javascript" src="/resources/js/missingboard/detail.js"></script>
+
 	<script>
-	
 	var species = "<%=dto.getDog_species()%>"
 		
 		//강아지 종류 SELECT
@@ -337,14 +402,139 @@
 				this.selected=true;
 				
 				//this.prop("", this.innerText);
-				
 			}
 		});		
 	
-	//FOUND 여부 확인
 	 $(document).ready(function() {
 		 
-		 var modifyBtn = $("#modify_post");
+		 //즉시 실행 함수
+		 (function(){			    
+			var id = '<c:out value="${dto.id}"/>';		    
+			 
+			$.getJSON("/dog/missingboard/getAttachList/<%=dto.getId()%>", function(arr){  		    
+		      console.log(arr);		      
+		      var str = "";
+
+		      $(arr).each(function(i, attach){
+		          
+		          //image type
+		          if(attach.fileType){
+		            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+		            
+		            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
+		            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+		            str += "<span> "+ attach.fileName+"</span>";
+		            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
+		            str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+		            str += "<img src='/display?fileName="+fileCallPath+"'>";
+		            str += "</div>";
+		            str +"</li>";
+		          }
+		          
+		       });		      
+		      
+		      $(".uploadResult ul").html(str);
+		      
+	   		});//end getjson
+  		})();//end function		 
+		
+  		
+  		//첨부 파일 삭제(화면에서만 삭제)
+  		 $(".uploadResult").on("click", "button", function(e){
+  		    
+  		    console.log("delete file");
+  		      
+  		    if(confirm("이미지를 삭제하시겠습니까? ")){
+  		    
+  		      var targetLi = $(this).closest("li");
+  		      targetLi.remove();
+
+  		    }
+  		 });
+  		
+  		
+  		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+	  	var maxSize = 5242880; //5MB
+	  	  
+  	  	function checkExtension(fileName, fileSize){
+  	    
+  	    if(fileSize >= maxSize){
+  	      alert("파일 사이즈 초과");
+  	      return false;
+  	    }	  	    
+  	    if(regex.test(fileName)){
+  	      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+  	      return false;
+  	    }
+  	    
+  	    	return true;
+  	  	}
+	  
+	  //첨부 파일 추가
+  	  $("input[type='file']").change(function(e){
+
+  	    var formData = new FormData();  	    
+  	    var inputFile = $("input[id='uploadFile']");  	    
+  	    var files = inputFile[0].files;
+  	    
+  	    for(var i = 0; i < files.length; i++){
+  	      if(!checkExtension(files[i].name, files[i].size) ){
+  	        return false;
+  	      }
+  	      formData.append("uploadFile", files[i]);
+  	      alert(files[i]);
+  	    }  	    
+  	    
+  	    alert(formData);
+  	    
+  	    $.ajax({
+  	      url: '/uploadAjaxAction',
+  	      processData: false, 
+  	      contentType: false,
+  	      data: formData,
+  	      type: 'POST',
+  	      dataType:'json',
+  	        success: function(result){
+  	          console.log(result); 
+  			  showUploadResult(result); //업로드 결과 처리 함수 
+
+  	      }
+  	    }); //$.ajax
+  	    
+  	  });
+	  
+  	 function showUploadResult(uploadResultArr){
+ 	    
+  	    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+  	    
+  	    var uploadUL = $(".uploadResult ul");
+  	    
+  	    var str ="";
+  	    
+  	    $(uploadResultArr).each(function(i, obj){
+  			
+  			if(obj.image){
+  				
+  				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+  				
+  				str += "<li data-path='"+obj.uploadPath+"'";
+  				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+  				str +" ><div>";
+  				str += "<span> "+ obj.fileName+"</span>";
+  				str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+  				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+  				str += "<img src='/display?fileName="+fileCallPath+"'>";
+  				str += "</div>";
+  				str +"</li>";
+  			}
+  	    });
+  	    
+  	    uploadUL.append(str);
+  	  }
+		
+  	 
+  	 //게시글 수정
+  	 var modifyBtn = $("#modify_post");
 		 
 		//found 수정 
 		 $('#FOUND').change(function(){
@@ -377,7 +567,7 @@
 	            description += " / " + $('#description5').val();
 			 alert(description);	 
 			 
-			 var modifyPost = {
+			/*  var modifyPost = {
 					 "id" : $('#ID').val(),
 					 "dog_name" : $('#DOG_NAME').val(),
 					 "dog_age" : $("#DOG_AGE").val(),
@@ -390,7 +580,7 @@
 		             "reward" : $('#REWARD').val(),
 		             "found" : $('#FOUND').val(),
 		             "species_id" : $('#SPECIES_ID').val()
-			 };
+			 }; */
 			 
 			 alert("FOUND : " + $('#FOUND').val());
 			 alert("SPECIES ID : " + $('#SPECIES_ID').val());
@@ -402,6 +592,7 @@
 			 
 		 });
 		 
+		 //게시글 수정
 		 function modify(modifyPost, callback, error){
 			 $.ajax({
 				 url : '/dog/missingboard/PUT',
@@ -425,9 +616,50 @@
 			 }); //ajax
 		 } //modify
 		 
+		 
 	 });
 	</script>
 	
+	<script>
+	//지도
+	   //지도 api 선택한 곳 마커 표시하기(주소까지 출력)
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	   mapOption = {
+	       center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+	       level: 3 // 지도의 확대 레벨
+	   };  
+
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		//원래 게시글의 모임장소 주소를 좌표로 바꿔주고 지도에 표시해주는 함수//********************************************************
+		var callback = function(result, status) {
+		    if (status === kakao.maps.services.Status.OK) {
+		        setMarker(result[0].x, result[0].y);
+		    }
+		};
+		// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
+		geocoder.addressSearch("<%=dto.getDog_lost_address()%>", callback);
+		
+		var marker = new kakao.maps.Marker();
+
+		//검색 하고 마커 찍어주는 함수
+		function setMarker(fa, ga){
+			//검색창에서 클릭한 좌표로 이동된 지도를 다시 생성
+			mapOption = {
+			        center: new kakao.maps.LatLng(ga, fa), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			//해당 위치에 마커를 표시
+			marker.setPosition(new kakao.maps.LatLng(ga, fa));
+			marker.setMap(map);
+		}
+	</script>
 	
 	
 	<!-- Javascript files-->
@@ -465,23 +697,6 @@
 	<script src="/resources/js/datepicker.js"></script>
 	<script src="/resources/js/boardMap/modify_map.js"></script>
 	<script src="/resources/js/region.js"></script>
-
-	<!-- 지역 선택시 카테고리변경 함수 -->
-	<script>
-	<!-- selectbox값 가져오기 -->
-		//selectbox 값을 db에서 가져온다
-		var inputVal = "2"; //db에서 받아온값(selctbox option value값)
-		var gender = "female"; // db에서 가져온 성별 값
-
-		//input[value=""] value에 받아온 gender값을 넣는다.
-		$('input:radio[name="gender"]:input[value="female"]').prop("checked", true);
-		$("#species").val(inputVal);
-		$("#region").val(inputVal);
-		var selectRegion = document.getElementById('region');
-		categoryChange(selectRegion);
-		$("#sml_region").val("수원시");
-	</script>
-
 
 
 
