@@ -214,22 +214,26 @@
 					<!-- 페이징  -->			
 					<div aria-label="Page navigation example" class="d-flex justify-content-center">
 						<ul class="pagination">
+						
 						<c:if test="${pageMaker.prev }">
-							<li class="page-item"><a href="${pageMaker.startPage-1 }" name="" class="page-link">
+							<li class="page-item"><a href="${pageMaker.startPage-1 }" name="pagination_button" class="page-link">
 							<i class="fa fa-angle-double-legt"></i></a></li>
 						</c:if>
 						
 						<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-							<li class="page-item ${pageMaker.cri.pageNum == num ? "active" : ""}">
-							<a href="${num }" class="page-link">${num }</a></li>
+							<li class="page-item ${pageMaker.cri.pageNum == num ? "active" : ""}" >
+							<a href="${num }" class="page-link" name="pagination_button">${num }</a></li>
 						</c:forEach>
 						
 						<c:if test="${pageMaker.next }">
-							<li class="page-item"><a href="${pageMaker.endPage+1 }" class="page-link">
+							<li class="page-item">
+							<a href="${pageMaker.endPage+1 }" class="page-link" name="pagination_button">
 							<i class="fa fa-angle-double-right"></i></a></li>
 						</c:if>
+						
 						</ul>
 					</div>
+					
 					
 				</div>
 			</div>	
@@ -246,18 +250,18 @@
 		           				<option value=""
 	           					<c:out value="${pageMaker.cri.type == null ? 'selected':''}"/>>--</option>
 	           					<option value="T"
-	           					<c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/>>제목</option>
-	           					<option value="C"
-	           					<c:out value="${pageMaker.cri.type eq 'C' ? 'selected':''}"/>>내용</option>
+	           					<c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/>>제목</option>	           				
 	           					<option value="W"
 	           					<c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
+	           				<%--<option value="C"
+	           			    	<c:out value="${pageMaker.cri.type eq 'C' ? 'selected':''}"/>>내용</option>
 	           					<option value="TC"
 	           					<c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목 or 내용</option>
 	           					<option value="TW"
 	           					<c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목 or 작성자</option>
 	           					<option value="TWC"
-	           					<c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목 or 내용 or 작성자</option>
-	           				</select>
+	           					<c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목 or 내용 or 작성자</option> --%>	
+	           					</select>
 	           		
 								<div class="input-group">
 			           			<input type='text' name='keyword' placeholder="Search" class="form-control" 
@@ -274,6 +278,7 @@
 									<i class="fa fa-search"></i>
 									</button>
 								</span>
+								
 								</div>
 							</form>
 						</div>
@@ -286,11 +291,13 @@
 		</div>
 	</div>
 	
+	<!-- 페이징.
+	 -->
 	<form id='actionForm' action="/dog/missingboard/list" method='get'>
-	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-	<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
-	<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
+		<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
 	</form>
 
 
@@ -311,14 +318,10 @@
 	          
 			  var id = <%=dto.getId()%>;
 	          
-	          alert("id : " + id);
-	          
 	          $.getJSON("/dog/missingboard/getAttachList/<%=dto.getId()%>", function(arr){              
 	              
-	        	  console.log("arr : " + arr);	              
-	              
                   var str = "";
-	              //첨부된 이미지 파일들
+	              //첨부된 이미지 파일 출력
 	              $(arr).each(function(i, attach){
 	            	  
 	                  if(attach.fileType){	                	
@@ -326,12 +329,9 @@
 	              			                   
 	                    str += "<img id='lostdog' style='width:150px!important; height:150px!important; max-width:150px!important; max-heigth:150px!important;' src='/display?fileName="+fileCallPath+"'>";                                   
 	                  	
-	                    return false; //첨부된 사진들 중 맨 첫번쨰 사진만 출력
-	                    
+	                    return false; //첨부된 사진들 중 맨 첫번쨰 사진만 출력	                    
 	                   }	                  
 	              });
-	              
-	              alert(str);              
 
 	              $("#imageInsert<%=index%>").append(str);
 	                
@@ -352,18 +352,32 @@
 		else if ('${delete_msg}' == "failure")
 			alert("게시글 삭제 실패");
 		
-		//
+		//각각 페이지 버튼
 		 var actionForm = $("#actionForm");
-	 
-		 $(".paginate_button a").on("click", function(e){
-			 e.preventDefault(); //<a>태그 동작 막음
-			 
-			 console.log('click');
-			 
-			 actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-			 actionForm.submit();
-		 });
+	 	 //var paginateBtn = $(""')
 		
+	 	 $("a[name='pagination_button']").on("click", function(e){
+	 	 
+		 //$(".paginate_button a").on("click", function(e) {
+
+				e.preventDefault();
+
+				console.log('click');
+
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
+			});
+		 
+		 /* $(".move").on("click", function(e) {
+			 e.preventDefault();
+			 actionForm.append("<input type='hidden' name='bno' value='"
+								+ $(this).attr("href")
+								+ "'>");
+			 actionForm.attr("action", "/board/get");
+			 actionForm.submit();
+
+			}); */ 
+		 
 		//검색
 		 var searchForm = $("#searchForm");
 		 $("#searchBtn").on("click", function(e){
