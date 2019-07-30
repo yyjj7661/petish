@@ -137,7 +137,7 @@ public class DogMissingboardController {
 		
 		rttr.addFlashAttribute("result", dto.getId());
 
-		return "redirect:/petish/dog/missingboard/1";
+		return "redirect:/petish/dog/missingboard/list";
 	}
 
 	// 게시글 입력
