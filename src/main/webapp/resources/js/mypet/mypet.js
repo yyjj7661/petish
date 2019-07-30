@@ -57,7 +57,7 @@ const likeClick = () => {
 const likePost = (id) => {
 	$.ajax({
 		type: "POST",
-		url: "/api/mypet/posts/like/" + id,
+		url: "/api/mypet/posts/likes/" + id,
 		success: function(data, status, xhr) {
 			const like = $("#like-icon");
 		    let likeCount = parseInt($('#like-count').text());
@@ -90,6 +90,8 @@ const handleKeyPress = (e) => {
 
 const addReply = (formData) => {
 	
+	let postId = formData.get("postId");
+	
 	$.ajax({
 		type: "POST",
 		url: "/api/mypet/comments",
@@ -97,7 +99,7 @@ const addReply = (formData) => {
 		processData: false,
 	    contentType: false,
 	    success: function(result, status, xhr) {
-	    	
+	    	makeCommentPart(postId);
 	    },
 	    error: function(error, status, xhr) {
 	    	alert("로그인이 필요합니다.");
@@ -208,7 +210,7 @@ const makeCommentPart = (id) => {
 const makeLikeStatus = (id) => {
 	$.ajax({
 		type: "GET",
-		url: "/api/mypet/posts/like/" + id,
+		url: "/api/mypet/posts/isLiked/" + id,
 		success: function(data, status, xhr) {
 			const like= $('#like-icon');
 			if (data == true) {

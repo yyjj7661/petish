@@ -71,6 +71,18 @@
 		WHERE post_id = #{postId}
 		AND user_id = #{userId}
 	</update>
+	
+	<select id="findAll" resultType="com.community.petish.mypet.post.domain.MypetPost" >
+		SELECT * FROM mypet_post_tb WHERE deleted = 0
+	</select>
+	
+	<select id="countLikes" resultType="Long">
+		SELECT count(*) FROM mypet_post_like_tb WHERE post_id = #{postId} AND deleted = 0
+	</select>
+	
+	<select id="countComments" resultType="Long">
+		SELECT count(*) FROM mypet_comment_tb WHERE post_id = #{postId} AND deleted = 0
+	</select>
 
 </mapper>
 

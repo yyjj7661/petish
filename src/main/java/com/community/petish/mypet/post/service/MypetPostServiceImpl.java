@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.community.petish.mypet.post.domain.MypetPost;
 import com.community.petish.mypet.post.domain.MypetPostLike;
 import com.community.petish.mypet.post.dto.request.SaveMypetPostParams;
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
+import com.community.petish.mypet.post.dto.response.MypetPostSummary;
+import com.community.petish.mypet.post.dto.response.MypetPostSummaryList;
 import com.community.petish.mypet.post.mapper.MypetPostMapper;
 import com.community.petish.user.dto.response.LoginedUser;
 
@@ -66,6 +70,26 @@ public class MypetPostServiceImpl implements MypetPostService{
 		
 		return postId;
 		
+	}
+	
+	@Override
+	public MypetPostSummaryList getPosts() {
+		List<MypetPost> posts = mypetPostMapper.findAll();
+		
+		List<MypetPostSummary> postSummaries = 
+		posts.stream()
+			.map(post -> 
+			new MypetPostSummary(
+					post.getId(), 
+					post.getImage().split(",")[0], 
+					mypetPostMapper.countLikes(post.getId()), 
+					mypetPostMapper.countComments(post.getId())
+					)
+			).collect(Collectors.toList());
+		
+		MypetPostSummaryList mypetPostSummaryList = new MypetPostSummaryList(postSummaries);
+		
+		return mypetPostSummaryList;
 	}
 
 	@Override

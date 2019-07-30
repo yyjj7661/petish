@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
+import com.community.petish.mypet.post.dto.response.MypetPostSummaryList;
 import com.community.petish.mypet.post.service.MypetPostService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,15 @@ public class MypetPostRestController {
 		
 	}
 	
+	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public MypetPostSummaryList getPosts() {
+		log.info("mypet post 조회");
+		
+		MypetPostSummaryList mypetPostSummaryList = mypetPostService.getPosts();
+		
+		return mypetPostSummaryList;
+	}
+	
 	@GetMapping(value="/{postId}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public MypetPostDetailResponse getPost(@PathVariable("postId") Long postId) {
 		log.info("mypet post 요청 postId = {}", postId);
@@ -42,14 +52,14 @@ public class MypetPostRestController {
 		
 	}
 	
-	@GetMapping(value="/like/{postId}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	@GetMapping(value="/isLiked/{postId}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public Boolean getLikePressedByPostId(@PathVariable("postId") Long postId, HttpSession session) {
 		log.info("mypet post에 대하여 좋아요를 눌렀는지 확인, postId = {}", postId);
 		Boolean isPressed = mypetPostService.getIsLikePressedOnPost(postId, session);
 		return isPressed;
 	}
-	
-	@PostMapping(value="/like/{postId}")
+
+	@PostMapping(value="/likes/{postId}")
 	public void pressLike(@PathVariable("postId") Long postId, HttpSession session) {
 		log.info("mypet post에 좋아요 요청 postId = {}", postId);
 		mypetPostService.pressLikeOnPost(postId, session);
