@@ -325,15 +325,15 @@
 	                    var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName); //파일 이름(썸네일)
 	              			                   
 	                    str += "<img id='lostdog' style='width:150px!important; height:150px!important; max-width:150px!important; max-heigth:150px!important;' src='/display?fileName="+fileCallPath+"'>";                                   
-	                  
+	                  	
+	                    return false; //첨부된 사진들 중 맨 첫번쨰 사진만 출력
+	                    
 	                   }	                  
 	              });
 	              
 	              alert(str);              
 
 	              $("#imageInsert<%=index%>").append(str);
-	              
-	                
 	                
 	              });//end getjson 
 	              
