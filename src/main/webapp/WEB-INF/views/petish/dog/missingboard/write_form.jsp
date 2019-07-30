@@ -117,7 +117,7 @@
         
 <!-- CSS 파일 추가 --> 
 <link rel="stylesheet" href="/resources/css/write-modify.css">
-<link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
+<link rel="stylesheet" href="/resources/css/commons/kakaomap.css?1">
 
 </head>
 
@@ -463,43 +463,21 @@
         var str ="";
         
         $(uploadResultArr).each(function(i, obj){
-        
-            /* //image type
-            if(obj.image){
-              var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
-              str += "<li><div>";
-              str += "<span> "+ obj.fileName+"</span>";
-              str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-              str += "<img src='/display?fileName="+fileCallPath+"'>";
-              str += "</div>";
-              str +"</li>";
-            }else{
-              var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);            
-                var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-                  
-              str += "<li><div>";
-              str += "<span> "+ obj.fileName+"</span>";
-              str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-              str += "<img src='/resources/img/attach.png'></a>";
-              str += "</div>";
-              str +"</li>";
-            } */
-          //image type
           
-          if(obj.image){
-             var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
-             str += "<li data-path='"+obj.uploadPath+"'";
-             str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
-             str +" ><div>";
-             str += "<span> "+ obj.fileName+"</span>";
-             str += "<button type='button' data-file=\'"+fileCallPath+"\' "
-             str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-             str += "<img src='/display?fileName="+fileCallPath+"'>";
-             str += "</div>";
-             str +"</li>";
-             
-             console.log("(obj.image)str : " + str);
-          }
+        	 if(obj.image){
+                 var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+                 str += "<li data-path='"+obj.uploadPath+"'";
+                 str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+                 str +" ><div>";
+                 str += "<span> "+ obj.fileName+"</span>";
+                 str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+                 str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+                 str += "<img src='/display?fileName="+fileCallPath+"'>";
+                 str += "</div>";
+                 str +"</li>";
+                 
+                 console.log("(obj.image)str : " + str);
+              }
           else{
              var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);               
               var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
@@ -523,7 +501,7 @@
       }
       
       
-      //첨부 파일 삭제
+      //첨부 파일 미리보기에서 삭제
       $(".uploadResult").on("click", "button", function(e){
            
         console.log("delete file");
@@ -531,7 +509,11 @@
         var targetFile = $(this).data("file");
         var type = $(this).data("type");
         
-        var targetLi = $(this).closest("li");
+        var targetLi = $(this).closest("li"); //미리보기에서 삭제
+        
+        console.log("targetFile : " + targetFile); 
+        console.log("type : " + type); 
+        
         
         $.ajax({
           url: '/deleteFile',
