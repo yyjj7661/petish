@@ -104,9 +104,13 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	}
 	
 	//게시글 삭제
+	@Transactional
 	@Override
 	public int delete(Long id) {
-		return mapper.deletePost(id);
+		
+		attachMapper.deleteAll(id); //첨부 사진 삭제 
+		
+		return mapper.deletePost(id); //게시글 삭제
 	}
 	
 	//사진 첨부
