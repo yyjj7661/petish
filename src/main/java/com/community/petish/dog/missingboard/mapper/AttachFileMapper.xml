@@ -16,4 +16,8 @@ delete from attach_tb where uuid=#{uuid}
 select * from attach_tb where postid=#{postId}
 </select>
 
+<delete id="deleteAll">
+delete attach_tb where postid=#{postId}
+</delete>
+
 </mapper>
