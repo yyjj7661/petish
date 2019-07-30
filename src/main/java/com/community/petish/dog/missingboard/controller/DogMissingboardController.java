@@ -65,17 +65,24 @@ public class DogMissingboardController {
 	}
 	*/
 	
-	@RequestMapping("/list")
-	public String getList() {
-		return "petish/dog/missingboard/list";
-	}
+	//@RequestMapping("/list")
+//	public void getList(Criteria cri, Model model) {
+//		
+//		log.info("list : " + cri);
+//		
+//		int total = service.getPostCount(cri); //전체 게시글 수
+//		
+//		model.addAttribute("list", service.getPostList(cri));
+//		//model.addAttribute("pageMaker", new DogLostPostPageDTO(cri,total));
+//		
+//	}
 	
 	//게시글 리스트(페이징)
-	@RequestMapping("/{num}")
-	public String dogMissingBoardListPaging(@PathVariable int num, Criteria cri, Model model) throws ParseException {
+	@RequestMapping("/list")
+	public String dogMissingBoardListPaging(Criteria cri, Model model) throws ParseException {
 
-		cri.setPageNum(num);
-		log.info("num : " + num);
+		cri.setPageNum(cri.getPageNum());
+		log.info("num : " + cri.getPageNum());
 		List<DogLostPostResponseListDTO> dtoList = service.getPostList(cri);		
 		
 		log.info("pageNum : " + cri.getPageNum());
@@ -208,8 +215,8 @@ public class DogMissingboardController {
 
 	// 개시글 수정 폼
 	@RequestMapping(value="/modifyForm/{id}")
-	public String dogMissingBoardModifyForm(@PathVariable Long id, Model model) {
-
+	public String dogMissingBoardModifyForm(@PathVariable Long id, Model model){
+		
 		DogLostPostResponseDetailDTO dto = service.getPostDetail(id);
 
 		model.addAttribute("dto", dto);
@@ -218,21 +225,29 @@ public class DogMissingboardController {
 	}
 
 	// 게시글 수정
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String dogMissingBoardModify(DogLostPostRequestWriteDTO dto) {
-
-		int result = service.modify(dto);
-
-		if(result == 1) {
-			log.info("수정 성공");			
-			//수정한 페이지 조회 화면으로 (수정하기)
+	@PostMapping("/modify")	
+	public String dogMissingBoardModify(DogLostPostRequestWriteDTO dto, Model model, RedirectAttributes rttr) {
+		
+		log.info("게시글 수정");
+		
+		try {
+			int result = service.modify(dto);
 			
-		}
-		else {
-			log.info("수정 실패");
+			if(result == 1) {
+				log.info("수정 성공");			
+				//수정한 페이지 조회 화면으로 (수정하기)
+				
+			}
+			else {
+				log.info("수정 실패");
+			}
 		}
 		
-		return "redirect:/dog/missingboard/list";
+		catch(Exception e){
+			log.info("에러");
+			e.printStackTrace();			
+		}
+		return "redirect:/dog/missingboard/1";
 	}
 	
 	// 게시글 삭제
