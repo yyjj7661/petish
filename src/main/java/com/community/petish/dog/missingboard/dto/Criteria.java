@@ -33,12 +33,13 @@ public class Criteria {
 	}
 	
 	public String getListLink() {
+		//UrlComponentsBuilder : 브라우저에서 GET 방식 등의 파라미터 전송에 사용되는 문자열을 쉽게 처리할 수 있는 클래스
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
 			.queryParam("pageNum", this.pageNum)
 			.queryParam("amount", this.getAmount())
 			.queryParam("type", this.getType())
-			.queryParam("keyword", this.getKeyword());
-		
+			.queryParam("keyword", this.getKeyword());		
 		return builder.toUriString();
 	}
+	
 }
