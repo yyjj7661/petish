@@ -142,10 +142,12 @@
 							for (int i = 0; i < dtoList.size() ; i++) {
 								DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);
 
-								String address = dto.getDog_lost_address();
+								int index = i;
 								
+								//실종 장소
+								String address = dto.getDog_lost_address();								
 								String[] array = address.split(" ");
-
+								
 								String addr1 = null;
 								String addr2 = null;
 								
@@ -156,6 +158,8 @@
 									addr2 = array[1];
 
 								String addrSplit = addr1 + " " + addr2;
+								
+								
 						%>
 						<tr>
 							<%
@@ -170,9 +174,12 @@
 								}
 							%>
 							
-							<td><img src="<%=dto.getDog_image()%>" alt="..."
-								class="img-fluid"
-								style="width: 30px !important; height: 30px !important;"></td>
+							<td id="imageInsert<%=index%>">
+								<%-- <img src="<%=dto.getDog_image()%>" alt="..." class="img-fluid" 
+								style="width: 30px !important; height: 30px !important;"> --%>
+								
+							</td>
+								
 							<td colspan="10"><a
 								href="/dog/missingboard/detail/<%=dto.getId()%>">[<%=addrSplit%>]
 									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
@@ -290,6 +297,55 @@
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script>
 	$(document).ready(function(){
+		
+				 
+		//즉시 실행 함수
+		   (function(){
+			 <% 
+			 	for (int i = 0; i < dtoList.size() ; i++) {
+			 		
+					DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);
+					
+					int index = i;
+			 %>
+	          
+			  var id = <%=dto.getId()%>;
+	          
+	          alert("id : " + id);
+	          
+	          $.getJSON("/dog/missingboard/getAttachList/<%=dto.getId()%>", function(arr){              
+	              
+	        	  console.log("arr : " + arr);	              
+	              
+                  var str = "";
+	              //첨부된 이미지 파일들
+	              $(arr).each(function(i, attach){
+	            	  
+	                  if(attach.fileType){	                	
+	                    var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName); //파일 이름(썸네일)
+	              			                   
+	                    str += "<img id='lostdog' style='width:150px!important; height:150px!important; max-width:150px!important; max-heigth:150px!important;' src='/display?fileName="+fileCallPath+"'>";                                   
+	                  
+	                   }	                  
+	              });
+	              
+	              alert(str);              
+
+	              $("#imageInsert<%=index%>").append(str);
+	              
+	                
+	                
+	              });//end getjson 
+	              
+	          <%	      
+			 	}
+			 %>
+	        })();//end function
+	        
+	     
+	        
+		
+		
 		//삭제 확인 메세지
 		if ('${delete_msg}' == "success")
 			alert("게시글 삭제 완료");
@@ -330,6 +386,9 @@
 			 
 			 searchForm.submit();
 		 })
+		 
+		
+        
 		
 	});
 	</script>
