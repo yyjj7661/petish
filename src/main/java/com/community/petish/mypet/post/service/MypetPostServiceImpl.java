@@ -100,7 +100,7 @@ public class MypetPostServiceImpl implements MypetPostService{
 	public Long pressLikeOnPost(Long postId, HttpSession session) {
 		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
 		
-		log.info("mypet post 좋아요 요청 postId = {}", postId + " loginedUserId = {}", user.getId());
+		log.info("mypet post 좋아요 요청 postId = {} loginedUserId = {}\"", postId, user.getId());
 		
 		MypetPostLike mypetPostLike = mypetPostMapper.findIsLikePressedOnPost(postId, user.getId());
 		

@@ -22,8 +22,23 @@ $(window).resize(function() {
     resizeIcon();
 })
 
-const openModal = () => {
-    $(".modal").modal('show');
+const checkAuthentication = (callback, param) => {
+	$.ajax({
+		type: "GET",
+		url: "/api/users/authenticate",
+		success: function(data, status, xhr) {
+			if (callback) {
+				callback(param);
+			}
+		},
+		error: function(error, status, xhr) {
+			if ( error.status == 401 ) {
+				alert("권한이 없습니다. 로그인 후 이용해주세요.");
+				$(".modal").modal("hide");
+				$("#login-modal").modal("show");
+			}
+		}
+	})
 }
 
 const likeDoubleClick = () => {
@@ -34,7 +49,9 @@ const likeClick = () => {
     
 	const id = $('#post-id').val();
 	
-    likePost(id);
+	checkAuthentication(likePost, id);
+	
+//    likePost(id);
 }
 
 const likePost = (id) => {
@@ -42,8 +59,7 @@ const likePost = (id) => {
 		type: "POST",
 		url: "/api/mypet/posts/like/" + id,
 		success: function(data, status, xhr) {
-			console.log("좋아요 요청 성공");
-			const like= $('#like-icon');
+			const like = $("#like-icon");
 		    let likeCount = parseInt($('#like-count').text());
 		    if (like.hasClass('s-likes-icon-active')) {
 		        like.removeClass('s-likes-icon-active');
@@ -64,7 +80,9 @@ const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
     	e.preventDefault();
         let formData = new FormData(e.target.form);
-        addReply(formData);
+        
+        checkAuthentication(addReply, formData);
+//        addReply(formData);
         
         e.target.value = '';
     }
@@ -91,6 +109,15 @@ const addReply = (formData) => {
 
 
 const openPost = (id) => {
+	
+	makePostPart(id);
+	makeCommentPart(id);
+	makeLikeStatus(id);
+	
+    $('#mypet-detail-modal').modal('show');
+}
+
+const makePostPart = (id) => {
 	let userId;
 	
 	$.ajax({
@@ -132,26 +159,9 @@ const openPost = (id) => {
 	        
 	    }
 	});
-	
-	$.ajax({
-		type: "GET",
-		url: "/api/mypet/posts/like/" + id,
-		success: function(data, status, xhr) {
-			console.log(data == true);
-			console.log(data == false);
-			const like= $('#like-icon');
-			if (data == true) {
-				like.addClass("s-likes-icon-active");
-			}
-			if ( data == false ) {
-				like.removeClass("s-likes-icon-active");
-			}
-		},
-		error: function(error, status, xhr) {
-			
-		}
-	})
-	
+}
+
+const makeCommentPart = (id) => {
 	$.ajax({
 		type: "GET",
 		url: "/api/mypet/comments/post/" + id,
@@ -193,6 +203,23 @@ const openPost = (id) => {
 			})
 		}
 	})
-	
-    $('#mypet-detail-modal').modal('show');
+}
+
+const makeLikeStatus = (id) => {
+	$.ajax({
+		type: "GET",
+		url: "/api/mypet/posts/like/" + id,
+		success: function(data, status, xhr) {
+			const like= $('#like-icon');
+			if (data == true) {
+				like.addClass("s-likes-icon-active");
+			}
+			if ( data == false ) {
+				like.removeClass("s-likes-icon-active");
+			}
+		},
+		error: function(error, status, xhr) {
+			
+		}
+	})
 }
