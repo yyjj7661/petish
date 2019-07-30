@@ -1,5 +1,8 @@
 package com.community.petish.dog.missingboard.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.List;
 
@@ -231,14 +234,23 @@ public class DogMissingboardController {
 		
 		return "redirect:/dog/missingboard/list";
 	}
-
+	
 	// 게시글 삭제
 	@RequestMapping("/delete/{id}")
 	public String dogMissingBoardDelete(@PathVariable Long id, RedirectAttributes rttr) {
 
+		log.info("게시글 삭제");
+		
+		List<AttachFileVO> attachList = service.getAttachList(id);
+		
 		int result = service.delete(id);
-
+		log.info("result : " + result);
+		
 		if (result == 1) {
+			
+			//첨부파일 삭제
+			deleteFiles(attachList);
+			
 			log.info("삭제 성공");
 			rttr.addFlashAttribute("delete_msg", "success");
 		}
@@ -249,6 +261,37 @@ public class DogMissingboardController {
 		return "redirect:/dog/missingboard/1";
 	}
 	
+	// 첨부 파일 삭제
+	private void deleteFiles(List<AttachFileVO> attachList) {
+	    
+	    if(attachList == null || attachList.size() == 0) {
+	      return;
+	    }
+	    
+	    log.info("delete attach files...................");
+	    log.info(attachList.toString());
+	    
+	    attachList.forEach(attach -> {
+	      try {        
+	        //Path file  = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFileName());
+	        Path file  = Paths.get(attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFileName());	        
+	        
+	        Files.deleteIfExists(file);
+	        
+	        if(Files.probeContentType(file).startsWith("image")) {
+	        
+	          Path thumbNail = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFileName());
+	          
+	          Files.delete(thumbNail);
+	        }
+	
+	      }catch(Exception e) {
+	        log.error("delete file error" + e.getMessage());
+	      }//end catch
+	    });//end foreachd
+	  }
+
+	
 	// 첨부 파일 목록 조회	
 	@GetMapping(value = "/getAttachList/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
@@ -258,5 +301,6 @@ public class DogMissingboardController {
 	
 		return new ResponseEntity<>(service.getAttachList(id), HttpStatus.OK);
 	}
+	
 
 }
