@@ -240,7 +240,7 @@
                             <div class="mypet-picture">
                                 <div class="picture">
 
-                                    <div class="picture-wrapper" id="1" ondblclick="likeDoubleClick(this.id)">
+                                    <div class="picture-wrapper" ondblclick="likeDoubleClick()">
                                         <div id="post-picture">
                                         <!-- <img src="https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg"> -->
                                         </div>
@@ -286,7 +286,7 @@
                             <table class="s-caption-table">
                                 <tr>
                                     <td class="pr-1"> <i id="like-icon" class="like-icon fas fa-paw s-likes-icon" onclick="likeClick()"></i> 좋아요 <span class="s-likes" id="like-count">49</span> </td>
-                                    <td class="px-1"> <i id="1" class='comment-icon far fa-comment'></i> 댓글 <span class="s-comments" id="comment-count">3</span></td>
+                                    <td class="px-1"> <i id="comment-icon" class='comment-icon far fa-comment'></i> 댓글 <span id="comment-count" class="s-comments">3</span></td>
                                 </tr>
                             </table>
                         </div>

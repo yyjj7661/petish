@@ -12,10 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.community.petish.mypet.post.domain.MypetPostLike;
 import com.community.petish.mypet.post.dto.request.SaveMypetPostParams;
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
-import com.community.petish.mypet.post.dto.response.MypetPostSummary;
-import com.community.petish.mypet.post.dto.response.MypetPostSummaryList;
 import com.community.petish.mypet.post.mapper.MypetPostMapper;
 import com.community.petish.user.dto.response.LoginedUser;
 
@@ -63,7 +62,7 @@ public class MypetPostServiceImpl implements MypetPostService{
 		
 		log.info("saveMypetPostParams = {}", saveMypetPostParams);
 		
-		Long postId = mypetPostMapper.save(saveMypetPostParams);
+		Long postId = mypetPostMapper.savePost(saveMypetPostParams);
 		
 		return postId;
 		
@@ -75,6 +74,54 @@ public class MypetPostServiceImpl implements MypetPostService{
 		MypetPostDetailResponse mypetPostDetailResponse = mypetPostMapper.findById(postId);
 		log.info("mypet post 조회 완료 postDetail = {}", mypetPostDetailResponse);
 		return mypetPostDetailResponse;
+	}
+
+	@Override
+	public Boolean getIsLikePressedOnPost(Long postId, HttpSession session) {
+
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+		
+		if ( user == null ) {
+			return false;
+		}
+		
+		log.info("mypet post 좋아요 확인 : postId = {}", postId, "loginedUserId = {}", user.getId());
+		
+		MypetPostLike mypetPostLike = mypetPostMapper.findIsLikePressedOnPost(postId, user.getId());
+		
+		if (mypetPostLike == null || mypetPostLike.getDeleted() == 1) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	@Override
+	public Long pressLikeOnPost(Long postId, HttpSession session) {
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+		
+		log.info("mypet post 좋아요 요청 postId = {}", postId + " loginedUserId = {}", user.getId());
+		
+		MypetPostLike mypetPostLike = mypetPostMapper.findIsLikePressedOnPost(postId, user.getId());
+		
+		Long mypetPostLikeId = null;
+		
+		if ( mypetPostLike == null ) {
+			mypetPostLikeId = mypetPostMapper.saveLike(postId, user.getId());
+			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 생성", user.getId(), postId);
+		}
+		
+		if ( mypetPostLike.getDeleted() == 1 ) {
+			mypetPostLikeId = mypetPostMapper.updateLikeNotDeleted(postId, user.getId());
+			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 다시 누름", user.getId(), postId);
+		}
+		
+		if ( mypetPostLike.getDeleted() == 0 ) {
+			mypetPostLikeId = mypetPostMapper.updateLikeDeleted(postId, user.getId());
+			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 취소", user.getId(), postId);
+		}
+		
+		return mypetPostLikeId;
 	}
 
 }
