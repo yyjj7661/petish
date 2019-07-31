@@ -59,6 +59,10 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script src="/resources/js/mypage/mypage.js"></script>
+<script src="/resources/js/boardMap/write_map.js"></script>
+<script src="/commons/kakaomap.jsp"></script>
+<link rel="stylesheet" href="/resources/css/commons/kakaomap.css"></link>
+
 </head>
 
 <body>
@@ -76,15 +80,14 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 						<h3 style="margin-top: 10%;font-weight:700;">회원정보 수정</h3>
 						<div class="memberInfo" style="margin-bottom:1cm;">
 							<div style="margin: 0.5cm;">
+							<form action="/uploadFormAction" method="post" enctype="multipart/form-data">
 								<img class="profile" src="\resources\img\<%=dto.getPicture() %>"
-									style="margin-right: 30px;">
-							</div>
-							<div>
+									style="margin-right: 30px;">프로필 사진 변경
 								<input type="file" name="uploadFile" multiple/>
 								<input type="hidden" name="id" value=<%=dto.getId() %>>
-							</div>
 							<button id='uploadBtn'>submit</button>
-							
+							</form>
+							</div>
 						</div>
 						<form action="/mypage/modifyUserInfo" method = "POST">
 							<input type="hidden" value=<%=dto.getId() %> name="id">
@@ -97,14 +100,10 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 										></td>
 								</tr>
 								<tr style="height: 1.5cm;">
-									<td rowspan="3" class="font-grey"><label
+									<td rowspan="2" class="font-grey"><label
 										class="control-label col-md-10">비밀번호</label></td>
 									<td style="padding-right: 15px;"><input type="password"
-										placeholder="기존비밀번호 입력" class="form-control" ></td>
-								</tr>
-								<tr style="height: 1.5cm;">
-									<td style="padding-right: 15px;"><input type="password"
-										placeholder="새 비밀번호 입력" class="form-control" ">
+										placeholder="새 비밀번호 입력" class="form-control"  name="newPW">
 								</tr>
 								<tr style="height: 1.5cm;">
 									<td style="padding-right: 15px;"><input type="password"
@@ -127,18 +126,19 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 									<td class="font-grey"><label
 										class="control-label col-md-8">주소</label></td>
 									<td><div>
-											<input type="text" value="1234567"
-												style="width: 70%; height: 0.961cm;" name="address">
+											<input type="text"
+												style="width: 70%; height: 0.961cm;" name="address" id="place" value="<%=dto.getAddress() %>" readonly>
+											<input type="button" value="검색" onclick="openZipcode(this.form)" />
 										</div></td>
 								</tr>
-								<tr style="height: 1.5cm;">
+								<tr style="height: 1.5cm;" class="gender">
 									<td class="font-grey"><label
 										class="control-label col-md-8">성별</label></td>
 									<td><label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="gender">여자
+											class="form-check-input" type="radio" name="gender" value="1" <%if(1==dto.getGender())out.print("checked"); %>>여자
 									</label> <label class="form-check-label"> <input
-											class="form-check-input" type="radio" name="gender">남자
+											class="form-check-input" type="radio" name="gender" value="2" <%if(2==dto.getGender())out.print("checked"); %>>남자
 									</label></td>
 								</tr>
 								<tr style="height: 1.5cm;">
@@ -146,13 +146,14 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 										class="control-label col-md-8">관심사</label></td>
 									<td><label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="interest">강아지
+											class="form-check-input" type="radio" name="concern_id"
+											<%if(1==dto.getConcern_id())out.print("checked"); %> value="1">강아지
 									</label> <label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="interest"">고양이
+											class="form-check-input" type="radio" name="concern_id" <%if(2==dto.getConcern_id())out.print("checked"); %> value="2">고양이
 									</label> <label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="interest"">기타
+											class="form-check-input" type="radio" name="concern_id" <%if(3==dto.getConcern_id())out.print("checked"); %> value="3">기타
 									</label></td>
 								</tr>
 							</table>
@@ -164,7 +165,7 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 								</div>
 
 								<div class="right-col">
-									<button type="submit">
+									<button type="submit" id="checkValidity">
 									수정하기<i
 										class="fa fa-save"></i></button>
 								</div>
@@ -177,36 +178,12 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 		</div>
 	</div>
 	<script>
-	$(document).ready(function(){
-		
-		$('#modifyPictureBtn').on("click", function(e){
-			$("input:file").click();
-		})
-		
-		var userModifyService = (function(){
-			function modifyUserPicture(id, uploadFile, callback, error){
-				var a = {id:id, uploadFile:uploadFile};
-				$.ajax({
-					type:'put',
-					url : '/mypage/api/modifyPicture/'+id+'/'+picture,
-					data : JSON.stringify(a),
-					contentType : "application/json;charset = utf-8",
-					success : function(result, status, xhr){
-						if(callback){
-							callback(result);
-						}
-					},
-					error : function(xhr, status, er){
-						if(error){
-							error(er);
-						}
-					}
-				});
-			}
-			
-		});			
-	});
 	
+	var checkValidity = $("#checkValidity"); 
+	var exPW = document.getElementsByName("exPW");
+	checkValidity.on("click", function(e){
+		//비밀번호 확인하는 로직(기존, 신규)
+	});
 	</script>
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>

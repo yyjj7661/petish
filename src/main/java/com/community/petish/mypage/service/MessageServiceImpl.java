@@ -46,7 +46,7 @@ public class MessageServiceImpl implements MessageService{
 		return dto;
 	}
 
-	// 보낸 쪽지 상세조회
+	// 5. 보낸 쪽지 상세조회
 	@Override
 	public MessageResponseDTO sentMessageDetail(int id) {
 		
@@ -54,28 +54,28 @@ public class MessageServiceImpl implements MessageService{
 		return dto;
 	}
 	
-	//5. 쪽지 삭제
+	//6. 쪽지 삭제
 	@Override
 	public int deleteMessage(int id) {
 		int res = messageMapper.deleteMessage(id);
 		return res;
 	}
 
-	//6. 받은 메세지중 삭제안된 메세지 갯수
+	//7. 받은 메세지중 삭제안된 메세지 갯수
 	@Override
 	public int getUndeletedReceived(int user_id) {
 		int undeletedReceived = messageMapper.getUndeletedReceived(user_id);
 		return undeletedReceived;
 	}
 
-	//7. 보낸 메세지중 삭제안된 메세지 갯수
+	//8. 보낸 메세지중 삭제안된 메세지 갯수
 	@Override
 	public int getUndeletedSent(int user_id) {
 		int undeletedSent = messageMapper.getUndeletedSent(user_id);
 		return undeletedSent;
 	}
 
-	//8. 쪽지 읽음으로 변경
+	//9. 쪽지 읽음으로 변경
 	@Override
 	public int changeReadAttr(MessageRequestDTO dto) {
 	       int res = messageMapper.changeReadAttr(dto);

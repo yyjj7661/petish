@@ -18,7 +18,6 @@ import com.community.petish.mypage.dto.MyWritingsDTO;
 import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.dto.QuestionResponseDTO;
 import com.community.petish.mypage.dto.Criteria;
-import com.community.petish.mypage.dto.WritingPageDTO;
 import com.community.petish.mypage.dto.Writings_CommentedDTO;
 import com.community.petish.mypage.dto.Writings_LikedDTO;
 import com.community.petish.mypage.service.DefaultService;
@@ -36,137 +35,167 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/mypage/*")
 public class MypageController {
 
-	
 	@Autowired
 	private QuestionService questionServiceImpl;
-	
 	@Autowired
 	private MessageService messageServiceImpl;
-	
 	@Autowired
 	private DefaultService defaultServiceImpl;
-	
 	@Autowired
 	private UserService userServiceImpl;
-	
+
+	// 마이페이지 default
 	@RequestMapping("/")
 	public String mypage(Model model, HttpSession session, Criteria cri) {
 		int user_id = 1;
-		//세션이 널이면 로그인페이지로 이동 (if)
+		// 세션이 널이면 로그인페이지로 이동 (if)
 		UserResponseDTO user = userServiceImpl.findUser(user_id);
 		model.addAttribute("user", user);
 		return "petish/mypage/default";
 	}
+
 	
-	@RequestMapping(value="/modifyForm/{user_id}")
+	
+	// -------------------회원정보수정 start
+	// 회원정보수정
+	@RequestMapping(value = "/modifyform/{user_id}")
 	public String modifyForm(@PathVariable("user_id") long user_id, Model model, HttpSession session) {
-		//로그인 여부 확인
-		if(session.getAttribute("user_id")==null) {
+		// 로그인 여부 확인
+		if (session.getAttribute("user_id") == null) {
 			return "petish/loginpage";
-		}else {
-		UserResponseDTO dto = userServiceImpl.findUser(user_id);
-		log.info(dto);
-		model.addAttribute("dto", dto);
-			return "petish/mypage/info_modify_form";}
+		} else {
+			// 회원아이디로 회원정보 찾아서 보내기
+			UserResponseDTO dto = userServiceImpl.findUser(user_id);
+			model.addAttribute("dto", dto);
+			return "petish/mypage/info_modify_form";
+		}
 	}
-	
-	@RequestMapping(value="/modifyUserInfo", method = {RequestMethod.POST})
+	// 회원정보수정로직
+	@RequestMapping(value = "/modifyUserInfo", method = { RequestMethod.POST })
 	public String modifyUserInfo(UserModifyRequestDTO dto, Model model) {
-		log.info("수정"+dto);
-		userServiceImpl.modifyUserInfo(dto);
+		log.info("수정" + dto);
+		// 비밀번호를 제외한 정보 수정(비밀번호를 제외하고는 기본값 세팅되어있어서)
+		if ((dto.getPassword().equals(""))) {
+			userServiceImpl.modifyUserInfo(dto);
+			log.info("비밀번호제외");
+		} else {
+			// 비밀정보를 포함한 정보 수정
+			userServiceImpl.modifyUserInfoAll(dto);
+			log.info("비밀번호포함");
+		}
+		// 다시 default페이지로 이동
 		return "redirect:./";
 	}
-
-	
-	//question start
-	@RequestMapping("/question/list")
-	public String questionList(Model model, HttpSession session) {
-		//로그인 여부 확인
-		if(session.getAttribute("user_id")==null) {
-			return "petish/loginpage";
-		}else {
-		int user_id = (int)session.getAttribute("user_id");
-		log.info(user_id);
-		ArrayList<QuestionResponseDTO> list = questionServiceImpl.getQuestionList(user_id);
-		int amount = questionServiceImpl.getUndeleted(user_id);
-		model.addAttribute("amount", amount);
-		model.addAttribute("list",list);
-		return "petish/mypage/question_list";
-		}
-	}
-
-	@RequestMapping("/question/insert")
-	public String insertQuestion(QuestionRequestDTO dto, HttpSession session) {
-		log.info(dto);
-		QuestionRequestDTO dto2 = new QuestionRequestDTO();
-		dto2.setUser_id(dto.getUser_id());
-		dto2.setTitle(dto.getTitle());
-		dto2.setContent(dto.getContent());
-		dto2.setCategory_id(2);
-		questionServiceImpl.insertQuestion(dto2);
-		return "redirect:./list";
-	}
-	
-	@RequestMapping("/question/delete")
-	public String deleteQuestion(int id) {
-		log.info(id);
-		questionServiceImpl.deleteQuestion(id);
-		return "redirect:./list";
-	}
-	
-	//question end
-
-	//message start
-	@RequestMapping("/message/list")
-	public String messageList(Model model, HttpSession session) {
-		//로그인 여부 확인
-		if(session.getAttribute("user_id")==null) {
-			return "petish/loginpage";
-		}else {
-		int user_id = (int)session.getAttribute("user_id");
-		log.info(user_id);
-		ArrayList<MessageResponseDTO> receivedList = messageServiceImpl.getReceivedMessageList(user_id);
-		int undeletedReceived = messageServiceImpl.getUndeletedReceived(user_id);
-		ArrayList<MessageResponseDTO> sentList = messageServiceImpl.getSentMessageList(user_id);
-		int undeletedSent = messageServiceImpl.getUndeletedSent(user_id);
-		model.addAttribute("receivedList", receivedList);
-		model.addAttribute("undeletedReceived", undeletedReceived);
-		model.addAttribute("sentList", sentList);
-		model.addAttribute("undeletedSent", undeletedSent);
-		return "petish/mypage/message_list";
-		}
-	}
-	
-	@RequestMapping("/message/delete")
-	public String messageDelete(int id) {
-		messageServiceImpl.deleteMessage(id);
-		log.info(id);
-		return "redirect:./list";	
-	}
-	//message end
-	
-	
-	@RequestMapping(value="/uploadFormAction", method = {RequestMethod.POST})
+	// 프로필 사진 수정
+	@RequestMapping(value = "/uploadFormAction", method = { RequestMethod.POST })
 	public String uploadFormAction(MultipartFile[] picture, Model model, long id) {
 		String uploadFolder = "C:\\Users\\bit-user\\Desktop\\PetCommunity\\petish\\src\\main\\webapp\\resources\\img";
-		log.info("여기까지?1");
 		for (MultipartFile multipartFile : picture) {
-			log.info("name:"+multipartFile.getOriginalFilename());
-			log.info("size:"+multipartFile.getSize());
-			
+			log.info("name:" + multipartFile.getOriginalFilename());
+			log.info("size:" + multipartFile.getSize());
 			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
+
 			try {
 				multipartFile.transferTo(saveFile);
 				UserModifyPictureDTO dto = new UserModifyPictureDTO();
 				dto.setId(id);
 				dto.setPicture(multipartFile.getOriginalFilename());
 				int res = userServiceImpl.modifyPicture(dto);
-				log.info("res"+res);
-			}catch(Exception e) {
+				log.info("res" + res);
+			} catch (Exception e) {
 				log.error(e.getMessage());
 			}
+
 			model.addAttribute("user_id", id);
 		}
-		return "redirect:./modifyForm";	
+		return "redirect:./modifyForm";
 	}
+	// -------------------회원정보수정 end
+
+	
+	
+	
+	
+	// -------------------question start
+	// 문의리스트
+	@RequestMapping("/question/list")
+	public String questionList(Criteria cri, Model model, HttpSession session) {
+		// 로그인 여부 확인
+		if (session.getAttribute("user_id") == null) {
+			return "petish/loginpage";
+		} else {
+			// 로그인사용자 기준으로 문의db 불러오기
+			int user_id = (int) session.getAttribute("user_id");
+			ArrayList<QuestionResponseDTO> list = questionServiceImpl.getQuestionList(user_id);
+			model.addAttribute("list", list);
+			// 문의글수 count
+			int amount = questionServiceImpl.getUndeleted(user_id);
+			model.addAttribute("amount", amount);
+			return "petish/mypage/question_list";
+		}
+	}
+	// 문의 등록
+	@RequestMapping("/question/insert")
+	public String insertQuestion(QuestionRequestDTO dto, HttpSession session) {
+		QuestionRequestDTO dto2 = new QuestionRequestDTO();
+		dto2.setUser_id(dto.getUser_id());
+		dto2.setTitle(dto.getTitle());
+		dto2.setContent(dto.getContent());
+		dto2.setCategory_id(dto.getCategory_id());
+
+		questionServiceImpl.insertQuestion(dto2);
+
+		return "redirect:./list";
+	}
+	// 문의 삭제
+	@RequestMapping("/question/delete")
+	public String deleteQuestion(int id) {
+		// 글 id 기준으로 삭제
+		questionServiceImpl.deleteQuestion(id);
+		return "redirect:./list";
+	}
+
+	// -------------------question end
+
+	
+	
+	
+	
+	// -------------------message start
+	// 메세지리스트
+	@RequestMapping("/message/list")
+	public String messageList(Model model, HttpSession session) {
+		// 로그인 여부 확인
+		if (session.getAttribute("user_id") == null) {
+			return "petish/loginpage";
+		} else {
+			// 로그인 사용자 기준으로 메세지db 가져오기
+			int user_id = (int) session.getAttribute("user_id");
+			// 받은 메세지
+			ArrayList<MessageResponseDTO> receivedList = messageServiceImpl.getReceivedMessageList(user_id);
+			model.addAttribute("receivedList", receivedList);
+			// 삭제여부
+			int undeletedReceived = messageServiceImpl.getUndeletedReceived(user_id);
+			model.addAttribute("undeletedReceived", undeletedReceived);
+			// 보낸 메세지
+			ArrayList<MessageResponseDTO> sentList = messageServiceImpl.getSentMessageList(user_id);
+			model.addAttribute("sentList", sentList);
+			// 삭제여부
+			int undeletedSent = messageServiceImpl.getUndeletedSent(user_id);
+			model.addAttribute("undeletedSent", undeletedSent);
+
+			return "petish/mypage/message_list";
+		}
+	}
+	// 메세지 삭제
+	@RequestMapping("/message/delete")
+	public String messageDelete(int id) {
+		// 메세지 id기준으로 삭제
+		messageServiceImpl.deleteMessage(id);
+		return "redirect:./list";
+	}
+	// -------------------message end
+
+	
+	
 }

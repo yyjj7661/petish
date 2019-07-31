@@ -7,7 +7,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.community.petish.mypage.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.community.petish.mypage.dto.WritingPageDTO" %>
+
 <%
 	UserResponseDTO user = (UserResponseDTO) request.getAttribute("user");
 	session.setAttribute("user_id", 1);
@@ -65,12 +65,12 @@
 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
-<style>
+<script src="/resources/js/mypage/mypage.js"></script>
+<style><!-- css에 넣고 싶은데 적용이 안돼요ㅜㅜ -->
 .dropdown {
 	position: relative;
 	display: inline-block;
 }
-
 .dropdown-content {
 	display: none;
 	position: absolute;
@@ -79,29 +79,22 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
-
 .dropdown-content a {
 	color: grey;
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
 }
-
 .dropdown-content a:hover {
 	background-color: #ddd;
 }
-
 .dropdown:hover .dropdown-content {
 	display: block;
 }
-
 .dropdown:hover .dropbtn {
 	background-color: #3e8e41;
 }
 </style>
-</head>
-<body>
-	</style>
 </head>
 
 <body>
@@ -120,7 +113,7 @@
 								<img class="profile" src="\resources\img\<%=user.getPicture()%>"
 									style="margin-right: 30px;"> <a><%=user.getNickname()%>(<%=user.getUsername().substring(0, 5)%>***)</a>
 								│ 정회원 │ <a class="nondeco"
-									href="/mypage/modifyForm/<%=user.getId()%>"><i
+									href="/mypage/modifyform/<%=user.getId()%>"><i
 									class="fa fa-list">회원정보수정</a></i>
 								<script>
 									var user_id =
@@ -321,7 +314,7 @@
 											str += "<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>"
 
 											for (var i = 0, len = list.length || 0; i < len; i++) {
-												str += "<tr><td class='font-grey'>자유게시판</td>";
+												str += "<tr><td class='font-grey'>"+list[i].boardType+"</td>";
 												str += "<td><a href='' class='nondeco'>"
 														+ list[i].title
 														+ "</td>";
@@ -358,7 +351,7 @@
 											}
 											str += "<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th></tr>"
 											for (var i = 0, len = list.length || 0; i < len; i++) {
-												str += "<tr><td class='font-grey'>자유게시판</td>";
+												str += "<tr><td class='font-grey'>"+list[i].boardType+"</td>";
 												str += "<td><a href='' class='nondeco'>"
 														+ list[i].title
 														+ "</a></td>";
@@ -406,7 +399,7 @@
 									}
 									str += "<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th></tr>"
 										for (var i = 0, len = list.length || 0; i < len; i++) {
-											str += "<tr><td class='font-grey'>자유게시판</td>";
+											str += "<tr><td class='font-grey'>"+list[i].boardType+"</td>";
 											str += "<td><a href='' class='nondeco'>"
 													+ list[i].title
 													+ "</a></td>";

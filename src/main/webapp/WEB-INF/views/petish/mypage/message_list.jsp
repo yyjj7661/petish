@@ -119,7 +119,7 @@
 											<div class="tile">
 												<div class="tile-body">
 													<table class="table table-hover table-bordered"
-														id="sampleTable">
+														id="receivedMessageList">
 
 														<!-- 받은 쪽지 -->
 														<thead>
@@ -139,7 +139,7 @@
 															%>
 															<tr align="center">
 																<th><input type="checkbox"
-																	class="received-check-one"></th>
+																	class="received-check-one" name="check" value=<%=dto.getId() %>></th>
 																<td align="center" class="mobile-none"><%=dto.getNickname()%></td>
 																<td class="receivedMessage"><a class="messageText"
 																	data-id=<%=dto.getId()%>><%=dto.getTitle()%></a></td>
@@ -195,7 +195,7 @@
 															%>
 															<tr align="center">
 																<th><input type="checkbox"
-																	class="received-check-one"></th>
+																	class="sent-check-one"></th>
 																<td align="center" class="mobile-none"><%=dto.getNickname() %></td>
 																<td class="sentMessage"><a class="messageText"
 																	data-id=<%=dto.getId()%>><%=dto.getTitle()%></a></td>
@@ -249,19 +249,10 @@
 									</div>
 								</div>
 							</div>
-
-
-							<div class="content">
-								<div class="row"></div>
-							</div>
-
 							<div
 								class="box-footer d-flex flex-wrap align-items-center justify-content-between">
-								<div class="left-col">
 									<a href="" class="btn btn-secondary mt-0" id="delete-choice">선택
-										삭제</a> <a href="" class="btn btn-secondary mt-0" id="delete-all">전체
 										삭제</a>
-								</div>
 							</div>
 							<!-- </form> -->
 						</div>
@@ -613,13 +604,20 @@
 
 				         //선택 삭제 버튼
 				         $('#delete-choice').click(function() {
-				            alert("선택 삭제");
+				        	 alert("하이");
+				           var r_list = $("#receivedMessageList");
+				           for(var i=0; i<r_list[0].length; i++){
+				        	   if(r_list[0].elements[i].name="check"){
+				        		   if(r_list.elements[i].checked==true)
+				        		   messageService.deleteMessage(r_list.elements[i].value());
+				        		   alert("삭제");
+				        		   location.reload();
+				        	   }
+				           }
+				           
 				         });
 
-				         //전체 삭제 버튼
-				         $('#delete-all').click(function() {
-				            alert("전체 삭제");
-				         });
+
 
 
 				});
