@@ -258,7 +258,6 @@ th, td {
    right: 0;
    border-radius: 3px 0 0 3px;
 }
-
 .prev {
    left: 0;
    border-radius: 3px 0 0 3px;
@@ -266,7 +265,7 @@ th, td {
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-   background-color: rgba(0, 0, 0, 0.8);
+   background-color: rgba(192,192,192,0.3);
 }
 
 /* Caption text */
