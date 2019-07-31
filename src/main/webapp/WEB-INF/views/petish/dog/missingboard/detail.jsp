@@ -207,10 +207,10 @@ th, td {
 #lostdog {
    width:100% !important;
    height:100% !important;
-   min-width: 400px !important;
-   max-width: 500px !important;
-   min-height: 200px !important;
-   max-height: 300px !important;
+   min-width: 600px !important;
+   max-width: 700px !important;
+   min-height: 300px !important;
+   max-height: 400px !important;
 }
 
 .date {
@@ -234,9 +234,9 @@ th, td {
 }
 
 /* Hide the images by default */
-/* .mySlides {
+.mySlides {
    display: none;
-} */
+}
 
 .prev, .next {
    cursor: pointer;
@@ -244,10 +244,10 @@ th, td {
    top: 50%;
    width: auto;
    margin-top: -22px;
-   padding: 16px;
+   padding: 20px;
    color: white;
    font-weight: bold;
-   font-size: 18px;
+   font-size: 20px;
    transition: 0.6s ease;
    border-radius: 0 3px 3px 0;
    user-select: none;
@@ -295,14 +295,14 @@ th, td {
    height: 15px;
    width: 15px;
    margin: 0 2px;
-   background-color: #bbb;
+   border: 2.5px solid orangered;
    border-radius: 50%;
    display: inline-block;
    transition: background-color 0.6s ease;
 }
 
-.dot:hover {
-   background-color: #717171;
+.active, .dot:hover {
+   background-color: orangered;
 }
 
 /* Fading animation */
@@ -364,12 +364,12 @@ label {
       margin: 50px;
       font-size: 30px;
    }
-   #lostdog {
-      width: 100%;
-      height: 100%;
-   }
    th, td {
       padding: 10px;
+   }
+   #lostdog {
+      /* width:100%;
+      height:flex; */
    }
 }
 
@@ -448,7 +448,7 @@ label {
             </button>
             <button type="submit" class="btn btn-template-outlined">
                <i class="fa fa-align-justify"></i>
-               <a href="<c:url value='/dog/missingboard/${pageNum}'/>"> 목록 </a>
+               <a href="<c:url value='/dog/missingboard/list?pageNum=${pageNum}'/>"> 목록 </a>
             </button>
 
             <!-- 글 제목 -->
@@ -541,10 +541,11 @@ label {
                      
                      <br>
                      <!-- Dots -->
-                     <div style="text-align: center">
-                        <span class="dot" onclick="currentSlide(1)"></span> <span
-                           class="dot" onclick="currentSlide(2)"></span> <span class="dot"
-                           onclick="currentSlide(3)"></span>
+                     <div style="text-align: center" id="dots">
+                                          
+                     	<!-- <span class="dot" onclick="currentSlide(1)"></span>
+                  		<span class="dot" onclick="currentSlide(2)"></span>
+                  		<span class="dot" onclick="currentSlide(3)"></span> -->
                      </div>
                   </th>
                </tr>
@@ -811,17 +812,22 @@ label {
               console.log(arr);
               
               var str = "";
+              var dotStr = "";
               
-              $(arr).each(function(i, attach){
-                  
+              var dots = document.getElementsByClassName("dot");
+              
+              $(arr).each(function(i, attach){                  
                   //이미지 파일
-                  if(attach.fileType){
-                	
-                    var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName); //파일 이름(썸네일)
-                   
+                  if(attach.fileType){                	
+                    var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName); //파일 이름(썸네일)                   
+                    
                     str += "<div class='mySlides active'>"
                     str += "<img id='lostdog' style='width:100%' src='/display?fileName="+fileCallPath+"'>";                                   
-                    str += "</div>";                    
+                    str += "</div>";
+                    
+                    //사진 갯수만큼 dot 생성
+                    dotStr += "<span class='dot' onclick='currentSlide("+i+")' style='margin:0.3rem!important;'></span>"
+                    
                   }
                   //이미지 파일 X                  
                   else{
@@ -831,13 +837,20 @@ label {
                     str += "</div>";
                     str +"</li>";
                   }
+                  
               });
               
-              //alert(str);              
-                
+              //이미지 생성
               $("#imageSlides").html(str);                
-                
-              });//end getjson      
+              
+              //dot 생성
+              $("#dots").html(dotStr);              
+              
+              //맨 처음 로딩 시 첫번째 사진만 보여줌
+              showSlides(1);
+              
+              });//end getjson
+              
         })();//end function
         
         
@@ -859,7 +872,7 @@ label {
         });
         
         
-        function showImage(fileCallPath){
+        /* function showImage(fileCallPath){
              
           alert(fileCallPath);
           
@@ -876,7 +889,7 @@ label {
           setTimeout(function(){
             $('.bigPictureWrapper').hide();
           }, 1000);
-        });
+        }); */
         
         
    }); 
@@ -923,8 +936,8 @@ label {
    </script>
    
    <script>   
-   var slideIndex = 1;
-   showSlides(1);
+   //이미지 슬라이드
+   var slideIndex = 1;   
 
    function plusSlides(n) {
      showSlides(slideIndex += n);
@@ -935,18 +948,35 @@ label {
    }
 
    function showSlides(n) {
-     var i;
+	 
+	 var i;
      var slides = document.getElementsByClassName("mySlides");
      var dots = document.getElementsByClassName("dot");
+     
      if (n > slides.length) {slideIndex = 1}    
      if (n < 1) {slideIndex = slides.length}
+     //if (n = 1) {slideIndex = 1}
+     
+     //슬라이드 사진 모두 안보이게
      for (i = 0; i < slides.length; i++) {
          slides[i].style.display = "none";  
      }
      for (i = 0; i < dots.length; i++) {
          dots[i].className = dots[i].className.replace(" active", "");
      }
-     slides[slideIndex-1].style.display = "block";  
+     
+     //업로드 된 사진 1장이면 이전,다음버튼, dot 안보이게
+     if($('.dot').length <= 1){
+      	  $('.prev').css('display','none');
+      	  $('.next').css('display','none');
+      	  $('.dot').css('display','none');
+     }
+     
+     //첫번째 슬라이드 사진 보이게
+     slides[slideIndex-1].style.display = "block";
+     //slides[slideIndex-1].css('display', 'block');
+     //slides[slideIndex-1].attr('style', "display:block;");     
+     
      dots[slideIndex-1].className += " active";
    }   
    </script>   
