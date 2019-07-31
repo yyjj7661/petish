@@ -572,8 +572,7 @@
            var uploadPath = "";
            var fileType = "";
            
-           //성별 바뀔때마다
-           
+           //성별 바뀔때마다           
            $('#input[name=dog_gender]').change(function(){
 		    var checked = $(this).prop('checked');  // checked 상태 (true, false)
 		   
@@ -687,23 +686,26 @@
 // 강아지 특징 작성하는 input 폼 추가
    var oTbl;
    var descriptionIndex = 1;
+   
+   //특징 입력 폼 추가
    function insRow() {
-
       oTbl = document.getElementById("addTable"); // 입력 폼
 
       var oRow = oTbl.insertRow();
       oRow.onmouseover = function() {
-         oTbl.clickedRowIndex = this.rowIndex // clickedRowIndex - 클릭한 Row의
-                                       // 위치를 확인;
+         oTbl.clickedRowIndex = this.rowIndex; // clickedRowIndex : 클릭한 Row의 위치를 확인
       };
 
       var oCell = oRow.insertCell();
       
-      // 삽입될 Form Tag
-      var frmTag = '<input type="text" class="form-control" id="description'+(++descriptionIndex)+'" style="display: inline-block; width: 80%;">';
-      
-      
+      // 특징 입력 폼 추가
+      var frmTag = '<input type="text" class="form-control" id="description'+(++descriptionIndex)+'" name="addDescriptions" style="display: inline-block; width: 80%;">';      
       frmTag += "<button onClick='removeRow()' style='font-size: 0.9rem; margin-left:0.2rem;' class='btn btn-sm btn-template-main'>삭제</button>";
+      
+      if($("input[name=addDescriptions]").length >= 4){
+    	  alert("최대 5개 항목까지만 입력 가능합니다.");
+    	  return;
+      }
 
       oCell.innerHTML = frmTag;
    }
@@ -711,6 +713,8 @@
    function removeRow() {
       oTbl.deleteRow(oTbl.clickedRowIndex);
    }
+
+   
    </script>
    
    
