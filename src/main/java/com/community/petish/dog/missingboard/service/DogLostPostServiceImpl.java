@@ -95,12 +95,23 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	}
 	
 	// 게시글 수정
-	@Override
-	public int modify(DogLostPostRequestWriteDTO dto) {
+	@Override	
+	public int modify(DogLostPostRequestWriteDTO dto) {		
 		System.out.println("[Service] 수정 dto : " + dto.getDog_name());
 		System.out.println("[Service] 수정 dto : " + dto.getDog_description());
 		
-		return mapper.updatePost(dto);
+		attachMapper.deleteAll(dto.getId());
+
+		int result = mapper.updatePost(dto);
+		
+		if(result == 1 && dto.getAttachList().size() > 0) {
+			dto.getAttachList().forEach(attach -> {
+				attach.setPostId(dto.getId());
+				attachMapper.insert(attach);
+			});			
+		}
+		
+		return result;
 	}
 	
 	//게시글 삭제
