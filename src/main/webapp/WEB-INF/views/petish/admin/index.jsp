@@ -15,7 +15,7 @@
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>Vali Admin - Free Bootstrap 4 Admin Template</title>
+    <title>Petish Admin</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,15 +26,16 @@
   </head>
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">Petish</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
-        <li class="app-search">
+      
+        <!-- <li class="app-search">
           <input class="app-search__input" type="search" placeholder="Search">
           <button class="app-search__button"><i class="fa fa-search"></i></button>
         </li>
-        <!--Notification Menu-->
+        Notification Menu
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">You have 4 new notifications.</li>
@@ -75,25 +76,21 @@
             <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
           </ul>
         </li>
-        <!-- User Menu-->
+        User Menu
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
             <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
-        <div>
-          <p class="app-sidebar__user-name">John Doe</p>
-          <p class="app-sidebar__user-designation">Frontend Developer</p>
-        </div>
-      </div>
+      
+      
       <ul class="app-menu">
         <li><a class="app-menu__item active" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -149,7 +146,7 @@
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
             <div class="info">
               <h4>Users</h4>
-              <p><b>5</b></p>
+              <p><b>${userCount }</b></p>
             </div>
           </div>
         </div>
@@ -157,7 +154,7 @@
           <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
             <div class="info">
               <h4>Likes</h4>
-              <p><b>25</b></p>
+              <p><b>*</b></p>
             </div>
           </div>
         </div>
@@ -165,7 +162,7 @@
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
             <div class="info">
               <h4>Uploades</h4>
-              <p><b>10</b></p>
+              <p><b>*</b></p>
             </div>
           </div>
         </div>
@@ -173,7 +170,7 @@
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
             <div class="info">
               <h4>Stars</h4>
-              <p><b>500</b></p>
+              <p><b>*</b></p>
             </div>
           </div>
         </div>
@@ -189,9 +186,9 @@
         </div>
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">Support Requests</h3>
+            <h3 class="tile-title">유저 성별 분포</h3>
             <div class="embed-responsive embed-responsive-16by9">
-              <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
+              <canvas class="embed-responsive-item" id="pieChartGender"></canvas>
             </div>
           </div>
         </div>
@@ -199,21 +196,10 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">Features</h3>
-            <ul>
-              <li>Built with Bootstrap 4, SASS and PUG.js</li>
-              <li>Fully responsive and modular code</li>
-              <li>Seven pages including login, user profile and print friendly invoice page</li>
-              <li>Smart integration of forgot password on login page</li>
-              <li>Chart.js integration to display responsive charts</li>
-              <li>Widgets to effectively display statistics</li>
-              <li>Data tables with sort, search and paginate functionality</li>
-              <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>
-              <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>
-            </ul>
-            <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>
-            <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> about customizing the theme colors and functionality.</p>
-            <p class="mt-4 mb-4"><a class="btn btn-primary mr-2 mb-2" href="http://pratikborsadiya.in/blog/vali-admin" target="_blank"><i class="fa fa-file"></i>Docs</a><a class="btn btn-info mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin" target="_blank"><i class="fa fa-github"></i>GitHub</a><a class="btn btn-success mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin/archive/master.zip" target="_blank"><i class="fa fa-download"></i>Download</a></p>
+            <h3 class="tile-title">유저 관심사 분포</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="pieChartConcern"></canvas>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -263,24 +249,42 @@
       };
       var pdata = [
       	{
-      		value: 300,
+      		value: 6,
       		color: "#46BFBD",
       		highlight: "#5AD3D1",
-      		label: "Complete"
+      		label: "남자"
       	},
       	{
-      		value: 50,
+      		value: 5,
       		color:"#F7464A",
       		highlight: "#FF5A5E",
-      		label: "In-Progress"
+      		label: "여자"
       	}
       ]
+      var pdata2 = [
+        	{
+        		value: 10,
+        		color: "#46BFBD",
+        		highlight: "#5AD3D1",
+        		label: "고양이"
+        	},
+        	{
+        		value: 12,
+        		color:"#F7464A",
+        		highlight: "#FF5A5E",
+        		label: "강아지"
+        	}
+        ]
+        
       
       var ctxl = $("#lineChartDemo").get(0).getContext("2d");
       var lineChart = new Chart(ctxl).Line(data);
       
-      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+      var ctxp = $("#pieChartGender").get(0).getContext("2d");
       var pieChart = new Chart(ctxp).Pie(pdata);
+      
+      var ctxp2 = $("#pieChartConcern").get(0).getContext("2d");
+      var pieChart2 = new Chart(ctxp2).Pie(pdata2);
     </script>
     <!-- Google analytics script-->
     <script type="text/javascript">
