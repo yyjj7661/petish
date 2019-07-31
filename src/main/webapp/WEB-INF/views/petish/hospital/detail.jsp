@@ -191,6 +191,17 @@
 	
 	<script src="/resources/js/hospital/star.js?ver=2"></script>
 	<script>
+	//반응형 적용
+	 function resizeStar(){
+		if(window.innerWidth <= 768) {
+			$(".star-rating").attr('class','star-rating-40');
+		}
+		else{
+			$(".star-rating-40").attr('class','star-rating');
+		}
+	 }
+		
+	
 	//지도 api 선택한 곳 마커 표시하기(주소까지 출력)
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -345,76 +356,6 @@
 		});
 		
 	}
-	</script>
-	
-	<script>
-	$(document).ready(function(){
-		//리뷰호출
-		getReview("${hospital.id}",1);
-		//리뷰등록 버튼 클릭이벤트
-		$('#reInsert').click(function(event){
-			
-			//세션아이디가 없을 경우
-			<%if (loginedUser == null){ %>
-				//로그인창 띄움
-				$('#login-modal').modal('show');
-			<%}else{%>
-				//로그인 되어있을경우
-				var params = {
-						'user_id' : '<%=loginedUser.getId()%>',
-						'content' : $('#review_content').val(),
-						'score' : $("input[name=star-input]:checked").val(),
-						'hospital_id' : "${hospital.id}",
-				};
-				$.ajax({
-					url:'/hospital/review/',
-					type:'POST',
-					data:JSON.stringify(params),
-					contentType:'application/json; charset=utf-8',
-					dataType:'json',
-					success: function(retVal){
-						if(retVal.res == "OK"){
-							//데이타 성공일때 이벤트 작성
-							getReview("${hospital.id}",1);
-							//초기화
-							$('#review_content').val('');
-							//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
-							location.reload();
-							
-						}
-						//한줄리뷰 중복 등록시
-						else if(retVal.res == "duplication"){
-							alert('이미 작성된 한줄평이 존재합니다.');
-							
-							//데이타 성공일때 이벤트 작성
-							getReview("${hospital.id}",1);
-							//초기화
-							$('#review_content').val('');
-							//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
-							location.reload();
-						}
-						else{
-							alert("Insert Fail!!!");
-						}
-					},
-					error:function(request,status,error){
-						alert("ajax 통신 실패!!!");
-						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-					}
-				}); 
-				//별점라디오버튼 초기화
-				$("input[name=star-input]:radio").prop("checked",false);
-				//평점 0점으로 초기화
-				$(".star-input").find("output>b").text(0);
-			
-			<%}%>
-			
-			
-		});
-		
-		
-	});
 	//리뷰 호출 함수
 	function getReview(id,page){
 		//리뷰부분, 페이징 부분 초기화
@@ -489,6 +430,82 @@
 		
 		
 	}
+	</script>
+	
+	<script>
+	$(document).ready(function(){
+		//별리사이징
+		resizeStar();
+		//리뷰호출
+		getReview("${hospital.id}",1);
+		//리뷰등록 버튼 클릭이벤트
+		$('#reInsert').click(function(event){
+			
+			//세션아이디가 없을 경우
+			<%if (loginedUser == null){ %>
+				//로그인창 띄움
+				$('#login-modal').modal('show');
+			<%}else{%>
+				//로그인 되어있을경우
+				var params = {
+						'user_id' : '<%=loginedUser.getId()%>',
+						'content' : $('#review_content').val(),
+						'score' : $("input[name=star-input]:checked").val(),
+						'hospital_id' : "${hospital.id}",
+				};
+				$.ajax({
+					url:'/hospital/review/',
+					type:'POST',
+					data:JSON.stringify(params),
+					contentType:'application/json; charset=utf-8',
+					dataType:'json',
+					success: function(retVal){
+						if(retVal.res == "OK"){
+							//데이타 성공일때 이벤트 작성
+							getReview("${hospital.id}",1);
+							//초기화
+							$('#review_content').val('');
+							//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
+							location.reload();
+							
+						}
+						//한줄리뷰 중복 등록시
+						else if(retVal.res == "duplication"){
+							alert('이미 작성된 한줄평이 존재합니다.');
+							
+							//데이타 성공일때 이벤트 작성
+							getReview("${hospital.id}",1);
+							//초기화
+							$('#review_content').val('');
+							//페이지 리로드(댓글 등록 후 평점 갱신을 위해서)
+							location.reload();
+						}
+						else{
+							alert("Insert Fail!!!");
+						}
+					},
+					error:function(request,status,error){
+						alert("ajax 통신 실패!!!");
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+					}
+				}); 
+				//별점라디오버튼 초기화
+				$("input[name=star-input]:radio").prop("checked",false);
+				//평점 0점으로 초기화
+				$(".star-input").find("output>b").text(0);
+			
+			<%}%>
+			
+			
+		});
+		
+		
+	});
+	$(window).resize(function(){
+		resizeStar();
+	});
+	
 	</script>
 
 	
