@@ -181,20 +181,20 @@
 							</div>
 							<div class="col-lg-10 text-right p-3"
 								style="display: inline-block;">
-								<a href="/dog/missingboard/<%=pageNum %>"
+								<a href="/dog/missingboard/list?pageNum=<%=pageNum %>"
 									class="btn btn-template-outlined" style="margin-top: 10px;">목록</a>
 							</div>
 							<h4 style="display: inline-block;">[실종견 정보]</h4>
 							<div class="col-md-10 text-right" style="display: inline-block;">
-								<input type="checkbox" name="FOUND" id="FOUND" value="0">
+								<input type="checkbox" name="found" id="FOUND" value="0">
 								<span style="color: red;"><b> 반려견을 찾았습니다.</b></span>
 							</div>
-							<form action="/dog/missingboard/update" method="POST">
+							<form action="/dog/missingboard/modify" id="modifyForm" method="post">
 								<div class="row">
 
 									<input type="hidden" id="ID" name="id" value=<%=dto.getId()%>>
-									<input type="hidden" id="USER_ID" name="user_id" value=<%=dto.getUser_id() %>>
-									<input type="hidden" id="SPECIES_ID" name="species_id" value=<%=dto.getSpecies_id() %>>
+									<%-- <input type="hidden" id="USER_ID" name="user_id" value=<%=dto.getUser_id() %>> --%>
+
 									
 
 									<div class="col-sm-6 col-md-2">
@@ -288,7 +288,8 @@
 		                                 <div class="panel-body">
 		                                    <div class="form-group uploadDiv">
 		                                      <label>사진 추가</label>
-		                                      <input type="file" id="uploadFile" name='dog_image' multiple>
+		                                      <input type="file" id="uploadFile" name="dogImage" value=<%=dto.getDog_image() %> multiple>
+		                                      <input type="hidden" name='dog_image' value=<%=dto.getDog_image() %>> 
 		                                   </div>
 		                                   
 		                                   <div class='uploadResult'>
@@ -306,9 +307,13 @@
 								<div class="row">
 									<div class="col-md-8">
 										<div class="form-group">
+										
+											<input type="hidden" name="dog_description">															
+										
 											<label for="password_old">특징</label> 
 											<% for(int i=0; i<des.length; i++){ %>
-											<input type="text" name="dog_description" id=description<%=i+1%> value="<%=des[i]%>" class="form-control">															
+											<input type="text" name="dog_description<%=i+1%>" id=description<%=i+1%> value="<%=des[i]%>" class="form-control">															
+											
 											<%} %>
 
 										</div>
@@ -342,7 +347,7 @@
 										<div class="form-group">
 											<label for="category">실종 일시</label>
 											<input id="datetimepicker" name="dog_lost_date" type="datetime"
-												value="<fmt:formatDate pattern='yyyy-MM-dd HH:mm' value='<%=dto.getCreate_date() %>'/>" class="form-control">
+												value="<fmt:formatDate pattern='yyyy/MM/dd HH:mm' value='<%=dto.getCreate_date() %>'/>" class="form-control">
 
 										</div>
 									</div>
@@ -376,9 +381,9 @@
 											class="btn btn-template-outlined" style="margin-top: 0px;">삭제</a>
 									</div>
 									<div class="col-md-9 text-right">
-										<input type="submit" id="modifyBtn" value="수정"
-											class="btn btn-template-outlined"> <input
-											type="reset" value="취소" class="btn btn-template-outlined">
+										<input type="button" id="modify_post" value="수정"
+											class="btn btn-template-outlined">
+										<input type="reset" value="취소" class="btn btn-template-outlined">
 									</div>
 								</div>
 							</form>
@@ -402,13 +407,13 @@
 		$('#SPECIES_ID option').each(function() {
 			if (this.innerText == species) {
 				//alert(this.innerText);
-				this.selected=true;
-				
+				this.selected=true;				
 				//this.prop("", this.innerText);
 			}
-		});		
+		});
 	
 	 $(document).ready(function() {
+		 
 		 
 		 //즉시 실행 함수
 		 (function(){			    
@@ -508,7 +513,7 @@
   	    
   	  });
 	  
-	 //추가한 첨부 파일 출력
+	 //추가한 첨부 파일 화면에 출력
   	 function showUploadResult(uploadResultArr){
  	    
   	    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
@@ -554,10 +559,10 @@
 	
 	
 	 //게시글 수정
-  	 //var modifyBtn = $("#modify_post");
-	 var formObj = $("form");
+  	 ///var modifyBtn = $("#modify_post");	 
+	 var formObj = $('#modifyForm');
 	 
-		 $('#modifyBtn').on("click", function(e){
+		 $('#modify_post').on("click", function(e){
 			 
 			 e.preventDefault();
 			 alert("modify click");			 
@@ -573,16 +578,17 @@
 	         if($('#description4').val())
 	            description += " / " + $('#description4').val();
 	         if($('#description5').val())
-	            description += " / " + $('#description5').val();
-	         
+	            description += " / " + $('#description5').val();	         
 			 alert(description);
 			 
-			//첨부 이미지
-			
+			//특징 새로 넣어줌
+	        $("input[name=dog_description]").val(description); //특징 입력 폼 5개 -> 1개로 합침
+			 
+			//첨부 이미지			
 			var str = "";
 			
 			 $(".uploadResult ul li").each(function(i, obj){
-		          
+		          	
 	             var jobj = $(obj);
 	             
 	             console.dir(jobj);
@@ -597,15 +603,15 @@
 	             
 	         });
 	         console.log(str);
-		 
-			//특징
-	         $("input[name=dog_description]").val(description); //특징 입력 폼 5개 -> 1개로 합침
 	         
+	         
+		
 	       	//성별
 	         var gender = $('input[type=radio]:checked').val();
-	         alert(gender);		
+	         alert(gender);
+	         $("input[name=dog_gender]").val(gender);
          
-	         var modifyPost = {
+	         /* var modifyPost = {
 					 "id" : $('#ID').val(),
 					 "dog_name" : $('#DOG_NAME').val(),
 					 "dog_age" : $("#DOG_AGE").val(),
@@ -618,16 +624,22 @@
 			         "reward" : $('#REWARD').val(),
 			         "found" : $('#FOUND').val(),
 			         "species_id" : $('#SPECIES_ID').val()
-			};
+			}; */
 			 
 			 //alert("FOUND : " + $('#FOUND').val());
 			 //alert("SPECIES ID : " + $('#SPECIES_ID').val());
-			 alert(JSON.stringify(modifyPost));
+			 //alert(JSON.stringify(modifyPost));
 			 
 			 //modify(modifyPost, function(result){ //수정 Ajax 호출
 			 //  alert(modifyPost);
 			 //});
+			 
+			 
+			 alert("formObj" + formObj);
+			 alert("formObj.append(str)")
+			 
 			 formObj.append(str).submit(); //폼 전송	
+			 
 		 });
          
        //게시글 수정
@@ -654,13 +666,8 @@
     		 }); //ajax
     	 } //modify --%>
     	 
-	 }); //document.ready
+	 //}); //document.ready
 	 
-	</script>
-	
-	
-	
-	<script>
 		//지도
 	    //지도 api 선택한 곳 마커 표시하기(주소까지 출력)
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -682,7 +689,7 @@
 		    }
 		};
 		
-		//입력받은 위치 출력
+		//입력받은 실종 장소 출력
 		geocoder.addressSearch("<%=dto.getDog_lost_address()%>", callback);
 		
 		var marker = new kakao.maps.Marker();
@@ -700,6 +707,7 @@
 			marker.setPosition(new kakao.maps.LatLng(ga, fa));
 			marker.setMap(map);
 		}
+	});
 	</script>
 	
 	
