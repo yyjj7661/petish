@@ -10,52 +10,6 @@
 <html>
 <head>
 
-<!-- 이미지 업로드 관련 -->
-<style>
-  .uploadResult {
-    width: 100%;
-  }
-  
-  .btn-warning {
-  	background-color: #ffffff!important;
-  	border-color: #ffffff!important;
-  }
-  
-  .uploadResult ul {
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .uploadResult ul li {
-    list-style: none;
-    padding: 10px;
-  }
-  
-  .uploadResult ul li img {
-    width: 100px;
-  }
-  
-  .bigPictureWrapper {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top:0%;
-  width:100%;
-  height:100%;
-  background-color: gray; 
-  z-index: 100;
-}
-
-.bigPicture {
-  position: relative;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}   
-  </style>
 
 <meta charset="utf-8">
 <title></title>
@@ -115,9 +69,79 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
         
+<style>
+/* 이미지 업로드 관련 */
+  .uploadResult {
+    width: 100%;
+  }
+  
+  .btn-warning {
+  	background-color: #ffffff!important;
+  	border-color: #ffffff!important;
+  }
+  
+  .uploadResult ul {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .uploadResult ul li {
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .uploadResult ul li img {
+    width: 100px;
+  }
+ 
+/* 이미지 클릭 시 확대  */  
+/*   .bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}   */ 
+
+
+#description1, .description2, .description3, .description4, .description5{
+    display: inline-block;
+    width: 80%;
+    border-radius: 0;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+</style>
+
+
 <!-- CSS 파일 추가 --> 
 <link rel="stylesheet" href="/resources/css/write-modify.css">
-<link rel="stylesheet" href="/resources/css/commons/kakaomap.css?1">
+<link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
+
+
+
 
 </head>
 
@@ -260,21 +284,19 @@
                               <div class="form-group">
                                  <label style="display: block">특징(최대 5개까지 입력)</label>
 
-                                 <table id="addTable">
+                                 <table class="addTable">
                                     <input type="text" class="form-control" id="description1" name="dog_description"
                                        style="display: inline-block; width: 80%;">
-                                       
+                                    <!-- 추가 버튼 -->
+                                    <button id="addButton" class="btn btn-sm btn-template-main" type="button"
+                                    onClick="insRow()" style="font-size: 0.9rem; margin-left:0.2rem;'">추가</button>                                    
+                                    
+                                    <div id="addHere">
+                                    </div>                                    
                                     <!-- <input type="text" class="form-control" id="description2" name="DOG_DESCRIPTION"
                                        style="display: inline-block; width: 80%;">
-                                    <input type="text" class="form-control" id="description3" name="DOG_DESCRIPTION"
-                                       style="display: inline-block; width: 80%;">
-                                    <input type="text" class="form-control" id="description4" name="DOG_DESCRIPTION"
-                                       style="display: inline-block; width: 80%;">
-                                    <input type="text" class="form-control" id="description5" name="DOG_DESCRIPTION"
-                                       style="display: inline-block; width: 80%;"> -->   
                                        
-                                    <button name="addButton" class="btn btn-sm btn-template-main" type="button"
-                                    onClick="insRow()" style="font-size: 0.9rem !important;">추가</button>
+                                    <!-- 폼 추가될 자리 -->
                                  </table>
                                                                      
                               </div>
@@ -367,8 +389,7 @@
    <!-- 입력 AJAX -->
    
    <script> 
-   $(document).ready(function() {
-      
+   $(document).ready(function() {      
       
       var formObj = $("form[role='form']");
       
@@ -588,8 +609,6 @@
 		    
 		 });
            
-           
-           
            $(".uploadResult ul li").each(function(i, obj){
           
              var jobj = $(obj);
@@ -598,17 +617,13 @@
              console.log("-------------------------");
              console.log(jobj.data("filename"));          
              
-             str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-             
-             str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-             
-             str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
-             
-             str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
-             
+             str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";             
+             str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";             
+             str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";             
+             str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";             
            });
            
-           console.log(str);       
+           //console.log(str);       
            
            //특징
            $("input[name=dog_description]").val(description); //특징 입력 폼 5개 내용 1개로
@@ -683,37 +698,46 @@
    
    
    <script>
+
 // 강아지 특징 작성하는 input 폼 추가
-   var oTbl;
+   var addPlace; 
    var descriptionIndex = 1;
    
    //특징 입력 폼 추가
    function insRow() {
-      oTbl = document.getElementById("addTable"); // 입력 폼
+	   alert("insRow()!");
+      //oTbl = document.getElementById("addTable");
 
-      var oRow = oTbl.insertRow();
-      oRow.onmouseover = function() {
-         oTbl.clickedRowIndex = this.rowIndex; // clickedRowIndex : 클릭한 Row의 위치를 확인
-      };
+      //var oRow = oTbl.insertRow(); // <tr> 추가
+      //oRow.onmouseover = function() {
+      //   oTbl.clickedRowIndex = this.rowIndex; // clickedRowIndex : 클릭한 Row의 위치
+      //};
 
-      var oCell = oRow.insertCell();
+      //var oCell = oRow.insertCell(); // <td> 추가
+      
+      addPlace = $("#addHere"); //추가할 위치      
       
       // 특징 입력 폼 추가
-      var frmTag = '<input type="text" class="form-control" id="description'+(++descriptionIndex)+'" name="addDescriptions" style="display: inline-block; width: 80%;">';      
-      frmTag += "<button onClick='removeRow()' style='font-size: 0.9rem; margin-left:0.2rem;' class='btn btn-sm btn-template-main'>삭제</button>";
+      var frmTag = '<input type="text" class="form-control" id="description'+(++descriptionIndex)+'" name="addDescriptions" style="display: inline-block!important; margin-top:5px; width: 80%!important;">';      
+      frmTag += '<button id="removeBtn'+(++descriptionIndex)+'" onclick="removeRow(descriptionIndex)" type="button" style="font-size: 0.9rem; margin-left:0.2rem;" class="btn btn-sm btn-template-main">삭제</button>';
       
+      // 특징 항목 입력 5개
       if($("input[name=addDescriptions]").length >= 4){
     	  alert("최대 5개 항목까지만 입력 가능합니다.");
     	  return;
-      }
-
-      oCell.innerHTML = frmTag;
-   }
+      }      
+      addPlace.append(frmTag);      
+      //oCell.innerHTML = frmTag;
+   }   
    // 특징 input 행 삭제
-   function removeRow() {
-      oTbl.deleteRow(oTbl.clickedRowIndex);
+   function removeRow(i){
+	   
+	   alert("Remove");
+	   alert(i);
+	   
+	   //$( 'button' ).remove('$(button[id="removeBtn'+i+'"])');
    }
-
+   
    
    </script>
    
