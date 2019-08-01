@@ -1,10 +1,14 @@
 package com.community.petish.dog.missingboard.controller;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,12 +41,22 @@ public class DogMissingboardController {
 
 	@Autowired
 	private DogLostPostService service;
+	
 		
 	@RequestMapping("/image")
 	public String imageUpload() {
 		return "petish/dog/missingboard/imageInput_form";
 	}
 	
+	@RequestMapping(value = "/favicon.ico", method = RequestMethod.GET)
+	public void favicon( HttpServletRequest request, HttpServletResponse reponse ) {
+
+	try {
+	  reponse.sendRedirect("/resources/favicon.ico");
+	} catch (IOException e) {
+	  e.printStackTrace();
+	}
+	}
 	// 게시글 리스트
 	//@RequestMapping("/list")
 	/*
@@ -225,13 +239,17 @@ public class DogMissingboardController {
 	}
 
 	// 게시글 수정
-	@PostMapping("/modify")	
+	@RequestMapping(value="/modify", method = RequestMethod.POST)
 	public String dogMissingBoardModify(DogLostPostRequestWriteDTO dto, Model model, RedirectAttributes rttr) {
 		
 		log.info("게시글 수정");
 		
+		Long pageNum = dto.getId();
+		
 		try {
+			
 			int result = service.modify(dto);
+			
 			
 			if(result == 1) {
 				log.info("수정 성공");			
@@ -247,7 +265,7 @@ public class DogMissingboardController {
 			log.info("에러");
 			e.printStackTrace();			
 		}
-		return "redirect:/dog/missingboard/1";
+		return "redirect:/dog/missingboard/detail/"+pageNum;
 	}
 	
 	// 게시글 삭제
@@ -273,7 +291,7 @@ public class DogMissingboardController {
 			log.info("삭제 실패");
 			rttr.addFlashAttribute("delete_msg", "failure");
 		}
-		return "redirect:/dog/missingboard/1";
+		return "redirect:/dog/missingboard/list";
 	}
 	
 	// 첨부 파일 삭제
