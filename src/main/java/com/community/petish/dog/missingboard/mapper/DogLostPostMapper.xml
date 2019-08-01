@@ -205,7 +205,7 @@
 		update dog_lost_post_tb
 		set
 		DOG_NAME=#{dog_name, jdbcType=VARCHAR},
-		DOG_AGE=#{dog_age, jdbcType=VARCHAR},
+		DOG_AGE=#{dog_age, jdbcType=INTEGER},
 		DOG_GENDER=#{dog_gender, jdbcType=VARCHAR},
 		DOG_DESCRIPTION=#{dog_description, jdbcType=VARCHAR},
 		DOG_IMAGE=#{dog_image, jdbcType=VARCHAR},

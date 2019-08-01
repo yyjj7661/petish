@@ -731,7 +731,7 @@ label {
                      <textarea id="message_content" rows="10" class="form-control"></textarea>
                   </div>
                   <p class="text-center">
-                     <button type="submit" class="btn btn-outline-primary"
+                     <input type="button" class="btn btn-outline-primary"
                         id="message_send">전송</button>
                      <a style="padding-right: 0.5rem;"></a>
                      <button type="reset" class="btn btn-outline-primary"
