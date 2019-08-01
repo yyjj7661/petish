@@ -47,6 +47,7 @@
         
         <link rel="stylesheet" href="/resources/css/write-modify.css">
         <link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
+        <script src="/resources/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -192,7 +193,7 @@
 		</div>
 	</div>
 	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js"></script>

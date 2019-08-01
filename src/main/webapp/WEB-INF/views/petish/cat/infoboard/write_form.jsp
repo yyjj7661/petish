@@ -62,6 +62,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
         
         <link rel="stylesheet" href="/resources/css/write-modify.css">
+        <script src="/resources/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -146,7 +147,7 @@
 
 	</div>
 	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	
 	<script src="/resources/vendor/popper.js/umd/popper.min.js">
 		
 	</script>

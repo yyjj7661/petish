@@ -39,7 +39,7 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-        
+        <script src="/resources/vendor/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/css/write-modify.css">
 </head>
 
@@ -127,7 +127,7 @@
 
 	</div>
 	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js"></script>

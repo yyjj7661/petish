@@ -44,6 +44,7 @@
         
         
         <link rel="stylesheet" href="/resources/css/write-modify.css">
+        	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -137,7 +138,7 @@
 	</div>
 	
 	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js"></script>

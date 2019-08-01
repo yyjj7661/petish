@@ -234,7 +234,7 @@
 						<!-- ========== My Pet END ==================-->
 						<!-- ========== Hospital ==================-->
 						<li class="nav-item dropdown">
-							<a href="/hospital/searchForm">병원
+							<a href="/hospital/search">병원
 								<b class="caret"></b>
 							</a>
 						</li> 
