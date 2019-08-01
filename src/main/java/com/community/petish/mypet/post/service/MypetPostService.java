@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
+import com.community.petish.mypet.post.dto.response.MypetPostLikeListResponse;
 import com.community.petish.mypet.post.dto.response.MypetPostSummaryList;
 
 public interface MypetPostService {
@@ -16,6 +17,8 @@ public interface MypetPostService {
 	MypetPostDetailResponse getPost(Long postId);
 	
 	Boolean getIsLikePressedOnPost(Long postId, HttpSession session);
+	
+	MypetPostLikeListResponse getLikes(Long postId);
 	
 	Long pressLikeOnPost(Long postId, HttpSession session);
 	

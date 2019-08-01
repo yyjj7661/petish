@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
+import com.community.petish.mypet.post.dto.response.MypetPostLikeListResponse;
 import com.community.petish.mypet.post.dto.response.MypetPostSummaryList;
 import com.community.petish.mypet.post.service.MypetPostService;
 
@@ -39,6 +40,8 @@ public class MypetPostRestController {
 		
 		MypetPostSummaryList mypetPostSummaryList = mypetPostService.getPosts();
 		
+		log.info("mypetPostSummaryList = {}", mypetPostSummaryList);
+		
 		return mypetPostSummaryList;
 	}
 	
@@ -57,6 +60,13 @@ public class MypetPostRestController {
 		log.info("mypet post에 대하여 좋아요를 눌렀는지 확인, postId = {}", postId);
 		Boolean isPressed = mypetPostService.getIsLikePressedOnPost(postId, session);
 		return isPressed;
+	}
+	
+	@GetMapping(value="/likes/{postId}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public MypetPostLikeListResponse getLikes(@PathVariable("postId") Long postId) {
+		log.info("mypet post에 대하여 좋아요 조회 postId = {}", postId);
+		MypetPostLikeListResponse mypetPostLikeListResponse =  mypetPostService.getLikes(postId);
+		return mypetPostLikeListResponse;
 	}
 
 	@PostMapping(value="/likes/{postId}")

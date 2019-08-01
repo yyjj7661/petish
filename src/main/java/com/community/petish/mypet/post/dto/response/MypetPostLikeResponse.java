@@ -1,19 +1,14 @@
 package com.community.petish.mypet.post.dto.response;
 
-import java.sql.Date;
-
 import lombok.Getter;
 import lombok.ToString;
 
 @ToString
 @Getter
-public class MypetPostDetailResponse {
+public class MypetPostLikeResponse {
 
+	private Long id;
 	private Long postId;
-	private String title;
-	private String content;
-	private String image;
-	private Date createdDate;
 	private Long userId;
 	
 }

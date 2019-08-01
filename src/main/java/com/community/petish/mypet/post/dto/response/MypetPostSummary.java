@@ -1,9 +1,11 @@
 package com.community.petish.mypet.post.dto.response;
 
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@ToString
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

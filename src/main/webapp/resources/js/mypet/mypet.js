@@ -114,6 +114,7 @@ const openPost = (id) => {
 	
 	makePostPart(id);
 	makeCommentPart(id);
+	makeLikePart(id);
 	makeLikeStatus(id);
 	
     $('#mypet-detail-modal').modal('show');
@@ -139,8 +140,7 @@ const makePostPart = (id) => {
 			let createdDate = new Date(result.createdDate);
 		    $('#created-date').html(createdDate.toDateString());
 		    
-		    $('#like-count').html(result.likeCount);
-		    $('#comment-count').html(result.commentCount);
+//		    $('#like-count').html(result.likeCount);
 		    
 		    //userId 부여
 		    let userId = result.userId;
@@ -168,6 +168,7 @@ const makeCommentPart = (id) => {
 		type: "GET",
 		url: "/api/mypet/comments/post/" + id,
 		success: function(data, status, xhr) {
+			$('#comment-count').html(data.comments.length);
 			$("#mypet-replies-body").html("");
 			$.each(data.comments, function(index, value) {
 				let reply = "<div id='commentId" + value.commentId + "' class='mypet-reply'>";
@@ -207,6 +208,20 @@ const makeCommentPart = (id) => {
 	})
 }
 
+const makeLikePart = (id) => {
+	$.ajax({
+		type: "GET",
+		url: "/api/mypet/posts/likes/" + id,
+		success: function(data, status, xhr) {
+		    $('#like-count').html(data.likes.length);
+			
+		},
+		error: function(error, status, xhr) {
+			
+		}
+	})
+}
+
 const makeLikeStatus = (id) => {
 	$.ajax({
 		type: "GET",
@@ -219,6 +234,28 @@ const makeLikeStatus = (id) => {
 			if ( data == false ) {
 				like.removeClass("s-likes-icon-active");
 			}
+		},
+		error: function(error, status, xhr) {
+			
+		}
+	})
+}
+
+let page = 1;
+const makeMypetPostList = (page) => {
+	$.ajax({
+		type: "GET",
+		url: "/api/mypet/posts",
+		param: page,
+		success: function(data, status, xhr) {
+			$.each(data.posts, function(index, value) {
+				let img = "<div id='" + value.postId + "' onclick='openPost(this.id)' ondblclick='likeDoubleClick(this.id)'>"
+				img += "<figure>";
+				img += "<img src=" + value.image + ">";
+				img += "</figure>";
+				img += "</div>";
+				$("#columns").append(img);
+			})
 		},
 		error: function(error, status, xhr) {
 			

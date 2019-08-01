@@ -17,6 +17,8 @@ import com.community.petish.mypet.post.domain.MypetPost;
 import com.community.petish.mypet.post.domain.MypetPostLike;
 import com.community.petish.mypet.post.dto.request.SaveMypetPostParams;
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
+import com.community.petish.mypet.post.dto.response.MypetPostLikeListResponse;
+import com.community.petish.mypet.post.dto.response.MypetPostLikeResponse;
 import com.community.petish.mypet.post.dto.response.MypetPostSummary;
 import com.community.petish.mypet.post.dto.response.MypetPostSummaryList;
 import com.community.petish.mypet.post.mapper.MypetPostMapper;
@@ -118,6 +120,19 @@ public class MypetPostServiceImpl implements MypetPostService{
 		}
 		
 		return true;
+	}
+	
+	@Override
+	public MypetPostLikeListResponse getLikes(Long postId) {
+		
+		List<MypetPostLikeResponse> likes = mypetPostMapper.findLikesByPostId(postId);
+		MypetPostLikeListResponse mypetPostLikeListResponse = new MypetPostLikeListResponse(likes);
+		
+		log.info("mypet post에 대한 좋아요 조회 요청 완료 postId = {}, mypetPostLikeListResponse = {}", postId, mypetPostLikeListResponse);
+		
+		return mypetPostLikeListResponse;
+		
+
 	}
 
 	@Override

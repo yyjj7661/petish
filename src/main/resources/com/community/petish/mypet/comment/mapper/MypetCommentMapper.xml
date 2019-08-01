@@ -4,20 +4,22 @@
 <mapper namespace="com.community.petish.mypet.comment.mapper.MypetCommentMapper">
 
 	<insert id="save">
-		<selectKey keyProperty="commentId" resultType="Long" order="BEFORE">
-			SELECT mypet_comment_seq.nextval from dual
-		</selectKey>
 	
 		INSERT INTO mypet_comment_tb
 			(id, content, post_id, user_id)
 		VALUES
-			( #{commentId}, #{content}, #{postId}, #{userId})
+			( ( (select NVL(max(id), 0) from mypet_comment_tb) + 1 ), #{content}, #{postId}, #{userId})
+
+		<selectKey resultType="Long" order="AFTER">
+			SELECT max(id) from mypet_comment_tb
+		</selectKey>
 	</insert>
 
 	<select id="findAllByPostId" resultType="com.community.petish.mypet.comment.domain.MypetComment">
 		SELECT * FROM mypet_comment_tb 
 			WHERE post_id = #{postId}
 			AND deleted = 0
+			order by id desc
 	</select>
 	
 	<select id="countLikeByCommentId">
