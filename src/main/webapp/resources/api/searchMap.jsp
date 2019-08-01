@@ -51,7 +51,7 @@
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/kakaomap.css">
+<link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 
 </head>
 <body>
@@ -92,7 +92,6 @@
 		//opener.ps.keywordSearch(addr, opener.placesSearchCB);
 		//opener.marker.setPosition(mouselatLng);
 		//opener.marker.setMap(map);
-		opener.setMarker(lng.Fa, lng.Ga); //클릭한곳 마커 찍어주는 함수
 		self.close();
 	}
 	

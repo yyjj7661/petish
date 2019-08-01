@@ -21,7 +21,7 @@
 	</insert>
 	
 	<!-- 2. 받은 쪽지 리스트 조회 -->
-	<select id="getReceivedMessageList" resultMap="MessageResultMap" parameterType="int">
+	<select id="getReceivedMessageList" resultMap="MessageResultMap" parameterType="Long">
 		SELECT m.id, m.title, m.content, m.sent_date, m.read, m.deleted, u.nickname 
 		from message m, user_tb u
 		where receiver_id = #{user_id} and m.sender_id=u.id
@@ -29,7 +29,7 @@
 	</select>
 	
 	<!-- 3. 보낸 쪽지 리스트 조회 -->
-	<select id="getSentMessageList" resultMap="MessageResultMap" parameterType="int">
+	<select id="getSentMessageList" resultMap="MessageResultMap" parameterType="Long">
 		select m.id, m.title, m.content, m.sent_date, m.read, m.deleted, u.nickname
 		from message m, user_tb u
 		where m.sender_id = #{user_id} and m.receiver_id=u.id
@@ -37,31 +37,31 @@
 	</select>
 	
 	<!-- 4. 받은 쪽지 상세조회 -->
-	<select id="receivedMessageDetail" resultMap="MessageResultMap" parameterType="int" >
+	<select id="receivedMessageDetail" resultMap="MessageResultMap" parameterType="Long" >
 		select m.id, m.title, m.content, m.sent_date, u.nickname, m.sender_id
 		from message m, user_tb u
 		where m.id = #{id} and m.sender_id=u.id
 	</select>
 	
 	<!-- 5. 보낸 쪽지 상세조회 -->
-	<select id="sentMessageDetail" resultMap="MessageResultMap" parameterType="int" >
+	<select id="sentMessageDetail" resultMap="MessageResultMap" parameterType="Long" >
 		select m.id, m.title, m.content, m.sent_date, m.receiver_id, m.sender_id, u.nickname 
 		from message m, user_tb u
 		where m.id = #{id} and m.receiver_id=u.id
 	</select>
 	
 	<!-- 6. 쪽지 삭제 -->
-	<update id="deleteMessage" parameterType="int">
+	<update id="deleteMessage" parameterType="Long">
 		update message set deleted=1 where id=#{id}
  	</update>
 
 	<!-- 7. 받은 메세지중 삭제안된 메세지 갯수 -->
-	<select id="getUndeletedReceived" parameterType="int" resultType="int">
+	<select id="getUndeletedReceived" parameterType="Long" resultType="int">
 		select count(*) from message where deleted = 0 and receiver_id = #{user_id}
 	</select>
 
 	<!-- 8. 보낸 메세지중 삭제안된 메세지 갯수 -->
-	<select id="getUndeletedSent" parameterType="int" resultType="int">
+	<select id="getUndeletedSent" parameterType="Long" resultType="int">
 		select count(*) from message where deleted = 0 and sender_id= #{user_id}
 	</select>
 	

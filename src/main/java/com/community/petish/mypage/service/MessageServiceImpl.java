@@ -26,21 +26,21 @@ public class MessageServiceImpl implements MessageService{
 
 	//2. 받은 쪽지 리스트 조회
 	@Override
-	public ArrayList<MessageResponseDTO> getReceivedMessageList(int user_id) {
+	public ArrayList<MessageResponseDTO> getReceivedMessageList(Long user_id) {
 		ArrayList list = messageMapper.getReceivedMessageList(user_id);
 		return list;
 	}
 
 	//3. 보낸 쪽지 리스트 조회
 	@Override
-	public ArrayList<MessageResponseDTO> getSentMessageList(int user_id) {
+	public ArrayList<MessageResponseDTO> getSentMessageList(Long user_id) {
 		ArrayList list = messageMapper.getSentMessageList(user_id);
 		return list;
 	}
 
 	//4. 받은 쪽지 상세조회
 	@Override
-	public MessageResponseDTO receivedMessageDetail(int id) {
+	public MessageResponseDTO receivedMessageDetail(Long id) {
 		
 		MessageResponseDTO dto = messageMapper.receivedMessageDetail(id);
 		return dto;
@@ -48,7 +48,7 @@ public class MessageServiceImpl implements MessageService{
 
 	// 5. 보낸 쪽지 상세조회
 	@Override
-	public MessageResponseDTO sentMessageDetail(int id) {
+	public MessageResponseDTO sentMessageDetail(Long id) {
 		
 		MessageResponseDTO dto = messageMapper.sentMessageDetail(id);
 		return dto;
@@ -56,21 +56,21 @@ public class MessageServiceImpl implements MessageService{
 	
 	//6. 쪽지 삭제
 	@Override
-	public int deleteMessage(int id) {
+	public int deleteMessage(Long id) {
 		int res = messageMapper.deleteMessage(id);
 		return res;
 	}
 
 	//7. 받은 메세지중 삭제안된 메세지 갯수
 	@Override
-	public int getUndeletedReceived(int user_id) {
+	public int getUndeletedReceived(Long user_id) {
 		int undeletedReceived = messageMapper.getUndeletedReceived(user_id);
 		return undeletedReceived;
 	}
 
 	//8. 보낸 메세지중 삭제안된 메세지 갯수
 	@Override
-	public int getUndeletedSent(int user_id) {
+	public int getUndeletedSent(Long user_id) {
 		int undeletedSent = messageMapper.getUndeletedSent(user_id);
 		return undeletedSent;
 	}

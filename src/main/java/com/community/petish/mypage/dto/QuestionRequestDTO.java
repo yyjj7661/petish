@@ -16,7 +16,7 @@ public class QuestionRequestDTO {
 	private String content;
 
 	// 유저식별자
-	private int user_id;
+	private Long user_id;
 
 	// 문의카테고리 식별자
 	private int category_id;

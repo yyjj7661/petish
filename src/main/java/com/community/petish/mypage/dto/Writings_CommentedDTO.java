@@ -6,12 +6,18 @@ import lombok.Data;
 @Data
 public class Writings_CommentedDTO {
 
-	//게시판종류, 게시글번호, 작성자, 게시글제목, 작성일자, 조회수
-	Integer boardType;
-	long id;
-	long user_id;
+	//게시판종류
+	String boardType;
+	//게시글번호
+	Long id;
+	//작성자
+	Long user_id;
+	//닉네임
 	String nickname;
+	//게시글제목
 	String title;
+	//작성일자
 	String created_date;
+	//조회수
 	Integer view_count;
 }

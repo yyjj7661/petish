@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.community.petish.mypage.dto.MyWritingsDTO;
+import com.community.petish.mypage.dto.WritingPageDTO;
+import com.community.petish.mypage.dto.CommentedPageDTO;
 import com.community.petish.mypage.dto.Criteria;
+import com.community.petish.mypage.dto.LikedPageDTO;
 import com.community.petish.mypage.dto.Writings_CommentedDTO;
 import com.community.petish.mypage.dto.Writings_LikedDTO;
 import com.community.petish.mypage.mapper.DefaultMapper;
@@ -28,17 +31,39 @@ public class DefaultServiceImpl implements DefaultService{
 	}
 
 	@Override
+	public WritingPageDTO getWritingListPaging(Criteria cri) {
+		return new WritingPageDTO(
+				mapper.getWritingsCnt(cri.getUser_id()),
+				mapper.getMyWritingsWithPaging(cri));
+	}
+	
+	
+	
+	@Override
 	public ArrayList<Writings_CommentedDTO> getCommentedWithPaging(Criteria cri) {
 		ArrayList list = mapper.getCommentedWithPaging(cri);
 		return list;
 	}
 
 	@Override
+	public CommentedPageDTO getCommentedListPaging(Criteria cri) {
+		return new CommentedPageDTO(
+				mapper.getCommentedCnt(cri.getUser_id()),
+				mapper.getCommentedWithPaging(cri));
+	}
+	
+	@Override
 	public ArrayList<Writings_LikedDTO> getLikedWithPaging(Criteria cri) {
 		ArrayList list = mapper.getLikedWithPaging(cri);
 		return list;
 	}
-
+	@Override
+	public LikedPageDTO getLikedListPaging(Criteria cri) {
+		return new LikedPageDTO(
+				mapper.getLikedCnt(cri.getUser_id()),
+				mapper.getLikedWithPaging(cri));
+	}
+	
 //	@Override
 //	public ArrayList<MyWritingsDTO> getMyWritings(long user_id) {
 //		ArrayList list = mapper.getMyWritings(user_id);

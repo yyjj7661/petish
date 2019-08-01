@@ -27,7 +27,7 @@ public class QuestionServiceImpl implements QuestionService{
 
 	//2-1. 문의 조회
 	@Override
-	public ArrayList<QuestionResponseDTO> getQuestionList(int user_id) {
+	public ArrayList<QuestionResponseDTO> getQuestionList(Long user_id) {
 		ArrayList list = questionMapper.getQuestionList(user_id);
 		return list;
 	}
@@ -40,14 +40,14 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	//3. 문의 삭제
 	@Override
-	public void deleteQuestion(int id) {
+	public void deleteQuestion(Long id) {
 		
 		questionMapper.deleteQuestion(id);
 	}
 
 	//4. 사용자의 삭제 안된 글 갯수 확인
 	@Override
-	public int getUndeleted(int user_id) {
+	public int getUndeleted(Long user_id) {
 		int undeleted = questionMapper.getUndeleted(user_id);
 		return undeleted;
 	}

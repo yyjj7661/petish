@@ -22,7 +22,7 @@
 	</insert>
 	
 	<!-- 문의 조회 -->
-	<select id="getQuestionList" parameterType="int" resultMap="QuestionResultMap">
+	<select id="getQuestionList" parameterType="Long" resultMap="QuestionResultMap">
 		SELECT q1.category_id, q1.id, q1.title, q1.content, q1.replied, q2.category, q1.user_id, q1.question_created_date, deleted
 		FROM question_tb q1, question_category_tb q2
 		WHERE (q1.category_id=q2.id) and (q1.user_id = #{user_id}) order by id desc
@@ -41,12 +41,12 @@
 	</select>
 	
 	<!-- 문의 삭제 -->
-	<update id="deleteQuestion" parameterType="int">
+	<update id="deleteQuestion" parameterType="Long">
 		UPDATE QUESTION_TB SET DELETED = 1 WHERE ID=#{id}
 	</update>
 	
 	<!-- 사용자의 삭제 안된 글 갯수 확인 -->
-	<select id="getUndeleted" resultType="int" parameterType="int">
+	<select id="getUndeleted" resultType="int" parameterType="Long">
 		SELECT COUNT (*) FROM QUESTION_TB WHERE DELETED = 0 and user_id = #{user_id}
 	</select>
 	

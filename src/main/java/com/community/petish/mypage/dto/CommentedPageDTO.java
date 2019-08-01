@@ -9,10 +9,8 @@ import lombok.Getter;
 @Data
 @Getter
 @AllArgsConstructor
-public class WritingPageDTO {
+public class CommentedPageDTO {
 
-		private int writingsCnt;
-		private List<MyWritingsDTO> list;
-
-	
+	private int commentedCnt;
+	private List<Writings_CommentedDTO> list;
 }

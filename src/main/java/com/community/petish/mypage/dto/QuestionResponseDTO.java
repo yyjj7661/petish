@@ -9,9 +9,8 @@ import lombok.Data;
 @Data
 public class QuestionResponseDTO {
 	
-	
 	// 문의 식별자 => 문의번호 (삭제시 필요)
-	private int id;
+	private Long id;
 
 	// 문의 제목
 	private String title;
@@ -26,7 +25,7 @@ public class QuestionResponseDTO {
 	private String category;
 	
 	// 유저식별자
-	private int user_id;
+	private Long user_id;
 
 	// 작성일자
 	private String question_created_date;
@@ -34,6 +33,7 @@ public class QuestionResponseDTO {
 	// 삭제여부
 	private int deleted;
 	
+	// 문의 카테고리
 	private int category_id;
 	
 }

@@ -8,7 +8,7 @@
 	ArrayList<MessageResponseDTO> sentList = (ArrayList) request.getAttribute("sentList");
 	int undeletedSent = (int) request.getAttribute("undeletedSent");
 	MessageResponseDTO dto = null;
-	int user_id = (int)session.getAttribute("user_id");
+	Long user_id = (Long)session.getAttribute("user_id");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -195,7 +195,7 @@
 															%>
 															<tr align="center">
 																<th><input type="checkbox"
-																	class="sent-check-one"></th>
+																	class="sent-check-one" value=<%=dto.getId() %>></th>
 																<td align="center" class="mobile-none"><%=dto.getNickname() %></td>
 																<td class="sentMessage"><a class="messageText"
 																	data-id=<%=dto.getId()%>><%=dto.getTitle()%></a></td>
@@ -604,21 +604,18 @@
 
 				         //선택 삭제 버튼
 				         $('#delete-choice').click(function() {
-				        	 alert("하이");
-				           var r_list = $("#receivedMessageList");
-				           for(var i=0; i<r_list[0].length; i++){
-				        	   if(r_list[0].elements[i].name="check"){
-				        		   if(r_list.elements[i].checked==true)
-				        		   messageService.deleteMessage(r_list.elements[i].value());
-				        		   alert("삭제");
-				        		   location.reload();
-				        	   }
-				           }
-				           
+				          	var list = $(":checked");
+				          	for(var i=0; i<list.length; i++){
+				          		messageService.deleteMessage(list[i].value, function(result){
+									alert(result);
+									location.reload();
+								});
+				          	};
 				         });
 
 
-
+				     	var modalInputReceivedNickname3 = newModal
+						.find("input[name='nickname']");
 
 				});
 	</script>

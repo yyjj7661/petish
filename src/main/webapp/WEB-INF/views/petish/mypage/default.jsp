@@ -10,7 +10,7 @@
 
 <%
 	UserResponseDTO user = (UserResponseDTO) request.getAttribute("user");
-	session.setAttribute("user_id", 1);
+	session.setAttribute("user_id", 1L);
 
 %>
 
@@ -154,28 +154,15 @@
 												<table class="table table-hover table-bordered" id="ajaxList">
 
 												</table>
-												<!-- paging start -->
-                                    <div class="d-flex justify-content-center">
-                                       <ul class="pagination">
-                                          <c:if test = "${pageMaker.prev}">
-                                             <li class="wp-example"><a href="${pageMaker.startPage -1}">Previous</a>
-                                             </li>
-                                          </c:if>
-                                          
-                                          <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                                             <li class="page-item3 ${pageMaker.cri.pageNum == num ? "active":""}"><a href="${num}" class="page-link">${num}</a></li>
-                                          </c:forEach>
-                                          
-                                          <c:if test="${pageMaker.next}">
-                                             <li class="paginate_button next"><a href="${pageMaker.endPage+1 }">Next</a></li>
-                                          </c:if>
-                                       </ul>
-                                    </div>
-                                    <form id='actionForm3' action="/mypage/" method='get'>
-                                       <input type="hidden" name='pageNum3' value='${pageMaker.cri.pageNum}'>
-                                       <input type="hidden" name='amount3' value='${pageMaker.cri.amount}'>
-                                    </form>
-                                    <!-- paging end -->
+											<div class="writingfooter">
+											
+											</div>
+											<div class="commentedfooter">
+											
+											</div>
+											<div class="likedfooter">
+											
+											</div>
 
 											</div>
 										</div>
@@ -222,57 +209,66 @@
 		</div>
 	</div>
 	<script>
+
 		$(document)
 				.ready(
 						function() {
-							
-							
 							
 							//내가 쓴 글 외 글리스트 관련 변수
 							var writing = $("#writing");
 							var commented = $("#commented");
 							var liked = $("#liked");
-							
+							var writingfooter = $(".writingfooter");
+							var commentedfooter = $(".commentedfooter");
+							var likedfooter = $(".likedfooter");
 							//리스트 넣을 곳
 							var listUL = $("#ajaxList");
-
+							
 							//내가 쓴 글 외 글리스트 관련 이벤트
 							//1. 내가 쓴 글 
 							writing.on("click", function(e){
 								showWritingList();
+								
 							})
 							
 							//2. 내가 댓글 쓴 글
 							commented.on("click", function(e){
 								showCommentedList();	
+								
 							})
 							
 							//3. 내가 좋아요 한 글 
 							liked.on("click", function(e){
 								showLikedList();
+								
 							})
 							
 							//내가 쓴 글 외 글리스트 ajax메서드
 							var listService = (function() {
 								//1. 내가 쓴 글
-								function getWritingList(callback, error) {
-									$.getJSON("/mypage/api/Writinglist.json",
+								function getWritingList(param, callback, error) {
+									
+									var page = param.page || 1;
+									$.getJSON("/mypage/api/Writinglist/W/"+page+".json",
 											function(data) {
 												if (callback) {
-													callback(data);
+													callback(data.writingsCnt, data.list);
 												}
 											}).fail(function(xhr, status, err) {
 										if (error) {
 											error();
 										}
-									});
+									}); 
 								}
+								
 								//2. 내가 댓글 단 글
-								function getCommentedList(callback, error) {
-									$.getJSON("/mypage/api/Commentedlist.json",
+								function getCommentedList(param, callback, error) {
+									
+									var page = param.page || 1;
+									$.getJSON("/mypage/api/Commentedlist/C/"+page+".json",
 											function(data) {
 												if (callback) {
-													callback(data);
+													callback(data.commentedCnt, data.list);
 												}
 											}).fail(function(xhr, status, err) {
 										if (error) {
@@ -281,11 +277,12 @@
 									});
 								}
 								//3. 내가 좋아요 한 글
-								function getLikedList(callback, error){
-									$.getJSON("/mypage/api/Likedlist.json",
+								function getLikedList(param, callback, error){
+									var page = param.page || 1;
+									$.getJSON("/mypage/api/Likedlist/L/"+page+".json",
 											function(data) {
 												if (callback) {
-													callback(data);
+													callback(data.likedCnt, data.list);
 												}
 											}).fail(function(xhr, status, err) {
 										if (error) {
@@ -301,17 +298,183 @@
 								};
 							})();
 							
+							var pageNum = 1;
+							
+							
+							function moveWritingPage(){
+								writingfooter.on("click", "li a", function(e){
+									
+									e.preventDefault();
+									console.log("page click");
+									var targetPageNum = $(this).attr("href");
+									console.log("targetPageNum:"+targetPageNum);
+									pageNum=targetPageNum;
+									showWritingList(pageNum);
+								})
+							};
+							
+							function moveCommentedPage(){
+								commentedfooter.on("click", "li a", function(e){
+									
+									e.preventDefault();
+									console.log("page click");
+									var targetPageNum = $(this).attr("href");
+									console.log("targetPageNum:"+targetPageNum);
+									pageNum=targetPageNum;
+									showCommentedList(pageNum);
+								})
+							};
+							
+							function moveLikedPage(){
+								likedfooter.on("click", "li a", function(e){
+									
+									e.preventDefault();
+									console.log("page click");
+									var targetPageNum = $(this).attr("href");
+									console.log("targetPageNum:"+targetPageNum);
+									pageNum=targetPageNum;
+									showLikedList(pageNum);
+								})
+							};
+							
+							function showWritingPage(writingsCnt){
+								alert("체크2"+writingsCnt);
+								commentedfooter.html("");
+								likedfooter.html("");
+								writingfooter.html("");
+								alert("체크3"+pageNum); //pagenum이 잘못드러옴
+								var endNum = Math.ceil(pageNum/10.0) * 10;
+								var startNum = endNum -9;
+								var prev = startNum != 1;
+								var next = false;
+								
+							
+								if(endNum * 10 >= writingsCnt){
+									endNum = Math.ceil(writingsCnt/10.0);
+								}
+								
+								if(endNum * 10 < writingsCnt){
+									next = true;
+								}
+								
+								var str = "<div><ul class='pagination pull-right'>";
+								if(prev){
+									str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+									
+								}
+								for(var i=startNum; i<=endNum; i++){
+									var active = pageNum == i? "active":"";
+										str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+									}
+									
+									if(next){
+										str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+									}
+									str += "</ul></div>";
+									
+									console.log(str);
+									
+									writingfooter.html(str);
+									moveWritingPage();
+									}
+								
+								function showCommentedPage(commentedCnt){
+								
+									likedfooter.html("");
+									writingfooter.html("");
+								
+								var endNum = Math.ceil(pageNum/10.0) * 10;
+								var startNum = endNum -9;
+								var prev = startNum != 1;
+								var next = false;
+								
+							
+								if(endNum * 10 >= commentedCnt){
+									endNum = Math.ceil(commentedCnt/10.0);
+								}
+								
+								if(endNum * 10 < commentedCnt){
+									next = true;
+								}
+								
+								var str = "<div><ul class='pagination pull-right'>";
+								if(prev){
+									str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+									
+								}
+								for(var i=startNum; i<=endNum; i++){
+										var active = pageNum == i? "active":"";
+										str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+									}
+									
+									if(next){
+										str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+									}
+									str += "</ul></div>";
+									
+									console.log(str);
+									
+									commentedfooter.html(str);
+									moveCommentedPage()
+									}
+								
+								function showLikedPage(likedCnt){
+								
+									commentedfooter.html("");
+									writingfooter.html("");
+									
+									var endNum = Math.ceil(pageNum/10.0) * 10;
+									var startNum = endNum -9;
+									var prev = startNum != 1;
+									var next = false;
+								
+								
+									if(endNum * 10 >= likedCnt){
+										endNum = Math.ceil(likedCnt/10.0);
+									}
+									
+									if(endNum * 10 < likedCnt){
+										next = true;
+									}
+									
+									var str = "<div><ul class='pagination pull-right'>";
+									if(prev){
+										str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+										
+									}
+									for(var i=startNum; i<=endNum; i++){
+										var active = pageNum == i? "active":"";
+											str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+										}
+										
+										if(next){
+											str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+										}
+										str += "</ul></div>";
+										
+										console.log(str);
+										
+										likedfooter.html(str);
+										moveLikedPage();
+										}
 							
 							//1. ajax메서드 사용해서 내가 쓴 글 가져오기(default)
-							function showWritingList() {
-								listService.getWritingList(function(list) {
-											var str = "";
-											if (list == null
-													|| list.length == 0) {
-												listUL.html("<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>");
+							function showWritingList(page) {
+								
+								listService.getWritingList({page:page||1},function(writingsCnt, list) {
+									alert("체크"+writingsCnt)
+											if(page == -1){
+												pageNum = Math.ceil(writingsCnt/10.0);
+												showWritingList(pageNum);
 												return;
 											}
-											str += "<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>"
+											var str="";
+											str += "<tr align='cen;ter' class='font-grey'><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>"
+											
+											if (list == null
+													|| list.length == 0) {
+												return;
+											}
 
 											for (var i = 0, len = list.length || 0; i < len; i++) {
 												str += "<tr><td class='font-grey'>"+list[i].boardType+"</td>";
@@ -332,43 +495,42 @@
 												str += "<td><a href='' class='nondeco'>"
 														+ list[i].view_count
 														+ "</td>";
+												
 											}
 											
 											listUL.html(str);
+											showWritingPage(writingsCnt);
 										});
 							};
-
+							
 							showWritingList();
 							
+							
 							//2. ajax메서드 사용해서 내가 댓글 쓴 글 가져오기
-							function showCommentedList() {
-								listService.getCommentedList(function(list) {
-											var str = "";
-											if (list == null
-													|| list.length == 0) {
-												listUL.html("<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th></tr>");
+							function showCommentedList(page) {
+
+								listService.getCommentedList({page:page||1},function(commentedCnt, list) {
+											if(page == -1){
+												pageNum = Math.ceil(commentedCnt/10.0);
+												showWritingList(pageNum);
 												return;
 											}
+											var str="";
 											str += "<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th></tr>"
+											
+											if (list == null
+													|| list.length == 0) {
+												return;
+											}
+
 											for (var i = 0, len = list.length || 0; i < len; i++) {
 												str += "<tr><td class='font-grey'>"+list[i].boardType+"</td>";
 												str += "<td><a href='' class='nondeco'>"
 														+ list[i].title
-														+ "</a></td>";
-												str += "<td><div class='dropdown'><a href='#' class='nondeco'>"
-													+ list[i].nickname
-													+ "</a>";
-												if(user_id==list[i].user_id){
-													
-												}else{
-		                                        str += "<div class='dropdown-content'><a href='/member/detail/"+list[i].id+"'>작성게시글 보기</a>";
-		                                        str += "<a href='#' data-toggle='modal' class='showmodal' data-target='#new-modal'"
-		                                        str += "data-id="+list[i].id+"";
-		                                        str += " data-nick="+list[i].nickname;
-		                                        str += ">쪽지보내기</a></div>"
-												};
-												str += "</div></td>";
-				
+														+ "</td>";
+												str += "<td><a href='' class='nondeco'>"
+														+ list[i].user_id
+														+ "</td>";
 												str += "<td><a href='' class='nondeco'>"
 														+ list[i].created_date
 																.substring(2, 4)
@@ -383,60 +545,58 @@
 												str += "<td><a href='' class='nondeco'>"
 														+ list[i].view_count
 														+ "</td>";
+												
 											}
+											
 											listUL.html(str);
-											openMessageForm();
+											showCommentedPage(commentedCnt);
 										});
 							};
 							//3. ajax메서드 사용해서 내가 좋아요 한 글 가져오기
 							function showLikedList() {
-								listService.getLikedList(function(list) {
-									var str = "";
-									if (list == null
-											|| list.length == 0) {
-										listUL.html("");
+								listService.getLikedList({page:page||1},function(likedCnt, list) {
+									if(page == -1){
+										pageNum = Math.ceil(likedCnt/10.0);
+										showWritingList(pageNum);
 										return;
 									}
+									var str="";
 									str += "<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th></tr>"
-										for (var i = 0, len = list.length || 0; i < len; i++) {
-											str += "<tr><td class='font-grey'>"+list[i].boardType+"</td>";
-											str += "<td><a href='' class='nondeco'>"
-													+ list[i].title
-													+ "</a></td>";
-											str += "<td><div class='dropdown'><a href='#' class='nondeco'>"
-												+ list[i].nickname
-												+ "</a>";
-											if(user_id==list[i].user_id){
-												
-											}else{
-	                                        str += "<div class='dropdown-content'><a href='/member/detail/"+list[i].id+"'>작성게시글 보기</a>";
-	                                        str += "<a href='#' data-toggle='modal' class='showmodal' data-target='#new-modal'"
-	                                        str += "data-id="+list[i].id+"";
-	                                        str += " data-nick="+list[i].nickname;
-	                                        str += ">쪽지보내기</a></div>"
-											};
-											str += "</div></td>";
-			
-											str += "<td><a href='' class='nondeco'>"
-													+ list[i].created_date
-															.substring(2, 4)
-													+ "/"
-													+ list[i].created_date
-															.substring(5, 7)
-													+ "/"
-													+ list[i].created_date
-															.substring(8,
-																	10)
-													+ "</td>";
-											str += "<td><a href='' class='nondeco'>"
-													+ list[i].view_count
-													+ "</td>";
-										}
-										listUL.html(str);
-										openMessageForm();
-											});
-							};
-							
+									
+									if (list == null
+											|| list.length == 0) {
+										return;
+									}
+
+									for (var i = 0, len = list.length || 0; i < len; i++) {
+										str += "<tr><td class='font-grey'>"+list[i].boardType+"</td>";
+										str += "<td><a href='' class='nondeco'>"
+												+ list[i].title
+												+ "</td>";
+										str += "<td><a href='' class='nondeco'>"
+											+ list[i].user_id
+											+ "</td>";
+										str += "<td><a href='' class='nondeco'>"
+												+ list[i].created_date
+														.substring(2, 4)
+												+ "/"
+												+ list[i].created_date
+														.substring(5, 7)
+												+ "/"
+												+ list[i].created_date
+														.substring(8,
+																10)
+												+ "</td>";
+										str += "<td><a href='' class='nondeco'>"
+												+ list[i].view_count
+												+ "</td>";
+										
+									}
+									
+									listUL.html(str);
+									showLikedPage(likedCnt);
+								});
+					};
 							
 							//쪽지보내기 메서드 선언
 							function openMessageForm(){
@@ -510,6 +670,9 @@
 									writeMessage : writeMessage
 								};
 							})();
+
+						
+
 							
 						});
 	</script>

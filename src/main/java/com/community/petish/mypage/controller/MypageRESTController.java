@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.community.petish.mypage.dto.CommentedPageDTO;
 import com.community.petish.mypage.dto.Criteria;
+import com.community.petish.mypage.dto.LikedPageDTO;
 import com.community.petish.mypage.dto.MessageRequestDTO;
 import com.community.petish.mypage.dto.MessageResponseDTO;
 import com.community.petish.mypage.dto.MyWritingsDTO;
-import com.community.petish.mypage.dto.PageDTO;
+import com.community.petish.mypage.dto.WritingPageDTO;
 import com.community.petish.mypage.dto.Writings_CommentedDTO;
 import com.community.petish.mypage.dto.Writings_LikedDTO;
 import com.community.petish.mypage.service.DefaultService;
@@ -52,18 +54,18 @@ public class MypageRESTController {
 	// 받은 메세지 세부내용 보기
 	@GetMapping(value = "/message/received/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<MessageResponseDTO> receivedMessageDetail(@PathVariable("id") int id) {
+	public ResponseEntity<MessageResponseDTO> receivedMessageDetail(@PathVariable("id") Long id) {
 		return new ResponseEntity<MessageResponseDTO>(messageServiceImpl.receivedMessageDetail(id), HttpStatus.OK);
 	}
 	// 보낸 메세지 세부내용 보기
 	@GetMapping(value = "/message/sent/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<MessageResponseDTO> sentMessageDetail(@PathVariable("id") int id) {
+	public ResponseEntity<MessageResponseDTO> sentMessageDetail(@PathVariable("id") Long id) {
 		return new ResponseEntity<MessageResponseDTO>(messageServiceImpl.sentMessageDetail(id), HttpStatus.OK);
 	}
 	// 메세지 삭제
 	@DeleteMapping(value = "/message/{id}", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> delete(@PathVariable("id") int id) {
+	public ResponseEntity<String> delete(@PathVariable("id") Long id) {
 		//세션확인
 		return messageServiceImpl.deleteMessage(id) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -72,8 +74,8 @@ public class MypageRESTController {
 	@RequestMapping(method = { RequestMethod.PUT,
 			RequestMethod.PATCH }, value = "/message/{id}/{receiver_id}", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> changeReadAttr(MessageRequestDTO dto, @PathVariable("id") int id,
-			@PathVariable("receiver_id") int receiver_id) {
+	public ResponseEntity<String> changeReadAttr(MessageRequestDTO dto, @PathVariable("id") Long id,
+			@PathVariable("receiver_id") Long receiver_id) {
 		dto.setId(id);
 		dto.setReceiver_id(receiver_id);
 		return messageServiceImpl.changeReadAttr(dto) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
@@ -97,42 +99,50 @@ public class MypageRESTController {
 	
 	
 	// -------------------defaultPage start
+	
+	
+	
+	
 	//내가 쓴 글 리스트
-	@GetMapping(value="/Writinglist",
+	@GetMapping(value="/Writinglist/W/{page}",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<MyWritingsDTO>> getWritingList(
-				HttpSession session, Criteria cri){
+	public ResponseEntity<WritingPageDTO> getWritingList(
+				@PathVariable("page") int page,
+				HttpSession session){
 				log.info("Writinglist");
-				int user_id = (int)session.getAttribute("user_id");
-				cri.setUser_id(user_id);
-				return new ResponseEntity<>(defaultServiceImpl.getMyWritingsWithPaging(cri), HttpStatus.OK);
+				Long user_id = (Long)session.getAttribute("user_id");
+				Criteria cri = new Criteria(page,10, user_id);
+				log.info("내가쓴글페이지"+page);
+				return new ResponseEntity<>(defaultServiceImpl.getWritingListPaging(cri), HttpStatus.OK);
 			}
 	
 	//내가 댓글 쓴 글 리스트
-	@GetMapping(value="/Commentedlist",
+	@GetMapping(value="/Commentedlist/C/{page}",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<Writings_CommentedDTO>> getCommentedList(
-				HttpSession session, Criteria cri){
+	public ResponseEntity<CommentedPageDTO> getCommentedList(
+			@PathVariable("page") int page,
+			HttpSession session){
 				log.info("Commentedlist");
-				int user_id = (int)session.getAttribute("user_id");
-				cri.setUser_id(user_id);
-				return new ResponseEntity<>(defaultServiceImpl.getCommentedWithPaging(cri), HttpStatus.OK);
+				Long user_id = (Long)session.getAttribute("user_id");
+				Criteria cri = new Criteria(page,10, user_id);
+				return new ResponseEntity<>(defaultServiceImpl.getCommentedListPaging(cri), HttpStatus.OK);
 			}
 	//내가 좋아요 한 글 리스트
-	@GetMapping(value="/Likedlist",
+	@GetMapping(value="/Likedlist/L/{page}",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<Writings_LikedDTO>> getLikedList(
-				HttpSession session, Criteria cri){
+	public ResponseEntity<LikedPageDTO> getLikedList(
+			@PathVariable("page") int page,
+			HttpSession session){
 				log.info("Likedlist");
-				int user_id = (int)session.getAttribute("user_id");
-				cri.setUser_id(user_id);
-				return new ResponseEntity<>(defaultServiceImpl.getLikedWithPaging(cri), HttpStatus.OK);
+				Long user_id = (Long)session.getAttribute("user_id");
+				Criteria cri = new Criteria(page,10, user_id);
+				return new ResponseEntity<>(defaultServiceImpl.getLikedListPaging(cri), HttpStatus.OK);
 			}
 	// -------------------defaultPage end
 		

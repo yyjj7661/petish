@@ -3,12 +3,14 @@ package com.community.petish.mypage.controller;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,7 +49,7 @@ public class MypageController {
 	// 마이페이지 default
 	@RequestMapping("/")
 	public String mypage(Model model, HttpSession session, Criteria cri) {
-		int user_id = 1;
+		Long user_id = 1L;
 		// 세션이 널이면 로그인페이지로 이동 (if)
 		UserResponseDTO user = userServiceImpl.findUser(user_id);
 		model.addAttribute("user", user);
@@ -59,7 +61,7 @@ public class MypageController {
 	// -------------------회원정보수정 start
 	// 회원정보수정
 	@RequestMapping(value = "/modifyform/{user_id}")
-	public String modifyForm(@PathVariable("user_id") long user_id, Model model, HttpSession session) {
+	public String modifyform(@PathVariable("user_id") Long user_id, Model model, HttpSession session) {
 		// 로그인 여부 확인
 		if (session.getAttribute("user_id") == null) {
 			return "petish/loginpage";
@@ -87,29 +89,33 @@ public class MypageController {
 		return "redirect:./";
 	}
 	// 프로필 사진 수정
-	@RequestMapping(value = "/uploadFormAction", method = { RequestMethod.POST })
-	public String uploadFormAction(MultipartFile[] picture, Model model, long id) {
-		String uploadFolder = "C:\\Users\\bit-user\\Desktop\\PetCommunity\\petish\\src\\main\\webapp\\resources\\img";
-		for (MultipartFile multipartFile : picture) {
-			log.info("name:" + multipartFile.getOriginalFilename());
-			log.info("size:" + multipartFile.getSize());
-			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
+	@PostMapping("/uploadFormAction")
+	   public String uploadFormPost(MultipartFile[] uploadFile, HttpServletRequest request, UserModifyPictureDTO dto) {
 
-			try {
-				multipartFile.transferTo(saveFile);
-				UserModifyPictureDTO dto = new UserModifyPictureDTO();
-				dto.setId(id);
-				dto.setPicture(multipartFile.getOriginalFilename());
-				int res = userServiceImpl.modifyPicture(dto);
-				log.info("res" + res);
-			} catch (Exception e) {
-				log.error(e.getMessage());
-			}
+	      //String uploadFolder = "C:\\upload";
+	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/img");
+	      
 
-			model.addAttribute("user_id", id);
-		}
-		return "redirect:./modifyForm";
-	}
+	      for (MultipartFile multipartFile : uploadFile) {
+
+	         log.info("-------------------------------------");
+	         log.info("Upload File Name: " + multipartFile.getOriginalFilename());
+	         log.info("Upload File Size: " + multipartFile.getSize());
+
+	         File saveFile = new File(uploadPath, multipartFile.getOriginalFilename());
+	         dto.setPicture(multipartFile.getOriginalFilename());
+	         userServiceImpl.modifyPicture(dto);
+	         
+	         try {
+	            multipartFile.transferTo(saveFile);
+	         } catch (Exception e) {
+	            
+	            log.error(e.getMessage());
+	         } // end catch
+	      } // end for
+	      
+	      return "redirect:/mypage/modifyform/"+dto.getId();
+	   }
 	// -------------------회원정보수정 end
 
 	
@@ -125,7 +131,7 @@ public class MypageController {
 			return "petish/loginpage";
 		} else {
 			// 로그인사용자 기준으로 문의db 불러오기
-			int user_id = (int) session.getAttribute("user_id");
+			Long user_id = (Long) session.getAttribute("user_id");
 			ArrayList<QuestionResponseDTO> list = questionServiceImpl.getQuestionList(user_id);
 			model.addAttribute("list", list);
 			// 문의글수 count
@@ -149,7 +155,7 @@ public class MypageController {
 	}
 	// 문의 삭제
 	@RequestMapping("/question/delete")
-	public String deleteQuestion(int id) {
+	public String deleteQuestion(Long id) {
 		// 글 id 기준으로 삭제
 		questionServiceImpl.deleteQuestion(id);
 		return "redirect:./list";
@@ -170,7 +176,7 @@ public class MypageController {
 			return "petish/loginpage";
 		} else {
 			// 로그인 사용자 기준으로 메세지db 가져오기
-			int user_id = (int) session.getAttribute("user_id");
+			Long user_id = (Long) session.getAttribute("user_id");
 			// 받은 메세지
 			ArrayList<MessageResponseDTO> receivedList = messageServiceImpl.getReceivedMessageList(user_id);
 			model.addAttribute("receivedList", receivedList);
@@ -189,7 +195,7 @@ public class MypageController {
 	}
 	// 메세지 삭제
 	@RequestMapping("/message/delete")
-	public String messageDelete(int id) {
+	public String messageDelete(Long id) {
 		// 메세지 id기준으로 삭제
 		messageServiceImpl.deleteMessage(id);
 		return "redirect:./list";

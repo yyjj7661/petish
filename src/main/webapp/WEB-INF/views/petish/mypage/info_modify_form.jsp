@@ -80,7 +80,7 @@ UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
 						<h3 style="margin-top: 10%;font-weight:700;">회원정보 수정</h3>
 						<div class="memberInfo" style="margin-bottom:1cm;">
 							<div style="margin: 0.5cm;">
-							<form action="/uploadFormAction" method="post" enctype="multipart/form-data">
+							<form action="/mypage/uploadFormAction" method="post" enctype="multipart/form-data">
 								<img class="profile" src="\resources\img\<%=dto.getPicture() %>"
 									style="margin-right: 30px;">프로필 사진 변경
 								<input type="file" name="uploadFile" multiple/>

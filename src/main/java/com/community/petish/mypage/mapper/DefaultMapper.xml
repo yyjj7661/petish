@@ -4,12 +4,6 @@
 	
 <mapper namespace="com.community.petish.mypage.mapper.DefaultMapper">
 	
-	<!-- 내가 작성한 글 -->
-	<select id="getMyWritings" resultType="com.community.petish.mypage.dto.MyWritingsDTO" parameterType="long">
-		select '강아지-자유게시판' as boardType, id, title, created_date, view_count
-		from dog_free_post_tb
-		where user_id=#{user_id} and deleted=0
-	</select>
 	<!-- 내가 작성한 글 + 페이징 -->
 	<select id="getMyWritingsWithPaging" resultType="com.community.petish.mypage.dto.MyWritingsDTO">
 		<![CDATA[
@@ -21,14 +15,16 @@
 		where rn > (#{pageNum} -1)*#{amount}
 		]]>
 	</select>
-	
-	
-	<!-- 내가 댓글 단 글 -->
-	<select id="getCommented" resultType="com.community.petish.mypage.dto.Writings_CommentedDTO" parameterType="long">
-		select '강아지-자유게시판' as boardType, dfpt.id, dfpt.user_id, dfpt.title, dfpt.created_date, dfpt.view_count, u.nickname
-		from dog_free_post_tb dfpt, user_tb u
-		where dfpt.id in (select post_id from dog_free_comment_tb where user_id=#{user_id}) and dfpt.user_id=u.id and dfpt.deleted=0
+	<!-- 내가 작성한 글 전체갯수 -->
+	<select id="getCommentedCnt" resultType="int" parameterType="Long">
+		<![CDATA[
+		select count(*)
+		from dog_free_post_tb
+		where user_id=#{user_id} and deleted=0
+		]]>
 	</select>
+	
+	
 	<!-- 내가 댓글 단 글 + 페이징 -->
 	<select id="getCommentedWithPaging" resultType="com.community.petish.mypage.dto.Writings_CommentedDTO">
 		<![CDATA[
@@ -40,14 +36,17 @@
 		where rn > (#{pageNum} -1)*#{amount}
 		]]>
 	</select>
-	
-	
-	<!-- 내가 좋아요 한 글 -->
-	<select id="getLiked" resultType="com.community.petish.mypage.dto.Writings_LikedDTO">
-		select '강아지-자유게시판' as boardType, dfpt.id, dfpt.user_id, dfpt.title, dfpt.created_date, dfpt.view_count, u.nickname
-		from dog_free_post_tb dfpt, user_tb u
-		where dfpt.id in (select post_id from dog_free_post_like_tb where user_id=#{user_id}) and dfpt.user_id=u.id and dfpt.deleted=0
+	<!-- 내가 댓글 단 글 전체갯수 -->
+	<select id="getWritingsCnt" resultType="int" parameterType="Long">
+		<![CDATA[
+		select count(*)
+		from dog_free_post_tb dfpt
+		where dfpt.id in (select post_id from dog_free_comment_tb where user_id=#{user_id}
+		and dfpt.deleted=0)
+		]]>
 	</select>
+	
+	
 	<!-- 내가 좋아요 한 글 + 페이징 -->
 	<select id="getLikedWithPaging" resultType="com.community.petish.mypage.dto.Writings_LikedDTO">
 		<![CDATA[
@@ -59,7 +58,15 @@
 		where rn > (#{pageNum} -1)*#{amount}
 		]]>
 	</select>
-	
+	<!-- 내가 좋아요 한 글 전체갯수 -->
+	<select id="getLikedCnt" resultType="int" parameterType="Long">
+		<![CDATA[
+		select count(*)
+		from dog_free_post_tb dfpt
+		where dfpt.id in (select post_id from dog_free_post_like_tb where user_id=#{user_id}
+		and dfpt.deleted=0)
+		]]>
+	</select>
 </mapper>
 
 

@@ -1,19 +1,29 @@
 package com.community.petish.user.controller;
 
+import java.io.File;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.community.petish.mypage.service.DefaultService;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.QuestionService;
 import com.community.petish.mypage.service.UserService;
+import com.community.petish.user.dto.UserModifyPictureDTO;
+
+import lombok.extern.log4j.Log4j;
 
 @Controller
+@Log4j
 public class UserController {
 	
 	@Autowired
@@ -43,5 +53,6 @@ public class UserController {
 			return "petish/mypage/member_detail";
 		}
 	}
+	
 
 }
