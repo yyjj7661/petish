@@ -1,10 +1,16 @@
+<%@page import="com.community.petish.user.dto.UserResponseDTO_Mypage"%>
+<%@page import="com.community.petish.user.dto.UserModifyRequestDTO_Mypage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%
+		UserResponseDTO_Mypage dto = (UserResponseDTO_Mypage)request.getAttribute("dto");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Mypage</title>
+<title>회원정보 수정</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -51,7 +57,11 @@
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script src="/resources/js/mypage/mypage.js"></script>
+<script src="/resources/js/boardMap/write_map.js"></script>
+<script src="/commons/kakaomap.jsp"></script>
+<link rel="stylesheet" href="/resources/css/commons/kakaomap.css"></link>
 
 </head>
 
@@ -67,43 +77,44 @@
 					<div style="max-width: 20cm; margin: auto;">
 						<!-- <form method="get" action=""> -->
 
-						<h3 style="margin-top: 10%;font-weight:700;">My Page</h3>
+						<h3 style="margin-top: 10%;font-weight:700;">회원정보 수정</h3>
 						<div class="memberInfo" style="margin-bottom:1cm;">
 							<div style="margin: 0.5cm;">
-								<img class="profile" src="/resources/img/member_detail_demo.JPG"
-									style="margin-right: 30px;"> <a>땡이누나(yeli****)</a> │ 준회원
-								│ <a href="/mypage/modifyForm" class="nondeco">회원정보수정</a>
+							<form action="/mypage/uploadFormAction" method="post" enctype="multipart/form-data">
+								<img class="profile" src="\resources\img\<%=dto.getPicture() %>"
+									style="margin-right: 30px;">프로필 사진 변경
+								<input type="file" name="uploadFile" multiple/>
+								<input type="hidden" name="id" value=<%=dto.getId() %>>
+							<button id='uploadBtn'>submit</button>
+							</form>
 							</div>
 						</div>
-						<form>
+						<form action="/mypage/modifyUserInfo" method = "POST">
+							<input type="hidden" value=<%=dto.getId() %> name="id">
 							<table class="col-md-12">
 								<tr style="height: 1.5cm;">
 									<td class="font-grey"><label
 										class="control-label col-md-8">이메일</label></td>
 									<td style="padding-right: 15px;"><input type="text"
-										value="yelim615@google.com" readonly class="form-control"
-										name="email"></td>
+										value=<%=dto.getUsername() %> readonly class="form-control"
+										></td>
 								</tr>
 								<tr style="height: 1.5cm;">
-									<td rowspan="3" class="font-grey"><label
+									<td rowspan="2" class="font-grey"><label
 										class="control-label col-md-10">비밀번호</label></td>
 									<td style="padding-right: 15px;"><input type="password"
-										placeholder="기존비밀번호 입력" class="form-control" name="ex_pw"></td>
-								</tr>
-								<tr style="height: 1.5cm;">
-									<td style="padding-right: 15px;"><input type="password"
-										placeholder="새 비밀번호 입력" class="form-control" name="new_pw">
+										placeholder="새 비밀번호 입력" class="form-control"  name="newPW">
 								</tr>
 								<tr style="height: 1.5cm;">
 									<td style="padding-right: 15px;"><input type="password"
 										placeholder="새 비밀번호 확인" class="form-control"
-										name="new_pw_check">
+										name="password">
 								</tr>
 								<tr style="height: 1.5cm;">
 									<td class="font-grey"><label
 										class="control-label col-md-8">닉네임</label></td>
-									<td style="padding-right: 15px;"><input type="text"
-										value="땡이누나" class="form-control" name="nickname"></td>
+									<td style="padding-right: 15px;"><input type="text" class="form-control" name="nickname"
+										value=<%=dto.getNickname() %>></td>
 								</tr>
 								<tr style="height: 1.5cm;">
 									<td class="font-grey"><label
@@ -115,42 +126,34 @@
 									<td class="font-grey"><label
 										class="control-label col-md-8">주소</label></td>
 									<td><div>
-											<input type="text" name="address"
-												style="width: 70%; height: 0.961cm;">
-											<button class="btn btn-template-main"
-												onclick="openMap(this.form)">
-												<i class="fa fa-search"></i>
-											</button>
+											<input type="text"
+												style="width: 70%; height: 0.961cm;" name="address" id="place" value="<%=dto.getAddress() %>" readonly>
+											<input type="button" value="검색" onclick="openZipcode(this.form)" />
 										</div></td>
 								</tr>
-								<tr style="height: 1.5cm;">
+								<tr style="height: 1.5cm;" class="gender">
 									<td class="font-grey"><label
 										class="control-label col-md-8">성별</label></td>
 									<td><label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="gender">여자
+											class="form-check-input" type="radio" name="gender" value="1" <%if(1==dto.getGender())out.print("checked"); %>>여자
 									</label> <label class="form-check-label"> <input
-											class="form-check-input" type="radio" name="gender">남자
+											class="form-check-input" type="radio" name="gender" value="2" <%if(2==dto.getGender())out.print("checked"); %>>남자
 									</label></td>
-								</tr>
-								<tr style="height: 1.5cm;">
-									<td class="font-grey"><label
-										class="control-label col-md-12">프로필사진</label></td>
-									<td><input type="file" name="picture"
-										class="form-check-label"></td>
 								</tr>
 								<tr style="height: 1.5cm;">
 									<td class="font-grey"><label
 										class="control-label col-md-8">관심사</label></td>
 									<td><label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="interest">강아지
+											class="form-check-input" type="radio" name="concern_id"
+											<%if(1==dto.getConcern_id())out.print("checked"); %> value="1">강아지
 									</label> <label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="interest"">고양이
+											class="form-check-input" type="radio" name="concern_id" <%if(2==dto.getConcern_id())out.print("checked"); %> value="2">고양이
 									</label> <label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="interest"">기타
+											class="form-check-input" type="radio" name="concern_id" <%if(3==dto.getConcern_id())out.print("checked"); %> value="3">기타
 									</label></td>
 								</tr>
 							</table>
@@ -162,8 +165,9 @@
 								</div>
 
 								<div class="right-col">
-									<a href="" class="btn btn-outline-primary" id="modifyUser">수정하기<i
-										class="fa fa-save"></i></a>
+									<button type="submit" id="checkValidity">
+									수정하기<i
+										class="fa fa-save"></i></button>
 								</div>
 							</div>
 						</form>
@@ -173,6 +177,14 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	
+	var checkValidity = $("#checkValidity"); 
+	var exPW = document.getElementsByName("exPW");
+	checkValidity.on("click", function(e){
+		//비밀번호 확인하는 로직(기존, 신규)
+	});
+	</script>
 	<!-- Javascript files-->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/popper.js/umd/popper.min.js"></script>

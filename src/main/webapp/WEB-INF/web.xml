@@ -26,6 +26,14 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
+		<!-- 회원정보수정 사진변경을 위해 추가됨 -->
+		<multipart-config>
+			<location>C:\Users\bit-user\Desktop\PetCommunity\petish\src\main\webapp\resources\img</location>
+			<max-file-size>20971520</max-file-size>
+			<max-request-size>41943040</max-request-size>
+			<file-size-threshold>20971520</file-size-threshold>
+		</multipart-config>
 	</servlet>
 		
 	<servlet-mapping>
@@ -50,4 +58,6 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
 </web-app>

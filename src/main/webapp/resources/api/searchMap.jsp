@@ -100,8 +100,9 @@
 		//opener.ps.keywordSearch(addr, opener.placesSearchCB);
 		//opener.marker.setPosition(mouselatLng);
 		//opener.marker.setMap(map);
-		console.log(lng.Ha+", "+ lng.Ga);
+		
 		opener.setMarker(lng.Ga, lng.Ha); //클릭한곳 마커 찍어주는 함수
+
 		self.close();
 	}
 	

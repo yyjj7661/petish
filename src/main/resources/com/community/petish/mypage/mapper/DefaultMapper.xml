@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.community.petish.mypage.mapper.DefaultMapper">
+	
+	<!-- 내가 작성한 글 + 페이징 -->
+	<select id="getMyWritingsWithPaging" resultType="com.community.petish.mypage.dto.MyWritingsDTO">
+		<![CDATA[
+		select '강아지-자유게시판' as boardType, id, title, created_date, view_count
+		from 
+		(select rownum rn, id, title, created_date, view_count 
+		from dog_free_post_tb 
+		where rownum <= #{pageNum} * #{amount} and deleted=0 and user_id=#{user_id})
+		where rn > (#{pageNum} -1)*#{amount}
+		]]>
+	</select>
+	<!-- 내가 작성한 글 전체갯수 -->
+	<select id="getWritingsCnt" resultType="int" parameterType="Long">
+		<![CDATA[
+		select count(*)
+		from dog_free_post_tb
+		where user_id=#{user_id} and deleted=0
+		]]>
+	</select>
+	
+
+	<!-- 내가 댓글 단 글 + 페이징 -->
+	<select id="getCommentedWithPaging" resultType="com.community.petish.mypage.dto.Writings_CommentedDTO">
+		<![CDATA[
+		select '강아지-자유게시판' as boardType, id, user_id, title, created_date, view_count, nickname
+		from 
+		(select rownum rn, dfpt.id, dfpt.user_id, dfpt.title, dfpt.created_date, dfpt.view_count, u.nickname
+		from dog_free_post_tb dfpt, user_tb u
+		where rownum <= #{pageNum} * #{amount} and dfpt.id in (select post_id from dog_free_comment_tb where user_id=#{user_id}) and dfpt.user_id=u.id and dfpt.deleted=0)
+		where rn > (#{pageNum} -1)*#{amount}
+		]]>
+	</select>
+	<!-- 내가 댓글 단 글 전체갯수 -->
+	<select id="getCommentedCnt" resultType="int" parameterType="Long">
+		<![CDATA[
+		select count(*)
+		from dog_free_post_tb dfpt
+		where dfpt.id in (select post_id from dog_free_comment_tb where user_id=#{user_id}
+		and dfpt.deleted=0)
+		]]>
+	</select>
+	
+	<!-- 내가 좋아요 한 글 + 페이징 -->
+	<select id="getLikedWithPaging" resultType="com.community.petish.mypage.dto.Writings_LikedDTO">
+		<![CDATA[
+		select '강아지-자유게시판' as boardType, id, user_id, title, created_date, view_count, nickname
+		from
+		(select rownum rn, dfpt.id, dfpt.user_id, dfpt.title, dfpt.created_date, dfpt.view_count, u.nickname
+		from dog_free_post_tb dfpt, user_tb u
+		where rownum <= #{pageNum} * #{amount} and dfpt.id in (select post_id from dog_free_post_like_tb where user_id=#{user_id}) and dfpt.user_id=u.id and dfpt.deleted=0)
+		where rn > (#{pageNum} -1)*#{amount}
+		]]>
+	</select>
+	<!-- 내가 좋아요 한 글 전체갯수 -->
+	<select id="getLikedCnt" resultType="int" parameterType="Long">
+		<![CDATA[
+		select count(*)
+		from dog_free_post_tb dfpt
+		where dfpt.id in (select post_id from dog_free_post_like_tb where user_id=#{user_id}
+		and dfpt.deleted=0)
+		]]>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
