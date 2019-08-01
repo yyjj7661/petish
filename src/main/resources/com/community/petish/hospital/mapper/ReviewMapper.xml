@@ -39,7 +39,7 @@
  	</select>
  	
  	<select id="getTotalCount" resultType="Integer">
- 		select count(*) from hospital_review_tb where hospital_id =#{id}
+ 		select count(*) from hospital_review_tb where hospital_id =#{id} and deleted =0
  	</select>
  	
  	<select id="getReviewWithPaging" resultMap="reviewDTO">
@@ -55,7 +55,7 @@
  					 from
  							hospital_review_tb h JOIN user_tb u
  					 ON h.user_id = u.id
- 					 where h.hospital_id =#{hospital_id} order by h.id desc
+ 					 where h.hospital_id =#{hospital_id} and h.deleted=0 order by h.id desc
  					 )
           		  where rownum<=#{pageNum}*#{amount}
        			 )

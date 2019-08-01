@@ -14,10 +14,20 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin")
 	public ModelAndView index() {
-		Long userCount = adminService.getUserConunt();
+		Long userCount = adminService.getUserCount();
+		Long maleCount = adminService.getMaleCount();
+		Long femaleCount = adminService.getFemaleCount();
+		Long concernCat = adminService.getConcernCatCount();
+		Long concernDog = adminService.getConcernDogCount();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("petish/admin/index");
 		mv.addObject("userCount", userCount);
+		mv.addObject("maleCount", maleCount);
+		mv.addObject("femaleCount", femaleCount);
+		mv.addObject("concernCat", concernCat);
+		mv.addObject("concernDog", concernDog);
+		
+		
 		return mv;
 	}
 }

@@ -92,40 +92,13 @@
       
       
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
-            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
-          </ul>
-        </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Form Components</a></li>
-            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
-            <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
-            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
-            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
-          </ul>
-        </li>
+        <li><a class="app-menu__item active" href="/admin"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li><a class="app-menu__item" href="/admin/user"><i class="app-menu__icon fa fa-user-circle"></i><span class="app-menu__label">User</span></a></li>
+        
+                
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
-            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
-            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
-            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
-            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
-            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
-            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
+            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> 신고페이지</a></li>
           </ul>
         </li>
       </ul>
@@ -138,7 +111,7 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
         </ul>
       </div>
       <div class="row">
@@ -178,7 +151,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">Monthly Sales</h3>
+            <h3 class="tile-title">월별 방문자수</h3>
             <div class="embed-responsive embed-responsive-16by9">
               <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
             </div>
@@ -186,14 +159,16 @@
         </div>
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">유저 성별 분포</h3>
+            <h3 class="tile-title">일별 게시판 업로드 분포</h3>
             <div class="embed-responsive embed-responsive-16by9">
-              <canvas class="embed-responsive-item" id="pieChartGender"></canvas>
+              <canvas class="embed-responsive-item" id="radarChartDemo"></canvas>
             </div>
           </div>
         </div>
+        
       </div>
       <div class="row">
+        
         <div class="col-md-6">
           <div class="tile">
             <h3 class="tile-title">유저 관심사 분포</h3>
@@ -204,10 +179,10 @@
         </div>
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">Compatibility with frameworks</h3>
-            <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>
-            <p>Go to <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> for more details about integrating this theme with various frameworks.</p>
-            <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href="https://github.com/pratikborsadiya/vali-admin" target="_blank">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>
+            <h3 class="tile-title">유저 성별 분포</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="pieChartGender"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -226,16 +201,6 @@
       	labels: ["January", "February", "March", "April", "May"],
       	datasets: [
       		{
-      			label: "My First dataset",
-      			fillColor: "rgba(220,220,220,0.2)",
-      			strokeColor: "rgba(220,220,220,1)",
-      			pointColor: "rgba(220,220,220,1)",
-      			pointStrokeColor: "#fff",
-      			pointHighlightFill: "#fff",
-      			pointHighlightStroke: "rgba(220,220,220,1)",
-      			data: [65, 59, 80, 81, 56]
-      		},
-      		{
       			label: "My Second dataset",
       			fillColor: "rgba(151,187,205,0.2)",
       			strokeColor: "rgba(151,187,205,1)",
@@ -247,15 +212,30 @@
       		}
       	]
       };
+      var rdata = {
+    	      	labels: ["마이펫", "고양이", "강아지"],
+    	      	datasets: [
+    	      		{
+    	      			label: "My Second dataset",
+    	      			fillColor: "rgba(151,187,205,0.2)",
+    	      			strokeColor: "rgba(151,187,205,1)",
+    	      			pointColor: "rgba(151,187,205,1)",
+    	      			pointStrokeColor: "#fff",
+    	      			pointHighlightFill: "#fff",
+    	      			pointHighlightStroke: "rgba(151,187,205,1)",
+    	      			data: [28, 48, 40]
+    	      		}
+    	      	]
+    	      };
       var pdata = [
       	{
-      		value: 6,
+      		value: "${maleCount }",
       		color: "#46BFBD",
       		highlight: "#5AD3D1",
       		label: "남자"
       	},
       	{
-      		value: 5,
+      		value: "${femaleCount }",
       		color:"#F7464A",
       		highlight: "#FF5A5E",
       		label: "여자"
@@ -263,13 +243,13 @@
       ]
       var pdata2 = [
         	{
-        		value: 10,
+        		value: "${concernCat }",
         		color: "#46BFBD",
         		highlight: "#5AD3D1",
         		label: "고양이"
         	},
         	{
-        		value: 12,
+        		value: "${concernDog }",
         		color:"#F7464A",
         		highlight: "#FF5A5E",
         		label: "강아지"
@@ -285,6 +265,9 @@
       
       var ctxp2 = $("#pieChartConcern").get(0).getContext("2d");
       var pieChart2 = new Chart(ctxp2).Pie(pdata2);
+      
+      var ctx2 = $('#radarChartDemo').get(0).getContext("2d");
+      var radarChart = new Chart(ctx2).Radar(rdata);
     </script>
     <!-- Google analytics script-->
     <script type="text/javascript">
