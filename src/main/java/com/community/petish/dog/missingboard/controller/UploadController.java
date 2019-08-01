@@ -50,23 +50,13 @@ public class UploadController {
 		log.info("upload form");
 	}
 
-	// @PostMapping("/uploadFormAction")
-	// public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
-	//
-	// for (MultipartFile multipartFile : uploadFile) {
-	//
-	// log.info("-------------------------------------");
-	// log.info("Upload File Name: " +multipartFile.getOriginalFilename());
-	// log.info("Upload File Size: " +multipartFile.getSize());
-	//
-	// }
-	// }
-
 	//실제 파일 업로드
 	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
+	public void uploadFormPost(MultipartFile[] uploadFile, Model model, HttpServletRequest request) {
 
-		String uploadFolder = "C:\\upload";
+		//String uploadFolder = "C:\\upload";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/missingboard");
+		
 
 		for (MultipartFile multipartFile : uploadFile) {
 
@@ -74,15 +64,15 @@ public class UploadController {
 			log.info("Upload File Name: " + multipartFile.getOriginalFilename());
 			log.info("Upload File Size: " + multipartFile.getSize());
 
-			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
+			File saveFile = new File(uploadPath, multipartFile.getOriginalFilename());
 
 			try {
 				multipartFile.transferTo(saveFile);
 			} catch (Exception e) {
+				
 				log.error(e.getMessage());
 			} // end catch
 		} // end for
-
 	}
 
 	@GetMapping("/uploadAjax")
@@ -91,135 +81,16 @@ public class UploadController {
 		log.info("upload ajax");
 	}
 
-	// @PostMapping("/uploadAjaxAction")
-	// public void uploadAjaxPost(MultipartFile[] uploadFile) {
-	//
-	// log.info("update ajax post.........");
-	//
-	// String uploadFolder = "C:\\upload";
-	//
-	// for (MultipartFile multipartFile : uploadFile) {
-	//
-	// log.info("-------------------------------------");
-	// log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-	// log.info("Upload File Size: " + multipartFile.getSize());
-	//
-	// String uploadFileName = multipartFile.getOriginalFilename();
-	//
-	// // IE has file path
-	// uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") +
-	// 1);
-	// log.info("only file name: " + uploadFileName);
-	//
-	// File saveFile = new File(uploadFolder, uploadFileName);
-	//
-	// try {
-	//
-	// multipartFile.transferTo(saveFile);
-	// } catch (Exception e) {
-	// log.error(e.getMessage());
-	// } // end catch
-	//
-	// } // end for
-	//
-	// }
-
+	/*
 	private String getFolder() {
-
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
 		Date date = new Date();
-
 		String str = sdf.format(date);
-
 		return str.replace("-", File.separator);
 	}
-
-	// @PostMapping("/uploadAjaxAction")
-	// public void uploadAjaxPost(MultipartFile[] uploadFile) {
-	//
-	// String uploadFolder = "C:\\upload";
-	//
-	// // make folder --------
-	// File uploadPath = new File(uploadFolder, getFolder());
-	// log.info("upload path: " + uploadPath);
-	//
-	// if (uploadPath.exists() == false) {
-	// uploadPath.mkdirs();
-	// }
-	// // make yyyy/MM/dd folder
-	//
-	// for (MultipartFile multipartFile : uploadFile) {
-	//
-	// log.info("-------------------------------------");
-	// log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-	// log.info("Upload File Size: " + multipartFile.getSize());
-	//
-	// String uploadFileName = multipartFile.getOriginalFilename();
-	//
-	// // IE has file path
-	// uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") +
-	// 1);
-	// log.info("only file name: " + uploadFileName);
-	//
-	// // File saveFile = new File(uploadFolder, uploadFileName);
-	// File saveFile = new File(uploadPath, uploadFileName);
-	//
-	// try {
-	//
-	// multipartFile.transferTo(saveFile);
-	// } catch (Exception e) {
-	// log.error(e.getMessage());
-	// } // end catch
-	//
-	// } // end for
-	//
-	// }
-
-	// @PostMapping("/uploadAjaxAction")
-	// public void uploadAjaxPost(MultipartFile[] uploadFile) {
-	//
-	// String uploadFolder = "C:\\upload";
-	//
-	// // make folder --------
-	// File uploadPath = new File(uploadFolder, getFolder());
-	// log.info("upload path: " + uploadPath);
-	//
-	// if (uploadPath.exists() == false) {
-	// uploadPath.mkdirs();
-	// }
-	// // make yyyy/MM/dd folder
-	//
-	// for (MultipartFile multipartFile : uploadFile) {
-	//
-	// log.info("-------------------------------------");
-	// log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-	// log.info("Upload File Size: " + multipartFile.getSize());
-	//
-	// String uploadFileName = multipartFile.getOriginalFilename();
-	//
-	// // IE has file path
-	// uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") +
-	// 1);
-	// log.info("only file name: " + uploadFileName);
-	//
-	// UUID uuid = UUID.randomUUID();
-	//
-	// uploadFileName = uuid.toString() + "_" + uploadFileName;
-	//
-	// File saveFile = new File(uploadPath, uploadFileName);
-	//
-	// try {
-	//
-	// multipartFile.transferTo(saveFile);
-	// } catch (Exception e) {
-	// log.error(e.getMessage());
-	// } // end catch
-	//
-	// } // end for
-	//
-	// }
-
+	*/
+	
+	//첨부 파일이 이미지인지 학인
 	private boolean checkImageType(File file) {
 
 		try {
@@ -231,7 +102,6 @@ public class UploadController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return false;
 	}
 
@@ -239,20 +109,17 @@ public class UploadController {
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile, HttpServletRequest request) {
-
+		
+		//파일 리스트
 		List<AttachFileDTO> list = new ArrayList<>();
 		//업로드 할 경로
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/missingboard");
 		
-		
-		// make folder --------
+		// 파일 없으면 생성
 		//File uploadPath = new File(uploadFolder, uploadFolderPath);
-
-		/*
-		 * if (uploadPath.exists() == false) { uploadPath.mkdirs(); }
-		 */
-		
+		//(uploadPath.exists() == false) { uploadPath.mkdirs(); }		
 		// make yyyy/MM/dd folder
+		
 		for (MultipartFile multipartFile : uploadFile) {
 
 			AttachFileDTO attachDTO = new AttachFileDTO();
@@ -261,47 +128,45 @@ public class UploadController {
 
 			// IE has file path
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-			log.info("only file name: " + uploadFileName);
-			attachDTO.setFileName(uploadFileName);
+			log.info("실제 파일명 : " + uploadFileName);
+			attachDTO.setFileName(uploadFileName); //DB에 들어갈 파일명 지정
+			
+			UUID uuid = UUID.randomUUID(); //UUID생성
 
-			UUID uuid = UUID.randomUUID();
-
-			uploadFileName = uuid.toString() + "_" + uploadFileName;
+			uploadFileName = uuid.toString() + "_" + uploadFileName; //업로드 파일명  : [UUID]_[실제 파일명]
 
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
-				multipartFile.transferTo(saveFile); //파일객체를 실제 지정해준 경로+이름으로 넣어줌 
+				multipartFile.transferTo(saveFile); //파일 객체를 실제 지정해준 경로+이름으로 바꿈
 
 				attachDTO.setUuid(uuid.toString());
 				attachDTO.setUploadPath(uploadPath);
 				
 				log.info("uploadPath : " + uploadPath);
 				log.info("uploadFileName : " + uploadFileName);
-				
 
-				// check image type file
+				//이미지 파일인지 체크
 				if (checkImageType(saveFile)) {
 
 					attachDTO.setImage(true);
 
+					//썸네일 이미지 파일명, 경로, 크기 지정해 생성
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-
 					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
 
 					thumbnail.close();
 				}
-
-				// add to List
+				//파일 리스트에 추가
 				list.add(attachDTO);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		} // end for
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
-
+	
+	//Detail에 출력
 	@GetMapping("/display")	
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
@@ -326,82 +191,37 @@ public class UploadController {
 		return result;
 	}
 	
-
-	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	@ResponseBody
-	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName) {
-
-		Resource resource = new FileSystemResource("C:\\upload\\" + fileName);
-
-		if (resource.exists() == false) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-
-		String resourceName = resource.getFilename();
-
-		// remove UUID
-		String resourceOriginalName = resourceName.substring(resourceName.indexOf("_") + 1);
-
-		HttpHeaders headers = new HttpHeaders();
-		try {
-
-			String downloadName = null;
-
-			if ( userAgent.contains("Trident")) {
-				log.info("IE browser");
-				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replaceAll("\\+", " ");
-			}else if(userAgent.contains("Edge")) {
-				log.info("Edge browser");
-				downloadName =  URLEncoder.encode(resourceOriginalName,"UTF-8");
-			}else {
-				log.info("Chrome browser");
-				downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
-			}
-			
-			log.info("downloadName: " + downloadName);
-
-			headers.add("Content-Disposition", "attachment; filename=" + downloadName);
-
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-
-		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
-	}
-	
-
+	//미리보기에서 삭제
 	@PostMapping("/deleteFile")
 	@ResponseBody
-	public ResponseEntity<String> deleteFile(String fileName, String type) {
+	public ResponseEntity<String> deleteFile(String fileName, String type, HttpServletRequest request) {
 
 		log.info("deleteFile: " + fileName);
+		log.info("type: " + type);
+		
+		//파일 리스트
+		//List<AttachFileDTO> list = new ArrayList<>();
+		//업로드 할 경로
+		//String uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/missingboard");
+				
 
 		File file;
 
-		try {
-			file = new File("C:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
-
+		try {			
+			//file = new File("C:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File(URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();
 
 			if (type.equals("image")) {
-
 				String largeFileName = file.getAbsolutePath().replace("s_", "");
-
 				log.info("largeFileName: " + largeFileName);
-
 				file = new File(largeFileName);
-
 				file.delete();
 			}
-
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
-
 	}
-	
-
 }
