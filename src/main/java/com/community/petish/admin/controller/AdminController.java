@@ -30,4 +30,11 @@ public class AdminController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="/admin/user")
+	public ModelAndView user() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("petish/admin/user");
+		return mv;
+	}
 }
