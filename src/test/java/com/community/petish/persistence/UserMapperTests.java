@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.community.petish.mypage.dto.QuestionRequestDTO;
 import com.community.petish.mypage.mapper.UserMapper;
-import com.community.petish.user.dto.UserModifyRequestDTO;
+import com.community.petish.user.dto.UserModifyRequestDTO_Mypage;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -29,7 +29,7 @@ public class UserMapperTests {
 	
 	@Test
 	public void testUpdate() {
-		UserModifyRequestDTO dto = new UserModifyRequestDTO();
+		UserModifyRequestDTO_Mypage dto = new UserModifyRequestDTO_Mypage();
 		dto.setAddress("아놔");
 		dto.setId(1);
 		dto.setNickname("땡이누나");

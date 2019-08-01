@@ -25,10 +25,10 @@ import com.community.petish.mypage.dto.Writings_LikedDTO;
 import com.community.petish.mypage.service.DefaultService;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.QuestionService;
-import com.community.petish.mypage.service.UserService;
-import com.community.petish.user.dto.UserModifyPictureDTO;
-import com.community.petish.user.dto.UserModifyRequestDTO;
-import com.community.petish.user.dto.UserResponseDTO;
+import com.community.petish.mypage.service.UserService_Mypage;
+import com.community.petish.user.dto.UserModifyPictureDTO_Mypage;
+import com.community.petish.user.dto.UserModifyRequestDTO_Mypage;
+import com.community.petish.user.dto.UserResponseDTO_Mypage;
 
 import lombok.extern.log4j.Log4j;
 
@@ -44,14 +44,14 @@ public class MypageController {
 	@Autowired
 	private DefaultService defaultServiceImpl;
 	@Autowired
-	private UserService userServiceImpl;
+	private UserService_Mypage userServiceImpl;
 
 	// 마이페이지 default
 	@RequestMapping("/")
 	public String mypage(Model model, HttpSession session, Criteria cri) {
 		Long user_id = 1L;
 		// 세션이 널이면 로그인페이지로 이동 (if)
-		UserResponseDTO user = userServiceImpl.findUser(user_id);
+		UserResponseDTO_Mypage user = userServiceImpl.findUser(user_id);
 		model.addAttribute("user", user);
 		return "petish/mypage/default";
 	}
@@ -67,14 +67,14 @@ public class MypageController {
 			return "petish/loginpage";
 		} else {
 			// 회원아이디로 회원정보 찾아서 보내기
-			UserResponseDTO dto = userServiceImpl.findUser(user_id);
+			UserResponseDTO_Mypage dto = userServiceImpl.findUser(user_id);
 			model.addAttribute("dto", dto);
 			return "petish/mypage/info_modify_form";
 		}
 	}
 	// 회원정보수정로직
 	@RequestMapping(value = "/modifyUserInfo", method = { RequestMethod.POST })
-	public String modifyUserInfo(UserModifyRequestDTO dto, Model model) {
+	public String modifyUserInfo(UserModifyRequestDTO_Mypage dto, Model model) {
 		log.info("수정" + dto);
 		// 비밀번호를 제외한 정보 수정(비밀번호를 제외하고는 기본값 세팅되어있어서)
 		if ((dto.getPassword().equals(""))) {
@@ -90,7 +90,7 @@ public class MypageController {
 	}
 	// 프로필 사진 수정
 	@PostMapping("/uploadFormAction")
-	   public String uploadFormPost(MultipartFile[] uploadFile, HttpServletRequest request, UserModifyPictureDTO dto) {
+	   public String uploadFormPost(MultipartFile[] uploadFile, HttpServletRequest request, UserModifyPictureDTO_Mypage dto) {
 
 	      //String uploadFolder = "C:\\upload";
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/img");

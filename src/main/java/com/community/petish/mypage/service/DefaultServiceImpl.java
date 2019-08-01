@@ -32,8 +32,9 @@ public class DefaultServiceImpl implements DefaultService{
 
 	@Override
 	public WritingPageDTO getWritingListPaging(Criteria cri) {
+		log.info("내가쓴글갯수"+mapper.getWritingsCnt(cri.getUser_id()));
 		return new WritingPageDTO(
-				mapper.getWritingsCnt(cri.getUser_id()),
+				mapper.getWritingsCnt(cri.getUser_id()),		
 				mapper.getMyWritingsWithPaging(cri));
 	}
 	

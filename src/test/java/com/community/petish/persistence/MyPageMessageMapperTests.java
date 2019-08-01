@@ -56,12 +56,12 @@ public class MyPageMessageMapperTests {
 	// delete test => 성공
 	@Test
 	public void testDelete() {
-		mapper.deleteMessage(4);
+		mapper.deleteMessage(4L);
 	}
 
 	@Test
 	public void testReadDetail() {
-		MessageResponseDTO dto = mapper.receivedMessageDetail(6);
+		MessageResponseDTO dto = mapper.receivedMessageDetail(6L);
 		log.info(dto);
 		log.info(dto.getNickname());
 	}

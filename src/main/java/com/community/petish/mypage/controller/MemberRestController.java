@@ -1,4 +1,4 @@
-package com.community.petish.user.controller;
+package com.community.petish.mypage.controller;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import com.community.petish.mypage.dto.Writings_LikedDTO;
 import com.community.petish.mypage.service.DefaultService;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.QuestionService;
-import com.community.petish.mypage.service.UserService;
+import com.community.petish.mypage.service.UserService_Mypage;
 
 import lombok.extern.log4j.Log4j;
 
@@ -37,7 +37,7 @@ public class MemberRestController {
 	private MessageService messageServiceImpl;
 	
 	@Autowired
-	private UserService userServiceImpl;
+	private UserService_Mypage userServiceImpl;
 
 	@Autowired
 	private DefaultService defaultServiceImpl;

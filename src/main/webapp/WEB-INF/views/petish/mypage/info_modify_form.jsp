@@ -1,11 +1,11 @@
-<%@page import="com.community.petish.user.dto.UserResponseDTO"%>
-<%@page import="com.community.petish.user.dto.UserModifyRequestDTO"%>
+<%@page import="com.community.petish.user.dto.UserResponseDTO_Mypage"%>
+<%@page import="com.community.petish.user.dto.UserModifyRequestDTO_Mypage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
 <%
-UserResponseDTO dto = (UserResponseDTO)request.getAttribute("dto");
-%>
+		UserResponseDTO_Mypage dto = (UserResponseDTO_Mypage)request.getAttribute("dto");
+	%>
 <!DOCTYPE html>
 <html>
 <head>

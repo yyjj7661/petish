@@ -1,4 +1,4 @@
-<%@page import="com.community.petish.user.dto.UserResponseDTO"%>
+<%@page import="com.community.petish.user.dto.UserResponseDTO_Mypage"%>
 <%@page import="com.community.petish.mypage.dto.Writings_LikedDTO"%>
 <%@page import="com.community.petish.mypage.dto.Writings_CommentedDTO"%>
 <%@page import="com.community.petish.mypage.dto.MyWritingsDTO"%>
@@ -9,9 +9,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
-	UserResponseDTO user = (UserResponseDTO) request.getAttribute("user");
+	UserResponseDTO_Mypage user = (UserResponseDTO_Mypage) request.getAttribute("user");
 	session.setAttribute("user_id", 1L);
-
 %>
 
 <!DOCTYPE html>
@@ -298,9 +297,9 @@
 								};
 							})();
 							
-							var pageNum = 1;
 							
 							
+							//버튼 클릭시 해당 페이지의 리스트로 넘어가는 메서드
 							function moveWritingPage(){
 								writingfooter.on("click", "li a", function(e){
 									
@@ -337,12 +336,13 @@
 								})
 							};
 							
+							var pageNum = 1;
+							//페이징 버튼 생성을 호출하는 메서드
 							function showWritingPage(writingsCnt){
-								alert("체크2"+writingsCnt);
 								commentedfooter.html("");
 								likedfooter.html("");
 								writingfooter.html("");
-								alert("체크3"+pageNum); //pagenum이 잘못드러옴
+							
 								var endNum = Math.ceil(pageNum/10.0) * 10;
 								var startNum = endNum -9;
 								var prev = startNum != 1;
@@ -363,6 +363,7 @@
 									
 								}
 								for(var i=startNum; i<=endNum; i++){
+									
 									var active = pageNum == i? "active":"";
 										str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
 									}
@@ -378,8 +379,8 @@
 									moveWritingPage();
 									}
 								
-								function showCommentedPage(commentedCnt){
-								
+							function showCommentedPage(commentedCnt){
+	
 									likedfooter.html("");
 									writingfooter.html("");
 								
@@ -403,7 +404,8 @@
 									
 								}
 								for(var i=startNum; i<=endNum; i++){
-										var active = pageNum == i? "active":"";
+									
+									var active = pageNum == i? "active":"";
 										str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
 									}
 									
@@ -422,12 +424,12 @@
 								
 									commentedfooter.html("");
 									writingfooter.html("");
-									
+								
 									var endNum = Math.ceil(pageNum/10.0) * 10;
 									var startNum = endNum -9;
 									var prev = startNum != 1;
 									var next = false;
-								
+									
 								
 									if(endNum * 10 >= likedCnt){
 										endNum = Math.ceil(likedCnt/10.0);
@@ -443,6 +445,7 @@
 										
 									}
 									for(var i=startNum; i<=endNum; i++){
+										
 										var active = pageNum == i? "active":"";
 											str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
 										}
@@ -462,7 +465,7 @@
 							function showWritingList(page) {
 								
 								listService.getWritingList({page:page||1},function(writingsCnt, list) {
-									alert("체크"+writingsCnt)
+									
 											if(page == -1){
 												pageNum = Math.ceil(writingsCnt/10.0);
 												showWritingList(pageNum);
@@ -553,7 +556,7 @@
 										});
 							};
 							//3. ajax메서드 사용해서 내가 좋아요 한 글 가져오기
-							function showLikedList() {
+							function showLikedList(page) {
 								listService.getLikedList({page:page||1},function(likedCnt, list) {
 									if(page == -1){
 										pageNum = Math.ceil(likedCnt/10.0);
@@ -594,6 +597,7 @@
 									}
 									
 									listUL.html(str);
+									var pageNum = 1;//
 									showLikedPage(likedCnt);
 								});
 					};

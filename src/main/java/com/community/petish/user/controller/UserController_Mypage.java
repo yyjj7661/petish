@@ -17,14 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.community.petish.mypage.service.DefaultService;
 import com.community.petish.mypage.service.MessageService;
 import com.community.petish.mypage.service.QuestionService;
-import com.community.petish.mypage.service.UserService;
-import com.community.petish.user.dto.UserModifyPictureDTO;
+import com.community.petish.mypage.service.UserService_Mypage;
+import com.community.petish.user.dto.UserModifyPictureDTO_Mypage;
 
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-public class UserController {
+public class UserController_Mypage {
 	
 	@Autowired
 	private QuestionService questionServiceImpl;
@@ -36,7 +36,7 @@ public class UserController {
 	private DefaultService defaultServiceImpl;
 	
 	@Autowired
-	private UserService userServiceImpl;
+	private UserService_Mypage userServiceImpl;
 	
 	@RequestMapping("/kakaomap")
 	public String kakaomap() {

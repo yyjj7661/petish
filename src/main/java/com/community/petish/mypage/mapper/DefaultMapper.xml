@@ -16,7 +16,7 @@
 		]]>
 	</select>
 	<!-- 내가 작성한 글 전체갯수 -->
-	<select id="getCommentedCnt" resultType="int" parameterType="Long">
+	<select id="getWritingsCnt" resultType="int" parameterType="Long">
 		<![CDATA[
 		select count(*)
 		from dog_free_post_tb
@@ -24,7 +24,7 @@
 		]]>
 	</select>
 	
-	
+
 	<!-- 내가 댓글 단 글 + 페이징 -->
 	<select id="getCommentedWithPaging" resultType="com.community.petish.mypage.dto.Writings_CommentedDTO">
 		<![CDATA[
@@ -37,7 +37,7 @@
 		]]>
 	</select>
 	<!-- 내가 댓글 단 글 전체갯수 -->
-	<select id="getWritingsCnt" resultType="int" parameterType="Long">
+	<select id="getCommentedCnt" resultType="int" parameterType="Long">
 		<![CDATA[
 		select count(*)
 		from dog_free_post_tb dfpt
@@ -45,7 +45,6 @@
 		and dfpt.deleted=0)
 		]]>
 	</select>
-	
 	
 	<!-- 내가 좋아요 한 글 + 페이징 -->
 	<select id="getLikedWithPaging" resultType="com.community.petish.mypage.dto.Writings_LikedDTO">
