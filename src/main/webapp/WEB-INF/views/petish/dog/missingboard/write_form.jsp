@@ -63,7 +63,7 @@
 <!-- datetimepicker 추가 -->
 <link rel="stylesheet" type="text/css"
    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css">
-
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
 <!-- Tweaks for older IEs-->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>

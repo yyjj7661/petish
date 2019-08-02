@@ -11,19 +11,21 @@
 		<result property="replied" column="REPLIED" />
 		<result property="category" column="CATEGORY"/>
 		<result property="user_id" column="USER_ID" />
-		<result property="question_created_date" column="QUESTION_CREATED_DATE" />
+		<result property="created_date" column="CREATED_DATE" />
 		<result property="deleted" column="DELETED" />
 		<result property="category_id" column="CATEGORY_ID"/>
 	</resultMap>
 	
 	<!-- 문의 등록-->
 	<insert id="insertQuestion" parameterType="com.community.petish.mypage.dto.QuestionRequestDTO">
-		insert into QUESTION_TB (TITLE, CONTENT, USER_ID, CATEGORY_ID) values (#{title}, #{content}, #{user_id}, #{category_id})
+		insert into QUESTION_TB (id, TITLE, CONTENT, USER_ID, CATEGORY_ID) values 
+		( (select NVL(max(id), 0) from question_tb ) + 1,
+		#{title}, #{content}, #{user_id}, #{category_id})
 	</insert>
 	
 	<!-- 문의 조회 -->
 	<select id="getQuestionList" parameterType="Long" resultMap="QuestionResultMap">
-		SELECT q1.category_id, q1.id, q1.title, q1.content, q1.replied, q2.category, q1.user_id, q1.question_created_date, deleted
+		SELECT q1.category_id, q1.id, q1.title, q1.content, q1.replied, q2.category, q1.user_id, q1.created_date, deleted
 		FROM question_tb q1, question_category_tb q2
 		WHERE (q1.category_id=q2.id) and (q1.user_id = #{user_id}) order by id desc
 	</select> 
@@ -31,9 +33,9 @@
 	<!-- 문의 조회 +페이징 -->
 	<select id="getQuestionListWithPaging" resultMap="QuestionResultMap">
 		<![CDATA[
-		select category_id, id, title, content, replied, category, user_id, question_created_date, deleted
+		select category_id, id, title, content, replied, category, user_id, created_date, deleted
 		from
-		(select rownum rn, q1.category_id, q1.id, q1.title, q1.content, q1.replied, q2.category, q1.user_id, q1.question_created_date, deleted
+		(select rownum rn, q1.category_id, q1.id, q1.title, q1.content, q1.replied, q2.category, q1.user_id, q1.created_date, deleted
 		FROM question_tb q1, question_category_tb q2
 		WHERE rownum <= #{pageNum} * #{amount} and (q1.category_id=q2.id) and (q1.user_id = #{user_id}) order by id desc)
 		where rn > (#{pageNum} -1)*#{amount}

@@ -110,7 +110,7 @@
 														<td><div class="text-center"><%=amount %></div></td>
 														<td><%=dto.getCategory() %></td>
 														<td><%=dto.getTitle() %></td>
-														<td><%=dto.getQuestion_created_date().substring(0, 10) %></td>
+														<td><%=dto.getCreated_date() %></td>
 														<td>
 														<%if(dto.getReplied()==0){ %>
 														<span class="badge badge-danger">답변대기</span></td>

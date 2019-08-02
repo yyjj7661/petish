@@ -31,7 +31,7 @@ public class UserMapperTests {
 	public void testUpdate() {
 		UserModifyRequestDTO_Mypage dto = new UserModifyRequestDTO_Mypage();
 		dto.setAddress("아놔");
-		dto.setId(1);
+		dto.setId(1L);
 		dto.setNickname("땡이누나");
 		dto.setPassword("1234567");
 		mapper.modifyUserInfo(dto);

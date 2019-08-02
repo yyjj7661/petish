@@ -35,7 +35,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/mypage/*")
+@RequestMapping("/mypage")
 public class MypageController {
 
 	@Autowired
@@ -129,15 +129,15 @@ public class MypageController {
 	@RequestMapping("/question/list")
 	public String questionList(Criteria cri, Model model, HttpSession session) {
 		// 로그인 여부 확인
-		if (session.getAttribute("user_id") == null) {
+		if (session.getAttribute("LOGIN_USER") == null) {
 			return "petish/loginpage";
 		} else {
 			// 로그인사용자 기준으로 문의db 불러오기
-			Long user_id = (Long) session.getAttribute("user_id");
-			ArrayList<QuestionResponseDTO> list = questionServiceImpl.getQuestionList(user_id);
+			LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+			ArrayList<QuestionResponseDTO> list = questionServiceImpl.getQuestionList(user.getId());
 			model.addAttribute("list", list);
 			// 문의글수 count
-			int amount = questionServiceImpl.getUndeleted(user_id);
+			int amount = questionServiceImpl.getUndeleted(user.getId());
 			model.addAttribute("amount", amount);
 			return "petish/mypage/question_list";
 		}
