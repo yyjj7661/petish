@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class UserModifyPictureDTO_Mypage {
 	
-	long id;
+	Long id;
 	String picture;
 	
 }

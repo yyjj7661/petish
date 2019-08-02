@@ -52,6 +52,7 @@ public class MypageController {
 	public String mypage(Model model, HttpSession session, Criteria cri) {
 		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
 		// 세션이 널이면 로그인페이지로 이동 (if)
+		log.info(user.getId());
 		UserResponseDTO_Mypage userResponse = userServiceImpl.findUser(user.getId());
 		model.addAttribute("user", userResponse);
 		return "petish/mypage/default";

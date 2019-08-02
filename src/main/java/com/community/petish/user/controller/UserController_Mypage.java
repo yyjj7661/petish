@@ -44,7 +44,7 @@ public class UserController_Mypage {
 	}
 	
 	@RequestMapping("/member/detail/{user_id}")
-	public String memberDetail(@PathVariable("user_id") long user_id, Model model, HttpSession session) {
+	public String memberDetail(@PathVariable("user_id") Long user_id, Model model, HttpSession session) {
 		//로그인 여부 확인
 		if(session.getAttribute("user_id")==null) {
 			return "petish/loginpage";
