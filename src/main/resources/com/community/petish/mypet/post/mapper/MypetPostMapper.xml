@@ -42,7 +42,7 @@
 			( ( (select NVL(max(id), 0) from mypet_post_like_tb) + 1 ), #{userId}, #{postId} ) 
 
 		<selectKey resultType="Long" order="AFTER">
-			SELECT max(id) from mypet_post_like_tb
+			SELECT id from mypet_post_like_tb WHERE user_id = #{userId} AND post_id = #{postId}
 		</selectKey>
 			
 	</insert>

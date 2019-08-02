@@ -139,7 +139,7 @@ public class MypetPostServiceImpl implements MypetPostService{
 	public Long pressLikeOnPost(Long postId, HttpSession session) {
 		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
 		
-		log.info("mypet post 좋아요 요청 postId = {} loginedUserId = {}\"", postId, user.getId());
+		log.info("mypet post 좋아요 요청 postId = {} loginedUserId = {}", postId, user.getId());
 		
 		MypetPostLike mypetPostLike = mypetPostMapper.findIsLikePressedOnPost(postId, user.getId());
 		
@@ -147,7 +147,7 @@ public class MypetPostServiceImpl implements MypetPostService{
 		
 		if ( mypetPostLike == null ) {
 			mypetPostLikeId = mypetPostMapper.saveLike(postId, user.getId());
-			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 생성", user.getId(), postId);
+			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 생성, likeId = {}", user.getId(), postId, mypetPostLikeId);
 		}
 		
 		if ( mypetPostLike.getDeleted() == 1 ) {
