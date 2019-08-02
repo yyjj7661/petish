@@ -136,9 +136,9 @@
 										class="control-label col-md-8">성별</label></td>
 									<td><label class="form-check-label"
 										style="margin-left: 20px; margin-right: 30px;"> <input
-											class="form-check-input" type="radio" name="gender" value="1" <%if(1==dto.getGender())out.print("checked"); %>>여자
+											class="form-check-input" type="radio" name="gender" value="1" <%if(("여자").equals(dto.getGender())){out.print("checked"); }%>>여자
 									</label> <label class="form-check-label"> <input
-											class="form-check-input" type="radio" name="gender" value="2" <%if(2==dto.getGender())out.print("checked"); %>>남자
+											class="form-check-input" type="radio" name="gender" value="2" <%if(("남자").equals(dto.getGender())){out.print("checked"); }%>>남자
 									</label></td>
 								</tr>
 								<tr style="height: 1.5cm;">

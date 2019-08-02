@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserResponseDTO_Mypage {
-	long id;
+	Long id;
 	String username;
 	String password;
 	String nickname;
@@ -12,6 +12,6 @@ public class UserResponseDTO_Mypage {
 	String picture;
 	String join_date;
 	Integer deleted;
-	Integer gender;
+	String gender;
 	Integer concern_id;
 }

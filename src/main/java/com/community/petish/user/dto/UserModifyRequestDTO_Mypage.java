@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class UserModifyRequestDTO_Mypage {
-	long id;
+	Long id;
 	String password;
 	String nickname;
 	String address;
 	int concern_id;
-	int gender;
+	String gender;
 }

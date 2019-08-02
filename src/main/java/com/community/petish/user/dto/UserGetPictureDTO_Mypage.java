@@ -8,7 +8,7 @@ public class UserGetPictureDTO_Mypage {
 	private String picture;
 	
 	//유저 id
-	private long id;
+	private Long id;
 	
 	//업로드 경로
 	private String uploadPath;

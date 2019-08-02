@@ -30,19 +30,18 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/user/api/*")
 public class MemberRestController {
-	@Autowired
-	private QuestionService questionServiceImpl;
-
-	@Autowired
-	private MessageService messageServiceImpl;
 	
 	@Autowired
+	private QuestionService questionServiceImpl;
+	@Autowired
+	private MessageService messageServiceImpl;
+	@Autowired
 	private UserService_Mypage userServiceImpl;
-
 	@Autowired
 	private DefaultService defaultServiceImpl;
 
-	//default-내가 쓴 글 리스트
+	//default
+		//default-내가 쓴 글 리스트
 		@GetMapping(value="/Writinglist/{member_id}",
 				produces = {
 						MediaType.APPLICATION_XML_VALUE,
@@ -77,4 +76,7 @@ public class MemberRestController {
 					cri.setUser_id(member_id);
 					return new ResponseEntity<>(defaultServiceImpl.getLikedWithPaging(cri), HttpStatus.OK);
 				}
+		
+		//message
+		
 }
