@@ -12,7 +12,7 @@ public interface MypetPostService {
 
 	Long savePost(MultipartHttpServletRequest request) throws Exception;
 	
-	MypetPostSummaryList getPosts();
+	MypetPostSummaryList getPosts(Integer pageNum);
 	
 	MypetPostDetailResponse getPost(Long postId);
 	

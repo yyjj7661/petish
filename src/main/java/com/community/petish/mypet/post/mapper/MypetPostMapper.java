@@ -14,7 +14,7 @@ public interface MypetPostMapper {
 
 	Long savePost(SaveMypetPostParams saveMypetPostParams);
 	
-	List<MypetPost> findAll();
+	List<MypetPost> findByPage(Integer pageNum);
 	
 	Long countLikes(Long postId);
 	

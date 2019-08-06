@@ -75,8 +75,8 @@ public class MypetPostServiceImpl implements MypetPostService{
 	}
 	
 	@Override
-	public MypetPostSummaryList getPosts() {
-		List<MypetPost> posts = mypetPostMapper.findAll();
+	public MypetPostSummaryList getPosts(Integer pageNum) {
+		List<MypetPost> posts = mypetPostMapper.findByPage(pageNum);
 		
 		List<MypetPostSummary> postSummaries = 
 		posts.stream()
@@ -89,7 +89,7 @@ public class MypetPostServiceImpl implements MypetPostService{
 					)
 			).collect(Collectors.toList());
 		
-		MypetPostSummaryList mypetPostSummaryList = new MypetPostSummaryList(postSummaries);
+		MypetPostSummaryList mypetPostSummaryList = new MypetPostSummaryList(pageNum, postSummaries);
 		
 		return mypetPostSummaryList;
 	}
