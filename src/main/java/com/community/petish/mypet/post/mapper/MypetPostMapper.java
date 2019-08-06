@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.community.petish.mypet.post.domain.MypetPost;
 import com.community.petish.mypet.post.domain.MypetPostLike;
+import com.community.petish.mypet.post.dto.request.MypetPostListCriteria;
 import com.community.petish.mypet.post.dto.request.SaveMypetPostParams;
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
 import com.community.petish.mypet.post.dto.response.MypetPostLikeResponse;
@@ -14,7 +15,7 @@ public interface MypetPostMapper {
 
 	Long savePost(SaveMypetPostParams saveMypetPostParams);
 	
-	List<MypetPost> findByPage(Integer pageNum);
+	List<MypetPost> findByPage(MypetPostListCriteria mypetPostListCriteria);
 	
 	Long countLikes(Long postId);
 	
@@ -31,5 +32,7 @@ public interface MypetPostMapper {
 	Long updateLikeNotDeleted(@Param("postId") Long postId, @Param("userId") Long userId);
 	
 	Long updateLikeDeleted(@Param("postId") Long postId, @Param("userId") Long userId);
+	
+	Long countAll();
 	
 }

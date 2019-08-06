@@ -4,9 +4,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.community.petish.mypet.post.dto.request.MypetPostListCriteria;
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
 import com.community.petish.mypet.post.dto.response.MypetPostLikeListResponse;
 import com.community.petish.mypet.post.dto.response.MypetPostSummaryList;
@@ -31,10 +37,10 @@ public class MypetPostRestController {
 	}
 	
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public MypetPostSummaryList getPosts(@RequestParam("pageNum") Integer pageNum) {
-		log.info("mypet post 조회 page = {}", pageNum);
+	public MypetPostSummaryList getPosts(MypetPostListCriteria mypetPostListCriteria) {
+		log.info("mypet post 조회 page = {}", mypetPostListCriteria);
 		
-		MypetPostSummaryList mypetPostSummaryList = mypetPostService.getPosts(pageNum);
+		MypetPostSummaryList mypetPostSummaryList = mypetPostService.getPosts(mypetPostListCriteria);
 
 		log.info("mypetPostSummaryList = {}", mypetPostSummaryList);
 		

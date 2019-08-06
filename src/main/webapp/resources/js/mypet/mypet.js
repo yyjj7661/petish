@@ -131,7 +131,7 @@ const makePostPart = (id) => {
 			let imageTag = "<img src=" + images[0] + ">";
 			
 			$('#post-id').val(result.postId);
-
+			
 			$('#post-picture').html(imageTag);
 			$('#post-title').html(result.title);
 			$('#post-content').html(result.content);
@@ -242,12 +242,22 @@ const makeLikeStatus = (id) => {
 }
 
 let page = 1;
-const makeMypetPostList = (page) => {
+let isEndPage = false;
+const makeMypetPostList = (pageNum, hashtag) => {
+	if (isEndPage) {
+		alert("마지막 게시물입니다.");
+		return;
+	}
+	
 	$.ajax({
 		type: "GET",
 		url: "/api/mypet/posts",
-		param: page,
+		data: {"pageNum" : pageNum, "hashtag" : hashtag},
 		success: function(data, status, xhr) {
+			page++;
+			if (page >= data.lastPage) {
+				isEndPage = true;
+			}
 			$.each(data.posts, function(index, value) {
 				let img = "<div id='" + value.postId + "' onclick='openPost(this.id)' ondblclick='likeDoubleClick(this.id)'>"
 				img += "<figure>";
@@ -262,3 +272,16 @@ const makeMypetPostList = (page) => {
 		}
 	})
 }
+
+$(window).scroll(function() {
+
+	if ( $(window).scrollTop() == $(document).height() - $(window).height() ) {
+		makeMypetPostList(page);
+	}
+
+});
+
+$(window).ready(function() {
+	makeMypetPostList(page);
+})
+
