@@ -128,10 +128,48 @@ const makePostPart = (id) => {
 	    url:"/api/mypet/posts/" + id,
 	    success: function(result, status, xhr) {
 			let images = result.image.split(",");
-			let imageTag = "<img src=" + images[0] + ">";
+			let imageTag;
+
+			if (images.length == 1) {
+				
+				imageTag = "<img src=" + images[0] + ">";
+				
+			} else {
+				
+				imageTag = '<div id="mypetPictureExample">';
+				imageTag += '	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">'
+				imageTag +='		<div class="carousel-inner">';
+							
+				for ( i in images ) {
+					let img;
+					
+					if ( i == 0 ) {
+						img = '<div class="carousel-item active" >';
+					} else {
+						img = '<div class="carousel-item" >';
+					}
+					
+					img += '<img class="d-block w-100" src=' + images[i] + '>' +
+					'</div>';
+					imageTag += img;
+				}
+				
+				imageTag += '	</div>';
+				imageTag += '		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">';
+				imageTag += '			<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+				imageTag += '			<span class="sr-only">Previous</span>';
+				imageTag += '		</a>';
+				imageTag += '		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">';
+				imageTag += '			<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+				imageTag += '			<span class="sr-only">Next</span>';
+				imageTag += '		</a>';
+				imageTag += '	</div>'
+				imageTag += '</div>';
+
+			}
 			
 			$('#post-id').val(result.postId);
-
+			
 			$('#post-picture').html(imageTag);
 			$('#post-title').html(result.title);
 			$('#post-content').html(result.content);
@@ -139,8 +177,6 @@ const makePostPart = (id) => {
 			// date 변환
 			let createdDate = new Date(result.createdDate);
 		    $('#created-date').html(createdDate.toDateString());
-		    
-//		    $('#like-count').html(result.likeCount);
 		    
 		    //userId 부여
 		    let userId = result.userId;
@@ -242,12 +278,22 @@ const makeLikeStatus = (id) => {
 }
 
 let page = 1;
-const makeMypetPostList = (page) => {
+let isEndPage = false;
+const makeMypetPostList = (pageNum, hashtag) => {
+	if (isEndPage) {
+		alert("마지막 게시물입니다.");
+		return;
+	}
+	
 	$.ajax({
 		type: "GET",
 		url: "/api/mypet/posts",
-		param: page,
+		data: {"pageNum" : pageNum, "hashtag" : hashtag},
 		success: function(data, status, xhr) {
+			page++;
+			if (page >= data.lastPage) {
+				isEndPage = true;
+			}
 			$.each(data.posts, function(index, value) {
 				let img = "<div id='" + value.postId + "' onclick='openPost(this.id)' ondblclick='likeDoubleClick(this.id)'>"
 				img += "<figure>";
@@ -262,3 +308,16 @@ const makeMypetPostList = (page) => {
 		}
 	})
 }
+
+$(window).scroll(function() {
+
+	if ( $(window).scrollTop() == $(document).height() - $(window).height() ) {
+		makeMypetPostList(page);
+	}
+
+});
+
+$(window).ready(function() {
+	makeMypetPostList(page);
+})
+

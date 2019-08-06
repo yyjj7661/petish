@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.community.petish.mypet.post.domain.MypetPost;
 import com.community.petish.mypet.post.domain.MypetPostLike;
+import com.community.petish.mypet.post.dto.request.MypetPostListCriteria;
 import com.community.petish.mypet.post.dto.request.SaveMypetPostParams;
 import com.community.petish.mypet.post.dto.response.MypetPostDetailResponse;
 import com.community.petish.mypet.post.dto.response.MypetPostLikeListResponse;
@@ -75,9 +76,9 @@ public class MypetPostServiceImpl implements MypetPostService{
 	}
 	
 	@Override
-	public MypetPostSummaryList getPosts(Integer pageNum) {
-		List<MypetPost> posts = mypetPostMapper.findByPage(pageNum);
-		
+	public MypetPostSummaryList getPosts(MypetPostListCriteria mypetPostListCriteria) {
+		List<MypetPost> posts = mypetPostMapper.findByPage(mypetPostListCriteria);
+		Long mypetPostCount = mypetPostMapper.countAll();
 		List<MypetPostSummary> postSummaries = 
 		posts.stream()
 			.map(post -> 
@@ -89,7 +90,9 @@ public class MypetPostServiceImpl implements MypetPostService{
 					)
 			).collect(Collectors.toList());
 		
-		MypetPostSummaryList mypetPostSummaryList = new MypetPostSummaryList(pageNum, postSummaries);
+		Integer lastPage = (int) ( Math.ceil(mypetPostCount / mypetPostListCriteria.getAmount().doubleValue()) );
+		
+		MypetPostSummaryList mypetPostSummaryList = new MypetPostSummaryList(mypetPostListCriteria, lastPage, postSummaries);
 		
 		return mypetPostSummaryList;
 	}
@@ -143,19 +146,17 @@ public class MypetPostServiceImpl implements MypetPostService{
 		
 		MypetPostLike mypetPostLike = mypetPostMapper.findIsLikePressedOnPost(postId, user.getId());
 		
+		log.info("mypetPostLike = {}", mypetPostLike);
+		
 		Long mypetPostLikeId = null;
 		
 		if ( mypetPostLike == null ) {
 			mypetPostLikeId = mypetPostMapper.saveLike(postId, user.getId());
 			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 생성, likeId = {}", user.getId(), postId, mypetPostLikeId);
-		}
-		
-		if ( mypetPostLike.getDeleted() == 1 ) {
+		} else if ( mypetPostLike.getDeleted() == 1 ) {
 			mypetPostLikeId = mypetPostMapper.updateLikeNotDeleted(postId, user.getId());
 			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 다시 누름", user.getId(), postId);
-		}
-		
-		if ( mypetPostLike.getDeleted() == 0 ) {
+		} else if ( mypetPostLike.getDeleted() == 0 ) {
 			mypetPostLikeId = mypetPostMapper.updateLikeDeleted(postId, user.getId());
 			log.info("userId = {} 가 postId = {} 에 대하여 좋아요 취소", user.getId(), postId);
 		}

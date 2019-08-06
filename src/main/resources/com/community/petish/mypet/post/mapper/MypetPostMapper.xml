@@ -75,13 +75,18 @@
 		AND user_id = #{userId}
 	</update>
 	
-	<select id="findByPage" resultType="com.community.petish.mypet.post.domain.MypetPost" >
+	<select id="findByPage" parameterType="java.lang.Integer" resultType="com.community.petish.mypet.post.domain.MypetPost" >
 		<![CDATA[
 		SELECT id, title, content, image, created_date, user_id FROM
 			(
 			SELECT rownum, id, title, content, image, created_date, user_id
 			FROM mypet_post_tb
 			WHERE deleted = 0
+		]]>
+			<if test="hashtag != null">
+			AND content like '%${hashtag}%'
+			</if>
+		<![CDATA[
 			AND rownum <= ${pageNum} * 20
 			ORDER BY id desc
 			)
@@ -95,6 +100,11 @@
 	
 	<select id="countComments" resultType="Long">
 		SELECT count(*) FROM mypet_comment_tb WHERE post_id = #{postId} AND deleted = 0
+	</select>
+	
+	<select id="countAll" resultType="Long">
+		SELECT count(*) FROM mypet_post_tb
+		WHERE deleted = 0
 	</select>
 
 </mapper>

@@ -2,6 +2,8 @@ package com.community.petish.mypet.post.dto.response;
 
 import java.util.List;
 
+import com.community.petish.mypet.post.dto.request.MypetPostListCriteria;
+
 import lombok.Getter;
 import lombok.ToString;
 
@@ -9,11 +11,13 @@ import lombok.ToString;
 @Getter
 public class MypetPostSummaryList {
 
-	private Integer pageNum;
+	private MypetPostListCriteria mypetPostListCriteria;
+	private Integer lastPage;
 	private List<MypetPostSummary> posts;
 	
-	public MypetPostSummaryList(Integer pageNum, List<MypetPostSummary> posts) {
-		this.pageNum = pageNum;
+	public MypetPostSummaryList(MypetPostListCriteria mypetPostListCriteria, Integer lastPage, List<MypetPostSummary> posts) {
+		this.mypetPostListCriteria = mypetPostListCriteria;
+		this.lastPage = lastPage;
 		this.posts = posts;
 	}
 	

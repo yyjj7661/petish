@@ -34,7 +34,7 @@
         <div class="board-body">
         <div id="columns" >
             
-            <div id="14" onclick="openPost(this.id)" ondblclick="likeDoubleClick(this.id)">
+            <!-- <div id="14" onclick="openPost(this.id)" ondblclick="likeDoubleClick(this.id)">
                 <figure>
                     <img src="https://c.pxhere.com/photos/b1/90/dog_puppy_pet_animal_cute_labrador-855217.jpg!d">
                 </figure>
@@ -116,7 +116,7 @@
             <figure>
                 <img src="https://c.pxhere.com/photos/46/fa/puppy_german_shepherd_tiny_cute_animal_dog_pet_young-630530.jpg!d">
             </figure>
-            </div>
+            </div> -->
 
         </div>
         </div>

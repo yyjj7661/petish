@@ -61,10 +61,11 @@ const initializeFileInput = (fileInput) => {
 }
 
 const handledPostUpload = (form) => {
+	checkAuthentication(postUpload, form);
+}
+
+const postUpload = (form) => {
 	let formData = new FormData(form);
-	console.log(formData.has("title"));
-	console.log(formData.has("content"));
-	console.log(formData.has("file"));
 	
 	$.ajax({
 		type:"POST",
@@ -73,12 +74,32 @@ const handledPostUpload = (form) => {
 		processData: false,
 	    contentType: false,
 		success: function(result, status, xhr) {
-			console.log("업로드 성공");
+			alert("업로드 성공");
+			window.location.href = "/mypet";
 			
 		},
 		error: function(error, status, xhr) {
 			console.log("업로드 실패");
 		
+		}
+	})
+}
+
+const checkAuthentication = (callback, param) => {
+	$.ajax({
+		type: "GET",
+		url: "/api/users/authenticate",
+		success: function(data, status, xhr) {
+			if (callback) {
+				callback(param);
+			}
+		},
+		error: function(error, status, xhr) {
+			if ( error.status == 401 ) {
+				alert("권한이 없습니다. 로그인 후 이용해주세요.");
+				$(".modal").modal("hide");
+				$("#login-modal").modal("show");
+			}
 		}
 	})
 }
