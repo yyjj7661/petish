@@ -1,13 +1,10 @@
 package com.community.petish.user.advice;
 
+import com.community.petish.user.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import com.community.petish.user.exception.AuthenticationException;
-import com.community.petish.user.exception.PasswordNotMatchException;
-import com.community.petish.user.exception.UserNotFoundException;
 
 @RestControllerAdvice
 public class UserRestControllerAdvice {
@@ -28,6 +25,18 @@ public class UserRestControllerAdvice {
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public void passwordNotMatchExceptionHandler(PasswordNotMatchException ex) {
 		
+	}
+
+	@ExceptionHandler(NotEmailAddress.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public void notEmailAddressExceptionHandler(NotEmailAddress ex) {
+
+	}
+
+	@ExceptionHandler(ExistingUserException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public void ExistingUserExceptionHandler(ExistingUserException ex) {
+
 	}
 	
 }

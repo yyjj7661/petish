@@ -2,9 +2,14 @@ package com.community.petish.user.service;
 
 import java.util.Objects;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import com.community.petish.user.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +19,6 @@ import com.community.petish.user.dto.request.SaveUserParams;
 import com.community.petish.user.dto.response.LoginedUser;
 import com.community.petish.user.dto.response.UserDetailResponse;
 import com.community.petish.user.dto.response.UserListResponse;
-import com.community.petish.user.exception.NotLoginedException;
-import com.community.petish.user.exception.PasswordNotMatchException;
-import com.community.petish.user.exception.UserNotFoundException;
 import com.community.petish.user.mapper.UserMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,16 +27,19 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UserServiceImpl implements UserService{
 
-	@Autowired
-	UserMapper userMapper;
-	
-	@Autowired
-	PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    JavaMailSenderImpl mailService;
 
 	@Override
 	public Long saveUser(SaveUserParams saveUserParams) {
 		
-		log.info("회원가입 요청 saveUserParam = {} " + saveUserParams );
+		log.info("회원가입 요청 saveUserParams = {} ", saveUserParams );
 		
 		String encodedPassword = passwordEncoder.encode(saveUserParams.getPassword());
 		saveUserParams.setPassword(encodedPassword);
@@ -62,7 +67,50 @@ public class UserServiceImpl implements UserService{
 		Boolean isDuplicated = nicknameFromDB != null;
 		return isDuplicated;
 	}
-	
+
+	@Override
+	public void sendCertificateNumber(String username, HttpSession session) {
+		if ( !username.contains("@") ) {
+			throw new NotEmailAddress();
+		}
+
+		User user = userMapper.findByUsername(username);
+
+	    if ( user != null ) {
+	        throw new ExistingUserException();
+        }
+
+	    String certificateNumber = String.format("%06d", (int) ( Math.random() * 100000 ) );
+	    String mailContent = "귀하의 인증 번호는 " + certificateNumber + "입니다.";
+
+		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
+	    	@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+	    		final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+	    		helper.setFrom("petishBit@gmail.com");
+	    		helper.setTo(username);
+	    		helper.setSubject("petish 귀하의 인증 번호입니다.");
+	    		helper.setText(mailContent, true);
+	    	}
+	    };
+
+	    mailService.send(preparator);
+		session.setAttribute("CERTIFICATE_NUMBER", certificateNumber);
+		session.setAttribute("USERNAME", username);
+
+	    log.info("이메일 인증 요청 username = {}, 메일 내용 = {}", username, mailContent);
+
+	}
+
+	@Override
+	public Boolean checkCertificateNumber(String username, String certificateNumber, HttpSession session) {
+		String certificateNumberFromApi = (String) session.getAttribute("CERTIFICATE_NUMBER");
+		String usernameFromApi = (String) session.getAttribute("USERNAME");
+		Boolean isCertificated =  certificateNumber.equals(certificateNumberFromApi) && username.equals(usernameFromApi);
+		log.info("인증 번호 확인 certificate number = {}, certificate number from api = {}, 인증 성공 = {}", certificateNumber, certificateNumberFromApi, isCertificated);
+		return isCertificated;
+	}
+
 	@Override
 	public void login(LoginUserParams loginUserParams, HttpSession session) {
 		String username = loginUserParams.getUsername();
@@ -96,7 +144,7 @@ public class UserServiceImpl implements UserService{
 		session.invalidate();
 	}
 
-	@Override
+  @Override
 	public User findById(Long id) {
 
 		User user = userMapper.findById(id);
@@ -107,11 +155,4 @@ public class UserServiceImpl implements UserService{
 		
 		return user;
 	}
-
-	
-
-	
-
-	
-	
 }

@@ -23,5 +23,8 @@ public interface UserService {
 	void login(LoginUserParams loginUserParams, HttpSession session);
 	
 	void logout(HttpSession session);
-	
+
+    void sendCertificateNumber(String username, HttpSession session);
+
+    Boolean checkCertificateNumber(String username, String certificateNumber, HttpSession session);
 }

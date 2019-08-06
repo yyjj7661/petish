@@ -86,6 +86,7 @@ const handledLogoutClick = (e) => {
 }
 
 const handledJoinClick = (e) => {
+	e.preventDefault();
 
 	let username = $('#usernameInput').val();
 	if (username == '' || username == null) {
@@ -93,7 +94,14 @@ const handledJoinClick = (e) => {
 		$('#usernameInput').focus();
 		return;
 	}
-	
+
+	let usernameCheck = $('#usernameDuplicateCheck').val();
+	if ( usernameCheck === 'false' || usernameCheck == null) {
+		alert("username 인증을 해주세요");
+		$("usernameInput").focus();
+		return;
+	}
+
 	let password = $('#passwordInput').val();
 	if (password == '' || password == null ) {
 		alert('password를 입력해주세요');
@@ -214,17 +222,78 @@ const checkNicknameDuplicate = () => {
 		$('#nicknameInput').focus();
 		return;
 	}
-	
+
+	let nicknameData = { "nickname" : nickname };
+
 	$.ajax({
 		type: "GET",
-		url: "/api/users/duplicate/" + nickname,
-		success: function(result, status, xhr) {
-			if (result === true) {
+		url: "/api/users/duplicate/nickname",
+		data: nicknameData,
+		success: function(data, status, xhr) {
+			if (data === true) {
 				$('#nicknameCheckFalseResult').css('display', 'inline-block');
 			} else {
 				alert("사용하실 수 있는 nickname입니다.");
 				$('#nicknameCheckFalseResult').css('display', 'none');
 				$('#nicknameDuplicateCheck').val('true');
+			}
+		}
+	})
+}
+
+const checkUsernameDuplicate = () => {
+	let username = $("#usernameInput").val();
+
+	if(username == '' || username == null) {
+		alert("username을 입력하세요.");
+		$('#usernameInput').focus();
+		return;
+	}
+
+	if (!username.includes("@")){
+		alert("알맞은 email 형식이 아님니다.");
+		$('#usernameInput').focus();
+		return;
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "/api/users/certificate/username",
+		data: { "username" : username },
+		success: function() {
+			alert(username + "으로 인증번호 발송.\nemail을 확인해주세요.");
+			$(".certificate-input").css("display", "inline-block");
+		},
+		error: function(error, status, xhr) {
+			console.log('error: ' + JSON.stringify(error) + "\n" + "status : " + status + "\n" + "xhr : " + xhr);
+		}
+	})
+
+}
+
+const initializeUsernameInput = () => {
+	$('#usernameDuplicateCheck').val("false");
+	$(".certificate-input").css("display", "none");
+}
+
+$('#usernameInput').on("propertychange change keyup paste input", initializeUsernameInput);
+
+const sendCertificateNumber = () => {
+	let username = $("#usernameInput").val();
+	let certificateNumber = $("#certificateNumberInput").val();
+
+	$.ajax({
+		type: "GET",
+		url: "/api/users/certificate/username",
+		data: { "username" : username, "certificateNumber" : certificateNumber },
+		success: function(data, status, xhr) {
+			if (data === true) {
+				$('#usernameCheckFalseResult').css('display', 'inline-block');
+			} else {
+				alert("사용하실 수 있는 username입니다.");
+				$('#usernameCheckFalseResult').css('display', 'none');
+				$('#usernameDuplicateCheck').val('true');
+				$(".certificate-input").css("display", "none");
 			}
 		}
 	})

@@ -6,12 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.community.petish.user.dto.request.LoginUserParams;
 import com.community.petish.user.dto.request.SaveUserParams;
@@ -54,11 +49,25 @@ public class UserRestController {
 		return userDetailResponse;
 	}
 	
-	@GetMapping(value="/duplicate/{nickname}", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public Boolean nicknameDuplicateCheck(@PathVariable("nickname") String nickname) {
+	@GetMapping(value="/duplicate/nickname", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public Boolean nicknameDuplicateCheck(@RequestParam("nickname") String nickname) {
 		log.info("nickname 중복 체크 : " + nickname);
 		Boolean isNicknameDuplicated = userService.checkNicknameDuplication(nickname);
 		return isNicknameDuplicated;
+	}
+
+    @PostMapping(value= "/certificate/username")
+	public void sendCertificate(@RequestParam("username") String username, HttpSession session) {
+		log.info("인증 번호 요청 username = {}", username);
+		userService.sendCertificateNumber(username, session);
+	}
+
+    @GetMapping(value="/certificate/username")
+	public Boolean checkCertificate(@RequestParam("username") String username, @RequestParam("certificateNumber") String certificateNumber, HttpSession session) {
+		log.info("username 인증번호 확인 certificate number = {}", certificateNumber);
+		Boolean isCertificated = userService.checkCertificateNumber(username, certificateNumber, session);
+		return isCertificated;
+
 	}
 	
 	@GetMapping("/authenticate")
@@ -84,7 +93,4 @@ public class UserRestController {
 		log.info("로그아웃 요청 user = {}", user);
 		userService.logout(session);
 	}
-	
-	
-
 }
