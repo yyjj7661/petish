@@ -1,77 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.community.petish.dog.gatherboard.domain.DogGatherPostVO" %>
+<%
+	DogGatherPostVO post = (DogGatherPostVO)request.getAttribute("post");
+	Long dogSizeID = (Long)request.getAttribute("size");
+	String dogSize = "";
+	
+	if(dogSizeID == 1L) {
+		dogSize = "소";
+	}
+	else if(dogSizeID == 2L) {
+		dogSize = "중";
+	}
+	else if(dogSizeID == 3L) {
+		dogSize = "대";
+	}
+	
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="utf-8">
-<title>Universal - All In 1 Template</title>
-
-
-<!-- 부트스트랩 추가 -->
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href="/resources/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet"
-	href="/resources/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Google fonts - Roboto-->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
-<!-- Bootstrap Select-->
-<link rel="stylesheet"
-	href="/resources/vendor/bootstrap-select/css/bootstrap-select.min.css">
-<!-- owl carousel-->
-<link rel="stylesheet"
-	href="/resources/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="/resources/vendor/owl.carousel/assets/owl.theme.default.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet" href="/resources/css/style.lightblue.css"
-	id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="/resources/css/custom.css">
-<!-- Favicon and apple touch icons-->
-<link rel="shortcut icon" href="/resources/img/favicon.ico"
-	type="image/x-icon">
-<link rel="apple-touch-icon" href="/resources/img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="57x57"
-	href="/resources/img/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="/resources/img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="/resources/img/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="/resources/img/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="/resources/img/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144"
-	href="/resources/img/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="/resources/img/apple-touch-icon-152x152.png">
+<title>정모게시판 글 수정</title>
 	
-<!-- datetimepicker 추가 -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" >
-<!-- include summernote css/js-->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-	
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	<%@ include file="/WEB-INF/views/commons/link.jspf" %>
+		
+	<!-- datetimepicker 추가 -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" >
+	<!-- include summernote css/js-->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
         
-        <link rel="stylesheet" href="/resources/css/write-modify.css">
-        <link rel="stylesheet" href="/resources/css/kakaomap.css">
+    <link rel="stylesheet" href="/resources/css/gatherboard/write-modify.css">
+    <link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 </head>
 
 <body>
-	<div id="all">
-		
-		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
-
+	<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+	<div id="all">	
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
@@ -93,20 +59,17 @@
 					<div id="customer-account">
 						<div class="box mt-5" style="margin-top: 20px;">
 							<div class="heading" id="head">
-								<h3 class="text-uppercase">글 수정</h3>
-							</div>
-							<div class="col-lg-10 text-right p-3" style="display:inline-block;">
-										<a href="/dog/gatherboard/list" class="btn btn-template-outlined"
-											style="margin-top: 10px;">목록</a>
+								<h3 id="title" class="text-uppercase">글 수정</h3>
+										<a href="/dog/gatherboard" id="listBtn" class="btn btn-template-outlined">목록</a>
 							</div>
 							
-							<form id="searchMap">
+							<form id="searchMap" action="/dog/gatherboard/modifyPost/<%=post.getID() %>" onsubmit="return Check()"  method="post">
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
-											<label for="category">지역</label> <select id="region" 
-												class="form-control">
-												<option value="">지역</option>
+											<label for="category">지역</label> 
+											<select id="region" class="form-control" name="REGION_ID">
+												<option value="">지역선택</option>
 												<option value="1">서울</option>
 												<option value="2">경기</option>
 												<option value="3">인천</option>
@@ -130,12 +93,19 @@
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
 											<label for="category">크기</label> 
-											<select id="size" class="form-control">
+											<select id="size" class="form-control" name="DOG_SIZE" onchange="javascript:categoryChange();">
 												<option value="">크기</option>
-												<option value="2">대형</option>
-												<option value="3">중형</option>
-												<option value="4">소형</option>
-												
+												<option value="1">소</option>
+												<option value="2">중</option>
+												<option value="3">대</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-2">
+										<div class="form-group">
+											<label for="category">종 선택</label> 							
+											<select id="species" class="form-control" name="SPECIES">
+												<option value="<%= request.getAttribute("species") %>"><%= request.getAttribute("species") %></option>
 											</select>
 										</div>
 									</div>
@@ -146,25 +116,25 @@
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
-											<label for="category">참여인원</label> <select id="personnel"
-												class="form-control">
+											<label for="category">참여인원</label> 
+											<select id="personnel" class="form-control" name="PEOPLE_COUNT">
 												<option value="">인원</option>
-												<option value="1">2</option>
-												<option value="2">3</option>
-												<option value="3">4</option>
-												<option value="4">5</option>
-												<option value="4">6</option>
-												<option value="4">7</option>
-												<option value="4">8</option>
-												<option value="4">9</option>
-												<option value="4">10</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-sm-6 col-md-4">
 										<div class="form-group">
-											<label for="category">모임일시</label> <input id="datetimepicker" type="text" value="2019/07/11 12:19" class="form-control">
-											
+											<label for="category">모임일시</label> 
+											<input id="datetimepicker" type="text" name="STR_GATHRING_DATE" value="<%= post.getGATHERING_DATE() %>" class="form-control">
 										</div>
 									</div>
 									
@@ -174,7 +144,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="category">모임장소</label>									
-											<input id="place" name="ADDR" type="text" value="서울 서초구 서초동 1303-34"class="form-control">
+											<input id="place" name="GATHERING_ADDRESS" type="text" value="<%= post.getGATHERING_ADDRESS() %>"class="form-control">
 										</div>
 									</div>
 									<div class="col-md-1.5" style="padding-top: 6px;">
@@ -188,13 +158,11 @@
     								<div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
     							</div>
 								
-									
-								
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password_old">제목</label> <input id="password_old"
-												type="text" value="신논현에서 정모구함" class="form-control">
+												name="TITLE" type="text" value="<%= post.getTITLE() %>" class="form-control">
 												
 										</div>
 									</div>
@@ -203,7 +171,7 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password_1">내용</label>
-											<textarea id="summernote" class="form-control">비트캠프 건물 2층에서 만나요</textarea>
+											<textarea id="summernote" name="CONTENT" class="form-control"><%= post.getCONTENT() %></textarea>
 										</div>
 									</div>
 
@@ -231,58 +199,33 @@
 
 
 	</div>
-	<!-- Javascript files-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="/resources/vendor/popper.js/umd/popper.min.js">
-		
-	</script>
-	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/resources/vendor/jquery.cookie/jquery.cookie.js">
-		
-	</script>
-	<script src="/resources/vendor/waypoints/lib/jquery.waypoints.min.js">
-		
-	</script>
-	<script src="/resources/vendor/jquery.counterup/jquery.counterup.min.js">
-		
-	</script>
-	<script src="/resources/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script
-		src="/resources/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
-	<script src="/resources/js/jquery.parallax-1.1.3.js"></script>
-	<script
-		src="/resources/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
-	<script src="/resources/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
-	<script src="/resources/js/front.js"></script>
-	
-	
+	<%@ include file="/WEB-INF/views/commons/script.jspf" %>			
 	<!-- selectbox값 가져오기 -->
 	<script>
 	//selectbox 값을 db에서 가져온다
-	var inputVal = "2"; //받아온값
+	var region = <%= post.getREGION_ID()%>; //받아온값
+	var personnel = <%= post.getPEOPLE_COUNT() %>;
+	var size = <%= request.getAttribute("size") %>
 	
-	$("#region").val(inputVal);
-	$("#size").val(inputVal);
-	$("#personnel").val(inputVal);
+	$("#region").val(region);
+	$("#personnel").val(personnel);
+	$("#size").val(size);
 	</script>
 	
 	
 	<!-- 다음지도 api 추가 -->
-	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
-	
-	
 	
 	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 		
-	
-	<script
-		src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	<!-- include summernote-ko-KR -->
 	<script src="/resources/lang/summernote-ko-KR.js"></script>
 	<script src="/resources/js/summernote.js"></script>
 	<script src="/resources/js/datepicker.js"></script>
 	<script src="/resources/js/boardMap/modify_map.js"></script>
+	<!-- include catagory.js -->
+	<script src="/resources/js/gatherboard/post.js"></script>
 
 </body>
 </html>
