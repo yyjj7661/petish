@@ -43,18 +43,7 @@
 							글쓰기
 							</a>
 						</button>
-						<%
-						if(session.getAttribute("USERNAME") == null || session.getAttribute("USERNAME").equals("")) {
-						%>
-						<a href="/dog/gatherboard/loginForm">로그인</a>
-						<%
-						} else {
-						%>
-						<b><a><%=(String)session.getAttribute("USERNAME") %></a></b>
-						<a href="/dog/gatherboard/logout">로그아웃</a>
-						<%
-						}
-						%>
+
 		<!-- 검색 -->		
 		<form id="categoryForm" action="/dog/gatherboard" method="post">		
 			<div id="top-category" aria-label="Page navigation example" class="d-flex justify-content-left">

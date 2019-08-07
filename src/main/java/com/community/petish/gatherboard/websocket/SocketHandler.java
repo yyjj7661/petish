@@ -37,8 +37,8 @@ public class SocketHandler extends TextWebSocketHandler {
 		
 		sessionSet.add(session);
 		this.logger.info("sessionSetADD"+sessionSet.size());
-		
 		this.logger.info("add session!");
+		this.logger.info("sessionSet="+sessionSet);
 	}
 	
 	//웹 소켓 서버측에 메시지가 전달되면 호출되는 메소드

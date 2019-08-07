@@ -1,16 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,java.sql.*,java.text.SimpleDateFormat, com.community.petish.dog.gatherboard.domain.DogGatherPostVO,
-				com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO,com.community.petish.dog.gatherboard.domain.DogGatherCommentVO" %>
+<%@ page import="java.util.*,java.sql.*,java.text.SimpleDateFormat, 
+				com.community.petish.dog.gatherboard.domain.DogGatherPostVO,
+				com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO,
+				com.community.petish.dog.gatherboard.domain.DogGatherCommentVO,
+				com.community.petish.user.dto.response.LoginedUser" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%
 	DogGatherPostVO post = (DogGatherPostVO)request.getAttribute("post");
+	LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+
 	String addr = post.getGATHERING_ADDRESS();
 	String writer = (String)request.getAttribute("writer");
-	String userName = (String)session.getAttribute("USERNAME");
-	Long userId = (Long)session.getAttribute("USER_ID"); 
+	String userName = user.getUsername();
+	Long userId = user.getId();
+	String userNickName = user.getNickname();
 	
 	//DogSize
 	Long sizeID = (Long)request.getAttribute("sizeID");
@@ -49,11 +55,13 @@
 <link rel="stylesheet" href="/resources/css/gatherboard/chat.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/detail.css">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1&display=swap&subset=korean" rel="stylesheet">
+<!--  script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>-->
 </head>
 <body>
 
 	<div id="all">
 <%@ include file="/WEB-INF/views/commons/top.jspf" %>
+
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
@@ -455,7 +463,7 @@
 				<input type="hidden" name="POST_ID" value='<%=post.getID()%>' />
 				<input type="hidden" name="USER_ID" value='<%=userId%>' />
 			</form>
-			<input type="hidden" value='<%=userName%>' id='chat_id' />
+			<input type="hidden" value='<%=userNickName%>' id='chat_id' />
 			<input type="hidden" value='<%=post.getID()%>' id='post_id' />
 				<!-- 채팅창 -->
 				    <div id="chat_box" style="display:none;">
@@ -470,59 +478,8 @@
 				           	   </div>
 				       	</div>
 				  	</div>
-				    <img class="chat" src="/resources/img/gatherboard/chat.png" onclick="chatClick('<%=userName%>');"/>
+				    <img class="chat" src="/resources/img/gatherboard/chat.png" onclick="chatClick('<%=userNickName%>');"/>
     		<!-- 채팅 끝 -->
-    		
-    				<!-- chat Modal -->
-						<div class="modal fade" id="chatModal" tabindex="-1"
-							role="dialog" aria-labelledby="mySmallModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h3 class="modal-title" id="myModalLabel">접속자</h3>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<P><i class="fa fa-user"></i> 총원 : 3명</P>
-
-						                <div class="table-responsive">
-						                  <table class="table table-hover">
-						                    <thead>
-						                      <tr class="text-center">
-						                        <th>번호</th>
-						                        <th>아이디</th>
-						                        <th>반려견</th>
-						                        <th>내용</th>
-						                        <th>신청취소</th>
-						                      </tr>
-						                    </thead>
-						                  <tbody>
-
-											 <tr class="text-center">
-												<td><b>ddd</b></td>
-												<td>ddd</td>  
-												<td>ddd</td>
-												<td>ddd</td>
-											
-											</tr>											
-										</tbody>
-					                  </table>
-					                </div>		     
-								</div> <!-- modal-body -->
-									<div class="modal-footer">
-										<button type="button" class="btn btn-outline-primary"
-											data-dismiss="modal">닫기</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- chat modal END -->
-						
-						
-    		
     		
     			</div>
 			</div>

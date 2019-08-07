@@ -18,7 +18,7 @@ $(document).ready(function(){
     }
     
     var textarea = document.getElementById("messageWindow");
-    var webSocket = new WebSocket('ws://192.168.1.12:8080/broadcasting'); /* 서버 IP 주소에 맞게 변경 */
+    var webSocket = new WebSocket('ws://192.168.219.111:8080/broadcasting'); /* 서버 IP 주소에 맞게 변경 */
     var inputMessage = document.getElementById('inputMessage');
     webSocket.onerror = function(event) {
         onError(event)
@@ -48,7 +48,7 @@ $(document).ready(function(){
             
         var user = document.getElementById(''+sender+'');
         
-        if(user==null) {        		
+        if(user==null && postID == channel) {        		
         	$(".onUser").append(onUser);
         	 webSocket.send($("#chat_id").val() + "|" + inputMessage.value + "|" + postID + "|" + "입장"); 
         	 
@@ -133,35 +133,45 @@ $(document).ready(function(){
                 } 
                 /* 1대1 채팅 수락후 */
                 else if(content.match("@")) {
-                	// 보낸 사람이 나인 경우
-                	if($("#chat_id").val()==sender) {
-                		var message = content.split("@");
-                		var receiver = message[1];
-                		var connectChat = document.getElementById('connectChat');
+            		var message = content.split("@");
+            		var receiver = message[1];
+            		var connectChat = document.getElementById('connectChat');
+            		
+                    if (message[2].trim() == "") {
+                    	return;
+                    } else {
+                        // 보낸 사람이 나인 경우
+                    	if($("#chat_id").val()==sender) {
 
-                		if(connectChat==null) {
-                			$("#messageWindow").html($("#messageWindow").html()+"<p class='chatNotice' id='connectChat'>" + receiver + "님과의 1대1채팅이 연결되었습니다.</p>");
-                		}
-                		
-                		inputMessage.value="@"+receiver+"@";
-                		inputMessage.focus();
-                	}
-                	// 받는 사람이 나인 경우
-                	else if (content.match(("@" + $("#chat_id").val() + "@"))) { 
-                		var connectChat = document.getElementById('connectChat');
+                    		if(connectChat==null) {
+                    			$("#messageWindow").html($("#messageWindow").html()+"<p class='chatNotice' id='connectChat'>" + receiver + "님과의 1대1채팅이 연결되었습니다.</p>");
+                                var elem = document.getElementById('messageWindow');
+                                elem.scrollTop = elem.scrollHeight;
+                    		}
+                    		
+                    		inputMessage.value="@"+receiver+"@";
+                    		inputMessage.focus();
+                    	}
+                    	// 받는 사람이 나인 경우
+                    	else if (content.match(("@" + $("#chat_id").val() + "@"))) { 
+                    		var connectChat = document.getElementById('connectChat');
 
-                		if(connectChat==null) {
-                			$("#messageWindow").html($("#messageWindow").html()+"<p class='chatNotice' id='connectChat'>" + sender + "님과의 1대1채팅이 연결되었습니다.</p>");
-                		}
-                		
-                		inputMessage.value="@"+sender+"@";
-                		$("#messageWindow").html($("#messageWindow").html() 
-                            + "<p class='triangle-border left' style='color:cadetblue;'>"
-                            + sender + content.replace("@" + $("#chat_id").val() + "@", "(1대1) :") + "</p>");
-	                    var elem = document.getElementById('messageWindow');
-	                    elem.scrollTop = elem.scrollHeight;
-	                    inputMessage.focus();
-                	}
+                    		if(connectChat==null) {
+                    			$("#messageWindow").html($("#messageWindow").html()+"<p class='chatNotice' id='connectChat'>" + sender + "님과의 1대1채팅이 연결되었습니다.</p>");
+                                var elem = document.getElementById('messageWindow');
+                                elem.scrollTop = elem.scrollHeight;
+                    		}
+                    		
+                    		inputMessage.value="@"+sender+"@";
+                    		$("#messageWindow").html($("#messageWindow").html() 
+                                + "<p class='triangle-border left' style='color:cadetblue;'>"
+                                + sender + content.replace("@" + $("#chat_id").val() + "@", "(1대1) :") + "</p>");
+    	                    var elem = document.getElementById('messageWindow');
+    	                    elem.scrollTop = elem.scrollHeight;
+    	                    inputMessage.focus();
+                    	}                    	
+                    }
+
                 } 
                 
                 
