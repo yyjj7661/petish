@@ -15,10 +15,8 @@ import com.community.petish.dog.gatherboard.domain.DogSpeciesVO;
 import com.community.petish.dog.gatherboard.domain.MemberVO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherListDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO;
-import com.community.petish.dog_gatherboard.mapper.DogGatherCommentMapper;
-import com.community.petish.dog_gatherboard.mapper.DogGatherMapper;
-
-import lombok.extern.log4j.Log4j;
+import com.community.petish.dog.gatherboard.mapper.DogGatherCommentMapper;
+import com.community.petish.dog.gatherboard.mapper.DogGatherMapper;
 
 @Service("dogGatherService")
 public class DogGatherServiceImpl implements DogGatherService {

@@ -1,20 +1,16 @@
 package com.community.petish.dog.gatherboard.controller;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.petish.dog.gatherboard.domain.Criteria;
@@ -22,12 +18,10 @@ import com.community.petish.dog.gatherboard.domain.DogGatherParticipantVO;
 import com.community.petish.dog.gatherboard.domain.DogGatherPostVO;
 import com.community.petish.dog.gatherboard.domain.MemberVO;
 import com.community.petish.dog.gatherboard.dto.request.CommentPageDTO;
-import com.community.petish.dog.gatherboard.dto.request.DogGatherChatListDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherListDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherPostDTO;
 import com.community.petish.dog.gatherboard.dto.request.PageDTO;
-import com.community.petish.dog.gatherboard.service.DogGatherChatService;
 import com.community.petish.dog.gatherboard.service.DogGatherCommentService;
 import com.community.petish.dog.gatherboard.service.DogGatherService;
 
