@@ -11,8 +11,6 @@ import com.community.petish.dog.gatherboard.dto.request.DogGatherListDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO;
 
 public interface DogGatherMapper {
-	int userCheckMember(MemberVO memberVO);
-	String pickNameMember(MemberVO memberVO);
 	List<DogGatherPostVO> getDogGatherList();
 	List<DogGatherListDTO> getListWithPaging(Criteria cri);
 	int getDogGatherPostCount(Criteria cri);

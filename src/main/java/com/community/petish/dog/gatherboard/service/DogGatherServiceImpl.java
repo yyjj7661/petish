@@ -181,19 +181,4 @@ public class DogGatherServiceImpl implements DogGatherService {
 		return list;
 	}
 
-	//테스트 멤버
-	@Override
-	public int userCheckMember(MemberVO vo) {
-		int res = dogGatherMapper.userCheckMember(vo);
-		System.out.println("res="+res);
-		return res;
-	}
-
-	//테스트 멤버
-	@Override
-	public String pickNameMember(MemberVO vo) {
-		String nickname = dogGatherMapper.pickNameMember(vo);
-		return nickname;
-	}
-
 }

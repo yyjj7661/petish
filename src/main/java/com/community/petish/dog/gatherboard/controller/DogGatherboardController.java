@@ -24,6 +24,7 @@ import com.community.petish.dog.gatherboard.dto.request.DogGatherPostDTO;
 import com.community.petish.dog.gatherboard.dto.request.PageDTO;
 import com.community.petish.dog.gatherboard.service.DogGatherCommentService;
 import com.community.petish.dog.gatherboard.service.DogGatherService;
+import com.community.petish.user.dto.response.LoginedUser;
 
 @Controller
 @RequestMapping("/dog/gatherboard")
@@ -34,55 +35,7 @@ public class DogGatherboardController {
 	
 	@Autowired
 	private DogGatherCommentService dogGatherCommentService;
-		
-	//테스트 멤버
-	@RequestMapping(value = "loginForm")
-	public String loginForm() {
-	   return "petish/dog/gatherboard/loginForm";
-	}
-	
-	//테스트 멤버
-	 @RequestMapping(value = "memberCheck")
-	   public String userCheckMember(MemberVO vo, HttpSession session, HttpServletResponse response) {
-	      int res = dogGatherService.userCheckMember(vo);
-	      
-	      response.setCharacterEncoding("utf-8");
-	      response.setContentType("text/html; charset=utf-8");
-	      try {
-	         PrintWriter writer = response.getWriter();
-	         
-	         if(res == 1) {
-	            session.setAttribute("USERNAME", vo.getUsername());
-	            Long userId = dogGatherService.getUserID(vo.getUsername());
-	            session.setAttribute("USER_ID", userId);
-	            String name = dogGatherService.pickNameMember(vo);
-	            session.setAttribute("nickName",name);
-	            writer.write("<script>location.href='./';</script>");
-	         }else {
-	            writer.print("<script>location.href='./loginForm';</script>");
-	         }
-	         
-	      }catch(Exception e) {
-	         e.printStackTrace();
-	      }
-	      
-	      return null;
-	   }
-	 
-	 //테스트멤버 로그아웃
-		@RequestMapping(value = "logout")
-		public String logout(HttpSession session, Criteria cri, Model model) {
-			session.invalidate();
-			int total = dogGatherService.getDogGatherPostCount(cri);
-			List<DogGatherListDTO> dogGatherDTOList = dogGatherService.getListWithPaging(cri);
-		
-			System.out.println("total="+total);
-			model.addAttribute("list",dogGatherDTOList);
-			model.addAttribute("pageMaker", new PageDTO(cri, total));
-			return "petish/dog/gatherboard/list";
-		}	 
-	 
-	 
+			 
 	//게시글 리스트
 	@RequestMapping("")
 	public String dogGatherboardList(HttpSession session, Criteria cri, Model model, HttpServletResponse response) throws Exception {
@@ -100,8 +53,9 @@ public class DogGatherboardController {
 	//게시글 조회
 	@RequestMapping(value = "/{ID}")
 	public ModelAndView dogGatherboardDetail(@PathVariable("ID") Long postID, HttpSession session, Criteria cri, HttpServletResponse response) throws Exception {
-		
-		if(session.getAttribute("USERNAME") == null || session.getAttribute("USERNAME").equals("")) {
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+
+		if(user == null) {
 			response.setContentType("text/html charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

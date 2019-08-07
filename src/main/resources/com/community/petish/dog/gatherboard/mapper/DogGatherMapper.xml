@@ -50,15 +50,7 @@ NOCACHE;
 create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc); 
 -->
 <mapper namespace="com.community.petish.dog.gatherboard.mapper.DogGatherMapper">
-	
-   <select id="userCheckMember" resultType="int">
-      select count(*) from USER_TB where username = #{username}
-   </select>
-   
-   <select id="pickNameMember" resultType="String">
-      select NICKNAME from USER_TB where username = #{username}
-   </select>
-   
+	   
 	<select id="getDogGatherList" resultType="com.community.petish.dog.gatherboard.domain.DogGatherPostVO">
 		select * from DOG_GATHER_POST_TB where DELETED = 0 order by ID desc
 	</select>
