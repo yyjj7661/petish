@@ -14,7 +14,7 @@ NOCACHE;
 create index IDX_DOG_GATHER_COMMENT on DOG_GATHER_COMMENT_TB(POST_ID  desc, ID asc);  
 
 -->
-<mapper namespace="com.community.petish.dog_gatherboard.mapper.DogGatherCommentMapper">
+<mapper namespace="com.community.petish.dog.gatherboard.mapper.DogGatherCommentMapper">
 
 	<!-- 댓글 추가 -->
 	<insert id="insertComment">
