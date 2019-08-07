@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.community.petish.dog.gatherboard.domain.DogSpeciesVO, com.community.petish.dog.gatherboard.service.DogGatherService" %>
+<%@ page import="java.util.*, com.community.petish.dog.gatherboard.domain.DogSpeciesVO, 
+			com.community.petish.dog.gatherboard.service.DogGatherService,
+			com.community.petish.user.dto.response.LoginedUser" %>
 <%
-	String userName = (String)session.getAttribute("USERNAME");
+	LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+	String userName = user.getUsername();
 %>
 <!DOCTYPE html>
 <html>
