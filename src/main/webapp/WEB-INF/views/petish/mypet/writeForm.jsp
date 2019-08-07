@@ -52,7 +52,7 @@
 	<div class="bar pt-0">
 		<div class="col-md-8 mx-auto">
 		
-			<div id="mypetPictureExample">
+			<div id="mypetPictureExample" class="col-sm-12">
 				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
 					<div class="carousel-inner">
 						
