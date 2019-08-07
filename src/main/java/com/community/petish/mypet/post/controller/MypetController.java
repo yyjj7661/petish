@@ -10,7 +10,7 @@ public class MypetController {
 	
 	@GetMapping
 	public String mypetList() {
-		return "petish/mypet/list";
+		return "petish/mypet/index";
 	}
 	
 	@RequestMapping("/writeForm")
