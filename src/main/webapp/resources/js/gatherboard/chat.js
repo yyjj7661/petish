@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+    var elem = document.getElementById('messageWindow');
+    elem.scrollTop = elem.scrollHeight;
 });
 	var postID = $("#post_id").val();
 	
@@ -8,7 +9,6 @@ $(document).ready(function(){
         if ($(".chat").attr("src") == "/resources/img/gatherboard/chat.png") {
             $(".chat").attr("src", "/resources/img/gatherboard/chatHide.png");
             $("#chat_box").css("display", "block");
-            webSocket.send($("#chat_id").val() + "|" + username + "님이 채팅방에 접속하셨습니다." + "|" + postID + "|" + "입장"); 
             inputMessage.focus();
         } else if ($(".chat").attr("src") == "/resources/img/gatherboard/chatHide.png") {
             $(".chat").attr("src", "/resources/img/gatherboard/chat.png");
@@ -176,8 +176,7 @@ $(document).ready(function(){
                 else {
                 	/* 본인을 제외하고 메세지 출력 */
                 	/* 글 번호에 따라 채팅 채널 구분 */
-                	//if($("#chat_id").val()!=sender && postID == channel) {     
-                	if(postID == channel) { 
+                	if($("#chat_id").val()!=sender && postID == channel) {     
                 		$("#messageWindow").html($("#messageWindow").html()
                 			+ "<p class='triangle-border left'>" + sender + " : " + content + "</p>");
                         var elem = document.getElementById('messageWindow');
@@ -239,6 +238,4 @@ $(document).ready(function(){
 		}
 	}
 
-
-    
     
