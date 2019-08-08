@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import com.community.petish.community.user.mapper.UserMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.community.petish.user.domain.User;
-import com.community.petish.user.dto.request.SaveUserParams;
-import com.community.petish.user.dto.response.UserDetailResponse;
+import com.community.petish.community.user.domain.User;
+import com.community.petish.community.user.dto.request.SaveUserParams;
+import com.community.petish.community.user.dto.response.UserDetailResponse;
 
 import lombok.extern.log4j.Log4j;
 
@@ -23,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class UserMapperTest {
 
 	@Autowired
-	UserMapper userMapper;
+  UserMapper userMapper;
 	
 	@BeforeEach
 	void deleteUsers() {

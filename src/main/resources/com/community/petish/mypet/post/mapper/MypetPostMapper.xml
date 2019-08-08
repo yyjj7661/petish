@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.community.petish.mypet.post.mapper.MypetPostMapper">
+<mapper namespace="com.community.petish.community.mypet.post.mapper.MypetPostMapper">
 
-	<resultMap type="com.community.petish.mypet.post.dto.response.MypetPostDetailResponse" id="mypetPostDetailResponse">
+	<resultMap type="com.community.petish.community.mypet.post.dto.response.MypetPostDetailResponse" id="mypetPostDetailResponse">
 		<result property="postId" column="id"/>
 		<result property="title" column="title" />
 		<result property="content" column="content" />
@@ -12,7 +12,7 @@
 		<result property="userId" column="user_id" />	
 	</resultMap>
 
-	<insert id="savePost" parameterType="com.community.petish.mypet.post.dto.request.SaveMypetPostParams">
+	<insert id="savePost" parameterType="com.community.petish.community.mypet.post.dto.request.SaveMypetPostParams">
 		
 		INSERT INTO mypet_post_tb
 			(id, title, content, image, user_id)
@@ -47,14 +47,14 @@
 			
 	</insert>
 	
-	<select id="findIsLikePressedOnPost" resultType="com.community.petish.mypet.post.domain.MypetPostLike">
+	<select id="findIsLikePressedOnPost" resultType="com.community.petish.community.mypet.post.domain.MypetPostLike">
 		SELECT *
 		FROM mypet_post_like_tb
 		WHERE post_id = #{postId}
 		AND user_id = #{userId}
 	</select>
 	
-	<select id="findLikesByPostId" resultType="com.community.petish.mypet.post.dto.response.MypetPostLikeResponse">
+	<select id="findLikesByPostId" resultType="com.community.petish.community.mypet.post.dto.response.MypetPostLikeResponse">
 		SELECT id, post_id, user_id
 		FROM mypet_post_like_tb
 		WHERE post_id = #{postId}
@@ -75,7 +75,7 @@
 		AND user_id = #{userId}
 	</update>
 	
-	<select id="findByPage" parameterType="java.lang.Integer" resultType="com.community.petish.mypet.post.domain.MypetPost" >
+	<select id="findByPage" parameterType="java.lang.Integer" resultType="com.community.petish.community.mypet.post.domain.MypetPost" >
 		<![CDATA[
 		SELECT id, title, content, image, created_date, user_id FROM
 			(

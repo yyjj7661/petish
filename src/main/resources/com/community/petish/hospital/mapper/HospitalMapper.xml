@@ -3,8 +3,8 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.community.petish.hospital.mapper.HospitalMapper">
- 	<resultMap type="com.community.petish.hospital.domain.HospitalVO" id="hospitalResultMap">
+<mapper namespace="com.community.petish.community.hospital.mapper.HospitalMapper">
+ 	<resultMap type="com.community.petish.community.hospital.domain.HospitalVO" id="hospitalResultMap">
  		<result property="id" column="ID"/>
  		<result property="hospital_name" column="HOSPITAL_NAME"/>
  		<result property="hospital_addr" column="HOSPITAL_ADDR"/>
@@ -19,7 +19,7 @@
  		
  	</resultMap>
  	
- 	<resultMap type="com.community.petish.hospital.domain.ListDTO" id="listResultMap">
+ 	<resultMap type="com.community.petish.community.hospital.domain.ListDTO" id="listResultMap">
  		<result property="id" column="ID"/>
  		<result property="hospital_name" column="HOSPITAL_NAME"/>
  		<result property="hospital_addr" column="HOSPITAL_ADDR"/>

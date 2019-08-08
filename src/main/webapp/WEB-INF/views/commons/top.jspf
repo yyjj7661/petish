@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" %>
-<%@ page import="com.community.petish.user.dto.response.LoginedUser"%>
+<%@ page import="com.community.petish.community.user.dto.response.LoginedUser"%>
 <link rel="stylesheet" href="/resources/css/top/top.css">
 <link rel="stylesheet" href="/resources/css/top/modal.css?after">
 <link rel="stylesheet" href="/resources/vendor/font-awesome/css/font-awesome.min.css">

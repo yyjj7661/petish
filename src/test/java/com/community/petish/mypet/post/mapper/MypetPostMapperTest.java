@@ -1,8 +1,6 @@
 package com.community.petish.mypet.post.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.community.petish.community.mypet.post.mapper.MypetPostMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
 
 @Log4j
 @ExtendWith(SpringExtension.class)
@@ -18,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MypetPostMapperTest {
 
 	@Autowired
-	MypetPostMapper mypetPostMapper;
+  MypetPostMapper mypetPostMapper;
 	
 	@Test
 	void saveTest() {
