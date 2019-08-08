@@ -26,6 +26,7 @@ public interface DogGatherService {
 	public int getDogGatherParticipantCount(Long postID);
 	public Long getUserID(String username);
 	public String getUserName(Long userID);
+	public String getUserNickName(Long userID);
 	public Long getDogSpeciesID(String dogSpecies);
 	public String getDogSpecies(Long speciesID);
 	public Long getDogSizeID(Long speciesID);
