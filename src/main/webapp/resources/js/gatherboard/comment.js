@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
-		commentList();
+	commentList();
+	var bar = document.getElementsByClassName('bg-gray');
+
 });
 
 //댓글 목록
@@ -9,9 +11,7 @@ function commentList(param) {
 	//alert("params"+params);
 	$('#commentCount').empty();
 	$('#commentList').empty();
-	
-	//alert('commentList Test Start!');
-	
+
 	$.ajax({
 		url:'/dog/gatherboard/commentList',
 		type:'GET',
@@ -19,6 +19,12 @@ function commentList(param) {
 		contentType:'application/x-www-form-urlencoded; charset=UTF-8',
 		dataType:"json",
 		success:function(result) {
+			if(result=="" || result==null) {
+				$('#commentList').append("<p style='margin:auto'>등록된 댓글이 없습니다.</p>");	
+				$("#commentSection").removeClass("bg-gray");
+				return;
+			}
+			$("#commentSection").addClass("bg-gray");
 			for(var i in result) {
 				var count = '댓글 개수 : ' + result[i].count;
 				//var image = '';
@@ -60,7 +66,6 @@ function commentList(param) {
 			alert("ajax통신 실패!!");
 		}
 	});
-	
 }
 
 var pageNum = 1;
@@ -69,7 +74,6 @@ var commentPageFooter = $(".comment-footer");
 //댓글 페이지 번호 출력
 function commentCount() {
 	var commentCnt = document.getElementById('commentCountVal').value;
-	//alert(replyCnt);
 		
 	var endNum = Math.ceil(pageNum / 10.0) * 10;
 	var startNum = endNum - 9;

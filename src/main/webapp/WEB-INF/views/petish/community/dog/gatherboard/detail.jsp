@@ -342,7 +342,7 @@
 					<!-- comment -->	
 						<div id="comments">
 							<h4 class="text-uppercase" id="commentCount"></h4>
-							<section class="bar bg-gray mb-0">
+							<section class="bar mb-0" id="commentSection">
 								<div id="commentList" class="row comment">
 								</div>
 						

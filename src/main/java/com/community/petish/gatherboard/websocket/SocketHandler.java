@@ -45,8 +45,7 @@ public class SocketHandler extends TextWebSocketHandler {
       super.handleMessage(session, message);
 
       Map<String, Object> map = session.getAttributes();
-      Object userName = (Object) map.get("id");
-      logger.info("전송자 아이디 : " + userName);
+      logger.info("map : " + map);
 
       for (WebSocketSession client_session : this.sessionSet) {
          if (client_session.isOpen()) {
