@@ -1,6 +1,5 @@
 package com.community.petish.dog.gatherboard.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,9 +30,6 @@ import lombok.extern.log4j.Log4j;
 public class DogGatherCommentController {
 
 	@Autowired
-	private DogGatherService dogGatherService;
-	
-	@Autowired
 	private DogGatherCommentService dogGatherCommentService;
 
 	//댓글 전체 조회
@@ -41,7 +37,7 @@ public class DogGatherCommentController {
 	@ResponseBody
 	public String getCommetListJSON(Criteria cri, DogGatherCommentVO comment) {
 		System.out.println("getCommentListJSON Start!!!!!!!!");
-		System.out.println("pageNum="+cri.getPageNum());
+		log.info("pageNum="+cri.getPageNum());
 		List<DogGatherCommentDTO> commentDTOList = dogGatherCommentService.getCommentList(cri, comment.getPOST_ID());
 
 		for(int i=0; i<commentDTOList.size(); i++) {

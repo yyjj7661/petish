@@ -47,7 +47,7 @@ public class DogGatherboardController {
 		System.out.println("dogGatherDTOList="+dogGatherDTOList);
 		model.addAttribute("list",dogGatherDTOList);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		return "petish/dog/gatherboard/list";
+		return "petish/community/dog/gatherboard/list";
 	}
 		   
 	//게시글 조회
@@ -89,7 +89,7 @@ public class DogGatherboardController {
 
 			System.out.println("participantList="+participantDTOList);
 			result.addObject("participantList",participantDTOList);
-			result.setViewName("petish/dog/gatherboard/detail");
+			result.setViewName("petish/community/dog/gatherboard/detail");
 		}
 		else {
 			response.setContentType("text/html charset=UTF-8");
@@ -108,7 +108,7 @@ public class DogGatherboardController {
 	@RequestMapping("/writeForm")
 	public ModelAndView dogGatherboardWriteForm() throws Exception {
 		ModelAndView result = new ModelAndView();
-		result.setViewName("petish/dog/gatherboard/write_form");
+		result.setViewName("petish/community/dog/gatherboard/write_form");
 		
 		return result;
 	}
@@ -127,7 +127,7 @@ public class DogGatherboardController {
 		model.addAttribute("size",size);
 		model.addAttribute("species",species);
 		
-		return "petish/dog/gatherboard/modify_form";
+		return "petish/community/dog/gatherboard/modify_form";
 	}
 	
 	//게시글 작성
@@ -167,7 +167,7 @@ public class DogGatherboardController {
 		else {			
 			System.out.println("InsertResult="+res);
 			System.out.println("게시글 추가 실패!");
-			result.setViewName("petish/dog/gatherboard/write_form");
+			result.setViewName("petish/community/dog/gatherboard/write_form");
 		}
 		
 		return result;
@@ -224,7 +224,7 @@ public class DogGatherboardController {
 			result.addObject("list",dogGatherDTOList);
 			result.addObject("pageMaker", new PageDTO(cri, total));
 
-			result.setViewName("petish/dog/gatherboard/list");
+			result.setViewName("petish/community/dog/gatherboard/list");
 			return result;
 		}
 		else {
@@ -345,7 +345,7 @@ public class DogGatherboardController {
 			
 			model.addAttribute("list",dogGatherDTOList);
 			model.addAttribute("pageMaker", new PageDTO(cri, total));
-			result.setViewName("petish/dog/gatherboard/list");
+			result.setViewName("petish/community/dog/gatherboard/list");
 			
 			return result;
 		}
