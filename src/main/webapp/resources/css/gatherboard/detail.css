@@ -1,4 +1,4 @@
-/* 스크롤바 */
+/* �뒪�겕濡ㅻ컮 */
 ::-webkit-scrollbar{width: 16px;}
 ::-webkit-scrollbar-track {background-color:#f1f1f1;}
 ::-webkit-scrollbar-thumb {background-color:lightblue;}
@@ -57,6 +57,10 @@ width:16px;height:16px;background:lightblue;}
     color: white;
     border-radius: 10px 10px 0 0;
     text-align: center;
+}
+
+#participantList-top {
+	margin-bottom: 15px;
 }
 
 .chatNotice {
@@ -144,17 +148,17 @@ button.btn.btn-template-outlined.btn-sm {
 	width: 500px;
 }
 
-/* 수정버튼 */
+/* �닔�젙踰꾪듉 */
 #modifyBtn {
 	float: left;
 }
 
-/* 삭제버튼 */
+/* �궘�젣踰꾪듉 */
 #deleteBtn {
 	float: left;
 }
 
-/* 신고버튼 */
+/* �떊怨좊쾭�듉 */
 #report-btn {
 	float: right;
 	margin-bottom: 30px;

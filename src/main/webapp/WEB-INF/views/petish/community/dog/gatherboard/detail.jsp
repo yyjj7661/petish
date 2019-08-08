@@ -205,7 +205,7 @@
 										<%
 											} else {
 										%>
-										<P><i class="fa fa-user"></i> 총원 : <%= participantCount %>명</P>
+										<P id="participantList-top"><i class="fa fa-user"></i> 총원 : <%= participantCount %>명</P>
 
 						                <div class="table-responsive">
 						                  <table class="table table-hover">
