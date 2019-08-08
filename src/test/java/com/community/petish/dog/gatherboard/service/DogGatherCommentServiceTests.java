@@ -24,7 +24,7 @@ public class DogGatherCommentServiceTests {
 	@Test
 	public void testDogGatherDTOList() {
 		Criteria cri = new Criteria();
-		Long postID = 98L;
+		Long postID = 100L;
 		List<DogGatherCommentDTO> list = dogGatherCommentService.getCommentList(cri, postID);
 	}
 }

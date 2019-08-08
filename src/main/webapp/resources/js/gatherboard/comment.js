@@ -36,8 +36,8 @@ function commentList(param) {
 				}
 				output += '<h5 class="text-uppercase">' + result[i].nickname + '</h5>';
 				output += '<p class="posted">';
-				output += '<i class="fa fa-clock-o"></i> 등록일: ' + result[i].created_DATE ;
-				output += '&nbsp;&nbsp;&nbsp;&nbsp;수정일: ' + result[i].updated_DATE + '</p>';
+				output += '<i class="fa fa-clock-o"></i> 등록일: ' + result[i].CREATED_DATE ;
+				output += '&nbsp;&nbsp;&nbsp;&nbsp;수정일: ' + result[i].UPDATED_DATE + '</p>';
 				output += '<input type="hidden" class="form-control" id="commentContent'+result[i].id+'" value="'+result[i].content+'">';
 				output += '<li id="commentBlock'+result[i].id+'" style="display:block">';
 				output += '<p id="commentInnerText'+result[i].id+'">' + result[i].content +'</p>';   

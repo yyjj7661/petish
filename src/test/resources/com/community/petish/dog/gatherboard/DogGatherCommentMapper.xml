@@ -36,7 +36,10 @@ create index IDX_DOG_GATHER_COMMENT on DOG_GATHER_COMMENT_TB(POST_ID  desc, ID a
 			from 
 				(
 				select /*+INDEX(DOG_GATHER_COMMENT_TB IDX_DOG_GATHER_COMMENT)*/
-			 		 rownum rn, cnt.POST_ID, cnt.ID, cnt.CONTENT, cnt.USER_ID, cnt.CREATED_DATE, cnt.UPDATED_DATE, cnt.DELETED, member.NICKNAME
+			 		 rownum rn, cnt.POST_ID, cnt.ID, cnt.CONTENT, cnt.USER_ID,
+			 		 cnt.CREATED_DATE, 
+			 		 cnt.UPDATED_DATE, 
+			 		 cnt.DELETED, member.NICKNAME
 			    from DOG_GATHER_COMMENT_TB cnt, USER_TB member, dog_gather_post_tb post
 			    where cnt.POST_ID = #{POST_ID} 
 			    	and cnt.ID > 0 
