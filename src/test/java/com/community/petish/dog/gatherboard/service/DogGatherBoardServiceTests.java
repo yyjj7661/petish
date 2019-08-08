@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.community.petish.dog.gatherboard.domain.Criteria;
 import com.community.petish.dog.gatherboard.domain.DogSpeciesVO;
+import com.community.petish.dog.gatherboard.dto.response.DogGatherListDTO;
 import com.community.petish.dog.gatherboard.dto.response.DogGatherParticipantDTO;
 
 import lombok.extern.log4j.Log4j;
@@ -35,5 +37,12 @@ public class DogGatherBoardServiceTests {
 	public void testParticipantDTOList() {
 		List<DogGatherParticipantDTO> participantDTOList = dogGatherService.getDogGatherParticipantList(100L);
 		log.info("ParticipantList="+participantDTOList);
+	}
+	
+	@Test
+	public void testListWithPaging() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("예지");
+		List<DogGatherListDTO> dogGatherDTOList = dogGatherService.getListWithPaging(cri);
 	}
 }
