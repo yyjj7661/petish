@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.community.petish.dog.gatherboard.domain.Criteria;
 import com.community.petish.dog.gatherboard.domain.DogGatherCommentVO;
+import com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO;
 import com.community.petish.dog.gatherboard.mapper.DogGatherCommentMapper;
 
 @Service("dogGatherCommentService")
@@ -28,8 +29,8 @@ public class DogGatherCommentServiceImpl implements DogGatherCommentService{
 	}
 
 	@Override
-	public List<DogGatherCommentVO> getCommentList(Criteria cri, Long postID) {
-		List<DogGatherCommentVO> list = dogGatherCommentMapper.getCommentList(cri, postID);
+	public List<DogGatherCommentDTO> getCommentList(Criteria cri, Long postID) {
+		List<DogGatherCommentDTO> list = dogGatherCommentMapper.getCommentList(cri, postID);
 		return list;
 	}
 

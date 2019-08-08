@@ -100,7 +100,7 @@
 										class="img-fluid rounded-circle"></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown"> <%= userName %></a>
+											<a href="#" data-toggle="dropdown" class="dropdown"> <%= userNickName %></a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
 												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
@@ -367,7 +367,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<label for="name">아이디<span class="required text-primary">*</span></label> 
-											<input id="USERNAME" type="text" class="form-control" value=<%= userName %> readonly>
+											<input id="NICKNAME" type="text" class="form-control" value=<%= userNickName %> readonly>
 										</div>
 									</div>
 								</div>

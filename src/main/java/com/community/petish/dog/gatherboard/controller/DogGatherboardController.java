@@ -60,7 +60,7 @@ public class DogGatherboardController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('로그인이 필요합니다!');");
-			out.println("history.go(-1);");
+			out.println("location.href='/dog/gatherboard';");
 			out.println("</script>");
 			out.close();
 		}

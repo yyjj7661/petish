@@ -30,15 +30,19 @@ create index IDX_DOG_GATHER_COMMENT on DOG_GATHER_COMMENT_TB(POST_ID  desc, ID a
 	</select>
 	
 	<!-- 댓글 index -->
-	<select id="getCommentList" resultType="com.community.petish.dog.gatherboard.domain.DogGatherCommentVO">
+	<select id="getCommentList" resultType="com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO">
 		<![CDATA[
-			select ID, POST_ID, CONTENT, USER_ID, CREATED_DATE, UPDATED_DATE, DELETED
+			select ID, POST_ID, CONTENT, USER_ID, CREATED_DATE, UPDATED_DATE, DELETED, NICKNAME
 			from 
 				(
 				select /*+INDEX(DOG_GATHER_COMMENT_TB IDX_DOG_GATHER_COMMENT)*/
-			  	  rownum rn, POST_ID, ID, CONTENT, USER_ID, CREATED_DATE, UPDATED_DATE, DELETED
-			    from DOG_GATHER_COMMENT_TB
-			    where POST_ID = #{POST_ID} and ID > 0 and DELETED = 0
+			 		 rownum rn, cnt.POST_ID, cnt.ID, cnt.CONTENT, cnt.USER_ID, cnt.CREATED_DATE, cnt.UPDATED_DATE, cnt.DELETED, member.NICKNAME
+			    from DOG_GATHER_COMMENT_TB cnt, USER_TB member, dog_gather_post_tb post
+			    where cnt.POST_ID = #{POST_ID} 
+			    	and cnt.ID > 0 
+			    	and cnt.DELETED = 0 
+			    	and cnt.user_id = member.id 
+			 		and cnt.post_id = post.id
 			    and rownum <= #{cri.pageNum} * #{cri.amount} 
 			    )	 
 		    where rn > (#{cri.pageNum} -1) * #{cri.amount} and DELETED = 0

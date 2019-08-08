@@ -29,12 +29,12 @@ function commentList(param) {
 				output += '<div class="col-sm-3 col-md-2 text-center-xs">'; //프로필 이미지
 				output += '<p><img src="/resources/img/gatherboard/user.png" class="img-fluid rounded-circle" style="max-width:80%"></p>'; 
 				output += '</div>';
-				if(result[i].username == $("#USERNAME").val()) { 
+				if(result[i].nickname == $("#NICKNAME").val()) { 
 					output += '<div class="col-sm-9 col-md-10">';
 				} else {					
 					output += '<div class="col-sm-9 col-md-10" style="height:150px">'; 
 				}
-				output += '<h5 class="text-uppercase">' + result[i].username + '</h5>';
+				output += '<h5 class="text-uppercase">' + result[i].nickname + '</h5>';
 				output += '<p class="posted">';
 				output += '<i class="fa fa-clock-o"></i> 등록일: ' + result[i].created_DATE ;
 				output += '&nbsp;&nbsp;&nbsp;&nbsp;수정일: ' + result[i].updated_DATE + '</p>';
@@ -42,7 +42,7 @@ function commentList(param) {
 				output += '<li id="commentBlock'+result[i].id+'" style="display:block">';
 				output += '<p id="commentInnerText'+result[i].id+'">' + result[i].content +'</p>';   
 				//본인이 작성한 댓글일 경우
-				if(result[i].username == $("#USERNAME").val()) { 
+				if(result[i].nickname == $("#NICKNAME").val()) { 
 					output += '<button id="commentUpdateBtn" class="btn btn-template-outlined" onclick="button('+result[i].id+')" style="float:right"><i class="fa fa-reply"></i> 수정</button></li>';
 				}
 				output += '<input id="commentCloseBtn'+result[i].id+'" onclick="closeComment('+result[i].id+')" type="hidden" class="btn btn-template-outlined" value="닫기" style="float:right; margin-top:20px">';	

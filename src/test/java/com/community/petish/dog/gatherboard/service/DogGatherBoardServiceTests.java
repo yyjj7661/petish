@@ -8,19 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.community.petish.dog.gatherboard.domain.Criteria;
 import com.community.petish.dog.gatherboard.domain.DogGatherPostVO;
 import com.community.petish.dog.gatherboard.domain.DogSpeciesVO;
+import com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO;
 
 import lombok.extern.log4j.Log4j;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/spring-security.xml" })
 @Log4j
 public class DogGatherBoardServiceTests {
 
 	@Autowired
 	private DogGatherService dogGatherService;
+	
+	@Autowired
+	private DogGatherCommentService dogGatherCommentService;
 	
 	
 	@Test

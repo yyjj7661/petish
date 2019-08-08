@@ -15,12 +15,12 @@ import com.community.petish.dog.gatherboard.domain.DogSpeciesVO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherListDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherPostDTO;
+import com.community.petish.user.mapper.UserMapperTest;
 
 import lombok.extern.log4j.Log4j;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/spring-security.xml" })
 @Log4j
 public class DogGatherBoardMapperTests {
 	

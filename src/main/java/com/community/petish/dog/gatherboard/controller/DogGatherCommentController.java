@@ -23,8 +23,11 @@ import com.community.petish.dog.gatherboard.service.DogGatherCommentService;
 import com.community.petish.dog.gatherboard.service.DogGatherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.log4j.Log4j;
+
 @RequestMapping("/dog/gatherboard")
 @RestController
+@Log4j
 public class DogGatherCommentController {
 
 	@Autowired
@@ -39,32 +42,20 @@ public class DogGatherCommentController {
 	public String getCommetListJSON(Criteria cri, DogGatherCommentVO comment) {
 		System.out.println("getCommentListJSON Start!!!!!!!!");
 		System.out.println("pageNum="+cri.getPageNum());
-		List<DogGatherCommentVO> commentVoList = dogGatherCommentService.getCommentList(cri, comment.getPOST_ID());
-		
-		List<DogGatherCommentDTO> commentDTOList = new ArrayList<DogGatherCommentDTO>();
-		
-		for(int i=0; i<commentVoList.size(); i++) {
-			DogGatherCommentVO commentVO = commentVoList.get(i);
-			
-			//DELETED = 0 인 게시물만 보여준다
-			if(commentVO.getDELETED()==0) {
-				
-				String username = dogGatherService.getUserName(commentVO.getUSER_ID()); 
+		List<DogGatherCommentDTO> commentDTOList = dogGatherCommentService.getCommentList(cri, comment.getPOST_ID());
+
+		for(int i=0; i<commentDTOList.size(); i++) {
+			DogGatherCommentDTO commentDTO = commentDTOList.get(i);
+	
 				int count = dogGatherCommentService.getCommentCnt(comment.getPOST_ID());
 				
-				DogGatherCommentDTO dto = 
-						new DogGatherCommentDTO(commentVO.getID(), count, username, commentVO.getCONTENT(), 
-												commentVO.getCREATED_DATE(), commentVO.getUPDATED_DATE(), 
-												commentVO.getDELETED(), commentVO.getPOST_ID());
-				
-				commentDTOList.add(dto);
-			}
-			
+				commentDTO.setCOUNT(count);
 		}
 		String str = "";
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
+			System.out.println("commentDTOList="+commentDTOList);
 			str = mapper.writeValueAsString(commentDTOList);
 			System.out.println("str="+str);
 		}

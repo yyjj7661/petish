@@ -9,7 +9,7 @@ import com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO;
 public interface DogGatherCommentService {
 	public int insertComment(DogGatherCommentVO commentVO);
 	public DogGatherCommentVO getComment(Long commentID);
-	public List<DogGatherCommentVO> getCommentList(Criteria cri, Long postID);
+	public List<DogGatherCommentDTO> getCommentList(Criteria cri, Long postID);
 	public int modifyComment(DogGatherCommentVO commentVO);
 	public int removeCommet(Long commentID);
 	public int getCommentCnt(Long postID);
