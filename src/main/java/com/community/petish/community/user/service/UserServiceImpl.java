@@ -17,7 +17,6 @@ import com.community.petish.community.user.exception.NotLoginedException;
 import com.community.petish.community.user.exception.PasswordNotMatchException;
 import com.community.petish.community.user.exception.UserNotFoundException;
 import com.community.petish.community.user.mapper.UserMapper;
-import com.community.petish.user.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -53,9 +52,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public UserListResponse getUsers() {
-		
 		UserListResponse userListResponse = new UserListResponse(userMapper.findAll());
-		return userListResponse;
+	  return userListResponse;
 	}
 	
 	@Override

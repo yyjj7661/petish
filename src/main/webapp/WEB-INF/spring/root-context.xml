@@ -41,10 +41,12 @@
         </property>
     </bean>
 
-	<mybatis-spring:scan base-package="com.community.petish.*.mapper"/>
-	
-	<mybatis-spring:scan base-package="com.community.petish.*.*.mapper"/>
-	
+	<mybatis-spring:scan base-package="com.community.petish.community.*.mapper"/>
+	<mybatis-spring:scan base-package="com.community.petish.community.*.*.mapper"/>
+
+    <mybatis-spring:scan base-package="com.community.petish.admin.*.mapper"/>
+    <mybatis-spring:scan base-package="com.community.petish.admin.*.*.mapper" />
+
 	<context:component-scan base-package="com.community.petish" />
 
 </beans>

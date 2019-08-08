@@ -58,7 +58,7 @@ public class UserMapperTest {
 		Long id = userMapper.save(saveUserParams);
 		Long id2 = userMapper.save(saveUserParams2);
 		
-		List<UserDetailResponse> users = userMapper.findAll();
+		List<User> users = userMapper.findAll();
 		
 		assertThat(users.size()).isEqualTo(2);
 	}

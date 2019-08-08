@@ -12,7 +12,7 @@ public interface UserService {
 
 	Long saveUser(SaveUserParams saveUserParams);
 		
-	UserListResponse getUsers();
+  UserListResponse getUsers();
 	
 	UserDetailResponse getUser(Long userId);
 	
@@ -24,7 +24,7 @@ public interface UserService {
 	
 	void logout(HttpSession session);
 
-    void sendCertificateNumber(String username, HttpSession session);
+	void sendCertificateNumber(String username, HttpSession session);
 
-    Boolean checkCertificateNumber(String username, String certificateNumber, HttpSession session);
+	Boolean checkCertificateNumber(String username, String certificateNumber, HttpSession session);
 }
