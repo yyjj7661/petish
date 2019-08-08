@@ -55,7 +55,7 @@
 <link rel="stylesheet" href="/resources/css/gatherboard/chat.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/detail.css">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1&display=swap&subset=korean" rel="stylesheet">
-<!--  script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>-->
+<!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
 </head>
 <body>
 

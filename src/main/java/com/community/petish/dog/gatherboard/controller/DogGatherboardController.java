@@ -44,7 +44,7 @@ public class DogGatherboardController {
 		List<DogGatherListDTO> dogGatherDTOList = dogGatherService.getListWithPaging(cri);
 	
 		System.out.println("total="+total);
-		
+		System.out.println("dogGatherDTOList="+dogGatherDTOList);
 		model.addAttribute("list",dogGatherDTOList);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "petish/dog/gatherboard/list";

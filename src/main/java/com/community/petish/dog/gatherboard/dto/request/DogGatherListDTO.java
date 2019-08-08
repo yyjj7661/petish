@@ -23,4 +23,5 @@ public class DogGatherListDTO{
 	private int GATHERING_STATE;
 	private int VIEW_COUNT;
 	private int COMMENT_COUNT;
+	private String NICKNAME;
 }
