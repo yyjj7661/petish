@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.community.petish.admin.domain.getUserListDTO;
 import com.community.petish.admin.mapper.AdminMapper;
-import com.community.petish.user.dto.UserResponseDTO_Mypage;
+import com.community.petish.community.user.dto.UserResponseDTO_Mypage;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {

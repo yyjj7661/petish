@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.community.petish.admin.domain.getUserListDTO;
 import com.community.petish.admin.service.AdminService;
-import com.community.petish.user.dto.UserResponseDTO_Mypage;
+import com.community.petish.community.user.dto.UserResponseDTO_Mypage;
 
 @Controller
 @RequestMapping("/admin")

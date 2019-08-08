@@ -2,14 +2,15 @@ package com.community.petish.hospital.mapper;
 
 import java.util.List;
 
+import com.community.petish.community.hospital.mapper.HospitalMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.community.petish.hospital.domain.Criteria;
-import com.community.petish.hospital.domain.ListDTO;
+import com.community.petish.community.hospital.domain.Criteria;
+import com.community.petish.community.hospital.domain.ListDTO;
 
 import lombok.extern.log4j.Log4j;
 

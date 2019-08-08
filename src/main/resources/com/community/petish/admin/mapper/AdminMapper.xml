@@ -28,13 +28,13 @@
 	<delete id="deleteUser" parameterType="Long">
 		delete from user_tb where id =#{id}
 	</delete>
-	<select id="getUser" parameterType="long" resultType="com.community.petish.user.dto.UserResponseDTO_Mypage">
+	<select id="getUser" parameterType="long" resultType="com.community.petish.community.user.dto.UserResponseDTO_Mypage">
 		select id, username, nickname, picture, deleted, address, concern_id, gender
 		from user_tb
 		where id =#{id}
 	</select> 
 	
-	<update id="modifyUser" parameterType="com.community.petish.user.dto.UserResponseDTO_Mypage">
+	<update id="modifyUser" parameterType="com.community.petish.community.user.dto.UserResponseDTO_Mypage">
 		update user_tb set nickname=#{nickname}, address=#{address}, concern_id=#{concern_id}, gender=#{gender} where id=#{id}
 	</update>
 

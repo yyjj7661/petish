@@ -3,6 +3,7 @@ package com.community.petish.user.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.community.petish.community.user.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,15 +13,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.community.petish.user.domain.User;
-import com.community.petish.user.dto.request.LoginUserParams;
-import com.community.petish.user.dto.request.SaveUserParams;
-import com.community.petish.user.dto.response.LoginedUser;
-import com.community.petish.user.dto.response.UserListResponse;
-import com.community.petish.user.exception.NotLoginedException;
-import com.community.petish.user.exception.PasswordNotMatchException;
-import com.community.petish.user.exception.UserNotFoundException;
-import com.community.petish.user.mapper.UserMapper;
+import com.community.petish.community.user.domain.User;
+import com.community.petish.community.user.dto.request.LoginUserParams;
+import com.community.petish.community.user.dto.request.SaveUserParams;
+import com.community.petish.community.user.dto.response.LoginedUser;
+import com.community.petish.community.user.dto.response.UserListResponse;
+import com.community.petish.community.user.exception.NotLoginedException;
+import com.community.petish.community.user.exception.PasswordNotMatchException;
+import com.community.petish.community.user.exception.UserNotFoundException;
+import com.community.petish.community.user.mapper.UserMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +32,7 @@ public class UserServiceTest {
 
 	
 	@Autowired
-	UserService userService;
+  UserService userService;
 	
 	@Autowired
 	UserMapper userMapper;
