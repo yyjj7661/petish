@@ -1,4 +1,4 @@
-package com.community.petish.admin.domain;
+package com.community.petish.admin.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

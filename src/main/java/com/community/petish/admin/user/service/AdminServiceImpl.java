@@ -1,12 +1,12 @@
-package com.community.petish.admin.service;
+package com.community.petish.admin.user.service;
 
 import java.util.List;
 
+import com.community.petish.admin.user.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.community.petish.admin.domain.getUserListDTO;
-import com.community.petish.admin.mapper.AdminMapper;
+import com.community.petish.admin.user.domain.getUserListDTO;
 import com.community.petish.community.user.dto.UserResponseDTO_Mypage;
 
 @Service("adminService")

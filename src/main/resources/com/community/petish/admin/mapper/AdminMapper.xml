@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.community.petish.admin.mapper.AdminMapper">
+<mapper namespace="com.community.petish.admin.user.mapper.AdminMapper">
 	<select id="getUserCount" resultType="Long">
 		select count(*) from user_tb
 	</select>
@@ -21,7 +21,7 @@
 		select count(*) from user_tb u join concern_tb c on u.concern_id = c.id where c.concern = 'dog'
 	</select>
 	
-	<select id="getUserList" resultType="com.community.petish.admin.domain.getUserListDTO">
+	<select id="getUserList" resultType="com.community.petish.admin.user.domain.getUserListDTO">
 		select * from user_tb
 	</select>
 	

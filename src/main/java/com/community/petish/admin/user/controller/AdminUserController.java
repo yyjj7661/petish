@@ -1,10 +1,12 @@
-package com.community.petish.admin.controller;
+package com.community.petish.admin.user.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.community.petish.admin.user.domain.getUserListDTO;
+import com.community.petish.admin.user.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.community.petish.admin.domain.getUserListDTO;
-import com.community.petish.admin.service.AdminService;
 import com.community.petish.community.user.dto.UserResponseDTO_Mypage;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminUserController {
 	@Autowired
 	public AdminService adminService;
 	

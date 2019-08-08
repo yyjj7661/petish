@@ -1,17 +1,17 @@
-package com.community.petish.admin.service;
+package com.community.petish.admin.user.mapper;
 
 import java.util.List;
 
-import com.community.petish.admin.domain.getUserListDTO;
+import com.community.petish.admin.user.domain.getUserListDTO;
 import com.community.petish.community.user.dto.UserResponseDTO_Mypage;
 
-public interface AdminService {
+public interface AdminMapper {
 	Long getUserCount();
 	Long getMaleCount();
 	Long getFemaleCount();
 	Long getConcernCatCount();
 	Long getConcernDogCount();
-	boolean deleteUser(Long id);
+	Integer deleteUser(Long id);
 	List<getUserListDTO> getUserList();
 	UserResponseDTO_Mypage getUser(Long id);
 	
