@@ -17,11 +17,10 @@ public class DogGatherListDTO{
 	private String DOG_SPECIES;
 	private String DOG_SIZE;
 	private String TITLE;
-	private String USERNAME;
+	private String NICKNAME;
 	private Date CREATED_DATE;
 	private Timestamp GATHERING_DATE;
 	private int GATHERING_STATE;
 	private int VIEW_COUNT;
 	private int COMMENT_COUNT;
-	private String NICKNAME;
 }

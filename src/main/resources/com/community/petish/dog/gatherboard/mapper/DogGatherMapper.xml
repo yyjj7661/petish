@@ -89,13 +89,13 @@ create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc);
 	<select id="getListWithPaging" resultType="com.community.petish.dog.gatherboard.dto.request.DogGatherListDTO">
 	  <![CDATA[
 	   SELECT
-	      ID, USER_ID, REGION_NAME, DOG_SPECIES, DOG_SIZE, TITLE, USERNAME, CREATED_DATE, VIEW_COUNT, GATHERING_DATE, NICKNAME
+	      ID, USER_ID, REGION_NAME, DOG_SPECIES, DOG_SIZE, TITLE, NICKNAME, CREATED_DATE, VIEW_COUNT, GATHERING_DATE, NICKNAME
 	      FROM 
 	      (SELECT
-	      	rownum rn, ID, USER_ID, REGION_NAME, DOG_SPECIES, DOG_SIZE, TITLE, USERNAME, CREATED_DATE, VIEW_COUNT, GATHERING_DATE, NICKNAME
+	      	rownum rn, ID, USER_ID, REGION_NAME, DOG_SPECIES, DOG_SIZE, TITLE, NICKNAME, CREATED_DATE, VIEW_COUNT, GATHERING_DATE, NICKNAME
 	      	FROM
 	      	 (SELECT post.id, post.user_id, region.region_name, member.nickname,
-	      		  species.dog_species, dog_size.dog_size, post.title, member.username, post.created_date, post.view_count, post.gathering_date
+	      		  species.dog_species, dog_size.dog_size, post.title, post.created_date, post.view_count, post.gathering_date
 		  	 FROM dog_gather_post_tb post, user_tb member, region_tb region, dog_species_tb species, dog_size_tb dog_size
 	      	 WHERE      
 	   ]]>

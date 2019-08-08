@@ -124,7 +124,7 @@
 										<c:out value="${board.TITLE}" /> <b>[<c:out value="${board.COMMENT_COUNT}" />]</b></a></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown"><c:out value="${board.USERNAME}" /></a>
+											<a href="#" data-toggle="dropdown" class="dropdown"><c:out value="${board.NICKNAME}" /></a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
 												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
