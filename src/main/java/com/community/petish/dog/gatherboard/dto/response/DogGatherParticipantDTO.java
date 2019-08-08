@@ -1,4 +1,4 @@
-package com.community.petish.dog.gatherboard.dto.request;
+package com.community.petish.dog.gatherboard.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

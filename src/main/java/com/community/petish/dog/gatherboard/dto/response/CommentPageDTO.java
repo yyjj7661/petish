@@ -1,13 +1,15 @@
-package com.community.petish.dog.gatherboard.dto.request;
+package com.community.petish.dog.gatherboard.dto.response;
 
 import com.community.petish.dog.gatherboard.domain.Criteria;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
+@Setter
 @Getter
 @ToString
-public class PageDTO {
+public class CommentPageDTO {
 	private int startPage;
 	private int endPage;
 	private boolean prev, next;
@@ -15,7 +17,7 @@ public class PageDTO {
 	private int total;
 	private Criteria cri;
 	
-	public PageDTO(Criteria cri, int total) {
+	public CommentPageDTO(Criteria cri, int total) {
 		
 		this.cri = cri;
 		this.total = total;

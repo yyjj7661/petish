@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.community.petish.dog.gatherboard.domain.Criteria;
 import com.community.petish.dog.gatherboard.domain.DogGatherCommentVO;
-import com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO;
+import com.community.petish.dog.gatherboard.dto.response.DogGatherCommentDTO;
 
 public interface DogGatherCommentMapper {
 	int insertComment(DogGatherCommentVO commentVO);

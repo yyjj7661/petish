@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.community.petish.dog.gatherboard.domain.Criteria;
 import com.community.petish.dog.gatherboard.domain.DogGatherCommentVO;
-import com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO;
+import com.community.petish.dog.gatherboard.dto.response.DogGatherCommentDTO;
 import com.community.petish.dog.gatherboard.service.DogGatherCommentService;
-import com.community.petish.dog.gatherboard.service.DogGatherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.log4j.Log4j;

@@ -1,4 +1,4 @@
-package com.community.petish.dog.gatherboard.dto.request;
+package com.community.petish.dog.gatherboard.dto.response;
 
 import java.sql.Date;
 import java.sql.Timestamp;

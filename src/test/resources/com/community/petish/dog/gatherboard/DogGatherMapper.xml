@@ -86,7 +86,7 @@ create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc);
 	</sql>
 
 	<!-- 페이징 -->
-	<select id="getListWithPaging" resultType="com.community.petish.dog.gatherboard.dto.response.DogGatherListDTO">
+	<select id="getListWithPaging" resultType="com.community.petish.dog.gatherboard.dto.request.DogGatherListDTO">
 	  <![CDATA[
 	   SELECT
 	      ID, USER_ID, REGION_NAME, DOG_SPECIES, DOG_SIZE, TITLE, NICKNAME, CREATED_DATE, VIEW_COUNT, GATHERING_DATE
@@ -188,7 +188,7 @@ create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc);
 		)
 	</insert>
 	
-	<select id="getDogGatherParticipantList" resultType="com.community.petish.dog.gatherboard.dto.response.DogGatherParticipantDTO">
+	<select id="getDogGatherParticipantList" resultType="com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO">
 		select person.id, person.request_content, person.post_id, member.username, species.dog_species 
 		from dog_gather_person_tb person 
 		left join user_tb member
@@ -212,7 +212,7 @@ create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc);
 		update DOG_GATHER_POST_TB set VIEW_COUNT = VIEW_COUNT+1 where ID = #{ID} and DELETED = 0
 	</update>
 	
-	<update id="cancelParticipant" parameterType="com.community.petish.dog.gatherboard.dto.response.DogGatherParticipantDTO">
+	<update id="cancelParticipant" parameterType="com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO">
 		update DOG_GATHER_PERSON_TB set CANCELED=1 where ID=#{ID} and POST_ID=#{POST_ID}
 	</update>
 	

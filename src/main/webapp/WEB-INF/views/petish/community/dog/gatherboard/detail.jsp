@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,java.sql.*,java.text.SimpleDateFormat, 
 				com.community.petish.dog.gatherboard.domain.DogGatherPostVO,
-				com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO,
+				com.community.petish.dog.gatherboard.dto.response.DogGatherParticipantDTO,
 				com.community.petish.dog.gatherboard.domain.DogGatherCommentVO,
 				com.community.petish.user.dto.response.LoginedUser" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>

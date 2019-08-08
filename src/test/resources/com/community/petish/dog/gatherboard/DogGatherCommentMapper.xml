@@ -30,7 +30,7 @@ create index IDX_DOG_GATHER_COMMENT on DOG_GATHER_COMMENT_TB(POST_ID  desc, ID a
 	</select>
 	
 	<!-- 댓글 index -->
-	<select id="getCommentList" resultType="com.community.petish.dog.gatherboard.dto.response.DogGatherCommentDTO">
+	<select id="getCommentList" resultType="com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO">
 		<![CDATA[
 			select ID, POST_ID, CONTENT, USER_ID, CREATED_DATE, UPDATED_DATE, DELETED, NICKNAME
 			from 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.community.petish.dog.gatherboard.domain.Criteria;
 import com.community.petish.dog.gatherboard.domain.DogGatherCommentVO;
-import com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO;
+import com.community.petish.dog.gatherboard.dto.response.DogGatherCommentDTO;
 
 public interface DogGatherCommentService {
 	public int insertComment(DogGatherCommentVO commentVO);
