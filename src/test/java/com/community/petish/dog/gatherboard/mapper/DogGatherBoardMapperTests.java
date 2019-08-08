@@ -12,8 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.community.petish.dog.gatherboard.domain.Criteria;
 import com.community.petish.dog.gatherboard.domain.DogGatherPostVO;
 import com.community.petish.dog.gatherboard.domain.DogSpeciesVO;
-import com.community.petish.dog.gatherboard.dto.request.DogGatherListDTO;
-import com.community.petish.dog.gatherboard.dto.request.DogGatherParticipantDTO;
+import com.community.petish.dog.gatherboard.dto.response.DogGatherListDTO;
+import com.community.petish.dog.gatherboard.dto.response.DogGatherParticipantDTO;
 import com.community.petish.dog.gatherboard.dto.request.DogGatherPostDTO;
 import com.community.petish.user.mapper.UserMapperTest;
 

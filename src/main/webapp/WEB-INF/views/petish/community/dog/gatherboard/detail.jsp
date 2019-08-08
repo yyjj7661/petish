@@ -225,7 +225,7 @@
 										%>
 											 <tr class="text-center">
 												<td><b><%= i+1 %></b></td>
-												<td><%= participant.getUSERNAME() %></td>  
+												<td><%= participant.getNICKNAME() %></td>  
 												<td><%= participant.getDOG_SPECIES() %></td>
 												<td><%= participant.getREQUEST_CONTENT() %></td>
 											<%

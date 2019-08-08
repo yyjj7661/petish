@@ -12,6 +12,7 @@ public class DogGatherParticipantDTO {
 	private Long POST_ID;
 	private int CANCELED;
 	private String USERNAME;
+	private String NICKNAME;
 	private String DOG_SPECIES;
 	private String REQUEST_CONTENT;
 }

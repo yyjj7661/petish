@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.community.petish.dog.gatherboard.domain.Criteria;
-import com.community.petish.dog.gatherboard.dto.request.DogGatherCommentDTO;
+import com.community.petish.dog.gatherboard.dto.response.DogGatherCommentDTO;
 
 import lombok.extern.log4j.Log4j;
 
