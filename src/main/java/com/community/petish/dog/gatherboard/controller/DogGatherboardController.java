@@ -105,11 +105,26 @@ public class DogGatherboardController {
 	
 	//게시글 작성폼
 	@RequestMapping("/writeForm")
-	public ModelAndView dogGatherboardWriteForm() throws Exception {
+	public ModelAndView dogGatherboardWriteForm(HttpServletResponse response, HttpSession session) throws Exception {
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+
 		ModelAndView result = new ModelAndView();
-		result.setViewName("petish/community/dog/gatherboard/write_form");
 		
-		return result;
+		if(user == null) {
+			response.setContentType("text/html charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다!');");
+			out.println("location.href='/dog/gatherboard';");
+			out.println("</script>");
+			out.close();
+		}
+		else {			
+			result.setViewName("petish/community/dog/gatherboard/write_form");
+			
+			return result;
+		}
+		return null;
 	}
 	
 	//게시글 수정폼

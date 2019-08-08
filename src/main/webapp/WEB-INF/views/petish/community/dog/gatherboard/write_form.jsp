@@ -5,8 +5,8 @@
 			com.community.petish.dog.gatherboard.service.DogGatherService,
 			com.community.petish.user.dto.response.LoginedUser" %>
 <%
-	LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
-	String userName = user.getUsername();
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+		String userName = user.getUsername();	
 %>
 <!DOCTYPE html>
 <html>

@@ -38,13 +38,11 @@
 		</div>
 		<div id="content">
 			<div class="container">	
-			
 						<button type="submit" class="btn btn-template-outlined">
 							<a href="/dog/gatherboard/writeForm">
 							글쓰기
 							</a>
 						</button>
-
 		<!-- 검색 -->		
 		<form id="categoryForm" action="/dog/gatherboard" method="post">		
 			<div id="top-category" aria-label="Page navigation example" class="d-flex justify-content-left">

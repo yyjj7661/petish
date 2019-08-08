@@ -1,6 +1,6 @@
 package com.community.petish.dog.gatherboard.dto.response;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
