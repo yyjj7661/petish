@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.community.petish.mypage.dto.Criteria;
-import com.community.petish.mypage.dto.MyWritingsDTO;
-import com.community.petish.mypage.dto.Writings_CommentedDTO;
-import com.community.petish.mypage.dto.Writings_LikedDTO;
-import com.community.petish.mypage.mapper.DefaultMapper;
+import com.community.petish.community.mypage.dto.Criteria;
+import com.community.petish.community.mypage.dto.Writings_CommentedDTO;
+import com.community.petish.community.mypage.mapper.DefaultMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

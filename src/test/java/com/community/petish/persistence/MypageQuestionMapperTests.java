@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.community.petish.mypage.dto.QuestionResponseDTO;
-import com.community.petish.mypage.dto.QuestionRequestDTO;
-import com.community.petish.mypage.mapper.QuestionMapper;
+import com.community.petish.community.mypage.dto.QuestionResponseDTO;
+import com.community.petish.community.mypage.dto.QuestionRequestDTO;
+import com.community.petish.community.mypage.mapper.QuestionMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

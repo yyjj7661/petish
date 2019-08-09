@@ -1,5 +1,5 @@
-<%@page import="com.community.petish.mypage.dto.MessageRequestDTO"%>
-<%@page import="com.community.petish.mypage.dto.MessageResponseDTO"%>
+<%@page import="com.community.petish.community.mypage.dto.MessageRequestDTO"%>
+<%@page import="com.community.petish.community.mypage.dto.MessageResponseDTO"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.community.petish.mypage.*"%>
 <%

@@ -1,17 +1,13 @@
 package com.community.petish.persistence;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.community.petish.mypage.dto.MessageRequestDTO;
-import com.community.petish.mypage.dto.MessageResponseDTO;
-import com.community.petish.mypage.mapper.MessageMapper;
+import com.community.petish.community.mypage.dto.MessageResponseDTO;
+import com.community.petish.community.mypage.mapper.MessageMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

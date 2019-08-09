@@ -1,9 +1,23 @@
-const handlePictureDoubleClick = (id) => {
+$(function() {
+
+    $('.vote-candidate-wrapper').on("click", function(event) {
+        handledPictureClick(event.currentTarget.id);
+    });
+
+    $('.vote-candidate-wrapper').on("doubleClick", function(event) {
+        handledPictureDoubleClick(event.currentTarget.id);
+    });
+
+    $('#voteButton').on("click", handledVoteButtonClick);
+
+});
+
+const handledPictureDoubleClick = (id) => {
     handlePictureClick(id);
     handleButtonClick();
-}
+};
 
-const handlePictureClick = (id) => {
+const handledPictureClick = (id) => {
     let candidates = $('input[name="vote-candidate"]');
     for (let i = 0; i < candidates.length; i++){
         if ( candidates[i].value === id ) {
@@ -11,9 +25,9 @@ const handlePictureClick = (id) => {
         }
     }
     console.log(id);
-}
+};
 
-const handleButtonClick = () => {
+const handledVoteButtonClick = () => {
     
     let candidates = $('input[name="vote-candidate"]');
     let candidate = "";
@@ -31,4 +45,4 @@ const handleButtonClick = () => {
     console.log(candidate);
     console.log("전송되었습니다.")
 
-}
+};

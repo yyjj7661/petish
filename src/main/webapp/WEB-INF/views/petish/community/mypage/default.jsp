@@ -1,7 +1,7 @@
-<%@page import="com.community.petish.user.dto.UserResponseDTO_Mypage"%>
-<%@page import="com.community.petish.mypage.dto.Writings_LikedDTO"%>
-<%@page import="com.community.petish.mypage.dto.Writings_CommentedDTO"%>
-<%@page import="com.community.petish.mypage.dto.MyWritingsDTO"%>
+<%@page import="com.community.petish.community.user.dto.UserResponseDTO_Mypage"%>
+<%@page import="com.community.petish.community.mypage.dto.Writings_LikedDTO"%>
+<%@page import="com.community.petish.community.mypage.dto.Writings_CommentedDTO"%>
+<%@page import="com.community.petish.community.mypage.dto.MyWritingsDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>

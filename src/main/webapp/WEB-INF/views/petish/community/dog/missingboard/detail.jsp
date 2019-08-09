@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ page import="com.community.petish.dog.missingboard.dto.*"%>
+<%@ page import="com.community.petish.community.dog.missingboard.dto.DogLostPostResponseDetailDTO" %>
 <%
    DogLostPostResponseDetailDTO dto = (DogLostPostResponseDetailDTO) request.getAttribute("dto");
    

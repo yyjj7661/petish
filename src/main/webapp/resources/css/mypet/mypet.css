@@ -140,6 +140,10 @@ a[href="#demo"] span:hover {
     padding: 5px;
 }
 
+#voteModalButton {
+    float: right;
+}
+
 /* 반응형 */
 @media (max-width: 400px ) {
     #mypet-modal-dialog {
