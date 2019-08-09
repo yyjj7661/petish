@@ -2,16 +2,18 @@ package com.community.petish.community.dog.missingboard.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.community.petish.community.dog.missingboard.domain.AttachFileVO;
 import com.community.petish.community.dog.missingboard.dto.Criteria;
 import com.community.petish.community.dog.missingboard.dto.DogLostPostRequestWriteDTO;
 import com.community.petish.community.dog.missingboard.dto.DogLostPostResponseDetailDTO;
 import com.community.petish.community.dog.missingboard.dto.DogLostPostResponseListDTO;
 import com.community.petish.community.dog.missingboard.mapper.AttachFileMapper;
+import com.community.petish.community.dog.missingboard.mapper.DogLostCommentMapper;
 import com.community.petish.community.dog.missingboard.mapper.DogLostPostMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DogLostPostServiceImpl implements DogLostPostService{
@@ -21,6 +23,9 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	
 	@Autowired
 	private AttachFileMapper attachMapper;
+	
+	@Autowired
+	private DogLostCommentMapper commentMapper;
 	
 	//게시글 수
 	@Override
@@ -34,7 +39,15 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 		
 		System.out.println("[Service]Cri : " + cri);
 		
-		return mapper.getDogLostList(cri);
+		int commentCount = 0;
+		List<DogLostPostResponseListDTO> listDTO = mapper.getDogLostList(cri);
+		
+		for(int i=0; i<listDTO.size(); i++) {
+			DogLostPostResponseListDTO dto = listDTO.get(i);
+			commentCount = commentMapper.getCommentCount(dto.getId());
+			dto.setCommentCount(commentCount);
+		}
+		return listDTO;
 	}
 	
 	// 게시글 조회
