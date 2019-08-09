@@ -5,7 +5,6 @@ import com.community.petish.community.user.exception.ExistingUserException;
 import com.community.petish.community.user.exception.NotEmailAddress;
 import com.community.petish.community.user.exception.PasswordNotMatchException;
 import com.community.petish.community.user.exception.UserNotFoundException;
-import com.community.petish.user.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

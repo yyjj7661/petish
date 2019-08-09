@@ -127,11 +127,11 @@
       function getUserList(){
     	  $('#userTable').empty();
     	  $.ajax({
-    		 url:'/admin/user/list',
+    		 url:'/api/users',
     		 type:'GET',
     		 dataType:'json',
     		 success:function(data){
-    			 $.each(data.list, function(index, item){
+    			 $.each(data.users, function(index, item){
     				var output='';
     				output += '<tr>';
     				output += '<td>'+item.id+'</td>';

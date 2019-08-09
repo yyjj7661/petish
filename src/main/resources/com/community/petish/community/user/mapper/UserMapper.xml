@@ -3,18 +3,8 @@
 
 <mapper namespace="com.community.petish.community.user.mapper.UserMapper">
 
-	<resultMap type="com.community.petish.community.user.dto.response.UserDetailResponse" id="UserDetailResponse">
-		<result property="id" column="id"></result>
-		<result property="username" column="username"></result>
-		<result property="nickname" column="nickname"></result>
-		<result property="gender" column="gender"></result>
-		<result property="profileImage" column="picture"></result>
-		<result property="concern" column="concern"></result>
-	</resultMap>
-	
 	<insert id="save" parameterType="com.community.petish.community.user.dto.request.SaveUserParams">
-		
-		INSERT INTO USER_TB 
+		INSERT INTO USER_TB
 			(id, username, password, nickname, address, gender, join_date, deleted, concern_id)
 		values
 			(	( (select NVL(max(id), 0) from user_tb) + 1), #{username}, #{password}, #{nickname}, #{address}, #{gender}, sysdate, 0, 
@@ -38,14 +28,12 @@
 		SELECT * FROM user_tb WHERE id = #{id}
 	</select>
 	
-	<select id="findAll" resultMap="UserDetailResponse">
-		SELECT id, username, nickname, gender, picture FROM user_tb
+	<select id="findAll" resultType="com.community.petish.community.user.domain.User">
+		SELECT * FROM user_tb
 	</select>
-	
 	
 	<delete id="deleteAll">
 		DELETE FROM USER_TB
 	</delete>
-	
 
 </mapper>

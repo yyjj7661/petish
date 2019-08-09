@@ -14,6 +14,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private AdminMapper adminMapper;
+
 	@Override
 	public Long getUserCount() {
 		return adminMapper.getUserCount();
