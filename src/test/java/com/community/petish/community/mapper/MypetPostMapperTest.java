@@ -1,4 +1,4 @@
-package com.community.petish.mypet.post.mapper;
+package com.community.petish.community.mapper;
 
 import com.community.petish.community.mypet.post.mapper.MypetPostMapper;
 import org.junit.jupiter.api.Test;

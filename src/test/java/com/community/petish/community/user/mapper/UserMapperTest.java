@@ -1,4 +1,4 @@
-package com.community.petish.user.mapper;
+package com.community.petish.community.user.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

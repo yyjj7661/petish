@@ -4,13 +4,12 @@ import java.util.List;
 
 import com.community.petish.community.user.domain.User;
 import com.community.petish.community.user.dto.request.SaveUserParams;
-import com.community.petish.community.user.dto.response.UserDetailResponse;
 
 public interface UserMapper {
 
 	Long save(SaveUserParams saveUserParams);
 
-	List<UserDetailResponse> findAll();
+	List<User> findAll();
 	
 	String findByNickname(String nickname);
 	

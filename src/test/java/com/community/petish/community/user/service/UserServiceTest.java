@@ -1,4 +1,4 @@
-package com.community.petish.user.service;
+package com.community.petish.community.user.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

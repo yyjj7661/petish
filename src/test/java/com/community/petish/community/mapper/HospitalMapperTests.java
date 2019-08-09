@@ -1,4 +1,4 @@
-package com.community.petish.hospital.mapper;
+package com.community.petish.community.mapper;
 
 import java.util.List;
 
