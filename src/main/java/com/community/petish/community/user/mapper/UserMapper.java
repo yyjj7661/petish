@@ -10,7 +10,7 @@ public interface UserMapper {
 
 	Long save(SaveUserParams saveUserParams);
 
-	List<User> findAll();
+	List<UserDetailResponse> findAll();
 	
 	String findByNickname(String nickname);
 	

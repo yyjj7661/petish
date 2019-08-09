@@ -4,8 +4,7 @@
 <mapper namespace="com.community.petish.community.user.mapper.UserMapper">
 
 	<insert id="save" parameterType="com.community.petish.community.user.dto.request.SaveUserParams">
-		
-		INSERT INTO USER_TB 
+		INSERT INTO USER_TB
 			(id, username, password, nickname, address, gender, join_date, deleted, concern_id)
 		values
 			(	( (select NVL(max(id), 0) from user_tb) + 1), #{username}, #{password}, #{nickname}, #{address}, #{gender}, sysdate, 0, 
@@ -33,10 +32,8 @@
 		SELECT * FROM user_tb
 	</select>
 	
-	
 	<delete id="deleteAll">
 		DELETE FROM USER_TB
 	</delete>
-	
 
 </mapper>
