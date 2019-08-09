@@ -96,8 +96,18 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 		
 		Long id = dto.getId(); //게시글 번호
 		
-		String postURL = "/dog/missingboard/detail/"+id; //실종견 게시글 주소	
-		String content = "["+ address + "]" + " 실종견 게시글이 등록되었습니다.\r" + postURL;
+		String postURL = "/dog/missingboard/"+id; //실종견 게시글 주소
+		//String content = "["+ address + "]" + " 실종견 게시글이 등록되었습니다.\r" + postURL;
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("["+ address + "]" + " 실종견 게시글이 등록되었습니다.");
+		sb.append(System.getProperty("line.separator"));
+		sb.append("<a href='");
+		sb.append(postURL);
+		sb.append("'>게시글 보기" + "</a>");
+		
+		String content = sb.toString();
+		System.out.println("content : " + content);
 		
 		int messageResult = mapper.sendMessage(id, content);
 		System.out.println("보낸 매세지 : " + messageResult);

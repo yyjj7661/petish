@@ -152,7 +152,7 @@
 							</td>
 								
 							<td colspan="10">
-								<a href="/dog/missingboard/detail/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
+								<a href="/dog/missingboard/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
 									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
 								<a style="padding: 0.15rem"></a> <span class="badge badge-secondary"><%=dto.getCommentCount() %></span></td>
 							<td>
