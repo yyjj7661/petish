@@ -177,8 +177,7 @@
             <!-- 게시 정보 -->
             <table>
                <tr>
-                  <td><img src="/resources/img/blog-avatar2.jpg" alt=""
-                     class="img-fluid rounded-circle" width="70px;" height="70px;"></td>
+                  <!-- <td><img src="/resources/img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle" width="70px;" height="70px;"></td> -->
                   <td>
                      <div class="nav navbar-nav ml-auto">
                         <a href="#" data-toggle="dropdown" class="nickname dropdown"><%=dto.getNickname()%></a>

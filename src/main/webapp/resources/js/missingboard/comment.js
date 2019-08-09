@@ -192,7 +192,7 @@ function insertComment(){
 		contentType:'application/x-www-form-urlencoded; charset=UTF-8',
 		dataType : "json",
 		beforeSend : function(){
-			if(content == null){
+			if(content == ""){
 				alert("댓글 내용을 작성해주세요.");
 				return false;
 			}
