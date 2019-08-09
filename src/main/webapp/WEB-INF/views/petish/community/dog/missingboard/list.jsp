@@ -4,8 +4,8 @@
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.community.petish.dog.missingboard.dto.*"%>
-<%@ page import="com.community.petish.dog.missingboard.domain.*"%>
+<%@ page import="com.community.petish.community.dog.missingboard.dto.*"%>
+<%@ page import="com.community.petish.community.dog.missingboard.domain.*"%>
 <%@ page import="com.community.petish.community.dog.missingboard.dto.DogLostPostPageDTO" %>
 <%@ page import="com.community.petish.community.dog.missingboard.dto.DogLostPostResponseListDTO" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
