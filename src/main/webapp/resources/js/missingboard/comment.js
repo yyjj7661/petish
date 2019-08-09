@@ -1,7 +1,9 @@
 $(document).ready(function(){
-	
-		commentList();
+	commentList();
 });
+
+//총 댓글 수
+var cnt = 0;
 
 //댓글 목록
 function commentList(param) {
@@ -21,8 +23,11 @@ function commentList(param) {
 		
 		success:function(result) {
 			
-			for(var i in result) {				
+			for(var i in result) {
+				
 				var count = '댓글  ' + result[i].count;
+				cnt = result[i].count;
+				
 				var output = '';
 				var modifyBtn = '';
 				var deleteBtn = '';
@@ -88,8 +93,11 @@ var commentPageFooter = $(".comment-footer");
 
 //댓글 페이지 번호 출력
 function commentCount() {
-	var commentCnt = $('#commentCountVal');
-		
+	var commentCnt = cnt;
+	
+	//댓글 없으면 페이징 출력X
+	if(commentCnt == 0) return;	
+	
 	var endNum = Math.ceil(pageNum / 10.0) * 10;
 	var startNum = endNum - 9;
 	

@@ -285,5 +285,7 @@ function insRow() {
 
 //특징 입력 폼 삭제 
 function removeRow(){
-	$('#removeDiv').remove();	   
+	$('#removeDiv').remove();
+	descriptionIndex--;
+	alert(descriptionIndex);
 }
