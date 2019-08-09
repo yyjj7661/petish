@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/resources/vendor/font-awesome/css/font-awesome.min.css">
 <!-- JavaScript File -->
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-<script src="/resources/js/top/top.js"></script>
+<script src="/resources/js/top/authentication.js"></script>
 
 <%
 	LoginedUser loginedUser = (LoginedUser) session.getAttribute("LOGIN_USER");

@@ -4,24 +4,26 @@
 <mapper namespace="com.community.petish.community.report.mapper.ReportMapper">
 
 <resultMap type="com.community.petish.community.report.domain.ReportVO" id="ReportVO">
-	<result property="ID" column="ID" />
-	<result property="DESCRIPTION" column="DESCRIPTION" />
-	<result property="CREATED_DATE" column="CREATED_DATE" />
-	<result property="DELETED" column="DELETED" />
-	<result property="CATEGORY_ID" column="CATEGORY_ID" />
-	<result property="BOARD_ID" column="BOARD_ID" />
-	<result property="POST_ID" column="POST_ID" />
-	<result property="USER_ID" column="USER_ID" />	
+	<result property="id" column="ID" />
+	<result property="description" column="DESCRIPTION" />
+	<result property="created_date" column="CREATED_DATE" />
+	<result property="deleted" column="DELETED" />
+	<result property="category_id" column="CATEGORY_ID" />
+	<result property="board_id" column="BOARD_ID" />
+	<result property="post_id" column="POST_ID" />
+	<result property="user_id" column="USER_ID" />	
 </resultMap>
 
 <resultMap type="com.community.petish.community.report.dto.ReportResponseDTO" id="ResponseDTO">
-	<result property="ID" column="ID" />
-	<result property="DESCRIPTION" column="DESCRIPTION" />
-	<result property="CREATED_DATE" column="CREATED_DATE" />
-	<result property="CATEGORY_NAME" column="CATEGORY_NAME" />
-	<result property="BOARD_TABLE_NAME" column="BOARD_TABLE_NAME" />
-	<result property="POST_ID" column="POST_ID" />
-	<result property="USER_ID" column="USER_ID" />	
+	<result property="id" column="ID" />
+	<result property="description" column="DESCRIPTION" />
+	<result property="created_date" column="CREATED_DATE" />
+	<result property="category_name" column="CATEGORY_NAME" />
+	
+	<result property="post_id" column="POST_ID" />
+	<result property="board_table_name" column="BOARD_TABLE_NAME" />	
+	<result property="user_id" column="USER_ID" />	
+	<result property="nickname" column="NICKNAME" />
 </resultMap>
 
 <!-- 신고 작성 -->
@@ -29,21 +31,21 @@
 	insert into report_post_tb
 	values(
 	REPORT_ID_SEQ.nextval,
-	#{DESCRIPTION, jdbcType=VARCHAR},
-	sysdate, 
-	0,
-	#{CATEGORY_ID, jdbcType=INTEGER},
-	#{BOARD_ID, jdbcType=INTEGER},
-	#{POST_ID, jdbcType=INTEGER},
-	#{USER_ID, jdbcType=INTEGER}	
+	#{description, jdbcType=VARCHAR},
+	sysdate, 0,
+	#{category_id, jdbcType=INTEGER},
+	#{board_id, jdbcType=INTEGER},
+	#{post_id, jdbcType=INTEGER},
+	#{user_id, jdbcType=INTEGER}	
 	)
 </insert>
 
 <!-- 신고 삭제 -->
-<delete id="deleteReport" parameterType="Long">
-	delete from report_post_tb
-	where ID=#{ID}
-</delete>
+<update id="deleteReport" parameterType="Long">
+	update report_post_tb
+	set DELETE=1
+	where ID=#{id}
+</update>
 
 <!-- 신고 리스트 -->
 <select id="getReportList" resultMap="ResponseDTO">
@@ -57,6 +59,7 @@
 	select p.ID, p.DESCRIPTION, p.CREATED_DATE, c.CATEGORY_NAME, b.BOARD_TABLE_NAME, p.POST_ID, u.NICKNAME 
 	from report_post_tb p, report_category_tb c, board_name_tb b, user_tb u
 	where DELETED=0
+	order by id;
 </select>
 
 </mapper>
