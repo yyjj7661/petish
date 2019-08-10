@@ -124,9 +124,11 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	@Override	
 	public int modify(DogLostPostRequestWriteDTO dto) {		
 		//첨부 사진 삭제
-		attachMapper.deleteAll(dto.getId());
+		attachMapper.deleteAll(dto.getId());		
+		
 		//게시글 수정
 		int result = mapper.updatePost(dto);
+		System.out.println("modify result : " + result);
 		
 		if(result == 1 && dto.getAttachList().size() > 0) {
 			dto.getAttachList().forEach(attach -> {

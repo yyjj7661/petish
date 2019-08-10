@@ -195,7 +195,7 @@
                   <td class=date-view>
                   <i class="fa fa-clock-o"></i>
                   <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="<%=dto.getCreate_date() %>"/>
-                  <i class="fa fa-eye" style="padding-left:2rem"></i><%=dto.getView_count()%>
+                  <i class="fa fa-eye" style="padding-left:2rem; padding-right:0.2rem"></i><%=dto.getView_count()%>
                   </td>
                   
                </tr>

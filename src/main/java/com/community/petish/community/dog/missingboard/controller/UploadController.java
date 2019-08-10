@@ -190,7 +190,6 @@ public class UploadController {
 	public ResponseEntity<String> deleteFile(String fileName, String type, HttpServletRequest request) {
 
 		log.info("deleteFile: " + fileName);
-		log.info("type: " + type);
 		
 		File file;
 

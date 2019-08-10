@@ -183,7 +183,7 @@
 		DOG_LOST_ADDRESS=#{dog_lost_address, jdbcType=DATE},
 		REWARD=#{reward, jdbcType=INTEGER},
 		UPDATED_DATE=sysdate,
-		FOUND=#{found},
+		FOUND=#{found, jdbcType=INTEGER},
 		SPECIES_ID=#{species_id, jdbcType=INTEGER}
 		where ID=#{id}
 	</update>

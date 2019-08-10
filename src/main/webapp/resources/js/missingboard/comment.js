@@ -44,7 +44,7 @@ function commentList(param) {
 					output += '<div class="col-sm-9 col-md-10">';
 				}				
 				else {					
-					output += '<div class="col-sm-9 col-md-10" style="height:150px">'; 
+					output += '<div class="col-sm-9 col-md-10" style="height:130px">'; 
 				}
 				
 				output += '<h5 class="text-uppercase" style="display:inline-block; padding-right:1rem">' + result[i].nickname + '</h5>';

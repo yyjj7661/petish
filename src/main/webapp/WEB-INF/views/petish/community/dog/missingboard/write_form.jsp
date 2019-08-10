@@ -51,7 +51,9 @@
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
 		<%
 			//로그인 확인
+			System.out.println("Login???? : " + loginedUser);
 			if(loginedUser == null){
+				System.out.println("here!!");
 				out.println("<script>");
 				out.println("location.href='/dog/missingboard/list'");
 				out.println("</script>");
@@ -277,6 +279,7 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<script src="/resources/js/missingboard/write_modify.js"></script>
 	<script>
 	function formCheck(){
 		var formObj = document.dogLostPostForm;
@@ -293,6 +296,7 @@
 		var phoneNumber = formObj.phone_number.value;
 		
 		if(dogName == "" || dogName == null){
+			alert(dogName);
 			alert("강아지 이름을 입력해주세요");
 			return false;
 		}
@@ -334,6 +338,7 @@
 		}		
 		return true;
 	}
+	
 	</script>
 
 	<!-- Javascript files-->
@@ -350,7 +355,6 @@
 	<script src="/resources/js/front.js"></script>
 
 	<!-- JS 파일 추가 -->
-	<script src="/resources/js/missingboard/write_modify.js"></script>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
