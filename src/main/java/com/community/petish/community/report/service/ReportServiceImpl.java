@@ -13,14 +13,6 @@ public class ReportServiceImpl implements ReportService{
 	
 	@Autowired
 	private ReportMapper mapper;
-	
-	//신고 수
-//	 public int getReportCount() {
-//		return mapper.getReportCount();
-//	}
-	
-	//신고 리스트 조회
-//	List<ReportResponseDTO> getList();
 		
 	//신고 작성
 	public int register(ReportRequestDTO dto) {

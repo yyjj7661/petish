@@ -1,7 +1,7 @@
 <%@page import="com.community.petish.community.mypage.dto.MessageRequestDTO"%>
 <%@page import="com.community.petish.community.mypage.dto.MessageResponseDTO"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.community.petish.mypage.*"%>
+<%@ page import="com.community.petish.community.mypage.*"%>
 <%
 	ArrayList<MessageResponseDTO> receivedList = (ArrayList) request.getAttribute("receivedList");
 	int undeletedReceived = (int) request.getAttribute("undeletedReceived");
