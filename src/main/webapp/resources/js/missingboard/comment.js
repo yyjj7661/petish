@@ -1,17 +1,10 @@
 $(document).ready(function(){
-<<<<<<< HEAD
 	commentList();
 });
 
 //총 댓글 수
 var cnt = 0;
 
-=======
-	
-		commentList();
-});
-
->>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 //댓글 목록
 function commentList(param) {
 	
@@ -30,16 +23,10 @@ function commentList(param) {
 		
 		success:function(result) {
 			
-<<<<<<< HEAD
 			for(var i in result) {
 				
 				var count = '댓글  ' + result[i].count;
 				cnt = result[i].count;
-				
-=======
-			for(var i in result) {				
-				var count = '댓글  ' + result[i].count;
->>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 				var output = '';
 				var modifyBtn = '';
 				var deleteBtn = '';

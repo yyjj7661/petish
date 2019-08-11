@@ -19,11 +19,7 @@
 		request.setAttribute("pageNum", pageNum);
 	}	
 	//게시판 아이디 설정
-<<<<<<< HEAD
 	request.setAttribute("boardId", "4");
-=======
-	request.setAttribute("boardId", "4");	
->>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 %>
 
 <!DOCTYPE html>
@@ -369,7 +365,6 @@
 	
 	$(document).ready(function(){		
 		resize();
-<<<<<<< HEAD
 		
 		//로그인 확인
 		   $('#writeBtn').on("click", function(e){
@@ -442,23 +437,6 @@
 		//즉시 실행 함수
 		   (function(){			  
 			<% 
-=======
-		
-		//로그인 확인
-		   $('#writeBtn').on("click", function(e){
-			   <% if(loginedUser == null){ %>
-				   alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");				   
-				   $('#login-modal').modal("show");	
-				   
-			   <%}else{%>
-			   		window.location.href='/dog/missingboard/writeForm';
-			   <%}%>
-		   });
-				 
-		//즉시 실행 함수
-		   (function(){			  
-			 <% 
->>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 			 	for (int i = 0; i < dtoList.size() ; i++) {
 					DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);					
 					int index = i;					
