@@ -164,15 +164,9 @@
 							</td>
 								
 							<td colspan="10">
-<<<<<<< HEAD
 								<a href="/dog/missingboard/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
 									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
 								<a style="padding: 0.15rem"></a> <span class="badge badge-secondary"><%=dto.getCommentCount() %></span></td>
-=======
-								<a href="/dog/missingboard/detail/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
-									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
-								<a style="padding: 0.15rem"></a> <span class="badge badge-secondary">5</span></td>
->>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 							<td>
 								<div class="nav navbar-nav ml-auto">
 									<a href="#" data-toggle="dropdown" class="dropdown writer"><%=dto.getNickname() %></a>
@@ -263,19 +257,11 @@
 					</div>   
 				</div>
 			</form>	
-		</div>				
-<<<<<<< HEAD
+		</div>		
 	</div>
 	<!-- all -->           
 	 
 	<div style="padding: 1rem"></div>
-=======
-	</div>			
-		    
-            
-	<div style="padding: 1rem"></div>
-
->>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	<!-- 페이징 -->
 	<form id='actionForm' action="/dog/missingboard/list" method='get'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
@@ -284,7 +270,6 @@
 		<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
 	</form>
 	
-<<<<<<< HEAD
 	<!-- 쪽지 보내기 모달창 -->
 	<div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
         class="modal fade">
@@ -329,9 +314,7 @@
             </div>
         </div>
     </div>
-    	
-=======
->>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
+    
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script>
 	//반응형
