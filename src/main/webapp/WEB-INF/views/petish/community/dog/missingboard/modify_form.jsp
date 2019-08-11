@@ -10,7 +10,6 @@
 	//강아지 종
 	String dogSpecies = dto.getDog_species(); //강아지 종 이름
 	Long speciesId = dto.getSpecies_id();
-	System.out.println("종 : " + dto.getSpecies_id());
 
 	//강아지 특징
 	String dogDescriptions = dto.getDog_description();
@@ -120,14 +119,15 @@
 							</div>
 							<h4 style="display: inline-block;">[실종견 정보]</h4>
 							<div class="col-md-10 text-right" style="display: inline-block;">
-								<input type="checkbox" name="found" id="FOUND" value="0">
+								<input type="checkbox" id="FOUND" <%if(dto.getFound()==1){%> checked <%} %>>								
 								<span style="color: red;"><b> 반려견을 찾았습니다.</b></span>
 							</div>
 							<form action="/dog/missingboard/modify" id="modifyForm"
-								method="post">
+								method="post" onsubmit="return formCheck()">
 								<div class="row">
 
 									<input type="hidden" name="id" id="ID" value=<%=dto.getId()%>>
+									<input type="hidden" name="found" value="0">
 
 									<div class="col-sm-6 col-md-2">
 										<div class="form-group">
@@ -201,16 +201,27 @@
 												<%
 													if (dto.getDog_gender().equals("수컷")) {
 												%>
-												<input type="radio" value="수컷" name="dog_gender"
-													id="DOG_GENDER_M" checked><label>수컷</label> <input
-													type="radio" value="암컷" name="dog_gender" id="DOG_GENDER_F"><label>암컷</label>
+												<label class="radioContainer" style="border-right:2rem;">수컷
+												<input type="radio" value="수컷" name="dog_gender" id="DOG_GENDER_M" checked>
+												<span class="radioCheckmark"></span>
+												</label>
+												
+												<label class="radioContainer">암컷
+												<input type="radio" value="암컷" name="dog_gender" id="DOG_GENDER_F">
+												<span class="radioCheckmark"></span>
+												</label>
 												<%
 													} else {
 												%>
-												<input type="radio" value="수컷" name="dog_gender"
-													id="DOG_GENDER_M"><label>수컷</label> <input
-													type="radio" value="암컷" name="dog_gender" id="DOG_GENDER_F"
-													checked><label>암컷</label>
+												<label class="radioContainer" style="border-right:2rem;">수컷
+												<input type="radio" value="수컷" name="dog_gender" id="DOG_GENDER_M">
+												<span class="radioCheckmark"></span>
+												</label>
+												
+												<label class="radioContainer">암컷
+												<input type="radio" value="암컷" name="dog_gender" id="DOG_GENDER_F" checked>
+												<span class="radioCheckmark"></span>
+												</label>
 												<%
 													}
 												%>
@@ -272,8 +283,7 @@
 												for (int i = 0; i < des.length; i++) {
 											%>
 											<input type="text" name="dog_description<%=i + 1%>"
-												id=description <%=i + 1%> value="<%=des[i]%>"
-												class="form-control"
+												id="description<%=i + 1%>" value="<%=des[i]%>"
 												style="display: inline-block; width: 80%; margin-top: 5px;">
 											<button onclick="removeRow()" type="button" style="font-size: 0.9rem; margin-left:-0.2rem;"
 												class="btn btn-sm btn-template-main">삭제</button>
@@ -374,60 +384,13 @@
 
 	<script>
 	function formCheck(){
-		var formObj = document.modifyForm;
+		var formObj = $("#modifyForm")
 		
-		var dogName = formObj.dog_name.value;
-		var dogAge = formObj.dog_age.value;
-		var speciesId = $('select[name=species_id]').val();
-		var dogGender = formObj.dog_gender.value;
-		var dogImage = formObj.dog_image.value;
-		var description = formObj.dog_description.value;
-		var dogLostDate = formObj.dog_lost_date.value;
-		var dogLostAddr = formObj.dog_lost_address.value;
-		var reward = formObj.reward.value;
-		var phoneNumber = formObj.phone_number.value;
+		var found = $('input[name=found]').val();
 		
-		if(dogName == "" || dogName == null){
-			alert("강아지 이름을 입력해주세요");
-			return false;
-		}
-		if(dogAge == "" || dogAge == null){
-			alert("강아지 나이를 입력해주세요");
-			return false;
-		}
-		if(speciesId == "0" || speciesId == ""){
-			alert("강아지 종을 선택해주세요");
-			return false;
-		}
-		if(dogGender == "" || dogName == null){
-			alert("강아지 성별을 선택해주세요");
-			return false;
-		}
-		if(dogImage == "" || dogImage == null){
-			alert("등록된 사진이 없습니다. 사진을 등록해주세요");
-			return false;
-		}
-		if(description == "" || description == null){
-			alert("강아지 특징을 1개 이상 작성해주세요");
-			return false;
-		}
-		if(dogLostDate == "" || dogLostDate == null){
-			alert("실종 날짜를 입력해주세요");
-			return false;
-		}
-		if(dogLostAddr == "" || dogLostAddr == null){
-			alert("실종 장소를 입력해주세요");
-			return false;
-		}
-		if(reward == "" || reward == null){
-			alert("사례금을 입력해주세요");
-			return false;
-		}
-		if(phoneNumber == "" || phoneNumber == null){
-			alert("연락처를 입력해주세요");
-			return false;
-		}		
-		return true;
+		alert("foundcheck : " + found);
+		
+		//return false;
 	}
 	
 	//특징 추가
@@ -463,22 +426,20 @@
 			}
 	});
 	
-	//found 수정 
-	 $('#FOUND').change(function(){
-	    var checked = $(this).prop('checked');  // checked 상태 (true, false)
-	 
-	    if(checked){
-	    	$('input[name=found]').prop('value',"1");
-	    	alert($('input[name=found]').val());
-       }
-       else{
-    	   $('input[name=found]').prop('value',"0");
-    	   alert($('input[name=found]').val());
-       }
-	 });
-	
-	
 	 $(document).ready(function() {
+		
+		$('#FOUND').change(function(){
+		    var checked = $(this).prop('checked');
+		    
+		    if(checked){
+		    	$('input[name=found]').prop('value',"1");
+		    	alert($('input[name=found]').val());
+	       }
+	       else{
+	    	   $('input[name=found]').prop('value',"0");
+	    	   alert($('input[name=found]').val());
+	       }
+		 });
 		 
 		 //즉시 실행 함수
 		 (function(){			    
@@ -626,9 +587,9 @@
 	         if($('#description4').val())
 	            description += " / " + $('#description4').val();
 	         if($('#description5').val())
-	            description += " / " + $('#description5').val();	         
-			 
-			//특징 새로 입력
+	            description += " / " + $('#description5').val();	        
+	         
+	         //특징 새로 입력
 	        $("input[name=dog_description]").val(description); //특징 입력 폼 5개 -> 1개로 합침	    
 			 
 			//첨부 이미지			
@@ -652,12 +613,10 @@
 	         	
 	       	//성별
 	         var gender = $('input[type=radio]:checked').val();
-	         $("input[name=dog_gender]").val(gender);
-			 
-	         
-	         
-			 formObj.append(str).submit(); //폼 전송	
-			 
+	       	
+	         $("input[name=dog_gender]").val(gender);	         
+	        
+			 formObj.append(str).submit(); //폼 전송			 
 		 });
 
 		//지도

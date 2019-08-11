@@ -195,7 +195,7 @@
                   <td class=date-view>
                   <i class="fa fa-clock-o"></i>
                   <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="<%=dto.getCreate_date() %>"/>
-                  <i class="fa fa-eye" style="padding-left:2rem"></i><%=dto.getView_count()%>
+                  <i class="fa fa-eye" style="padding-left:2rem; padding-right:0.2rem"></i><%=dto.getView_count()%>
                   </td>
                   
                </tr>
@@ -277,7 +277,8 @@
 			<% if (commentCount == 0) {%>
 			<h4>댓글  0</h4>
 			<a>등록된 댓글이 없습니다. 댓글을 작성해주세요!</a>
-			<%} 
+			<script>$('.d-flex').css("display","none")</script>		
+			<%}
 			
 			else { %>
 			<h4 class="text-uppercase" id="commentCount">
@@ -471,7 +472,7 @@
    <script type="text/javascript" src="/resources/js/report.js"></script>   
    
    <script>
-   $(document).ready(function() {
+   $(document).ready(function() {	   
 	   (function(){
           //var id = '<c:out value="${dto.id}"/>';
           
@@ -578,8 +579,7 @@
 		               }
 		           }
 	           });
-		 });
-		   
+		 });		   
    }); 
    
    

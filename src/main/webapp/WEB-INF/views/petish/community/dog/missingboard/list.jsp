@@ -19,7 +19,7 @@
 		request.setAttribute("pageNum", pageNum);
 	}	
 	//게시판 아이디 설정
-	request.setAttribute("boardId", "4");	
+	request.setAttribute("boardId", "4");
 %>
 
 <!DOCTYPE html>
@@ -72,6 +72,18 @@
 	<div id="all">
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
+		<%
+		//접속 아이디
+		Long userId = null;
+	    String userNickname = "";
+	    if(loginedUser != null){
+	    	userId = loginedUser.getId();
+	    	userNickname = loginedUser.getNickname();
+	    	
+	    	System.out.println("유저아이디 : " + userId);
+	    	System.out.println("유저닉네임 : " + userNickname); 
+	    }
+      %>
 
 		<form action="/dog/missingboard/<%=pageNum %>" method="post">
 			<input type="hidden" value=<%=pageNum %>>
@@ -152,9 +164,9 @@
 							</td>
 								
 							<td colspan="10">
-								<a href="/dog/missingboard/detail/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
+								<a href="/dog/missingboard/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
 									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
-								<a style="padding: 0.15rem"></a> <span class="badge badge-secondary">5</span></td>
+								<a style="padding: 0.15rem"></a> <span class="badge badge-secondary"><%=dto.getCommentCount() %></span></td>
 							<td>
 								<div class="nav navbar-nav ml-auto">
 									<a href="#" data-toggle="dropdown" class="dropdown writer"><%=dto.getNickname() %></a>
@@ -163,7 +175,7 @@
 											<a href="/mypage/member/detail" class="nav-link">게시글보기</a>
 										</div>
 										<div class="dropdown">
-											<a href="#" class="nav-link">쪽지보내기</a>
+											<a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
 										</div>
 									</div>
 								</div>
@@ -203,8 +215,6 @@
 						
 						</ul>
 					</div>
-					
-					
 				</div>
 			</div>	
 
@@ -247,12 +257,11 @@
 					</div>   
 				</div>
 			</form>	
-		</div>				
-	</div>			
-		    
-            
+		</div>		
+	</div>
+	<!-- all -->           
+	 
 	<div style="padding: 1rem"></div>
-
 	<!-- 페이징 -->
 	<form id='actionForm' action="/dog/missingboard/list" method='get'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
@@ -261,6 +270,51 @@
 		<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
 	</form>
 	
+	<!-- 쪽지 보내기 모달창 -->
+	<div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
+        class="modal fade">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 align="center" class="modal-title">쪽지보내기</h4>
+                    <button type="button" data-dismiss="modal" aria-label="Close"
+                        class="close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <%
+			 	for (int i = 0; i < dtoList.size() ; i++) {
+					DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);					
+					int index = i;					
+				%>
+                <form id="message_form" method="POST">
+                	
+			   		<input type="hidden" name="sender_id" id="sender_id" value=<%=userId %>>
+                	<input type="hidden" name="receiver_id" id="receiver_id" value=<%=dto.getId() %>>
+                
+                    <div class="form-group">
+                        <label>받는사람</label>
+                        <input class="form-control" name='nickname' value=<%=userNickname %>>
+                    </div>
+                    <div class="form-group">
+                        <label>제목</label>
+                        <input class="form-control" name='title'>
+                    </div>
+                    <div class="form-group">
+                        <label>내용</label>
+                        <textarea id="message_content" name='content' rows="10" class="form-control"></textarea>
+                    </div>
+                    <p class="text-center">   
+                        <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
+                    </p>
+                </form>
+                <%} %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script>
 	//반응형
@@ -305,10 +359,67 @@
 			   		window.location.href='/dog/missingboard/writeForm';
 			   <%}%>
 		   });
+		
+		 //쪽지 전송 시 로그인 확인
+		   $('#message-btn').on("click", function(e){
+			   <% if(loginedUser == null){ %>
+				   alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
+				   $('#login-modal').modal("show");				   
+			   <%} else{%>		   
+			   		$(this).attr('data-target',"#message-modal");
+			   		$('#message-modal').modal("show");
+			   <%}%>
+		   });
+		 
+		   //쪽지 전송
+			 $('#modalSendBtn').click(function(event){			 
+				   event.preventDefault();
+				   
+				   var messageModal = $("#message-modal"); //모달창
+				   
+				   var modalInputTitle = messageModal.find("input[name='title']"); //모달창 제거
+				   var modalInputContent = messageModal.find("textarea[name='content']"); //모달창 내용
+				   var senderId = $("#sender_id").val();
+				   var receiverId = $("#receiver_id").val();
+				   
+				   var modalSendBtn = $("#modalSendBtn"); //모달 보내기 버튼
+				   
+				   var msg = $("#message_form").serialize();
+				   alert(msg);
+			       
+		           $.ajax({
+		               url : '/mypage/api/message/new',
+		               type : 'post',
+		               data : msg,
+		               contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		               dataType : "json",
+		               beforeSend : function(){
+		            	   if(senderId == "" || senderId == "null"){
+		            		   alert("로그인 후 이용할 수 있습니다. 로그인 해주세요.");		            		   
+		            		   return false;
+		            	   }
+		            	   else{
+		            		   return true;
+		            	   }
+		               },
+		               success : function(result, status, xhr) {
+		            	   if (callback) {
+		            		   callback(result);
+		            		   alert("쪽지가 성공적으로 전송됐습니다.");
+			               }
+			           },
+			           error : function(xhr, status, er) {
+			               if (error) {
+			                   error(er);
+			                   alert("쪽지 전송 실패");
+			               }
+			           }
+		           });
+			 });
 				 
 		//즉시 실행 함수
 		   (function(){			  
-			 <% 
+			<% 
 			 	for (int i = 0; i < dtoList.size() ; i++) {
 					DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);					
 					int index = i;					

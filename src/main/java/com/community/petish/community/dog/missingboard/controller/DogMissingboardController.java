@@ -81,7 +81,7 @@ public class DogMissingboardController {
 	}
 	
 	// 게시글 조회
-	@RequestMapping("/detail/{id}")
+	@RequestMapping("/{id}")
 	public String dogMissingBoardDetail(@PathVariable Long id, Model model) {
 		//댓글 수 조회
 		int commentCount = commentService.getCommentCnt(id);		
@@ -103,7 +103,7 @@ public class DogMissingboardController {
 	}
 	
 	
-	//입력
+	// 게시글 입력
 	@PostMapping("/register")
 	public String register(DogLostPostRequestWriteDTO dto, Model model, RedirectAttributes rttr) {
 
@@ -118,8 +118,8 @@ public class DogMissingboardController {
 		service.register(dto);
 		
 		rttr.addFlashAttribute("result", dto.getId());
-
-		return "redirect:/dog/missingboard/detail/"+dto.getId();
+		
+		return "redirect:/dog/missingboard/"+dto.getId();
 	}
 
 	// 개시글 수정 폼
@@ -157,7 +157,7 @@ public class DogMissingboardController {
 			log.info("에러");
 			e.printStackTrace();			
 		}
-		return "redirect:/dog/missingboard/detail/"+dto.getId();
+		return "redirect:/dog/missingboard/"+dto.getId();
 	}
 	
 	// 게시글 삭제
