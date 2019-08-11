@@ -119,7 +119,11 @@ public class DogMissingboardController {
 		
 		rttr.addFlashAttribute("result", dto.getId());
 
+<<<<<<< HEAD
 		return "redirect:/dog/missingboard/"+dto.getId();
+=======
+		return "redirect:/dog/missingboard/detail/"+dto.getId();
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	}
 
 	// 개시글 수정 폼
@@ -157,7 +161,11 @@ public class DogMissingboardController {
 			log.info("에러");
 			e.printStackTrace();			
 		}
+<<<<<<< HEAD
 		return "redirect:/dog/missingboard/"+dto.getId();
+=======
+		return "redirect:/dog/missingboard/detail/"+dto.getId();
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	}
 	
 	// 게시글 삭제

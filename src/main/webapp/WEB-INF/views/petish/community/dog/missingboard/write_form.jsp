@@ -51,9 +51,13 @@
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
 		<%
 			//로그인 확인
+<<<<<<< HEAD
 			System.out.println("Login???? : " + loginedUser);
 			if(loginedUser == null){
 				System.out.println("here!!");
+=======
+			if(loginedUser == null){
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 				out.println("<script>");
 				out.println("location.href='/dog/missingboard/list'");
 				out.println("</script>");
@@ -279,7 +283,10 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<<<<<<< HEAD
 	<script src="/resources/js/missingboard/write_modify.js"></script>
+=======
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	<script>
 	function formCheck(){
 		var formObj = document.dogLostPostForm;
@@ -296,7 +303,10 @@
 		var phoneNumber = formObj.phone_number.value;
 		
 		if(dogName == "" || dogName == null){
+<<<<<<< HEAD
 			alert(dogName);
+=======
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 			alert("강아지 이름을 입력해주세요");
 			return false;
 		}
@@ -338,7 +348,10 @@
 		}		
 		return true;
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	</script>
 
 	<!-- Javascript files-->
@@ -355,6 +368,10 @@
 	<script src="/resources/js/front.js"></script>
 
 	<!-- JS 파일 추가 -->
+<<<<<<< HEAD
+=======
+	<script src="/resources/js/missingboard/write_modify.js"></script>
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>

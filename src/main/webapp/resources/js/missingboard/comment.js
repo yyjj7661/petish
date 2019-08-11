@@ -1,10 +1,17 @@
 $(document).ready(function(){
+<<<<<<< HEAD
 	commentList();
 });
 
 //총 댓글 수
 var cnt = 0;
 
+=======
+	
+		commentList();
+});
+
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 //댓글 목록
 function commentList(param) {
 	
@@ -23,11 +30,16 @@ function commentList(param) {
 		
 		success:function(result) {
 			
+<<<<<<< HEAD
 			for(var i in result) {
 				
 				var count = '댓글  ' + result[i].count;
 				cnt = result[i].count;
 				
+=======
+			for(var i in result) {				
+				var count = '댓글  ' + result[i].count;
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 				var output = '';
 				var modifyBtn = '';
 				var deleteBtn = '';
@@ -44,7 +56,11 @@ function commentList(param) {
 					output += '<div class="col-sm-9 col-md-10">';
 				}				
 				else {					
+<<<<<<< HEAD
 					output += '<div class="col-sm-9 col-md-10" style="height:130px">'; 
+=======
+					output += '<div class="col-sm-9 col-md-10" style="height:150px">'; 
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 				}
 				
 				output += '<h5 class="text-uppercase" style="display:inline-block; padding-right:1rem">' + result[i].nickname + '</h5>';
@@ -93,11 +109,16 @@ var commentPageFooter = $(".comment-footer");
 
 //댓글 페이지 번호 출력
 function commentCount() {
+<<<<<<< HEAD
 	var commentCnt = cnt;
 	
 	//댓글 없으면 페이징 출력X
 	if(commentCnt == 0) return;	
 	
+=======
+	var commentCnt = $('#commentCountVal');
+		
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	var endNum = Math.ceil(pageNum / 10.0) * 10;
 	var startNum = endNum - 9;
 	

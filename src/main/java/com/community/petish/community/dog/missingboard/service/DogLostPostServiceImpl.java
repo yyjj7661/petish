@@ -96,6 +96,7 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 		
 		Long id = dto.getId(); //게시글 번호
 		
+<<<<<<< HEAD
 		String postURL = "/dog/missingboard/"+id; //실종견 게시글 주소
 		//String content = "["+ address + "]" + " 실종견 게시글이 등록되었습니다.\r" + postURL;
 		
@@ -108,6 +109,10 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 		
 		String content = sb.toString();
 		System.out.println("content : " + content);
+=======
+		String postURL = "/dog/missingboard/detail/"+id; //실종견 게시글 주소	
+		String content = "["+ address + "]" + " 실종견 게시글이 등록되었습니다.\r" + postURL;
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 		
 		int messageResult = mapper.sendMessage(id, content);
 		System.out.println("보낸 매세지 : " + messageResult);
@@ -124,8 +129,12 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 	@Override	
 	public int modify(DogLostPostRequestWriteDTO dto) {		
 		//첨부 사진 삭제
+<<<<<<< HEAD
 		attachMapper.deleteAll(dto.getId());		
 		
+=======
+		attachMapper.deleteAll(dto.getId());
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 		//게시글 수정
 		int result = mapper.updatePost(dto);
 		System.out.println("modify result : " + result);

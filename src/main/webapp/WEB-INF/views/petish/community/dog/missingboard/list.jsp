@@ -19,7 +19,11 @@
 		request.setAttribute("pageNum", pageNum);
 	}	
 	//게시판 아이디 설정
+<<<<<<< HEAD
 	request.setAttribute("boardId", "4");
+=======
+	request.setAttribute("boardId", "4");	
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 %>
 
 <!DOCTYPE html>
@@ -164,9 +168,15 @@
 							</td>
 								
 							<td colspan="10">
+<<<<<<< HEAD
 								<a href="/dog/missingboard/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
 									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
 								<a style="padding: 0.15rem"></a> <span class="badge badge-secondary"><%=dto.getCommentCount() %></span></td>
+=======
+								<a href="/dog/missingboard/detail/<%=dto.getId()%>" class="title" id="title">[<%=addrSplit%>]
+									<%=dto.getDog_species()%> / <%=dto.getDog_gender()%> / <%=dto.getDog_age()%></a>
+								<a style="padding: 0.15rem"></a> <span class="badge badge-secondary">5</span></td>
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 							<td>
 								<div class="nav navbar-nav ml-auto">
 									<a href="#" data-toggle="dropdown" class="dropdown writer"><%=dto.getNickname() %></a>
@@ -258,10 +268,18 @@
 				</div>
 			</form>	
 		</div>				
+<<<<<<< HEAD
 	</div>
 	<!-- all -->           
 	 
 	<div style="padding: 1rem"></div>
+=======
+	</div>			
+		    
+            
+	<div style="padding: 1rem"></div>
+
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	<!-- 페이징 -->
 	<form id='actionForm' action="/dog/missingboard/list" method='get'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
@@ -270,6 +288,7 @@
 		<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
 	</form>
 	
+<<<<<<< HEAD
 	<!-- 쪽지 보내기 모달창 -->
 	<div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
         class="modal fade">
@@ -315,6 +334,8 @@
         </div>
     </div>
     	
+=======
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	<script>
 	//반응형
@@ -348,6 +369,7 @@
 	
 	$(document).ready(function(){		
 		resize();
+<<<<<<< HEAD
 		
 		//로그인 확인
 		   $('#writeBtn').on("click", function(e){
@@ -420,6 +442,23 @@
 		//즉시 실행 함수
 		   (function(){			  
 			<% 
+=======
+		
+		//로그인 확인
+		   $('#writeBtn').on("click", function(e){
+			   <% if(loginedUser == null){ %>
+				   alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");				   
+				   $('#login-modal').modal("show");	
+				   
+			   <%}else{%>
+			   		window.location.href='/dog/missingboard/writeForm';
+			   <%}%>
+		   });
+				 
+		//즉시 실행 함수
+		   (function(){			  
+			 <% 
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 			 	for (int i = 0; i < dtoList.size() ; i++) {
 					DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);					
 					int index = i;					

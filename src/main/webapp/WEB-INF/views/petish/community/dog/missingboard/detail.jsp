@@ -195,7 +195,11 @@
                   <td class=date-view>
                   <i class="fa fa-clock-o"></i>
                   <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="<%=dto.getCreate_date() %>"/>
+<<<<<<< HEAD
                   <i class="fa fa-eye" style="padding-left:2rem; padding-right:0.2rem"></i><%=dto.getView_count()%>
+=======
+                  <i class="fa fa-eye" style="padding-left:2rem"></i><%=dto.getView_count()%>
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
                   </td>
                   
                </tr>
@@ -277,8 +281,12 @@
 			<% if (commentCount == 0) {%>
 			<h4>댓글  0</h4>
 			<a>등록된 댓글이 없습니다. 댓글을 작성해주세요!</a>
+<<<<<<< HEAD
 			<script>$('.d-flex').css("display","none")</script>		
 			<%}
+=======
+			<%} 
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 			
 			else { %>
 			<h4 class="text-uppercase" id="commentCount">
@@ -472,7 +480,11 @@
    <script type="text/javascript" src="/resources/js/report.js"></script>   
    
    <script>
+<<<<<<< HEAD
    $(document).ready(function() {	   
+=======
+   $(document).ready(function() {
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
 	   (function(){
           //var id = '<c:out value="${dto.id}"/>';
           
@@ -579,7 +591,12 @@
 		               }
 		           }
 	           });
+<<<<<<< HEAD
 		 });		   
+=======
+		 });
+		   
+>>>>>>> 62fc05058ad5bf722e11a524f9feef1652b2772f
    }); 
    
    
