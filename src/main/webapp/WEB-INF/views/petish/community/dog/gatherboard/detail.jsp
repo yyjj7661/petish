@@ -97,7 +97,7 @@
 										class="img-fluid rounded-circle"></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown"> <%= userNickName %></a>
+											<a href="#" data-toggle="dropdown" class="dropdown"> <%= writer %></a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
 												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
