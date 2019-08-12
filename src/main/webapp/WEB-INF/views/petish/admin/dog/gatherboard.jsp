@@ -24,7 +24,7 @@
             <div class="tile-body">
            		<div id="postCount"></div>
 	              <table class="table table-hover table-striped" id="sampleTable">
-	                <thead>
+	                <thead class="text-center">
 	                  <tr>
 	                    <th>번호</th>
 	                    <th>지역</th>
