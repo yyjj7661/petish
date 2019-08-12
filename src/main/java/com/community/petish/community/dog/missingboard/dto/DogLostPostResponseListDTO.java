@@ -30,5 +30,5 @@ public class DogLostPostResponseListDTO {
 	
 	private String nickname; //유저 닉네임
 	private String dog_species; //강아지 종
-	
+	private int commentCount; //댓글 갯수
 }
