@@ -16,6 +16,7 @@
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
           <li class="breadcrumb-item">강아지</li>
           <li class="breadcrumb-item active"><a href="/admin/dog/gatherboard">정모 게시판</a></li>
+          <li class="breadcrumb-item active"><a href="/admin/dog/gatherboard">강아지 게시판</a></li>
         </ul>
       </div>
       <div class="row">
@@ -38,23 +39,20 @@
 	                  </tr>
 	                </thead>
 	                <tbody id="gatherboardList" class="text-center">
-					</tbody>
+					        </tbody>
 	              </table>
 	              <div>
 	                   <div class="post-footer d-flex justify-content-center"></div>
 	              </div>
 	              <!-- page-form -->       
-	              	<form id="page_form">
-						<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
-					</form>	  
+                <form id="page_form">
+						      <input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
+					      </form>	  
             </div>
           </div>
         </div>
       </div>
     </main>
-
-    
-    
     
     <!-- script 파일 추가 -->
 	<%@ include file="/WEB-INF/views/petish/admin/commons/script.jspf" %>
