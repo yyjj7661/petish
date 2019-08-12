@@ -107,9 +107,6 @@
 											</select>
 										</div>
 									</div>
-								
-
-									
 								</div>
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
@@ -135,8 +132,6 @@
 											<input id="datetimepicker" type="text" name="STR_GATHRING_DATE" value="<%= post.getGATHERING_DATE() %>" class="form-control">
 										</div>
 									</div>
-									
-									
 								</div>
 								<div class="row" >
 									<div class="col-md-6">
@@ -155,13 +150,11 @@
 								<div class="map_wrap">
     								<div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
     							</div>
-								
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password_old">제목</label> <input id="password_old"
 												name="TITLE" type="text" value="<%= post.getTITLE() %>" class="form-control">
-												
 										</div>
 									</div>
 								</div>
@@ -172,7 +165,6 @@
 											<textarea id="summernote" name="CONTENT" class="form-control"><%= post.getCONTENT() %></textarea>
 										</div>
 									</div>
-
 								</div>
 								<div class="row">
 									<div class="col-md-3">
@@ -186,11 +178,8 @@
 									</div>
 								</div>
 							</form>
-						
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -224,6 +213,7 @@
 	<script src="/resources/js/boardMap/modify_map.js"></script>
 	<!-- include catagory.js -->
 	<script src="/resources/js/gatherboard/post.js"></script>
+	<script src="/resources/js/gatherboard/writeForm.js"></script>
 
 </body>
 </html>
