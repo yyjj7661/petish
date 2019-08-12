@@ -36,8 +36,8 @@
 		</div>
 		<div id="content">
 			<div class="container">	
-						<button type="submit" class="btn btn-template-outlined">
-							<a href="/dog/gatherboard/writeForm">
+						<button type="submit" class="btn btn-template-outlined" onclick="writeFormClick();">
+							<a>
 							글쓰기
 							</a>
 						</button>

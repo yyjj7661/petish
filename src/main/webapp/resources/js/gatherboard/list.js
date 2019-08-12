@@ -39,3 +39,16 @@ function sizeSearch() {
 		categoryForm.submit();
 	}
 }
+
+function writeFormClick() {
+	$.ajax({
+		type: "GET",
+		url: "/api/users/authenticate",
+		success: function(data) {
+			location.href="/dog/gatherboard/writeForm";
+		},
+		error: function(error) {
+			$("#login-modal").modal("show");
+		}
+	})
+}

@@ -278,8 +278,7 @@ public class DogGatherboardController {
 			out.println("</script>");
 			out.close();
 			return null;			
-		} else {
-			
+		} else {			
 			if(participantCount < peopleCount) {
 				
 				participantVO.setUSER_ID(USER_ID);
