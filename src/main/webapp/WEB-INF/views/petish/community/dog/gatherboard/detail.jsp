@@ -14,6 +14,7 @@
 	String userName = user.getUsername();
 	Long userId = user.getId();
 	String userNickName = user.getNickname();
+	Long boardId = 2L;
 	
 	//DogSize
 	Long sizeID = (Long)request.getAttribute("sizeID");

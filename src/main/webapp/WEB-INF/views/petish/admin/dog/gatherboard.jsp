@@ -15,38 +15,43 @@
         <ul class="app-breadcrumb breadcrumb side">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
           <li class="breadcrumb-item">강아지</li>
-          <li class="breadcrumb-item active"><a href="/admin/dog/gatherboard">강아지 게시판</a></li>
+          <li class="breadcrumb-item active"><a href="/admin/dog/gatherboard">정모 게시판</a></li>
         </ul>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">
-              <table class="table table-hover table-striped" id="sampleTable">
-                <thead>
-                  <tr>
-                    <th>번호</th>
-                    <th>상태</th>
-                    <th>지역</th>
-                    <th>크기</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일자</th>
-                    <th>조회</th>
-                    <th>삭제</th>
-                  </tr>
-                </thead>
-                <tbody id="gatherboardList">
-                 
-                </tbody>
-              </table>
-              <div id="ddd">
-              </div>
+           		<div id="postCount"></div>
+	              <table class="table table-hover table-striped" id="sampleTable">
+	                <thead>
+	                  <tr>
+	                    <th>번호</th>
+	                    <th>지역</th>
+	                    <th>크기</th>
+	                    <th>제목</th>
+	                    <th>작성자</th>
+	                    <th>작성일자</th>
+	                    <th>조회</th>
+	                    <th>삭제 상태</th>
+	                    <th>삭제</th>
+	                  </tr>
+	                </thead>
+	                <tbody id="gatherboardList">
+	                </tbody>
+	              </table>
+		              <div class="dataTables_paginate paging_simple_numbers right" id="sampleTable_paginate">
+		              </div>
+					<form id="page_form">
+						<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
+					</form>	              
             </div>
           </div>
         </div>
       </div>
     </main>
+    
+    
     
     <!-- script 파일 추가 -->
 	<%@ include file="/WEB-INF/views/petish/admin/commons/script.jspf" %>
