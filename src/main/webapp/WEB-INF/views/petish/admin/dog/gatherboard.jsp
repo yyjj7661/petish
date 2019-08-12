@@ -42,7 +42,7 @@
 					        </tbody>
 	              </table>
 	              <div>
-	              	<div class="post-footer d-flex justify-content-center"></div>
+	                <div class="post-footer d-flex justify-content-center"></div>
 	              </div>
 	              <!-- page-form -->       
                 <form id="page_form">
