@@ -9,7 +9,7 @@ $(document).ready(function(){
         if ($(".chat").attr("src") == "/resources/img/gatherboard/chat.png") {
             $(".chat").attr("src", "/resources/img/gatherboard/chatHide.png");
             $("#chat_box").css("display", "block");
-            inputMessage.focus();
+            webSocket.send($("#chat_id").val() + "|" + inputMessage.value + "|" + postID + "|" + "입장");
         } else if ($(".chat").attr("src") == "/resources/img/gatherboard/chatHide.png") {
             $(".chat").attr("src", "/resources/img/gatherboard/chat.png");
             $("#chat_box").css("display", "none");
@@ -35,10 +35,10 @@ $(document).ready(function(){
 			  + "</div></div>";
         
         var user = document.getElementById(''+$("#chat_id").val()+'');
-        
+                
         if(user == null) {        	
         	$(".onUser").append(me);
-        	webSocket.send($("#chat_id").val() + "|" + $("#chat_id").val()+"님이 채팅방에 접속하셨습니다." + "|" + postID + "|" + "입장"); 
+            webSocket.send($("#chat_id").val() + "|" + $("#chat_id").val() + "님이 입장하셨습니다." + "|" + postID + "|" + "입장");
         	
          	 /* 본인에게 1:1 채팅 */
          	 $("#oneOnOne"+$("#chat_id").val()+"").click(function(){      			 
@@ -49,8 +49,8 @@ $(document).ready(function(){
          	 $("#whisper"+$("#chat_id").val()+"").click(function(){      			 
          			 alert('본인에게 귓속말을 할 수 없습니다!');
          	 });
+         	 
         }
-        
     };
     /* 입장할 때 */
     webSocket.onmessage = function(event) {
@@ -93,7 +93,7 @@ $(document).ready(function(){
         /* 채팅 재접속 */
         else if(user.hidden==true) {
            	user.hidden=false;
-           	webSocket.send($("#chat_id").val() + "|" + inputMessage.value + "|" + postID + "|" + "입장"); 
+            webSocket.send($("#chat_id").val() + "|" + $("#chat_id").val() + "님이 입장하셨습니다." + "|" + postID + "|" + "입장");
         } 
        
         if(state=="퇴장") {   	
