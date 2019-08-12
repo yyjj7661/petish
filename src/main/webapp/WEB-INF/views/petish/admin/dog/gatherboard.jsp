@@ -33,7 +33,7 @@
 	                    <th>작성자</th>
 	                    <th>작성일자</th>
 	                    <th>조회</th>
-	                    <th>삭제 상태</th>
+	                    <th>상태</th>
 	                    <th>삭제</th>
 	                  </tr>
 	                </thead>

@@ -27,4 +27,10 @@ public class AdminDogGatherboardServiceImpl implements AdminDogGatherboardServic
 		return dogGatherPostCount;
 	}
 
+	@Override
+	public int restoreDogGatherPost(Long postID) {
+		int res = adminDogGatherboardMapper.restoreDogGatherPost(postID);
+		return res;
+	}
+
 }

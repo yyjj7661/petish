@@ -70,6 +70,20 @@ public class AdminDogGatherboardController {
 		return str;
 	}
 	
+	//게시물 복구
+	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH },
+	    value = "restorePost/{id}",
+	    consumes = "application/json",
+	    produces = {MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> restoreComment(@PathVariable("id") Long postID) {
+
+	  System.out.println("restore="+postID);
+
+	  return adminDogGatherboardService.restoreDogGatherPost(postID) == 1
+	      ? new ResponseEntity<>("success", HttpStatus.OK)
+	      : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}	
+	
 	//게시물 삭제
 	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH },
 	    value = "removePost/{id}",

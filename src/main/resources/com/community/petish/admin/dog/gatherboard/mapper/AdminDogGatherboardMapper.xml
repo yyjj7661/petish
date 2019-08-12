@@ -37,4 +37,8 @@
 
 	</select>
 	
+	<update id="restoreDogGatherPost">
+		update DOG_GATHER_POST_TB set DELETED = 0 where ID=#{ID}
+	</update>
+	
 </mapper>

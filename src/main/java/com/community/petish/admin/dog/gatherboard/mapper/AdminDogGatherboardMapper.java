@@ -9,4 +9,5 @@ public interface AdminDogGatherboardMapper {
 
 	List<AdminDogGatherboardListDTO> getListWithPaging(Criteria cri);
 	int getDogGatherboardPostCount();
+	int restoreDogGatherPost(Long postID);
 }

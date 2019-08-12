@@ -23,15 +23,28 @@ function gatherboardList(params) {
 				var output = '';
 				countVal += '<input type="hidden" id="postCountVal" value='+result[i].count+' />';
 				output += '<tr role="row" class="odd">';
-				output += '<td class="sorting_1" class="text-center">' + result[i].id + '</td>';
+				output += '<td class="text-center">' + result[i].id + '</td>';
 				output += '<td class="text-center">' + result[i].region_NAME + '</td>';
 				output += '<td class="text-center">' + result[i].dog_SIZE + '형견</td>';
 				output += '<td class="text-center"><a href="/dog/gatherboard/'+result[i].id+'">' + result[i].title + '</a></td>';
 				output += '<td class="text-center">' + result[i].nickname + '</td>';
 				output += '<td class="text-center">' + result[i].CREATED_DATE + '</td>';
 				output += '<td class="text-center">' + result[i].view_COUNT + '</td>';
-				output += '<td class="text-center">' + result[i].deleted + '</td>';
-				output += '<td class="text-center">' + '<button type="button" onclick="removePost('+result[i].id+')" id="deletebtn" class="btn btn-template-outlined">삭제</button>' + '</td>';
+				if(result[i].deleted==0) {					
+					output += '<td class="text-center"></td>';
+				}
+				else{
+					output += '<td class="text-center">삭제됨</td>';
+					
+				}
+				if(result[i].deleted==0) {					
+					output += '<td class="text-center">' + '<button type="button" onclick="removePost('+result[i].id+')" id="deletebtn" class="btn btn-danger">삭제</button>' + '</td>';
+					
+				}
+				else{
+					output += '<td class="text-center">' + '<button type="button" onclick="restorePost('+result[i].id+')" id="restorebtn" class="btn btn-success">복구</button>' + '</td>';
+					
+				}
 				output += '</tr>';
 				
 				$('#gatherboardList').append(output);
@@ -108,11 +121,35 @@ postPageFooter.on("click", "li a", function(e){
 	gatherboardList(params);
 });
 
+//게시물 복구
+function restorePost(postID) {
+	if(confirm("게시글을 복구하시겠습니까?")) {		
+		$.ajax({
+			type : 'put',
+			url : '/admin/dog/gatherboard/restorePost/' + postID,
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr) {
+				if(result) {
+					//alert('게시물 복구!');
+					gatherboardList();
+				}
+			},
+			error : function(xhr, status, er) {
+				if(error) {
+					alert('복구 실패!');
+					error(er);
+				}
+			}
+		});
+	}
+	else {
+		alert('게시물 삭제 취소!');
+	}
+}
 
 //게시물 삭제
-//댓글 삭제
 function removePost(postID) {
-	if(confirm("삭제하시겠습니까?")) {		
+	if(confirm("게시글을 삭제하시겠습니까?")) {		
 		$.ajax({
 			type : 'put',
 			url : '/admin/dog/gatherboard/removePost/' + postID,

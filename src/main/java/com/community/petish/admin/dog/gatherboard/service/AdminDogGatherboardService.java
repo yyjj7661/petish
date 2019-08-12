@@ -9,5 +9,6 @@ public interface AdminDogGatherboardService {
 
 	public List<AdminDogGatherboardListDTO> getListWithPaging(Criteria cri);
 	public int getDogGatherboardPostCount();
+	public int restoreDogGatherPost(Long postID);
 
 }
