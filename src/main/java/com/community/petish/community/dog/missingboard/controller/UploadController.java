@@ -100,12 +100,7 @@ public class UploadController {
 		List<AttachFileDTO> list = new ArrayList<>();
 		//업로드 할 경로
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/missingboard/dog");
-		
-		//String uploadPathSplit = "C:\\Users\\bitcamp\\Documents\\workspace-sts-3.9.8.RELEASE\\petish_new\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petish";
-		
-		String test = uploadPath.substring(0, uploadPath.lastIndexOf("\\resources"));
-		System.out.println("test + " + test);
-		
+
 		log.info("uploadPath : " + uploadPath);
 		
 		for (MultipartFile multipartFile : uploadFile) {
@@ -133,22 +128,18 @@ public class UploadController {
 				log.info("uploadPath : " + uploadPath);
 				log.info("uploadFileName : " + uploadFileName);
 
-				//이미지 파일인지 체크
-				if (checkImageType(saveFile)) {
+        attachDTO.setImage(true);
+        //썸네일 이미지 파일명, 경로, 크기 지정해 생성
+        FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+        try{
+          Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+        }
+        catch(IllegalStateException e) {
+          log.info("Thumbnail error");
+          e.printStackTrace();
+        }
 
-					attachDTO.setImage(true);
-					//썸네일 이미지 파일명, 경로, 크기 지정해 생성
-					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-					try{
-						Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
-					}
-					catch(IllegalStateException e) {
-						log.info("Thumbnail error");
-						e.printStackTrace();
-					}
-
-					thumbnail.close();
-				}
+        thumbnail.close();
 				//파일 리스트에 추가
 				list.add(attachDTO);
 
