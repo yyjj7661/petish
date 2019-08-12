@@ -51,18 +51,8 @@ public class DogGatherboardController {
 		   
 	//게시글 조회
 	@RequestMapping(value = "/{ID}")
-	public ModelAndView dogGatherboardDetail(@PathVariable("ID") Long postID, HttpSession session, Criteria cri, HttpServletResponse response) throws Exception {
-		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+	public ModelAndView dogGatherboardDetail(@PathVariable("ID") Long postID, Criteria cri, HttpServletResponse response) throws Exception {
 
-		if(user == null) {
-			response.setContentType("text/html charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('로그인이 필요합니다!');");
-			out.println("location.href='/dog/gatherboard';");
-			out.println("</script>");
-			out.close();
-		}
 		int res = dogGatherService.updateViewCount(postID);
 		System.out.println("UpdateViewCountRes="+res);
 		
@@ -105,26 +95,12 @@ public class DogGatherboardController {
 	
 	//게시글 작성폼
 	@RequestMapping("/writeForm")
-	public ModelAndView dogGatherboardWriteForm(HttpServletResponse response, HttpSession session) throws Exception {
-		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
-
-		ModelAndView result = new ModelAndView();
+	public ModelAndView dogGatherboardWriteForm(HttpServletResponse response, HttpSession session) throws Exception {		
 		
-		if(user == null) {
-			response.setContentType("text/html charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('로그인이 필요합니다!');");
-			out.println("location.href='/dog/gatherboard';");
-			out.println("</script>");
-			out.close();
-		}
-		else {			
-			result.setViewName("petish/community/dog/gatherboard/write_form");
+		ModelAndView result = new ModelAndView();		
+		result.setViewName("petish/community/dog/gatherboard/write_form");
 			
-			return result;
-		}
-		return null;
+		return result;
 	}
 	
 	//게시글 수정폼
