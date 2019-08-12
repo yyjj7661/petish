@@ -18,7 +18,7 @@ $(document).ready(function(){
     }
     
     var textarea = document.getElementById("messageWindow");
-    var webSocket = new WebSocket('ws://192.168.1.5:8080/broadcasting'); /* 서버 IP 주소에 맞게 변경 */
+    var webSocket = new WebSocket('ws://192.168.1.12:8080/broadcasting'); /* 서버 IP 주소에 맞게 변경 */
     var inputMessage = document.getElementById('inputMessage');
     webSocket.onerror = function(event) {
         onError(event)
@@ -141,10 +141,14 @@ $(document).ready(function(){
                 /* 1대1 채팅 요청 */
                 } else if(content.match("%")) {
                 	if (content.match(("%" + $("#chat_id").val() + "%"))) {
-                		if(confirm(sender+"님과의 1대1 채팅을 수락하시겠습니까?")) {                			
+                		if(confirm(sender+"님과의 1대1 채팅을 수락하시겠습니까?")) {
+                			if(connectChat==null) {
+                				$("#messageWindow").empty();
+                			}
                 			inputMessage.value="@"+sender+"@" + $("#chat_id").val() + "님께서 1대1 요청을 수락하셨습니다.";
                  			send();
                            	inputMessage.value="@"+sender+"@"; // 1대1 요청 받은 사람의 메세지 창에 sender의 아이디 표시
+                			
                 		}
                 	}
                 } 
@@ -158,6 +162,7 @@ $(document).ready(function(){
                 	if (content.match(("@" + $("#chat_id").val() + "@"))) { 
                 		var connectChat = document.getElementById('connectChat');
                 		if(connectChat==null) {
+                			$("#messageWindow").empty();
                 			$("#messageWindow").html($("#messageWindow").html()+"<p class='chatNotice' id='connectChat'>" + sender + "님과의 1대1채팅이 연결되었습니다.</p>");
                 		}
 
