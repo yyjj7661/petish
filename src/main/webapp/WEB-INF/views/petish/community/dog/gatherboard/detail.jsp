@@ -385,7 +385,7 @@
 								<div class="col-sm-12"> 
 										<!-- 게시자일떄만 수정/삭제  -->
 										<%
-											if(userName.equals(writer)) {
+											if(userNickName.equals(writer)) {
 										%>
 											<button id="modifyBtn" class="btn btn-template-outlined">
 												<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
