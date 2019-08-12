@@ -107,9 +107,6 @@
 											</select>
 										</div>
 									</div>
-								
-
-									
 								</div>
 								<div class="row">
 									<div class="col-sm-6 col-md-2">
@@ -135,14 +132,12 @@
 											<input id="datetimepicker" type="text" name="STR_GATHRING_DATE" value="<%= post.getGATHERING_DATE() %>" class="form-control">
 										</div>
 									</div>
-									
-									
 								</div>
 								<div class="row" >
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="category">모임장소</label>									
-											<input id="place" name="GATHERING_ADDRESS" type="text" value="<%= post.getGATHERING_ADDRESS() %>"class="form-control">
+											<input id="place" name="GATHERING_ADDRESS" type="text" value="<%= post.getGATHERING_ADDRESS() %>" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-1.5" style="padding-top: 6px;">
@@ -155,13 +150,11 @@
 								<div class="map_wrap">
     								<div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
     							</div>
-								
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password_old">제목</label> <input id="password_old"
 												name="TITLE" type="text" value="<%= post.getTITLE() %>" class="form-control">
-												
 										</div>
 									</div>
 								</div>
@@ -172,7 +165,6 @@
 											<textarea id="summernote" name="CONTENT" class="form-control"><%= post.getCONTENT() %></textarea>
 										</div>
 									</div>
-
 								</div>
 								<div class="row">
 									<div class="col-md-3">
@@ -186,11 +178,8 @@
 									</div>
 								</div>
 							</form>
-						
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -199,6 +188,7 @@
 	</div>
 	<%@ include file="/WEB-INF/views/commons/script.jspf" %>			
 	<!-- selectbox값 가져오기 -->
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
 	<script>
 	//selectbox 값을 db에서 가져온다
 	var region = <%= post.getREGION_ID()%>; //받아온값
@@ -208,6 +198,53 @@
 	$("#region").val(region);
 	$("#personnel").val(personnel);
 	$("#size").val(size);
+	
+	//검색 버튼눌렀을경우
+	function openZipcode(searchMap){			
+		var url="/resources/api/searchMap.jsp"
+		open(url, "confirm", "toolbar=no,location=no,"
+							+"status=no,menubar=no,"
+							+"scrollbars=yes,resizable=no,"
+							+"width=700,height=600");
+	}	
+		
+	//지도 api 선택한 곳 마커 표시하기(주소까지 출력)
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	//원래 게시글의 모임장소 주소를 좌표로 바꿔주고 지도에 표시해주는 함수//********************************************************
+	var callback = function(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	        setMarker(result[0].x, result[0].y);
+	    }
+	};
+	// '서울 서초구 서초동 1303-34'에 게시글의 모임장소(db값) 넣어준다.**********************************************************
+	geocoder.addressSearch("<%= post.getGATHERING_ADDRESS() %>", callback);
+	
+	var marker = new kakao.maps.Marker();
+
+	//검색 하고 마커 찍어주는 함수
+	function setMarker(fa, ga){
+		//검색창에서 클릭한 좌표로 이동된 지도를 다시 생성
+		mapOption = {
+		        center: new kakao.maps.LatLng(ga, fa), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		//해당 위치에 마커를 표시
+		marker.setPosition(new kakao.maps.LatLng(ga, fa));
+		marker.setMap(map);
+	}
 	</script>
 	
 	
@@ -221,9 +258,9 @@
 	<script src="/resources/lang/summernote-ko-KR.js"></script>
 	<script src="/resources/js/summernote.js"></script>
 	<script src="/resources/js/datepicker.js"></script>
-	<script src="/resources/js/boardMap/modify_map.js"></script>
 	<!-- include catagory.js -->
 	<script src="/resources/js/gatherboard/post.js"></script>
+	<script src="/resources/js/gatherboard/writeForm.js"></script>
 
 </body>
 </html>

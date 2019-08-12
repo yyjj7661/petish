@@ -193,5 +193,6 @@
 	<script src="/resources/js/boardMap/write_map.js"></script>
 	<!-- include category.js -->
 	<script src="/resources/js/gatherboard/post.js"></script>
+	<script src="/resources/js/gatherboard/writeForm.js"></script>
 </body>
 </html>

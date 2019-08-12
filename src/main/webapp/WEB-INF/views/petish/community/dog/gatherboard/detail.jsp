@@ -12,7 +12,7 @@
 	String addr = post.getGATHERING_ADDRESS();
 	String writer = (String)request.getAttribute("writer");
 	String userName = user.getUsername();
-	Long userId = user.getId();
+	Long userID = user.getId();
 	String userNickName = user.getNickname();
 	Long boardId = 2L;
 	
@@ -345,7 +345,7 @@
 							<!-- comment_page_form -->
 							<form id="page_form">
 								<input type="hidden" name="POST_ID" value=<%= post.getID() %>>
-								<input type="hidden" name="USER_ID" value=<%= userId %>> 
+								<input type="hidden" name="USER_ID" value=<%= userID %>> 
 								<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
 							</form>
 	                         <div class="comment-footer d-flex justify-content-center"></div>
@@ -355,7 +355,7 @@
 							<h4 class="text-uppercase comment">댓글</h4>
 							<!-- comment insert form -->
 							<form id="insert_form" method="post">
-								<input type="hidden" name="USER_ID" value=<%= userId %>> 
+								<input type="hidden" name="USER_ID" value=<%= userID %>> 
 								<input type="hidden" name="POST_ID" value=<%=post.getID() %>>
 								<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
 								<div class="row">
@@ -399,56 +399,61 @@
 										%>
 										<!-- 게시자일때만 수정/삭제 END -->
 											<button type="button" class="btn btn-danger"
-												data-toggle="modal" data-target="#myModal"
+												data-toggle="modal" data-target="#report-modal"
 											 	id="report-btn">신고</button>
 								</div>
 								<!-- 신고 모달 -->
-										<div class="modal fade" id="myModal" tabindex="-1"
-											role="dialog" aria-labelledby="myModalLabel">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h3 class="modal-title" id="myModalLabel">신고</h3>
-														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<div class="modal-body">
-														<table>
-															<tr>
-																<td>신고 분류</td>
-																<td>
-																	<div class="form-group">
-																		<select id="state" class="form-control">
-																			<option>부적절한 게시글</option>
-																			<option>도배 게시글</option>
-																			<option>광고 목적 게시글</option>
-																			<option>기타</option>
-																		</select>
-																	</div>
-																</td>
-															<tr>
-																<td>내용</td>
-																<td><textarea id="comment" rows="4" cols="40"
-																		class="form-control"></textarea></td>
-															</tr>
-															<tr></tr>
-															<tr>
-																<td></td>
-																<td>
-																	<button type="button" class="btn btn-template-outlined"
-																		data-dismiss="modal">확인</button>
-																	<button type="button" class="btn btn-template-outlined"
-																		data-dismiss="modal">취 소</button>
-																</td>
-															</tr>
-														</table>
-													</div>
-												</div>
-												<div class="modal-footer"></div>
-											</div>
-										</div>
+								<div id="report-modal" tabindex="-1" role="dialog" aria-hidden="true"
+								      class="modal fade">
+								      <div role="document" class="modal-dialog">
+								         <div class="modal-content">
+								            <div class="modal-header">
+								               <h4 align="center" class="modal-title">게시글 신고</h4>
+								               <button type="button" data-dismiss="modal" aria-label="Close"
+								                  class="close">
+								                  <span aria-hidden="true">×</span>
+								               </button>
+								            </div>
+								
+								            <div class="modal-body">
+								               <form id="report_form" method="POST">
+								
+								                  <input type="hidden" name="board_id" id="BOARD_ID" value=<%=boardId%>>
+								                  <input type="hidden" name="post_id" id="POST_ID" value=<%= post.getID() %>>
+								                  <input type="hidden" name="user_id" id="USER_ID" value=<%=userID %>>
+												<label style="text-align: left !important;">신고 분류</label>
+								                  <div class="form-group">
+								                     <select id="state" name="category_id" id="category_id"
+								                        class="form-control">
+								                        <option value="0">신고 사유 선택</option>
+								                        <option value="1">부적절한 게시물</option>
+								                        <option value="2">도배 게시물</option>
+								                        <option value="3">광고성 게시물</option>
+								                        <option value="4">비방/비하/욕설 게시물</option>
+								                        <option value="5">음란성 또는 청소년 유해 게시물</option>
+								                        <option value="6">기타</option>
+								                     </select>
+								                  </div>
+								                  <label>내용</label>
+								                  <div class="form-group">
+								                     <textarea name="description" id="description" rows="10"
+								                        class="form-control"></textarea>
+								                  </div>
+								                  <p class="text-center">
+								                     <input type="submit" value="신고" class="btn btn-outline-primary"
+								                        id="input_report">
+								                     <a style="padding-right: 0.5rem;"></a>
+								                     <input type="reset" class="btn btn-outline-primary" value="취소">
+								                  </p>
+								               </form>
+								            </div>
+								         </div>
+								      </div>
+								   </div>
+								   <!-- 신고모달 끝 -->
+										
+										
+										
 									</div>
 								</div>
 							</div>
@@ -456,7 +461,7 @@
 			<!-- 채팅 -->
 			<form id="chat_form" action="/dog/gatherboard/insertChat" method="post">
 				<input type="hidden" name="POST_ID" value='<%=post.getID()%>' />
-				<input type="hidden" name="USER_ID" value='<%=userId%>' />
+				<input type="hidden" name="USER_ID" value='<%=userID%>' />
 			</form>
 			<input type="hidden" value='<%=userNickName%>' id='chat_id' />
 			<input type="hidden" value='<%=post.getID()%>' id='post_id' />
@@ -486,6 +491,7 @@
 	<script src="/resources/js/gatherboard/post.js"></script>
 	<script src="/resources/js/gatherboard/chat.js"></script>
 	<script src="/resources/js/gatherboard/comment.js"></script>
+	<script src="/resources/js/report.js"></script>
 
 </body>
 </html>
