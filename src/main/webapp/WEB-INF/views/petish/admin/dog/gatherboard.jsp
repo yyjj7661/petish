@@ -37,7 +37,7 @@
 	                    <th>삭제</th>
 	                  </tr>
 	                </thead>
-	                <tbody id="gatherboardList">
+	                <tbody id="gatherboardList" class="text-center">
 					</tbody>
 	              </table>
 	              <div>

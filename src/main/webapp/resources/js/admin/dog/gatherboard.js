@@ -23,15 +23,15 @@ function gatherboardList(params) {
 				var output = '';
 				countVal += '<input type="hidden" id="postCountVal" value='+result[i].count+' />';
 				output += '<tr role="row" class="odd">';
-				output += '<td class="sorting_1">' + result[i].id + '</td>';
-				output += '<td>' + result[i].region_NAME + '</td>';
-				output += '<td>' + result[i].dog_SIZE + '</td>';
-				output += '<td>' + result[i].title + '</td>';
-				output += '<td>' + result[i].nickname + '</td>';
-				output += '<td>' + result[i].CREATED_DATE + '</td>';
-				output += '<td>' + result[i].view_COUNT + '</td>';
-				output += '<td>' + result[i].deleted + '</td>';
-				output += '<td>' + '<button type="button" onclick="removePost('+result[i].id+')" id="deletebtn" class="btn btn-template-outlined">삭제</button>' + '</td>';
+				output += '<td class="sorting_1" class="text-center">' + result[i].id + '</td>';
+				output += '<td class="text-center">' + result[i].region_NAME + '</td>';
+				output += '<td class="text-center">' + result[i].dog_SIZE + '형견</td>';
+				output += '<td class="text-center"><a href="/dog/gatherboard/'+result[i].id+'">' + result[i].title + '</a></td>';
+				output += '<td class="text-center">' + result[i].nickname + '</td>';
+				output += '<td class="text-center">' + result[i].CREATED_DATE + '</td>';
+				output += '<td class="text-center">' + result[i].view_COUNT + '</td>';
+				output += '<td class="text-center">' + result[i].deleted + '</td>';
+				output += '<td class="text-center">' + '<button type="button" onclick="removePost('+result[i].id+')" id="deletebtn" class="btn btn-template-outlined">삭제</button>' + '</td>';
 				output += '</tr>';
 				
 				$('#gatherboardList').append(output);
