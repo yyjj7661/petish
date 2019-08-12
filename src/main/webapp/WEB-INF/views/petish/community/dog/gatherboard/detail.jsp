@@ -344,7 +344,7 @@
 							<!-- comment_page_form -->
 							<form id="page_form">
 								<input type="hidden" name="POST_ID" value=<%= post.getID() %>>
-								<input type="hidden" name="USER_ID" value=<%= userId %>> <!-- 로그인 기능 구현되면 수정해야 함 -->
+								<input type="hidden" name="USER_ID" value=<%= userId %>> 
 								<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
 							</form>
 	                         <div class="comment-footer d-flex justify-content-center"></div>
@@ -354,7 +354,7 @@
 							<h4 class="text-uppercase comment">댓글</h4>
 							<!-- comment insert form -->
 							<form id="insert_form" method="post">
-								<input type="hidden" name="USER_ID" value=<%= userId %>> <!-- 로그인 기능 구현되면 수정해야 함 -->
+								<input type="hidden" name="USER_ID" value=<%= userId %>> 
 								<input type="hidden" name="POST_ID" value=<%=post.getID() %>>
 								<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
 								<div class="row">
