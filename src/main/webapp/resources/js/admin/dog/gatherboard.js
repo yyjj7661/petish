@@ -18,8 +18,10 @@ function gatherboardList(params) {
 		dataType:"json",
 		success:function(result) {
 			for(var i in result) {
-				var count = '<p>게시물 개수 : ' + result[i].count;
+				var count = '<p>게시물 개수 : ' + result[i].count + '</p>';
+				var countVal = '';
 				var output = '';
+				countVal += '<input type="hidden" id="postCountVal" value='+result[i].count+' />';
 				output += '<tr role="row" class="odd">';
 				output += '<td class="sorting_1">' + result[i].id + '</td>';
 				output += '<td>' + result[i].region_NAME + '</td>';
@@ -35,6 +37,7 @@ function gatherboardList(params) {
 				$('#gatherboardList').append(output);
 			}
 			$("#postCount").append(count);
+			$("#postCount").append(countVal);
 			postCount();
 		},
 		error:function() {
@@ -44,11 +47,11 @@ function gatherboardList(params) {
 }
 
 var pageNum = 1;
-var postPageFooter = $(".dataTables_paginate.paging_simple_numbers");
+var postPageFooter = $(".post-footer");
 
 //댓글 페이지 번호 출력
 function postCount() {
-	var postCnt = document.getElementById('postCount').value;
+	var postCnt = document.getElementById('postCountVal').value;
 		
 	var endNum = Math.ceil(pageNum / 10.0) * 10;
 	var startNum = endNum - 9;
@@ -109,7 +112,6 @@ postPageFooter.on("click", "li a", function(e){
 //게시물 삭제
 //댓글 삭제
 function removePost(postID) {
-	alert("remove!"+postID);
 	if(confirm("삭제하시겠습니까?")) {		
 		$.ajax({
 			type : 'put',

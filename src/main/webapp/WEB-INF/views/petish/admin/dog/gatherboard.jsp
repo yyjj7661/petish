@@ -38,18 +38,21 @@
 	                  </tr>
 	                </thead>
 	                <tbody id="gatherboardList">
-	                </tbody>
+					</tbody>
 	              </table>
-		              <div class="dataTables_paginate paging_simple_numbers right" id="sampleTable_paginate">
-		              </div>
-					<form id="page_form">
+	              <div>
+	                   <div class="post-footer d-flex justify-content-center"></div>
+	              </div>
+	              <!-- page-form -->       
+	              	<form id="page_form">
 						<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
-					</form>	              
+					</form>	  
             </div>
           </div>
         </div>
       </div>
     </main>
+
     
     
     
