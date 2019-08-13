@@ -48,7 +48,7 @@ function regionList() {
 					
 		},
 		error:function() {
-			alert("해당 지역의 정모가 없습니다!");
+			alert("ajax 통신 실패!");
 		}
 	});
 }
