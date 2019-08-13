@@ -82,6 +82,7 @@
 			</form>	
 			<a href="/dog/gatherboard">게시판으로 보기</a>
 			<a href="/dog/gatherboard/mapList">지도로 보기</a>
+			<a href="#" onclick="userRegionMap(<%=REGION_ID %>)">주변 정모 보기</a>
 		</div>
 			<!-- 상단 카테고리 끝 -->								
 				<!-- 검색 끝 -->

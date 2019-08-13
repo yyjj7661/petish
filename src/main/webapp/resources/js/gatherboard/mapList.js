@@ -63,3 +63,9 @@ function regionSearch() {
 		regionList();
 	}
 }
+
+function userRegionMap(regionID) {
+	var regionForm = $("#region-form");
+	regionForm.find("input[name='REGION_ID']").val(regionID);
+	regionList();
+}
