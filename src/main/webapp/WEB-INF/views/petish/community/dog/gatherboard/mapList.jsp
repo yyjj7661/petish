@@ -133,13 +133,13 @@
 	var infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
-	function displayInfowindow(map, marker,name,address_name,hours,score) {
+	function displayInfowindow(map,marker,id,title,address_name,hours) {
 		
-		var content = '<div class="bAddr"><div class="title">제목: ' + name + '</div><div>주소 : '+address_name+'</div><div>모임 날짜 : '+hours+'</div></div>';
+		var content = '<div class="bAddr"><div class="title">제목: <a href="/dog/gatherboard/'+id+'">  ' + title + '</a></div><div>주소: '+address_name+'</div><div>모임 날짜: '+hours+'</div></div>';
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
 	}
-	function clickInfowindow(map, marker, name,fa,ga,addr){
+	function clickInfowindow(map, marker,title,fa,ga,addr){
 		var iwContent = '<div style="padding:5px;">'+addr+' <br><a href="https://map.kakao.com/link/map/'+addr+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+addr+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
 		 infowindow= new kakao.maps.InfoWindow({
 		        position : new kakao.maps.LatLng(ga, fa), 
@@ -156,7 +156,7 @@
 	    markers = [];
 	}
 	// 마커를 찍는 함수
-	function createMarker(fa,ga, imgsrc,name,addr,hours,score){
+	function createMarker(fa,ga,imgsrc,id,title,addr,hours){
 		
 		// 마커 이미지의 이미지 크기 입니다
 		   var imageSize = new kakao.maps.Size(35, 35); 
@@ -173,14 +173,14 @@
 	   
 	  //마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
 		kakao.maps.event.addListener(marker, 'mouseover',function(){
-			displayInfowindow(map, marker,name,addr,hours,score);
+			displayInfowindow(map,marker,id,title,addr,hours);
 		});
 		kakao.maps.event.addListener(marker, 'mouseout',function(){
 			//infowindow.close();
 		});
 		kakao.maps.event.addListener(marker, 'click',function(){
 			infowindow.close();
-			clickInfowindow(map,marker,name,fa,ga,addr);
+			clickInfowindow(map,marker,title,fa,ga,addr);
 		});
 	  //마커 배열에 현재마커를 추가
 		markers.push(marker);
