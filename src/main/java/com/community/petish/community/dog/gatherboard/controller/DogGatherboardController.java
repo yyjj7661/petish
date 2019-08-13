@@ -23,6 +23,7 @@ import com.community.petish.community.dog.gatherboard.dto.response.CommentPageDT
 import com.community.petish.community.dog.gatherboard.dto.response.DogGatherListDTO;
 import com.community.petish.community.dog.gatherboard.dto.response.DogGatherParticipantDTO;
 import com.community.petish.community.dog.gatherboard.dto.response.PageDTO;
+import com.community.petish.community.dog.gatherboard.dto.response.RegionListDTO;
 import com.community.petish.community.dog.gatherboard.service.DogGatherCommentService;
 import com.community.petish.community.dog.gatherboard.service.DogGatherService;
 import com.community.petish.community.user.domain.User;
@@ -74,7 +75,7 @@ public class DogGatherboardController {
 	@ResponseBody
 	public String getRegionList(Long REGION_ID) {
 		
-		List<DogGatherListDTO> regionList = dogGatherService.getRegionList(REGION_ID);
+		List<RegionListDTO> regionList = dogGatherService.getRegionList(REGION_ID);
 		System.out.println("regionList="+regionList);
 		
 		String str = "";

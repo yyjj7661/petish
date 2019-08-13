@@ -135,8 +135,7 @@
 	// 인포윈도우에 장소명을 표시합니다
 	function displayInfowindow(map, marker,name,address_name,hours,score) {
 		
-		var content = '<div class="bAddr"><span class="title">제목: ' + name + '</span><div>주소 : '+address_name+'</div><div>모임 날짜 : '+hours+'</div>';
-			content += '<div><span class="star-rating-40"style="text-align:left;">';
+		var content = '<div class="bAddr"><div class="title">제목: ' + name + '</div><div>주소 : '+address_name+'</div><div>모임 날짜 : '+hours+'</div></div>';
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
 	}

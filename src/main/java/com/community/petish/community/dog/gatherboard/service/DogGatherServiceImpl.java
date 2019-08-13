@@ -14,6 +14,7 @@ import com.community.petish.community.dog.gatherboard.domain.DogGatherPostVO;
 import com.community.petish.community.dog.gatherboard.domain.DogSpeciesVO;
 import com.community.petish.community.dog.gatherboard.dto.response.DogGatherListDTO;
 import com.community.petish.community.dog.gatherboard.dto.response.DogGatherParticipantDTO;
+import com.community.petish.community.dog.gatherboard.dto.response.RegionListDTO;
 import com.community.petish.community.dog.gatherboard.mapper.DogGatherCommentMapper;
 import com.community.petish.community.dog.gatherboard.mapper.DogGatherMapper;
 import com.community.petish.community.user.domain.User;
@@ -72,8 +73,8 @@ public class DogGatherServiceImpl implements DogGatherService {
 	}
 	
 	@Override
-	public List<DogGatherListDTO> getRegionList(Long regionID) {
-		List<DogGatherListDTO> regionList = dogGatherMapper.getRegionList(regionID);
+	public List<RegionListDTO> getRegionList(Long regionID) {
+		List<RegionListDTO> regionList = dogGatherMapper.getRegionList(regionID);
 		return regionList;
 	}
 	
