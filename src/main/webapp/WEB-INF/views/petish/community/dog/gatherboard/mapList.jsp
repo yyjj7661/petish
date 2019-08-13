@@ -142,8 +142,8 @@
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
 	}
-	function clickInfowindow(map, marker, name,fa,ga){
-		var iwContent = '<div style="padding:5px;">'+address_name+' <br><a href="https://map.kakao.com/link/map/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
+	function clickInfowindow(map, marker, name,fa,ga,addr){
+		var iwContent = '<div style="padding:5px;">'+addr+' <br><a href="https://map.kakao.com/link/map/'+addr+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+addr+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
 		 infowindow= new kakao.maps.InfoWindow({
 		        position : new kakao.maps.LatLng(ga, fa), 
 		        content : iwContent 
@@ -183,7 +183,7 @@
 		});
 		kakao.maps.event.addListener(marker, 'click',function(){
 			infowindow.close();
-			clickInfowindow(map,marker,name,fa,ga);
+			clickInfowindow(map,marker,name,fa,ga,addr);
 		});
 	  //마커 배열에 현재마커를 추가
 		markers.push(marker);
