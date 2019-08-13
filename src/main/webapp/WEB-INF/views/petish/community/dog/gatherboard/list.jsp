@@ -79,13 +79,14 @@
 							</select>
 						</div>
 					</div>
-				</div>	
-				
+				</div>					
 				<!-- 지역/크기 별 검색 -->
 				<input type="hidden" name="type" value="R">
 				<input type='hidden' name='keyword' id="categoryKeyword"
                        value='<c:out value="${pageMaker.cri.keyword}"/>' class="form-control"/>
 			</form>	
+			<a href="/dog/gatherboard">게시판으로 보기</a>
+			<a href="/dog/gatherboard/mapList">지도로 보기</a>
 			<!-- 상단 카테고리 끝 -->								
 		<!-- 검색 끝 -->
 					<div id="customer-order" class="col-lg-20">	

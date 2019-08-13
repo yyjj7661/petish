@@ -8,10 +8,13 @@ import com.community.petish.community.dog.gatherboard.domain.DogGatherPostVO;
 import com.community.petish.community.dog.gatherboard.domain.DogSpeciesVO;
 import com.community.petish.community.dog.gatherboard.dto.response.DogGatherListDTO;
 import com.community.petish.community.dog.gatherboard.dto.response.DogGatherParticipantDTO;
+import com.community.petish.community.user.domain.User;
 
 public interface DogGatherMapper {
 	List<DogGatherPostVO> getDogGatherList();
 	List<DogGatherListDTO> getListWithPaging(Criteria cri);
+	List<DogGatherListDTO> getRegionList(Long regionID);
+	Long getUserRegionID(User user);
 	int getDogGatherPostCount(Criteria cri);
 	DogGatherPostVO getDogGatherPost(Long postID);
 	int updateViewCount(Long postID);

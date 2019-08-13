@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.petish.community.dog.gatherboard.domain.Criteria;
@@ -23,7 +25,10 @@ import com.community.petish.community.dog.gatherboard.dto.response.DogGatherPart
 import com.community.petish.community.dog.gatherboard.dto.response.PageDTO;
 import com.community.petish.community.dog.gatherboard.service.DogGatherCommentService;
 import com.community.petish.community.dog.gatherboard.service.DogGatherService;
+import com.community.petish.community.user.domain.User;
 import com.community.petish.community.user.dto.response.LoginedUser;
+import com.community.petish.community.user.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/dog/gatherboard")
@@ -34,6 +39,10 @@ public class DogGatherboardController {
 	
 	@Autowired
 	private DogGatherCommentService dogGatherCommentService;
+	
+	@Autowired
+	private UserService userService;
+	
 			 
 	//게시글 리스트
 	@RequestMapping("")
@@ -48,7 +57,39 @@ public class DogGatherboardController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "petish/community/dog/gatherboard/list";
 	}
+	
+	//지도로 보기
+	@RequestMapping("/mapList")
+	public String dogGatherboardMapList(HttpSession session, Model model, HttpServletResponse response) throws Exception {
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+		Long USER_ID = user.getId();
+		User getUser = userService.findById(USER_ID);
+		Long REGION_ID = dogGatherService.getUserRegionID(getUser);
+		
+		model.addAttribute("REGION_ID",REGION_ID);
+		return "petish/community/dog/gatherboard/mapList";
+	}
 		   
+	@RequestMapping(value="/searchMap",  method= RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String getRegionList(Long REGION_ID) {
+		
+		List<DogGatherListDTO> regionList = dogGatherService.getRegionList(REGION_ID);
+		System.out.println("regionList="+regionList);
+		
+		String str = "";
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str = mapper.writeValueAsString(regionList);
+			System.out.println("str="+str);
+		}
+		catch(Exception e) {
+			System.out.println("region mapper:"+e.getMessage());
+		}
+		return str;
+	}
+	
 	//게시글 조회
 	@RequestMapping(value = "/{ID}")
 	public ModelAndView dogGatherboardDetail(@PathVariable("ID") Long postID, Criteria cri, HttpServletResponse response) throws Exception {

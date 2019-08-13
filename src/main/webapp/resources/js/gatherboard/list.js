@@ -3,9 +3,6 @@ $(document).ready(function(){
 	var size = document.getElementById('size-category');
 	var keyword = document.getElementById('categoryKeyword');
 	
-//	region.value = keyword.value;
-//	size.value = keyword.value;
-
 });
 
 var actionForm = $("#actionForm");

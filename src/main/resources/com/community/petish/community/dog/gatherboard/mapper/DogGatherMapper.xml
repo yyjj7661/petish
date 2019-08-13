@@ -113,6 +113,16 @@ create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc);
 	   ]]>
 	</select>
 
+	<select id="getRegionList" resultType="com.community.petish.community.dog.gatherboard.dto.response.DogGatherListDTO">
+		select * from DOG_GATHER_POST_TB where REGION_ID=#{REGION_ID}
+	</select>
+	
+	<select id="getUserRegionID" resultType="Long">
+		select region.id
+		from user_tb member, region_tb region 
+		where member.id=#{id} and substr(#{address},0,2) = region.region_name
+	</select>
+	
 	<select id="getDogGatherPostCount" resultType="int">
 	  <![CDATA[
 	      SELECT
