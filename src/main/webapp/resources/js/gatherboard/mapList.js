@@ -4,7 +4,6 @@ $(document).ready(function(){
 
 //지역 리스트
 function regionList() {
-	alert("regionList!");
 	var params = $("#region-form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.
 	$.ajax({
 		url:'/dog/gatherboard/searchMap',
@@ -49,7 +48,18 @@ function regionList() {
 					
 		},
 		error:function() {
-			alert("ajax통신 실패!!");
+			alert("해당 지역의 정모가 없습니다!");
 		}
 	});
+}
+
+
+function regionSearch() {
+	var region = document.getElementById('region-category');
+	var regionForm = $("#region-form");
+	if(!(region.value == "" || region.value == null)) {
+		
+		regionForm.find("input[name='REGION_ID']").val(region.value);
+		regionList();
+	}
 }

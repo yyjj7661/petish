@@ -53,22 +53,22 @@
 						<div class="form-group">
 							<select id="region-category" class="form-control region-category" onchange="regionSearch()">
 								<option value="">지역</option>
-								<option value="서울">서울</option>
-								<option value="부산">부산</option>
-								<option value="대구">대구</option>
-								<option value="인천">인천</option>
-								<option value="광주">광주</option>
-								<option value="대전">대전</option>
-								<option value="울산">울산</option>
-								<option value="세종">세종</option>
-								<option value="경기">경기</option>
+								<option value=1>서울</option>
+								<option value=2>경기</option>
+								<option value=3>인천</option>
 								<option value="강원">강원</option>
-								<option value="충북">충북</option>
+								<option value="대전">대전</option>
+								<option value="세종">세종</option>
 								<option value="충남">충남</option>
-								<option value="전북">전북</option>
-								<option value="전남">전남</option>
+								<option value="충북">충북</option>
+								<option value="부산">부산</option>
+								<option value="울산">울산</option>
 								<option value="경남">경남</option>
 								<option value="경북">경북</option>
+								<option value="대구">대구</option>
+								<option value="광주">광주</option>
+								<option value="전남">전남</option>
+								<option value="전북">전북</option>
 								<option value="제주">제주</option>
 							</select>
 							
@@ -134,7 +134,7 @@
 	// 인포윈도우에 장소명을 표시합니다
 	function displayInfowindow(map, marker,name,address_name,hours,score) {
 		
-		var content = '<div class="bAddr"><span class="title">제목: ' + name + '</span><div>주소 : '+address_name+'</div><div>모일날짜 : '+hours+'</div>';
+		var content = '<div class="bAddr"><span class="title">제목: ' + name + '</span><div>주소 : '+address_name+'</div><div>모임 날짜 : '+hours+'</div>';
 			content += '<div><span class="star-rating-40"style="text-align:left;">';
 			content += '<span style ="width:'+(score*10.0)+'%"></span>';
 			content += '</span><span class="title" style="display:inline-block;">'+score+'</span></div></div>';
@@ -142,7 +142,7 @@
 	    infowindow.open(map, marker);
 	}
 	function clickInfowindow(map, marker, name,fa,ga){
-		var iwContent = '<div style="padding:5px;">'+name+' <br><a href="https://map.kakao.com/link/map/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
+		var iwContent = '<div style="padding:5px;">'+address_name+' <br><a href="https://map.kakao.com/link/map/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+ga+','+fa+'" style="color:blue" target="_blank">길찾기</a></div>';
 		 infowindow= new kakao.maps.InfoWindow({
 		        position : new kakao.maps.LatLng(ga, fa), 
 		        content : iwContent 
@@ -225,7 +225,6 @@
 	}
 
 	</script>
-		<script src="/resources/js/gatherboard/list.js"></script>
 		<script src="/resources/js/gatherboard/mapList.js"></script>
 
 </body>
