@@ -62,3 +62,16 @@ function detailClick(boardID) {
 		}
 	})
 }
+
+function mapListClick() {
+	$.ajax({
+		type: "GET",
+		url: "/api/users/authenticate",
+		success: function(data) {
+			location.href="/dog/gatherboard/mapList";
+		},
+		error: function(error) {
+			$("#login-modal").modal("show");
+		}
+	})
+}

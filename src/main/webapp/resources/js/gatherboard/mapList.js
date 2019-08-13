@@ -32,7 +32,7 @@ function regionList() {
 						//마커 찍음
 						marker.setMap(map); */
 			        	// 마커 이미지의 이미지 크기 입니다
-			     		createMarker(result[0].x, result[0].y,"/resources/img/placeholder.png",item.title, item.gathering_ADDRESS, item.gathering_DATE);
+			     		createMarker(result[0].x, result[0].y,"/resources/img/gatherboard/dog.png",item.title, item.gathering_ADDRESS, item.gathering_DATE);
 			      
 					
 					// LatLngBounds 객체에 좌표를 추가합니다

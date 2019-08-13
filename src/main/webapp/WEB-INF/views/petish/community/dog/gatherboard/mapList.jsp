@@ -137,8 +137,6 @@
 		
 		var content = '<div class="bAddr"><span class="title">제목: ' + name + '</span><div>주소 : '+address_name+'</div><div>모임 날짜 : '+hours+'</div>';
 			content += '<div><span class="star-rating-40"style="text-align:left;">';
-			content += '<span style ="width:'+(score*10.0)+'%"></span>';
-			content += '</span><span class="title" style="display:inline-block;">'+score+'</span></div></div>';
 	    infowindow.setContent(content);
 	    infowindow.open(map, marker);
 	}

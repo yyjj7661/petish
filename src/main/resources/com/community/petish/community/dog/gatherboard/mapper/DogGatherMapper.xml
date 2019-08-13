@@ -114,7 +114,7 @@ create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc);
 	</select>
 
 	<select id="getRegionList" resultType="com.community.petish.community.dog.gatherboard.dto.response.DogGatherListDTO">
-		select * from DOG_GATHER_POST_TB where REGION_ID=#{REGION_ID}
+		select * from DOG_GATHER_POST_TB where REGION_ID=#{REGION_ID} and DELETED = 0 and GATHERING_DATE > sysdate
 	</select>
 	
 	<select id="getUserRegionID" resultType="Long">
