@@ -1,0 +1,55 @@
+$(document).ready(function(){
+	regionList();
+});
+
+//지역 리스트
+function regionList() {
+	alert("regionList!");
+	var params = $("#region-form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.
+	$.ajax({
+		url:'/dog/gatherboard/searchMap',
+		type:'GET',
+		data: params,
+		contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+		dataType:"json",
+		success:function(data){
+			//console.log(page);
+			
+			// 지도에 표시되고 있는 마커를 제거합니다
+		    removeMarker();
+			//console.log(data.length);
+			//좌표 객체 초기화
+			bounds = new kakao.maps.LatLngBounds(); 
+			$.each(data, function(index, item){
+				//console.log(data.scorelist.length);
+				//console.log(data.scorelist[0]);
+				//console.log(item.hospital_name);
+				geocoder.addressSearch(item.gathering_ADDRESS, function(result, status){
+
+						/* //새로운 마커를 찍음						
+						var marker = new kakao.maps.Marker();
+						//마커 위치설정
+						marker.setPosition(new kakao.maps.LatLng(result[0].y, result[0].x));
+						//마커 찍음
+						marker.setMap(map); */
+			        	// 마커 이미지의 이미지 크기 입니다
+			     		createMarker(result[0].x, result[0].y,"/resources/img/placeholder.png",item.title, item.gathering_ADDRESS, item.gathering_DATE);
+			      
+					
+					// LatLngBounds 객체에 좌표를 추가합니다
+				    bounds.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
+					
+					//console.log('index='+index);
+					//표시된 마커들로 지도를 재조정하는 함수
+					setBounds();
+					
+				});
+			});
+
+					
+		},
+		error:function() {
+			alert("ajax통신 실패!!");
+		}
+	});
+}
