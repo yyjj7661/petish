@@ -37,9 +37,7 @@
 		<div id="content">
 			<div class="container">	
 						<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
-							<a>
-							글쓰기
-							</a>
+							<a>글쓰기</a>
 						</button>
 		<!-- 검색 -->		
 		<form id="categoryForm" action="/dog/gatherboard" method="post">		
