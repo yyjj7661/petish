@@ -42,6 +42,21 @@
 		</div>
 		<div id="content">
 			<div class="container">	
+			
+						<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
+							<li class="nav-item" id="commented">
+								<a data-toggle="pill" href="/dog/gatherboard" role="tab" onclick="viewBoardList()"
+								aria-controls="pills-home" aria-selected="true" class="nav-link">게시판으로 보기</a></li>
+							<li class="nav-item" id="writing">
+								<a data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
+								aria-controls="pills-profile" aria-selected="false" 
+								class="nav-link active" onclick="mapListClick()">지도로 보기</a></li>
+						</ul>
+						
+						<div id="pills-tabContent" class="tab-content">
+							<div role="tabpanel"
+								aria-labelledby="pills-home-tab" class="tab-pane fade show active">		
+															
 						<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
 							<a>글쓰기</a>
 						</button>
@@ -80,14 +95,12 @@
 				<input type='hidden' name='keyword' id="categoryKeyword"
                        value='<c:out value="${pageMaker.cri.keyword}"/>' class="form-control"/>
 			</form>	
-			<a href="/dog/gatherboard">게시판으로 보기</a>
-			<a href="#" onclick="userRegionMap(<%=REGION_ID %>)">주변 정모 보기</a>
 		</div>
-			<!-- 상단 카테고리 끝 -->								
-				<!-- 검색 끝 -->
-				<div id="content">
-					<div class="container">
-					      <div class="row bar">
+		<!-- 상단 카테고리 끝 -->								
+					<!-- 검색 끝 -->
+					<div id="content">
+						<div class="container">
+					      <div class="bar">
 							<div class="col-md-12">		
 								<div id="map" aria-label="Page navigation example" class="d-flex justify-content-left"></div>
 									<form name="region-form" id="region-form">
@@ -95,12 +108,14 @@
 									</form>
 							</div>
 						  </div>
+						</div>
 					</div>
-				</div>
-                       
-			</div>
+				
+               	</div>
+            </div>  
 		</div>
-		<!-- include list.js -->
+	</div>
+	<!-- include list.js -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e74e0d9232cbccbd2962414bf135d9c&libraries=services"></script>
 	<script>
 	//지역 시/군 을 저장할 변수
@@ -221,6 +236,7 @@
 	}
 
 	</script>
+	<script src="/resources/js/gatherboard/list.js"></script>
 	<script src="/resources/js/gatherboard/mapList.js"></script>
 
 </body>

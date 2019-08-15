@@ -36,6 +36,23 @@
 		</div>
 		<div id="content">
 			<div class="container">	
+			
+						<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
+							<li class="nav-item" id="writing">
+								<a id="pills-profile-tab" data-toggle="pill" href="/dog/gatherboard" role="tab"
+								aria-controls="pills-profile" aria-selected="false"
+								class="nav-link active">게시판으로 보기</a></li>
+							<li class="nav-item" id="commented">
+								<a id="pills-home-tab" onclick="mapListClick()"
+								data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
+								aria-controls="pills-home" aria-selected="true" class="nav-link">지도로 보기</a></li>
+						</ul>
+
+						<div id="pills-tabContent" class="tab-content">
+							<div id="writingList" role="tabpanel"
+								aria-labelledby="pills-home-tab"
+								class="tab-pane fade show active">
+																	
 						<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
 							<a>글쓰기</a>
 						</button>
@@ -85,8 +102,6 @@
 				<input type='hidden' name='keyword' id="categoryKeyword"
                        value='<c:out value="${pageMaker.cri.keyword}"/>' class="form-control"/>
 			</form>	
-			<a href="/dog/gatherboard">게시판으로 보기</a>
-			<a href="#" onclick="mapListClick()">지도로 보기</a>
 			<!-- 상단 카테고리 끝 -->								
 		<!-- 검색 끝 -->
 					<div id="customer-order" class="col-lg-20">	
@@ -191,15 +206,16 @@
 					</div>
 				</div>
 			</form>
-               
-			<!-- POST 방식으로 pageNum 전송 -->
-				<form id='actionForm' action="/dog/gatherboard" method='post'>
-					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-					<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-					<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
-					<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
-				</form>
-				                                
+					<!-- POST 방식으로 pageNum 전송 -->
+					<form id='actionForm' action="/dog/gatherboard" method='post'>
+						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+						<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+						<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
+						<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
+					</form>
+					
+				    </div>
+				</div>                      
 			</div>
 		</div>
 	

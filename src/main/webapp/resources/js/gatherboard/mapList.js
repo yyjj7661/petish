@@ -69,3 +69,16 @@ function userRegionMap(regionID) {
 	regionForm.find("input[name='REGION_ID']").val(regionID);
 	regionList();
 }
+
+function viewBoardList() {
+	$.ajax({
+		type: "GET",
+		url: "/api/users/authenticate",
+		success: function(data) {
+			location.href="/dog/gatherboard";
+		},
+		error: function(error) {
+			$("#login-modal").modal("show");
+		}
+	})	
+}
