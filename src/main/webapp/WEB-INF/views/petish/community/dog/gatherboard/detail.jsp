@@ -51,6 +51,7 @@
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
 <link rel="stylesheet" href="/resources/css/gatherboard/chat.css">
+<link rel="stylesheet" href="/resources/css/gatherboard/comment.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/detail.css">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1&display=swap&subset=korean" rel="stylesheet">
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
@@ -334,74 +335,123 @@
 						});    
 						</script>
 
-					<!-- comment -->	
-						<div id="comments">
-							<h4 class="text-uppercase" id="commentCount"></h4>
-							<section class="bar mb-0" id="commentSection">
-								<div id="commentList" class="row comment">
-								</div>
+<div id="comments">
+			
+			<!-- 댓글 갯수 -->
+			<h4 class="text-uppercase" id="commentCount">
+			<input type="text" id="commentCountVal">
+			</h4>
+			<!-- 댓글 내용 -->
+			<section>			
+			<div id="commentList" class="row comment">
+			<!-- 댓글 출력 -->
+			</div>			
+			</section>
+			
+			<!-- 댓글 페이징 -->
+			<div style="padding:3rem">
+				<form id="page_form">
+					<input type="hidden" name="POST_ID" value=<%= post.getID() %>>
+					<input type="hidden" name="USER_ID" value=<%= userID %>> <!-- 로그인 기능 구현되면 수정해야 함 -->
+					<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
+				</form>
+            <div class="comment-footer d-flex justify-content-center"></div>
+		</div>
+		
+		<!-- 댓글 입력창 -->
+		<h4 class="comment">댓글 작성</h4>
+		
+		<form id="insert_form" method="post">
+			<!-- comments -->
+			<input type="hidden" name="USER_ID" value=<%= userID %>> <!-- 로그인 기능 구현되면 수정해야 함 -->
+			<input type="hidden" name="POST_ID" value=<%=post.getID() %>>
+			<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
+			
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label for="name">아이디<span class="required text-primary">*</span></label>						
+						<input id="NICKNAME" type="text" class="form-control" value="<%=userNickName %>" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group comment-div">
+						<label for="comment">내 용 <span class="required text-primary">*</span></label>
 						
-							</section>
-							<!-- comment_page_form -->
-							<form id="page_form">
-								<input type="hidden" name="POST_ID" value=<%= post.getID() %>>
-								<input type="hidden" name="USER_ID" value=<%= userID %>> 
-								<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
-							</form>
-	                         <div class="comment-footer d-flex justify-content-center"></div>
+						<div class="comment-and-button">
+							<div class="comment-form">							
+							<textarea id="CONTENT" name="CONTENT" rows="4" class="form-control "></textarea>						
+							</div>
+							
+							<div class="comment-button-div">
+								<button class="re btn btn-template-outlined comment-input-button" id="input_data">댓글 등록</button>
+							</div>
 						</div>
+					</div>
+					
+						
+				</div>
+			</div>
+			
+		</form>
+		<!-- comment insert form END -->
+         
+         <div style="margin: 2rem"></div>
 
-						<div id="comment-form">
-							<h4 class="text-uppercase comment">댓글</h4>
-							<!-- comment insert form -->
-							<form id="insert_form" method="post">
-								<input type="hidden" name="USER_ID" value=<%= userID %>> 
-								<input type="hidden" name="POST_ID" value=<%=post.getID() %>>
-								<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="name">아이디<span class="required text-primary">*</span></label> 
-											<input id="NICKNAME" type="text" class="form-control" value=<%= userNickName %> readonly>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label for="comment">내 용 <span class="required text-primary">*</span></label>
-											<textarea id="CONTENT" name="CONTENT" rows="4" class="form-control"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12 text-right">
-										<button class="re btn btn-template-outlined" id="input_data">
-											<i class="fa fa-comment-o"></i> 댓글 등록
-										</button>
-									</div>
-								</div>
-								</form>
-								<!-- comment insert form END -->
-								<div class="col-sm-12"> 
-										<!-- 게시자일떄만 수정/삭제  -->
-										<%
-											if(userNickName.equals(writer)) {
-										%>
-											<button id="modifyBtn" class="btn btn-template-outlined">
-												<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
-											</button>
-											<button id="deleteBtn" type="submit" class="btn btn-template-outlined">
-												<i class="fa fa-trash-o"></i> <a href="/dog/gatherboard/deleteDogGatherPost/<%=post.getID()%>">삭제</a>
-											</button>
-										<%
-											}
-										%>
-										<!-- 게시자일때만 수정/삭제 END -->
-											<button type="button" class="btn btn-danger"
-												data-toggle="modal" data-target="#report-modal"
-											 	id="report-btn">신고</button>
-								</div>
+         <!-- 수정/삭제/신고 버튼 -->
+         <div id="comment-form">
+               <div class="row">
+					<div class="col-sm-12 text-right"> 
+							<!-- 게시자일떄만 수정/삭제  -->
+							<%
+								if(userNickName.equals(writer)) {
+							%>
+								<button id="modifyBtn" class="btn btn-template-outlined">
+									<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
+								</button>
+								<button id="deleteBtn" type="submit" class="btn btn-template-outlined">
+									<i class="fa fa-trash-o"></i> <a href="/dog/gatherboard/deleteDogGatherPost/<%=post.getID()%>">삭제</a>
+								</button>
+							<%
+								}
+							%>
+							<!-- 게시자일때만 수정/삭제 END -->
+								<button type="button" class="btn btn-danger"
+									data-toggle="modal" data-target="#report-modal" id="report-btn">신고</button>
+					</div>
+            </div>
+         </div>
+         <div style="margin: 5rem"></div>
+         
+      </div>
+									
+								</div><!-- col-md-12 end -->
+							</div><!-- row-bar end -->
+							
+			<!-- 채팅 -->
+			<form id="chat_form" action="/dog/gatherboard/insertChat" method="post">
+				<input type="hidden" name="POST_ID" value='<%=post.getID()%>' />
+				<input type="hidden" name="USER_ID" value='<%=userID%>' />
+			</form>
+			<input type="hidden" value='<%=userNickName%>' id='chat_id' />
+			<input type="hidden" value='<%=post.getID()%>' id='post_id' />
+				<!-- 채팅창 -->
+				    <div id="chat_box" style="display:none;">
+				        <div class="chatBox">
+				            <p class='chatTopBar'>* <%=post.getID()%>번 글 정모 채팅  *</p>
+				            <div class='onUser' style="float:right"><p id="onUser">접속자</p>
+				            </div>
+				            <div id="messageWindow"></div>
+					           <div class="input-group">
+					           	 <input id="inputMessage" type="text" placeholder="메세지를 입력해주세요" class="form-control" onkeyup="enterkey()" />
+					             <input id="sendBtn" class="btn" type="submit" value="입력" onclick="send()" />
+				           	   </div>
+				       	</div>
+				  	</div>
+				    <img class="chat" src="/resources/img/gatherboard/chat.png" onclick="chatClick('<%=userNickName%>');"/>
+    		<!-- 채팅 끝 -->
 								<!-- 신고 모달 -->
 								<div id="report-modal" tabindex="-1" role="dialog" aria-hidden="true"
 								      class="modal fade">
@@ -450,37 +500,7 @@
 								         </div>
 								      </div>
 								   </div>
-								   <!-- 신고모달 끝 -->
-										
-										
-										
-									</div>
-								</div>
-							</div>
-							
-			<!-- 채팅 -->
-			<form id="chat_form" action="/dog/gatherboard/insertChat" method="post">
-				<input type="hidden" name="POST_ID" value='<%=post.getID()%>' />
-				<input type="hidden" name="USER_ID" value='<%=userID%>' />
-			</form>
-			<input type="hidden" value='<%=userNickName%>' id='chat_id' />
-			<input type="hidden" value='<%=post.getID()%>' id='post_id' />
-				<!-- 채팅창 -->
-				    <div id="chat_box" style="display:none;">
-				        <div class="chatBox">
-				            <p class='chatTopBar'>* <%=post.getID()%>번 글 정모 채팅  *</p>
-				            <div class='onUser' style="float:right"><p id="onUser">접속자</p>
-				            </div>
-				            <div id="messageWindow"></div>
-					           <div class="input-group">
-					           	 <input id="inputMessage" type="text" placeholder="메세지를 입력해주세요" class="form-control" onkeyup="enterkey()" />
-					             <input id="sendBtn" class="btn" type="submit" value="입력" onclick="send()" />
-				           	   </div>
-				       	</div>
-				  	</div>
-				    <img class="chat" src="/resources/img/gatherboard/chat.png" onclick="chatClick('<%=userNickName%>');"/>
-    		<!-- 채팅 끝 -->
-    		
+								   <!-- 신고모달 끝 -->    		
     			</div>
 			</div>
 		</div>

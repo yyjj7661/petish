@@ -1,8 +1,5 @@
 $(document).ready(function(){
-
 	commentList();
-	var bar = document.getElementsByClassName('bg-gray');
-
 });
 
 //댓글 목록
@@ -19,45 +16,63 @@ function commentList(param) {
 		contentType:'application/x-www-form-urlencoded; charset=UTF-8',
 		dataType:"json",
 		success:function(result) {
-			if(result=="" || result==null) {
-				$('#commentList').append("<p style='margin:auto'>등록된 댓글이 없습니다.</p>");	
-				$("#commentSection").removeClass("bg-gray");
-				return;
-			}
-			$("#commentSection").addClass("bg-gray");
-			for(var i in result) {
-				var count = '댓글 개수 : ' + result[i].count;
-				//var image = '';
-				var output = '';
-				var modifyBtn = '';
-				var deleteBtn = '';
-				output += '<input type="hidden" id="commentCountVal" value='+result[i].count+'>';
-				output += '<div class="col-sm-3 col-md-2 text-center-xs">'; //프로필 이미지
-				output += '<p><img src="/resources/img/gatherboard/user.png" class="img-fluid rounded-circle" style="max-width:80%"></p>'; 
-				output += '</div>';
-				if(result[i].nickname == $("#NICKNAME").val()) { 
-					output += '<div class="col-sm-9 col-md-10">';
-				} else {					
-					output += '<div class="col-sm-9 col-md-10" style="height:150px">'; 
-				}
-				output += '<h5 class="text-uppercase">' + result[i].nickname + '</h5>';
-				output += '<p class="posted">';
-				output += '<i class="fa fa-clock-o"></i> 등록일: ' + result[i].CREATED_DATE ;
-				output += '&nbsp;&nbsp;&nbsp;&nbsp;수정일: ' + result[i].UPDATED_DATE + '</p>';
-				output += '<input type="hidden" class="form-control" id="commentContent'+result[i].id+'" value="'+result[i].content+'">';
-				output += '<li id="commentBlock'+result[i].id+'" style="display:block">';
-				output += '<p id="commentInnerText'+result[i].id+'">' + result[i].content +'</p>';   
-				//본인이 작성한 댓글일 경우
-				if(result[i].nickname == $("#NICKNAME").val()) { 
-					output += '<button id="commentUpdateBtn" class="btn btn-template-outlined" onclick="button('+result[i].id+')" style="float:right"><i class="fa fa-reply"></i> 수정</button></li>';
-				}
-				output += '<input id="commentCloseBtn'+result[i].id+'" onclick="closeComment('+result[i].id+')" type="hidden" class="btn btn-template-outlined" value="닫기" style="float:right; margin-top:20px">';	
-				output += '<input id="commentDeleteBtn'+result[i].id+'" onclick="removeComment('+result[i].id+')" type="hidden" class="btn btn-template-outlined" value="삭제" style="float:right; margin-right:15px; margin-top:20px">';
-				output += '<input id="commentModifyBtn'+result[i].id+'" onclick="modifyComment('+result[i].id+')" type="hidden" class="btn btn-template-outlined" value="수정" style="float:right; margin-right:15px; margin-top:20px">';
-				output += '</div>';
-				//console.log("output:"+output);
-				$('#commentList').append(output);	
-			}				
+	         
+	         if(result == "" || result == null){
+	            $('#commentList').append("<p style='margin:auto'>등록된 댓글이 없습니다. 댓글을 등록해주세요.</p>");
+	            return;
+	         }
+	         
+	         for(var i in result) {
+	            
+	            var count = '댓글  ' + result[i].count;
+	            cnt = result[i].count;
+	            var output = '';
+	            var modifyBtn = '';
+	            var deleteBtn = '';
+	            
+	            output += '<input type="hidden" id="commentCountVal" value=result[i].count>';
+	            output += '<div class="replyer-image-container">';
+	            output += '<img src="/resources/img/user.png" class="replyer-image" style="max-width:70%">'; 
+	            output += '</div>';
+	            
+	            output += '<div class="reply-content" id="reply-content' + result[i].id + '">';            
+	            output += '<h5 class="text-uppercase" style="display:inline-block; padding-right:1rem">' + result[i].nickname + '</h5>';
+	            output += '<a class="posted">';
+	            output += '<i class="fa fa-clock-o" style="padding-right:0.2rem"></i>' + result[i].CREATED_DATE + '</a>';
+
+	            if(result[i].CREATED_DATE != result[i].UPDATED_DATE){
+	               output += '<a class="posted">';
+	               output += '<i class="fa fa-history" style="padding:0 0.2rem 0 1.5rem; "></i>' + result[i].UPDATED_DATE + ' 수정됨</a>';
+	            }
+	            
+	            output += '<input type="hidden" class="form-control comment-input-form" id="commentContent'+result[i].id+'" value="'+result[i].content+'">';
+	            output += '<div id="commentBlock'+result[i].id+'">';
+	            
+	            output += '<div id="commentInnerText'+result[i].id+'" class="modify-comment">' + result[i].content +'</div>';   
+
+	            if(result[i].nickname == $("#NICKNAME").val()) {      
+	               
+	               output += '<div class="nav navbar-nav ml-auto modify-remove-navbar">';
+	               output += '<a href="#" data-toggle="dropdown" class="dropdown modify-remove-dropdown"><img src="/resources/img/reply-modify-button.png" class="modifyBtn" onclick="buttonChange('+result[i].id+')"></a>';
+	               output += '<div class="dropdown-menu modify-remove-dropdown-menu" role="menu">';
+	               output += '<div class="dropdown">';
+	               output += '<a href="#" class="nav-link"><a onclick="button('+result[i].id+')">수정</a>';
+	               output += '</div>';
+	               output += '<div class="dropdown">';
+	               output += '<a href="#" class="nav-link" id="message-btn" data-toggle="modal"><a onclick="removeComment('+result[i].id+')">삭제</a></a>';
+	               output += '</div>';
+	               output += '</div>';
+	               output += '</div>';
+	               
+	               output += '</div>';
+	               
+	            }
+	            output += '</div>';
+	            
+	            console.log("output:"+output);            
+
+	            $('#commentList').append(output);   
+	         }         		
 			$('#commentCount').append(count);	
 			commentCount();
 
@@ -73,8 +88,11 @@ var commentPageFooter = $(".comment-footer");
 
 //댓글 페이지 번호 출력
 function commentCount() {
-	var commentCnt = document.getElementById('commentCountVal').value;
-		
+	var commentCnt = cnt;
+	
+	//댓글 없으면 페이징 출력X
+	if(commentCnt == 0) return;
+	
 	var endNum = Math.ceil(pageNum / 10.0) * 10;
 	var startNum = endNum - 9;
 	
@@ -132,14 +150,24 @@ commentPageFooter.on("click", "li a", function(e){
 
 //버튼 속성 변경
 function button(id) {
-	//alert("button id="+id);
+	   
+	   var contentVal = $("#commentContent"+id+"").val();
+	   var loginModal = $("#login-modal");
+	   	   
+	   $('#commentBlock'+id+'').attr({"style":"display:none"});
+	   $('#commentContent'+id+'').attr({"type":"text", "value":contentVal});
+	   $('#reply-content'+id+'').append('<div><input id="commentModifyBtn'+id+'" onclick="modifyComment('+id+')" type="hidden" class="btn btn-template-outlined buttons" value="수정" style="float:right; margin-right:15px; margin-top:20px"></div>');
+	   
+	   $('#commentCloseBtn'+id+'').attr({"type":"button"});
+	   $('#commentDeleteBtn'+id+'').attr({"type":"button"});
+	   $('#commentModifyBtn'+id+'').attr({"type":"button"});
+}
+
+function buttonChange(id) {
 	
 	var contentVal = $("#commentContent"+id+"").val();
+	var loginModal = $("#login-modal");
 	
-	$('#commentBlock'+id+'').attr({"style":"display:none"});
-	$('#commentContent'+id+'').attr({"type":"text", "value":contentVal});
-	$('#commentCloseBtn'+id+'').attr({"type":"button"});
-	$('#commentDeleteBtn'+id+'').attr({"type":"button"});
 	$('#commentModifyBtn'+id+'').attr({"type":"button"});
 }
 
@@ -147,7 +175,7 @@ function button(id) {
 //댓글 등록 버튼 눌렀을 경우
 $('#input_data').click(function(event){
 	var params = $("#insert_form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.
-	
+	//alert("parms="+params);
 	jQuery.ajax({
 		url : '/dog/gatherboard/comments/insertComment',
 		type : 'POST',

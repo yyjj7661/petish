@@ -100,11 +100,8 @@
                        
 			</div>
 		</div>
-	
-<%--		<%@ include file="/WEB-INF/views/commons/script.jspf" %>--%>
 		<!-- include list.js -->
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e74e0d9232cbccbd2962414bf135d9c&libraries=services"></script>
-
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e74e0d9232cbccbd2962414bf135d9c&libraries=services"></script>
 	<script>
 	//지역 시/군 을 저장할 변수
 	var region = '';
@@ -133,9 +130,10 @@
 	// 인포윈도우에 장소명을 표시합니다
 	function displayInfowindow(map,marker,id,title,address_name,hours) {
 		
-		var content = '<div class="bAddr" style="font-size:12px;padding:5px"><span class="title"><a href="/dog/gatherboard/'+id+'">제목 : ' + title + '</a></span><div><span class="title">주소 : '+address_name+'</div><div>진료시간 : '+hours+'</div>';
-		content += '<div><span class="star-rating-40"style="text-align:left;">';
-		content += '</span><span class="title" style="display:inline-block;"></span></div></div>';
+		var content =  '<div class="bAddr" style="font-size:12px;padding:5px"><span class="title">제목 : <a href="/dog/gatherboard/'+id+'">' + title + '</a></span>'
+			content += '<div><span class="title" style="display:inline-block;">주소 : '+address_name+'</div><div>정모일시 : '+hours+'</div></div>';
+			content += '<div><span class="star-rating-40"style="text-align:left;">';
+			content += '</span><span class="title" style="display:inline-block;"></span></div></div>';
    		infowindow.setContent(content);
     	infowindow.open(map, marker);
 	}
@@ -170,7 +168,7 @@
 	        image : markerImage // 마커 이미지 
 	    });
 	    
-	  //마커 클릭시 병원이름, 병원주소가 나오는 클릭이벤트.
+	  //마커 클릭시 해당 정모의 정보가 나오는 이벤트
 		kakao.maps.event.addListener(marker, 'mouseover',function(){
 			displayInfowindow(map,marker,id,title,addr,hours);
 		});
@@ -223,7 +221,7 @@
 	}
 
 	</script>
-		<script src="/resources/js/gatherboard/mapList.js"></script>
+	<script src="/resources/js/gatherboard/mapList.js"></script>
 
 </body>
 </html>
