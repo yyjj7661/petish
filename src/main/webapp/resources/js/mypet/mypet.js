@@ -128,8 +128,16 @@ const makePostPart = (id) => {
 			let imageTag;
 
 			if (images.length == 1) {
-				
-				imageTag = "<img src=" + images[0] + ">";
+			    
+			    imageTag = "<div class='carousel-inner'>";
+			    imageTag += "<div class='carousel-item active'>";
+			    imageTag += "<div class='carousel-item-inner'>";
+			    imageTag += "<div class='img-wrapper'>";
+				imageTag += "<img src=" + images[0] + ">";
+				imageTag += "</div>";
+				imageTag += "</div>";
+				imageTag += "</div>";
+				imageTag += "</div>";
 				
 			} else {
 
@@ -307,7 +315,7 @@ const makeMypetPostList = (pageNum, hashtag) => {
 		data: {"pageNum" : pageNum, "hashtag" : hashtag},
 		success: function(data, status, xhr) {
 			page++;
-			if (page >= data.lastPage) {
+			if (page > data.lastPage) {
 				isEndPage = true;
 			}
 			$.each(data.posts, function(index, value) {
