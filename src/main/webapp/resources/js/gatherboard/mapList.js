@@ -1,4 +1,18 @@
 $(document).ready(function(){
+	var check = $("input[type='checkbox']");
+	var chk = document.getElementById('chk');
+	var region = document.getElementById('region-category');
+
+	check.click(function(){
+	  $("p").toggle();
+	  userRegionMap(regionID);
+	  //주변 정모 보지않을 경우
+	  if(chk.checked == false){
+		  userRegionMap(1);
+	  }
+	});
+	
+	
 	regionList();
 });
 
@@ -61,6 +75,8 @@ function regionSearch() {
 		
 		regionForm.find("input[name='REGION_ID']").val(region.value);
 		regionList();
+		
+		$("input[type=checkbox]").prop("checked", false);
 	}
 }
 

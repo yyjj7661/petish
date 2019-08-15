@@ -15,6 +15,7 @@
 <meta name="robots" content="all,follow">
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <link href="/resources/css/gatherboard/list.css" rel="stylesheet">      
 </head>
 
@@ -41,62 +42,62 @@
 			</div>
 		</div>
 		<div id="content">
-			<div class="container">	
-			
-						<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
-							<li class="nav-item" id="commented">
-								<a data-toggle="pill" href="/dog/gatherboard" role="tab" onclick="viewBoardList()"
-								aria-controls="pills-home" aria-selected="true" class="nav-link">게시판으로 보기</a></li>
-							<li class="nav-item" id="writing">
-								<a data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
-								aria-controls="pills-profile" aria-selected="false" 
-								class="nav-link active" onclick="mapListClick()">지도로 보기</a></li>
-						</ul>
-						
-						<div id="pills-tabContent" class="tab-content">
-							<div role="tabpanel"
-								aria-labelledby="pills-home-tab" class="tab-pane fade show active">		
-															
+			<div class="container">				
+					<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
+						<li class="nav-item" id="commented">
+							<a data-toggle="pill" href="/dog/gatherboard" role="tab" onclick="viewBoardList()"
+							aria-controls="pills-home" aria-selected="true" class="nav-link">게시판으로 보기</a></li>
+						<li class="nav-item" id="writing">
+							<a data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
+							aria-controls="pills-profile" aria-selected="false" 
+							class="nav-link active" onclick="mapListClick()">지도로 보기</a></li>
+					</ul>						
+				<div id="pills-tabContent" class="tab-content">
+					<div role="tabpanel" aria-labelledby="pills-home-tab" class="tab-pane fade show active">																		
 						<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
 							<a>글쓰기</a>
 						</button>
-		<!-- 검색 -->		
-		<form id="categoryForm" action="/dog/gatherboard" method="post">		
-			<div id="top-category" aria-label="Page navigation example" class="d-flex justify-content-left">
-				<!-- 상단 카테고리 -->
-					<div class="col-md-2 col-lg-2">
-						<div class="form-group">
-							<select id="region-category" class="form-control region-category" onchange="regionSearch()">
-								<option value="">지역</option>
-								<option value=1>서울</option>
-								<option value=2>경기</option>
-								<option value=3>인천</option>
-								<option value=4>강원</option>
-								<option value=5>대전</option>
-								<option value=6>세종</option>
-								<option value=7>충남</option>
-								<option value=8>충북</option>
-								<option value=9>부산</option>
-								<option value=10>울산</option>
-								<option value=11>경남</option>
-								<option value=12>경북</option>
-								<option value=13>대구</option>
-								<option value=14>광주</option>
-								<option value=15>전남</option>
-								<option value=16>전북</option>
-								<option value=17>제주</option>
-							</select>
-							
-						</div>
-					</div>
-				</div>					
-				<!-- 지역/크기 별 검색 -->
-				<input type="hidden" name="type" value="R">
-				<input type='hidden' name='keyword' id="categoryKeyword"
-                       value='<c:out value="${pageMaker.cri.keyword}"/>' class="form-control"/>
-			</form>	
-		</div>
-		<!-- 상단 카테고리 끝 -->								
+					<!-- 검색 -->		
+					<form id="categoryForm" action="/dog/gatherboard" method="post">		
+						<div id="top-category" aria-label="Page navigation example" class="d-flex justify-content-left">
+							<!-- 상단 카테고리 -->
+							<div class="col-md-2 col-lg-2">
+								<div class="form-group">
+									<select id="region-category" class="form-control region-category" onchange="regionSearch()">
+										<option value=0>지역</option>
+										<option value=1>서울</option>
+										<option value=2>경기</option>
+										<option value=3>인천</option>
+										<option value=4>강원</option>
+										<option value=5>대전</option>
+										<option value=6>세종</option>
+										<option value=7>충남</option>
+										<option value=8>충북</option>
+										<option value=9>부산</option>
+										<option value=10>울산</option>
+										<option value=11>경남</option>
+										<option value=12>경북</option>
+										<option value=13>대구</option>
+										<option value=14>광주</option>
+										<option value=15>전남</option>
+										<option value=16>전북</option>
+										<option value=17>제주</option>
+									</select>										
+								</div>
+							</div>
+							<!-- 주변 정모 보기 -->		
+							<label class="switch">
+							  <input type="checkbox" id="chk" checked>
+							  <span class="slider round"></span>
+							</label>
+							<p>주변 정모 보기</p><p style="display:none;">주변 정모 보기</p>		
+						</div>					
+							<!-- 지역/크기 별 검색 -->
+							<input type="hidden" name="type" value="R">
+							<input type='hidden' name='keyword' id="categoryKeyword"
+			                 value='<c:out value="${pageMaker.cri.keyword}"/>' class="form-control"/>
+						</form>	
+					<!-- 상단 카테고리 끝 -->								
 					<!-- 검색 끝 -->
 					<div id="content">
 						<div class="container">
@@ -111,6 +112,7 @@
 						</div>
 					</div>
 				
+					</div>
                	</div>
             </div>  
 		</div>
@@ -118,6 +120,7 @@
 	<!-- include list.js -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e74e0d9232cbccbd2962414bf135d9c&libraries=services"></script>
 	<script>
+	var regionID = <%=REGION_ID%>;
 	//지역 시/군 을 저장할 변수
 	var region = '';
 	

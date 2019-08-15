@@ -325,7 +325,7 @@
 						
 						        // 인포윈도우로 장소에 대한 설명을 표시합니다
 						        var infowindow = new daum.maps.InfoWindow({
-						            content: '<div style="width:150px;text-align:center;padding:6px 0;"><%=addr%></div>'
+						            content: '<div style="width:150px;text-align:center;padding:6px 0;font-size:13px"><%=addr%></div>'
 						        });
 						        infowindow.open(map, marker);
 						
@@ -342,9 +342,8 @@
 						</h4>
 						<!-- 댓글 내용 -->
 						<section>			
-						<div id="commentList" class="row comment">
-						<!-- 댓글 출력 -->
-						</div>			
+							<!-- 댓글 출력 -->
+							<div id="commentList" class="row comment"></div>			
 						</section>			
 						<!-- 댓글 페이징 -->
 						<div style="padding:3rem">

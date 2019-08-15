@@ -175,7 +175,7 @@ function buttonChange(id) {
 //댓글 등록 버튼 눌렀을 경우
 $('#input_data').click(function(event){
 	var params = $("#insert_form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.
-	//alert("parms="+params);
+	alert("parms="+params);
 	jQuery.ajax({
 		url : '/dog/gatherboard/comments/insertComment',
 		type : 'POST',
@@ -227,7 +227,7 @@ function modifyComment(id, callback, error) {
 	var comment = {id:id, content:$('#commentContent'+id+'').val()};
 
 	$.ajax({
-		type : 'put',
+		type : 'PUT',
 		url : '/dog/gatherboard/comments/modifyComment/' + id,
 		data : JSON.stringify(comment),
 		contentType : "application/json; charset=utf-8",
@@ -259,7 +259,7 @@ function removeComment(id) {
 	//alert("remove!");
 	if(confirm("삭제하시겠습니까?")) {		
 		$.ajax({
-			type : 'put',
+			type : 'PUT',
 			url : '/dog/gatherboard/comments/removeComment/' + id,
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
