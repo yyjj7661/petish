@@ -50,7 +50,7 @@
 					</ul>						
 				<div id="pills-tabContent" class="tab-content">
 					<div role="tabpanel" aria-labelledby="pills-home-tab" class="tab-pane fade show active">																		
-						<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
+						<button type="submit" class="btn btn-template-outlined map-write-button" onclick="writeFormClick();">
 							<a>글쓰기</a>
 						</button>
 					<!-- 검색 -->		

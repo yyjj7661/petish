@@ -134,10 +134,10 @@
 								<!-- 정모 진행 상태 -->
 								<c:choose>	
 									<c:when test="${board.GATHERING_STATE == 0}">
-										<td><button type="button" class="btn btn-sm btn-default">신청마감</button></td>
+										<td><button type="button" class="row btn btn-sm btn-default">신청마감</button></td>
 									</c:when>
 									<c:otherwise>
-										<td><button type="button" class="btn btn-sm btn-template-main">신청가능</button></td>
+										<td><button type="button" class="row btn btn-sm btn-template-main">신청가능</button></td>
 									</c:otherwise>
 								</c:choose>	
 									<td><c:out value="${board.REGION_NAME}" /></td>
