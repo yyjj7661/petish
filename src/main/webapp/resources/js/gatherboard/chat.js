@@ -27,34 +27,13 @@ $(document).ready(function(){
         onOpen(event)
                 var me = "<div class='nav navbar-nav ml-auto'>" 
 			  +	"<a href='#' data-toggle='dropdown' class='dropdown'><div id='"+$("#chat_id").val()+"' style='margin:3px; color:dimgray;'>" 
-			  + $("#chat_id").val()+ "</div></a>" 
-			  + "<div class='dropdown-menu'>"
-			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='oneOnOne"+$("#chat_id").val()+"'>1:1 채팅하기</a></div>"
-			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='whisper"+$("#chat_id").val()+"');'>귓속말하기</a></div>"
-			  	+ "<div class='dropdown'><a href='#' id='message-btn' class='nav-link' data-toggle='modal' id='chatMessage"+$("#chat_id").val()+"'>쪽지보내기</a></div>"
-			  + "</div></div>";
-        
+			  + $("#chat_id").val()+ "</div></a></div>"; 
+			  
         var user = document.getElementById(''+$("#chat_id").val()+'');
                 
         if(user == null) {        	
         	$(".onUser").append(me);
             webSocket.send($("#chat_id").val() + "|" + $("#chat_id").val() + "님이 입장하셨습니다." + "|" + postID + "|" + "입장");
-        	
-         	 /* 본인에게 1:1 채팅 */
-         	 $("#oneOnOne"+$("#chat_id").val()+"").click(function(){      			 
-         			 alert('본인에게 1대1 채팅신청을 할 수 없습니다!');
-         	 });
-         	 
-         	 /* 본인에게 귓속말 */
-         	 $("#whisper"+$("#chat_id").val()+"").click(function(){      			 
-         			 alert('본인에게 귓속말을 할 수 없습니다!');
-         	 });
-         	 
-         	 /* 본인에게 귓속말 */
-         	 $("#chatMessage"+$("#chat_id").val()+"").click(function(){      			 
-         			 alert('본인에게 쪽지를 보낼 수 없습니다!');
-         	 });
-         	 
         }
     };
     /* 입장할 때 */
