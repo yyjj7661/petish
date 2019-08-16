@@ -450,6 +450,7 @@
 				<input type="hidden" name="USER_ID" value='<%=userID%>' />
 			</form>
 			<input type="hidden" value='<%=userNickName%>' id='chat_id' />
+			<input type="hidden" value='<%=userID%>' id='user_id' />
 			<input type="hidden" value='<%=post.getID()%>' id='post_id' />
 				<!-- 채팅창 -->
 				    <div id="chat_box" style="display:none;">

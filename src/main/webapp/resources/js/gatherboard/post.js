@@ -1,3 +1,7 @@
+$(document).ready(function(){
+	commentList();
+});
+
 /* 크기별 견종 분류 */
 function categoryChange() {
 	var size = document.getElementsByName('DOG_SIZE');
@@ -57,7 +61,6 @@ function messageClick(participant) {
 
 }
 
-
 //쪽지 전송
 $('#modalSendBtn').click(function(event){          
      event.preventDefault();
@@ -87,9 +90,9 @@ $('#modalSendBtn').click(function(event){
            data : JSON.stringify(message),
            contentType : "application/json; charset=utf-8",
            beforeSend : function(){
-              if(sender_id == "" || sender_id == "null"){
-                 alert("로그인 후 이용할 수 있습니다. 로그인 해주세요.");                           
-                 return false;
+        	  if(sender_id == receiver_id) {
+             	 alert("본인에게는 쪽지를 보낼 수 없습니다!");
+             	 return false;
               }
               else{
                  return true;
