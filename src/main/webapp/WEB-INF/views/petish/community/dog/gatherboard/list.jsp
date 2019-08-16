@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="java.util.*, java.sql.*, java.text.*,com.community.petish.community.dog.gatherboard.domain.DogSpeciesVO,com.community.petish.community.dog.gatherboard.dto.response.DogGatherListDTO" %>
+<%@ page import="java.util.*, java.sql.*, java.text.*,
+				 com.community.petish.community.dog.gatherboard.domain.DogSpeciesVO,
+				 com.community.petish.community.dog.gatherboard.dto.response.DogGatherListDTO"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +22,15 @@
 <body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1px;">
 	<div id="all">		
 		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+<%
+      //접속 아이디
+      Long userID = null;
+      String userNickName = "";
+       if(loginedUser != null){
+          userID = loginedUser.getId();
+          userNickName = loginedUser.getNickname();
+       }
+%>
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
@@ -102,7 +114,7 @@
                        value='<c:out value="${pageMaker.cri.keyword}"/>' class="form-control"/>
 			</form>	
 			<!-- 상단 카테고리 끝 -->								
-		<!-- 검색 끝 -->
+			<!-- 검색 끝 -->
 					<div id="customer-order" class="col-lg-20">	
 						<table class="table">
 								<tr>
@@ -139,7 +151,9 @@
 											<a href="#" data-toggle="dropdown" class="dropdown"><c:out value="${board.NICKNAME}" /></a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="/member/detail/${board.USER_ID}" class="nav-link">게시글보기</a></div>
-												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+												<div class="dropdown">
+													<a href="#" id="message-btn" class="nav-link" data-toggle="modal" onclick="messageClick('${board.USER_ID},${board.NICKNAME}')">쪽지보내기</a>
+												</div>
 											</div>
 										</div>
 									</td>
@@ -171,16 +185,13 @@
                             class="page-link"> <i class="fa fa-angle-double-right"></i></a></li>
                      </c:if>
                   </ul>
-               </div>
-               
-               				
+               </div>		
 			<form id="searchForm" action="/dog/gatherboard" method="post">
 				<div id="top-category" aria-label="Page navigation example" class="d-flex justify-content-center">
 					<div class="col-md-2 col-lg-2 list">
 						<div class="form-group">
 							<div class="input-group">						
 								<select name="type" id="state" class="form-control">
-
                                 	<option value="T"
                                 				<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
                                 	<option value="C"
@@ -190,37 +201,88 @@
                                 	<option value="TC"
                                 				<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목 + 내용</option>
 								</select>
-                                </div>
+                        	</div>
 						</div>
-					</div>
-					
+					</div>					
 					<div class="panel panel-default sidebar-menu">
 						<div class="panel-body">
-								<div class="input-group">	
-										<input type='text' name='keyword' class="form-control" placeholder="검색어를 입력해주세요"/>
-                                			<span class="input-group-btn">
-                                		<button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
-								</div>
+							<div class="input-group">	
+								<input type='text' name='keyword' class="form-control" placeholder="검색어를 입력해주세요"/>
+                                	<span class="input-group-btn">
+                                <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</form>
-					<!-- POST 방식으로 pageNum 전송 -->
-					<form id='actionForm' action="/dog/gatherboard" method='post'>
-						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-						<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-						<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
-						<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
-					</form>
-					
+			<!-- POST 방식으로 pageNum 전송 -->
+			<form id='actionForm' action="/dog/gatherboard" method='post'>
+				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+				<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
+				<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
+			</form>
+		    	   <!-- 쪽지 보내기 모달창 -->
+		    	   <div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
+		    	        class="modal fade">
+		    	        <div role="document" class="modal-dialog">
+		    	            <div class="modal-content">
+		    	                <div class="modal-header">
+		    	                    <h4 align="center" class="modal-title">쪽지보내기</h4>
+		    	                    <button type="button" data-dismiss="modal" aria-label="Close"
+		    	                        class="close">
+		    	                        <span aria-hidden="true">×</span>
+		    	                    </button>
+		    	                </div>
+		    	                <div class="modal-body">
+		    	                <form id="message_form" method="POST">		    	                   
+		    	                  <input type="hidden" name="messageSender_id" id="sender_id" value="<%=userID%>">
+		    	                   <input type="hidden" name="messageReceiver_id" id="receiver_id" value="">		    	                
+		    	                    <div class="form-group">
+		    	                        <label>받는사람</label>
+		    	                        <input class="form-control" name='messageNickname' value="" readonly>
+		    	                    </div>
+		    	                    <div class="form-group">
+		    	                        <label>제목</label>
+		    	                        <input class="form-control" name='messageTitle'>
+		    	                    </div>
+		    	                    <div class="form-group">
+		    	                        <label>내용</label>
+		    	                        <textarea id="message_content" name='messageContent' rows="10" class="form-control"></textarea>
+		    	                    </div>
+		    	                    <p class="text-center">   
+		    	                        <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
+		    	                    </p>
+		    	                </form>
+		    	                </div>
+		    	            </div>
+		    	        </div>
+		    	    </div>
+		    	    <!-- 쪽지 모달 끝 -->		   							
 				    </div>
 				</div>                      
 			</div>
 		</div>
 	
-<%--		<%@ include file="/WEB-INF/views/commons/script.jspf" %>--%>
-		<!-- include list.js -->
 		<script src="/resources/js/gatherboard/list.js"></script>
+		<script>
+		function messageClick(user) {
+			var msg = user.split(",");
+			var userID = msg[0];
+			var userNickName = msg[1];
+	        <% if(loginedUser == null){ %>
+	            alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
+	            $('#login-modal').modal("show");	              
+	        <%} else{%>         
+				var actionForm = $("#message_form");
+				actionForm.find("input[name='messageReceiver_id']").val(userID);
+				actionForm.find("input[name='messageNickname']").val(userNickName);
+				
+			    $(this).attr('data-target',"#message-modal");
+			    $('#message-modal').modal("show");	
+	  	    <%}%>
+		}
+		</script>
 
 </body>
 </html>

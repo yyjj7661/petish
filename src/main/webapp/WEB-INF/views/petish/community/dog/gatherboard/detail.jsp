@@ -542,7 +542,6 @@
 			</div>
 		</div>
 		
-	<!-- include category.js -->
 	<script src="/resources/js/gatherboard/post.js"></script>
 	<script src="/resources/js/gatherboard/chat.js"></script>
 	<script src="/resources/js/gatherboard/comment.js"></script>
