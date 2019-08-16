@@ -175,7 +175,7 @@ function buttonChange(id) {
 //댓글 등록 버튼 눌렀을 경우
 $('#input_data').click(function(event){
 	var params = $("#insert_form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.
-	alert("parms="+params);
+	//alert("parms="+params);
 	jQuery.ajax({
 		url : '/dog/gatherboard/comments/insertComment',
 		type : 'POST',

@@ -102,7 +102,9 @@
 											<a href="#" data-toggle="dropdown" class="dropdown"> <%= writer %></a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
-												<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+												<div class="dropdown">
+													<a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
+												</div>
 											</div>
 										</div>
 									</td>
@@ -248,7 +250,7 @@
 														<a href="#" data-toggle="dropdown" class="dropdown"><%= participant.getNICKNAME() %></a>
 														<div class="dropdown-menu">
 															<div class="dropdown"><a href="/member/detail/<%=participant.getUSER_ID() %>" class="nav-link">게시글보기</a></div>
-															<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+															<a href="#" id="message-btn" class="nav-link" data-toggle="modal" onclick="messageClick('<%=participant.getUSER_ID() %>,<%=participant.getNICKNAME()%>')">쪽지보내기</a>
 														</div>
 													</div>
 												</td>  
@@ -260,7 +262,7 @@
 												<%
 						                        	}
 												%>
-											</tr>											
+											</tr>																														
 										<%
 												}
 										%>
@@ -369,7 +371,7 @@
 						<div style="padding:3rem">
 							<form id="page_form">
 								<input type="hidden" name="POST_ID" value=<%= post.getID() %>>
-								<input type="hidden" name="USER_ID" value=<%= userID %>> <!-- 로그인 기능 구현되면 수정해야 함 -->
+								<input type="hidden" name="USER_ID" value=<%= userID %>> 
 								<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
 							</form>
 			            <div class="comment-footer d-flex justify-content-center"></div>
@@ -379,7 +381,7 @@
 				
 					<form id="insert_form" method="post">
 						<!-- comments -->
-						<input type="hidden" name="USER_ID" value=<%= userID %>> <!-- 로그인 기능 구현되면 수정해야 함 -->
+						<input type="hidden" name="USER_ID" value=<%= userID %>> 
 						<input type="hidden" name="POST_ID" value=<%=post.getID() %>>
 						<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'>
 						
@@ -419,7 +421,7 @@
 								<div class="col-sm-12 text-right"> 
 										<!-- 게시자일떄만 수정/삭제  -->
 										<%
-											if(userNickName.equals(writer)) {
+											if(post.getUSER_ID()==userID){
 										%>
 											<button id="modifyBtn" class="btn btn-template-outlined">
 												<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
@@ -463,7 +465,7 @@
 				       	</div>
 				  	</div>
 				 <img class="chat" src="/resources/img/gatherboard/chat.png" onclick="chatClick('<%=userNickName%>');"/>
-    		<!-- 채팅 끝 -->
+    			<!-- 채팅 끝 -->
 								<!-- 신고 모달 -->
 								<div id="report-modal" tabindex="-1" role="dialog" aria-hidden="true"
 								      class="modal fade">
@@ -512,7 +514,47 @@
 								         </div>
 								      </div>
 								   </div>
-								   <!-- 신고모달 끝 -->    		
+								   <!-- 신고모달 끝 -->    	
+					   <!-- 쪽지 보내기 모달창 -->
+					   <div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
+					        class="modal fade">
+					        <div role="document" class="modal-dialog">
+					            <div class="modal-content">
+					                <div class="modal-header">
+					                    <h4 align="center" class="modal-title">쪽지보내기</h4>
+					                    <button type="button" data-dismiss="modal" aria-label="Close"
+					                        class="close">
+					                        <span aria-hidden="true">×</span>
+					                    </button>
+					                </div>
+					                <div class="modal-body">
+					                <form id="message_form" method="POST">
+					                   
+					                  <input type="hidden" name="messageSender_id" id="sender_id" value=<%=userID%>>
+					                   <input type="hidden" name="messageReceiver_id" id="receiver_id" value=<%=post.getUSER_ID() %>>
+					                
+					                    <div class="form-group">
+					                        <label>받는사람</label>
+					                        <input class="form-control" name='messageNickname' value=<%=writer %> readonly>
+					                    </div>
+					                    <div class="form-group">
+					                        <label>제목</label>
+					                        <input class="form-control" name='messageTitle'>
+					                    </div>
+					                    <div class="form-group">
+					                        <label>내용</label>
+					                        <textarea id="message_content" name='messageContent' rows="10" class="form-control"></textarea>
+					                    </div>
+					                    <p class="text-center">   
+					                        <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
+					                    </p>
+					                </form>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					    <!-- 쪽지 모달 끝 -->	
+	   						    							   	
     			</div>
 			</div>
 		</div>
@@ -524,6 +566,23 @@
 	<script src="/resources/js/gatherboard/chat.js"></script>
 	<script src="/resources/js/gatherboard/comment.js"></script>
 	<script src="/resources/js/report.js"></script>
+	<script>
+	$(document).ready(function(){
+		    //쪽지 전송 시 로그인 확인
+	        $('#message-btn').on("click", function(e){
+	           <% if(loginedUser == null){ %>
+	              alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
+	              $('#login-modal').modal("show");
+	              
+	           <%} else{%>         
+	                 $(this).attr('data-target',"#message-modal");
+	                 $('#message-modal').modal("show");
+	  	       	<%}%>
+	        });  
+
+        	
+	});	
+	</script>
 
 </body>
 </html>
