@@ -18,7 +18,7 @@ $(document).ready(function(){
     }
     
     var textarea = document.getElementById("messageWindow");
-    var webSocket = new WebSocket('ws://192.168.1.5:8080/broadcasting'); /* 서버 IP 주소에 맞게 변경 */
+    var webSocket = new WebSocket('ws://172.20.10.11:8080/broadcasting'); /* 서버 IP 주소에 맞게 변경 */
     var inputMessage = document.getElementById('inputMessage');
     webSocket.onerror = function(event) {
         onError(event)
@@ -31,7 +31,7 @@ $(document).ready(function(){
 			  + "<div class='dropdown-menu'>"
 			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='oneOnOne"+$("#chat_id").val()+"'>1:1 채팅하기</a></div>"
 			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='whisper"+$("#chat_id").val()+"');'>귓속말하기</a></div>"
-			  	+ "<div class='dropdown'><a href='#' class='nav-link');'>쪽지보내기</a></div>"
+			  	+ "<div class='dropdown'><a href='#' id='message-btn' class='nav-link' data-toggle='modal' id='chatMessage"+$("#chat_id").val()+"'>쪽지보내기</a></div>"
 			  + "</div></div>";
         
         var user = document.getElementById(''+$("#chat_id").val()+'');
@@ -50,6 +50,11 @@ $(document).ready(function(){
          			 alert('본인에게 귓속말을 할 수 없습니다!');
          	 });
          	 
+         	 /* 본인에게 귓속말 */
+         	 $("#chatMessage"+$("#chat_id").val()+"").click(function(){      			 
+         			 alert('본인에게 쪽지를 보낼 수 없습니다!');
+         	 });
+         	 
         }
     };
     /* 입장할 때 */
@@ -63,13 +68,13 @@ $(document).ready(function(){
         var state = message[3];
         
         
-        /* 접속자 */
+        /* 접속자 */     
         var onUser = "<div class='nav navbar-nav ml-auto'>" 
         			  +	"<a href='#' data-toggle='dropdown' class='dropdown'><div id='"+sender+"' style='margin:3px; color:dimgray;'>" +sender+ "</div></a>" 
         			  + "<div class='dropdown-menu'>"
         			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='oneOnOne"+sender+"'>1:1 채팅하기</a></div>"
         			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='whisper"+sender+"');'>귓속말하기</a></div>"
-        			  	+ "<div class='dropdown'><a href='#' class='nav-link');'>쪽지보내기</a></div>"
+        			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='chatMessage"+sender+"');'>쪽지보내기</a></div>"
         			  + "</div></div>";
                     
         var user = document.getElementById(''+sender+'');
@@ -89,6 +94,11 @@ $(document).ready(function(){
         		 // 1대1 채팅 요청을 보냄
         		 webSocket.send($("#chat_id").val() + "|" + "%" +sender+ "%" + "|" + postID); 
         	 });
+        	 
+        	 /* 귓속말 하기 눌렀을 경우 */
+        	 $("#chatMessage"+sender+"").click(function(){   			 
+        		 chatMessageClick(sender);
+        	 })
         }
         /* 채팅 재접속 */
         else if(user.hidden==true) {
@@ -243,4 +253,25 @@ $(document).ready(function(){
 		}
 	}
 
+	function chatMessageClick(nickname) {
+		jQuery.ajax({
+			url : '/dog/gatherboard/getUserIDbyNickName/'+nickname,
+			type : 'GET',
+			contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+			dataType : "json",
+			success : function(result) {
+				alert("successResult="+result);
+				var receiverID = result;
+				var actionForm = $("#message_form");
+				actionForm.find("input[name='messageReceiver_id']").val(receiverID);
+				actionForm.find("input[name='messageNickname']").val(nickname);
+				
+			    $(this).attr('data-target',"#message-modal");
+			    $('#message-modal').modal("show");	
+			},
+			error:function() {
+				alert("ajax통신 실패!!!");
+			}
+		});
+	}
     

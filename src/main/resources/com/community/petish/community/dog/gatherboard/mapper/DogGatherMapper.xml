@@ -154,6 +154,10 @@ create index IDX_DOG_GATHER_POST on DOG_GATHER_POST_TB(ID desc, USER_ID asc);
 		select ID from USER_TB where USERNAME=#{USERNAME}
 	</select>
 	
+	<select id="getUserIDbyNickName" resultType="Long">
+		select ID from USER_TB where NICKNAME=#{NICKNAME}
+	</select>
+	
 	<select id="getDogSpeciesID" resultType="Long">
 		select ID from DOG_SPECIES_TB where DOG_SPECIES=#{DOG_SPECIES}
 	</select>

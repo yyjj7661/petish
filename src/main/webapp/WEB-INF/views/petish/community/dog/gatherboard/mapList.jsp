@@ -146,8 +146,7 @@
 		
 		var content =  '<div class="bAddr" style="font-size:12px;padding:5px"><span class="title">제목 : <a href="/dog/gatherboard/'+id+'">' + title + '</a></span>'
 			content += '<div><span class="title" style="display:inline-block;">주소 : '+address_name+'</div><div>정모일시 : '+hours+'</div></div>';
-			content += '<div><span class="star-rating-40"style="text-align:left;">';
-			content += '</span><span class="title" style="display:inline-block;"></span></div></div>';
+			content += '<div><span class="title" style="display:inline-block; width:200px;"></span></div></div>';
    		infowindow.setContent(content);
     	infowindow.open(map, marker);
 	}

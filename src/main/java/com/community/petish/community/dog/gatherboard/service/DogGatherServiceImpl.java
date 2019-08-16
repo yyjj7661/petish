@@ -165,6 +165,12 @@ public class DogGatherServiceImpl implements DogGatherService {
 	}
 	
 	@Override
+	public Long getUserIDbyNickName(String nickname) {
+		Long USER_ID = dogGatherMapper.getUserIDbyNickName(nickname);
+		return USER_ID;
+	}
+	
+	@Override
 	public String getUserName(Long userID) {
 		String USER_NAME = dogGatherMapper.getUserName(userID);
 		return USER_NAME;
@@ -205,4 +211,5 @@ public class DogGatherServiceImpl implements DogGatherService {
 		List<DogSpeciesVO> list = dogGatherMapper.getDogSpeciesList(sizeID);
 		return list;
 	}
+
 }

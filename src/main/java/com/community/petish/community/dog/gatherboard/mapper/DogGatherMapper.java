@@ -30,6 +30,7 @@ public interface DogGatherMapper {
 	void allCancelParticipant(Long postID);
 	int getDogGatherParticipantCount(Long postID);
 	Long getUserID(String username);
+	Long getUserIDbyNickName(String nickname);
 	String getUserName(Long userID);
 	String getUserNickName(Long userID);
 	Long getDogSpeciesID(String dogSpecies);

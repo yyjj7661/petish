@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.community.petish.community.dog.gatherboard.domain.Criteria;
+import com.community.petish.community.dog.gatherboard.domain.DogGatherCommentVO;
 import com.community.petish.community.dog.gatherboard.domain.DogGatherParticipantVO;
 import com.community.petish.community.dog.gatherboard.domain.DogGatherPostVO;
 import com.community.petish.community.dog.gatherboard.dto.request.DogGatherPostDTO;
@@ -414,5 +415,16 @@ public class DogGatherboardController {
 			return null;
 		}
 	}
+	
+    //USER_ID 조회
+    @RequestMapping(value = "getUserIDbyNickName/{nickname}", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public Long getUserID(@PathVariable("nickname") String nickname) {
+  
+      Long userID = dogGatherService.getUserIDbyNickName(nickname);
+  
+      System.out.println("getUseriD="+userID);
+      return userID;
+    }
 
 }

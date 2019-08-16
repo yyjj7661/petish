@@ -72,7 +72,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div id="content">
 			<div class="container">
 			      <div class="row bar">
@@ -85,33 +84,30 @@
 						<button class="btn btn-template-outlined listBtn">					
 							<i class="fa fa-align-justify"></i><a href="/dog/gatherboard" id="listBtn" onclick="listClick()">목록</a>
 						</button>
-				
-
 						<div class="panel-heading">
 							<h2 class="h3 panel-title"><%= post.getTITLE() %></h2>
 						</div>
-
 						<table>
-								<tr>
-									<td><img src="/resources/img/blog-avatar2.jpg" alt=""
-										class="img-fluid rounded-circle"></td>
-									<td>
-										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown"> <%= writer %></a>
-											<div class="dropdown-menu">
-												<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
-												<div class="dropdown">
-													<a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
-												</div>
+							<tr>
+								<td><img src="/resources/img/blog-avatar2.jpg" alt=""
+									class="img-fluid rounded-circle"></td>
+								<td>
+									<div class="nav navbar-nav ml-auto">
+										<a href="#" data-toggle="dropdown" class="dropdown"> <%= writer %></a>
+										<div class="dropdown-menu">
+											<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+											<div class="dropdown">
+												<a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
 											</div>
 										</div>
-									</td>
-									<td class=grade>정회원</td>
-									<td class=date>작성일 : <%= post.getCREATED_DATE() %></td>
-									<td class=date>수정일 : <%= post.getUPDATED_DATE() %></td>
-									<td class=view><i class="fa fa-eye"></i> 조회 : <%= post.getVIEW_COUNT() %></td>
-								</tr>
-							</table>
+									</div>
+								</td>
+								<td class=grade>정회원</td>
+								<td class=date>작성일 : <%= post.getCREATED_DATE() %></td>
+								<td class=date>수정일 : <%= post.getUPDATED_DATE() %></td>
+								<td class=view><i class="fa fa-eye"></i> 조회 : <%= post.getVIEW_COUNT() %></td>
+							</tr>
+						</table>
 							<hr size="10px">
 <%
 	//정모 날짜가 지나지 않았을 경우
@@ -355,8 +351,7 @@
 						});    
 						</script>
 			        <!-- 댓글창 -->
-					<div id="comments">
-						
+					<div id="comments">						
 						<!-- 댓글 갯수 -->
 						<h4 class="text-uppercase" id="commentCount">
 						<input type="text" id="commentCountVal">
@@ -437,20 +432,14 @@
 			            </div>
 			         </div>
 			      </div>
-			      <div style="margin: 5rem"></div>         
-									
+			      <div style="margin: 5rem"></div>         									
 			</div> <!-- col-md-12 end -->
-		</div> <!-- row-bar end -->
-							
+		</div> <!-- row-bar end -->									
 			<!-- 채팅 -->
-			<form id="chat_form" action="/dog/gatherboard/insertChat" method="post">
-				<input type="hidden" name="POST_ID" value='<%=post.getID()%>' />
-				<input type="hidden" name="USER_ID" value='<%=userID%>' />
-			</form>
 			<input type="hidden" value='<%=userNickName%>' id='chat_id' />
 			<input type="hidden" value='<%=userID%>' id='user_id' />
 			<input type="hidden" value='<%=post.getID()%>' id='post_id' />
-				<!-- 채팅창 -->
+					<!-- 채팅창 -->
 				    <div id="chat_box" style="display:none;">
 				        <div class="chatBox">
 				            <p class='chatTopBar'>* <%=post.getID()%>번 글 정모 채팅  *</p>
@@ -476,11 +465,9 @@
 				                  class="close">
 				                  <span aria-hidden="true">×</span>
 				               </button>
-				            </div>
-				
+				            </div>				
 				            <div class="modal-body">
-				               <form id="report_form" method="POST">
-				
+				               <form id="report_form" method="POST">				
 				                  <input type="hidden" name="board_id" id="BOARD_ID" value=<%=boardId%>>
 				                  <input type="hidden" name="post_id" id="POST_ID" value=<%= post.getID() %>>
 				                  <input type="hidden" name="user_id" id="USER_ID" value=<%=userID %>>
@@ -527,11 +514,9 @@
 		    	                    </button>
 		    	                </div>
 		    	                <div class="modal-body">
-		    	                <form id="message_form" method="POST">
-		    	                   
+		    	                <form id="message_form" method="POST">		    	                   
 		    	                  <input type="hidden" name="messageSender_id" id="sender_id" value=<%=userID%>>
-		    	                   <input type="hidden" name="messageReceiver_id" id="receiver_id" value=<%=post.getUSER_ID() %>>
-		    	                
+		    	                   <input type="hidden" name="messageReceiver_id" id="receiver_id" value=<%=post.getUSER_ID() %>>		    	                
 		    	                    <div class="form-group">
 		    	                        <label>받는사람</label>
 		    	                        <input class="form-control" name='messageNickname' value=<%=writer %> readonly>
@@ -556,9 +541,7 @@
     			</div>
 			</div>
 		</div>
-
-    <!-- script 파일 추가 -->
-<%--	<%@ include file="/WEB-INF/views/commons/script.jspf" %>--%>
+		
 	<!-- include category.js -->
 	<script src="/resources/js/gatherboard/post.js"></script>
 	<script src="/resources/js/gatherboard/chat.js"></script>

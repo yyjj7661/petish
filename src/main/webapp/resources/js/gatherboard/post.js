@@ -90,8 +90,9 @@ $('#modalSendBtn').click(function(event){
            data : JSON.stringify(message),
            contentType : "application/json; charset=utf-8",
            beforeSend : function(){
-        	  if(sender_id == receiver_id) {
+        	  if(message.sender_id == message.receiver_id) {
              	 alert("본인에게는 쪽지를 보낼 수 없습니다!");
+             	 $("#message-modal").modal("hide");
              	 return false;
               }
               else{
