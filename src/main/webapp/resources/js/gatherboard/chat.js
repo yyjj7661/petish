@@ -239,7 +239,7 @@ $(document).ready(function(){
 			contentType:'application/x-www-form-urlencoded; charset=UTF-8',
 			dataType : "json",
 			success : function(result) {
-				alert("successResult="+result);
+				//alert("successResult="+result);
 				var receiverID = result;
 				var actionForm = $("#message_form");
 				actionForm.find("input[name='messageReceiver_id']").val(receiverID);
