@@ -102,7 +102,7 @@
 					<div id="content">
 						<div class="container">
 					      <div class="bar">
-							<div class="col-md-12">		
+							<div class="col-md-12" id="map">		
 								<div id="map" aria-label="Page navigation example" class="d-flex justify-content-left"></div>
 									<form name="region-form" id="region-form">
 										<input type="hidden" name="REGION_ID" value="<%=REGION_ID%>" />	

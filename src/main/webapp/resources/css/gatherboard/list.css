@@ -17,6 +17,9 @@ button.btn.btn-template-outlined.write-button {
 	text-align: center;
 }
 
+#map {
+	padding:0;
+}
 /* The switch - the box around the slider */
 
 .switch {
