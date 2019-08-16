@@ -185,14 +185,18 @@ public class DogGatherboardController {
 		postVO.setSPECIES_ID(dogGatherService.getDogSpeciesID(DOG_SPECIES));
 		postVO.setGATHERING_DATE(t);
 
+		DogGatherParticipantVO participantVO = new DogGatherParticipantVO(dogGatherService.getMaxPostID()+1L,postVO.getUSER_ID(),"글쓴이",postVO.getSPECIES_ID());
+		System.out.println("participant="+participantVO.toString());
+		
 		int res = dogGatherService.insertDogGatherPost(postVO);
+		int insertParticipantRes = dogGatherService.insertDogGatherParticipant(participantVO);
 		
 		ModelAndView result = new ModelAndView();
 		
-		if(res != 0) {
+		if(res != 0 && insertParticipantRes != 0) {
 			System.out.println("InsertResult="+res);
 			System.out.println("게시글 추가 성공!");
-
+	
 			result.setViewName("redirect:.");
 			return result;
 		}

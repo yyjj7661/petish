@@ -14,6 +14,7 @@ import com.community.petish.community.user.domain.User;
 public interface DogGatherMapper {
 	List<DogGatherPostVO> getDogGatherList();
 	List<DogGatherListDTO> getListWithPaging(Criteria cri);
+	Long getMaxPostID();
 	List<RegionListDTO> getRegionList(Long regionID);
 	Long getUserRegionID(User user);
 	int getDogGatherPostCount(Criteria cri);

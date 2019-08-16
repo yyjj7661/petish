@@ -73,6 +73,12 @@ public class DogGatherServiceImpl implements DogGatherService {
 	}
 	
 	@Override
+	public Long getMaxPostID() {
+		Long maxPostID = dogGatherMapper.getMaxPostID();
+		return maxPostID;
+	}
+	
+	@Override
 	public List<RegionListDTO> getRegionList(Long regionID) {
 		List<RegionListDTO> regionList = dogGatherMapper.getRegionList(regionID);
 		return regionList;

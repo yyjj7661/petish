@@ -90,7 +90,7 @@
 							  <input type="checkbox" id="chk" checked>
 							  <span class="slider round"></span>
 							</label>
-							<p>주변 정모 보기</p><p style="display:none;">주변 정모 보기</p>		
+							<p id="on-off-str">주변 정모 보기</p><p id="on-off-str" style="display:none;">주변 정모 보기</p>		
 						</div>					
 							<!-- 지역/크기 별 검색 -->
 							<input type="hidden" name="type" value="R">

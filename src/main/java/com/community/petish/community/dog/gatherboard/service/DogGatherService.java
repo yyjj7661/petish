@@ -14,6 +14,7 @@ import com.community.petish.community.user.domain.User;
 public interface DogGatherService {
 	public List<DogGatherPostVO> getDogGatherList();
 	public List<DogGatherListDTO> getListWithPaging(Criteria cri);
+	public Long getMaxPostID();
 	public List<RegionListDTO> getRegionList(Long regionID);
 	public Long getUserRegionID(User user);
 	public int getDogGatherPostCount(Criteria cri);
