@@ -1,3 +1,7 @@
+$(document).ready(function(){
+
+});
+
 /* 크기별 견종 분류 */
 function categoryChange() {
 	var size = document.getElementsByName('DOG_SIZE');

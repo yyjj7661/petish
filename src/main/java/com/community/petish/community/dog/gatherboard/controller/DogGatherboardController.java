@@ -93,8 +93,17 @@ public class DogGatherboardController {
 	
 	//게시글 조회
 	@RequestMapping(value = "/{ID}")
-	public ModelAndView dogGatherboardDetail(@PathVariable("ID") Long postID, Criteria cri, HttpServletResponse response) throws Exception {
-
+	public ModelAndView dogGatherboardDetail(@PathVariable("ID") Long postID, Criteria cri, HttpServletResponse response, HttpSession session) throws Exception {
+		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
+		
+		if(user == null) {
+			response.setContentType("text/html charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();			
+		}
 		int res = dogGatherService.updateViewCount(postID);
 		System.out.println("UpdateViewCountRes="+res);
 		

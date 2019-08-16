@@ -237,7 +237,15 @@
 											%>
 											 <tr class="text-center">
 												<td><b><%= i+1 %></b></td>
-												<td><%= participant.getNICKNAME() %></td>  
+												<td>
+													<div class="nav navbar-nav ml-auto">
+														<a href="#" data-toggle="dropdown" class="dropdown"><%= participant.getNICKNAME() %></a>
+														<div class="dropdown-menu">
+															<div class="dropdown"><a href="/member/detail/<%=participant.getUSER_ID() %>" class="nav-link">게시글보기</a></div>
+															<div class="dropdown"><a href="#" class="nav-link">쪽지보내기</a></div>
+														</div>
+													</div>
+												</td>  
 												<td><%= participant.getDOG_SPECIES() %></td>
 												<td><%= participant.getREQUEST_CONTENT() %></td>
 											</tr>											
