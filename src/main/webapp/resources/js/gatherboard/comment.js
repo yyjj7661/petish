@@ -2,10 +2,13 @@ $(document).ready(function(){
 	commentList();
 });
 
+//총 댓글 수
+var cnt = 0;
+
 //댓글 목록
 function commentList(param) {
 	var params = $("#page_form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.
-	//alert("params"+params);
+
 	$('#commentCount').empty();
 	$('#commentList').empty();
 
@@ -16,10 +19,14 @@ function commentList(param) {
 		contentType:'application/x-www-form-urlencoded; charset=UTF-8',
 		dataType:"json",
 		success:function(result) {
-	         
 	         if(result == "" || result == null){
-	            $('#commentList').append("<p style='margin:auto'>등록된 댓글이 없습니다. 댓글을 등록해주세요.</p>");
-	            return;
+	        	var commentNullMsg = "<p id='commentNullMsg' style='margin:auto'>등록된 댓글이 없습니다. 댓글을 등록해주세요.</p>";
+	        	var commentNullExist = document.getElementById('commentNullMsg');
+	        	
+	        	if(commentNullExist==null || commentNullExist=="") {	        		
+	        		$('#commentList').append(commentNullMsg);
+	        		return;
+	        	}
 	         }
 	         
 	         for(var i in result) {
@@ -30,7 +37,10 @@ function commentList(param) {
 	            var modifyBtn = '';
 	            var deleteBtn = '';
 	            
+	            //댓글 갯수
 	            output += '<input type="hidden" id="commentCountVal" value=result[i].count>';
+	           
+	            //유저 프로필 사진
 	            output += '<div class="replyer-image-container">';
 	            output += '<img src="/resources/img/user.png" class="replyer-image" style="max-width:70%">'; 
 	            output += '</div>';
@@ -39,7 +49,8 @@ function commentList(param) {
 	            output += '<h5 class="text-uppercase" style="display:inline-block; padding-right:1rem">' + result[i].nickname + '</h5>';
 	            output += '<a class="posted">';
 	            output += '<i class="fa fa-clock-o" style="padding-right:0.2rem"></i>' + result[i].CREATED_DATE + '</a>';
-
+	            
+	            //수정 시에만 출력
 	            if(result[i].CREATED_DATE != result[i].UPDATED_DATE){
 	               output += '<a class="posted">';
 	               output += '<i class="fa fa-history" style="padding:0 0.2rem 0 1.5rem; "></i>' + result[i].UPDATED_DATE + ' 수정됨</a>';
@@ -50,6 +61,7 @@ function commentList(param) {
 	            
 	            output += '<div id="commentInnerText'+result[i].id+'" class="modify-comment">' + result[i].content +'</div>';   
 
+	            //본인이 작성한 댓글일 경우
 	            if(result[i].nickname == $("#NICKNAME").val()) {      
 	               
 	               output += '<div class="nav navbar-nav ml-auto modify-remove-navbar">';
@@ -70,10 +82,12 @@ function commentList(param) {
 	            output += '</div>';
 	            
 	            console.log("output:"+output);            
-
+	            //댓글 append
 	            $('#commentList').append(output);   
-	         }         		
-			$('#commentCount').append(count);	
+	         }   
+	        //댓글 수 append
+			$('#commentCount').append(count);
+			//댓글 페이지 번호 출력
 			commentCount();
 
 		},
