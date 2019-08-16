@@ -223,7 +223,7 @@
 										%>
 										<%
 												// 본인이 참여 신청 한 경우
-												if(userName.equals(participant.getUSERNAME())) {
+												if(userName.equals(participant.getUSERNAME()) && !(userNickName.equals(writer))) {
 											%>
 													<form action="/dog/gatherboard/cancelParticipant" method="post">
 													<input type="hidden" name="ID" value="<%=participant.getID() %>">
