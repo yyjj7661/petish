@@ -23,7 +23,7 @@
 	display:inline-block!important;
 	vertical-align:top;
 	width:90%;
-	/* width:100%; */
+	white-space:pre;
 }
 .modifyBtn{
 	width: 1.6rem;
