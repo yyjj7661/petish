@@ -47,9 +47,18 @@
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/admin/report"><i class="icon fa fa-circle-o"></i> 신고페이지</a></li>
             <li><a class="treeview-item" href="/admin/question"><i class="icon fa fa-circle-o"></i> 문의페이지</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview"><a class="app-menu__item active" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i>
+        	<span class="app-menu__label">게시판 관리</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/admin/dog/gatherboard"><i class="icon fa fa-circle-o"></i> 강아지</a></li>
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> 고양이</a></li>
             
           </ul>
         </li>
+                
       </ul>
     </aside>
     <main class="app-content">
@@ -152,7 +161,7 @@
 				if(retVal.res == "OK"){
 					//데이타 성공일때 이벤트 작성
 					$("#new-modal").modal("hide");
-					window.location.href="/admin/question";
+					getQuestionList();
 				}
 				else{
 					alert("Modify Fail!!!");
