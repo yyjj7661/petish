@@ -213,7 +213,13 @@
 						                        <th>번호</th>
 						                        <th>아이디</th>
 						                        <th>반려견</th>
+						                        <%
+						                        	if(userNickName.equals(writer)){						              
+						                        %>
 						                        <th>내용</th>
+						                        <%
+						                        	}
+						                        %>
 						                      </tr>
 						                    </thead>
 						                  <tbody>
@@ -247,7 +253,13 @@
 													</div>
 												</td>  
 												<td><%= participant.getDOG_SPECIES() %></td>
+						                        <%
+						                        	if(userNickName.equals(writer)){						              
+						                        %>
 												<td><%= participant.getREQUEST_CONTENT() %></td>
+												<%
+						                        	}
+												%>
 											</tr>											
 										<%
 												}
