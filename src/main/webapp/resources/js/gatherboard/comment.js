@@ -20,17 +20,11 @@ function commentList(param) {
 		dataType:"json",
 		success:function(result) {
 	         if(result == "" || result == null){
-	        	var commentNullMsg = "<p id='commentNullMsg' style='margin:auto'>등록된 댓글이 없습니다. 댓글을 등록해주세요.</p>";
-	        	var commentNullExist = document.getElementById('commentNullMsg');
-	        	
-	        	if(commentNullExist==null || commentNullExist=="") {	        		
-	        		$('#commentList').append(commentNullMsg);
-	        		return;
-	        	}
+	        	$('#commentList').append("<p id='commentNullMsg' style='margin:auto'>등록된 댓글이 없습니다. 댓글을 등록해주세요.</p>");
+	        	return;
 	         }
 	         
-	         for(var i in result) {
-	            
+	         for(var i in result) {	            
 	            var count = '댓글  ' + result[i].count;
 	            cnt = result[i].count;
 	            var output = '';
