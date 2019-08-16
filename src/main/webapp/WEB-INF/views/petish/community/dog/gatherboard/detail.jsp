@@ -50,16 +50,16 @@
 <title><%= post.getTITLE() %></title>
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
+<link href="/resources/css/fonts.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/gatherboard/chat.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/comment.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/detail.css">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1&display=swap&subset=korean" rel="stylesheet">
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
 </head>
-<body>
+<body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight: 100;">
 
 	<div id="all">
-<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
 
 		<div id="heading-breadcrumbs">
 			<div class="container">

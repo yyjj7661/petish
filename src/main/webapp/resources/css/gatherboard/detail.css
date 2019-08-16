@@ -9,6 +9,7 @@ width:16px;height:16px;background:lightblue;}
 .btn.btn-template-outlined.writeBtn {
 	margin-top: -10px;
 	float: right;
+	font-weight:100;
 }
 
 .btn.btn-template-outlined.listBtn {
@@ -147,6 +148,7 @@ width:16px;height:16px;background:lightblue;}
 button.btn.btn-template-outlined {
 	margin-right:15px;
 	margin-top:20px;
+	font-weight:100;
 }
 
 button.btn.btn-template-outlined.btn-sm {

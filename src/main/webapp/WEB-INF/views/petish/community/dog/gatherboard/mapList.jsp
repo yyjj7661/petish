@@ -15,16 +15,12 @@
 <meta name="robots" content="all,follow">
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<link href="/resources/css/fonts.css" rel="stylesheet">
 <link href="/resources/css/gatherboard/list.css" rel="stylesheet">      
 </head>
 
-<body>
-<script>
-
-</script>
-	<div id="all">
-		
+<body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight:1">
+	<div id="all">		
 		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
 
 		<div id="heading-breadcrumbs">

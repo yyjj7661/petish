@@ -12,12 +12,12 @@
 <meta name="robots" content="all,follow">
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
+<link href="/resources/css/fonts.css" rel="stylesheet">
 <link href="/resources/css/gatherboard/list.css" rel="stylesheet">       
 </head>
 
-<body>
-	<div id="all">
-		
+<body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1px;">
+	<div id="all">		
 		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
 
 		<div id="heading-breadcrumbs">
