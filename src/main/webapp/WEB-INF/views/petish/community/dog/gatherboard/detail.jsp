@@ -57,10 +57,8 @@
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
 </head>
 <body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight: 100;">
-
 	<div id="all">
 		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
-
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
@@ -356,17 +354,19 @@
 						    } 
 						});    
 						</script>
-
-				<div id="comments">		
+			        <!-- 댓글창 -->
+					<div id="comments">
+						
 						<!-- 댓글 갯수 -->
 						<h4 class="text-uppercase" id="commentCount">
 						<input type="text" id="commentCountVal">
 						</h4>
 						<!-- 댓글 내용 -->
 						<section>			
-							<!-- 댓글 출력 -->
-							<div id="commentList" class="row comment"></div>			
-						</section>			
+						<div id="commentList" class="row comment">
+						<!-- 댓글 출력 -->
+						</div>			
+						</section>		
 						<!-- 댓글 페이징 -->
 						<div style="padding:3rem">
 							<form id="page_form">
@@ -411,38 +411,36 @@
 							</div>
 						</div>			
 					</form>
-					<!-- comment insert form END -->
-			         
-			         <div style="margin: 2rem"></div>
-			
+					<!-- comment insert form END -->			         
+			        <div style="margin: 2rem"></div>
 			         <!-- 수정/삭제/신고 버튼 -->
 			         <div id="comment-form">
-			               <div class="row">
-								<div class="col-sm-12 text-right"> 
-										<!-- 게시자일떄만 수정/삭제  -->
-										<%
-											if(post.getUSER_ID()==userID){
-										%>
-											<button id="modifyBtn" class="btn btn-template-outlined">
-												<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
-											</button>
-											<button id="deleteBtn" type="submit" class="btn btn-template-outlined">
-												<i class="fa fa-trash-o"></i> <a href="/dog/gatherboard/deleteDogGatherPost/<%=post.getID()%>">삭제</a>
-											</button>
-										<%
-											}
-										%>
-										<!-- 게시자일때만 수정/삭제 END -->
-											<button type="button" class="btn btn-danger"
-												data-toggle="modal" data-target="#report-modal" id="report-btn">신고</button>
-								</div>
+			         	<div class="row">
+							<div class="col-sm-12 text-right"> 
+							<!-- 게시자일떄만 수정/삭제  -->
+							<%
+								if(post.getUSER_ID()==userID){
+							%>
+								<button id="modifyBtn" class="btn btn-template-outlined">
+									<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
+								</button>
+								<button id="deleteBtn" type="submit" class="btn btn-template-outlined">
+									<i class="fa fa-trash-o"></i> <a href="/dog/gatherboard/deleteDogGatherPost/<%=post.getID()%>">삭제</a>
+								</button>
+							<%
+								}
+							%>
+							<!-- 게시자일때만 수정/삭제 END -->
+								<button type="button" class="btn btn-danger"
+								data-toggle="modal" data-target="#report-modal" id="report-btn">신고</button>
+							</div>
 			            </div>
 			         </div>
-			         <div style="margin: 5rem"></div>         
 			      </div>
+			      <div style="margin: 5rem"></div>         
 									
-				</div> <!-- col-md-12 end -->
-			</div> <!-- row-bar end -->
+			</div> <!-- col-md-12 end -->
+		</div> <!-- row-bar end -->
 							
 			<!-- 채팅 -->
 			<form id="chat_form" action="/dog/gatherboard/insertChat" method="post">
@@ -467,95 +465,94 @@
 				  	</div>
 				 <img class="chat" src="/resources/img/gatherboard/chat.png" onclick="chatClick('<%=userNickName%>');"/>
     			<!-- 채팅 끝 -->
-								<!-- 신고 모달 -->
-								<div id="report-modal" tabindex="-1" role="dialog" aria-hidden="true"
-								      class="modal fade">
-								      <div role="document" class="modal-dialog">
-								         <div class="modal-content">
-								            <div class="modal-header">
-								               <h4 align="center" class="modal-title">게시글 신고</h4>
-								               <button type="button" data-dismiss="modal" aria-label="Close"
-								                  class="close">
-								                  <span aria-hidden="true">×</span>
-								               </button>
-								            </div>
-								
-								            <div class="modal-body">
-								               <form id="report_form" method="POST">
-								
-								                  <input type="hidden" name="board_id" id="BOARD_ID" value=<%=boardId%>>
-								                  <input type="hidden" name="post_id" id="POST_ID" value=<%= post.getID() %>>
-								                  <input type="hidden" name="user_id" id="USER_ID" value=<%=userID %>>
-												<label style="text-align: left !important;">신고 분류</label>
-								                  <div class="form-group">
-								                     <select id="state" name="category_id" id="category_id"
-								                        class="form-control">
-								                        <option value="0">신고 사유 선택</option>
-								                        <option value="1">부적절한 게시물</option>
-								                        <option value="2">도배 게시물</option>
-								                        <option value="3">광고성 게시물</option>
-								                        <option value="4">비방/비하/욕설 게시물</option>
-								                        <option value="5">음란성 또는 청소년 유해 게시물</option>
-								                        <option value="6">기타</option>
-								                     </select>
-								                  </div>
-								                  <label>내용</label>
-								                  <div class="form-group">
-								                     <textarea name="description" id="description" rows="10"
-								                        class="form-control"></textarea>
-								                  </div>
-								                  <p class="text-center">
-								                     <input type="submit" value="신고" class="btn btn-outline-primary"
-								                        id="input_report">
-								                     <a style="padding-right: 0.5rem;"></a>
-								                     <input type="reset" class="btn btn-outline-primary" value="취소">
-								                  </p>
-								               </form>
-								            </div>
-								         </div>
-								      </div>
-								   </div>
-								   <!-- 신고모달 끝 -->    	
-					   <!-- 쪽지 보내기 모달창 -->
-					   <div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
-					        class="modal fade">
-					        <div role="document" class="modal-dialog">
-					            <div class="modal-content">
-					                <div class="modal-header">
-					                    <h4 align="center" class="modal-title">쪽지보내기</h4>
-					                    <button type="button" data-dismiss="modal" aria-label="Close"
-					                        class="close">
-					                        <span aria-hidden="true">×</span>
-					                    </button>
-					                </div>
-					                <div class="modal-body">
-					                <form id="message_form" method="POST">
-					                   
-					                  <input type="hidden" name="messageSender_id" id="sender_id" value=<%=userID%>>
-					                   <input type="hidden" name="messageReceiver_id" id="receiver_id" value=<%=post.getUSER_ID() %>>
-					                
-					                    <div class="form-group">
-					                        <label>받는사람</label>
-					                        <input class="form-control" name='messageNickname' value=<%=writer %> readonly>
-					                    </div>
-					                    <div class="form-group">
-					                        <label>제목</label>
-					                        <input class="form-control" name='messageTitle'>
-					                    </div>
-					                    <div class="form-group">
-					                        <label>내용</label>
-					                        <textarea id="message_content" name='messageContent' rows="10" class="form-control"></textarea>
-					                    </div>
-					                    <p class="text-center">   
-					                        <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
-					                    </p>
-					                </form>
-					                </div>
-					            </div>
-					        </div>
-					    </div>
-					    <!-- 쪽지 모달 끝 -->	
-	   						    							   	
+				<!-- 신고 모달 -->
+				<div id="report-modal" tabindex="-1" role="dialog" aria-hidden="true"
+				      class="modal fade">
+				      <div role="document" class="modal-dialog">
+				         <div class="modal-content">
+				            <div class="modal-header">
+				               <h4 align="center" class="modal-title">게시글 신고</h4>
+				               <button type="button" data-dismiss="modal" aria-label="Close"
+				                  class="close">
+				                  <span aria-hidden="true">×</span>
+				               </button>
+				            </div>
+				
+				            <div class="modal-body">
+				               <form id="report_form" method="POST">
+				
+				                  <input type="hidden" name="board_id" id="BOARD_ID" value=<%=boardId%>>
+				                  <input type="hidden" name="post_id" id="POST_ID" value=<%= post.getID() %>>
+				                  <input type="hidden" name="user_id" id="USER_ID" value=<%=userID %>>
+								<label style="text-align: left !important;">신고 분류</label>
+				                  <div class="form-group">
+				                     <select id="state" name="category_id" id="category_id"
+				                        class="form-control">
+				                        <option value="0">신고 사유 선택</option>
+				                        <option value="1">부적절한 게시물</option>
+				                        <option value="2">도배 게시물</option>
+				                        <option value="3">광고성 게시물</option>
+				                        <option value="4">비방/비하/욕설 게시물</option>
+				                        <option value="5">음란성 또는 청소년 유해 게시물</option>
+				                        <option value="6">기타</option>
+				                     </select>
+				                  </div>
+				                  <label>내용</label>
+				                  <div class="form-group">
+				                     <textarea name="description" id="description" rows="10"
+				                        class="form-control"></textarea>
+				                  </div>
+				                  <p class="text-center">
+				                     <input type="submit" value="신고" class="btn btn-outline-primary"
+				                        id="input_report">
+				                     <a style="padding-right: 0.5rem;"></a>
+				                     <input type="reset" class="btn btn-outline-primary" value="취소">
+				                  </p>
+				               </form>
+				            </div>
+				         </div>
+				      </div>
+				   </div>
+				   <!-- 신고모달 끝 -->    	
+		    	   <!-- 쪽지 보내기 모달창 -->
+		    	   <div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
+		    	        class="modal fade">
+		    	        <div role="document" class="modal-dialog">
+		    	            <div class="modal-content">
+		    	                <div class="modal-header">
+		    	                    <h4 align="center" class="modal-title">쪽지보내기</h4>
+		    	                    <button type="button" data-dismiss="modal" aria-label="Close"
+		    	                        class="close">
+		    	                        <span aria-hidden="true">×</span>
+		    	                    </button>
+		    	                </div>
+		    	                <div class="modal-body">
+		    	                <form id="message_form" method="POST">
+		    	                   
+		    	                  <input type="hidden" name="messageSender_id" id="sender_id" value=<%=userID%>>
+		    	                   <input type="hidden" name="messageReceiver_id" id="receiver_id" value=<%=post.getUSER_ID() %>>
+		    	                
+		    	                    <div class="form-group">
+		    	                        <label>받는사람</label>
+		    	                        <input class="form-control" name='messageNickname' value=<%=writer %> readonly>
+		    	                    </div>
+		    	                    <div class="form-group">
+		    	                        <label>제목</label>
+		    	                        <input class="form-control" name='messageTitle'>
+		    	                    </div>
+		    	                    <div class="form-group">
+		    	                        <label>내용</label>
+		    	                        <textarea id="message_content" name='messageContent' rows="10" class="form-control"></textarea>
+		    	                    </div>
+		    	                    <p class="text-center">   
+		    	                        <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
+		    	                    </p>
+		    	                </form>
+		    	                </div>
+		    	            </div>
+		    	        </div>
+		    	    </div>
+		    	    <!-- 쪽지 모달 끝 -->		   						    							   	
     			</div>
 			</div>
 		</div>

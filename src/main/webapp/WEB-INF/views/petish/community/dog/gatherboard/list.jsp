@@ -19,7 +19,6 @@
 <body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1px;">
 	<div id="all">		
 		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
-
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">

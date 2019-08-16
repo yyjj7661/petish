@@ -28,12 +28,12 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" >
 	<!-- include summernote css/js-->
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-        
+	<link href="/resources/css/fonts.css" rel="stylesheet">        
     <link rel="stylesheet" href="/resources/css/gatherboard/write-modify.css">
     <link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 </head>
 
-<body>
+<body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight: 100;">
 	<%@ include file="/WEB-INF/views/commons/top.jspf" %>
 	<div id="all">	
 		<div id="heading-breadcrumbs">
@@ -142,7 +142,7 @@
 									</div>
 									<div class="col-md-1.5" style="padding-top: 6px;">
 										<div class="form-group">
-											<label for="category">    </label>									
+											<label for="category"></label>									
 											<input type="button" class="form-control" value="검색" onclick="openZipcode(this.form)" />
 										</div>
 									</div>
@@ -153,7 +153,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label for="password_old">제목</label> <input id="password_old"
+											<label for="password_old" id="title">제목</label> <input id="password_old"
 												name="TITLE" type="text" value="<%= post.getTITLE() %>" class="form-control">
 										</div>
 									</div>
