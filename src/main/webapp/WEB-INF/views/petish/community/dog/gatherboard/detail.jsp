@@ -14,7 +14,7 @@
 
 	String strCreatedDate = post.getCREATED_DATE()+"";
 	String strUpdatedDate = post.getUPDATED_DATE()+"";
-	String addr = post.getGATHERING_ADDRESS().split("　")[0];
+	String addr = post.getGATHERING_ADDRESS();
 	String writer = (String)request.getAttribute("writer");
 	String userName = user.getUsername();
 	Long userID = user.getId();
@@ -301,7 +301,7 @@
 							<h3>모임 안내</h3>
 							<blockquote class="blockquote">
 									<p><strong>모임 일시 :</strong> <%= post.getGATHERING_DATE() %></p>
-									<p><strong>주소 :</strong> <%= addr %> <%= post.getGATHERING_ADDRESS().split("　")[1] %></p>
+									<p><strong>주소 :</strong><a id="addr"></a></p>
 									<p id="sizeID"><strong>크기  :</strong> <%= size %>
 									<p><strong>반려견 :</strong> <%= request.getAttribute("dogSpecies") %> </p>
 									<p><strong>내용 :</strong> <%= post.getCONTENT() %></p>
@@ -507,23 +507,28 @@
 	<script src="/resources/js/gatherboard/comment.js"></script>
 	<script src="/resources/js/report.js"></script>
 	<script>
-    var addr1 = '<%=addr%>';
-    var addr2 = '<%=post.getGATHERING_ADDRESS().split("　")[1]%>';
-    
+    var addr = '<%=addr%>';
+    var addr1 = addr.split("　")[0];
+    var addr2 = addr.split("　")[1]; 
+    var gatheringAddr = addr1;
+    if(!(addr2 == null || addr2 == "")) {
+    	gatheringAddr = addr1 + " " + addr2;
+    }
 	$(document).ready(function(){
-
-
-		    //쪽지 전송 시 로그인 확인
-	        $('#message-btn').on("click", function(e){
-	           <% if(loginedUser == null){ %>
-	              alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
-	              $('#login-modal').modal("show");
-	              
-	           <%} else{%>         
-	                 $(this).attr('data-target',"#message-modal");
-	                 $('#message-modal').modal("show");
-	  	       	<%}%>
-	        });  
+		
+		$("#addr").append(gatheringAddr);
+		
+ 		//쪽지 전송 시 로그인 확인
+	    $('#message-btn').on("click", function(e){
+	    <% if(loginedUser == null){ %>
+	       alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
+	       $('#login-modal').modal("show");
+	       
+	    <%} else{%>         
+	          $(this).attr('data-target',"#message-modal");
+	          $('#message-modal').modal("show");
+	    	<%}%>
+	    });  
 	
 	});	
 	</script>

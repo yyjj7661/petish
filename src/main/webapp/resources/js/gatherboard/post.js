@@ -15,7 +15,7 @@ $(document).ready(function(){
 		//별도의 이벤트 메소드를 제공하지 않습니다 
 		var content = '<div class="wrap">' + 
         '    <div class="info">' + 
-        '        <div class="title">정모 장소</div>' + 
+        '        <div class="title" style="text-align:center;">정모 장소</div>' + 
         '        <div class="body">' + 
         '            <div style="padding:8px;">' + 
         '                <div class="ellipsis">주소 : '+ addr1 + '</div>'

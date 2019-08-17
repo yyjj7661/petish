@@ -77,14 +77,7 @@
 	<!-- 다음지도 api 추가 -->
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
-	
-	
-		
-	
-	
 	<script>
-	
-	
 	//지도 클릭했을때 값 넘겨주고 원래 페이지에서 값적는코드
 	// 마커 또는 검색목록 클릭시 오프너에 값적는 코드
 	function searchClick(addr ,lng){

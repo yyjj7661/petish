@@ -136,7 +136,11 @@ function displayInfowindow(map,marker,id,title,address_name,hours,fa,ga) {
 	            '        </div>' + 
 	            '        <div class="body">' + 
 	            '            <div style="padding:8px;">' + 
-	            '                <div class="ellipsis">장소 : '+ addr1 + " " + addr2 +'</div>' + 
+	            '                <div class="ellipsis">장소 : '+ addr1
+	            if(!(addr2 == null || addr2 == "")) {
+	            	content += " " + addr2 
+	            }
+	            	content += '</div>' +  
 	            '                <div class="ellipsis">일시 : '+ hours +'</div>' + 
 	            '                <div class="jibun ellipsis text-center" style="margin-top:10px;">' +
 	            '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/map/'+addr1+','+ga+','+fa+'" style="target="_blank">큰지도</a></button>' +
