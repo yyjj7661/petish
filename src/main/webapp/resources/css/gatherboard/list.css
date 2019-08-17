@@ -1,3 +1,17 @@
+.badge.badge-secondary.comment-count {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 5px;
+    margin-left: 5px;
+    color: #fff;
+    background-color: #38a7bb;
+}
+
+#title {
+	color: black;
+}
+
 button.btn.btn-template-outlined.write-button {
 	float: right;
 	margin: 0 20px 30px;

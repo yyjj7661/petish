@@ -143,9 +143,9 @@
 									<td><c:out value="${board.REGION_NAME}" /></td>
 									<td class=test><c:out value="${board.DOG_SIZE}" />형견</td>
 									<td colspan="10">
-										<a href="#" onclick="detailClick(${board.ID })">
+										<a id="title" href="#" onclick="detailClick(${board.ID })">
 										<!--  a onclick="detailClick("+${board.ID}+")">-->
-										<c:out value="${board.TITLE}" /> <b>[<c:out value="${board.COMMENT_COUNT}" />]</b></a></td>
+										<c:out value="${board.TITLE}" /><span class="badge badge-secondary comment-count"><c:out value="${board.COMMENT_COUNT}" /></span> </a></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
 											<a href="#" data-toggle="dropdown" class="dropdown"><c:out value="${board.NICKNAME}" /></a>

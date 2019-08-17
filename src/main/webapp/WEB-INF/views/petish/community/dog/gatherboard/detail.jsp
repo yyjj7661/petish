@@ -9,6 +9,8 @@
 	DogGatherPostVO post = (DogGatherPostVO)request.getAttribute("post");
 	LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
 
+	String strCreatedDate = post.getCREATED_DATE()+"";
+	String strUpdatedDate = post.getUPDATED_DATE()+"";
 	String addr = post.getGATHERING_ADDRESS();
 	String writer = (String)request.getAttribute("writer");
 	String userName = user.getUsername();
@@ -53,6 +55,7 @@
 <link href="/resources/css/fonts.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/gatherboard/chat.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/comment.css">
+<link rel="stylesheet" href="/resources/css/commons/kakaomap.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/detail.css">
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
 </head>
@@ -89,8 +92,6 @@
 						</div>
 						<table>
 							<tr>
-								<td><img src="/resources/img/blog-avatar2.jpg" alt=""
-									class="img-fluid rounded-circle"></td>
 								<td>
 									<div class="nav navbar-nav ml-auto">
 										<a href="#" data-toggle="dropdown" class="dropdown"> <%= writer %></a>
@@ -102,9 +103,15 @@
 										</div>
 									</div>
 								</td>
-								<td class=grade>정회원</td>
+								<td class=grade></td>
 								<td class=date>작성일 : <%= post.getCREATED_DATE() %></td>
+								<%
+								if(!(strCreatedDate.equals(strUpdatedDate))) {
+								%>
 								<td class=date>수정일 : <%= post.getUPDATED_DATE() %></td>
+								<%
+								}
+								%>
 								<td class=view><i class="fa fa-eye"></i> 조회 : <%= post.getVIEW_COUNT() %></td>
 							</tr>
 						</table>
@@ -341,7 +348,7 @@
 						
 						        // 인포윈도우로 장소에 대한 설명을 표시합니다
 						        var infowindow = new daum.maps.InfoWindow({
-						            content: '<div style="width:150px;text-align:center;padding:6px 0;font-size:13px"><%=addr%></div>'
+						            content: '<div class="bAddr" style="text-align:center;padding:8px;font-size:13px">주소 : <%=addr%></div>'
 						        });
 						        infowindow.open(map, marker);
 						
