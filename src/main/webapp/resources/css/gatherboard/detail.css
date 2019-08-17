@@ -32,6 +32,16 @@ width:16px;height:16px;background:lightblue;}
 	text-align: center;	
 }
 
+#writer-dropdown {
+	left: 15px;
+}
+
+.date-view {
+    width: 100%;
+    margin-left: 20px;
+    text-align: right;
+}
+
 .chat {
 	width: 120px;
 	position: fixed;

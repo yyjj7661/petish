@@ -93,8 +93,8 @@
 						<table>
 							<tr>
 								<td>
-									<div class="nav navbar-nav ml-auto">
-										<a href="#" data-toggle="dropdown" class="dropdown"> <%= writer %></a>
+									<div class="row nav navbar-nav ml-auto">
+										<a href="#" id="writer-dropdown" data-toggle="dropdown" class="row dropdown"> <%= writer %></a>
 										<div class="dropdown-menu">
 											<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
 											<div class="dropdown">
@@ -103,16 +103,17 @@
 										</div>
 									</div>
 								</td>
-								<td class=grade></td>
-								<td class=date>작성일 : <%= post.getCREATED_DATE() %></td>
+								<td class="date-view">
+									<i class="fa fa-clock-o"></i> 작성일 : <%= post.getCREATED_DATE() %>
 								<%
 								if(!(strCreatedDate.equals(strUpdatedDate))) {
 								%>
-								<td class=date>수정일 : <%= post.getUPDATED_DATE() %></td>
-								<%
-								}
+									<i class="fa fa-clock-o" style="padding-left:1rem"></i> 수정일 : <%= post.getUPDATED_DATE() %>
+								<% 
+								} 
 								%>
-								<td class=view><i class="fa fa-eye"></i> 조회 : <%= post.getVIEW_COUNT() %></td>
+									<i class="fa fa-eye" style="padding-left:1rem"></i> 조회 : <%= post.getVIEW_COUNT() %>	
+								</td>
 							</tr>
 						</table>
 							<hr size="10px">
@@ -348,7 +349,7 @@
 						
 						        // 인포윈도우로 장소에 대한 설명을 표시합니다
 						        var infowindow = new daum.maps.InfoWindow({
-						            content: '<div class="bAddr" style="text-align:center;padding:8px;font-size:13px">주소 : <%=addr%></div>'
+						            content: '<div class="bAddr" style="text-align:center;padding:8px;font-size:13px">장소 : <%=addr%></div>'
 						        });
 						        infowindow.open(map, marker);
 						
@@ -566,8 +567,7 @@
 	                 $('#message-modal').modal("show");
 	  	       	<%}%>
 	        });  
-
-        	
+	
 	});	
 	</script>
 
