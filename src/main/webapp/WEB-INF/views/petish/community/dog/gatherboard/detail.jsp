@@ -300,7 +300,7 @@
 						<div id="post-content">						
 							<h3>모임 안내</h3>
 							<blockquote class="blockquote">
-									<p><strong>모임 일시 :</strong> <%= post.getGATHERING_DATE() %></p>
+									<p><strong>모임 일시 :</strong><a id="gathering_date"> <%= post.getGATHERING_DATE() %></a></p>
 									<p><strong>주소 :</strong><a id="addr"></a></p>
 									<p id="sizeID"><strong>크기  :</strong> <%= size %>
 									<p><strong>반려견 :</strong> <%= request.getAttribute("dogSpecies") %> </p>
@@ -511,6 +511,9 @@
     var addr1 = addr.split("　")[0];
     var addr2 = addr.split("　")[1]; 
     var gatheringAddr = addr1;
+    var gatheringDateStr = document.getElementById('gathering_date');
+    var gatheringDate = gatheringDateStr.innerText;
+    
     if(!(addr2 == null || addr2 == "")) {
     	gatheringAddr = addr1 + " " + addr2;
     }

@@ -185,7 +185,7 @@
 	<script src="/resources/lang/summernote-ko-KR.js"></script>	
 	<script src="/resources/js/summernote.js"></script>
 	<script src="/resources/js/datepicker.js"></script>
-	<script src="/resources/js/boardMap/write_map.js"></script>
+	<script src="/resources/js/gatherboard/write_map.js"></script>
 	<script src="/resources/js/gatherboard/post.js"></script>
 	<script src="/resources/js/gatherboard/writeForm.js"></script>
 </body>
