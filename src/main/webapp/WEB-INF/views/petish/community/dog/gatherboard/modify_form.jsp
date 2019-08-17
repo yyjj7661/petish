@@ -13,17 +13,14 @@
 	}
 	else if(dogSizeID == 3L) {
 		dogSize = "대";
-	}
-	
-	
+	}	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="utf-8">
-<title>정모게시판 글 수정</title>
-	
+<title>정모게시판 글 수정</title>	
 	<!-- datetimepicker 추가 -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" >
 	<!-- include summernote css/js-->
@@ -245,20 +242,15 @@
 		marker.setPosition(new kakao.maps.LatLng(ga, fa));
 		marker.setMap(map);
 	}
-	</script>
-	
-	
+	</script>	
 	<!-- 다음지도 api 추가 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
-	
-	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
-		
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>	
+	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>		
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	<!-- include summernote-ko-KR -->
 	<script src="/resources/lang/summernote-ko-KR.js"></script>
 	<script src="/resources/js/summernote.js"></script>
 	<script src="/resources/js/datepicker.js"></script>
-	<!-- include catagory.js -->
 	<script src="/resources/js/gatherboard/post.js"></script>
 	<script src="/resources/js/gatherboard/writeForm.js"></script>
 

@@ -165,17 +165,16 @@
 		// 별도의 이벤트 메소드를 제공하지 않습니다 
 		var content = '<div class="wrap" id="overlay'+id+'">' + 
 		            '    <div class="info">' + 
-		            '        <div class="title">' + title + 
+		            '        <div class="title"><a href="/dog/gatherboard/'+id+'" style="background-color:#38a7bb;color:#fff;"><i class="fas fa-plus-circle" style="margin-right:5px;"></i>' + title + '</a>' + 
 		            '            <div class="close" id="close'+id+'" title="닫기"></div>' + 
 		            '        </div>' + 
 		            '        <div class="body">' + 
 		            '            <div style="padding:8px;">' + 
 		            '                <div class="ellipsis">장소 : '+ address_name +'</div>' + 
 		            '                <div class="ellipsis">일시 : '+ hours +'</div>' + 
-		            '                <div class="jibun ellipsis text-center" style="margin-top:10px;margin-left:20px">' +
+		            '                <div class="jibun ellipsis text-center" style="margin-top:10px;">' +
 		            '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/map/'+address_name+','+ga+','+fa+'" style="target="_blank">큰지도</a></button>' +
-		            '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/to/'+address_name+','+ga+','+fa+'" style="target="_blank">길찾기</a></button>'+
-		 			'				   <a href="/dog/gatherboard/'+id+'" style="float:right; font-size:20px;"><i class="fas fa-plus-circle"></i></a>' +	
+		            '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/to/'+address_name+','+ga+','+fa+'" style="target="_blank">길찾기</a></button>'+	
 		            '                </div>' + 
 		            '                <div></div>' + 
 		            '            </div>' + 

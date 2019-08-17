@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	var check = $("input[type='checkbox']");
 	var chk = document.getElementById('chk');
-	var region = document.getElementById('region-category');
 
 	check.click(function(){
 	  $("p").toggle();
@@ -11,7 +10,6 @@ $(document).ready(function(){
 		  userRegionMap(1);
 	  }
 	});
-	
 	
 	regionList();
 });

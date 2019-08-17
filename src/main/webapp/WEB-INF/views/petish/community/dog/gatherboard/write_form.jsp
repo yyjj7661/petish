@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,com.community.petish.community.dog.gatherboard.domain.DogSpeciesVO, com.community.petish.community.dog.gatherboard.service.DogGatherService,
+<%@ page import="java.util.*,
+			com.community.petish.community.dog.gatherboard.domain.DogSpeciesVO,
+			com.community.petish.community.dog.gatherboard.service.DogGatherService,
 			com.community.petish.community.user.dto.response.LoginedUser" %>
 <%
 		LoginedUser user = (LoginedUser) session.getAttribute("LOGIN_USER");
@@ -149,8 +151,7 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password_old" id="title">제목</label> <input id="password_old"
-												name="TITLE" type="text" class="form-control">
-												
+												name="TITLE" type="text" class="form-control">												
 										</div>
 									</div>
 								</div>
@@ -161,7 +162,6 @@
 											<textarea id="summernote" name="CONTENT" class="form-control"></textarea>
 										</div>
 									</div>
-
 								</div>
 								<div class="col-md-12 text-right">
 									<button type="submit" class="btn btn-template-outlined">확인</button>
@@ -169,29 +169,23 @@
 										id="resetbtn">취소</button>
 								</div>
 							</form>
-						
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 		</div>
 		
 	</div>
-<%--	<%@ include file="/WEB-INF/views/commons/script.jspf" %>	--%>
+
 	<!-- 다음지도 api 추가 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>
-	
-	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
-		
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e90ffa4462049931ee4536f504c27b&libraries=services"></script>	
+	<script src="/resources/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>		
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	<!-- include summernote-ko-KR -->
 	<script src="/resources/lang/summernote-ko-KR.js"></script>	
 	<script src="/resources/js/summernote.js"></script>
 	<script src="/resources/js/datepicker.js"></script>
 	<script src="/resources/js/boardMap/write_map.js"></script>
-	<!-- include category.js -->
 	<script src="/resources/js/gatherboard/post.js"></script>
 	<script src="/resources/js/gatherboard/writeForm.js"></script>
 </body>
