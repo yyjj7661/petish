@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,java.sql.*,java.text.SimpleDateFormat,com.community.petish.community.dog.gatherboard.domain.DogGatherPostVO,com.community.petish.community.dog.gatherboard.dto.response.DogGatherParticipantDTO,com.community.petish.community.dog.gatherboard.domain.DogGatherCommentVO,
-				com.community.petish.community.user.dto.response.LoginedUser" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.*,java.sql.*,java.text.SimpleDateFormat,
+				com.community.petish.community.dog.gatherboard.domain.DogGatherPostVO,
+				com.community.petish.community.dog.gatherboard.dto.response.DogGatherParticipantDTO,
+				com.community.petish.community.dog.gatherboard.domain.DogGatherCommentVO,
+				com.community.petish.community.user.dto.response.LoginedUser" %>
 
 <%
 	DogGatherPostVO post = (DogGatherPostVO)request.getAttribute("post");
@@ -11,7 +14,7 @@
 
 	String strCreatedDate = post.getCREATED_DATE()+"";
 	String strUpdatedDate = post.getUPDATED_DATE()+"";
-	String addr = post.getGATHERING_ADDRESS();
+	String addr = post.getGATHERING_ADDRESS().split("　")[0];
 	String writer = (String)request.getAttribute("writer");
 	String userName = user.getUsername();
 	Long userID = user.getId();
@@ -43,8 +46,7 @@
 	Calendar cal = Calendar.getInstance();
 	String today = null;
 	today = formatter.format(cal.getTime());
-	Timestamp ts = Timestamp.valueOf(today);
-	
+	Timestamp ts = Timestamp.valueOf(today);	
 %>
 <!DOCTYPE html>
 <html>
@@ -117,11 +119,11 @@
 							</tr>
 						</table>
 							<hr size="10px">
-<%
-	//정모 날짜가 지나지 않았을 경우
-	if(GATHRING_DATE.compareTo(ts) >= 1) {
-		System.out.println("정모 날짜 남음!");
-%>
+				<%
+					//정모 날짜가 지나지 않았을 경우
+					if(GATHRING_DATE.compareTo(ts) >= 1) {
+						System.out.println("정모 날짜 남음!");
+				%>
 					<div class="heading">
 						<button id="participantBtn" class="btn btn-template-outlined" type="button" data-toggle="modal" data-target="#myLargeModal">
 							<i class="fa fa-sign-in"></i> 신청
@@ -283,23 +285,23 @@
 							</div>
 						</div>
 						<!-- participantModl END -->
-<%
-	} else { 
-		// 정모 날짜가 지났을 경우
-		System.out.println("정모날짜 지남!");
-%>
+					<%
+						} else { 
+							// 정모 날짜가 지났을 경우
+							System.out.println("정모날짜 지남!");
+					%>
 						<div class="heading">
 							<h3>참여 현황</h3>
 						</div>
 						<p>날짜가 지난 정모입니다.</p>
-<%
-	}
-%>
+					<%
+						}
+					%>
 						<div id="post-content">						
 							<h3>모임 안내</h3>
 							<blockquote class="blockquote">
 									<p><strong>모임 일시 :</strong> <%= post.getGATHERING_DATE() %></p>
-									<p><strong>장소 :</strong> <%= post.getGATHERING_ADDRESS() %></p>
+									<p><strong>주소 :</strong> <%= addr %> <%= post.getGATHERING_ADDRESS().split("　")[1] %></p>
 									<p id="sizeID"><strong>크기  :</strong> <%= size %>
 									<p><strong>반려견 :</strong> <%= request.getAttribute("dogSpecies") %> </p>
 									<p><strong>내용 :</strong> <%= post.getCONTENT() %></p>
@@ -337,8 +339,7 @@
 						     if (status === daum.maps.services.Status.OK) {
 					
 						        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-						
-
+					
 							    // 마커를 생성합니다
 							    var marker = new kakao.maps.Marker({
 							        map: map,
@@ -346,10 +347,9 @@
 							        position: coords,
 							    });
 
-						
 						        // 인포윈도우로 장소에 대한 설명을 표시합니다
 						        var infowindow = new daum.maps.InfoWindow({
-						            content: '<div class="bAddr" style="text-align:center;padding:8px;font-size:13px">장소 : <%=addr%></div>'
+						            content: '<div class="bAddr" style="text-align:center;padding:8px;font-size:13px"><%= addr %> <%= post.getGATHERING_ADDRESS().split("　")[1] %></div>'
 						        });
 						        infowindow.open(map, marker);
 						

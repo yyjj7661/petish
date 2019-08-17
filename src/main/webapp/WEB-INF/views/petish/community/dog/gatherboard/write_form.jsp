@@ -138,7 +138,7 @@
 									</div>
 									<div class="col-md-1.5" style="padding-top: 6px;">
 										<div class="form-group">
-											<label for="category">    </label>									
+											<label for="category"></label>									
 											<input type="button" class="form-control" value="검색" onclick="openZipcode(this.form)" />
 										</div>
 									</div>

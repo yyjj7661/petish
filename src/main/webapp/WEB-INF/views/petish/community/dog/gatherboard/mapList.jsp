@@ -160,7 +160,9 @@
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
 	function displayInfowindow(map,marker,id,title,address_name,hours,fa,ga) {
-		// 커스텀 오버레이에 표시할 컨텐츠 입니다
+		var addr1 = address_name.split("　")[0];
+		var addr2 = address_name.split("　")[1];
+ 		// 커스텀 오버레이에 표시할 컨텐츠 입니다
 		// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
 		// 별도의 이벤트 메소드를 제공하지 않습니다 
 		var content = '<div class="wrap" id="overlay'+id+'">' + 
@@ -170,7 +172,7 @@
 		            '        </div>' + 
 		            '        <div class="body">' + 
 		            '            <div style="padding:8px;">' + 
-		            '                <div class="ellipsis">장소 : '+ address_name +'</div>' + 
+		            '                <div class="ellipsis">장소 : '+ addr1 + " " + addr2 +'</div>' + 
 		            '                <div class="ellipsis">일시 : '+ hours +'</div>' + 
 		            '                <div class="jibun ellipsis text-center" style="margin-top:10px;">' +
 		            '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/map/'+address_name+','+ga+','+fa+'" style="target="_blank">큰지도</a></button>' +

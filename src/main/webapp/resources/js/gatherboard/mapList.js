@@ -35,7 +35,7 @@ function regionList() {
 				//console.log(data.scorelist.length);
 				//console.log(data.scorelist[0]);
 				//console.log(item.hospital_name);
-				geocoder.addressSearch(item.gathering_ADDRESS, function(result, status){
+				geocoder.addressSearch(item.gathering_ADDRESS.split("　")[0], function(result, status){
 
 						/* //새로운 마커를 찍음						
 						var marker = new kakao.maps.Marker();
