@@ -28,6 +28,7 @@
 
 <!-- CSS파일 추가 -->
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
+<link href="/resources/css/fonts.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <style>
@@ -55,7 +56,7 @@
 }
 </style>
 
-<body>
+<body style="font-family: 'Do Hyeon', sans-serif;">
 	<!-- 테이블 -->
 	<div id="all">
 
@@ -101,6 +102,8 @@
 									
 													<div class="receivedfooter"></div>
 													<div class="sentfooter"></div>
+													
+													<div id=searchReceived>
 													<select name='type'>
 														<option value=''>--</option>
 														<option value='T'>제목</option>
@@ -108,7 +111,17 @@
 													</select>
 													<input type='text' name='keyword' />
 													<button id='searchReceivedBtn'>Search</button>
+													</div>
+													
+													<div id=searchSent>
+													<select name='type'>
+														<option value=''>--</option>
+														<option value='T'>제목</option>
+														<option value='N'>닉네임</option>
+													</select>
+													<input type='text' name='keyword' />
 													<button id='searchSentdBtn'>Search</button>
+													</div>
 												</div>
 
 											</div>
@@ -290,6 +303,7 @@
 						});
 						
 						messageService.changeReadAttr(id, <%=loginedUser.getId()%>);
+						showReceivedList(pageNum);
 						
 					});
 					
@@ -347,7 +361,6 @@
 					
 					//모달 닫기버튼 누르면 화면 리로드됨
 					$(".close").on("click", function(e){
-						location.reload();
 					})
 
 					
@@ -641,7 +654,7 @@
 												return;
 											}
 											var str = "";
-											str += "<tr align='center' class='font-grey'><th><input type='checkbox' id='received-check-all'>"; 
+											str += "<tr align='center'><th><input type='checkbox' id='received-check-all'>"; 
 											str += "</th><th>제목</th><th>보낸사람</th><th>보낸날짜</th><th>읽음</th></tr>";
 												
 												if (list == null || list.length == 0) {
@@ -657,11 +670,11 @@
 													str += " data-nick="
 														+ list[i].nickname + ">"
 														+ list[i].title + "</a></td>";
-													str += "<td class='font-grey'>"
+													str += "<td>"
 														+ list[i].nickname + "</td>";
-													str += "<td class='nondeco'>"
+													str += "<td>"
 														+ list[i].sent_date + "</a></td>";
-													str += "<td class='nondeco' style='text-align:center'>";
+													str += "<td style='text-align:center'>";
 													
 													if(list[i].read == 0){
 														str += "<i class='far fa-envelope' style='font-size:24px;'></i></td>/tr>";
@@ -693,7 +706,7 @@
 												return;
 											}
 											var str = "";
-											str += "<tr align='cen;ter' class='font-grey'><th><input type='checkbox' id='sent-check-all'></th><th>제목</th><th>받는사람</th><th>보낸날짜</th><th>읽음</th></tr>"
+											str += "<tr align='center'><th><input type='checkbox' id='sent-check-all'></th><th>제목</th><th>받는사람</th><th>보낸날짜</th><th>읽음</th></tr>"
 											
 											if (list == null || list.length == 0) {
 												listUL.html(str);
@@ -708,11 +721,11 @@
 												str += " data-nick="
 													+ list[i].nickname + ">" 
 													+ list[i].title + "</a></td>";
-												str += "<td class='font-grey'>"
+												str += "<td>"
 													+ list[i].nickname + "</td>";	
 												str += "<td>"
 													+ list[i].sent_date + "</td>";
-												str += "<td class='nondeco' style='text-align:center'>";
+												str += "<td style='text-align:center'>";
 												if(list[i].read == 0){
 													str += "<i class='far fa-envelope' style='font-size:24px;'></i></td>/tr>";
 												}else if(list[i].read == 1){
@@ -756,7 +769,7 @@
 						.find("input[name='nickname']");
 
 				     	showReceivedList();
-				     	$("#searchSentdBtn").hide();
+				     	$("#searchSent").hide();
 				         //선택 삭제 버튼
 				         $('#delete-choice').click(function() {
 				          	var list = $(":checked");
@@ -770,20 +783,25 @@
 				         });
 				         
 				        received.on("click", function(e){
+					        	document.getElementsByName("type")[0].selectedIndex=null;
+					        	document.getElementsByName("keyword")[0].value=null;
+								$("#searchReceived").show();
+								$("#searchSent").hide();
 								showReceivedList();
 								pageNum = 1;
-								$("#searchReceivedBtn").show();
-								$("#searchSentdBtn").hide();
 						})
 						$("#searchReceivedBtn").on("click", function(e){
+								
 								showReceivedList();
 						})
 						
 						sent.on("click", function(e){
+								document.getElementsByName("type")[0].selectedIndex=null;
+				        		document.getElementsByName("keyword")[0].value=null;
 								showSentList();
 								pageNum = 1;
-								$("#searchReceivedBtn").hide();
-								$("#searchSentdBtn").show();
+								$("#searchReceived").hide();
+								$("#searchSent").show();
 						})
 						
 						$("#searchSentdBtn").on("click", function(e){

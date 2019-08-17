@@ -17,9 +17,10 @@
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
+<link href="/resources/css/fonts.css" rel="stylesheet">
 <script src="/resources/js/mypage/mypage.js"></script>
 </head>
-<body>
+<body style="font-family: 'Do Hyeon', sans-serif;">>
 	<div id="all">
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
@@ -54,13 +55,6 @@
 													
 												</table>
 												<div class="questionfooter"></div>
-												<select name='type'>
-														<option value=''>--</option>
-														<option value='T'>제목</option>
-														<option value='C'>문의유형</option>
-												</select>
-												<input type='text' name='keyword' />
-												<button>Search</button>
 											</div>
 										</div>
 									</div>

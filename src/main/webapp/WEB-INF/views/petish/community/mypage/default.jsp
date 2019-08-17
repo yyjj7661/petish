@@ -8,7 +8,7 @@
 
 <%
 	UserResponseDTO_Mypage user = (UserResponseDTO_Mypage) request.getAttribute("user");
-	int newMessage =(int) request.getAttribute("newMessage");
+
 %>
 
 <!DOCTYPE html>
@@ -63,6 +63,7 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<link href="/resources/css/fonts.css" rel="stylesheet">
 </head>
 <style>
 .dropdown {
@@ -94,7 +95,7 @@
 	display: block;
 }
 </style>
-<body>
+<body style="font-family: 'Do Hyeon', sans-serif;">
 	<div id="all">
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
@@ -109,7 +110,7 @@
 							<div style="margin: 0.5cm;">
 								<img class="profile" src="<%=user.getPicture()%>"
 									style="margin-right: 30px;"> <a><%=user.getNickname()%>(<%=user.getUsername()%>***)</a>
-								│ 정회원 │ <a class="nondeco"
+								│ 정회원 │ <a class="nondeco"  style="font-family: 'Do Hyeon', sans-serif;"
 									href="/mypage/modifyform/<%=user.getId()%>"><i class='fas fa-id-card' style='font-size:24px;color:grey'></i> 회원정보수정</a>
 								<script>
 									var user_id =
@@ -119,7 +120,6 @@
 								<%
 									Long user_id = user.getId();
 								%>
-								 │ <a href="./message/list" style='color:black;'><i class='far fa-envelope' style='font-size:24px;color:grey;'></i> <%=newMessage %></a>
 							</div>
 						</div>
 						<ul id="pills-tab" role="tablist"
@@ -149,7 +149,7 @@
 
 
 												<table class="table table-hover table-bordered"
-													id="ajaxList">
+													id="ajaxList" style="font-family: 'Do Hyeon', sans-serif;" >
 
 												</table>
 												<div class="writingfooter"></div>
@@ -457,7 +457,7 @@
 									showWritingList(pageNum);
 									return;
 								}
-								str += "<tr align='cen;ter' class='font-grey'><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>";
+								str += "<tr align='center'><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>";
 
 								if (list == null || list.length == 0) {
 									listUL.html(str);
@@ -465,14 +465,14 @@
 								}
 
 								for (var i = 0, len = list.length || 0; i < len; i++) {
-									str += "<tr><td class='font-grey'>"
+									str += "<tr><td>"
 											+ list[i].boardType + "</td>";
 									str += "<td><a href='"
-											+ list[i].board_table_address + "detail/" + list[i].id + "' class='nondeco'>"
+											+ list[i].board_table_address + "detail/" + list[i].id + ">"
 											+ list[i].title + "</a></td>";
-									str += "<td class='nondeco'>"
+									str += "<td>"
 											+ list[i].created_date + "</td>";
-									str += "<td class='nondeco'>"
+									str += "<td>"
 											+ list[i].view_count + "</td>";
 
 								}
@@ -508,31 +508,31 @@
 								}
 
 								for (var i = 0, len = list.length || 0; i < len; i++) {
-									str += "<tr><td class='font-grey'>"
-											+ list[i].boardType + "</td>";
-											str += "<td><a href='"
-												+ list[i].board_table_address + "detail/" + list[i].id + "' class='nondeco'>"
-												+ list[i].title + "</a></td>";
-									str += "<td class='dropdown'><div class='nondeco'>"
-											+ list[i].nickname
-											+ "</div>"
-									if(<%=loginedUser.getId()%>==list[i].user_id){
-												
-									}else{
-									str += "<div class='dropdown-content'><a href='/member/detail/"+list[i].user_id+"'>작성게시글 보기</a>";
-                                    str += "<a href='' data-toggle='modal' class='showmodal'"
-                                    str += "data-id="+list[i].user_id+"";
+									str += "<tr><td>"
+										+ list[i].boardType + "</td>";
+										str += "<td><a href='"
+											+ list[i].board_table_address + "detail/" + list[i].id + "'>"
+											+ list[i].title + "</a></td>";
+									str += "<td><div class='dropdown'><div>"
+										+ list[i].nickname
+									if((<%=loginedUser.getId()%>==list[i].user_id) || (<%=loginedUser.getId()%>==null)){
+									}
+									else{
+                                    str += "<div class='dropdown-content'><a href='/member/detail/"+list[i].user_id+"'>작성게시글 보기</a>";
+                                    str += "<a href='#' data-toggle='modal' class='showmodal' data-target='#new-modal'"
+                                    str += "data-id="+list[i].id+"";
                                     str += " data-nick="+list[i].nickname;
                                     str += ">쪽지보내기</a></div>"
 									};
 									str += "</div></td>";
-									str += "<td class='nondeco'>"
-											+ list[i].created_date + "</td>";
-									str += "<td class='nondeco'>"
-											+ list[i].view_count + "</td>";
-
+	
+									str += "<td>"
+											+ list[i].created_date
+											+ "</td>";
+									str += "<td>"
+											+ list[i].view_count
+											+ "</td>";
 								}
-
 								listUL.html(str);
 								showCommentedPage(commentedCnt);
 								openMessageForm();
@@ -560,14 +560,13 @@
 								}
 
 								for (var i = 0, len = list.length || 0; i < len; i++) {
-									str += "<tr><td class='font-grey'>"
+									str += "<tr><td>"
 										+ list[i].boardType + "</td>";
 										str += "<td><a href='"
-											+ list[i].board_table_address + "detail/" + list[i].id + "' class='nondeco'>"
+											+ list[i].board_table_address + "detail/" + list[i].id + "'>"
 											+ list[i].title + "</a></td>";
-									str += "<td><div class='dropdown'><div class='nondeco'>"
+									str += "<td><div class='dropdown'><div>"
 										+ list[i].nickname
-										+ "</a>";
 									if(<%=loginedUser.getId()%>==list[i].user_id){
 										
 									}else{
@@ -579,10 +578,10 @@
 									};
 									str += "</div></td>";
 	
-									str += "<td class='nondeco'>"
+									str += "<td>"
 											+ list[i].created_date
 											+ "</td>";
-									str += "<td class='nondeco'>"
+									str += "<td>"
 											+ list[i].view_count
 											+ "</td>";
 								}
@@ -614,7 +613,6 @@
 		function openMessageForm() {
 
 			var showmodal = $(".showmodal");
-
 			//쪽지보내기(모달)관련 이벤트
 			showmodal.on("click", function(e) {
 				var id = $(this).data("id");
@@ -622,6 +620,7 @@
 				modalInputReceiver_id3.val(id);
 				modalInputReceivedNickname3.val(nick);
 				$("#new-modal").modal("show");
+
 			});
 
 		}

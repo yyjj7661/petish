@@ -21,7 +21,7 @@
 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
-
+<link href="/resources/css/fonts.css" rel="stylesheet">
 <style>
 .dropdown {
 	position: relative;
@@ -55,7 +55,7 @@
 </style>
 </head>
 
-<body>
+<body style="font-family: 'Do Hyeon', sans-serif;">>
 	<div id="all">
 
 		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
@@ -77,6 +77,8 @@
 									var user_id =
 								<%=member.getId()%>
 									;
+									
+								<% String nickname = member.getNickname();%>
 								</script>
 								<%
 									Long user_id = member.getId();
@@ -88,14 +90,14 @@
 							<li class="nav-item" id="writing"><a id="pills-profile-tab"
 								data-toggle="pill" href="#writingList" role="tab"
 								aria-controls="pills-profile" aria-selected="false"
-								class="nav-link active">내가 쓴 글</a></li>
+								class="nav-link active"><%=nickname%>님이 쓴 글</a></li>
 							<li class="nav-item" id="commented"><a id="pills-home-tab"
 								data-toggle="pill" href="#" role="tab"
-								aria-controls="pills-home" aria-selected="true" class="nav-link">내가
+								aria-controls="pills-home" aria-selected="true" class="nav-link"><%=nickname%>님이 
 									댓글 쓴 글</a></li>
 							<li class="nav-item" id="liked"><a id="pills-home-tab"
 								data-toggle="pill" href="#s" role="tab"
-								aria-controls="pills-home" aria-selected="true" class="nav-link">내가
+								aria-controls="pills-home" aria-selected="true" class="nav-link"><%=nickname%>님이 
 									좋아요 한 글</a></li>
 						</ul>
 
@@ -429,7 +431,7 @@
 									return;
 								}
 								var str = "";
-								str += "<tr align='cen;ter' class='font-grey'><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>"
+								str += "<tr align='center' ><th>게시판명</th><th>제목</th><th>작성일자</th><th>조회수</th></tr>"
 
 								if (list == null || list.length == 0) {
 									listUL.html(str);
@@ -437,13 +439,13 @@
 								}
 
 								for (var i = 0, len = list.length || 0; i < len; i++) {
-									str += "<tr><td class='font-grey'>"
+									str += "<tr><td>"
 											+ list[i].boardType + "</td>";
-									str += "<td><a href='' class='nondeco'>"
+									str += "<td><a href=''>"
 											+ list[i].title + "</td>";
-									str += "<td class='nondeco'>"
+									str += "<td>"
 											+ list[i].created_date + "</td>";
-									str += "<td class='nondeco'>"
+									str += "<td >"
 											+ list[i].view_count + "</td>";
 
 								}
@@ -478,30 +480,31 @@
 								}
 
 								for (var i = 0, len = list.length || 0; i < len; i++) {
-									str += "<tr><td class='font-grey'>"
-											+ list[i].boardType + "</td>";
-									str += "<td><a href='' class='nondeco'>"
-											+ list[i].title + "</td>";
-									str += "<td class='dropdown'><div class='nondeco'>"
-											+ list[i].nickname
-											+ "</div>"
+									str += "<tr><td>"
+										+ list[i].boardType + "</td>";
+										str += "<td><a href='"
+											+ list[i].board_table_address + "detail/" + list[i].id + "'>"
+											+ list[i].title + "</a></td>";
+									str += "<td><div class='dropdown'><div>"
+										+ list[i].nickname
 									if(<%=loginedUser.getId()%>==list[i].user_id){
-												
+										
 									}else{
-									str += "<div class='dropdown-content'><a href='/member/detail/"+list[i].user_id+"'>작성게시글 보기</a>";
-                                    str += "<a href='' data-toggle='modal' class='showmodal' data-target='#new-modal'"
-                                    str += "data-id="+list[i].user_id+"";
+                                    str += "<div class='dropdown-content'><a href='/member/detail/"+list[i].user_id+"'>작성게시글 보기</a>";
+                                    str += "<a href='#' data-toggle='modal' class='showmodal' data-target='#new-modal'"
+                                    str += "data-id="+list[i].id+"";
                                     str += " data-nick="+list[i].nickname;
                                     str += ">쪽지보내기</a></div>"
 									};
 									str += "</div></td>";
-									str += "<td class='nondeco'>"
-											+ list[i].created_date + "</td>";
-									str += "<td class='nondeco'>"
-											+ list[i].view_count + "</td>";
-
-								}
-
+	
+									str += "<td>"
+											+ list[i].created_date
+											+ "</td>";
+									str += "<td>"
+											+ list[i].view_count
+											+ "</td>";
+								}								
 								listUL.html(str);
 								showCommentedPage(commentedCnt);
 								openMessageForm();
@@ -521,7 +524,7 @@
 									return;
 								}
 								var str = "";
-								str += "<tr align='center' class='font-grey'><th>게시판명</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th></tr>"
+								str += "<tr align='center'><th>게시판명</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th></tr>"
 
 								if (list == null || list.length == 0) {
 									listUL.html(str);
@@ -529,11 +532,11 @@
 								}
 
 								for (var i = 0, len = list.length || 0; i < len; i++) {
-									str += "<tr><td class='font-grey'>자유게시판</td>";
+									str += "<tr><td >자유게시판</td>";
 									str += "<td><a href='' class='nondeco'>"
 											+ list[i].title
 											+ "</a></td>";
-									str += "<td><div class='dropdown'><div class='nondeco'>"
+									str += "<td><div class='dropdown'><div >"
 										+ list[i].nickname
 										+ "</a>";
 									if(<%=loginedUser.getId()%>==list[i].user_id){
@@ -547,10 +550,10 @@
 									};
 									str += "</div></td>";
 	
-									str += "<td class='nondeco'>"
+									str += "<td >"
 											+ list[i].created_date
 											+ "</td>";
-									str += "<td class='nondeco'>"
+									str += "<td>"
 											+ list[i].view_count
 											+ "</td>";
 								}
