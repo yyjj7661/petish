@@ -101,7 +101,9 @@ public class DogLostPostServiceImpl implements DogLostPostService{
 		//String content = "["+ address + "]" + " 실종견 게시글이 등록되었습니다.\r" + postURL;
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("["+ address + "]" + " 실종견 게시글이 등록되었습니다.");
+		sb.append("["+ address + "]" );
+		sb.append(System.getProperty("line.separator"));
+		sb.append("실종견 게시글이 등록되었습니다.");
 		sb.append(System.getProperty("line.separator"));
 		sb.append("<a href='");
 		sb.append(postURL);

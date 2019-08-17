@@ -42,6 +42,12 @@
 	overflow: hidden;
 	outline: 0
 }
+.content1, .content2{
+	height: 200px!important;
+    overflow: scroll!important;
+    -ms-overflow-style: none!important;
+    white-space:pre;
+}
 
 .receivedMessage:hover, .sentMessage:hover{
 	color : grey;
@@ -139,8 +145,7 @@
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea id="message_content" rows="10" class="form-control"
-							name='content1' readonly></textarea>
+						<div id="message_content" class="form-control content1"></div>
 					</div>
 					<input type="hidden" name="sender_id">
 						<div class="text-right">
@@ -151,7 +156,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		
 	<!-- 보낸 쪽지 모달창 -->
 	<div id="sent-modal" tabindex="-1" role="dialog"
 		aria-hidden="true" class="modal fade" >
@@ -175,8 +180,7 @@
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea id="message_content" rows="10" class="form-control"
-							name='content2' readonly></textarea>
+						<div id="message_content" class="form-control content2"></div>
 					</div>
 					<div class="text-right">
 						<input type="button" value="삭제" class="modalDeleteBtn">
@@ -239,7 +243,7 @@
 					var modalInputSent_date1 = receivedModal
 					.find("input[name='sent_date1']");
 					var modalInputContent1 = receivedModal
-					.find("textarea[name='content1']");
+					.find(".content1");
 					var modalInputSender_id1 = receivedModal
 					.find("input[name='sender_id']");
 					
@@ -250,7 +254,7 @@
 					var modalInputSent_date2 = sentModal
 					.find("input[name='sent_date2']");
 					var modalInputContent2 = sentModal
-					.find("textarea[name='content2']");
+					.find(".content2");
 					
 					//쪽지보내기 모달
 					var newModal = $("#new-modal");
@@ -279,7 +283,7 @@
 						messageService.receivedMessageDetail(id, function(message) {
 							modalInputSentNickname1.val(message.nickname);
 							modalInputSent_date1.val(message.sent_date);
-							modalInputContent1.val(message.content);
+							modalInputContent1.html(message.content);
 							modalInputSender_id1.val(message.sender_id);
 							receivedModal.data("id", message.id);
 							$("#receive-modal").modal("show");
@@ -296,7 +300,7 @@
 						messageService.sentMessageDetail(id, function(message) {
 							modalInputReceivedNickname2.val(message.nickname);
 							modalInputSent_date2.val(message.sent_date);
-							modalInputContent2.val(message.content);
+							modalInputContent2.html(message.content);
 							sentModal.data("id", message.id);
 							$("#sent-modal").modal("show");
 						});	

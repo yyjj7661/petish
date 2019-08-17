@@ -188,11 +188,8 @@ function buttonChange(id) {
 	$('#commentModifyBtn'+id+'').attr({"type":"button"});
 }
 
-//댓글 등록
-$('#input_data').click(function(event){
-	
-	var params = $("#insert_form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.
-	
+//댓글 등록 시 로그인 확인
+$('#input_data').click(function(event){	
 	$.ajax({
 		type: "GET",
 		url: "/api/users/authenticate",
@@ -203,13 +200,12 @@ $('#input_data').click(function(event){
 			alert("로그인이 필요합니다.");
 			$('#login-modal').modal("show");
 		}
-	});	
-	//alert(params);
-	
-	
+	});
 	event.preventDefault();
 });
 
+
+//댓글 입력
 function insertComment(){
 	
 	var params = $("#insert_form").serialize(); //입력데이터를 쿼리스트링으로 만들어준다.

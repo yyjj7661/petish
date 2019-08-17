@@ -292,9 +292,7 @@
 								<button class="re btn btn-template-outlined comment-input-button" id="input_data">댓글 등록</button>
 							</div>
 						</div>
-					</div>
-					
-						
+					</div>		
 				</div>
 			</div>
 			
@@ -402,20 +400,20 @@
                 <div class="modal-body">
                 <form id="message_form" method="POST">
                 	
-			   		<input type="hidden" name="sender_id" id="sender_id" value=<%=userId%>>
-                	<input type="hidden" name="receiver_id" id="receiver_id" value=<%=dto.getUser_id() %>>
+			   		<input type="hidden" name="messageSender_id" id="sender_id" value=<%=userId%>>
+                	<input type="hidden" name="messageReceiver_id" id="receiver_id" value=<%=dto.getUser_id() %>>
                 
                     <div class="form-group">
                         <label>받는사람</label>
-                        <input class="form-control" name='nickname' value=<%=dto.getNickname() %> readonly>
+                        <input class="form-control" name='messageNickname' value=<%=dto.getNickname() %> readonly>
                     </div>
                     <div class="form-group">
                         <label>제목</label>
-                        <input class="form-control" name='title'>
+                        <input class="form-control" name='messageTitle'>
                     </div>
                     <div class="form-group">
                         <label>내용</label>
-                        <textarea id="message_content" name='content' rows="10" class="form-control"></textarea>
+                        <textarea id="message_content" name='messageContent' rows="10" class="form-control"></textarea>
                     </div>
                     <p class="text-center">   
                         <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
@@ -502,26 +500,32 @@
 		 $('#modalSendBtn').click(function(event){			 
 			   event.preventDefault();
 			   
-			   var messageModal = $("#message-modal"); //모달창
+			   var newModal = $("#message-modal"); //모달창
 			   
-			   var modalInputTitle = messageModal.find("input[name='title']"); //모달창 제거
-			   var modalInputContent = messageModal.find("textarea[name='content']"); //모달창 내용
-			   var senderId = $("#sender_id").val();
-			   var receiverId = $("#receiver_id").val();
+			   var modalInputTitle = newModal.find("input[name='messageTitle']"); //모달창 제목
+			   var modalInputContent = newModal.find("textarea[name='messageContent']"); //모달창 내용
+			   var modalInputSender_id = newModal.find("#sender_id"); // 모달창 보내는 user_id
+			   var modalInputReceiver_id = newModal.find("input[name='messageReceiver_id']"); //모달창 받는 user_id
 			   
-			   var modalSendBtn = $("#modalSendBtn"); //모달 보내기 버튼
+			   var modalSendBtn = $(".modalSendBtn"); //모달 보내기 버튼
 			   
-			   var msg = $("#message_form").serialize();
-			   alert(msg);
+			   //var msg = $("#message_form").serialize();
+			   //alert(msg);
+			   
+			   var message = {
+					    title : modalInputTitle.val(),
+					    content : modalInputContent.val(),
+					    sender_id : modalInputSender_id.val(),
+					    receiver_id : modalInputReceiver_id.val()
+					    }
 		       
 	           $.ajax({
 	               url : '/mypage/api/message/new',
 	               type : 'post',
-	               data : msg,
-	               contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-	               dataType : "json",
+	               data : JSON.stringify(message),
+	               contentType : "application/json; charset=utf-8",
 	               beforeSend : function(){
-	            	   if(senderId == "" || senderId == "null"){
+	            	   if(sender_id == "" || sender_id == "null"){
 	            		   alert("로그인 후 이용할 수 있습니다. 로그인 해주세요.");		            		   
 	            		   return false;
 	            	   }
@@ -533,6 +537,7 @@
 	            	   if (callback) {
 	            		   callback(result);
 	            		   alert("쪽지가 성공적으로 전송됐습니다.");
+	            		   $("#message-modal").modal("hide");
 		               }
 		           },
 		           error : function(xhr, status, er) {
