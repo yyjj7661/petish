@@ -28,6 +28,7 @@
 
 <!-- CSS파일 추가 -->
 <link rel="stylesheet" href="/resources/css/mypage/mypage.css">
+<link href="/resources/css/fonts.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <style>
@@ -42,6 +43,12 @@
 	overflow: hidden;
 	outline: 0
 }
+.content1, .content2{
+	height: 200px!important;
+    overflow: scroll!important;
+    -ms-overflow-style: none!important;
+    white-space:pre;
+}
 
 .receivedMessage:hover, .sentMessage:hover{
 	color : grey;
@@ -49,7 +56,7 @@
 }
 </style>
 
-<body>
+<body style="font-family: 'Do Hyeon', sans-serif;">
 	<!-- 테이블 -->
 	<div id="all">
 
@@ -95,6 +102,8 @@
 									
 													<div class="receivedfooter"></div>
 													<div class="sentfooter"></div>
+													
+													<div id=searchReceived>
 													<select name='type'>
 														<option value=''>--</option>
 														<option value='T'>제목</option>
@@ -102,7 +111,17 @@
 													</select>
 													<input type='text' name='keyword' />
 													<button id='searchReceivedBtn'>Search</button>
+													</div>
+													
+													<div id=searchSent>
+													<select name='type'>
+														<option value=''>--</option>
+														<option value='T'>제목</option>
+														<option value='N'>닉네임</option>
+													</select>
+													<input type='text' name='keyword' />
 													<button id='searchSentdBtn'>Search</button>
+													</div>
 												</div>
 
 											</div>
@@ -139,8 +158,7 @@
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea id="message_content" rows="10" class="form-control"
-							name='content1' readonly></textarea>
+						<div id="message_content" class="form-control content1"></div>
 					</div>
 					<input type="hidden" name="sender_id">
 						<div class="text-right">
@@ -151,7 +169,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		
 	<!-- 보낸 쪽지 모달창 -->
 	<div id="sent-modal" tabindex="-1" role="dialog"
 		aria-hidden="true" class="modal fade" >
@@ -175,8 +193,7 @@
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea id="message_content" rows="10" class="form-control"
-							name='content2' readonly></textarea>
+						<div id="message_content" class="form-control content2"></div>
 					</div>
 					<div class="text-right">
 						<input type="button" value="삭제" class="modalDeleteBtn">
@@ -239,7 +256,7 @@
 					var modalInputSent_date1 = receivedModal
 					.find("input[name='sent_date1']");
 					var modalInputContent1 = receivedModal
-					.find("textarea[name='content1']");
+					.find(".content1");
 					var modalInputSender_id1 = receivedModal
 					.find("input[name='sender_id']");
 					
@@ -250,7 +267,7 @@
 					var modalInputSent_date2 = sentModal
 					.find("input[name='sent_date2']");
 					var modalInputContent2 = sentModal
-					.find("textarea[name='content2']");
+					.find(".content2");
 					
 					//쪽지보내기 모달
 					var newModal = $("#new-modal");
@@ -279,13 +296,14 @@
 						messageService.receivedMessageDetail(id, function(message) {
 							modalInputSentNickname1.val(message.nickname);
 							modalInputSent_date1.val(message.sent_date);
-							modalInputContent1.val(message.content);
+							modalInputContent1.html(message.content);
 							modalInputSender_id1.val(message.sender_id);
 							receivedModal.data("id", message.id);
 							$("#receive-modal").modal("show");
 						});
 						
 						messageService.changeReadAttr(id, <%=loginedUser.getId()%>);
+						showReceivedList(pageNum);
 						
 					});
 					
@@ -296,7 +314,7 @@
 						messageService.sentMessageDetail(id, function(message) {
 							modalInputReceivedNickname2.val(message.nickname);
 							modalInputSent_date2.val(message.sent_date);
-							modalInputContent2.val(message.content);
+							modalInputContent2.html(message.content);
 							sentModal.data("id", message.id);
 							$("#sent-modal").modal("show");
 						});	
@@ -343,7 +361,6 @@
 					
 					//모달 닫기버튼 누르면 화면 리로드됨
 					$(".close").on("click", function(e){
-						location.reload();
 					})
 
 					
@@ -637,7 +654,7 @@
 												return;
 											}
 											var str = "";
-											str += "<tr align='center' class='font-grey'><th><input type='checkbox' id='received-check-all'>"; 
+											str += "<tr align='center'><th><input type='checkbox' id='received-check-all'>"; 
 											str += "</th><th>제목</th><th>보낸사람</th><th>보낸날짜</th><th>읽음</th></tr>";
 												
 												if (list == null || list.length == 0) {
@@ -653,11 +670,11 @@
 													str += " data-nick="
 														+ list[i].nickname + ">"
 														+ list[i].title + "</a></td>";
-													str += "<td class='font-grey'>"
+													str += "<td>"
 														+ list[i].nickname + "</td>";
-													str += "<td class='nondeco'>"
+													str += "<td>"
 														+ list[i].sent_date + "</a></td>";
-													str += "<td class='nondeco' style='text-align:center'>";
+													str += "<td style='text-align:center'>";
 													
 													if(list[i].read == 0){
 														str += "<i class='far fa-envelope' style='font-size:24px;'></i></td>/tr>";
@@ -689,7 +706,7 @@
 												return;
 											}
 											var str = "";
-											str += "<tr align='cen;ter' class='font-grey'><th><input type='checkbox' id='sent-check-all'></th><th>제목</th><th>받는사람</th><th>보낸날짜</th><th>읽음</th></tr>"
+											str += "<tr align='center'><th><input type='checkbox' id='sent-check-all'></th><th>제목</th><th>받는사람</th><th>보낸날짜</th><th>읽음</th></tr>"
 											
 											if (list == null || list.length == 0) {
 												listUL.html(str);
@@ -704,11 +721,11 @@
 												str += " data-nick="
 													+ list[i].nickname + ">" 
 													+ list[i].title + "</a></td>";
-												str += "<td class='font-grey'>"
+												str += "<td>"
 													+ list[i].nickname + "</td>";	
 												str += "<td>"
 													+ list[i].sent_date + "</td>";
-												str += "<td class='nondeco' style='text-align:center'>";
+												str += "<td style='text-align:center'>";
 												if(list[i].read == 0){
 													str += "<i class='far fa-envelope' style='font-size:24px;'></i></td>/tr>";
 												}else if(list[i].read == 1){
@@ -752,7 +769,7 @@
 						.find("input[name='nickname']");
 
 				     	showReceivedList();
-				     	$("#searchSentdBtn").hide();
+				     	$("#searchSent").hide();
 				         //선택 삭제 버튼
 				         $('#delete-choice').click(function() {
 				          	var list = $(":checked");
@@ -766,20 +783,25 @@
 				         });
 				         
 				        received.on("click", function(e){
+					        	document.getElementsByName("type")[0].selectedIndex=null;
+					        	document.getElementsByName("keyword")[0].value=null;
+								$("#searchReceived").show();
+								$("#searchSent").hide();
 								showReceivedList();
 								pageNum = 1;
-								$("#searchReceivedBtn").show();
-								$("#searchSentdBtn").hide();
 						})
 						$("#searchReceivedBtn").on("click", function(e){
+								
 								showReceivedList();
 						})
 						
 						sent.on("click", function(e){
+								document.getElementsByName("type")[0].selectedIndex=null;
+				        		document.getElementsByName("keyword")[0].value=null;
 								showSentList();
 								pageNum = 1;
-								$("#searchReceivedBtn").hide();
-								$("#searchSentdBtn").show();
+								$("#searchReceived").hide();
+								$("#searchSent").show();
 						})
 						
 						$("#searchSentdBtn").on("click", function(e){

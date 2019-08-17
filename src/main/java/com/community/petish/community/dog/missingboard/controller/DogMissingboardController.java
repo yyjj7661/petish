@@ -74,6 +74,10 @@ public class DogMissingboardController {
 		
 		int total = service.getPostCount(cri); //전체 게시글 수
 		
+		System.out.println("total="+total);
+		System.out.println("dtoList=" + dtoList);
+		
+		
 		model.addAttribute("pageMaker",  new DogLostPostPageDTO(cri, total));		
 		model.addAttribute("pageNum", cri.getPageNum());		
 		

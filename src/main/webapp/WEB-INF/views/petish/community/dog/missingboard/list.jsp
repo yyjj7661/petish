@@ -38,12 +38,44 @@
 <script src="/resources/js/missingboard/list.js"></script>
 
 <link href="/resources/css/fonts.css" rel="stylesheet">
+
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: grey;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+
 </head>
 
-<body style="font-family: 'Do Hyeon', sans-serif;">
+<body class="bg-light" style="font-family: 'Do Hyeon', sans-serif;">
 	<div id="all">
 
-		<%@ include file="/WEB-INF/views/commons/top.jspf"%>
+		<%@ include file="/WEB-INF/views/commons/dog_top.jspf"%>
 		<%
 		//접속 아이디
 		Long userId = null;
@@ -56,6 +88,7 @@
 	    	System.out.println("유저닉네임 : " + userNickname); 
 	    }
       %>
+		<div class="content-fluid body-section">
 
 		<form action="/dog/missingboard/<%=pageNum %>" method="post">
 			<input type="hidden" value=<%=pageNum %>>
@@ -142,13 +175,17 @@
 							<td>
 								<div class="nav navbar-nav ml-auto">
 									<a href="#" data-toggle="dropdown" class="dropdown writer"><%=dto.getNickname() %></a>
-									<div class="dropdown-menu">
-										<div class="dropdown">
-											<a href="/mypage/member/detail" class="nav-link">게시글보기</a>
+									
+									<%-- <% if (dto.getUser_id() != userId) {%> --%>
+									<div class="dropdown-menu">									
+										<div class='dropdown'>
+											<a href='/member/detail/<%=dto.getUser_id()%>'>작성게시글 보기</a>
 										</div>
-										<div class="dropdown">
-											<a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
+										<br>
+										<div class="dropdow">
+											<a href="#" id="message-btn" class="showmodal" data-toggle="modal" data-id="<%=dto.getUser_id()%>" data-nick="<%=dto.getNickname() %>" data-toggle="modal">쪽지보내기</a>
 										</div>
+									<%-- <%} else {}%> --%>						
 									</div>
 								</div>
 
@@ -158,6 +195,7 @@
 							</td>
 							<td class="test view" name="mobile-none"><%=dto.getView_count()%></td>
 						</tr>
+						
 						<%
 							}
 						}
@@ -193,14 +231,14 @@
 			<div style="padding: 1rem"></div>	
 			
 			<!-- 검색 -->
-			<form id="searchForm" action="/dog/missingboard/list" style="margin-right: 15px;">
+			<form id="searchForm" action="/dog/missingboard" style="margin-right: 15px;">
 				<div aria-label="Page navigation example" 
 					class="d-flex justify-content-center">					
 					<div class="col-md-2 col-lg-2">
 						<div class="form-group">	           				
 								<select id="state" name="type" class="form-control">
 			           				<option value=""
-		           					<c:out value="${pageMaker.cri.type == null ? 'selected':''}"/>>--</option>
+		           					<c:out value="${pageMaker.cri.type == null ? 'selected':''}"/>>----------</option>
 		           					<option value="T"
 		           					<c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/>>지역</option>	           				
 		           					<option value="W"
@@ -229,64 +267,57 @@
 					</div>   
 				</div>
 			</form>	
-		</div>		
-	</div>
-	<!-- all -->           
-	 
-	<div style="padding: 1rem"></div>
-	<!-- 페이징 -->
-	<form id='actionForm' action="/dog/missingboard/list" method='get'>
-		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-		<input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
-		<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
-	</form>
-	
-	<!-- 쪽지 보내기 모달창 -->
-	<div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true"
-        class="modal fade">
-        <div role="document" class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 align="center" class="modal-title">쪽지보내기</h4>
-                    <button type="button" data-dismiss="modal" aria-label="Close"
-                        class="close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                <%
-			 	for (int i = 0; i < dtoList.size() ; i++) {
-					DogLostPostResponseListDTO dto = (DogLostPostResponseListDTO) dtoList.get(i);					
-					int index = i;					
-				%>
-                <form id="message_form" method="POST">
-                	
-			   		<input type="hidden" name="sender_id" id="sender_id" value=<%=userId %>>
-                	<input type="hidden" name="receiver_id" id="receiver_id" value=<%=dto.getId() %>>
-                
-                    <div class="form-group">
-                        <label>받는사람</label>
-                        <input class="form-control" name='nickname' value=<%=userNickname %>>
-                    </div>
-                    <div class="form-group">
-                        <label>제목</label>
-                        <input class="form-control" name='title'>
-                    </div>
-                    <div class="form-group">
-                        <label>내용</label>
-                        <textarea id="message_content" name='content' rows="10" class="form-control"></textarea>
-                    </div>
-                    <p class="text-center">   
-                        <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
-                    </p>
-                </form>
-                <%} %>
-                </div>
-            </div>
+		</div>
+
+    <div style="padding: 1rem"></div>
+    <!-- 페이징 -->
+    <form id='actionForm' action="/dog/missingboard" method='get'>
+      <input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+      <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+      <input type='hidden' name='type' value='<c:out value="${pageMaker.cri.type }"/>'>
+      <input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
+    </form>
+
+    <!-- 쪽지 보내기 모달창 -->
+    <div id="message-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 align="center" class="modal-title">쪽지보내기</h4>
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <form id="message_form" method="POST">
+              <div class="form-group">
+                  <label>받는사람</label>
+                  <input class="form-control" name='messageReceiver_nickname' readonly>
+              </div>
+              <input type="hidden" name="messageReceiver_id">
+
+              <div class="form-group">
+                <label>제목</label>
+                <input class="form-control" name='messageTitle'>
+              </div>
+              <div class="form-group">
+                  <label>내용</label>
+                  <textarea name='messageContent' rows="10" class="form-control"></textarea>
+              </div>
+              <p class="text-center">
+                  <input type="submit" value="보내기" id="modalSendBtn" class="btn btn-outline-primary">
+              </p>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-    
+  
+  </div>
+	<!-- all -->
+  </div>
+
+
 	<script>
 	//반응형
 	function resize(){
@@ -319,74 +350,116 @@
 
 	$(document).ready(function(){
 		resize();
+		openMessageForm();
 
-		//로그인 확인
+		//글쓰기 시 로그인 확인
 		   $('#writeBtn').on("click", function(e){
 			   <% if(loginedUser == null){ %>
 				   alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
 				   $('#login-modal').modal("show");
-
+				   
 			   <%}else{%>
 			   		window.location.href='/dog/missingboard/writeForm';
 			   <%}%>
 		   });
-
-		 //쪽지 전송 시 로그인 확인
-		   $('#message-btn').on("click", function(e){
+		
+		var messageId = "";
+		var messageNick = "";		
+		
+		//쪽지  작성 시 로그인 확인
+		  <%--  $('#message-btn').on("click", function(e){
+			   //로그인 확인
 			   <% if(loginedUser == null){ %>
 				   alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
 				   $('#login-modal').modal("show");
+				   
 			   <%} else{%>
 			   		$(this).attr('data-target',"#message-modal");
-			   		$('#message-modal').modal("show");
 			   <%}%>
-		   });
+		   }); --%>
+		
+		   var messageModal = $("#message-modal"); //모달창
 
-		   //쪽지 전송
+		   var modalInputTitle = messageModal.find("input[name='messageTitle']"); //모달창 제거
+		   var modalInputContent = messageModal.find("textarea[name='messageContent']"); //쪽지 내용
+		   var modalInputSender_id = <%=userId%>; //보내는 사람 아이디
+		   var modalInputReceiver_id = messageModal.find("input[name=messageReceiver_id]"); //받는 사람 아이디
+		   var modalInputReceiver_Nickname = messageModal.find("input[name='messageReceiver_nickname']"); //받는사람 닉네임
+		   var modalSendBtn = $("#modalSendBtn"); //모달 보내기 버튼	
+		   
+		   var messageId = "";
+		   var messageNicl = "";
+		   
+		   function openMessageForm() {
+			    var showmodal = $(".showmodal");
+			    
+			    showmodal.on("click", function(e) {
+			    	
+			    	messageId = $(this).data("id");
+					messageNick = $(this).data("nick");		
+			    	
+				   <% if(loginedUser == null){ %>
+					   alert("로그인이 필요한 화면입니다. 로그인 후 이용해주세요.");
+					   $('#login-modal').modal("show");
+					   
+				   <%} else{%>
+				   		$(this).attr('data-target',"#message-modal");
+				
+					modalInputReceiver_id.val(messageId);
+					modalInputReceiver_Nickname.val(messageNick);
+			        
+			        $("#message-modal").modal("show");
+			        <%}%>
+			        
+				   });
+			    }
+		
+			//쪽지 전송
 			 $('#modalSendBtn').click(function(event){
 				   event.preventDefault();
-
-				   var messageModal = $("#message-modal"); //모달창
-
-				   var modalInputTitle = messageModal.find("input[name='title']"); //모달창 제거
-				   var modalInputContent = messageModal.find("textarea[name='content']"); //모달창 내용
-				   var senderId = $("#sender_id").val();
-				   var receiverId = $("#receiver_id").val();
-
-				   var modalSendBtn = $("#modalSendBtn"); //모달 보내기 버튼
-
-				   var msg = $("#message_form").serialize();
-				   alert(msg);
-
-		           $.ajax({
-		               url : '/mypage/api/message/new',
-		               type : 'post',
-		               data : msg,
-		               contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-		               dataType : "json",
-		               beforeSend : function(){
-		            	   if(senderId == "" || senderId == "null"){
-		            		   alert("로그인 후 이용할 수 있습니다. 로그인 해주세요.");
-		            		   return false;
-		            	   }
-		            	   else{
-		            		   return true;
-		            	   }
-		               },
-		               success : function(result, status, xhr) {
-		            	   if (callback) {
-		            		   callback(result);
-		            		   alert("쪽지가 성공적으로 전송됐습니다.");
-			               }
-			           },
-			           error : function(xhr, status, er) {
-			               if (error) {
-			                   error(er);
-			                   alert("쪽지 전송 실패");
-			               }
-			           }
-		           });
+				   
+				   var message = {
+						    title : modalInputTitle.val(),
+						    content : modalInputContent.val(),
+						    sender_id : modalInputSender_id,
+						    receiver_id : modalInputReceiver_id.val()
+						    }
+				   
+				   messageService.writeMessage(message, function(result) {
+					    alert("쪽지를 전송했습니다.");
+					    
+					    modalInputTitle.val("");
+					    modalInputContent.val("");
+					    
+					    $("#message-modal").modal("hide");
+					    });
+				   
 			 });
+		   
+			 var messageService = (function() {
+				    function writeMessage(message, callback, error) {
+				        $.ajax({
+				            type : 'post',
+				            url : '/mypage/api/message/new',
+				            data : JSON.stringify(message),
+				            contentType : "application/json; charset=utf-8",
+				            success : function(result, status, xhr) {
+				        if (callback) {
+				        	callback(result);
+				            }
+				        },
+				        error : function(xhr, status, er) {
+				            if (error) {
+				                error(er);
+				            }
+				        }
+				        })
+				    }
+				    return {
+				        writeMessage : writeMessage
+				        };
+				    })();
+		   
 
 		//즉시 실행 함수
 		   (function(){
@@ -452,9 +525,9 @@
 				 alert("키워드를 입력하세요");
 				 return false;
 			 }
-
+			 
 			 //검색 결과 페이지 1페이지
-			 searchForm.find("input[name='pageNum']").val("1");
+			 searchForm.find("input[name='pageNum']").val("1");			 
 			 e.preventDefault();
 
 			 searchForm.submit();
