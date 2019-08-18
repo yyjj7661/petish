@@ -19,9 +19,10 @@
 <link href="/resources/css/gatherboard/list.css" rel="stylesheet">       
 </head>
 
-<body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1px;">
+<body class="bg-light" style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1px;">
 	<div id="all">		
-		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+	<%@ include file="/WEB-INF/views/commons/dog_top.jspf" %>
+		<div class="content-fluid body-section">
 <%
       //접속 아이디
       Long userID = null;
@@ -46,27 +47,26 @@
 			</div>
 		</div>
 		<div id="content">
-			<div class="container">	
-			
-						<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
-							<li class="nav-item" id="writing">
-								<a id="pills-profile-tab" data-toggle="pill" href="/dog/gatherboard" role="tab"
-								aria-controls="pills-profile" aria-selected="false"
-								class="nav-link active">게시판으로 보기</a></li>
-							<li class="nav-item" id="commented">
-								<a id="pills-home-tab" onclick="mapListClick()"
-								data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
-								aria-controls="pills-home" aria-selected="true" class="nav-link">지도로 보기</a></li>
-						</ul>
-
-						<div id="pills-tabContent" class="tab-content">
-							<div id="writingList" role="tabpanel"
-								aria-labelledby="pills-home-tab"
-								class="tab-pane fade show active">
-																	
-						<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
-							<a>글쓰기</a>
-						</button>
+			<div class="container">			
+				<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
+					<li class="nav-item" id="writing">
+						<a id="pills-profile-tab" data-toggle="pill" href="/dog/gatherboard" role="tab"
+						aria-controls="pills-profile" aria-selected="false"
+						class="nav-link active">게시판으로 보기</a></li>
+					<li class="nav-item" id="commented">
+						<a id="pills-home-tab" onclick="mapListClick()"
+						data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
+						aria-controls="pills-home" aria-selected="true" class="nav-link">지도로 보기</a></li>
+				</ul>
+	
+				<div id="pills-tabContent" class="tab-content">
+					<div id="writingList" role="tabpanel"
+						aria-labelledby="pills-home-tab"
+						class="tab-pane fade show active">
+															
+				<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
+					<a>글쓰기</a>
+				</button>
 		<!-- 검색 -->		
 		<form id="categoryForm" action="/dog/gatherboard" method="post">		
 			<div id="top-category" aria-label="Page navigation example" class="d-flex justify-content-left">
@@ -148,7 +148,7 @@
 										<c:out value="${board.TITLE}" /><span class="badge badge-secondary comment-count"><c:out value="${board.COMMENT_COUNT}" /></span> </a></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown"><c:out value="${board.NICKNAME}" /></a>
+											<a href="#" data-toggle="dropdown" class="dropdown user-dropdown"><c:out value="${board.NICKNAME}" /></a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="/member/detail/${board.USER_ID}" class="nav-link">게시글보기</a></div>
 												<div class="dropdown">
@@ -263,7 +263,7 @@
 				</div>                      
 			</div>
 		</div>
-	
+	</div>
 		<script src="/resources/js/gatherboard/list.js"></script>
 		<script>
 		function messageClick(user) {

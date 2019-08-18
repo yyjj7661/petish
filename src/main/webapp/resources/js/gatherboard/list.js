@@ -1,8 +1,7 @@
 $(document).ready(function(){
 	var region = document.getElementById('region-category');
 	var size = document.getElementById('size-category');
-	var keyword = document.getElementById('categoryKeyword');
-	
+	var keyword = document.getElementById('categoryKeyword');	
 });
 
 var actionForm = $("#actionForm");

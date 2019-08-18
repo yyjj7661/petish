@@ -61,9 +61,10 @@
 <link rel="stylesheet" href="/resources/css/gatherboard/kakaomap.css">
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
 </head>
-<body style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight: 100;">
+<body class="bg-light" style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight: 100;">
 	<div id="all">
-		<%@ include file="/WEB-INF/views/commons/top.jspf" %>
+	<%@ include file="/WEB-INF/views/commons/dog_top.jspf" %>
+	<div class="content-fluid body-section">
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
@@ -300,7 +301,7 @@
 						<div id="post-content">						
 							<h3>모임 안내</h3>
 							<blockquote class="blockquote">
-									<p><strong>모임 일시 :</strong><a id="gathering_date"> <%= post.getGATHERING_DATE() %></a></p>
+									<p><strong>모임 일시 : </strong><a id="gathering_date"> <%= post.getGATHERING_DATE() %></a></p>
 									<p><strong>주소 :</strong><a id="addr"></a></p>
 									<p id="sizeID"><strong>크기  :</strong> <%= size %>
 									<p><strong>반려견 :</strong> <%= request.getAttribute("dogSpecies") %> </p>
@@ -501,6 +502,7 @@
     			</div>
 			</div>
 		</div>
+	</div>
 		
 	<script src="/resources/js/gatherboard/post.js"></script>
 	<script src="/resources/js/gatherboard/chat.js"></script>
