@@ -25,6 +25,10 @@ a {
     background-color: #8ed2be;
 }
 
+#commented {
+	color: #8ed2be!important;	
+}
+
 #region-category, #size-category {
 	height: 2.6rem;
 }
@@ -46,7 +50,8 @@ a {
 }
 
 .page a:hover {
-    color: #8ed2be;
+	color: #fff!important;
+    background: #8ed2be;
 }
 
 .badge.badge-secondary.comment-count {
@@ -60,7 +65,7 @@ a {
 }
 
 #title {
-	color: black;
+	color: black!important;
 }
 
 #map-btn {

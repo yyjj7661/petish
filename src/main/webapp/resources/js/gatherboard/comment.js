@@ -40,7 +40,7 @@ function commentList(param) {
 	            output += '</div>';
 	            
 	            output += '<div class="reply-content" id="reply-content' + result[i].id + '">';            
-	            output += '<h5 class="text-uppercase" style="display:inline-block; padding-right:1rem">' + result[i].nickname + '</h5>';
+	            output += '<h6 class="text-uppercase" style="display:inline-block; padding-right:1rem; color:black">' + result[i].nickname + '</h5>';
 	            output += '<a class="posted">';
 	            output += '<i class="fa fa-clock-o" style="padding-right:0.2rem"></i>' + result[i].CREATED_DATE + '</a>';
 	            

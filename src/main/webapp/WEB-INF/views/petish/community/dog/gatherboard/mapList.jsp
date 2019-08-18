@@ -42,7 +42,7 @@
 				<div class="container">				
 						<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
 							<li class="nav-item" id="commented">
-								<a data-toggle="pill" href="/dog/gatherboard" role="tab" onclick="viewBoardList()"
+								<a id="commented" data-toggle="pill" href="/dog/gatherboard" role="tab" onclick="viewBoardList()"
 								aria-controls="pills-home" aria-selected="true" class="nav-link">게시판으로 보기</a></li>
 							<li class="nav-item" id="writing">
 								<a id="pills-profile-tab" data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"

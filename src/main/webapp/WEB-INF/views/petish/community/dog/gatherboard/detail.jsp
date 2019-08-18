@@ -99,7 +99,7 @@
 									<div class="row nav navbar-nav ml-auto">
 										<a href="#" id="writer-dropdown" data-toggle="dropdown" class="row dropdown"> <%= writer %></a>
 										<div class="dropdown-menu">
-											<div class="dropdown"><a href="#" class="nav-link">게시글보기</a></div>
+											<div class="dropdown"><a href="/member/detail/<%=post.getUSER_ID() %>" class="nav-link">게시글보기</a></div>
 											<div class="dropdown">
 												<a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
 											</div>

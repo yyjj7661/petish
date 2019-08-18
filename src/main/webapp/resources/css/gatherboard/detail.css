@@ -55,7 +55,8 @@ div.ellipsis {
 }
 
 .page a:hover {
-    color: cadetblue;
+	color: #fff!important;
+    background: #8ed2be;
 }
 
 #btnStr {
