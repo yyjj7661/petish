@@ -133,7 +133,7 @@
 						<button id="participantBtn" type="button" class="btn btn-template-outlined" data-toggle="modal" data-target="#mySmallModal">
 							<i class="fa fa-users"></i>신청목록
 						</button>
-							<h3 class="h3 panel-title">참여 현황</h3>
+							<h3>참여 현황</h3>
 					</div>
 
 						<h4>

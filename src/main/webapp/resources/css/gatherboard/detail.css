@@ -28,7 +28,15 @@ div#post-content {
 width:16px;height:16px;background:#8ed2be;}
 
 .h3.panel-title:after {
-	background: #8ed2be;	
+	background: #8ed2be!important;	
+}
+
+.heading h3:after {
+	background: #8ed2be!important;
+}
+
+#panel-title {
+	background: #8ed2be!important;	
 }
 
 #state {

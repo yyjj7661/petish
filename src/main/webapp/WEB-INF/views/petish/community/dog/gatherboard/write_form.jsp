@@ -38,8 +38,8 @@
 						</div>
 						<div class="col-md-5">
 							<ul class="breadcrumb d-flex justify-content-end">
-								<li class="breadcrumb-item"><a href="index.html">강아지</a></li>
-								<li class="breadcrumb-item active">정모게시판</li>
+								<li class="breadcrumb-item"><a href="/dog/gatherboard">정모게시판</a></li>
+								<li class="breadcrumb-item active">글쓰기</li>
 							</ul>
 						</div>
 					</div>
