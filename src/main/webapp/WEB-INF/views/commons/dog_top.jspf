@@ -1,11 +1,11 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page import="com.community.petish.community.user.dto.response.LoginedUser"%>
 
+<script src="/resources/js/index/jquery-3.2.1.min.js"></script>
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
 <%@ include file="/WEB-INF/views/commons/script.jspf" %>
 
 <!-- JavaScript File -->
-<script src="/resources/js/index/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="/resources/css/top/top.css">
 <link rel="stylesheet" href="/resources/css/top/modal.css?after">
 
