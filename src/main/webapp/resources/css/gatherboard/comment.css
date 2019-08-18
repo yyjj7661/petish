@@ -33,7 +33,9 @@
    padding: 0.3rem 0.5rem 0.3rem 0.5rem!important;
    float:right;
    margin-top: 0.5rem!important;
-   margin-right: 0.1rem!importnat;
+   margin-right: auto!importnat;
+   background: #b5e3d5!important;
+   color: #fff!important;
 }
 .modify-remove-navbar{
    display:inline-block!important;
@@ -52,10 +54,12 @@
    width:100%!important;
    max-width:100%!important;
 }
-
 .comment-form{
    display:inline-block!important;
    width:85%!important;
+}
+.comment-input-form:focus {
+	border:2px solid #b5e3d5!important;	
 }
 .comment-button-div{
    display:inline-block;
@@ -75,7 +79,6 @@
    color: #fff;
    background: #b5e3d5;
 }
-
 #input_data:hover{
 	background-color: #8ed2be;
 }

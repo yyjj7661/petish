@@ -16,7 +16,7 @@
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
 <link href="/resources/css/fonts.css" rel="stylesheet">
-<link href="/resources/css/gatherboard/list.css" rel="stylesheet">       
+<link href="/resources/css/gatherboard/list.css" rel="stylesheet">        
 </head>
 
 <body class="bg-light" style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1px;">
@@ -143,7 +143,7 @@
 									<td><c:out value="${board.REGION_NAME}" /></td>
 									<td class=test><c:out value="${board.DOG_SIZE}" />형견</td>
 									<td colspan="10">
-										<a id="title" href="#" onclick="detailClick(${board.ID })">
+										<a id="title" href="#" onclick="detailClick(<c:out value="${board.ID}" />)">
 										<c:out value="${board.TITLE}" /><span class="badge badge-secondary comment-count"><c:out value="${board.COMMENT_COUNT}" /></span> </a></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
@@ -168,8 +168,8 @@
                   class="d-flex justify-content-center">
                   <ul class="pagination">
                      <c:if test="${pageMaker.prev }">
-                        <li class="page-item"><a href="${pageMaker.startPage-1 }" name="" 
-                        	class="page-link"> <i class="fa fa-angle-double-legt"></i></a></li>
+                        <li class="page"><a href="${pageMaker.startPage-1 }"
+                        	class="page-link"> <i class="fa fa-angle-double-left"></i></a></li>
                      </c:if>
 
                      <c:forEach var="num" begin="${pageMaker.startPage }"
@@ -180,7 +180,7 @@
                      </c:forEach>
 
                      <c:if test="${pageMaker.next }">
-                        <li class="page-item"><a href="${pageMaker.endPage+1 }"
+                        <li class="page"><a href="${pageMaker.endPage+1 }"
                             class="page-link"> <i class="fa fa-angle-double-right"></i></a></li>
                      </c:if>
                   </ul>

@@ -51,21 +51,22 @@ function commentList(param) {
 	            }
 	            
 	            output += '<input type="hidden" class="form-control comment-input-form" id="commentContent'+result[i].id+'" value="'+result[i].content+'">';
+	            output += '<input id="commentModifyBtn'+result[i].id+'" onclick="modifyComment('+result[i].id+')" type="hidden" class="btn btn-template-outlined buttons" value="수정">';
 	            output += '<div id="commentBlock'+result[i].id+'">';
 	            
 	            output += '<div id="commentInnerText'+result[i].id+'" class="modify-comment">' + result[i].content +'</div>';   
-
+	          
 	            //본인이 작성한 댓글일 경우
 	            if(result[i].nickname == $("#NICKNAME").val()) {      
 	               
 	               output += '<div class="nav navbar-nav ml-auto modify-remove-navbar">';
-	               output += '<a href="#" data-toggle="dropdown" class="dropdown modify-remove-dropdown"><img src="/resources/img/reply-modify-button.png" class="modifyBtn" onclick="buttonChange('+result[i].id+')"></a>';
+	               output += '<a href="#" data-toggle="dropdown" class="dropdown modify-remove-dropdown style="display:none;"><img src="/resources/img/reply-modify-button.png" class="modifyBtn" onclick="buttonChange('+result[i].id+')"></a>';
 	               output += '<div class="dropdown-menu modify-remove-dropdown-menu" role="menu">';
 	               output += '<div class="dropdown">';
-	               output += '<a href="#" class="nav-link"><a onclick="button('+result[i].id+')">수정</a>';
+	               output += '<a onclick="button('+result[i].id+')">수정</a>';
 	               output += '</div>';
 	               output += '<div class="dropdown">';
-	               output += '<a href="#" class="nav-link" id="message-btn" data-toggle="modal"><a onclick="removeComment('+result[i].id+')">삭제</a></a>';
+	               output += '<a onclick="removeComment('+result[i].id+')">삭제</a>';
 	               output += '</div>';
 	               output += '</div>';
 	               output += '</div>';
@@ -118,7 +119,7 @@ function commentCount() {
 	var str = "<ul class='pagination pull-right'>";
 	
 	if(prev) {
-		str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'><<</a></li>";
+		str += "<li class='page'><a class='page-link' href='"+(startNum -1)+"'><<</a></li>";
 	}
 	
 	for(var i = startNum ; i <= endNum; i++) {
@@ -128,7 +129,7 @@ function commentCount() {
 	}
 	
 	if(next) {
-		str += "<li class='page-item'><a class='page-link' href='"+(endNum + 1)+"'>>></a></li>";
+		str += "<li class='page'><a class='page-link' href='"+(endNum + 1)+"'>>></a></li>";
 	}
 	
 	str += "</ul></div>";
@@ -164,7 +165,7 @@ function button(id) {
 	   	   
 	   $('#commentBlock'+id+'').attr({"style":"display:none"});
 	   $('#commentContent'+id+'').attr({"type":"text", "value":contentVal});
-	   $('#reply-content'+id+'').append('<div><input id="commentModifyBtn'+id+'" onclick="modifyComment('+id+')" type="hidden" class="btn btn-template-outlined buttons" value="수정" style="float:right; margin-right:15px; margin-top:20px"></div>');
+	   //$('#reply-content'+id+'').append('<div><input id="commentModifyBtn'+id+'" onclick="modifyComment('+id+')" type="hidden" class="btn btn-template-outlined buttons" value="수정"></div>');
 	   
 	   $('#commentCloseBtn'+id+'').attr({"type":"button"});
 	   $('#commentDeleteBtn'+id+'').attr({"type":"button"});
@@ -175,8 +176,6 @@ function buttonChange(id) {
 	
 	var contentVal = $("#commentContent"+id+"").val();
 	var loginModal = $("#login-modal");
-	
-	$('#commentModifyBtn'+id+'').attr({"type":"button"});
 }
 
 
