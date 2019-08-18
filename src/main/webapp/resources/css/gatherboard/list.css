@@ -10,8 +10,8 @@ div.ellipsis {
 	color: black;
 }
 
-a {
-	color:#8ed2be;
+.form-control:focus {
+	border:2px solid #b5e3d5!important;	
 }
 
 /* 탭메뉴 */
@@ -47,11 +47,13 @@ a {
 .page.active a {
     color: #fff!important;
     background-color: #b5e3d5;		
+    border: 1px solid #b5e3d5;
 }
 
 .page a:hover {
 	color: #fff!important;
     background: #8ed2be;
+    border: 1px solid #8ed2be;
 }
 
 .badge.badge-secondary.comment-count {
@@ -66,6 +68,12 @@ a {
 
 #title {
 	color: black!important;
+}
+
+#modalSendBtn {
+	color: #fff;
+	background: #b5e3d5;
+	border: 1px solid #b5e3d5;
 }
 
 #map-btn {
@@ -83,7 +91,7 @@ a {
 }
 
 #participant-state-btn {
-	padding: 8px;	
+	padding: 6px;	
 }
 
 .btn.btn-sm.btn-template-main {
