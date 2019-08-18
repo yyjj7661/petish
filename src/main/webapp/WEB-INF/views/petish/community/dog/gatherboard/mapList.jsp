@@ -45,7 +45,7 @@
 								<a data-toggle="pill" href="/dog/gatherboard" role="tab" onclick="viewBoardList()"
 								aria-controls="pills-home" aria-selected="true" class="nav-link">게시판으로 보기</a></li>
 							<li class="nav-item" id="writing">
-								<a data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
+								<a id="pills-profile-tab" data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
 								aria-controls="pills-profile" aria-selected="false" 
 								class="nav-link active" onclick="mapListClick()">지도로 보기</a></li>
 						</ul>						

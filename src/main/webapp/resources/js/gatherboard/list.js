@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 var actionForm = $("#actionForm");
 
-$(".page-item a").on("click", function(e) {
+$(".page a").on("click", function(e) {
                             		
 	e.preventDefault(); // 이동 방지 
 	console.log('click');

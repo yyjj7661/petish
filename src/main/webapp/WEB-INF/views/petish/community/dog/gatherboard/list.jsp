@@ -48,13 +48,13 @@
 		</div>
 		<div id="content">
 			<div class="container">			
-				<ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified" style="margin-top: 1cm;">
+				<ul id="pills-tab" role="tablist" class="nav nav-justified" style="margin-top: 1cm;">
 					<li class="nav-item" id="writing">
 						<a id="pills-profile-tab" data-toggle="pill" href="/dog/gatherboard" role="tab"
 						aria-controls="pills-profile" aria-selected="false"
 						class="nav-link active">게시판으로 보기</a></li>
 					<li class="nav-item" id="commented">
-						<a id="pills-home-tab" onclick="mapListClick()"
+						<a onclick="mapListClick()"
 						data-toggle="pill" href="/dog/gatherboard/mapList" role="tab"
 						aria-controls="pills-home" aria-selected="true" class="nav-link">지도로 보기</a></li>
 				</ul>
@@ -144,11 +144,10 @@
 									<td class=test><c:out value="${board.DOG_SIZE}" />형견</td>
 									<td colspan="10">
 										<a id="title" href="#" onclick="detailClick(${board.ID })">
-										<!--  a onclick="detailClick("+${board.ID}+")">-->
 										<c:out value="${board.TITLE}" /><span class="badge badge-secondary comment-count"><c:out value="${board.COMMENT_COUNT}" /></span> </a></td>
 									<td>
 										<div class="nav navbar-nav ml-auto">
-											<a href="#" data-toggle="dropdown" class="dropdown user-dropdown"><c:out value="${board.NICKNAME}" /></a>
+											<a id="user-dropdown" href="#" data-toggle="dropdown" class="dropdown user-dropdown"><c:out value="${board.NICKNAME}" /></a>
 											<div class="dropdown-menu">
 												<div class="dropdown"><a href="/member/detail/${board.USER_ID}" class="nav-link">게시글보기</a></div>
 												<div class="dropdown">
@@ -164,7 +163,7 @@
 						</table>
 					</div>
 				</div>
-	          <!-- 페이징  -->
+	           <!-- 페이징  -->
                <div aria-label="Page navigation example"
                   class="d-flex justify-content-center">
                   <ul class="pagination">
@@ -175,7 +174,7 @@
 
                      <c:forEach var="num" begin="${pageMaker.startPage }"
                         end="${pageMaker.endPage }">
-                        <li class="page-item ${pageMaker.cri.pageNum == num ? "active" : ""}">
+                        <li class="page ${pageMaker.cri.pageNum == num ? "active" : ""}">
                            <a href="${num}" class="page-link">${num}</a>
                         </li>
                      </c:forEach>
@@ -209,7 +208,7 @@
 							<div class="input-group">	
 								<input type='text' name='keyword' class="form-control" placeholder="검색어를 입력해주세요"/>
                                 	<span class="input-group-btn">
-                                <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
+                                <button type="submit" class="btn btn-template-main" id="search-btn"><i class="fa fa-search"></i></button></span>
 							</div>
 						</div>
 					</div>

@@ -1,19 +1,129 @@
+h1.h2 {
+	color: black;
+}
+
+.h3.panel-title {
+	color: black;
+}
+
+div#post-content {
+	color: black;
+}
+
+.btn-sm {
+	background-color: #8ed2be;
+	border:1px solid #8ed2be;	
+} 
+
 /* scroll */
 ::-webkit-scrollbar{width: 16px;}
 ::-webkit-scrollbar-track {background-color:#f1f1f1;}
-::-webkit-scrollbar-thumb {background-color:#38a7bb;}
+::-webkit-scrollbar-thumb {background-color:#b5e3d5;}
 ::-webkit-scrollbar-thumb:hover {background: #555;}
 ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
-width:16px;height:16px;background:lightblue;} 
+width:16px;height:16px;background:#8ed2be;}
+
+.h3.panel-title:after {
+	background: #8ed2be;	
+}
+
+#state {
+    height: 3rem;
+}
+
+div.ellipsis {
+	color: black;
+}
+
+.blockquote {
+	font-size: 1.1rem!important;
+	border-left: 5px solid #8ed2be!important;
+}
+
+/* 페이징 */
+.page.active a {
+    color: #fff;
+    background-color: #b5e3d5;		
+}
+
+.page a:hover {
+    color: cadetblue;
+}
+
+#btnStr {
+	color: #fff!important;
+}
+
+#modifyBtn {
+	float: left;
+	background: #b5e3d5;
+	color: #fff;	
+}
+
+#modifyBtn:hover {
+	background: #8ed2be;
+}
+
+#deleteBtn {
+	float: left;
+	background: #b5e3d5;
+	color: #fff;	
+}
+
+#deleteBtn:hover {
+	background: #8ed2be;	
+}
+
+.btn.btn-outline-primary {
+	border-color: #b5e3d5;		
+}
+
+.btn.btn-outline-primary {
+	border-color: #b5e3d5;		
+}
+
+.btn.btn-outline-primary:hover {
+	background-color: #b5e3d5;	
+	border-color: #b5e3d5;		
+}
+
+.btn.btn-outline-primary:hover {
+	background-color: #b5e3d5;
+	border-color: #b5e3d5;			
+}
 
 .btn.btn-template-outlined.writeBtn {
 	margin-top: -10px;
 	float: right;
-	font-weight:100;
+	color: #fff!important;
+	background: #b5e3d5;
+}
+
+.btn.btn-template-outlined.writeBtn:hover {
+	background: #8ed2be;
 }
 
 .btn.btn-template-outlined.listBtn {
 	margin-top: -10px;
+	color: #fff!important;
+	background: #b5e3d5;
+}
+
+.btn.btn-template-outlined.listBtn:hover {
+	background: #8ed2be;
+}
+
+.modal-header.participant {
+	background: #b5e3d5;
+}
+
+.modal-title.participant {
+	color: #fff!important;
+	background: #b5e3d5;
+}
+
+.btn.btn-outline-primary.close-btn {
+	border-width: 1px!important;
 }
 
 #addr {
@@ -37,6 +147,7 @@ width:16px;height:16px;background:lightblue;}
 }
 
 #writer-dropdown {
+	color: #8ed2be!important;
 	left: 15px;
 }
 
@@ -44,6 +155,15 @@ width:16px;height:16px;background:lightblue;}
     width: 100%;
     margin-left: 20px;
     text-align: right;
+}
+
+#CONTENT:focus {
+	border:3px solid #b5e3d5;		
+}
+
+/* 채팅 */
+#inputMessage:focus {
+	border:4px solid #b5e3d5;	
 }
 
 .chat {
@@ -61,7 +181,7 @@ width:16px;height:16px;background:lightblue;}
 	bottom: 20%;
 	z-index: 2;
 	width: 400px;
-	background-color: lightblue;
+	background-color: linen;;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 }
@@ -72,7 +192,7 @@ width:16px;height:16px;background:lightblue;}
 	color: #38a7bb;
 	padding: 3%;
 	margin: auto;
-	background-color: #38a7bb;
+	background-color: #8ed2be;
     color: white;
     border-radius: 10px 10px 0 0;
     text-align: center;
@@ -85,6 +205,8 @@ width:16px;height:16px;background:lightblue;}
 #participantCancelBtn {
 	float: right;
 	margin-bottom: 10px;
+	border: 1px solid #8ed2be!important;
+	color: #8ed2be!important;
 }
 
 .chatNotice {
@@ -93,7 +215,7 @@ width:16px;height:16px;background:lightblue;}
 	color: #38a7bb;
 	padding: 3%;
 	margin: auto;
-	background-color: lightslategray;
+	background-color: darkgray;
     color: white;
     border-radius: 10px;
     text-align: center;
@@ -103,6 +225,7 @@ width:16px;height:16px;background:lightblue;}
 	height:300px;
 	overflow-y:scroll; 
 	padding: 2%;
+	background-color: linen;
 }
 
 .onUser {
@@ -151,7 +274,13 @@ width:16px;height:16px;background:lightblue;}
 }
 
 #participantBtn {
+	color: #fff!important;
 	float: right;
+	background: #b5e3d5;
+}
+
+#participantBtn:hover {
+	background: #8ed2be;
 }
 
 #commentUpdateBtn {
@@ -171,14 +300,6 @@ button.btn.btn-template-outlined.btn-sm {
 
 #participantList {
 	width: 500px;
-}
-
-#modifyBtn {
-	float: left;
-}
-
-#deleteBtn {
-	float: left;
 }
 
 #report-btn {

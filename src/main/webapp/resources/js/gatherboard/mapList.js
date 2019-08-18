@@ -131,7 +131,7 @@ function displayInfowindow(map,marker,id,title,address_name,hours,fa,ga) {
 	// 별도의 이벤트 메소드를 제공하지 않습니다 
 	var content = '<div class="wrap" id="overlay'+id+'">' + 
 	            '    <div class="info">' + 
-	            '        <div class="title"><a href="/dog/gatherboard/'+id+'" style="background-color:#38a7bb;color:#fff;"><i class="fas fa-plus-circle" style="margin-right:5px;"></i>' + title + '</a>' + 
+	            '        <div class="title"><a href="/dog/gatherboard/'+id+'" style="background-color:#8ed2be;color:#fff;"><i class="fas fa-plus-circle" style="margin-right:5px;"></i>' + title + '</a>' + 
 	            '            <div class="close" id="close'+id+'" title="닫기"></div>' + 
 	            '        </div>' + 
 	            '        <div class="body">' + 
@@ -143,8 +143,8 @@ function displayInfowindow(map,marker,id,title,address_name,hours,fa,ga) {
 	            	content += '</div>' +  
 	            '                <div class="ellipsis">일시 : '+ hours +'</div>' + 
 	            '                <div class="jibun ellipsis text-center" style="margin-top:10px;">' +
-	            '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/map/'+addr1+','+ga+','+fa+'" style="target="_blank">큰지도</a></button>' +
-	            '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/to/'+addr1+','+ga+','+fa+'" style="target="_blank">길찾기</a></button>'+	
+	            '                  <button class="btn btn-template-outlined btn-sm" id="map-btn"><a id="btnStr" href="https://map.kakao.com/link/map/'+addr1+','+ga+','+fa+'" style="target="_blank">큰지도</a></button>' +
+	            '                  <button class="btn btn-template-outlined btn-sm" id="map-btn"><a id="btnStr" href="https://map.kakao.com/link/to/'+addr1+','+ga+','+fa+'" style="target="_blank">길찾기</a></button>'+	
 	            '                </div>' + 
 	            '                <div></div>' + 
 	            '            </div>' + 

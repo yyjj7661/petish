@@ -1,6 +1,52 @@
+h1.h2 {
+	color: black;
+}
+
+#state {
+	height: 3rem;	
+}
+
+div.ellipsis {
+	color: black;
+}
+
+a {
+	color:#8ed2be;
+}
+
+/* 탭메뉴 */
 #pills-profile-tab {
     color: #fff;
     background-color: #b5e3d5;
+}
+
+#pills-profile-tab:hover {
+    color: #fff;
+    background-color: #8ed2be;
+}
+
+#region-category, #size-category {
+	height: 2.6rem;
+}
+
+#region-category:focus, #size-category:focus {
+	border-color: #8ed2be;	
+}
+
+#search-btn {
+    color: #fff;
+    border:1px solid #b5e3d5!important;	
+    background-color: #b5e3d5;	
+}
+
+/* 페이징 */
+.page.active a {
+    color: #fff;
+    background-color: #b5e3d5;		
+}
+
+.page a:hover {
+    color: cadetblue;
 }
 
 .badge.badge-secondary.comment-count {
@@ -10,25 +56,52 @@
     padding: 3px 5px;
     margin-left: 5px;
     color: #fff;
-    background-color: #38a7bb;
+    background-color: #8ed2be;
 }
 
 #title {
 	color: black;
 }
 
-.fixmenu{     
-	color:black;
+#map-btn {
+	padding: 0.1rem 0.5rem;
+	border:1px solid #8ed2be!important;
+	color:#8ed2be!important;
+}
+
+#btnStr {
+	color:#8ed2be!important;
+}
+
+#user-dropdown {
+	color: #8ed2be;  
+}
+
+.btn.btn-sm.btn-template-main {
+	background-color: #8ed2be;
+	border:1px solid #8ed2be!important;
 }
 
 button.btn.btn-template-outlined.write-button {
+	color: #fff;
+	background: #b5e3d5;
 	float: right;
 	margin: 0 20px 30px;
 }
 
+button.btn.btn-template-outlined.write-button:hover {
+	background: #8ed2be;
+}
+
 button.btn.btn-template-outlined.map-write-button {
+	color: #fff;
+	background: #b5e3d5;
 	float: right;
 	margin: 0 20px 30px;
+}
+
+button.btn.btn-template-outlined.map-write-button:hover {
+	background: #8ed2be;
 }
 
 .row.btn.btn-sm.btn-template-main {
@@ -95,7 +168,7 @@ button.btn.btn-template-outlined.map-write-button {
 }
  
 input:checked + .slider {
-  background-color: cadetblue;
+  background-color: #b5e3d5;
 }
  
 input:focus + .slider {
@@ -118,6 +191,7 @@ input:checked + .slider:before {
 }
  
 #on-off-str {
+  color: black;
   margin: 7px 10px 5px 5px;	
   display:inline-block;
   font-size:15px;

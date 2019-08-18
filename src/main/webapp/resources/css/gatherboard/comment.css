@@ -69,7 +69,13 @@
 }
 #input_data{
    margin:auto;
-   width:100px;
-   height:110px;
+   width:110px;
+   height:122px;
    font-size:1rem!important;
+   color: #fff;
+   background: #b5e3d5;
+}
+
+#input_data:hover{
+	background-color: #8ed2be;
 }

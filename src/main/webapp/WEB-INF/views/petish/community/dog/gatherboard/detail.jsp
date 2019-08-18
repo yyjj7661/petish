@@ -83,12 +83,12 @@
 			      <div class="row bar">
 					<div class="col-md-12">
 						<button class="btn btn-template-outlined writeBtn">
-							<a href="/dog/gatherboard/writeForm">
+							<a id="btnStr" href="/dog/gatherboard/writeForm">
 							글쓰기
 							</a>
 						</button>
 						<button class="btn btn-template-outlined listBtn">					
-							<i class="fa fa-align-justify"></i><a href="/dog/gatherboard" id="listBtn" onclick="listClick()">목록</a>
+							<i class="fa fa-align-justify"></i><a id="btnStr" href="/dog/gatherboard" id="listBtn" onclick="listClick()">목록</a>
 						</button>
 						<div class="panel-heading">
 							<h2 class="h3 panel-title"><%= post.getTITLE() %></h2>
@@ -133,7 +133,7 @@
 						<button id="participantBtn" type="button" class="btn btn-template-outlined" data-toggle="modal" data-target="#mySmallModal">
 							<i class="fa fa-users"></i>신청목록
 						</button>
-							<h3>참여 현황</h3>
+							<h3 class="h3 panel-title">참여 현황</h3>
 					</div>
 
 						<h4>
@@ -150,8 +150,8 @@
 						<div class="modal fade" id="myLargeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
-									<div class="modal-header">
-										<h3 class="modal-title" id="myModalLabel">참여 신청</h3>
+									<div class="modal-header participant">
+										<h3 class="modal-title participant" id="myModalLabel">참여 신청</h3>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 											</button>
@@ -196,8 +196,8 @@
 							role="dialog" aria-labelledby="mySmallModalLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
-									<div class="modal-header">
-										<h3 class="modal-title" id="myModalLabel">신청 목록</h3>
+									<div class="modal-header participant">
+										<h3 class="modal-title participant" id="myModalLabel">신청 목록</h3>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -279,7 +279,7 @@
 										%>         
 								</div> <!-- modal-body -->
 									<div class="modal-footer">
-										<button type="button" class="btn btn-outline-primary"
+										<button type="button" class="btn btn-outline-primary close-btn"
 											data-dismiss="modal">닫기</button>
 									</div>
 								</div>
@@ -378,10 +378,10 @@
 								if(post.getUSER_ID()==userID){
 							%>
 								<button id="modifyBtn" class="btn btn-template-outlined">
-									<i class="fa fa-pencil"></i> <a href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
+									<i class="fa fa-pencil"></i> <a id="btnStr" href="/dog/gatherboard/modifyForm/<%= post.getID()%>">수정</a>
 								</button>
 								<button id="deleteBtn" type="submit" class="btn btn-template-outlined">
-									<i class="fa fa-trash-o"></i> <a href="/dog/gatherboard/deleteDogGatherPost/<%=post.getID()%>">삭제</a>
+									<i class="fa fa-trash-o"></i> <a id="btnStr" href="/dog/gatherboard/deleteDogGatherPost/<%=post.getID()%>">삭제</a>
 								</button>
 							<%
 								}
@@ -403,7 +403,7 @@
 					<!-- 채팅창 -->
 				    <div id="chat_box" style="display:none;">
 				        <div class="chatBox">
-				            <p class='chatTopBar'>* <%=post.getID()%>번 글 정모 채팅  *</p>
+				            <p class='chatTopBar'><%=post.getID()%>번 글 정모 채팅 </p>
 				            <div class='onUser' style="float:right"><p id="onUser">접속자</p>
 				            </div>
 				            <div id="messageWindow"></div>
