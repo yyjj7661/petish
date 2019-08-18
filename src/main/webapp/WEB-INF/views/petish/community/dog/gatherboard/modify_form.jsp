@@ -141,7 +141,7 @@
 										<div class="col-md-1.5" style="padding-top: 6px;">
 											<div class="form-group">
 												<label for="category"></label>									
-												<input type="button" class="form-control" value="검색" onclick="openZipcode(this.form)" />
+												<input type="button" class="form-control" id="button" value="검색" onclick="openZipcode(this.form)" />
 											</div>
 										</div>
 									</div>
@@ -166,11 +166,11 @@
 									</div>
 									<div class="row">
 										<div class="col-md-3">
-											<a href="#" class="btn btn-template-outlined"
+											<a href="/dog/gatherboard/deleteDogGatherPost/<%=post.getID() %>" class="btn btn-template-outlined" id="button"
 												style="margin-top: 0px;">삭제</a>
 										</div>
 										<div class="col-md-9 text-right">
-											<button type="submit" class="btn btn-template-outlined">수정</button>
+											<button type="submit" class="btn btn-template-outlined" id="button">수정</button>
 											<button type="reset" class="btn btn-template-outlined"
 												id="resetbtn">취소</button>
 										</div>

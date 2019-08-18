@@ -70,6 +70,16 @@ div.ellipsis {
 	color: black!important;
 }
 
+#map-btn {
+	padding: 0.1rem 0.5rem!important;
+	padding: 0.1rem 0.5rem!important;
+}
+
+#map-btn:hover {
+	color:#fff!important;
+	background: #8ed2be!important;
+}
+
 #modalSendBtn {
 	color: #fff;
 	background: #b5e3d5;
@@ -84,6 +94,10 @@ div.ellipsis {
 
 #btnStr {
 	color:#8ed2be!important;
+}
+
+#btnStr:hover {
+	color:#fff!important;
 }
 
 #user-dropdown {

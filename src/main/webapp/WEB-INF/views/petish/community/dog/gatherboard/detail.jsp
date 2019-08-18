@@ -181,7 +181,7 @@
 												</div>
 												<div class="form-group">						
 													<div class="text-center">
-														<button type="submit" class="btn btn-template-outlined">확 인</button>
+														<button type="submit" class="btn btn-template-outlined" id="participantSendBtn">확 인</button>
 														<button id="participantResetBtn" type="reset" class="btn btn-template-outlined">취 소</button>
 							                        </div>
 												</div>

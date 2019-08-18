@@ -26,8 +26,8 @@ $(document).ready(function(){
 		content += '</div>' +
         '                <div class="ellipsis">일시 : ' + gatheringDate + '</div>' + 
 		'                <div class="jibun ellipsis text-center" style="margin-top:10px;">' +
-        '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/map/'+addr1+','+result[0].y+','+result[0].x+'" style="target="_blank">큰지도</a></button>' +
-        '                  <button class="btn btn-template-outlined btn-sm" style="padding: 0.1rem 0.5rem;"><a href="https://map.kakao.com/link/to/'+addr1+','+result[0].y+','+result[0].x+'" style="target="_blank">길찾기</a></button>'+	
+        '                  <button class="btn btn-template-outlined btn-sm" id="button"><a id="button" href="https://map.kakao.com/link/map/'+addr1+','+result[0].y+','+result[0].x+'" style="target="_blank">큰지도</a></button>' +
+        '                  <button class="btn btn-template-outlined btn-sm" id="button"><a id="button" href="https://map.kakao.com/link/to/'+addr1+','+result[0].y+','+result[0].x+'" style="target="_blank">길찾기</a></button>'+	
         '                </div>' + 
         '                <div></div>' + 
         '            </div>' + 

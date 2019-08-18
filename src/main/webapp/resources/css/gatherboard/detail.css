@@ -52,6 +52,10 @@ div.ellipsis {
 	color: #868e96!important;	
 }
 
+#size, #species {
+	height: 3rem;
+}
+
 /* 페이징 */
 .page.active a {
     color: #fff!important;
@@ -95,6 +99,16 @@ div.ellipsis {
 	background: #8ed2be;	
 }
 
+#button {
+	padding: 0.1rem 0.5rem!important;
+	padding: 0.1rem 0.5rem!important;
+}
+
+#button:hover {
+	background: #8ed2be!important;
+	color: #fff!important;
+}
+
 .btn.btn-outline-primary {
 	border-color: #b5e3d5;		
 }
@@ -130,13 +144,31 @@ div.ellipsis {
 	background: #b5e3d5;
 }
 
+#participantResetBtn {
+	color: #fff!important;
+	background: #b5e3d5;
+}
+
+#participantResetBtn:hover {
+	background: #8ed2be;
+}
+
+#participantSendBtn {
+	color: #fff!important;
+	background: #b5e3d5;
+}
+
+#participantSendBtn:hover {
+	background: #8ed2be;
+}
+
 .btn.btn-template-outlined.listBtn:hover {
 	background: #8ed2be;
 }
 
 .modal-header.participant {
 	background: #b5e3d5;
-}
+}	
 
 .modal-title.participant {
 	color: #fff!important;
@@ -144,7 +176,12 @@ div.ellipsis {
 }
 
 .btn.btn-outline-primary.close-btn {
-	border-width: 1px!important;
+	color: #fff!important;
+	background: #b5e3d5;
+}
+
+.btn.btn-outline-primary.close-btn:hover {
+	background: #8ed2be;
 }
 
 #addr {
@@ -226,8 +263,13 @@ div.ellipsis {
 #participantCancelBtn {
 	float: right;
 	margin-bottom: 10px;
-	border: 1px solid #8ed2be!important;
-	color: #8ed2be!important;
+	color: #fff!important;
+	background: #b5e3d5;
+	border: 1px solid #b5e3d5;
+}
+
+#participantCancelBtn:hover {
+	background: #8ed2be;
 }
 
 .chatNotice {
