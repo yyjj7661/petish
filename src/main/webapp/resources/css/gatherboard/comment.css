@@ -32,10 +32,10 @@
 .buttons{
    padding: 0.3rem 0.5rem 0.3rem 0.5rem!important;
    float:right;
-   margin-top: 0.5rem!important;
-   margin-right: auto!importnat;
    background: #b5e3d5!important;
    color: #fff!important;
+   margin-top: 0.5rem!important;
+   margin-right: 3%;
 }
 .modify-remove-navbar{
    display:inline-block!important;
@@ -45,7 +45,6 @@
 .modify-remove-dropdown{
    width:100%;
 }
-
 .modify-remove-dropdown-menu{
     min-width: 6rem!important;
 }
@@ -58,6 +57,11 @@
    display:inline-block!important;
    width:85%!important;
 }
+
+.comment-input-form {
+	width: 97%!important; 
+}
+
 .comment-input-form:focus {
 	border:2px solid #b5e3d5!important;	
 }
