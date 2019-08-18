@@ -40,9 +40,17 @@ div.ellipsis {
 	border-left: 5px solid #8ed2be!important;
 }
 
+#gathering_date, #addr {
+	color: black!important;
+}
+
+.posted.fixmenu {
+	color: #868e96!important;	
+}
+
 /* 페이징 */
 .page.active a {
-    color: #fff;
+    color: #fff!important;
     background-color: #b5e3d5;		
 }
 
@@ -158,12 +166,12 @@ div.ellipsis {
 }
 
 #CONTENT:focus {
-	border:3px solid #b5e3d5;		
+	border:2px solid #b5e3d5;		
 }
 
 /* 채팅 */
 #inputMessage:focus {
-	border:4px solid #b5e3d5;	
+	border:2px solid #b5e3d5;	
 }
 
 .chat {
@@ -181,8 +189,8 @@ div.ellipsis {
 	bottom: 20%;
 	z-index: 2;
 	width: 400px;
-	background-color: linen;;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: whitesmoke;
+	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
 }
 
@@ -225,14 +233,13 @@ div.ellipsis {
 	height:300px;
 	overflow-y:scroll; 
 	padding: 2%;
-	background-color: linen;
+	background-color: whitesmoke;
 }
 
 .onUser {
 	font-family: 'Do Hyeon', sans-serif;
 	letter-spacing: 2px;
 	padding: 2%;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #onUserListBtn {
@@ -253,7 +260,7 @@ div.ellipsis {
 #inputMessage {
 	font-family: 'Do Hyeon', sans-serif;
 	letter-spacing: 1px;
-	border-radius: 0 0 0 10px;	
+	border-radius: 0 0 0 10px!important;	
 }
 
 #sendBtn {

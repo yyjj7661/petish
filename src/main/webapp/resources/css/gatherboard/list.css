@@ -41,12 +41,12 @@ a {
 
 /* 페이징 */
 .page.active a {
-    color: #fff;
+    color: #fff!important;
     background-color: #b5e3d5;		
 }
 
 .page a:hover {
-    color: cadetblue;
+    color: #8ed2be;
 }
 
 .badge.badge-secondary.comment-count {
@@ -75,6 +75,10 @@ a {
 
 #user-dropdown {
 	color: #8ed2be;  
+}
+
+#participant-state-btn {
+	padding: 8px;	
 }
 
 .btn.btn-sm.btn-template-main {
@@ -121,6 +125,10 @@ button.btn.btn-template-outlined.map-write-button:hover {
 	margin-top: 40px;
 }
 
+#search-message:focus, #state:focus {
+	border: 2px solid #8ed2be;
+}
+
 .table{
 	margin: auto; 
 	text-align: center;
@@ -140,7 +148,9 @@ button.btn.btn-template-outlined.map-write-button:hover {
 }
  
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+.switch input {
+	display:none;
+	}
  
 /* The slider */
 .slider {
@@ -168,7 +178,7 @@ button.btn.btn-template-outlined.map-write-button:hover {
 }
  
 input:checked + .slider {
-  background-color: #b5e3d5;
+  background-color: #8ed2be;
 }
  
 input:focus + .slider {

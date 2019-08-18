@@ -64,7 +64,7 @@
       
       .fixmenu{
       
-      	color:#8ed2be;
+      	color:#8ed2be !important;
       }
 
 </style>

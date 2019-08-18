@@ -134,10 +134,10 @@
 								<!-- 정모 진행 상태 -->
 								<c:choose>	
 									<c:when test="${board.GATHERING_STATE == 0}">
-										<td><button type="button" class="row btn btn-sm btn-default">신청마감</button></td>
+										<td><button type="button" class="row btn btn-sm btn-default" id="participant-state-btn">신청마감</button></td>
 									</c:when>
 									<c:otherwise>
-										<td><button type="button" class="row btn btn-sm btn-template-main">신청가능</button></td>
+										<td><button type="button" class="row btn btn-sm btn-template-main" id="participant-state-btn">신청가능</button></td>
 									</c:otherwise>
 								</c:choose>	
 									<td><c:out value="${board.REGION_NAME}" /></td>
@@ -206,7 +206,7 @@
 					<div class="panel panel-default sidebar-menu">
 						<div class="panel-body">
 							<div class="input-group">	
-								<input type='text' name='keyword' class="form-control" placeholder="검색어를 입력해주세요"/>
+								<input type='text' id="search-message" name='keyword' class="form-control" placeholder="검색어를 입력해주세요"/>
                                 	<span class="input-group-btn">
                                 <button type="submit" class="btn btn-template-main" id="search-btn"><i class="fa fa-search"></i></button></span>
 							</div>

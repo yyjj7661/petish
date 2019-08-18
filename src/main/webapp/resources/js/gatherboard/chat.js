@@ -26,7 +26,7 @@ $(document).ready(function(){
     webSocket.onopen = function(event) { 
         onOpen(event)
                 var me = "<div class='nav navbar-nav ml-auto'>" 
-			  +	"<a href='#' data-toggle='dropdown' class='dropdown'><div id='"+$("#chat_id").val()+"' style='margin:3px; color:dimgray;'>" 
+			  +	"<a href='#' data-toggle='dropdown' class='dropdown'><div id='"+$("#chat_id").val()+"' style='margin:2px; color:dimgray;'>" 
 			  + $("#chat_id").val()+ "</div></a></div>"; 
 			  
         var user = document.getElementById(''+$("#chat_id").val()+'');
@@ -49,7 +49,7 @@ $(document).ready(function(){
         
         /* 접속자 */     
         var onUser = "<div class='nav navbar-nav ml-auto'>" 
-        			  +	"<a href='#' data-toggle='dropdown' class='dropdown'><div id='"+sender+"' style='margin:3px; color:dimgray;'>" +sender+ "</div></a>" 
+        			  +	"<a href='#' data-toggle='dropdown' class='dropdown'><div id='"+sender+"' style='margin:2px; color:dimgray;'>" +sender+ "</div></a>" 
         			  + "<div class='dropdown-menu'>"
         			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='oneOnOne"+sender+"'>1:1 채팅하기</a></div>"
         			  	+ "<div class='dropdown'><a href='#' class='nav-link' id='whisper"+sender+"');'>귓속말하기</a></div>"

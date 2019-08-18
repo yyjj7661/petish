@@ -14,7 +14,7 @@
 
 
 .triangle-border.left {
-  background-color: antiquewhite;
+  background-color: linen;
   margin-left:30px;
 }
 
@@ -64,7 +64,7 @@
     bottom: auto;
     left: -24px;
     border-width: 13px 26px 13px 0;
-    border-color: transparent antiquewhite;
+    border-color: transparent linen;
 }
 
 
