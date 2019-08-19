@@ -1,5 +1,10 @@
 h1.h2 {
-	color: black;
+	color: #868e96;
+	margin-top: 60px;
+}
+
+.col-md-12 {
+	margin-bottom: -50px!important;	
 }
 
 #state {
@@ -37,6 +42,9 @@ div.ellipsis {
 	border-color: #8ed2be;	
 }
 
+#write-btn {
+	color: #fff!important;
+}
 #search-btn {
     color: #fff;
     border:1px solid #b5e3d5!important;	
@@ -143,11 +151,6 @@ button.btn.btn-template-outlined.map-write-button:hover {
     font-weight: 100;
 }
 
-.dropdown{
-	text-align: center;
-
-}
-
 #top-category {
 	margin-top: 40px;
 }
@@ -235,6 +238,15 @@ input:checked + .slider:before {
 }
         
 @media screen and (max-width:750px){
+	#viewMapList {
+		margin-top: -30px;
+	}
+	#heading-breadcrumbs {
+		margin-bottom: -60px!important;
+	}
+	h1 {
+		font-size: large!important;
+	}
 	#region-category {
 		width:100px;
 	}

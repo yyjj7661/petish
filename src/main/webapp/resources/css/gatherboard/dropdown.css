@@ -1,4 +1,5 @@
 .showMemberDropMenu {
+	left: 15px;
     position: relative;
     display: inline-block;
 }

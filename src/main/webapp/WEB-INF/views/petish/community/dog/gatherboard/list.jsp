@@ -36,12 +36,12 @@
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
-					<div class="col-md-7">
+					<div class="col-md-12">
 						<h1 class="h2">강아지 정모게시판</h1>
+						<hr>
 					</div>
 					<div class="col-md-5">
 						<ul class="breadcrumb d-flex justify-content-end">
-
 						</ul>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 						class="tab-pane fade show active">
 															
 				<button type="submit" class="btn btn-template-outlined write-button" onclick="writeFormClick();">
-					<a>글쓰기</a>
+					<a id="write-btn">글쓰기</a>
 				</button>
 		<!-- 검색 -->		
 		<form id="categoryForm" action="/dog/gatherboard" method="post">		

@@ -16,6 +16,7 @@
 	String strUpdatedDate = post.getUPDATED_DATE()+"";
 	String addr = post.getGATHERING_ADDRESS();
 	String writer = (String)request.getAttribute("writer");
+	String writerImg = (String)request.getAttribute("writerImg");
 	String userName = user.getUsername();
 	Long userID = user.getId();
 	String userNickName = user.getNickname();
@@ -72,12 +73,12 @@
 		<div id="heading-breadcrumbs">
 			<div class="container">
 				<div class="row d-flex align-items-center flex-wrap">
-					<div class="col-md-7">
+					<div class="col-md-12">
 						<h1 class="h2">강아지 정모게시판</h1>
-					</div>
-					<div class="col-md-5">
-						<ul class="breadcrumb d-flex justify-content-end">
-						</ul>
+							<button class="btn btn-template-outlined listBtn">					
+								<i class="fa fa-align-justify"></i><a id="btnStr" href="/dog/gatherboard" id="listBtn" onclick="listClick()">목록</a>
+							</button>
+						<hr>
 					</div>
 				</div>
 			</div>
@@ -85,25 +86,20 @@
 		<div class="content">
 			<div class="container">
 			      <div class="row bar">
-					<div class="col-md-12">
-						<button class="btn btn-template-outlined writeBtn">
-							<a id="btnStr" href="/dog/gatherboard/writeForm">
-							글쓰기
-							</a>
-						</button>
-						<button class="btn btn-template-outlined listBtn">					
-							<i class="fa fa-align-justify"></i><a id="btnStr" href="/dog/gatherboard" id="listBtn" onclick="listClick()">목록</a>
-						</button>
+					<div class="col-md-12" id="board-post">
 						<div class="panel-heading">
 							<h2 class="h3 panel-title"><%= post.getTITLE() %></h2>
 						</div>
 						<table>
 							<tr>
+								<td><img src="<%=writerImg %>" alt=""
+										class="img-fluid rounded-circle" id="userImg">
+								</td>							
 							 	<td>
 							       <div class="nav navbar-nav ml-auto">
-							          <div class="showMemberDropMenu"><%= writer %>
+							          <div class="row showMemberDropMenu"><%= writer %>
 							          <div class="member_dropMenu">
-							               <a href="/member/detail/<%=post.getUSER_ID() %>" class="nav-link">게시글보기</a>
+							               <a href="/member/detail/<%=post.getUSER_ID() %>" class="nav-link" id="viewUser">게시글보기</a>
 							               <a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
 							          </div>
 							       </div>
@@ -122,7 +118,6 @@
 								</td>
 							</tr>
 						</table>
-							<hr size="10px">
 				<%
 					//정모 날짜가 지나지 않았을 경우
 					if(GATHRING_DATE.compareTo(ts) >= 1) {
@@ -136,12 +131,15 @@
 						<button id="participantBtn" type="button" class="btn btn-template-outlined" data-toggle="modal" data-target="#mySmallModal">
 							<i class="fa fa-users"></i>신청목록
 						</button>
-							<h3>참여 현황</h3>
+						<div class="row" id="contentBlock">						
+							<h3 id="participantState" style="background:transparent">참여 현황 													
+							</h3>	
+							<div class="participantCount">
+								<a id="participantCount1"><%= participantCount %></a><a id="participantCount2"> / <%= post.getPEOPLE_COUNT() %></a>
+							</div>
+						</div>
 					</div>
 
-						<h4>
-							<span class="h1 counter"><%= participantCount %></span> / <%= post.getPEOPLE_COUNT() %>
-						</h4>
 						<%
 							if(participantCount >= post.getPEOPLE_COUNT()) {
 						%>

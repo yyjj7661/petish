@@ -27,8 +27,9 @@
 			<div id="heading-breadcrumbs">
 				<div class="container">
 					<div class="row d-flex align-items-center flex-wrap">
-						<div class="col-md-7">
+						<div class="col-md-12">
 							<h1 class="h2">강아지 정모게시판</h1>
+							<hr>
 						</div>
 						<div class="col-md-5">
 							<ul class="breadcrumb d-flex justify-content-end">
@@ -52,7 +53,7 @@
 					<div id="pills-tabContent" class="tab-content">
 						<div role="tabpanel" aria-labelledby="pills-home-tab" class="tab-pane fade show active">																		
 							<button type="submit" class="btn btn-template-outlined map-write-button" onclick="writeFormClick();">
-								<a>글쓰기</a>
+								<a id="write-btn">글쓰기</a>
 							</button>
 						<!-- 검색 -->		
 						<form id="categoryForm" action="/dog/gatherboard" method="post">		
@@ -97,7 +98,7 @@
 						<!-- 상단 카테고리 끝 -->								
 						<!-- 검색 끝 -->
 						<div id="content">
-							<div class="container">
+							<div class="container" id="viewMapList">
 						      <div class="bar">
 								<div class="col-md-12" id="map">		
 									<div id="map" aria-label="Page navigation example" class="d-flex justify-content-left"></div>
