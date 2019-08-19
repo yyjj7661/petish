@@ -52,6 +52,9 @@
 <html>
 <head>
 <title><%= post.getTITLE() %></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
 <link href="/resources/css/fonts.css" rel="stylesheet">
@@ -63,7 +66,7 @@
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
 </head>
 <body class="bg-light" style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight: 100;">
-	<div id="all">
+	<div class="all">
 	<%@ include file="/WEB-INF/views/commons/dog_top.jspf" %>
 	<div class="content-fluid body-section">
 		<div id="heading-breadcrumbs">
@@ -79,7 +82,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="content">
+		<div class="content">
 			<div class="container">
 			      <div class="row bar">
 					<div class="col-md-12">

@@ -11,9 +11,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta charset="utf-8">
 <title>정모게시판 글 작성</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
 	
 <%--	<%@ include file="/WEB-INF/views/commons/link.jspf" %>--%>
 		
