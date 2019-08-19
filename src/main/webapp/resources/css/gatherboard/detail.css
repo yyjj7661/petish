@@ -96,6 +96,14 @@ div.ellipsis {
 	height: 3rem;
 }
 
+.row.showMemberDropMenu {
+	width: 200px!important;
+}
+
+div.participantCount {
+	width: 300px!important;
+}
+
 /* 페이징 */
 .page.active a {
     color: #fff!important;
