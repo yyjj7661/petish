@@ -4,7 +4,7 @@
   position:relative;
   padding:15px;
   margin:1em 0;
-  border:2px solid lightslategray;
+  border:2px solid transparent;
   color:#333;
   background:#fff;
   -webkit-border-radius:10px;
@@ -14,7 +14,7 @@
 
 
 .triangle-border.left {
-  background-color: linen;
+  background-color: bisque;
   margin-left:30px;
 }
 
@@ -49,13 +49,13 @@
   width:0;
 }
 
-
+/* 상대방 말풍선 */
 .triangle-border.left:before {
   top:10px; 
   bottom:auto;
   left:-30px; 
   border-width:15px 30px 15px 0;
-  border-color:transparent lightslategray;
+  border-color:transparent linen;
 }
 
 
@@ -64,7 +64,7 @@
     bottom: auto;
     left: -24px;
     border-width: 13px 26px 13px 0;
-    border-color: transparent linen;
+    border-color: transparent bisque;
 }
 
 
@@ -74,7 +74,7 @@
   left:auto;
   right:-30px; 
   border-width:15px 0 15px 30px;
-  border-color:transparent lightslategray;
+  border-color:transparent #fff;
 }
 
 

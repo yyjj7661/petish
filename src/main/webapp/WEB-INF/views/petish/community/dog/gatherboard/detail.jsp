@@ -59,6 +59,7 @@
 <link rel="stylesheet" href="/resources/css/gatherboard/comment.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/detail.css">
 <link rel="stylesheet" href="/resources/css/gatherboard/kakaomap.css">
+<link href="/resources/css/gatherboard/dropdown.css" rel="stylesheet"> 
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script> -->
 </head>
 <body class="bg-light" style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1.5px; font-weight: 100;">
@@ -95,17 +96,16 @@
 						</div>
 						<table>
 							<tr>
-								<td>
-									<div class="row nav navbar-nav ml-auto">
-										<a href="#" id="writer-dropdown" data-toggle="dropdown" class="row dropdown"> <%= writer %></a>
-										<div class="dropdown-menu">
-											<div class="dropdown"><a href="/member/detail/<%=post.getUSER_ID() %>" class="nav-link">게시글보기</a></div>
-											<div class="dropdown">
-												<a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
-											</div>
-										</div>
-									</div>
-								</td>
+							 	<td>
+							       <div class="nav navbar-nav ml-auto">
+							          <div class="showMemberDropMenu"><%= writer %>
+							          <div class="member_dropMenu">
+							               <a href="/member/detail/<%=post.getUSER_ID() %>" class="nav-link">게시글보기</a>
+							               <a href="#" id="message-btn" class="nav-link" data-toggle="modal">쪽지보내기</a>
+							          </div>
+							       </div>
+							       </div>
+							    </td>
 								<td class="date-view">
 									<i class="fa fa-clock-o"></i> 작성일 : <%= post.getCREATED_DATE() %>
 								<%
@@ -250,15 +250,16 @@
 											%>
 											 <tr class="text-center">
 												<td><b><%= i+1 %></b></td>
-												<td>
-													<div class="nav navbar-nav ml-auto">
-														<a href="#" data-toggle="dropdown" class="dropdown"><%= participant.getNICKNAME() %></a>
-														<div class="dropdown-menu">
-															<div class="dropdown"><a href="/member/detail/<%=participant.getUSER_ID() %>" class="nav-link">게시글보기</a></div>
-															<a href="#" id="message-btn" class="nav-link" data-toggle="modal" onclick="messageClick('<%=participant.getUSER_ID() %>,<%=participant.getNICKNAME()%>')">쪽지보내기</a>
-														</div>
-													</div>
-												</td>  
+											 	<td>
+											        <div class="nav navbar-nav ml-auto">
+											           <div class="showMemberDropMenu"><%= participant.getNICKNAME() %>
+											           <div class="member_dropMenu">
+											                <a href="/member/detail/<%=participant.getUSER_ID() %>" class="nav-link">게시글보기</a>
+											                <a href="#" id="message-btn" class="nav-link" data-toggle="modal" onclick="messageClick('<%=participant.getUSER_ID() %>,<%=participant.getNICKNAME()%>')">쪽지보내기</a>
+											           </div>
+											        </div>
+											        </div>
+										    	</td> 
 												<td><%= participant.getDOG_SPECIES() %></td>
 						                        <%
 						                        	if(userNickName.equals(writer)){						              

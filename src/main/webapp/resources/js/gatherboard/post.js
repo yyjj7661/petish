@@ -96,7 +96,6 @@ function participantCheck(size) {
 
 function messageClick(participant) {
 	var msg = participant.split(",");
-	alert(msg);
 	var participantID = msg[0];
 	var participantNickName = msg[1];
 	

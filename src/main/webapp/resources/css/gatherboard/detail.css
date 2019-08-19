@@ -23,7 +23,7 @@ div#post-content {
 ::-webkit-scrollbar{width: 16px;}
 ::-webkit-scrollbar-track {background-color:#f1f1f1;}
 ::-webkit-scrollbar-thumb {background-color:#b5e3d5;}
-::-webkit-scrollbar-thumb:hover {background: #555;}
+::-webkit-scrollbar-thumb:hover {background:#8ed2be;}
 ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
 width:16px;height:16px;background:#8ed2be;}
 
@@ -247,7 +247,7 @@ div.ellipsis {
 	bottom: 20%;
 	z-index: 2;
 	width: 400px;
-	background-color: whitesmoke;
+	background-color: linen;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
 }
@@ -296,7 +296,7 @@ div.ellipsis {
 	height:300px;
 	overflow-y:scroll; 
 	padding: 2%;
-	background-color: whitesmoke;
+	background-color: linen;
 }
 
 .onUser {

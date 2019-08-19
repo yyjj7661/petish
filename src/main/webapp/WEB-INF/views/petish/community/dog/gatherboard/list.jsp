@@ -16,7 +16,8 @@
 
 <%@ include file="/WEB-INF/views/commons/link.jspf" %>
 <link href="/resources/css/fonts.css" rel="stylesheet">
-<link href="/resources/css/gatherboard/list.css" rel="stylesheet">        
+<link href="/resources/css/gatherboard/list.css" rel="stylesheet"> 
+<link href="/resources/css/gatherboard/dropdown.css" rel="stylesheet">       
 </head>
 
 <body class="bg-light" style="font-family: 'Do Hyeon', sans-serif; letter-spacing: 1px;">
@@ -144,18 +145,18 @@
 									<td class=test><c:out value="${board.DOG_SIZE}" />형견</td>
 									<td colspan="10">
 										<a id="title" href="#" onclick="detailClick(<c:out value="${board.ID}" />)">
-										<c:out value="${board.TITLE}" /><span class="badge badge-secondary comment-count"><c:out value="${board.COMMENT_COUNT}" /></span> </a></td>
-									<td>
-										<div class="nav navbar-nav ml-auto">
-											<a id="user-dropdown" href="#" data-toggle="dropdown" class="dropdown user-dropdown"><c:out value="${board.NICKNAME}" /></a>
-											<div class="dropdown-menu">
-												<div class="dropdown"><a href="/member/detail/${board.USER_ID}" class="nav-link">게시글보기</a></div>
-												<div class="dropdown">
-													<a href="#" id="message-btn" class="nav-link" data-toggle="modal" onclick="messageClick('${board.USER_ID},${board.NICKNAME}')">쪽지보내기</a>
-												</div>
-											</div>
-										</div>
+										<c:out value="${board.TITLE}" /><span class="badge badge-secondary comment-count"><c:out value="${board.COMMENT_COUNT}" /></span> </a>
 									</td>
+							 		 <td>
+								        <div class="nav navbar-nav ml-auto">
+								           <div class="showMemberDropMenu"><c:out value="${board.NICKNAME}" />
+								           <div class="member_dropMenu">
+								                <a href="/member/detail/${board.USER_ID}" class="nav-link">게시글보기</a>
+								                <a href="#" id="message-btn" class="nav-link" data-toggle="modal" onclick="messageClick('${board.USER_ID},${board.NICKNAME}')">쪽지보내기</a>
+								           </div>
+								        </div>
+								        </div>
+							    	</td>
 									<td class=test><c:out value="${board.CREATED_DATE}" /></td>
 									<td class=test><c:out value="${board.VIEW_COUNT}" /></td>
 								</tr>
