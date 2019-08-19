@@ -122,7 +122,6 @@ public class DogGatherboardController {
 			result.addObject("participantCount",participantCount);
 			result.addObject("post",post);
 			result.addObject("writer",writer);
-			result.addObject("writerImg",user.getPicture());
 			result.addObject("dogSpecies",dogSpecies);
 			result.addObject("sizeID",sizeID);
 			result.addObject("pageMaker", new CommentPageDTO(cri, commentCnt));

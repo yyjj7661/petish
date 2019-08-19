@@ -91,10 +91,7 @@
 							<h2 class="h3 panel-title"><%= post.getTITLE() %></h2>
 						</div>
 						<table>
-							<tr>
-								<td><img src="<%=writerImg %>" alt=""
-										class="img-fluid rounded-circle" id="userImg">
-								</td>							
+							<tr>						
 							 	<td>
 							       <div class="nav navbar-nav ml-auto">
 							          <div class="row showMemberDropMenu"><%= writer %>
